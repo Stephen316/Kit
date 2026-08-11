@@ -123,6 +123,24 @@ def _SliceOps(
     )
 
 
+# windows path keys identify repeated component documents case-insensitively
+def _PathKey(PathValue: str) -> str:
+    return str(PureWindowsPath(PathValue)).casefold()
+
+
+# first occurrences define the external-file record order independently
+def _UniqueItems(CoreItems: tuple[RepeatItem, ...]) -> tuple[RepeatItem, ...]:
+    SeenPaths: set[str] = set()
+    UniqueItems: list[RepeatItem] = []
+    for ItemValue in CoreItems:
+        PathValue = _PathKey(ItemValue.CompPath)
+        if PathValue in SeenPaths:
+            continue
+        SeenPaths.add(PathValue)
+        UniqueItems.append(ItemValue)
+    return tuple(UniqueItems)
+
+
 # distinct configuration-manager records enumerate every component occurrence
 def _EncodeCMgr(
     ModelName: str,
@@ -314,6 +332,8 @@ def _EncodeHeader(
     CoreItems: tuple[RepeatItem, ...],
 ) -> bytes:
     ItemCount = len(CoreItems)
+    UniqueItems = _UniqueItems(CoreItems)
+    UniqueCount = len(UniqueItems)
     BaseShift = ItemCount - TracedCount
     InsertPos, UnitWidth = InsertSpecs["Contents/Config-0-ModelHeader"]
     PrefixData = _EmitOps(
@@ -339,28 +359,41 @@ def _EncodeHeader(
                 UnitStart,
             )
         )
-    FirstItem = CoreItems[0]
+    FirstItem = UniqueItems[0]
     FirstStem = PureWindowsPath(FirstItem.CompPath).stem
+    ExtOverrides = {
+        4: 24 + ItemCount,
+        31: UniqueCount,
+        75: FirstItem.CompPath,
+        211: 74 + (2 * BaseShift),
+        213: FirstStem,
+    }
+    if FirstItem.FileStamp > 0:
+        ExtOverrides[232] = FirstItem.FileStamp
     ExtPrefix = _EmitOps(
         _SliceOps(
             "Contents/Config-0-ModelHeader",
             HeaderExtStart,
             HeaderExtStart + HeaderExtWidth,
         ),
-        {
-            4: 24 + ItemCount,
-            31: ItemCount,
-            75: FirstItem.CompPath,
-            211: 74 + (2 * BaseShift),
-            213: FirstStem,
-        },
+        ExtOverrides,
         HeaderExtStart,
     )
     FileData = bytearray()
-    for ItemIndex, ItemValue in enumerate(CoreItems[1:], 2):
-        TemplateIndex = min(ItemIndex, TracedCount)
+    for FileIndex, ItemValue in enumerate(UniqueItems[1:], 2):
+        TemplateIndex = min(FileIndex, TracedCount)
         FileStart = HeaderFileStart + ((TemplateIndex - 2) * HeaderFileWidth)
         FileStem = PureWindowsPath(ItemValue.CompPath).stem
+        FileOverrides = {
+            0: 72 + (2 * BaseShift),
+            2: 74 + (2 * BaseShift),
+            4: ItemValue.CompPath,
+            140: 74 + (2 * BaseShift),
+            142: FileStem,
+            191: FileIndex - 1,
+        }
+        if ItemValue.FileStamp > 0:
+            FileOverrides[161] = ItemValue.FileStamp
         FileData.extend(
             _EmitOps(
                 _SliceOps(
@@ -368,14 +401,7 @@ def _EncodeHeader(
                     FileStart,
                     FileStart + HeaderFileWidth,
                 ),
-                {
-                    0: 72 + (2 * BaseShift),
-                    2: 74 + (2 * BaseShift),
-                    4: ItemValue.CompPath,
-                    140: 74 + (2 * BaseShift),
-                    142: FileStem,
-                    191: ItemIndex - 1,
-                },
+                FileOverrides,
                 FileStart,
             )
         )
@@ -410,7 +436,9 @@ def EncodePathCore(
         "Contents/CMgr": _EncodeCMgr(ModelName, ConfigName, CoreItems),
         "Contents/Config-0": _EncodeConfig(ModelName, ConfigName, CoreItems),
         "Contents/Config-0-ResolvedFeatures": _EncodeResolved(CoreItems),
-        "Contents/Definition": _EmitOps(StreamPrograms["Contents/Definition"], {}),
+        "Contents/Definition": _EmitOps(
+            StreamPrograms["Contents/Definition"], {3479: len(CoreItems)}
+        ),
         "Contents/Config-0-ModelHeader": _EncodeHeader(
             ModelName, ConfigName, CoreItems
         ),
