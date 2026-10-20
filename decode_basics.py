@@ -31,6 +31,7 @@ from decode_placement import decode_placement
 from decode_selection import decode_selections
 from decode_revolve_axes import decode_revolve_axes
 from decode_tools import decode_tools
+from decode_pipe_paths import inspect_pipe_edge_path
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
 from fusion_records import Record, record_fragments
@@ -321,6 +322,17 @@ def decode_basics(path, zstd_library=None):
         selection_summary["unresolved"] = [a for a in selection_summary["unresolved"]
                                              if (a["feature_object_id"], a["selection_object_id"]) not in resolved_axis_keys]
         tool_summary = decode_tools(data, records, features)
+        pipe_provenance_summary = {"partial": [], "unresolved": [],
+                                   "scope": "Separate source provenance for Pipe variants without full decoded settings; closure and geometry stay unresolved"}
+        for pipe in features:
+            if pipe["kind"] != "Pipe" or "tool_settings" in pipe:
+                continue
+            pipe_record = next(r for r in records if r.start == pipe["record_offset"])
+            try:
+                source = inspect_pipe_edge_path(data, records, data[pipe_record.body:pipe_record.end], pipe, features)
+                pipe_provenance_summary["partial"].append(source)
+            except (ValueError, KeyError, IndexError, struct.error) as error:
+                pipe_provenance_summary["unresolved"].append({"feature_object_id": pipe["object_id"], "reason": str(error)})
         pattern_placement_summary = decode_pattern_placements(data, records, features)
         assembly_summary = decode_assembly(data, records, features)
         joint_summary = decode_joints(data, records, assembly_summary, features)
@@ -393,6 +405,7 @@ def decode_basics(path, zstd_library=None):
             "selection_decoding": selection_summary,
             "revolve_axes": revolve_axis_summary,
             "tool_decoding": tool_summary,
+            "pipe_path_provenance": pipe_provenance_summary,
             "pattern_placements": pattern_placement_summary,
             "timeline_decoding": timeline_summary,
             "assembly_decoding": assembly_summary,

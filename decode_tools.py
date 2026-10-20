@@ -12,6 +12,7 @@ from decode_split_face import decode_split_face
 from decode_face_tools import decode_face_tool
 from decode_surface_tools import decode_surface_tool
 from decode_pipe import decode_pipe
+from decode_pipe_paths import decode_pipe_paths
 from decode_threads import decode_thread
 from decode_path_patterns import decode_path_pattern
 from decode_path_pattern_composites import decode_path_pattern_composites
@@ -58,7 +59,14 @@ def decode_tools(data, records, features):
             elif kind == "Thread":
                 settings = decode_thread(data, records, body, feature)
             elif kind == "Pipe":
-                settings = decode_pipe(data, records, body, feature, features)
+                try:
+                    settings = decode_pipe(data, records, body, feature, features)
+                except (ValueError, KeyError, IndexError, struct.error) as single_error:
+                    try:
+                        settings = decode_pipe_paths(data, records, body, feature, features)
+                    except (ValueError, KeyError, IndexError, struct.error) as path_error:
+                        raise ValueError("Unsupported Pipe variant; single path: "+str(single_error)
+                                         +"; extended sketch path: "+str(path_error)) from path_error
             elif kind in ("SurfacePatch", "SurfaceOffset", "SurfaceStitch", "Unstitch", "ReverseNormal", "SurfaceDeleteFace",
                           "SurfaceExtend", "SurfaceUntrim", "SurfaceRuled", "SurfaceTrim"):
                 settings = decode_surface_tool(data, records, body, feature, axes)

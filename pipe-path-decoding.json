@@ -1,0 +1,2927 @@
+{
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "pipepaths-3d11bd427946/composite_circular.f3d",
+      "checks": {
+        "actual_section_and_hollow_flags_match": true,
+        "actual_section_size_matches": true,
+        "actual_stored_thickness_matches": true,
+        "actual_open_path_fractions_match": true,
+        "native_source_order_matches_actual_api": true,
+        "native_open_source_agrees_with_api": true,
+        "opposed_flags_not_inferred": true,
+        "Line_five_source_points_match_api": true,
+        "Line_five_derivatives_match_api": true,
+        "Arc_five_source_points_match_api": true,
+        "Arc_five_derivatives_match_api": true
+      },
+      "status": "DecodedSettings",
+      "decoded_settings": {
+        "operation": "NewBody",
+        "is_hollow": false,
+        "section_type": "Circular",
+        "stored_section_type_code": 0,
+        "section_size_cm": 0.4,
+        "active_section_thickness_cm": null,
+        "stored_section_thickness_cm": 0.0,
+        "distance_one_fraction": 1.0,
+        "distance_two_fraction": null,
+        "native_against_fraction": 1.0,
+        "native_along_fraction": 1.0,
+        "parameter_bindings": {
+          "AgainstDistance": 308,
+          "AlongDistance": 305,
+          "SectionSize": 311,
+          "SectionThickness": 314
+        },
+        "path": {
+          "kind": "CompositeSketchPath",
+          "selection_record_object_id": 293,
+          "sketch_object_id": 202,
+          "sketch_name": "PipePathSketch",
+          "member_count": 2,
+          "members": [
+            {
+              "index": 0,
+              "descriptor_object_id": 296,
+              "terminal_object_id": 299,
+              "sketch_object_id": 202,
+              "sketch_name": "PipePathSketch",
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "natural_component_geometry": {
+                "kind": "Line",
+                "start_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "end_cm": [
+                  3.0,
+                  0.0,
+                  0.0
+                ],
+                "length_cm": 3.0,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "analytic_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_component_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_component_cm": [
+                      0.75,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_component_cm": [
+                      1.5,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_component_cm": [
+                      2.25,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_component_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ],
+                "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+              },
+              "path_is_opposed_to_entity": null
+            },
+            {
+              "index": 1,
+              "descriptor_object_id": 300,
+              "terminal_object_id": 303,
+              "sketch_object_id": 202,
+              "sketch_name": "PipePathSketch",
+              "curve_object_id": 240,
+              "curve_entity_tag": 106,
+              "kind": "Arc",
+              "natural_component_geometry": {
+                "kind": "Arc",
+                "start_cm": [
+                  3.0,
+                  0.0,
+                  0.0
+                ],
+                "end_cm": [
+                  7.0,
+                  3.9999999999999996,
+                  0.0
+                ],
+                "center_cm": [
+                  3.0,
+                  4.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "reference_axis": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "radius_cm": 4.0,
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 1.5707963267948966,
+                "length_cm": 6.283185307179586,
+                "parameter_domain": [
+                  0.0,
+                  1.5707963267948966
+                ],
+                "analytic_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_component_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      4.0,
+                      0.0,
+                      -0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.39269908169872414,
+                    "point_component_cm": [
+                      4.530733729460359,
+                      0.30448186995485305,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.695518130045147,
+                      1.5307337294603591,
+                      -0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.7853981633974483,
+                    "point_component_cm": [
+                      5.82842712474619,
+                      1.1715728752538097,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      2.8284271247461903,
+                      2.82842712474619,
+                      -0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 1.1780972450961724,
+                    "point_component_cm": [
+                      6.695518130045147,
+                      2.4692662705396407,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      1.5307337294603593,
+                      3.695518130045147,
+                      -0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.5707963267948966,
+                    "point_component_cm": [
+                      7.0,
+                      3.9999999999999996,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      2.4492935982947064e-16,
+                      4.0,
+                      -0.0
+                    ]
+                  }
+                ],
+                "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+              },
+              "path_is_opposed_to_entity": null
+            }
+          ],
+          "is_closed": false,
+          "closure_scope": "Observed source endpoints differ; no general native Path closure bit claimed",
+          "secondary_flags_record_object_id": 336,
+          "secondary_flags_hex": "0000010100",
+          "order_scope": "Explicit counted native descriptor order; actual API source member order agrees in captures",
+          "traversal_scope": "Natural source geometry only; opposed/traversal flags unresolved and not inferred from connectivity",
+          "coordinate_scope": "Parent component coordinates; no occurrence/joint transforms or instance placement regeneration"
+        },
+        "fraction_scope": "Observed open same-sketch composite Line/Arc or fitted-spline path; native fraction copies agree and API distanceOne is contrasted",
+        "thickness_scope": "Stored thickness retained for solid pipes; exposed API parameter can exist even when hollow mode is false",
+        "input_selection_status": "Owned ordered descriptor/leaf sketch IDs and curve tags resolve natural source geometry",
+        "path_decode_status": "DecodedSketchSourceGeometry",
+        "geometry_status": "Natural source curves and Pipe controls only; Path opposed flags, trimmed result geometry and Pipe regeneration unresolved"
+      },
+      "actual_api_settings": {
+        "result_body_count": 1,
+        "root_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "health_state": 0,
+        "warning": "",
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 2,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NsQ3DUAhE02aLWwDp4ONvPEGkNJEyQBrL3iONO+9keZjMEUIZELoDPXFEgNkKyylnkU7hv0vH9rxNuD7kfd4//jr2JAytIwZnNKXQtYuPtkhMi0ofOee2upsXmz8uf1V5RMUNaqXGRNnAL8CchauSAAAA",
+                "sketch_name": "PipePathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQluQu6UCp79u4yGvZyZxB3qBKowUjM0ULExNDCyMDQ10DUwMzXRNzI1SdS0sUw11zcwNkoG8NBMTIxOwWqAZDGgAbJ+BAtg6kPVGBkYASh1DD4gAAAA=",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::Line3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "length_cm": 3.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_cm": [
+                        0.75,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_cm": [
+                        1.5,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        2.25,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_cm": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  ]
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "length_cm": 3.0000000000000004,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      0.75,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "point_cm": [
+                      1.5,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "point_cm": [
+                      2.25,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "point_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "degree": 1,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    3.0,
+                    3.0
+                  ],
+                  "is_rational": false,
+                  "weights": [],
+                  "is_periodic": false
+                }
+              }
+            },
+            {
+              "index": 1,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::SketchArc",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NwQ3CAAhFvXaLvwDJh1JKJzDxYuIAXkzdo5feupNxGOcQOQoh/0Ne+ESC1QqraWdZTuG/S2C/nRcMV9nel4/fX0cRhjGQkzNHpdA1xGdbJZdVJWY+anu6mzdbP05/1XlEx01qrcZCGeAXK15OrZIAAAA=",
+                "sketch_name": "PipePathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQluQu6UCp79u4yGvZyZxB3qBKowUjM0ULExNDCyMDQ10DUwMzXRNzI1SdS0sUw11zcwNkoG8NBMTIxOwWqAZDGgAbJ+BAtg6kPVGBkYASh1DD4gAAAA=",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::Arc3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.5707963267948966
+                  ],
+                  "length_cm": 6.283185307179586,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        4.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.39269908169872414,
+                      "point_cm": [
+                        4.530733729460359,
+                        0.30448186995485305,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.695518130045147,
+                        1.5307337294603591,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.7853981633974483,
+                      "point_cm": [
+                        5.82842712474619,
+                        1.1715728752538097,
+                        0.0
+                      ],
+                      "tangent": [
+                        2.8284271247461903,
+                        2.82842712474619,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 1.1780972450961724,
+                      "point_cm": [
+                        6.695518130045147,
+                        2.4692662705396407,
+                        0.0
+                      ],
+                      "tangent": [
+                        1.5307337294603593,
+                        3.695518130045147,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.5707963267948966,
+                      "point_cm": [
+                        7.0,
+                        3.9999999999999996,
+                        0.0
+                      ],
+                      "tangent": [
+                        2.4492935982947064e-16,
+                        4.0,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "center_cm": [
+                    3.0,
+                    4.0,
+                    0.0
+                  ],
+                  "radius_cm": 4.0,
+                  "normal": [
+                    -0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "start_angle_radians": 0.0,
+                  "end_angle_radians": 1.5707963267948966
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  1.5707963267948966
+                ],
+                "length_cm": 6.28318530724323,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      3.6012652646284247,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.39269908169872414,
+                    "point_cm": [
+                      4.472378838247492,
+                      0.28084679575027877,
+                      0.0
+                    ],
+                    "tangent": [
+                      3.7615657215614346,
+                      1.4891695670873826,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.7853981633974483,
+                    "point_cm": [
+                      5.828427124746191,
+                      1.1715728752538097,
+                      0.0
+                    ],
+                    "tangent": [
+                      2.983385828624453,
+                      2.9833858286244523,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 1.1780972450961724,
+                    "point_cm": [
+                      6.719153204249722,
+                      2.5276211617525086,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.4891695670873826,
+                      3.7615657215614338,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.5707963267948966,
+                    "point_cm": [
+                      7.0,
+                      3.999999999999999,
+                      0.0
+                    ],
+                    "tangent": [
+                      4.440892098500626e-16,
+                      3.601265264628423,
+                      0.0
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      6.999999999999999,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      7.0,
+                      3.9999999999999996,
+                      0.0
+                    ]
+                  ],
+                  "degree": 2,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.5707963267948966,
+                    1.5707963267948966,
+                    1.5707963267948966
+                  ],
+                  "is_rational": true,
+                  "weights": [
+                    1.0,
+                    0.7071067811865476,
+                    1.0
+                  ],
+                  "is_periodic": false
+                }
+              }
+            }
+          ]
+        },
+        "operation": 3,
+        "section_type": 0,
+        "section_size_cm": 0.4,
+        "is_hollow": false,
+        "section_thickness_cm": 0.0,
+        "distance_one": 1.0,
+        "distance_two": null
+      },
+      "scope": "Actual API opposed flags and BRep curve/closedness are evidence only; unresolved native fields are not filled from API truth"
+    },
+    {
+      "archive": "pipepaths-3d11bd427946/composite_square_hollow_partial.f3d",
+      "checks": {
+        "actual_section_and_hollow_flags_match": true,
+        "actual_section_size_matches": true,
+        "actual_stored_thickness_matches": true,
+        "actual_open_path_fractions_match": true,
+        "native_source_order_matches_actual_api": true,
+        "native_open_source_agrees_with_api": true,
+        "opposed_flags_not_inferred": true,
+        "Line_five_source_points_match_api": true,
+        "Line_five_derivatives_match_api": true,
+        "Arc_five_source_points_match_api": true,
+        "Arc_five_derivatives_match_api": true
+      },
+      "status": "DecodedSettings",
+      "decoded_settings": {
+        "operation": "NewBody",
+        "is_hollow": true,
+        "section_type": "Square",
+        "stored_section_type_code": 1,
+        "section_size_cm": 0.6000000000000001,
+        "active_section_thickness_cm": 0.1,
+        "stored_section_thickness_cm": 0.1,
+        "distance_one_fraction": 0.75,
+        "distance_two_fraction": null,
+        "native_against_fraction": 0.75,
+        "native_along_fraction": 0.75,
+        "parameter_bindings": {
+          "AgainstDistance": 308,
+          "AlongDistance": 305,
+          "SectionSize": 311,
+          "SectionThickness": 314
+        },
+        "path": {
+          "kind": "CompositeSketchPath",
+          "selection_record_object_id": 293,
+          "sketch_object_id": 202,
+          "sketch_name": "PipePathSketch",
+          "member_count": 2,
+          "members": [
+            {
+              "index": 0,
+              "descriptor_object_id": 296,
+              "terminal_object_id": 299,
+              "sketch_object_id": 202,
+              "sketch_name": "PipePathSketch",
+              "curve_object_id": 232,
+              "curve_entity_tag": 103,
+              "kind": "Line",
+              "natural_component_geometry": {
+                "kind": "Line",
+                "start_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "end_cm": [
+                  3.0,
+                  0.0,
+                  0.0
+                ],
+                "length_cm": 3.0,
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "analytic_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_component_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_component_cm": [
+                      0.75,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_component_cm": [
+                      1.5,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_component_cm": [
+                      2.25,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_component_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ],
+                "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+              },
+              "path_is_opposed_to_entity": null
+            },
+            {
+              "index": 1,
+              "descriptor_object_id": 300,
+              "terminal_object_id": 303,
+              "sketch_object_id": 202,
+              "sketch_name": "PipePathSketch",
+              "curve_object_id": 240,
+              "curve_entity_tag": 106,
+              "kind": "Arc",
+              "natural_component_geometry": {
+                "kind": "Arc",
+                "start_cm": [
+                  3.0,
+                  0.0,
+                  0.0
+                ],
+                "end_cm": [
+                  7.0,
+                  3.9999999999999996,
+                  0.0
+                ],
+                "center_cm": [
+                  3.0,
+                  4.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "reference_axis": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "radius_cm": 4.0,
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 1.5707963267948966,
+                "length_cm": 6.283185307179586,
+                "parameter_domain": [
+                  0.0,
+                  1.5707963267948966
+                ],
+                "analytic_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_component_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      4.0,
+                      0.0,
+                      -0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.39269908169872414,
+                    "point_component_cm": [
+                      4.530733729460359,
+                      0.30448186995485305,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.695518130045147,
+                      1.5307337294603591,
+                      -0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.7853981633974483,
+                    "point_component_cm": [
+                      5.82842712474619,
+                      1.1715728752538097,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      2.8284271247461903,
+                      2.82842712474619,
+                      -0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 1.1780972450961724,
+                    "point_component_cm": [
+                      6.695518130045147,
+                      2.4692662705396407,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      1.5307337294603593,
+                      3.695518130045147,
+                      -0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.5707963267948966,
+                    "point_component_cm": [
+                      7.0,
+                      3.9999999999999996,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      2.4492935982947064e-16,
+                      4.0,
+                      -0.0
+                    ]
+                  }
+                ],
+                "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+              },
+              "path_is_opposed_to_entity": null
+            }
+          ],
+          "is_closed": false,
+          "closure_scope": "Observed source endpoints differ; no general native Path closure bit claimed",
+          "secondary_flags_record_object_id": 336,
+          "secondary_flags_hex": "0000010100",
+          "order_scope": "Explicit counted native descriptor order; actual API source member order agrees in captures",
+          "traversal_scope": "Natural source geometry only; opposed/traversal flags unresolved and not inferred from connectivity",
+          "coordinate_scope": "Parent component coordinates; no occurrence/joint transforms or instance placement regeneration"
+        },
+        "fraction_scope": "Observed open same-sketch composite Line/Arc or fitted-spline path; native fraction copies agree and API distanceOne is contrasted",
+        "thickness_scope": "Stored thickness retained for solid pipes; exposed API parameter can exist even when hollow mode is false",
+        "input_selection_status": "Owned ordered descriptor/leaf sketch IDs and curve tags resolve natural source geometry",
+        "path_decode_status": "DecodedSketchSourceGeometry",
+        "geometry_status": "Natural source curves and Pipe controls only; Path opposed flags, trimmed result geometry and Pipe regeneration unresolved"
+      },
+      "actual_api_settings": {
+        "result_body_count": 1,
+        "root_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "health_state": 0,
+        "warning": "",
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 2,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuBFGdff3o5GG65rLNqWYD0BqMJIwdhMIcXALCkpKTVZ18Qk1VTXxNzAQhfIN9A1SrI0NUoytkxMNTYHqwWawYAGwPYZKICtMzU0AtNGBkClBsYKBgDP+GImkgAAAA==",
+                "sketch_name": "PipePathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuBFGdff3o5GG65rLNqWYD0BqMJIwdhMIcXALCkpKTVZ18Qk1VTXxNzAQhfIN9A1SrI0NUoytkxMNTYHqwWawYAGwPYZKICtA1lvZGAEAOyMJI6IAAAA",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::Line3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "length_cm": 3.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_cm": [
+                        0.75,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_cm": [
+                        1.5,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        2.25,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_cm": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  ]
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "length_cm": 3.0000000000000004,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      0.75,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "point_cm": [
+                      1.5,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "point_cm": [
+                      2.25,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "point_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      3.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "degree": 1,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    3.0,
+                    3.0
+                  ],
+                  "is_rational": false,
+                  "weights": [],
+                  "is_periodic": false
+                }
+              }
+            },
+            {
+              "index": 1,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::SketchArc",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuBFGdff3o5GG65rLNqWYD0BqMJIwdhMIcXALCkpKTVZ18Qk1VTXxNzAQhfIN9A1SrI0NUoytkxMNTYHqwWawYAGwPYZKICtMzU0AtNGBkClBmYKBgAkOqkgkgAAAA==",
+                "sketch_name": "PipePathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuBFGdff3o5GG65rLNqWYD0BqMJIwdhMIcXALCkpKTVZ18Qk1VTXxNzAQhfIN9A1SrI0NUoytkxMNTYHqwWawYAGwPYZKICtA1lvZGAEAOyMJI6IAAAA",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::Arc3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.5707963267948966
+                  ],
+                  "length_cm": 6.283185307179586,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        3.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        4.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.39269908169872414,
+                      "point_cm": [
+                        4.530733729460359,
+                        0.30448186995485305,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.695518130045147,
+                        1.5307337294603591,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.7853981633974483,
+                      "point_cm": [
+                        5.82842712474619,
+                        1.1715728752538097,
+                        0.0
+                      ],
+                      "tangent": [
+                        2.8284271247461903,
+                        2.82842712474619,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 1.1780972450961724,
+                      "point_cm": [
+                        6.695518130045147,
+                        2.4692662705396407,
+                        0.0
+                      ],
+                      "tangent": [
+                        1.5307337294603593,
+                        3.695518130045147,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.5707963267948966,
+                      "point_cm": [
+                        7.0,
+                        3.9999999999999996,
+                        0.0
+                      ],
+                      "tangent": [
+                        2.4492935982947064e-16,
+                        4.0,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "center_cm": [
+                    3.0,
+                    4.0,
+                    0.0
+                  ],
+                  "radius_cm": 4.0,
+                  "normal": [
+                    -0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "start_angle_radians": 0.0,
+                  "end_angle_radians": 1.5707963267948966
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  1.5707963267948966
+                ],
+                "length_cm": 6.28318530724323,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      3.6012652646284247,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.39269908169872414,
+                    "point_cm": [
+                      4.472378838247492,
+                      0.28084679575027877,
+                      0.0
+                    ],
+                    "tangent": [
+                      3.7615657215614346,
+                      1.4891695670873826,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.7853981633974483,
+                    "point_cm": [
+                      5.828427124746191,
+                      1.1715728752538097,
+                      0.0
+                    ],
+                    "tangent": [
+                      2.983385828624453,
+                      2.9833858286244523,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 1.1780972450961724,
+                    "point_cm": [
+                      6.719153204249722,
+                      2.5276211617525086,
+                      0.0
+                    ],
+                    "tangent": [
+                      1.4891695670873826,
+                      3.7615657215614338,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.5707963267948966,
+                    "point_cm": [
+                      7.0,
+                      3.999999999999999,
+                      0.0
+                    ],
+                    "tangent": [
+                      4.440892098500626e-16,
+                      3.601265264628423,
+                      0.0
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      3.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      6.999999999999999,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      7.0,
+                      3.9999999999999996,
+                      0.0
+                    ]
+                  ],
+                  "degree": 2,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.5707963267948966,
+                    1.5707963267948966,
+                    1.5707963267948966
+                  ],
+                  "is_rational": true,
+                  "weights": [
+                    1.0,
+                    0.7071067811865476,
+                    1.0
+                  ],
+                  "is_periodic": false
+                }
+              }
+            }
+          ]
+        },
+        "operation": 3,
+        "section_type": 1,
+        "section_size_cm": 0.6000000000000001,
+        "is_hollow": true,
+        "section_thickness_cm": 0.1,
+        "distance_one": 0.75,
+        "distance_two": null
+      },
+      "scope": "Actual API opposed flags and BRep curve/closedness are evidence only; unresolved native fields are not filled from API truth"
+    },
+    {
+      "archive": "pipepaths-3d11bd427946/spline_circular.f3d",
+      "checks": {
+        "actual_section_and_hollow_flags_match": true,
+        "actual_section_size_matches": true,
+        "actual_stored_thickness_matches": true,
+        "actual_open_path_fractions_match": true,
+        "native_source_order_matches_actual_api": true,
+        "native_open_source_agrees_with_api": true,
+        "opposed_flags_not_inferred": true,
+        "FittedSpline_five_source_points_match_api": true,
+        "FittedSpline_five_derivatives_match_api": true
+      },
+      "status": "DecodedSettings",
+      "decoded_settings": {
+        "operation": "NewBody",
+        "is_hollow": false,
+        "section_type": "Circular",
+        "stored_section_type_code": 0,
+        "section_size_cm": 0.4,
+        "active_section_thickness_cm": null,
+        "stored_section_thickness_cm": 0.0,
+        "distance_one_fraction": 1.0,
+        "distance_two_fraction": null,
+        "native_against_fraction": 1.0,
+        "native_along_fraction": 1.0,
+        "parameter_bindings": {
+          "AgainstDistance": 281,
+          "AlongDistance": 278,
+          "SectionSize": 284,
+          "SectionThickness": 287
+        },
+        "path": {
+          "kind": "FittedSplinePath",
+          "selection_record_object_id": 270,
+          "sketch_object_id": 202,
+          "sketch_name": "PipePathSketch",
+          "member_count": 1,
+          "members": [
+            {
+              "index": 0,
+              "descriptor_object_id": 273,
+              "terminal_object_id": 276,
+              "sketch_object_id": 202,
+              "sketch_name": "PipePathSketch",
+              "curve_object_id": 238,
+              "curve_entity_tag": 106,
+              "kind": "FittedSpline",
+              "natural_component_geometry": {
+                "kind": "FittedSpline",
+                "start_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "end_cm": [
+                  6.0,
+                  4.0,
+                  0.0
+                ],
+                "nurbs": {
+                  "degree": 5,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.05,
+                    0.1,
+                    0.15000000000000002,
+                    0.2,
+                    0.25,
+                    0.3,
+                    0.35,
+                    0.39999999999999997,
+                    0.44999999999999996,
+                    0.49999999999999994,
+                    0.5499999999999999,
+                    0.6,
+                    0.65,
+                    0.7000000000000001,
+                    0.7500000000000001,
+                    0.8000000000000002,
+                    0.8500000000000002,
+                    0.9000000000000002,
+                    0.9500000000000003,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "control_points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.07074426905812786,
+                      -0.012324684604528036,
+                      0.0
+                    ],
+                    [
+                      0.21402951602424367,
+                      -0.034667229549543974,
+                      0.0
+                    ],
+                    [
+                      0.4343474394579506,
+                      -0.06126055000372638,
+                      0.0
+                    ],
+                    [
+                      0.738929429891705,
+                      -0.08282107044222593,
+                      0.0
+                    ],
+                    [
+                      1.137194516189889,
+                      -0.08584729282006294,
+                      0.0
+                    ],
+                    [
+                      1.5510344092448678,
+                      -0.0632442378382159,
+                      0.0
+                    ],
+                    [
+                      1.9761221336081307,
+                      -0.012033612671276001,
+                      0.0
+                    ],
+                    [
+                      2.4048872206283853,
+                      0.07232316358579378,
+                      0.0
+                    ],
+                    [
+                      2.825415674272937,
+                      0.19631049025590863,
+                      0.0
+                    ],
+                    [
+                      3.2237911270588944,
+                      0.3667419956943076,
+                      0.0
+                    ],
+                    [
+                      3.586522320576207,
+                      0.5890786869552683,
+                      0.0
+                    ],
+                    [
+                      3.9031026776307596,
+                      0.8655831805074189,
+                      0.0
+                    ],
+                    [
+                      4.168252478192318,
+                      1.193725941971376,
+                      0.0
+                    ],
+                    [
+                      4.38526265027442,
+                      1.5636375817998294,
+                      0.0
+                    ],
+                    [
+                      4.565150878334936,
+                      1.9591054636397465,
+                      0.0
+                    ],
+                    [
+                      4.723275477087819,
+                      2.3607173102356374,
+                      0.0
+                    ],
+                    [
+                      4.876767835634577,
+                      2.7483391739746783,
+                      0.0
+                    ],
+                    [
+                      5.041852943634408,
+                      3.1036673734999387,
+                      0.0
+                    ],
+                    [
+                      5.230857953674877,
+                      3.4131667983939926,
+                      0.0
+                    ],
+                    [
+                      5.450472372348504,
+                      3.669694170752831,
+                      0.0
+                    ],
+                    [
+                      5.6531108787462525,
+                      3.8300706797100235,
+                      0.0
+                    ],
+                    [
+                      5.820561587807028,
+                      3.924896439538983,
+                      0.0
+                    ],
+                    [
+                      5.939045568268863,
+                      3.9768437241118346,
+                      0.0
+                    ],
+                    [
+                      6.0,
+                      4.0,
+                      0.0
+                    ]
+                  ],
+                  "weights": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "is_rational": true,
+                  "is_periodic": false,
+                  "parameter_domain": [
+                    0.0,
+                    1.0
+                  ],
+                  "representation": "Stored NURBS controls transformed into parent component coordinates"
+                },
+                "length_status": "Not evaluated; no sampled-polyline length substituted for the API getter",
+                "parameter_domain": [
+                  0.0,
+                  1.0
+                ],
+                "analytic_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_component_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      7.0744269058127855,
+                      -1.2324684604528036,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_component_cm": [
+                      1.977005278210867,
+                      -0.003730859745261209,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      8.522291059931854,
+                      1.364859831096724,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_component_cm": [
+                      3.8903164605745424,
+                      0.8784315820256379,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      5.815644249480526,
+                      6.036140113555499,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_component_cm": [
+                      4.879633541022248,
+                      2.7403054960123945,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      3.2095681173381916,
+                      7.402968306164378,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_component_cm": [
+                      6.0,
+                      4.0,
+                      0.0
+                    ],
+                    "parameter_derivative_component": [
+                      6.095443173113715,
+                      2.315627588816551,
+                      0.0
+                    ]
+                  }
+                ],
+                "coordinate_scope": "Natural source curve in parent component coordinates; occurrence/joint transforms not applied"
+              },
+              "path_is_opposed_to_entity": null
+            }
+          ],
+          "is_closed": false,
+          "closure_scope": "Observed source endpoints differ; no general native Path closure bit claimed",
+          "secondary_flags_record_object_id": 302,
+          "secondary_flags_hex": "0000010100",
+          "order_scope": "Explicit counted native descriptor order; actual API source member order agrees in captures",
+          "traversal_scope": "Natural source geometry only; opposed/traversal flags unresolved and not inferred from connectivity",
+          "coordinate_scope": "Parent component coordinates; no occurrence/joint transforms or instance placement regeneration"
+        },
+        "fraction_scope": "Observed open same-sketch composite Line/Arc or fitted-spline path; native fraction copies agree and API distanceOne is contrasted",
+        "thickness_scope": "Stored thickness retained for solid pipes; exposed API parameter can exist even when hollow mode is false",
+        "input_selection_status": "Owned ordered descriptor/leaf sketch IDs and curve tags resolve natural source geometry",
+        "path_decode_status": "DecodedSketchSourceGeometry",
+        "geometry_status": "Natural source curves and Pipe controls only; Path opposed flags, trimmed result geometry and Pipe regeneration unresolved"
+      },
+      "actual_api_settings": {
+        "result_body_count": 1,
+        "root_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "health_state": 0,
+        "warning": "",
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::SketchFittedSpline",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwofs5/tYlvovXhm3IGpamDU/UIWRgrGZQppJmkVyalqKrrm5pbmuiUGqsW6iuXGqrmWiaZJJYqKJpZmROVgt0AwGNAC2z0ABbJ2poRGYNjIAKjUwUzAAADR79vCSAAAA",
+                "sketch_name": "PipePathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwofs5/tYlvovXhm3IGpamDU/UIWRgrGZQppJmkVyalqKrrm5pbmuiUGqsW6iuXGqrmWiaZJJYqKJpZmROVgt0AwGNAC2z0ABbB3IeiMDIwA7B2zQiAAAAA==",
+                "natural_world_geometry": {
+                  "geometry_type": "adsk::core::NurbsCurve3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "length_cm": 7.989323275021669,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        7.074426905812786,
+                        -1.2324684604528036,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_cm": [
+                        1.977005278210867,
+                        -0.003730859745261209,
+                        0.0
+                      ],
+                      "tangent": [
+                        8.522291059931854,
+                        1.364859831096724,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_cm": [
+                        3.8903164605745424,
+                        0.8784315820256379,
+                        0.0
+                      ],
+                      "tangent": [
+                        5.815644249480526,
+                        6.036140113555498,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        4.879633541022248,
+                        2.7403054960123945,
+                        0.0
+                      ],
+                      "tangent": [
+                        3.2095681173381916,
+                        7.402968306164378,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_cm": [
+                        6.000000000000001,
+                        4.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        6.095443173113715,
+                        2.3156275888165516,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "nurbs": {
+                    "get_data_success": true,
+                    "control_points_cm": [
+                      [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        0.07074426905812786,
+                        -0.012324684604528036,
+                        0.0
+                      ],
+                      [
+                        0.21402951602424367,
+                        -0.034667229549543974,
+                        0.0
+                      ],
+                      [
+                        0.4343474394579506,
+                        -0.06126055000372638,
+                        0.0
+                      ],
+                      [
+                        0.738929429891705,
+                        -0.08282107044222593,
+                        0.0
+                      ],
+                      [
+                        1.137194516189889,
+                        -0.08584729282006294,
+                        0.0
+                      ],
+                      [
+                        1.5510344092448678,
+                        -0.0632442378382159,
+                        0.0
+                      ],
+                      [
+                        1.9761221336081307,
+                        -0.012033612671276001,
+                        0.0
+                      ],
+                      [
+                        2.4048872206283853,
+                        0.07232316358579378,
+                        0.0
+                      ],
+                      [
+                        2.825415674272937,
+                        0.19631049025590863,
+                        0.0
+                      ],
+                      [
+                        3.2237911270588944,
+                        0.3667419956943076,
+                        0.0
+                      ],
+                      [
+                        3.586522320576207,
+                        0.5890786869552683,
+                        0.0
+                      ],
+                      [
+                        3.9031026776307596,
+                        0.8655831805074189,
+                        0.0
+                      ],
+                      [
+                        4.168252478192318,
+                        1.193725941971376,
+                        0.0
+                      ],
+                      [
+                        4.38526265027442,
+                        1.5636375817998294,
+                        0.0
+                      ],
+                      [
+                        4.565150878334936,
+                        1.9591054636397465,
+                        0.0
+                      ],
+                      [
+                        4.723275477087819,
+                        2.3607173102356374,
+                        0.0
+                      ],
+                      [
+                        4.876767835634577,
+                        2.7483391739746783,
+                        0.0
+                      ],
+                      [
+                        5.041852943634408,
+                        3.1036673734999387,
+                        0.0
+                      ],
+                      [
+                        5.230857953674877,
+                        3.4131667983939926,
+                        0.0
+                      ],
+                      [
+                        5.450472372348504,
+                        3.669694170752831,
+                        0.0
+                      ],
+                      [
+                        5.6531108787462525,
+                        3.8300706797100235,
+                        0.0
+                      ],
+                      [
+                        5.820561587807028,
+                        3.924896439538983,
+                        0.0
+                      ],
+                      [
+                        5.939045568268863,
+                        3.9768437241118346,
+                        0.0
+                      ],
+                      [
+                        6.0,
+                        4.0,
+                        0.0
+                      ]
+                    ],
+                    "degree": 5,
+                    "knots": [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.05,
+                      0.1,
+                      0.15000000000000002,
+                      0.2,
+                      0.25,
+                      0.3,
+                      0.35,
+                      0.39999999999999997,
+                      0.44999999999999996,
+                      0.49999999999999994,
+                      0.5499999999999999,
+                      0.6,
+                      0.65,
+                      0.7000000000000001,
+                      0.7500000000000001,
+                      0.8000000000000002,
+                      0.8500000000000002,
+                      0.9000000000000002,
+                      0.9500000000000003,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0
+                    ],
+                    "is_rational": true,
+                    "weights": [
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0
+                    ],
+                    "is_periodic": false
+                  }
+                }
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  1.0
+                ],
+                "length_cm": 7.989323275021669,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      7.074426905812786,
+                      -1.2324684604528036,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.25,
+                    "point_cm": [
+                      1.977005278210867,
+                      -0.003730859745261209,
+                      0.0
+                    ],
+                    "tangent": [
+                      8.522291059931854,
+                      1.364859831096724,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 0.5,
+                    "point_cm": [
+                      3.8903164605745424,
+                      0.8784315820256379,
+                      0.0
+                    ],
+                    "tangent": [
+                      5.815644249480526,
+                      6.036140113555498,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      4.879633541022248,
+                      2.7403054960123945,
+                      0.0
+                    ],
+                    "tangent": [
+                      3.2095681173381916,
+                      7.402968306164378,
+                      0.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 1.0,
+                    "point_cm": [
+                      6.000000000000001,
+                      4.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      6.095443173113715,
+                      2.3156275888165516,
+                      0.0
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.07074426905812786,
+                      -0.012324684604528036,
+                      0.0
+                    ],
+                    [
+                      0.21402951602424367,
+                      -0.034667229549543974,
+                      0.0
+                    ],
+                    [
+                      0.4343474394579506,
+                      -0.06126055000372638,
+                      0.0
+                    ],
+                    [
+                      0.738929429891705,
+                      -0.08282107044222593,
+                      0.0
+                    ],
+                    [
+                      1.137194516189889,
+                      -0.08584729282006294,
+                      0.0
+                    ],
+                    [
+                      1.5510344092448678,
+                      -0.0632442378382159,
+                      0.0
+                    ],
+                    [
+                      1.9761221336081307,
+                      -0.012033612671276001,
+                      0.0
+                    ],
+                    [
+                      2.4048872206283853,
+                      0.07232316358579378,
+                      0.0
+                    ],
+                    [
+                      2.825415674272937,
+                      0.19631049025590863,
+                      0.0
+                    ],
+                    [
+                      3.2237911270588944,
+                      0.3667419956943076,
+                      0.0
+                    ],
+                    [
+                      3.586522320576207,
+                      0.5890786869552683,
+                      0.0
+                    ],
+                    [
+                      3.9031026776307596,
+                      0.8655831805074189,
+                      0.0
+                    ],
+                    [
+                      4.168252478192318,
+                      1.193725941971376,
+                      0.0
+                    ],
+                    [
+                      4.38526265027442,
+                      1.5636375817998294,
+                      0.0
+                    ],
+                    [
+                      4.565150878334936,
+                      1.9591054636397465,
+                      0.0
+                    ],
+                    [
+                      4.723275477087819,
+                      2.3607173102356374,
+                      0.0
+                    ],
+                    [
+                      4.876767835634577,
+                      2.7483391739746783,
+                      0.0
+                    ],
+                    [
+                      5.041852943634408,
+                      3.1036673734999387,
+                      0.0
+                    ],
+                    [
+                      5.230857953674877,
+                      3.4131667983939926,
+                      0.0
+                    ],
+                    [
+                      5.450472372348504,
+                      3.669694170752831,
+                      0.0
+                    ],
+                    [
+                      5.6531108787462525,
+                      3.8300706797100235,
+                      0.0
+                    ],
+                    [
+                      5.820561587807028,
+                      3.924896439538983,
+                      0.0
+                    ],
+                    [
+                      5.939045568268863,
+                      3.9768437241118346,
+                      0.0
+                    ],
+                    [
+                      6.0,
+                      4.0,
+                      0.0
+                    ]
+                  ],
+                  "degree": 5,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.05,
+                    0.1,
+                    0.15000000000000002,
+                    0.2,
+                    0.25,
+                    0.3,
+                    0.35,
+                    0.39999999999999997,
+                    0.44999999999999996,
+                    0.49999999999999994,
+                    0.5499999999999999,
+                    0.6,
+                    0.65,
+                    0.7000000000000001,
+                    0.7500000000000001,
+                    0.8000000000000002,
+                    0.8500000000000002,
+                    0.9000000000000002,
+                    0.9500000000000003,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "is_rational": true,
+                  "weights": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "is_periodic": false
+                }
+              }
+            }
+          ]
+        },
+        "operation": 3,
+        "section_type": 0,
+        "section_size_cm": 0.4,
+        "is_hollow": false,
+        "section_thickness_cm": 0.0,
+        "distance_one": 1.0,
+        "distance_two": null
+      },
+      "scope": "Actual API opposed flags and BRep curve/closedness are evidence only; unresolved native fields are not filled from API truth"
+    },
+    {
+      "archive": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+      "checks": {
+        "api_actual_source_is_BRepEdge": true,
+        "owned_historical_body_name_matches_api_source_body": true,
+        "bounded_recipe_kind_is_edge": true,
+        "auxiliary_owned_recipe_kind_is_vertex": true,
+        "closure_and_fraction_mapping_remain_unresolved": true
+      },
+      "status": "PartialProvenance",
+      "partial_provenance": {
+        "feature_object_id": 306,
+        "feature_class_guid": "73615646-8752-4EE6-AD02-0B90804B7CD7",
+        "path_decode_status": "PartialBRepRecipeProvenance",
+        "path": {
+          "kind": "BRepEdgePath",
+          "selection_record_object_id": 307,
+          "descriptor_object_id": 310,
+          "body_anchor_object_id": 281,
+          "native_body_object_id": 275,
+          "source_owner_object_id": 243,
+          "recipe": {
+            "object_id": 313,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 36119,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "4",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 3,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "edge_recipe_data",
+            "payload_relative_offset": 138,
+            "payload_length": 116,
+            "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "context_record_object_ids": [
+            345
+          ],
+          "namespace_text": "46491eeb-a3ea-4026-a78f-5297d24d027d",
+          "entity_guid_text": "29fc18a2-f355-46a4-83bc-a6224e2188f1",
+          "count": 1,
+          "identity_scope": "Explicit owned edge recipe and historical native body; exact ASM edge and geometric curve unresolved",
+          "context_scope": "Typed context identity retained; no occurrence transform inferred",
+          "is_closed": null,
+          "path_is_opposed_to_entity": null,
+          "geometry_status": "Owned edge recipe and historical body provenance only; exact edge curve and closedness unresolved"
+        },
+        "tool_settings_status": "Unresolved; this separate provenance summary does not supply full Pipe settings",
+        "source_descriptor_class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+        "source_recipe_class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "stored_operation_code": 4,
+        "stored_section_type_code": 0,
+        "stored_hollow_flag": 0,
+        "native_parameter_controls": {
+          "AgainstDistance": {
+            "binding_object_id": 329,
+            "stored_value": 1.0
+          },
+          "AlongDistance": {
+            "binding_object_id": 326,
+            "stored_value": 1.0
+          },
+          "SectionSize": {
+            "binding_object_id": 332,
+            "stored_value": 0.4
+          },
+          "SectionThickness": {
+            "binding_object_id": 335,
+            "stored_value": 0.0
+          }
+        },
+        "distance_one_fraction": null,
+        "distance_two_fraction": null,
+        "fraction_scope": "API fraction mapping withheld because the native source edge closedness/geometry is unresolved",
+        "auxiliary_point_selection": {
+          "selection_record_object_id": 322,
+          "selection_class_guid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44",
+          "stored_method_code": 1,
+          "stored_xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "descriptor_object_id": 317,
+          "recipe_object_id": 320,
+          "vertex_recipe": {
+            "object_id": 320,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 36827,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "1",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 1,
+                "terms": [
+                  {
+                    "name": "4",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              },
+              {
+                "table_index": 2,
+                "terms": [
+                  {
+                    "name": "3",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 301
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "vertex_recipe_data",
+            "payload_relative_offset": 115,
+            "payload_length": 40,
+            "payload_hex": "ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+          },
+          "payload_hex": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000f0bf000000000000f0bf000000000000f0bf01000000013d010000000000000000000001000000015c010000000000000000000000000400000000000000000000000000010100008b393002281be63e0101000001440100000000000000000100000143010000000000000000000132010000000000000000",
+          "role_scope": "Populated optional point-like selection with owned vertex recipe; exact Pipe role and selected topology remain unverified"
+        },
+        "input_selection_status": "Explicit owned edge recipe and historical native body anchor recovered",
+        "geometry_status": "Partial source provenance only; closedness, persistent ASM edge/vertex identity, source curve and Pipe regeneration unresolved"
+      },
+      "actual_api_settings": {
+        "result_body_count": 1,
+        "root_body_count": 2,
+        "result_is_solid": [
+          true
+        ],
+        "health_state": 0,
+        "warning": "",
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "source": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/22OP26CMQzFEQdBnrpF8p8khI0FJIYuHbqi8JEgNoRYOQMjB2DofXoMeonaAQn4RBTJLy8/PxuBgUAiiEjKgdnJmKLzQdglCdVV9LiSblzrhAGVNR5NcVJF4M2JMF+M/i7X6cfP6ev8+zk8KsGWy5PaUcrsqoTgfMxec1edy5HZF6aUKjVWMwa90+YhtHEeBBgjaPHq2tLtW5BabZv0DOob/GQglPWmLPel2+7Kcp0PGWaQwNH9Msz1iSZN3L3vGyIP74ViE5b9npOXBuX+AeoBNd1/AQAA",
+                "body_name": "PipePathSupportBody",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpun3OvFrxzUlvcHTb/ky1QLVGGkYGymYGSZlmxokWikm2ZsaqprYpZoomthnJSsm2hmZGSSamRoYZFmCFYLNIMBDYDtM1AAWwey3sjcFABVHD9yiAAAAA==",
+                "natural_geometry": {
+                  "geometry_type": "adsk::core::Line3D",
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "length_cm": 3.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.75
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        1.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        2.25
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ]
+                    }
+                  ]
+                },
+                "trimmed_edge_evaluator": {
+                  "parameter_extents": [
+                    0.0,
+                    3.0
+                  ],
+                  "length_cm": 3.0,
+                  "samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.75,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        0.75
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 1.5,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        1.5
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 2.25,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        2.25
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 3.0,
+                      "point_cm": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ],
+                      "tangent": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    }
+                  ]
+                },
+                "start_vertex_point_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "end_vertex_point_cm": [
+                  0.0,
+                  0.0,
+                  3.0
+                ]
+              },
+              "actual_path_geometry": {
+                "geometry_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "length_cm": 3.0000000000000004,
+                "samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      0.75
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      1.5
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      2.25
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "point_cm": [
+                      0.0,
+                      0.0,
+                      3.0
+                    ],
+                    "tangent": [
+                      0.0,
+                      0.0,
+                      1.0
+                    ]
+                  }
+                ],
+                "nurbs": {
+                  "get_data_success": true,
+                  "control_points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      3.0
+                    ]
+                  ],
+                  "degree": 1,
+                  "knots": [
+                    0.0,
+                    0.0,
+                    3.0,
+                    3.0
+                  ],
+                  "is_rational": false,
+                  "weights": [],
+                  "is_periodic": false
+                }
+              }
+            }
+          ]
+        },
+        "operation": 3,
+        "section_type": 0,
+        "section_size_cm": 0.4,
+        "is_hollow": false,
+        "section_thickness_cm": 0.0,
+        "distance_one": 1.0,
+        "distance_two": null
+      },
+      "scope": "Actual API opposed flags and BRep curve/closedness are evidence only; unresolved native fields are not filled from API truth"
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Partial edge provenance cannot become full Pipe settings",
+      "passed": true,
+      "reason": "Populated Pipe selector layout requires separate provenance inspection; native edge closedness/fraction mapping unresolved"
+    },
+    {
+      "check": "Sketch path descriptor owner mismatch",
+      "passed": true,
+      "reason": "Composite PathPattern descriptor count/layout/owner mismatch"
+    },
+    {
+      "check": "Sketch curve leaf tag missing",
+      "passed": true,
+      "reason": "Composite PathPattern source sketch/tag missing, unsupported or ambiguous"
+    },
+    {
+      "check": "Edge descriptor owner mismatch",
+      "passed": true,
+      "reason": "Unsupported alternate Sweep topology profile prefix/owner"
+    },
+    {
+      "check": "Auxiliary point selector owner mismatch",
+      "passed": true,
+      "reason": "Unobserved partial Pipe auxiliary selection count/layout/owner"
+    },
+    {
+      "check": "Wrong source recipe kind",
+      "passed": true,
+      "reason": "Unsupported alternate Sweep topology profile recipe kind"
+    }
+  ],
+  "interface": "decode_pipe_paths(data,records,body,feature,features) returns full sketch-source controls only; inspect_pipe_edge_path(data,records,body,feature,features) returns separate partial provenance and must not populate tool_settings",
+  "validation_command": "python3 decode_pipe_paths.py --validate --zstd-library <local libzstd path>",
+  "coverage": {
+    "decoded_sketch_settings": 3,
+    "separate_partial_brep_provenance": 1
+  },
+  "limitations": [
+    "Three sketch-source Pipe fixtures provide full control/source decoding; the BRep-edge fixture provides separate partial owned recipe/body provenance only and remains unsupported by the full settings decoder.",
+    "BRep path closedness and exact geometric edge remain unresolved, so API fraction mapping is withheld. The optional point-like selector is preserved without assigning an exact Pipe role.",
+    "Path opposed flags, per-result topology and geometry regeneration are not decoded. API truth is never injected into unknown native fields.",
+    "All generated operations are NewBody in the root component; other Pipe operations, occurrence contexts and assembly/joint transforms remain outside this stage."
+  ],
+  "validation_main": {
+    "exact_settings_matches": 3,
+    "separate_partial_provenance_matches": 1,
+    "partial_keeps_full_tool_unresolved": true
+  }
+}
