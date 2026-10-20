@@ -30,4 +30,4 @@ def decode_modeling(data, records, features):
                 feature.update(decode_revolve(body, feature))
         except (ValueError, IndexError, struct.error) as error:
             unknown.append({"object_id": feature["object_id"], "reason": str(error)})
-    return {"unresolved": unknown, "scope": "Observed extrusion starts/ends and angular revolve modes; no body regeneration"}
+    return {"unresolved": unknown, "scope": "Observed extrusion starts/ends and angular/entity revolve modes; no body regeneration"}

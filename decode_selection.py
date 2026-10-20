@@ -192,6 +192,17 @@ def decode_selections(data, records, features):
                     resolved.append({"feature_object_id": feature["object_id"], "selection_object_id": identity})
                 else:
                     unresolved.append({"feature_object_id": feature["object_id"], "selection_object_id": identity})
+                for side in ("side_one", "side_two"):
+                    scope = feature["revolve"].get(side)
+                    if not scope or scope.get("condition") != "ToEntity":
+                        continue
+                    identity = scope["selection_record_object_id"]
+                    selection = resolve_native_selection(data, records, identity, known)
+                    if selection and selection["entity"]["kind"] == "ConstructionPlane":
+                        scope.update(selection=selection, selection_status="Observed construction-plane reference decoded")
+                        resolved.append({"feature_object_id": feature["object_id"], "selection_object_id": identity})
+                    else:
+                        unresolved.append({"feature_object_id": feature["object_id"], "selection_object_id": identity})
             except (ValueError, KeyError, struct.error):
                 continue
     return {"resolved": resolved, "unresolved": unresolved,
