@@ -28,6 +28,7 @@ The main entry point is `decode_basics.decode_basics(path, zstd_library=None)`. 
 | Area | Observed support | Main remaining gaps |
 | --- | --- | --- |
 | Archive and metadata | ZIP/Zstandard members, CRCs, version-8 class registry, primary and inherited object offsets | Other metadata versions; complete field schemas |
+| ASM body/history blobs | Observed `ASM BinaryFile8` tagged headers and bounded token records, names, pointers, vectors, strings, subtypes and record boundaries | Entity-field schemas, final-body identity, analytic/trimmed surfaces and complete topology |
 | Parameters | Numeric model values, expressions as text, display units, explicit feature-binding references | General expression evaluation and full user-parameter schema |
 | Sketch geometry | Points, lines, circles, arcs, ellipses, elliptical arcs, fitted/control/fixed NURBS, conics | Projected geometry and general trimmed/intersection representations |
 | Sketch placement | Observed rigid transforms into parent-component coordinates and composed world coordinates through decoded occurrence paths | Other placement definitions and unresolved instance contexts |
@@ -67,6 +68,12 @@ Non-distance holes can retain an inactive saved depth. It is reported as cached 
 `revolve-mode-decoding.json` checks ten angular revolve examples against API values. Symmetric extents store equal along/against angle bindings; asymmetric two-sided extents store different angles. These are reported separately rather than silently treating one as the complete sweep. Full-turn classification currently applies only to observed one-sided extents. Axis selection follows the decoded variable-length reference fields, including records with optional attribute headers.
 
 `revolve-to-decoding.json` checks one/two-sided construction-plane extents against three API input definitions. Target planes resolve through explicit selection chains. An inactive `AlongAngle` parameter remains cached data and is not reported as an active angle. Direction hints, the resulting sweep angle and general BRep-face targets remain unresolved.
+
+`asm-decoding.json` checks six `.smb`/`.smbh` body/history streams from three existing files. The token reader reaches the final marker and exact EOF, preserves contiguous record boundaries, and finds all non-null pointer indices within each record table. This validates token framing, not the meaning of each entity field or the identity of the final visible solid. A blob can contain several intermediate bodies. History header values are retained separately and must not be assumed to use the same coordinate context as final geometry.
+
+The default JSON includes ASM summaries under `asm_decoding`. To inspect full typed records, run `asm_records.py --records --zstd-library "$FUSION_STUDY_ZSTD" path/to/sample.f3d`. Output can be large. Unsupported tags stop that blob's inspection at an explicit offset and preserve the last complete-record position.
+
+ASM tag meanings were referenced from the primary [ezdxf ACIS constants](https://github.com/mozman/ezdxf/blob/master/src/ezdxf/acis/const.py) and [reader](https://github.com/mozman/ezdxf/blob/master/src/ezdxf/acis/sab.py). The 64-bit widths were checked against local Fusion samples. This standalone reader does not import ezdxf or supply a geometry kernel; the upstream [ACIS documentation](https://ezdxf.readthedocs.io/en/stable/acis.html) also describes its limited entity coverage.
 
 `assembly_decoding.occurrence_paths` expands native occurrences through their parent components. Repeated instances share component definitions but have separate world transforms. A modeling feature's input-sketch component is recorded as source context. Its parent component is resolved separately through an explicit dependency-scope edge and typed component datum when that layout is recognized. Sketch ownership provides an independent consistency check.
 

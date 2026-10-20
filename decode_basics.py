@@ -27,6 +27,7 @@ from decode_profiles import decode_profiles
 from decode_timeline import decode_timeline
 from decode_assembly import decode_assembly
 from decode_dependencies import decode_dependencies
+from asm_records import inspect_asm_members
 
 
 def named_features(data, records):
@@ -224,6 +225,7 @@ def decode_basics(path, zstd_library=None):
             "Timeline/state layouts and local rigid assemblies are partial; no complete history regeneration or body reconstruction.",
         ],
         "streams": streams,
+        "asm_decoding": inspect_asm_members(members),
     }
 
 
