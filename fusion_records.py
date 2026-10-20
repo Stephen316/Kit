@@ -11,6 +11,10 @@ class Record:
     end: int
     type_code: str
     object_id: int
+    payload_start: int = None
+    class_guid: str = None
+    class_namespace: str = None
+    is_primary: bool = None
 
 
 def record_fragments(data):

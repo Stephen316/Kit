@@ -14,6 +14,7 @@ import struct
 
 from fusion_archive import read_members
 from fusion_records import record_fragments
+from fusion_metadata import design_records
 
 
 def read_string(data, position):
@@ -29,10 +30,10 @@ def read_string(data, position):
     return text, end
 
 
-def decode_stream(data):
+def decode_stream(data, records=None):
     """Decode observed numeric model-parameter records, regardless of role name."""
     parameters, rejected = [], []
-    for record in record_fragments(data):
+    for record in record_fragments(data) if records is None else records:
         body = data[record.body:record.end]
         if len(body) < 31 or body[:7] != b"\0" * 7 or body[7:11] != b"\x06\0\0\0":
             continue
@@ -61,6 +62,7 @@ def decode_stream(data):
                 "value_offset": record.body + cursor,
                 "expression_candidates": [expression] if expression else [],
                 "parameter_object_id": record.object_id,
+                "class_guid": record.class_guid,
                 "declared_binding_object_id": binding_id,
                 "expression_metadata_hex": metadata.hex(),
                 "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
@@ -84,8 +86,10 @@ def decode_file(path, zstd_library=None):
     records = []
     for name, data in members.items():
         if name.endswith("FusionDesignSegmentType1/BulkStream.dat"):
-            parameters, rejected = decode_stream(data)
-            records.append({"member": name, "parameters": parameters, "rejected": rejected})
+            fragments, index = design_records(data, members.get(name.replace("BulkStream.dat", "MetaStream.dat")))
+            parameters, rejected = decode_stream(data, fragments)
+            records.append({"member": name, "parameters": parameters, "rejected": rejected,
+                            "record_index": index})
     return {
         "file": str(path), "sha256": hashlib.sha256(Path(path).read_bytes()).hexdigest(),
         "scope": "Role-labelled parameter records only; no verified feature ownership or topology",

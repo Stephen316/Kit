@@ -20,6 +20,7 @@ from decode_selection import decode_selections
 from decode_tools import decode_tools
 from fusion_archive import read_members
 from fusion_records import Record, record_fragments
+from fusion_metadata import design_records
 
 
 def named_features(data, records):
@@ -49,6 +50,7 @@ def named_features(data, records):
                     "native_kind_label": label,
                     "stored_index": stored_index, "record_offset": record.start,
                     "type_code": record.type_code, "parameters": [],
+                    "class_guid": record.class_guid, "class_namespace": record.class_namespace,
                 }
                 if kind != "Sketch":
                     name, _ = read_string(chunk, cursor + 8)
@@ -161,12 +163,13 @@ def sketch_references(data, records, features):
 
 def decode_basics(path, zstd_library=None):
     streams = []
-    for name, data in read_members(path, zstd_library).items():
+    members = read_members(path, zstd_library)
+    for name, data in members.items():
         if not name.endswith("FusionDesignSegmentType1/BulkStream.dat"):
             continue
-        records = record_fragments(data)
+        records, record_index = design_records(data, members.get(name.replace("BulkStream.dat", "MetaStream.dat")))
         features = named_features(data, records)
-        parameters, rejected = decode_stream(data)
+        parameters, rejected = decode_stream(data, records)
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
@@ -183,6 +186,7 @@ def decode_basics(path, zstd_library=None):
         streams.append({
             "member": name, "features": features, "unbound_parameters": unbound,
             "rejected_parameters": rejected, "candidate_record_headers": len(records),
+            "record_index": record_index,
             "sketch_decoding": sketch_summary,
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,
@@ -193,7 +197,7 @@ def decode_basics(path, zstd_library=None):
         "file": str(path), "status": "experimental partial decoder",
         "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
         "limitations": [
-            "Candidate header boundaries and field semantics are inferred from a small corpus.",
+            "Version-8 MetaStream indexes validate record boundaries; field semantics remain inferred from a small corpus.",
             "Type codes are local to the document and not treated as universal feature identifiers.",
             "Sketch support covers observed points, lines, circular/elliptical arcs, ellipses, NURBS, basic constraints and dimensions.",
             "No exact profile selection, topology, general sketch solver or native writer.",
