@@ -22,6 +22,7 @@ from fusion_archive import read_members
 from fusion_records import Record, record_fragments
 from fusion_metadata import design_records
 from discover_features import discover_features
+from decode_construction import decode_construction
 
 
 def named_features(data, records):
@@ -32,7 +33,8 @@ def named_features(data, records):
               "R-Pattern": "RectangularPattern", "Mirror": "Mirror", "Scale": "Scale",
               "WorkPlane": "ConstructionPlane", "Sweep": "Sweep", "Loft": "Loft",
               "C-Pattern": "CircularPattern", "Combine": "Combine", "Draft": "Draft",
-              "Split": "SplitBody", "Move": "Move", "Thicken": "Thicken"}
+              "Split": "SplitBody", "Move": "Move", "Thicken": "Thicken",
+              "WorkAxis": "ConstructionAxis", "WorkPoint": "ConstructionPoint"}
     for label, kind in labels.items():
         marker = struct.pack("<I", len(label)) + label.encode("utf-16le")
         for match in re.finditer(re.escape(marker), data):
@@ -177,6 +179,7 @@ def decode_basics(path, zstd_library=None):
         sketch_summary = decode_sketches(data, records, features)
         modeling_summary = decode_modeling(data, records, features)
         placement_summary = decode_placement(data, records, features)
+        construction_summary = decode_construction(data, records, features)
         selection_summary = decode_selections(data, records, features)
         tool_summary = decode_tools(data, records, features)
         resolved_selection_features = {s["feature_object_id"] for s in selection_summary["resolved"]}
@@ -193,6 +196,7 @@ def decode_basics(path, zstd_library=None):
             "sketch_decoding": sketch_summary,
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,
+            "construction_decoding": construction_summary,
             "selection_decoding": selection_summary,
             "tool_decoding": tool_summary,
         })

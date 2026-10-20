@@ -92,6 +92,18 @@ def decode_selections(data, records, features):
                 "object_id": feature["plane_object_id"], "feature_object_id": feature["object_id"],
                 "origin_cm": feature["origin_cm"], "normal": feature["normal"],
             }
+        elif feature["kind"] == "ConstructionAxis" and "axis_object_id" in feature:
+            known[feature["axis_object_id"]] = {
+                "kind": "ConstructionAxis", "name": feature["name"],
+                "object_id": feature["axis_object_id"], "feature_object_id": feature["object_id"],
+                "origin_cm": feature["origin_cm"], "direction": feature["direction"],
+            }
+        elif feature["kind"] == "ConstructionPoint" and "point_object_id" in feature:
+            known[feature["point_object_id"]] = {
+                "kind": "ConstructionPoint", "name": feature["name"],
+                "object_id": feature["point_object_id"], "feature_object_id": feature["object_id"],
+                "position_cm": feature["position_cm"],
+            }
     resolved, unresolved = [], []
     for feature in features:
         if feature["kind"] == "Extrude":
