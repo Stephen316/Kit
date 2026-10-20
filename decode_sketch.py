@@ -99,12 +99,21 @@ def decode_sketches(data, records, features):
             continue
     for record, body, props, cursor, item in curves:
         try:
+            auxiliary_parent = None
+            if len(body) - cursor == 182:
+                try:
+                    parent = reference(body, cursor)
+                    if parent in {r.object_id for r, *_ in curves}:
+                        auxiliary_parent = parent
+                        cursor += 11
+                except ValueError:
+                    pass
             values = numbers(body, cursor, 12)
             origin = values[:3]
-            first = reference(body, cursor + 96)
             if props.get("crv_secondary_id") != 0:
                 raise ValueError("Secondary curve representation is unsupported")
             if len(body) - cursor == 171:
+                first = reference(body, cursor + 96)
                 start_id = reference(body, cursor + 107)
                 start, end = entities[start_id], entities[first]
                 if start["sketch_object_id"] != item["sketch_object_id"] or end["sketch_object_id"] != item["sketch_object_id"]:
@@ -115,21 +124,66 @@ def decode_sketches(data, records, features):
                     raise ValueError("Line representation does not match endpoint references")
                 item.update({"kind": "Line", "start_point_id": start_id, "end_point_id": first,
                              "start_cm": start["position_cm"], "end_cm": end["position_cm"]})
-            elif len(body) - cursor == 162:
+                if auxiliary_parent is not None:
+                    item["auxiliary_parent_id"] = auxiliary_parent
+            elif len(body) - cursor in (162, 182):
+                first = reference(body, cursor + 96)
                 center = entities[first]
                 normal, axis = values[3:6], values[6:9]
                 if center["sketch_object_id"] != item["sketch_object_id"] or not same(center["position_cm"], origin):
                     raise ValueError("Circle center reference does not match")
-                if (values[9] <= 0 or not same(values[10:], [0, 2 * math.pi])
-                        or not same([sum(x*x for x in normal), sum(x*x for x in axis),
+                if (values[9] <= 0 or not same([sum(x*x for x in normal), sum(x*x for x in axis),
                                      sum(x*y for x, y in zip(normal, axis))], [1, 1, 0])):
-                    raise ValueError("Only the observed full-circle layout is supported")
+                    raise ValueError("Invalid circular representation")
                 item.update({"kind": "Circle", "center_point_id": first, "center_cm": origin,
                              "radius_cm": values[9], "radius_mm": values[9] * 10,
                              "normal": normal, "reference_axis": axis})
+                if len(body) - cursor == 182:
+                    end_id = reference(body, cursor + 107)
+                    start_id = reference(body, cursor + 118)
+                    cross = [normal[1]*axis[2]-normal[2]*axis[1],
+                             normal[2]*axis[0]-normal[0]*axis[2],
+                             normal[0]*axis[1]-normal[1]*axis[0]]
+                    for identity, angle in ((start_id, values[10]), (end_id, values[11])):
+                        expected = [o + values[9] * (math.cos(angle)*a + math.sin(angle)*c)
+                                    for o, a, c in zip(origin, axis, cross)]
+                        if (entities[identity]["sketch_object_id"] != item["sketch_object_id"]
+                                or not same(entities[identity]["position_cm"], expected)):
+                            raise ValueError("Arc endpoint reference disagrees with angular geometry")
+                    item.update({"kind": "Arc", "start_point_id": start_id, "end_point_id": end_id,
+                                 "start_cm": entities[start_id]["position_cm"],
+                                 "end_cm": entities[end_id]["position_cm"],
+                                 "start_angle_radians": values[10], "end_angle_radians": values[11]})
+                elif not same(values[10:], [0, 2 * math.pi]):
+                    raise ValueError("Unsupported circular parameter interval")
+            elif len(body) - cursor == 192:
+                values = numbers(body, cursor, 13)
+                center_id = reference(body, cursor + 104)
+                major_axis_id = reference(body, cursor + 116)
+                minor_axis_id = reference(body, cursor + 127)
+                center = entities[center_id]
+                if (center["sketch_object_id"] != item["sketch_object_id"]
+                        or not same(center["position_cm"], origin)
+                        or not 0 < values[10] <= values[9]
+                        or not same(values[11:], [0, 2 * math.pi])
+                        or not same([sum(x*x for x in values[3:6]), sum(x*x for x in values[6:9]),
+                                     sum(x*y for x, y in zip(values[3:6], values[6:9]))], [1, 1, 0])):
+                    raise ValueError("Unsupported ellipse representation")
+                item.update({"kind": "Ellipse", "center_point_id": center_id, "center_cm": origin,
+                             "major_radius_cm": values[9], "minor_radius_cm": values[10],
+                             "stored_major_axis": values[3:6], "stored_minor_axis": values[6:9],
+                             "major_axis_entity_id": major_axis_id, "minor_axis_entity_id": minor_axis_id})
             else:
                 raise ValueError("Unrecognized curve record size")
             item["entity_tag"] = props["crv_primary_id"]
+            # These boolean fields occupy the same observed style suffix for
+            # lines, circles, arcs and ellipses, including ellipse axis lines.
+            fixed = struct.unpack_from("<I", body, len(body) - 51)[0]
+            construction = struct.unpack_from("<I", body, len(body) - 46)[0]
+            if fixed in (0, 1) and construction in (0, 1):
+                item.update(is_fixed=bool(fixed), is_construction=bool(construction))
+            else:
+                item["unrecognized_state_flags"] = [fixed, construction]
             entities[record.object_id] = item
         except (ValueError, KeyError, struct.error) as error:
             skipped.append({"object_id": record.object_id, "reason": str(error)})
@@ -155,16 +209,36 @@ def decode_sketches(data, records, features):
             if count != len(inputs):
                 raise ValueError("Constraint argument copies differ")
             copied = [reference(body, cursor + 12 + 11*i) for i in range(count)]
-            if copied != inputs or any(i not in entities or entities[i]["sketch_object_id"] != owner for i in inputs):
+            if sorted(copied) != sorted(inputs) or any(i not in entities or entities[i]["sketch_object_id"] != owner for i in inputs):
                 raise ValueError("Constraint entity references do not resolve")
-            kind = {64: "Horizontal", 128: "Vertical", 1: "Coincident"}.get(code)
+            # The first list is dependency order; the second preserves argument roles.
+            dependency_order = inputs
+            inputs = copied
             kinds = [entities[i]["kind"] for i in inputs]
-            if ((kind in ("Horizontal", "Vertical") and kinds != ["Line"])
-                    or (kind == "Coincident" and kinds != ["Point", "Point"]) or kind is None):
+            kind = {1: "Coincident", 2: "Collinear", 4: "Concentric", 16: "Parallel",
+                    32: "Perpendicular", 64: "Horizontal", 128: "Vertical", 256: "Tangent",
+                    1024: "Symmetry", 2048: "Equal", 4096: "MidPoint"}.get(code)
+            if kind in ("Horizontal", "Vertical") and kinds == ["Point", "Point"]:
+                kind += "Points"
+            valid = {
+                "Horizontal": kinds == ["Line"], "Vertical": kinds == ["Line"],
+                "HorizontalPoints": kinds == ["Point", "Point"],
+                "VerticalPoints": kinds == ["Point", "Point"],
+                "Coincident": len(kinds) == 2 and "Point" in kinds,
+                "Parallel": kinds == ["Line", "Line"], "Perpendicular": kinds == ["Line", "Line"],
+                "Collinear": kinds == ["Line", "Line"],
+                "Concentric": len(kinds) == 2 and all(k in ("Circle", "Arc", "Ellipse") for k in kinds),
+                "Tangent": len(kinds) == 2 and all(k != "Point" for k in kinds),
+                "Equal": kinds == ["Line", "Line"] or (len(kinds) == 2 and all(k in ("Circle", "Arc") for k in kinds)),
+                "MidPoint": sorted(kinds) == ["Line", "Point"],
+                "Symmetry": len(kinds) == 3 and kinds[0] == kinds[1] and kinds[2] == "Line",
+            }
+            if not valid.get(kind, False):
                 unknown_constraints.append({"object_id": record.object_id, "code": code})
                 continue
             sketches[owner]["constraints"].append({
                 "kind": kind, "object_id": record.object_id, "entity_ids": inputs,
+                "dependency_entity_ids": dependency_order,
                 "stored_code": code, "record_offset": record.start,
                 "evidence": "explicit stored constraint and repeated entity references",
             })
@@ -174,28 +248,44 @@ def decode_sketches(data, records, features):
     # to a parameter binding owned by the sketch feature.
     for record, body, inputs in dimensions:
         try:
-            cursor = len(body) - 27
+            target_count = len(inputs) - 1
+            if not 1 <= target_count <= 2:
+                continue
+            cursor = len(body) - (16 + 11 * target_count)
             binding_id = reference(body, cursor)
-            if struct.unpack_from("<I", body, cursor + 11)[0] != 1:
+            if struct.unpack_from("<I", body, cursor + 11)[0] != target_count:
                 continue
-            target_id = reference(body, cursor + 15)
-            target = entities[target_id]
-            if target["kind"] != "Circle" or target_id not in inputs:
+            targets = [reference(body, cursor + 15 + index*11) for index in range(target_count)]
+            if targets != inputs[1:] or any(i not in entities for i in targets):
                 continue
-            sketch = sketches[target["sketch_object_id"]]
+            sketch = sketches[entities[targets[0]]["sketch_object_id"]]
+            if any(entities[i]["sketch_object_id"] != sketch["sketch_object_id"] for i in targets):
+                continue
             parameters = [p for p in sketch["parameters"]
-                          if p["binding_object_id"] == binding_id and p["role"].startswith("Radial Dimension-")]
+                          if p["binding_object_id"] == binding_id and " Dimension-" in p["role"]]
             if len(parameters) != 1:
                 continue
             parameter = parameters[0]
-            sketch["dimensions"].append({
-                "kind": "Radius", "object_id": record.object_id, "entity_id": target_id,
-                "parameter_name": parameter["parameter_name"], "value_cm": parameter["raw_float64"],
-                "value_mm": parameter["hypothesized_value_mm"],
+            kind = {"Radial": "Radius", "Diameter": "Diameter", "Linear": "Linear", "Angular": "Angle"}.get(parameter["role"].split()[0])
+            kinds = [entities[i]["kind"] for i in targets]
+            if ((kind in ("Radius", "Diameter") and kinds not in (["Circle"], ["Arc"]))
+                    or (kind == "Linear" and kinds != ["Point", "Point"])
+                    or (kind == "Angle" and kinds != ["Line", "Line"]) or kind is None):
+                continue
+            dimension = {
+                "kind": kind, "object_id": record.object_id, "entity_ids": targets,
+                "parameter_name": parameter["parameter_name"], "raw_value": parameter["raw_float64"],
                 "expression_candidates": parameter["expression_candidates"],
                 "binding_object_id": binding_id, "record_offset": record.start,
-            })
+            }
+            if kind == "Angle":
+                dimension.update(value_radians=parameter["raw_float64"], value_degrees=parameter["hypothesized_value_degrees"])
+            else:
+                dimension.update(value_cm=parameter["raw_float64"], value_mm=parameter["hypothesized_value_mm"])
+            if len(targets) == 1:
+                dimension["entity_id"] = targets[0]
+            sketch["dimensions"].append(dimension)
         except (ValueError, KeyError, struct.error):
             continue
     return {"unsupported_curves": skipped, "unknown_constraint_codes": unknown_constraints,
-            "scope": "Observed point/line/full-circle and H/V/coincident/radius records; not a constraint solver"}
+            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"}

@@ -34,14 +34,15 @@ def read_string(data, position):
 def decode_stream(data):
     parameters, rejected = [], []
     roles = dict(ROLES)
-    radial = "Radial Dimension-".encode("utf-16le") + rb"(?:[0-9]\x00)+"
-    for match in re.finditer(radial, data):
-        try:
-            role, _ = read_string(data, match.start() - 4)
-        except (ValueError, UnicodeError, struct.error):
-            continue
-        if re.fullmatch(r"Radial Dimension-[0-9]+", role):
-            roles[role] = ROLES["AlongDistance"]
+    for dimension in ("Radial", "Diameter", "Linear", "Angular"):
+        pattern = re.escape((dimension + " Dimension-").encode("utf-16le")) + rb"(?:[0-9]\x00)+"
+        for match in re.finditer(pattern, data):
+            try:
+                role, _ = read_string(data, match.start() - 4)
+            except (ValueError, UnicodeError, struct.error):
+                continue
+            if re.fullmatch(dimension + r" Dimension-[0-9]+", role):
+                roles[role] = ROLES["TaperAngle" if dimension == "Angular" else "AlongDistance"]
     for role, units in roles.items():
         marker = struct.pack("<I", len(role)) + role.encode("utf-16le")
         for match in re.finditer(re.escape(marker), data):
@@ -75,10 +76,10 @@ def decode_stream(data):
                     "layout": "u32-length UTF16LE strings followed by LE float64",
                 }
                 # Internal units are research hypotheses checked against API truth.
-                if role == "AlongDistance" or role.startswith("Radial Dimension-"):
-                    item["hypothesized_value_mm"] = value * 10
-                else:
+                if role == "TaperAngle" or role.startswith("Angular Dimension-"):
                     item["hypothesized_value_degrees"] = math.degrees(value)
+                else:
+                    item["hypothesized_value_mm"] = value * 10
                 parameters.append(item)
             except (ValueError, UnicodeError, struct.error) as error:
                 rejected.append({"role": role, "offset": start, "reason": str(error)})
