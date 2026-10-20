@@ -5,6 +5,17 @@ import struct
 from decode_parameters import read_string
 from decode_selection import native_proxy_references
 from decode_sketch import numbers, reference
+from decode_extrude import optional_reference
+
+
+def thread_parent_hole(body):
+    count = struct.unpack_from("<I", body, 11)[0]
+    if count not in (0, 1):
+        raise ValueError("Unsupported thread parent header")
+    cursor = 15+16*count
+    for _ in range(5):
+        _, cursor = read_string(body, cursor)
+    return optional_reference(body, cursor+38)[0]
 
 
 def decode_thread(data, records, body, feature):
@@ -21,10 +32,12 @@ def decode_thread(data, records, body, feature):
     thread_class, designation, designation_copy, size, family = strings
     if designation != designation_copy or family != "ISO Metric profile":
         raise ValueError("Only observed matching straight metric thread definitions supported")
-    full, modeled, handed = body[cursor], body[cursor+21], body[cursor+61]
+    parent_hole, binding_cursor = optional_reference(body, cursor+38)
+    hand_cursor = binding_cursor+22
+    full, modeled, handed = body[cursor], body[cursor+21], body[hand_cursor]
     location = struct.unpack_from("<I", body, cursor+1)[0]
     if (any(v not in (0, 1) for v in (full, modeled, handed)) or location not in (1, 2)
-            or body[cursor+38] != 0 or body[cursor+62:cursor+102] != b"\0"*40
+            or body[hand_cursor+1:hand_cursor+41] != b"\0"*40
             or bool(table_count) != bool(modeled)):
         raise ValueError("Unsupported thread flags/location/table combination")
     angle = numbers(body, 2, 1)[0]
@@ -41,11 +54,17 @@ def decode_thread(data, records, body, feature):
             raise ValueError("Thread parameter binding unresolved: "+role)
         return parameter["raw_float64"], identity
 
-    length, length_binding = parameter(cursor+39, "ThreadLength")
-    offset, offset_binding = parameter(cursor+50, "ThreadOffset")
-    if length <= 0 or offset < 0 or struct.unpack_from("<I", body, cursor+102)[0] != 1:
+    if parent_hole is not None:
+        parents = [r for r in records if r.is_primary and r.object_id == parent_hole
+                   and r.class_guid == "1C037A07-4A15-43F6-ABFC-BBF61B9038D4"]
+        if len(parents) != 1:
+            raise ValueError("Attached thread parent hole is unresolved")
+    length_role = "ThreadDepth" if parent_hole is not None else "ThreadLength"
+    length, length_binding = parameter(binding_cursor, length_role)
+    offset, offset_binding = parameter(binding_cursor+11, "ThreadOffset")
+    if length <= 0 or offset < 0 or struct.unpack_from("<I", body, hand_cursor+41)[0] != 1:
         raise ValueError("Unsupported thread length/offset/selection count")
-    selection_id = reference(body, cursor+106)
+    selection_id = reference(body, hand_cursor+45)
     proxies = [r for r in records if r.is_primary and r.object_id == selection_id
                and r.class_guid == "2CA5A1CD-C99B-4C9B-91AF-57989148E841"]
     if len(proxies) != 1:
@@ -71,9 +90,11 @@ def decode_thread(data, records, body, feature):
             "active_length_cm": None if full else length, "active_offset_cm": None if full else offset,
             "stored_length_cm": length, "stored_offset_cm": offset,
             "stored_location_code": location, "active_location": None if full else {1: "HighEnd", 2: "LowEnd"}[location],
-            "parameter_bindings": {"ThreadLength": length_binding, "ThreadOffset": offset_binding},
+            "parameter_bindings": {length_role: length_binding, "ThreadOffset": offset_binding},
+            "attached_hole_object_id": parent_hole,
             "stored_modeled_table_pairs": table, "modeled_table_scope": "Opaque integer pairs; not interpreted as ASM record indices",
             "selection_record_object_id": selection_id, "descriptor_object_ids": descriptors,
-            "input_selection_status": "Owned cylindrical-face descriptor retained; persistent face-to-ASM mapping unresolved",
+            "input_selection_status": ("Owned cylindrical-face descriptor and attached parent-hole link retained" if parent_hole is not None else
+                                       "Owned cylindrical-face descriptor retained; persistent face-to-ASM mapping unresolved"),
             "length_scope": "Full-length mode has inactive native length/offset bindings even when API getters return null",
             "geometry_status": "Thread metadata/settings decoded; helical thread geometry is not regenerated"}

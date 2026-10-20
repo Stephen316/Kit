@@ -8,13 +8,23 @@ from decode_sketch import attributes, numbers, reference, same
 
 
 def decode_hole(data, records, body, feature):
-    props, cursor = attributes(body, 2)
+    if body[:2] == b"\0\0":
+        props, cursor = {}, 2
+    elif body[:2] == b"\0\1":
+        props, cursor = attributes(body, 2)
+    else:
+        raise ValueError("Unsupported hole attribute prefix")
+    tap_type = struct.unpack_from("<I", body, cursor)[0]
+    if tap_type not in (0, 2):
+        raise ValueError("Unsupported hole tap type")
+    if not body[1]:
+        cursor += 4
     head = body[cursor:]
     if body[:2] == b"\0\0" and head[:4] == bytes.fromhex("01010000"):
         extent, base = "Distance", 4
-    elif body[:2] == b"\0\x01" and head[:8] == bytes.fromhex("0000000001010100"):
+    elif body[:2] == b"\0\x01" and head[4:8] == bytes.fromhex("01010100"):
         extent, base = "ThroughAll", 8
-    elif body[:2] == b"\0\x01" and head[:8] == bytes.fromhex("0000000001010000"):
+    elif body[:2] == b"\0\x01" and head[4:8] == bytes.fromhex("01010000"):
         extent, base = "ToEntity", 8
     else:
         raise ValueError("Unsupported hole extent/direction prefix")
@@ -43,9 +53,18 @@ def decode_hole(data, records, body, feature):
     cursor += 11*count
     for label in ("axis", "HoleDepth", "HoleDiameter", "opaque_core_input", "center"):
         refs[label], cursor = optional_reference(head, cursor)
-    if head[cursor:cursor+5] != b"\0"*5:
+    if head[cursor:cursor+4] != b"\0"*4:
         raise ValueError("Unsupported hole tip separator")
-    refs["TipAngle"] = reference(head, cursor+5)
+    refs["thread"], cursor = optional_reference(head, cursor+4)
+    refs["TipAngle"] = reference(head, cursor)
+    if (refs["thread"] is not None) != (tap_type == 2):
+        raise ValueError("Hole tap type and attached-thread reference disagree")
+    if tap_type == 2:
+        from decode_threads import thread_parent_hole
+        threads = [r for r in records if r.is_primary and r.object_id == refs["thread"]
+                   and r.class_guid == "584D9526-EF22-4F6F-9FE1-5FCF1F3CE575"]
+        if len(threads) != 1 or thread_parent_hole(data[threads[0].body:threads[0].end]) != feature["object_id"]:
+            raise ValueError("Hole/thread native references are not reciprocal")
     refs["positions"] = positions
     if count == 1:
         refs["position"] = positions[0]
@@ -64,7 +83,10 @@ def decode_hole(data, records, body, feature):
                 "diameter_parameter_cm": value("HoleDiameter", True),
                 "tip_angle_radians": value("TipAngle", True), "is_default_direction": not reversed_direction,
                 "extent": {"condition": extent}, "input_record_object_ids": refs,
-                "thread_status": "Thread definitions unresolved; diameter is the stored model parameter",
+                "tap_type": {0: "Simple", 2: "Tapped"}[tap_type], "stored_tap_type_code": tap_type,
+                "attached_thread_object_id": refs["thread"],
+                "thread_status": ("Reciprocal attached thread reference decoded; definition is on the Thread feature"
+                                  if tap_type == 2 else "No attached thread; diameter is the stored model parameter"),
                 "support_selection_status": "Supporting face and topology unresolved"}
     depth = value("HoleDepth", extent == "Distance")
     if extent == "Distance":

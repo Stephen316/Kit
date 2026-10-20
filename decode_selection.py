@@ -79,8 +79,16 @@ def native_proxy_references(data, record):
         raise ValueError("Not an observed native selection proxy")
     props, cursor = attributes(body, 2) if body[1] else ({}, 2)
     count = struct.unpack_from("<I", body, cursor)[0]
-    if not 1 <= count <= 1024 or len(body) != cursor+92+11*count:
+    if not 1 <= count <= 1024:
         raise ValueError("Unsupported native proxy list layout")
+    after_primary = cursor+4+11*count
+    if body[after_primary:after_primary+2] != b"\0\0":
+        raise ValueError("Unsupported native proxy secondary-list prefix")
+    secondary_count = struct.unpack_from("<I", body, after_primary+2)[0]
+    if secondary_count not in (0, 1) or len(body) != cursor+81+11*(count+secondary_count):
+        raise ValueError("Unsupported native proxy secondary-list layout")
+    for i in range(secondary_count):
+        reference(body, after_primary+6+11*i)
     return [reference(body, cursor+4+11*i) for i in range(count)], props
 
 
