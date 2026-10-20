@@ -9,6 +9,7 @@ from collections import Counter
 import math
 from decode_analytic import decode_analytic_surface
 from decode_bspline import decode_bspline
+from decode_pcurve import decode_pcurve
 
 
 LINKS = {
@@ -64,7 +65,7 @@ def decode_topology(parsed):
         return bounds
 
     geometry = {"point", "straight-curve", "ellipse-curve", "plane-surface", "transform",
-                "cone-surface", "sphere-surface", "torus-surface", "spline-surface", "intcurve-curve"}
+                "cone-surface", "sphere-surface", "torus-surface", "spline-surface", "intcurve-curve", "pcurve"}
     sizes = {"body": (6,), "lump": (6,), "shell": (8,), "face": (10, 11), "loop": (6,),
              "coedge": (11,), "edge": (11,), "vertex": (6,), "point": (4,), "straight-curve": (7, 8, 9),
              "ellipse-curve": (9, 10, 11)}
@@ -112,6 +113,8 @@ def decode_topology(parsed):
                             stored_trailing_text=token(record, 10, ("string",)))
             elif name == "vertex":
                 node["uninterpreted_field_4"] = token(record, 4, ("integer",))
+            elif name == "pcurve":
+                node["uv_curve"] = decode_pcurve(record)
             elif name in ("spline-surface", "intcurve-curve"):
                 node["bspline_surface" if name == "spline-surface" else "bspline_curve"] = decode_bspline(record)
             elif name in ("cone-surface", "sphere-surface", "torus-surface"):
@@ -177,6 +180,7 @@ def decode_topology(parsed):
                 raise ValueError("Wire-body topology not implemented")
             lumps = chain(root["first_lump_index"], "lump", "next_lump")
             shells, faces, loops, coedges, edges, vertices = [], [], [], [], set(), set()
+            loop_rings = []
             for lump_id in lumps:
                 lump = get(lump_id, "lump")
                 if lump["body_index"] != root["index"]:
@@ -204,7 +208,7 @@ def decode_topology(parsed):
                             first = loop["first_coedge_index"]
                             if first is None:
                                 continue
-                            current, seen = first, set()
+                            current, seen, ring = first, set(), []
                             while current not in seen:
                                 seen.add(current)
                                 coedge = get(current, "coedge")
@@ -223,9 +227,22 @@ def decode_topology(parsed):
                                         get(edge[field], "vertex")
                                         vertices.add(edge[field])
                                 coedges.append(current)
+                                ring.append(current)
                                 current = next_id
                             if current != first:
                                 raise ValueError("Coedge ring does not close at its first element")
+                            trims = [{"coedge_index": c, "pcurve_index": nodes[c]["pcurve_index"],
+                                      "edge_index": nodes[c]["edge_index"], "is_opposed_to_edge": nodes[c]["is_reversed"],
+                                      "uv_curve": nodes.get(nodes[c]["pcurve_index"], {}).get("uv_curve")}
+                                     for c in ring]
+                            complete = all(item["uv_curve"] is not None for item in trims)
+                            closed = (all(all(math.isclose(x,y,abs_tol=1e-8) for x,y in zip(
+                                            a["uv_curve"]["control_points_uv"][-1], b["uv_curve"]["control_points_uv"][0]))
+                                          for a,b in zip(trims, trims[1:]+trims[:1])) if complete else None)
+                            loop_rings.append({"face_index": face_id, "loop_index": loop_id,
+                                               "surface_index": face["surface_index"], "trims": trims,
+                                               "uv_endpoints_close_in_this_chart": closed,
+                                               "scope": "Observed stored UV boundaries; periodic chart changes and general trimming remain partial"})
             raw_positions = [get(get(v, "vertex")["point_index"], "point")["raw_origin"] for v in sorted(vertices)]
             counts = {"lump": len(lumps), "shell": len(shells), "face": len(faces), "loop": len(loops),
                       "coedge": len(coedges), "edge": len(edges), "vertex": len(vertices)}
@@ -235,7 +252,8 @@ def decode_topology(parsed):
                            "shell_indices": shells, "face_indices": faces, "loop_indices": loops,
                            "coedge_indices": coedges, "edge_indices": sorted(edges), "vertex_indices": sorted(vertices),
                            "pcurve_indices": sorted({nodes[c]["pcurve_index"] for c in coedges if nodes[c]["pcurve_index"] is not None}),
-                           "pcurve_status": "Parameter-space trim references retained; general pcurve geometry remains undecoded",
+                           "pcurve_status": "Observed degree-one UV caches decoded; other pcurve layouts remain unsupported",
+                           "face_trim_loops": loop_rings,
                            "raw_vertex_positions": raw_positions, "transform_index": root["transform_index"],
                            "body_transform_is_identity": bool(identity),
                            "body_transform_status": "No transform reference or observed identity" if identity
