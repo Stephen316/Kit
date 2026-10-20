@@ -35,6 +35,7 @@ from decode_construction import decode_construction
 from decode_plane_definitions import decode_plane_definitions
 from decode_construction_definitions import decode_construction_definitions
 from decode_construction_modes import decode_construction_modes
+from decode_construction_vertex_points import decode_construction_vertex_points
 from decode_profiles import decode_profiles
 from decode_timeline import decode_timeline
 from decode_assembly import decode_assembly
@@ -238,13 +239,18 @@ def decode_basics(path, zstd_library=None):
         plane_definition_summary = decode_plane_definitions(data, records, features)
         construction_definition_summary = decode_construction_definitions(data, records, features)
         construction_mode_summary = decode_construction_modes(data, records, features)
-        resolved_construction_modes = {d["feature_object_id"] for d in construction_mode_summary["definitions"]}
+        construction_vertex_summary = decode_construction_vertex_points(data, records, features)
+        resolved_vertex_ids = {d["feature_object_id"] for d in construction_vertex_summary["definitions"]}
+        construction_mode_summary["unresolved"] = [u for u in construction_mode_summary["unresolved"]
+                                                   if u["feature_object_id"] not in resolved_vertex_ids]
+        additional_construction_definitions = construction_mode_summary["definitions"]+construction_vertex_summary["definitions"]
+        resolved_construction_modes = {d["feature_object_id"] for d in additional_construction_definitions}
         construction_summary["unresolved"] = [u for u in construction_summary["unresolved"]
                                                if u["object_id"] not in resolved_construction_modes]
         cached_construction_ids = {d["object_id"] for d in construction_summary["decoded"]}
         construction_summary["decoded"].extend(
             {"object_id": d["feature_object_id"], "kind": d["kind"]}
-            for d in construction_mode_summary["definitions"] if d["feature_object_id"] not in cached_construction_ids)
+            for d in additional_construction_definitions if d["feature_object_id"] not in cached_construction_ids)
         construction_definition_summary["unresolved"] = [u for u in construction_definition_summary["unresolved"]
                                                           if u["feature_object_id"] not in resolved_construction_modes]
         placement_summary["decoded_construction_planes"] = sum(
@@ -316,6 +322,7 @@ def decode_basics(path, zstd_library=None):
             "plane_definitions": plane_definition_summary,
             "construction_definitions": construction_definition_summary,
             "construction_modes": construction_mode_summary,
+            "construction_vertex_points": construction_vertex_summary,
             "selection_decoding": selection_summary,
             "tool_decoding": tool_summary,
             "pattern_placements": pattern_placement_summary,
