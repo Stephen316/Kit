@@ -31,17 +31,21 @@ def read_string(data, position):
 
 
 def decode_stream(data, records=None):
-    """Decode observed numeric model-parameter records, regardless of role name."""
+    """Decode observed numeric model and unbound user-parameter records."""
     parameters, rejected = [], []
     for record in record_fragments(data) if records is None else records:
         body = data[record.body:record.end]
         if len(body) < 31 or body[:7] != b"\0" * 7 or body[7:11] != b"\x06\0\0\0":
             continue
         try:
-            if body[20] != 1 or body[29:31] != b"\0\0":
+            if body[20] == 1 and body[29:31] == b"\0\0":
+                binding_id = struct.unpack_from("<Q", body, 21)[0]
+                text_start = 31
+            elif body[20] == 0:
+                binding_id, text_start = None, 21
+            else:
                 raise ValueError("Unsupported binding-reference prefix")
-            binding_id = struct.unpack_from("<Q", body, 21)[0]
-            expression, cursor = read_string(body, 31)
+            expression, cursor = read_string(body, text_start)
             metadata = body[cursor:cursor + 10]
             cursor += 10
             role_offset = cursor
@@ -51,6 +55,9 @@ def decode_stream(data, records=None):
             name, cursor = read_string(body, cursor)
             if not role or reserved_text or not re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]*", name):
                 raise ValueError("Unrecognized parameter text fields")
+            if binding_id is None and (record.class_guid != "7A6A3D31-BE74-4E19-9115-20642944C2E4"
+                                       or role != "User Parameter"):
+                raise ValueError("Unobserved unbound parameter variant")
             if cursor + 20 != len(body):
                 raise ValueError("Unrecognized numeric parameter suffix length")
             value = struct.unpack_from("<d", body, cursor)[0]
@@ -67,6 +74,9 @@ def decode_stream(data, records=None):
                 "expression_metadata_hex": metadata.hex(),
                 "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
             }
+            if binding_id is None:
+                item.update(parameter_kind="UserParameter",
+                            layout="observed numeric user parameter with absent feature-binding reference")
             if units in ("deg", "rad"):
                 item.update(internal_units="rad", hypothesized_value_degrees=math.degrees(value))
             elif units in ("mm", "cm", "m", "in", "ft"):
@@ -88,11 +98,13 @@ def decode_file(path, zstd_library=None):
         if name.endswith("FusionDesignSegmentType1/BulkStream.dat"):
             fragments, index = design_records(data, members.get(name.replace("BulkStream.dat", "MetaStream.dat")))
             parameters, rejected = decode_stream(data, fragments)
+            from decode_parameter_tables import decode_parameter_tables
+            tables = decode_parameter_tables(data, fragments, parameters)
             records.append({"member": name, "parameters": parameters, "rejected": rejected,
-                            "record_index": index})
+                            "record_index": index, "parameter_tables": tables})
     return {
         "file": str(path), "sha256": hashlib.sha256(Path(path).read_bytes()).hexdigest(),
-        "scope": "Role-labelled parameter records only; no verified feature ownership or topology",
+        "scope": "Observed numeric parameters and reciprocal name tables; no expression evaluation or feature regeneration",
         "streams": records,
     }
 

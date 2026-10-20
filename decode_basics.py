@@ -14,6 +14,7 @@ import re
 import struct
 
 from decode_parameters import decode_stream, read_string
+from decode_parameter_tables import decode_parameter_tables
 from decode_sketch import decode_sketches
 from decode_sketch_projections import decode_sketch_projections
 from decode_modeling import decode_modeling
@@ -264,6 +265,7 @@ def decode_basics(path, zstd_library=None):
             or item["object_id"] not in resolved_selection_features-unresolved_selection_features]
         streams.append({
             "member": name, "features": features, "unbound_parameters": unbound,
+            "parameter_tables": decode_parameter_tables(data, records, parameters),
             "rejected_parameters": rejected, "candidate_record_headers": len(records),
             "record_index": record_index,
             "feature_discovery": discovery_summary,
