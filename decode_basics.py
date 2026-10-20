@@ -38,7 +38,8 @@ from decode_brep_recipes import decode_recipes
 from decode_component_body_proxies import decode_component_body_proxies
 from decode_combine import attach_combine_bodies
 from decode_tool_body_inputs import decode_tool_body_inputs
-from decode_body_placement import decode_body_placement
+from decode_body_placement import decode_body_placement, label_joint_cache_placements
+from decode_joints import decode_joints, JOINT as NATIVE_JOINT_GUID, DEFINITION as JOINT_DEFINITION_GUID
 
 
 def named_features(data, records):
@@ -218,8 +219,22 @@ def decode_basics(path, zstd_library=None):
         placement_summary["scope"] = "Observed rigid sketch transforms and native construction-plane caches; explicit definitions reported separately"
         selection_summary = decode_selections(data, records, features)
         tool_summary = decode_tools(data, records, features)
-        timeline_summary = decode_timeline(data, records, features)
         assembly_summary = decode_assembly(data, records, features)
+        joint_summary = decode_joints(data, records, assembly_summary, features)
+        resolved_joint_definitions = set()
+        for joint in joint_summary["decoded"]:
+            feature = next(f for f in features if f["object_id"] == joint["definition_object_id"])
+            if feature["class_guid"] == JOINT_DEFINITION_GUID:
+                feature["kind"] = "Joint"
+                feature["name"] = feature.get("name") or joint["name"]
+                feature["joint_settings"] = joint
+                feature["decode_level"] = "Observed native joint origins, motion controls and limits; joint solving not applied"
+                resolved_joint_definitions.add(feature["object_id"])
+        discovery_summary["unsupported_features"] = [f for f in discovery_summary["unsupported_features"]
+                                                     if f["object_id"] not in resolved_joint_definitions]
+        discovery_summary["unsupported_feature_count"] = len(discovery_summary["unsupported_features"])
+        discovery_summary["class_decoded_joint_definition_count"] = len(resolved_joint_definitions)
+        timeline_summary = decode_timeline(data, records, features)
         dependency_summary = decode_dependencies(data, records, features, assembly_summary)
         body_property_summary = decode_body_properties(data, records, assembly_summary)
         body_selection_summary = decode_body_selections(data, records, body_property_summary)
@@ -239,6 +254,8 @@ def decode_basics(path, zstd_library=None):
         recipe_summary = decode_recipes(data, records)
         body_binding_summary = decode_body_bindings(data, records, name, asm_summary, body_property_summary)
         body_placement_summary = decode_body_placement(body_binding_summary, assembly_summary, asm_summary)
+        if any(r.is_primary and r.class_guid == NATIVE_JOINT_GUID for r in records):
+            label_joint_cache_placements(assembly_summary, body_placement_summary, features)
         resolved_selection_features = {s["feature_object_id"] for s in selection_summary["resolved"]}
         unresolved_selection_features = {s["feature_object_id"] for s in selection_summary["unresolved"]}
         modeling_summary["unresolved"] = [
@@ -261,6 +278,7 @@ def decode_basics(path, zstd_library=None):
             "tool_decoding": tool_summary,
             "timeline_decoding": timeline_summary,
             "assembly_decoding": assembly_summary,
+            "joint_decoding": joint_summary,
             "dependency_decoding": dependency_summary,
             "body_blob_bindings": body_binding_summary,
             "body_properties": body_property_summary,

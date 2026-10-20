@@ -1,0 +1,2559 @@
+{
+  "fixture_directory": "jointmodes-20d3aef2a07d",
+  "failed_capture_directory": "jointmodes-3b967cafd7ca",
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "jointmodes-20d3aef2a07d/rigid.f3d",
+      "checks": {
+        "type_and_flip_match_api": true,
+        "alignment_angle_and_offset_match_api": true,
+        "motion_limit_membership_matches_api": true,
+        "observed_principal_axis_codes_match_api": true,
+        "ordered_occurrence_context_names_match_api": true,
+        "point_component_owners_match_ordered_contexts": true
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 494,
+            "name": "ProbeJoint",
+            "definition_object_id": 495,
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "joint_type": "Rigid",
+            "api_joint_type_code": 0,
+            "stored_joint_type_code": 0,
+            "is_flipped": false,
+            "alignment_parameters": [
+              {
+                "binding_object_id": 533,
+                "role": "alignAngle",
+                "value": 0.2617993877991494
+              },
+              {
+                "binding_object_id": 536,
+                "role": "alignOffsetX",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 539,
+                "role": "alignOffsetY",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 542,
+                "role": "alignOffsetZ",
+                "value": 0.30000000000000004
+              }
+            ],
+            "motion_limits": [],
+            "direction_codes": {},
+            "direction_scope": "Observed principal-axis motion slot mapping; custom direction and ball frame axes unresolved",
+            "origin_one": {
+              "joint_origin_object_id": 502,
+              "geometry_object_id": 503,
+              "point_selection_object_id": 505,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 379,
+                  "origin_container_object_id": 378,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 505,
+                "descriptor_object_id": 508,
+                "terminal_object_id": 511,
+                "namespace_text": "5e6d1e76-65df-4ee5-a4f6-054ee1f52404",
+                "entity_guid_text": "1c5a62f1-2212-46a6-a68a-d616b5eff167",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 345,
+              "origin_container_object_id": 378,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "origin_two": {
+              "joint_origin_object_id": 517,
+              "geometry_object_id": 518,
+              "point_selection_object_id": 520,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 236,
+                  "origin_container_object_id": 235,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 520,
+                "descriptor_object_id": 523,
+                "terminal_object_id": 526,
+                "namespace_text": "5e6d1e76-65df-4ee5-a4f6-054ee1f52404",
+                "entity_guid_text": "8bbfa82f-e995-4ed3-bc2e-4a3c95057b4e",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 202,
+              "origin_container_object_id": 235,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "context_one": {
+              "object_id": 496,
+              "frame_link_object_id": 407,
+              "route_wrapper_object_id": 498,
+              "route_object_id": 497,
+              "native_occurrence_object_id": 396,
+              "component_object_id": 345,
+              "component_name": "Moving",
+              "instance_number": 1,
+              "instance_guid_text": "45089454-1877-43b1-b369-ae220a5421c4",
+              "endpoint_uuid_text": "496b1f58-c419-4a4e-a7c4-d0885101ee40",
+              "stored_context_matrix": [
+                0.9659258262890683,
+                0.25881904510252074,
+                0.0,
+                0.0,
+                -0.25881904510252074,
+                0.9659258262890683,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                -0.30000000000000004,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "context_two": {
+              "object_id": 499,
+              "frame_link_object_id": 264,
+              "route_wrapper_object_id": 501,
+              "route_object_id": 500,
+              "native_occurrence_object_id": 253,
+              "component_object_id": 202,
+              "component_name": "Fixed",
+              "instance_number": 1,
+              "instance_guid_text": "ce070c5f-a9fb-438c-bfaa-dfaf2fb9fd18",
+              "endpoint_uuid_text": "496b1f58-c419-4a4e-a7c4-d0885101ee40",
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              2
+            ],
+            "stored_context_matrix": [
+              0.9659258262890683,
+              0.25881904510252074,
+              0.0,
+              0.0,
+              -0.25881904510252074,
+              0.9659258262890683,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.30000000000000004,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "uninterpreted_joint_footer_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000001000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "enabled_limit_binding_object_ids": [],
+            "state_scope": "Locked/suppressed state semantics unverified; no kinematic solve or solved assembly/world placement"
+          }
+        ],
+        "collections": [
+          {
+            "object_id": 12,
+            "joint_object_ids": [
+              494
+            ],
+            "component_object_id": 3,
+            "stored_header_field": 1
+          },
+          {
+            "object_id": 210,
+            "joint_object_ids": [],
+            "component_object_id": 202,
+            "stored_header_field": 0
+          },
+          {
+            "object_id": 353,
+            "joint_object_ids": [],
+            "component_object_id": 345,
+            "stored_header_field": 0
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local point-origin rigid/revolute/slider/cylindrical/pin-slot/planar/ball definitions and cached motion limits",
+        "placement_limitation": "Native occurrence/context caches do not establish joint-solved placement; joint kinematics are not applied"
+      },
+      "existing_assembly_unresolved": [
+        {
+          "object_id": 6,
+          "reason": "Unsupported occurrence collection prefix"
+        },
+        {
+          "reason": "Occurrence is absent from its declared parent collection"
+        }
+      ],
+      "api_geometry_frames_uninterpreted_comparison": {
+        "one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "archive": "jointmodes-20d3aef2a07d/revolute.f3d",
+      "checks": {
+        "type_and_flip_match_api": true,
+        "alignment_angle_and_offset_match_api": true,
+        "motion_limit_membership_matches_api": true,
+        "rotationLimits_numeric_values_match_api": true,
+        "rotationLimits_enable_flags_match_api": true,
+        "observed_principal_axis_codes_match_api": true,
+        "ordered_occurrence_context_names_match_api": true,
+        "point_component_owners_match_ordered_contexts": true
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 494,
+            "name": "ProbeJoint",
+            "definition_object_id": 495,
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "joint_type": "Revolute",
+            "api_joint_type_code": 1,
+            "stored_joint_type_code": 1,
+            "is_flipped": false,
+            "alignment_parameters": [
+              {
+                "binding_object_id": 533,
+                "role": "alignAngle",
+                "value": 0.2617993877991494
+              },
+              {
+                "binding_object_id": 536,
+                "role": "alignOffsetX",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 539,
+                "role": "alignOffsetY",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 542,
+                "role": "alignOffsetZ",
+                "value": 0.30000000000000004
+              }
+            ],
+            "motion_limits": [
+              {
+                "slot_index": 2,
+                "stored_axis_tag": 2,
+                "current_value": 0.0,
+                "maximum_value": 1.0995574287564276,
+                "minimum_value": -0.39968039870670147,
+                "rest_value": 0.2007128639793479,
+                "maximum_enabled": true,
+                "minimum_enabled": true,
+                "rest_enabled": true,
+                "limit_kind": "rotationLimits",
+                "units": "rad"
+              }
+            ],
+            "direction_codes": {
+              "rotationAxis": 2
+            },
+            "direction_scope": "Observed principal-axis motion slot mapping; custom direction and ball frame axes unresolved",
+            "origin_one": {
+              "joint_origin_object_id": 502,
+              "geometry_object_id": 503,
+              "point_selection_object_id": 505,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 379,
+                  "origin_container_object_id": 378,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 505,
+                "descriptor_object_id": 508,
+                "terminal_object_id": 511,
+                "namespace_text": "e6a65a00-d49d-487d-90bf-76c9f31c51ce",
+                "entity_guid_text": "ccb79e53-0c24-4f8e-8f35-c34b750a3f8a",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 345,
+              "origin_container_object_id": 378,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "origin_two": {
+              "joint_origin_object_id": 517,
+              "geometry_object_id": 518,
+              "point_selection_object_id": 520,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 236,
+                  "origin_container_object_id": 235,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 520,
+                "descriptor_object_id": 523,
+                "terminal_object_id": 526,
+                "namespace_text": "e6a65a00-d49d-487d-90bf-76c9f31c51ce",
+                "entity_guid_text": "d45991b2-22d5-4d3f-b175-f1fd9b9f0b31",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 202,
+              "origin_container_object_id": 235,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "context_one": {
+              "object_id": 496,
+              "frame_link_object_id": 407,
+              "route_wrapper_object_id": 498,
+              "route_object_id": 497,
+              "native_occurrence_object_id": 396,
+              "component_object_id": 345,
+              "component_name": "Moving",
+              "instance_number": 1,
+              "instance_guid_text": "b7b82185-a611-48db-a823-3f842d35cd2d",
+              "endpoint_uuid_text": "046270a0-20c6-4fdd-88eb-0371ba2d77aa",
+              "stored_context_matrix": [
+                0.9659258262890683,
+                0.25881904510252074,
+                0.0,
+                0.0,
+                -0.25881904510252074,
+                0.9659258262890683,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                -0.30000000000000004,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "context_two": {
+              "object_id": 499,
+              "frame_link_object_id": 264,
+              "route_wrapper_object_id": 501,
+              "route_object_id": 500,
+              "native_occurrence_object_id": 253,
+              "component_object_id": 202,
+              "component_name": "Fixed",
+              "instance_number": 1,
+              "instance_guid_text": "8e2bd612-8c7f-4f5f-962e-21eecedf4af8",
+              "endpoint_uuid_text": "046270a0-20c6-4fdd-88eb-0371ba2d77aa",
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              3
+            ],
+            "stored_context_matrix": [
+              0.9659258262890683,
+              0.25881904510252074,
+              0.0,
+              0.0,
+              -0.25881904510252074,
+              0.9659258262890683,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.30000000000000004,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "uninterpreted_joint_footer_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000001000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "enabled_limit_binding_object_ids": [
+              566,
+              569,
+              573
+            ],
+            "state_scope": "Locked/suppressed state semantics unverified; no kinematic solve or solved assembly/world placement"
+          }
+        ],
+        "collections": [
+          {
+            "object_id": 12,
+            "joint_object_ids": [
+              494
+            ],
+            "component_object_id": 3,
+            "stored_header_field": 1
+          },
+          {
+            "object_id": 210,
+            "joint_object_ids": [],
+            "component_object_id": 202,
+            "stored_header_field": 0
+          },
+          {
+            "object_id": 353,
+            "joint_object_ids": [],
+            "component_object_id": 345,
+            "stored_header_field": 0
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local point-origin rigid/revolute/slider/cylindrical/pin-slot/planar/ball definitions and cached motion limits",
+        "placement_limitation": "Native occurrence/context caches do not establish joint-solved placement; joint kinematics are not applied"
+      },
+      "existing_assembly_unresolved": [
+        {
+          "object_id": 6,
+          "reason": "Unsupported occurrence collection prefix"
+        },
+        {
+          "reason": "Occurrence is absent from its declared parent collection"
+        }
+      ],
+      "api_geometry_frames_uninterpreted_comparison": {
+        "one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "archive": "jointmodes-20d3aef2a07d/slider.f3d",
+      "checks": {
+        "type_and_flip_match_api": true,
+        "alignment_angle_and_offset_match_api": true,
+        "motion_limit_membership_matches_api": true,
+        "slideLimits_numeric_values_match_api": true,
+        "slideLimits_enable_flags_match_api": true,
+        "observed_principal_axis_codes_match_api": true,
+        "ordered_occurrence_context_names_match_api": true,
+        "point_component_owners_match_ordered_contexts": true
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 494,
+            "name": "ProbeJoint",
+            "definition_object_id": 495,
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "joint_type": "Slider",
+            "api_joint_type_code": 2,
+            "stored_joint_type_code": 2,
+            "is_flipped": false,
+            "alignment_parameters": [
+              {
+                "binding_object_id": 533,
+                "role": "alignAngle",
+                "value": 0.2617993877991494
+              },
+              {
+                "binding_object_id": 536,
+                "role": "alignOffsetX",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 539,
+                "role": "alignOffsetY",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 542,
+                "role": "alignOffsetZ",
+                "value": 0.30000000000000004
+              }
+            ],
+            "motion_limits": [
+              {
+                "slot_index": 3,
+                "stored_axis_tag": 6,
+                "current_value": 0.0,
+                "maximum_value": 1.8,
+                "minimum_value": -0.8,
+                "rest_value": 0.30000000000000004,
+                "maximum_enabled": false,
+                "minimum_enabled": true,
+                "rest_enabled": true,
+                "limit_kind": "slideLimits",
+                "units": "cm"
+              }
+            ],
+            "direction_codes": {
+              "slideDirection": 0
+            },
+            "direction_scope": "Observed principal-axis motion slot mapping; custom direction and ball frame axes unresolved",
+            "origin_one": {
+              "joint_origin_object_id": 502,
+              "geometry_object_id": 503,
+              "point_selection_object_id": 505,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 379,
+                  "origin_container_object_id": 378,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 505,
+                "descriptor_object_id": 508,
+                "terminal_object_id": 511,
+                "namespace_text": "56ed9c8c-67a5-4864-af20-eb4470dc7072",
+                "entity_guid_text": "1e6083a8-6fe2-4377-84e4-58b97c0c1f3e",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 345,
+              "origin_container_object_id": 378,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "origin_two": {
+              "joint_origin_object_id": 517,
+              "geometry_object_id": 518,
+              "point_selection_object_id": 520,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 236,
+                  "origin_container_object_id": 235,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 520,
+                "descriptor_object_id": 523,
+                "terminal_object_id": 526,
+                "namespace_text": "56ed9c8c-67a5-4864-af20-eb4470dc7072",
+                "entity_guid_text": "ed6c2608-5def-4a14-a78f-9aae90f6b577",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 202,
+              "origin_container_object_id": 235,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "context_one": {
+              "object_id": 496,
+              "frame_link_object_id": 407,
+              "route_wrapper_object_id": 498,
+              "route_object_id": 497,
+              "native_occurrence_object_id": 396,
+              "component_object_id": 345,
+              "component_name": "Moving",
+              "instance_number": 1,
+              "instance_guid_text": "be021e45-4767-4c76-8b39-d7cccce0bb82",
+              "endpoint_uuid_text": "137bea2f-6b7f-4363-8888-5bd00e306a49",
+              "stored_context_matrix": [
+                0.9659258262890683,
+                0.25881904510252074,
+                0.0,
+                0.0,
+                -0.25881904510252074,
+                0.9659258262890683,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                -0.30000000000000004,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "context_two": {
+              "object_id": 499,
+              "frame_link_object_id": 264,
+              "route_wrapper_object_id": 501,
+              "route_object_id": 500,
+              "native_occurrence_object_id": 253,
+              "component_object_id": 202,
+              "component_name": "Fixed",
+              "instance_number": 1,
+              "instance_guid_text": "25bde277-56c8-47e4-b2aa-5f13fc8acb91",
+              "endpoint_uuid_text": "137bea2f-6b7f-4363-8888-5bd00e306a49",
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              3
+            ],
+            "stored_context_matrix": [
+              0.9659258262890683,
+              0.25881904510252074,
+              0.0,
+              0.0,
+              -0.25881904510252074,
+              0.9659258262890683,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.30000000000000004,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "uninterpreted_joint_footer_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000001000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "enabled_limit_binding_object_ids": [
+              566,
+              570
+            ],
+            "state_scope": "Locked/suppressed state semantics unverified; no kinematic solve or solved assembly/world placement"
+          }
+        ],
+        "collections": [
+          {
+            "object_id": 12,
+            "joint_object_ids": [
+              494
+            ],
+            "component_object_id": 3,
+            "stored_header_field": 1
+          },
+          {
+            "object_id": 210,
+            "joint_object_ids": [],
+            "component_object_id": 202,
+            "stored_header_field": 0
+          },
+          {
+            "object_id": 353,
+            "joint_object_ids": [],
+            "component_object_id": 345,
+            "stored_header_field": 0
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local point-origin rigid/revolute/slider/cylindrical/pin-slot/planar/ball definitions and cached motion limits",
+        "placement_limitation": "Native occurrence/context caches do not establish joint-solved placement; joint kinematics are not applied"
+      },
+      "existing_assembly_unresolved": [
+        {
+          "object_id": 6,
+          "reason": "Unsupported occurrence collection prefix"
+        },
+        {
+          "reason": "Occurrence is absent from its declared parent collection"
+        }
+      ],
+      "api_geometry_frames_uninterpreted_comparison": {
+        "one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "archive": "jointmodes-20d3aef2a07d/cylindrical.f3d",
+      "checks": {
+        "type_and_flip_match_api": true,
+        "alignment_angle_and_offset_match_api": true,
+        "motion_limit_membership_matches_api": true,
+        "rotationLimits_numeric_values_match_api": true,
+        "rotationLimits_enable_flags_match_api": true,
+        "slideLimits_numeric_values_match_api": true,
+        "slideLimits_enable_flags_match_api": true,
+        "observed_principal_axis_codes_match_api": true,
+        "ordered_occurrence_context_names_match_api": true,
+        "point_component_owners_match_ordered_contexts": true
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 494,
+            "name": "ProbeJoint",
+            "definition_object_id": 495,
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "joint_type": "Cylindrical",
+            "api_joint_type_code": 3,
+            "stored_joint_type_code": 4,
+            "is_flipped": false,
+            "alignment_parameters": [
+              {
+                "binding_object_id": 533,
+                "role": "alignAngle",
+                "value": 0.2617993877991494
+              },
+              {
+                "binding_object_id": 536,
+                "role": "alignOffsetX",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 539,
+                "role": "alignOffsetY",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 542,
+                "role": "alignOffsetZ",
+                "value": 0.30000000000000004
+              }
+            ],
+            "motion_limits": [
+              {
+                "slot_index": 1,
+                "stored_axis_tag": 1,
+                "current_value": 0.0,
+                "maximum_value": 1.0995574287564276,
+                "minimum_value": -0.39968039870670147,
+                "rest_value": 0.2,
+                "maximum_enabled": true,
+                "minimum_enabled": true,
+                "rest_enabled": false,
+                "limit_kind": "rotationLimits",
+                "units": "rad"
+              },
+              {
+                "slot_index": 4,
+                "stored_axis_tag": 7,
+                "current_value": 0.0,
+                "maximum_value": 1.8,
+                "minimum_value": -0.8,
+                "rest_value": 0.3,
+                "maximum_enabled": true,
+                "minimum_enabled": true,
+                "rest_enabled": false,
+                "limit_kind": "slideLimits",
+                "units": "cm"
+              }
+            ],
+            "direction_codes": {
+              "rotationAxis": 1
+            },
+            "direction_scope": "Observed principal-axis motion slot mapping; custom direction and ball frame axes unresolved",
+            "origin_one": {
+              "joint_origin_object_id": 502,
+              "geometry_object_id": 503,
+              "point_selection_object_id": 505,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 379,
+                  "origin_container_object_id": 378,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 505,
+                "descriptor_object_id": 508,
+                "terminal_object_id": 511,
+                "namespace_text": "656bc093-8714-49b8-89cc-940107cfe3bf",
+                "entity_guid_text": "2bf0e120-13ca-4244-ac35-09116aecf09a",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 345,
+              "origin_container_object_id": 378,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "origin_two": {
+              "joint_origin_object_id": 517,
+              "geometry_object_id": 518,
+              "point_selection_object_id": 520,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 236,
+                  "origin_container_object_id": 235,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 520,
+                "descriptor_object_id": 523,
+                "terminal_object_id": 526,
+                "namespace_text": "656bc093-8714-49b8-89cc-940107cfe3bf",
+                "entity_guid_text": "f5d524c5-6d57-42d6-9d5c-0234a7bc7c9a",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 202,
+              "origin_container_object_id": 235,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "context_one": {
+              "object_id": 496,
+              "frame_link_object_id": 407,
+              "route_wrapper_object_id": 498,
+              "route_object_id": 497,
+              "native_occurrence_object_id": 396,
+              "component_object_id": 345,
+              "component_name": "Moving",
+              "instance_number": 1,
+              "instance_guid_text": "2fd00cb1-19c9-4ff0-8584-0ad5acdfa9de",
+              "endpoint_uuid_text": "91275318-8e5a-49fd-aa02-dc324b6ddbf8",
+              "stored_context_matrix": [
+                0.9659258262890683,
+                0.25881904510252074,
+                0.0,
+                0.0,
+                -0.25881904510252074,
+                0.9659258262890683,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                -0.30000000000000004,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "context_two": {
+              "object_id": 499,
+              "frame_link_object_id": 264,
+              "route_wrapper_object_id": 501,
+              "route_object_id": 500,
+              "native_occurrence_object_id": 253,
+              "component_object_id": 202,
+              "component_name": "Fixed",
+              "instance_number": 1,
+              "instance_guid_text": "45bbefec-cc2d-45a9-a2f2-ba85cbc5ce72",
+              "endpoint_uuid_text": "91275318-8e5a-49fd-aa02-dc324b6ddbf8",
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              3
+            ],
+            "stored_context_matrix": [
+              0.9659258262890683,
+              0.25881904510252074,
+              0.0,
+              0.0,
+              -0.25881904510252074,
+              0.9659258262890683,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.30000000000000004,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "uninterpreted_joint_footer_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000001000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "enabled_limit_binding_object_ids": [
+              571,
+              574,
+              585,
+              590
+            ],
+            "state_scope": "Locked/suppressed state semantics unverified; no kinematic solve or solved assembly/world placement"
+          }
+        ],
+        "collections": [
+          {
+            "object_id": 12,
+            "joint_object_ids": [
+              494
+            ],
+            "component_object_id": 3,
+            "stored_header_field": 1
+          },
+          {
+            "object_id": 210,
+            "joint_object_ids": [],
+            "component_object_id": 202,
+            "stored_header_field": 0
+          },
+          {
+            "object_id": 353,
+            "joint_object_ids": [],
+            "component_object_id": 345,
+            "stored_header_field": 0
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local point-origin rigid/revolute/slider/cylindrical/pin-slot/planar/ball definitions and cached motion limits",
+        "placement_limitation": "Native occurrence/context caches do not establish joint-solved placement; joint kinematics are not applied"
+      },
+      "existing_assembly_unresolved": [
+        {
+          "object_id": 6,
+          "reason": "Unsupported occurrence collection prefix"
+        },
+        {
+          "reason": "Occurrence is absent from its declared parent collection"
+        }
+      ],
+      "api_geometry_frames_uninterpreted_comparison": {
+        "one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "archive": "jointmodes-20d3aef2a07d/pin_slot.f3d",
+      "checks": {
+        "type_and_flip_match_api": true,
+        "alignment_angle_and_offset_match_api": true,
+        "motion_limit_membership_matches_api": true,
+        "rotationLimits_numeric_values_match_api": true,
+        "rotationLimits_enable_flags_match_api": true,
+        "slideLimits_numeric_values_match_api": true,
+        "slideLimits_enable_flags_match_api": true,
+        "observed_principal_axis_codes_match_api": true,
+        "ordered_occurrence_context_names_match_api": true,
+        "point_component_owners_match_ordered_contexts": true
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 494,
+            "name": "ProbeJoint",
+            "definition_object_id": 495,
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "joint_type": "PinSlot",
+            "api_joint_type_code": 4,
+            "stored_joint_type_code": 6,
+            "is_flipped": false,
+            "alignment_parameters": [
+              {
+                "binding_object_id": 533,
+                "role": "alignAngle",
+                "value": 0.2617993877991494
+              },
+              {
+                "binding_object_id": 536,
+                "role": "alignOffsetX",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 539,
+                "role": "alignOffsetY",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 542,
+                "role": "alignOffsetZ",
+                "value": 0.30000000000000004
+              }
+            ],
+            "motion_limits": [
+              {
+                "slot_index": 2,
+                "stored_axis_tag": 2,
+                "current_value": 0.0,
+                "maximum_value": 1.0995574287564276,
+                "minimum_value": -0.39968039870670147,
+                "rest_value": 0.2,
+                "maximum_enabled": false,
+                "minimum_enabled": false,
+                "rest_enabled": false,
+                "limit_kind": "rotationLimits",
+                "units": "rad"
+              },
+              {
+                "slot_index": 3,
+                "stored_axis_tag": 6,
+                "current_value": 0.0,
+                "maximum_value": 1.8,
+                "minimum_value": -0.8,
+                "rest_value": 0.30000000000000004,
+                "maximum_enabled": true,
+                "minimum_enabled": false,
+                "rest_enabled": true,
+                "limit_kind": "slideLimits",
+                "units": "cm"
+              }
+            ],
+            "direction_codes": {
+              "rotationAxis": 2,
+              "slideDirection": 0
+            },
+            "direction_scope": "Observed principal-axis motion slot mapping; custom direction and ball frame axes unresolved",
+            "origin_one": {
+              "joint_origin_object_id": 502,
+              "geometry_object_id": 503,
+              "point_selection_object_id": 505,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 379,
+                  "origin_container_object_id": 378,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 505,
+                "descriptor_object_id": 508,
+                "terminal_object_id": 511,
+                "namespace_text": "6867ab55-8284-4f48-9422-686b795d0b35",
+                "entity_guid_text": "bf464b2e-b2ad-4b81-9c56-292cc50c6c77",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 345,
+              "origin_container_object_id": 378,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "origin_two": {
+              "joint_origin_object_id": 517,
+              "geometry_object_id": 518,
+              "point_selection_object_id": 520,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 236,
+                  "origin_container_object_id": 235,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 520,
+                "descriptor_object_id": 523,
+                "terminal_object_id": 526,
+                "namespace_text": "6867ab55-8284-4f48-9422-686b795d0b35",
+                "entity_guid_text": "c22f821a-2704-411e-8f34-13461a75e7c2",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 202,
+              "origin_container_object_id": 235,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "context_one": {
+              "object_id": 496,
+              "frame_link_object_id": 407,
+              "route_wrapper_object_id": 498,
+              "route_object_id": 497,
+              "native_occurrence_object_id": 396,
+              "component_object_id": 345,
+              "component_name": "Moving",
+              "instance_number": 1,
+              "instance_guid_text": "7434c6c0-d70e-40de-a6c8-0c28716dfa37",
+              "endpoint_uuid_text": "4c6815b3-e503-4113-a18f-c67ab54fd36e",
+              "stored_context_matrix": [
+                0.9659258262890683,
+                0.25881904510252074,
+                0.0,
+                0.0,
+                -0.25881904510252074,
+                0.9659258262890683,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                -0.30000000000000004,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "context_two": {
+              "object_id": 499,
+              "frame_link_object_id": 264,
+              "route_wrapper_object_id": 501,
+              "route_object_id": 500,
+              "native_occurrence_object_id": 253,
+              "component_object_id": 202,
+              "component_name": "Fixed",
+              "instance_number": 1,
+              "instance_guid_text": "09264b27-6b7c-4080-aded-3be9114b1758",
+              "endpoint_uuid_text": "4c6815b3-e503-4113-a18f-c67ab54fd36e",
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              3
+            ],
+            "stored_context_matrix": [
+              0.9659258262890683,
+              0.25881904510252074,
+              0.0,
+              0.0,
+              -0.25881904510252074,
+              0.9659258262890683,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.30000000000000004,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "uninterpreted_joint_footer_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000001000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "enabled_limit_binding_object_ids": [
+              587,
+              592
+            ],
+            "state_scope": "Locked/suppressed state semantics unverified; no kinematic solve or solved assembly/world placement"
+          }
+        ],
+        "collections": [
+          {
+            "object_id": 12,
+            "joint_object_ids": [
+              494
+            ],
+            "component_object_id": 3,
+            "stored_header_field": 1
+          },
+          {
+            "object_id": 210,
+            "joint_object_ids": [],
+            "component_object_id": 202,
+            "stored_header_field": 0
+          },
+          {
+            "object_id": 353,
+            "joint_object_ids": [],
+            "component_object_id": 345,
+            "stored_header_field": 0
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local point-origin rigid/revolute/slider/cylindrical/pin-slot/planar/ball definitions and cached motion limits",
+        "placement_limitation": "Native occurrence/context caches do not establish joint-solved placement; joint kinematics are not applied"
+      },
+      "existing_assembly_unresolved": [
+        {
+          "object_id": 6,
+          "reason": "Unsupported occurrence collection prefix"
+        },
+        {
+          "reason": "Occurrence is absent from its declared parent collection"
+        }
+      ],
+      "api_geometry_frames_uninterpreted_comparison": {
+        "one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "archive": "jointmodes-20d3aef2a07d/planar.f3d",
+      "checks": {
+        "type_and_flip_match_api": true,
+        "alignment_angle_and_offset_match_api": true,
+        "motion_limit_membership_matches_api": true,
+        "rotationLimits_numeric_values_match_api": true,
+        "rotationLimits_enable_flags_match_api": true,
+        "primarySlideLimits_numeric_values_match_api": true,
+        "primarySlideLimits_enable_flags_match_api": true,
+        "secondarySlideLimits_numeric_values_match_api": true,
+        "secondarySlideLimits_enable_flags_match_api": true,
+        "observed_principal_axis_codes_match_api": true,
+        "ordered_occurrence_context_names_match_api": true,
+        "point_component_owners_match_ordered_contexts": true
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 494,
+            "name": "ProbeJoint",
+            "definition_object_id": 495,
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "joint_type": "Planar",
+            "api_joint_type_code": 5,
+            "stored_joint_type_code": 7,
+            "is_flipped": false,
+            "alignment_parameters": [
+              {
+                "binding_object_id": 533,
+                "role": "alignAngle",
+                "value": 0.2617993877991494
+              },
+              {
+                "binding_object_id": 536,
+                "role": "alignOffsetX",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 539,
+                "role": "alignOffsetY",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 542,
+                "role": "alignOffsetZ",
+                "value": 0.30000000000000004
+              }
+            ],
+            "motion_limits": [
+              {
+                "slot_index": 2,
+                "stored_axis_tag": 2,
+                "current_value": 0.0,
+                "maximum_value": 1.0995574287564276,
+                "minimum_value": -0.39968039870670147,
+                "rest_value": 0.2007128639793479,
+                "maximum_enabled": true,
+                "minimum_enabled": true,
+                "rest_enabled": true,
+                "limit_kind": "rotationLimits",
+                "units": "rad"
+              },
+              {
+                "slot_index": 3,
+                "stored_axis_tag": 6,
+                "current_value": 0.0,
+                "maximum_value": 1.7,
+                "minimum_value": -0.7000000000000001,
+                "rest_value": 0.25,
+                "maximum_enabled": false,
+                "minimum_enabled": true,
+                "rest_enabled": true,
+                "limit_kind": "primarySlideLimits",
+                "units": "cm"
+              },
+              {
+                "slot_index": 4,
+                "stored_axis_tag": 7,
+                "current_value": 0.0,
+                "maximum_value": 2.1,
+                "minimum_value": -0.9,
+                "rest_value": 0.5,
+                "maximum_enabled": true,
+                "minimum_enabled": false,
+                "rest_enabled": false,
+                "limit_kind": "secondarySlideLimits",
+                "units": "cm"
+              }
+            ],
+            "direction_codes": {
+              "normalDirection": 2,
+              "primarySlideDirection": 0
+            },
+            "direction_scope": "Observed principal-axis motion slot mapping; custom direction and ball frame axes unresolved",
+            "origin_one": {
+              "joint_origin_object_id": 502,
+              "geometry_object_id": 503,
+              "point_selection_object_id": 505,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 379,
+                  "origin_container_object_id": 378,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 505,
+                "descriptor_object_id": 508,
+                "terminal_object_id": 511,
+                "namespace_text": "364b3f43-d6c5-4474-a7dd-aef53c44c37e",
+                "entity_guid_text": "b59e0cfe-f55c-4280-905d-37953441c4e5",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 345,
+              "origin_container_object_id": 378,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "origin_two": {
+              "joint_origin_object_id": 517,
+              "geometry_object_id": 518,
+              "point_selection_object_id": 520,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 236,
+                  "origin_container_object_id": 235,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 520,
+                "descriptor_object_id": 523,
+                "terminal_object_id": 526,
+                "namespace_text": "364b3f43-d6c5-4474-a7dd-aef53c44c37e",
+                "entity_guid_text": "1b16a140-2602-4b18-9b2c-b890c25f53cd",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 202,
+              "origin_container_object_id": 235,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "context_one": {
+              "object_id": 496,
+              "frame_link_object_id": 407,
+              "route_wrapper_object_id": 498,
+              "route_object_id": 497,
+              "native_occurrence_object_id": 396,
+              "component_object_id": 345,
+              "component_name": "Moving",
+              "instance_number": 1,
+              "instance_guid_text": "e526665a-4431-4ec9-b7a0-e7909ff66e5b",
+              "endpoint_uuid_text": "62ae465d-da44-4551-9869-50c21faac559",
+              "stored_context_matrix": [
+                0.9659258262890683,
+                0.25881904510252074,
+                0.0,
+                0.0,
+                -0.25881904510252074,
+                0.9659258262890683,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                -0.30000000000000004,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "context_two": {
+              "object_id": 499,
+              "frame_link_object_id": 264,
+              "route_wrapper_object_id": 501,
+              "route_object_id": 500,
+              "native_occurrence_object_id": 253,
+              "component_object_id": 202,
+              "component_name": "Fixed",
+              "instance_number": 1,
+              "instance_guid_text": "7a5f74ca-0e76-4e63-86ac-fbe05ddefb55",
+              "endpoint_uuid_text": "62ae465d-da44-4551-9869-50c21faac559",
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              3
+            ],
+            "stored_context_matrix": [
+              0.9659258262890683,
+              0.25881904510252074,
+              0.0,
+              0.0,
+              -0.25881904510252074,
+              0.9659258262890683,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.30000000000000004,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "uninterpreted_joint_footer_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000001000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "enabled_limit_binding_object_ids": [
+              576,
+              579,
+              585,
+              600,
+              606,
+              621
+            ],
+            "state_scope": "Locked/suppressed state semantics unverified; no kinematic solve or solved assembly/world placement"
+          }
+        ],
+        "collections": [
+          {
+            "object_id": 12,
+            "joint_object_ids": [
+              494
+            ],
+            "component_object_id": 3,
+            "stored_header_field": 1
+          },
+          {
+            "object_id": 210,
+            "joint_object_ids": [],
+            "component_object_id": 202,
+            "stored_header_field": 0
+          },
+          {
+            "object_id": 353,
+            "joint_object_ids": [],
+            "component_object_id": 345,
+            "stored_header_field": 0
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local point-origin rigid/revolute/slider/cylindrical/pin-slot/planar/ball definitions and cached motion limits",
+        "placement_limitation": "Native occurrence/context caches do not establish joint-solved placement; joint kinematics are not applied"
+      },
+      "existing_assembly_unresolved": [
+        {
+          "object_id": 6,
+          "reason": "Unsupported occurrence collection prefix"
+        },
+        {
+          "reason": "Occurrence is absent from its declared parent collection"
+        }
+      ],
+      "api_geometry_frames_uninterpreted_comparison": {
+        "one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "archive": "jointmodes-20d3aef2a07d/ball.f3d",
+      "checks": {
+        "type_and_flip_match_api": true,
+        "alignment_angle_and_offset_match_api": true,
+        "motion_limit_membership_matches_api": true,
+        "pitchLimits_numeric_values_match_api": true,
+        "pitchLimits_enable_flags_match_api": true,
+        "yawLimits_numeric_values_match_api": true,
+        "yawLimits_enable_flags_match_api": true,
+        "rollLimits_numeric_values_match_api": true,
+        "rollLimits_enable_flags_match_api": true,
+        "observed_principal_axis_codes_match_api": true,
+        "ordered_occurrence_context_names_match_api": true,
+        "point_component_owners_match_ordered_contexts": true
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 494,
+            "name": "ProbeJoint",
+            "definition_object_id": 495,
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "joint_type": "Ball",
+            "api_joint_type_code": 6,
+            "stored_joint_type_code": 8,
+            "is_flipped": false,
+            "alignment_parameters": [
+              {
+                "binding_object_id": 533,
+                "role": "alignAngle",
+                "value": 0.2617993877991494
+              },
+              {
+                "binding_object_id": 536,
+                "role": "alignOffsetX",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 539,
+                "role": "alignOffsetY",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 542,
+                "role": "alignOffsetZ",
+                "value": 0.30000000000000004
+              }
+            ],
+            "motion_limits": [
+              {
+                "slot_index": 0,
+                "stored_axis_tag": 3,
+                "current_value": 0.0,
+                "maximum_value": 0.5497787143782138,
+                "minimum_value": -0.24958208303518914,
+                "rest_value": 0.1,
+                "maximum_enabled": false,
+                "minimum_enabled": false,
+                "rest_enabled": false,
+                "limit_kind": "pitchLimits",
+                "units": "rad"
+              },
+              {
+                "slot_index": 1,
+                "stored_axis_tag": 4,
+                "current_value": 0.0,
+                "maximum_value": 0.6492624817418906,
+                "minimum_value": -0.3508111796508603,
+                "rest_value": 0.15009831567151233,
+                "maximum_enabled": true,
+                "minimum_enabled": true,
+                "rest_enabled": true,
+                "limit_kind": "yawLimits",
+                "units": "rad"
+              },
+              {
+                "slot_index": 2,
+                "stored_axis_tag": 5,
+                "current_value": 0.0,
+                "maximum_value": 0.75,
+                "minimum_value": -0.45,
+                "rest_value": 0.2007128639793479,
+                "maximum_enabled": false,
+                "minimum_enabled": false,
+                "rest_enabled": true,
+                "limit_kind": "rollLimits",
+                "units": "rad"
+              }
+            ],
+            "direction_codes": {},
+            "direction_scope": "Observed principal-axis motion slot mapping; custom direction and ball frame axes unresolved",
+            "origin_one": {
+              "joint_origin_object_id": 502,
+              "geometry_object_id": 503,
+              "point_selection_object_id": 505,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 379,
+                  "origin_container_object_id": 378,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 505,
+                "descriptor_object_id": 508,
+                "terminal_object_id": 511,
+                "namespace_text": "f46be437-fb42-4c97-95d7-e2bff79e57b1",
+                "entity_guid_text": "99a950f0-36f2-41ed-bfa9-c83513371790",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 345,
+              "origin_container_object_id": 378,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "origin_two": {
+              "joint_origin_object_id": 517,
+              "geometry_object_id": 518,
+              "point_selection_object_id": 520,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 236,
+                  "origin_container_object_id": 235,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 520,
+                "descriptor_object_id": 523,
+                "terminal_object_id": 526,
+                "namespace_text": "f46be437-fb42-4c97-95d7-e2bff79e57b1",
+                "entity_guid_text": "939039a2-333d-4f45-a0dd-89a581f174de",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 202,
+              "origin_container_object_id": 235,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "context_one": {
+              "object_id": 496,
+              "frame_link_object_id": 407,
+              "route_wrapper_object_id": 498,
+              "route_object_id": 497,
+              "native_occurrence_object_id": 396,
+              "component_object_id": 345,
+              "component_name": "Moving",
+              "instance_number": 1,
+              "instance_guid_text": "027992d8-025e-4ae7-977b-3829bb2a9dd8",
+              "endpoint_uuid_text": "2a42eb79-36dd-4e8f-b51a-c66fa3ef9d59",
+              "stored_context_matrix": [
+                0.9659258262890683,
+                0.25881904510252074,
+                0.0,
+                0.0,
+                -0.25881904510252074,
+                0.9659258262890683,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                -0.30000000000000004,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "context_two": {
+              "object_id": 499,
+              "frame_link_object_id": 264,
+              "route_wrapper_object_id": 501,
+              "route_object_id": 500,
+              "native_occurrence_object_id": 253,
+              "component_object_id": 202,
+              "component_name": "Fixed",
+              "instance_number": 1,
+              "instance_guid_text": "f726d336-ad4a-49e6-a0ef-57aefa039fc9",
+              "endpoint_uuid_text": "2a42eb79-36dd-4e8f-b51a-c66fa3ef9d59",
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              3
+            ],
+            "stored_context_matrix": [
+              0.9659258262890683,
+              0.25881904510252074,
+              0.0,
+              0.0,
+              -0.25881904510252074,
+              0.9659258262890683,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -0.30000000000000004,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "uninterpreted_joint_footer_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000001000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "enabled_limit_binding_object_ids": [
+              597,
+              600,
+              606,
+              621
+            ],
+            "state_scope": "Locked/suppressed state semantics unverified; no kinematic solve or solved assembly/world placement"
+          }
+        ],
+        "collections": [
+          {
+            "object_id": 12,
+            "joint_object_ids": [
+              494
+            ],
+            "component_object_id": 3,
+            "stored_header_field": 1
+          },
+          {
+            "object_id": 210,
+            "joint_object_ids": [],
+            "component_object_id": 202,
+            "stored_header_field": 0
+          },
+          {
+            "object_id": 353,
+            "joint_object_ids": [],
+            "component_object_id": 345,
+            "stored_header_field": 0
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local point-origin rigid/revolute/slider/cylindrical/pin-slot/planar/ball definitions and cached motion limits",
+        "placement_limitation": "Native occurrence/context caches do not establish joint-solved placement; joint kinematics are not applied"
+      },
+      "existing_assembly_unresolved": [
+        {
+          "object_id": 6,
+          "reason": "Unsupported occurrence collection prefix"
+        },
+        {
+          "reason": "Occurrence is absent from its declared parent collection"
+        }
+      ],
+      "api_geometry_frames_uninterpreted_comparison": {
+        "one": [
+          -0.9659258262890683,
+          -0.25881904510252074,
+          0.0,
+          0.0,
+          0.25881904510252074,
+          -0.9659258262890683,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          1.0,
+          0.30000000000000004,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "archive": "jointmodes-20d3aef2a07d/rigid_flipped.f3d",
+      "checks": {
+        "type_and_flip_match_api": true,
+        "alignment_angle_and_offset_match_api": true,
+        "motion_limit_membership_matches_api": true,
+        "observed_principal_axis_codes_match_api": true,
+        "ordered_occurrence_context_names_match_api": true,
+        "point_component_owners_match_ordered_contexts": true
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 494,
+            "name": "ProbeJoint",
+            "definition_object_id": 495,
+            "collection_object_id": 12,
+            "component_object_id": 3,
+            "joint_type": "Rigid",
+            "api_joint_type_code": 0,
+            "stored_joint_type_code": 0,
+            "is_flipped": true,
+            "alignment_parameters": [
+              {
+                "binding_object_id": 533,
+                "role": "alignAngle",
+                "value": 0.6108652381980153
+              },
+              {
+                "binding_object_id": 536,
+                "role": "alignOffsetX",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 539,
+                "role": "alignOffsetY",
+                "value": 0.0
+              },
+              {
+                "binding_object_id": 542,
+                "role": "alignOffsetZ",
+                "value": 0.6000000000000001
+              }
+            ],
+            "motion_limits": [],
+            "direction_codes": {},
+            "direction_scope": "Observed principal-axis motion slot mapping; custom direction and ball frame axes unresolved",
+            "origin_one": {
+              "joint_origin_object_id": 502,
+              "geometry_object_id": 503,
+              "point_selection_object_id": 505,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 379,
+                  "origin_container_object_id": 378,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 505,
+                "descriptor_object_id": 508,
+                "terminal_object_id": 511,
+                "namespace_text": "cfb1f0eb-daa4-4e3d-b325-b911649f6388",
+                "entity_guid_text": "270af7ff-c349-4f19-8566-ed56c6c22c52",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 345,
+              "origin_container_object_id": 378,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "origin_two": {
+              "joint_origin_object_id": 517,
+              "geometry_object_id": 518,
+              "point_selection_object_id": 520,
+              "selection": {
+                "entity": {
+                  "kind": "ConstructionPoint",
+                  "name": "O",
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "object_id": 236,
+                  "origin_container_object_id": 235,
+                  "scope": "Native component origin entity; occurrence context unresolved"
+                },
+                "selection_object_id": 520,
+                "descriptor_object_id": 523,
+                "terminal_object_id": 526,
+                "namespace_text": "cfb1f0eb-daa4-4e3d-b325-b911649f6388",
+                "entity_guid_text": "09baf5ff-ed5c-44b1-919a-6ff9a1a23442",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "component_object_id": 202,
+              "origin_container_object_id": 235,
+              "geometry_scope": "Explicit native component-origin point; arbitrary joint geometry/frames unsupported"
+            },
+            "context_one": {
+              "object_id": 496,
+              "frame_link_object_id": 407,
+              "route_wrapper_object_id": 498,
+              "route_object_id": 497,
+              "native_occurrence_object_id": 396,
+              "component_object_id": 345,
+              "component_name": "Moving",
+              "instance_number": 1,
+              "instance_guid_text": "d62e6537-bf0e-4410-ae85-2166de892bed",
+              "endpoint_uuid_text": "7532d290-5a23-4ff0-a3e7-759b8d309ea5",
+              "stored_context_matrix": [
+                0.8191520442889918,
+                0.573576436351046,
+                0.0,
+                0.0,
+                0.573576436351046,
+                -0.8191520442889918,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -1.0,
+                0.6000000000000001,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "context_two": {
+              "object_id": 499,
+              "frame_link_object_id": 264,
+              "route_wrapper_object_id": 501,
+              "route_object_id": 500,
+              "native_occurrence_object_id": 253,
+              "component_object_id": 202,
+              "component_name": "Fixed",
+              "instance_number": 1,
+              "instance_guid_text": "db8c1428-e7c6-47f2-979d-f8610624bafb",
+              "endpoint_uuid_text": "7532d290-5a23-4ff0-a3e7-759b8d309ea5",
+              "stored_context_matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "matrix_scope": "Stored context matrix; not a solved occurrence placement or API Joint.geometry transform"
+            },
+            "stored_occurrence_member_object_ids": [
+              253,
+              396
+            ],
+            "stored_occurrence_member_fields": [
+              3,
+              2
+            ],
+            "stored_context_matrix": [
+              0.8191520442889918,
+              0.573576436351046,
+              0.0,
+              0.0,
+              0.573576436351046,
+              -0.8191520442889918,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.6000000000000001,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "uninterpreted_joint_footer_hex": "00000000030100000002000000010200000000000000000101000000010300000000000000000001000000000301000000010000000102000000000000000001010000000103000000000000000000",
+            "enabled_limit_binding_object_ids": [],
+            "state_scope": "Locked/suppressed state semantics unverified; no kinematic solve or solved assembly/world placement"
+          }
+        ],
+        "collections": [
+          {
+            "object_id": 12,
+            "joint_object_ids": [
+              494
+            ],
+            "component_object_id": 3,
+            "stored_header_field": 1
+          },
+          {
+            "object_id": 210,
+            "joint_object_ids": [],
+            "component_object_id": 202,
+            "stored_header_field": 0
+          },
+          {
+            "object_id": 353,
+            "joint_object_ids": [],
+            "component_object_id": 345,
+            "stored_header_field": 0
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local point-origin rigid/revolute/slider/cylindrical/pin-slot/planar/ball definitions and cached motion limits",
+        "placement_limitation": "Native occurrence/context caches do not establish joint-solved placement; joint kinematics are not applied"
+      },
+      "existing_assembly_unresolved": [
+        {
+          "object_id": 6,
+          "reason": "Unsupported occurrence collection prefix"
+        },
+        {
+          "reason": "Occurrence is absent from its declared parent collection"
+        }
+      ],
+      "api_geometry_frames_uninterpreted_comparison": {
+        "one": [
+          0.819152044288992,
+          0.5735764363510462,
+          0.0,
+          0.0,
+          -0.5735764363510462,
+          0.819152044288992,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.6000000000000001,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "two": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    }
+  ],
+  "negative_controls": [
+    {
+      "archive": "assembly-acc48a9dc05d/assembly.f3d",
+      "empty_error_free_joint_summary": true
+    },
+    {
+      "archive": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "empty_error_free_joint_summary": true
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Motion self-owner redirected to collection",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 495,
+          "kind": "JointDefinition",
+          "reason": "Joint motion entry self-owner mismatch"
+        },
+        {
+          "object_id": 494,
+          "kind": "NativeJoint",
+          "reason": "Native joint not resolved through a supported Assemble definition"
+        }
+      ]
+    },
+    {
+      "check": "Invalid flip flag",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 495,
+          "kind": "JointDefinition",
+          "reason": "Unsupported Assemble joint definition prefix"
+        },
+        {
+          "object_id": 494,
+          "kind": "NativeJoint",
+          "reason": "Native joint not resolved through a supported Assemble definition"
+        }
+      ]
+    },
+    {
+      "check": "Context owner redirected to native joint",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 495,
+          "kind": "JointDefinition",
+          "reason": "Joint context frame owner/footer mismatch"
+        },
+        {
+          "object_id": 494,
+          "kind": "NativeJoint",
+          "reason": "Native joint not resolved through a supported Assemble definition"
+        }
+      ]
+    },
+    {
+      "check": "Origin point component changed to existing root",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 495,
+          "kind": "JointDefinition",
+          "reason": "Joint context occurrence and point component disagree"
+        },
+        {
+          "object_id": 494,
+          "kind": "NativeJoint",
+          "reason": "Native joint not resolved through a supported Assemble definition"
+        }
+      ]
+    },
+    {
+      "check": "Enabled cached limit disagrees with parameter",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 495,
+          "kind": "JointDefinition",
+          "reason": "Enabled joint-limit parameters disagree with cached native motion values/flags"
+        },
+        {
+          "object_id": 494,
+          "kind": "NativeJoint",
+          "reason": "Native joint not resolved through a supported Assemble definition"
+        }
+      ]
+    },
+    {
+      "check": "Unknown native joint type",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 495,
+          "kind": "JointDefinition",
+          "reason": "Unobserved native joint motion type/trailer"
+        },
+        {
+          "object_id": 494,
+          "kind": "NativeJoint",
+          "reason": "Native joint not resolved through a supported Assemble definition"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Only local single-occurrence contexts and component-origin point JointGeometry are observed.",
+    "Custom directions, arbitrary face/edge geometry, as-built/inferred joints and motion links remain unsupported.",
+    "Native motion type codes differ from SDK JointTypes; only seven observed mappings are interpreted.",
+    "Stored context matrices and occurrence caches do not establish solved placement. API geometryOne/TwoTransform are not reconstructed.",
+    "Ball frame directions, locked/suppressed flags and later native footer remain unresolved.",
+    "Existing assembly decoder reports an unsupported occurrence collection prefix for these fixtures; native occurrence/component identities still decode.",
+    "No kinematic solver or assembly movement is performed."
+  ],
+  "placement_evidence": {
+    "archive": "jointmodes-20d3aef2a07d/revolute.f3d",
+    "stored_occurrence_cache": [
+      1.0,
+      0.0,
+      0.0,
+      4.0,
+      0.0,
+      1.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "api_geometry_one_transform": [
+      -0.9659258262890683,
+      -0.25881904510252074,
+      0.0,
+      0.0,
+      0.25881904510252074,
+      -0.9659258262890683,
+      0.0,
+      0.0,
+      -0.0,
+      -0.0,
+      1.0,
+      0.30000000000000004,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "interpretation": "Stored occurrence cache differs from API joint-solved geometry. Neither this cache nor the native context matrix is promoted to solved geometry."
+  },
+  "main_reader_integration": {
+    "joint_fixture_count": 8,
+    "cached_occurrence_paths_per_fixture": 2,
+    "cached_body_placement_count": 16,
+    "joint_definitions_classified_after_successful_native_decode": true,
+    "optional_empty_occurrence_collection_attribute_table_supported": true,
+    "joint_solved_world_labels_withheld": true,
+    "prior_non_joint_assembly_world_paths_preserved": "assembly-acc48a9dc05d/assembly.f3d",
+    "scope": "Stored occurrence-cache composition recovered; no joint kinematics or solved placement inferred"
+  }
+}

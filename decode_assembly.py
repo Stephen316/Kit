@@ -93,16 +93,22 @@ def occurrence(body, identity):
 
 
 def collection(body, identity):
-    if body[:3] != b"\0\0\x01" or body[11:18] != b"\0\x01\x01\0\0\0\0":
+    if len(body) < 2 or body[0] != 0 or body[1] not in (0, 1):
         raise ValueError("Unsupported occurrence collection prefix")
-    count = struct.unpack_from("<I", body, 18)[0]
-    if count > 100000 or len(body) != 33+11*count:
+    props, cursor = attributes(body, 2) if body[1] else ({}, 2)
+    if props or body[cursor:cursor+1] != b"\x01" or body[cursor+9:cursor+16] != b"\0\x01\x01\0\0\0\0":
+        raise ValueError("Unsupported occurrence collection attributes/header")
+    count = struct.unpack_from("<I", body, cursor+16)[0]
+    if count > 100000 or len(body) != cursor+31+11*count:
         raise ValueError("Unsupported occurrence collection size")
-    members = [reference(body, 22+11*i) for i in range(count)]
+    members = [reference(body, cursor+20+11*i) for i in range(count)]
     if len(set(members)) != count:
         raise ValueError("Duplicate native occurrences in component collection")
-    return {"object_id": identity, "component_object_id": reference(body, len(body)-11),
-            "occurrence_object_ids": members}
+    result = {"object_id": identity, "component_object_id": reference(body, len(body)-11),
+              "occurrence_object_ids": members}
+    if body[1]:
+        result["stored_attribute_table_present"] = True
+    return result
 
 
 def world_sketch(sketch, matrix):
@@ -233,5 +239,5 @@ def decode_assembly(data, records, features):
             "occurrence_collections": list(collections.values()), "occurrence_paths": paths,
             "root_sketches": root_sketches, "unresolved": unresolved,
             "scope": "Observed local definitions, repeated/nested instances and owned sketch coordinates",
-            "limitations": ["No external component resolution, flexible assembly, joints or grounding semantics.",
+            "limitations": ["No external component resolution, flexible assembly, joint solving or grounding semantics.",
                             "Source-sketch ownership does not establish general modeling-feature ownership."]}

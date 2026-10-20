@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 278,
+  "file_count": 310,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -279,10 +279,42 @@
     "lofts-838ea6e83e97/surface_two.f3d",
     "lofts-838ea6e83e97/unmerged.f3d",
     "lofts-03b4a6f1ce2f/centerline.f3d",
-    "lofts-03b4a6f1ce2f/solid_three.f3d"
+    "lofts-03b4a6f1ce2f/solid_three.f3d",
+    "movemodes-34cba3ced135/along_axis.f3d",
+    "movemodes-34cba3ced135/along_sketch_line.f3d",
+    "movemodes-34cba3ced135/free.f3d",
+    "movemodes-34cba3ced135/point_to_point.f3d",
+    "movemodes-34cba3ced135/point_to_position.f3d",
+    "movemodes-34cba3ced135/rotate_axis.f3d",
+    "movemodes-34cba3ced135/xyz_component.f3d",
+    "movemodes-34cba3ced135/xyz_design.f3d",
+    "movemodes-34cba3ced135/xyz_nested_design.f3d",
+    "sketchprojections-67c0c4531b8f/body_edge.f3d",
+    "sketchprojections-67c0c4531b8f/included_line.f3d",
+    "sketchprojections-67c0c4531b8f/linked_circle.f3d",
+    "sketchprojections-67c0c4531b8f/linked_line.f3d",
+    "sketchprojections-67c0c4531b8f/linked_point.f3d",
+    "sketchprojections-8fedd685854a/broken_line.f3d",
+    "sketchprojections-8fedd685854a/unlinked_line.f3d",
+    "planedefinitions-6cd0820a832e/angle.f3d",
+    "planedefinitions-6cd0820a832e/midplane.f3d",
+    "planedefinitions-6cd0820a832e/offset.f3d",
+    "planedefinitions-6cd0820a832e/offset_through_point.f3d",
+    "planedefinitions-6cd0820a832e/tangent.f3d",
+    "planedefinitions-6cd0820a832e/tangent_at_point.f3d",
+    "planedefinitions-6cd0820a832e/three_points.f3d",
+    "planedefinitions-6cd0820a832e/two_edges.f3d",
+    "jointmodes-20d3aef2a07d/ball.f3d",
+    "jointmodes-20d3aef2a07d/cylindrical.f3d",
+    "jointmodes-20d3aef2a07d/pin_slot.f3d",
+    "jointmodes-20d3aef2a07d/planar.f3d",
+    "jointmodes-20d3aef2a07d/revolute.f3d",
+    "jointmodes-20d3aef2a07d/rigid.f3d",
+    "jointmodes-20d3aef2a07d/rigid_flipped.f3d",
+    "jointmodes-20d3aef2a07d/slider.f3d"
   ],
-  "class_count": 311,
-  "classes_with_observed_semantics": 50,
+  "class_count": 338,
+  "classes_with_observed_semantics": 53,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -316,6 +348,26 @@
       "observed_semantics": [],
       "example_files": [
         "sketchtools-85066e723410/sketchtools.f3d"
+      ]
+    },
+    {
+      "class_guid": "02E8AA49-08B8-439C-A8C7-221BE20143D8",
+      "base_class_guids": [
+        "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Unsupported feature with stored label: JointOrigin"
+      ],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/ball.f3d",
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d"
       ]
     },
     {
@@ -486,6 +538,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "discovery-08660c033d4d/discovery.f3d"
+      ]
+    },
+    {
+      "class_guid": "0F38E3C4-2E39-470B-A4FD-D3187224FB9F",
+      "base_class_guids": [
+        "455A5D29-4748-424C-896E-65F49BEE1F85"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/ball.f3d",
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d"
       ]
     },
     {
@@ -757,6 +827,20 @@
       ]
     },
     {
+      "class_guid": "1DD16F52-2005-43DE-937E-070C5CAB03E3",
+      "base_class_guids": [
+        "BADF6309-013D-48F0-9AB0-0C05FB086CF4"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40",
       "base_class_guids": [
         "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B"
@@ -818,6 +902,26 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "discovery-08660c033d4d/discovery.f3d"
+      ]
+    },
+    {
+      "class_guid": "21E03EC1-0E53-406D-A852-6D088D4D1E95",
+      "base_class_guids": [
+        "BADF6309-013D-48F0-9AB0-0C05FB086CF4"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [
+        "Unsupported feature with stored label: Pin"
+      ],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/ball.f3d",
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d"
       ]
     },
     {
@@ -919,6 +1023,24 @@
       "observed_semantics": [],
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d"
+      ]
+    },
+    {
+      "class_guid": "27B2054B-CA98-495F-B764-2293678E83F2",
+      "base_class_guids": [
+        "65768890-8978-4981-9BCB-2E005E8E67CF"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        4
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/ball.f3d",
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d"
       ]
     },
     {
@@ -1062,6 +1184,20 @@
         "boundaryfills-a0953038318b/component_middle.f3d",
         "namedbodies-3c7c11fc2924/namedbodies.f3d"
       ]
+    },
+    {
+      "class_guid": "2D8D253B-4D92-4AFF-ABA8-B4162BD0C4F5",
+      "base_class_guids": [
+        "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
     },
     {
       "class_guid": "2DEE34BE-FA70-4D54-979C-164D86FDA786",
@@ -1406,6 +1542,24 @@
       "example_files": []
     },
     {
+      "class_guid": "3B6814F4-D87B-46BD-AD9D-0BE07880F7BB",
+      "base_class_guids": [
+        "CA12EC7A-FB0A-4045-A429-072D0874B557"
+      ],
+      "namespaces": [
+        "CommonData"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/ball.f3d",
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d"
+      ]
+    },
+    {
       "class_guid": "3B9288E7-E1DE-414D-90BD-1C0CDAC77EB1",
       "base_class_guids": [
         "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
@@ -1589,6 +1743,20 @@
       ]
     },
     {
+      "class_guid": "43ED63CB-3F62-4D22-B8D9-58068ABFC06E",
+      "base_class_guids": [
+        ""
+      ],
+      "namespaces": [
+        "Component"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "44A64366-4BD3-4B24-881A-F94C206E8F2D",
       "base_class_guids": [
         "37AD519C-AFB3-4CE2-9E6D-E3269FC6CDB9"
@@ -1607,6 +1775,20 @@
       ]
     },
     {
+      "class_guid": "455A5D29-4748-424C-896E-65F49BEE1F85",
+      "base_class_guids": [
+        "2D8D253B-4D92-4AFF-ABA8-B4162BD0C4F5"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "45BC3A57-B585-4245-A04C-130090F875CA",
       "base_class_guids": [
         ""
@@ -1616,6 +1798,20 @@
       ],
       "stored_versions_or_flags": [
         0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
+      "class_guid": "4645034D-C073-40B3-902C-A59066C21085",
+      "base_class_guids": [
+        ""
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        4
       ],
       "observed_semantics": [],
       "example_files": []
@@ -2146,7 +2342,9 @@
         "Named feature: ConstructionPoint"
       ],
       "example_files": [
-        "discovery-08660c033d4d/discovery.f3d"
+        "discovery-08660c033d4d/discovery.f3d",
+        "movemodes-34cba3ced135/point_to_point.f3d",
+        "movemodes-34cba3ced135/point_to_position.f3d"
       ]
     },
     {
@@ -2315,8 +2513,23 @@
       ],
       "example_files": [
         "moretools-88a2cd6cad0b/MoveRotate.f3d",
-        "moretools-88a2cd6cad0b/MoveTranslate.f3d"
+        "moretools-88a2cd6cad0b/MoveTranslate.f3d",
+        "movemodes-34cba3ced135/along_axis.f3d"
       ]
+    },
+    {
+      "class_guid": "65768890-8978-4981-9BCB-2E005E8E67CF",
+      "base_class_guids": [
+        "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
     },
     {
       "class_guid": "65CA3206-E33A-471E-8E40-2C72B57C6181",
@@ -2423,6 +2636,24 @@
       ]
     },
     {
+      "class_guid": "6D029C3E-BAD8-4DAF-A7A3-7CEC6D1F9A52",
+      "base_class_guids": [
+        "855F0A64-6286-4FFC-B918-BC394F600107"
+      ],
+      "namespaces": [
+        "Component"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/ball.f3d",
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d"
+      ]
+    },
+    {
       "class_guid": "6EEAFDE5-59C4-424D-8EBE-77CDBC562017",
       "base_class_guids": [
         "0C3F3829-F0DB-4379-9479-CFEF71087971"
@@ -2473,6 +2704,20 @@
         "extents-f0f33a9a605f/distance_positive.f3d",
         "extents-f0f33a9a605f/from_plane.f3d"
       ]
+    },
+    {
+      "class_guid": "731F329B-5800-4C8A-8509-9C3F056F64AF",
+      "base_class_guids": [
+        ""
+      ],
+      "namespaces": [
+        "Component"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [],
+      "example_files": []
     },
     {
       "class_guid": "735FD678-4ADD-4F4B-A8B1-88CAA010394E",
@@ -2768,6 +3013,24 @@
       ]
     },
     {
+      "class_guid": "7F5A0426-1D2A-4DC4-9F06-58631F69D2F5",
+      "base_class_guids": [
+        "b96995c7-216b-4189-a583-c4d39d0da2c8"
+      ],
+      "namespaces": [
+        "Component"
+      ],
+      "stored_versions_or_flags": [
+        6
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/ball.f3d",
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d"
+      ]
+    },
+    {
       "class_guid": "803DEC43-AEA6-42CC-B8D0-F593B5124BDD",
       "base_class_guids": [
         "3CE194E6-A591-44AB-9AF1-C695B3DCF486"
@@ -2854,7 +3117,8 @@
       "observed_semantics": [],
       "example_files": [
         "moretools-88a2cd6cad0b/MoveRotate.f3d",
-        "moretools-88a2cd6cad0b/MoveTranslate.f3d"
+        "moretools-88a2cd6cad0b/MoveTranslate.f3d",
+        "movemodes-34cba3ced135/along_axis.f3d"
       ]
     },
     {
@@ -2873,6 +3137,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "sketches-0ccea2ac0f9c/radius.f3d"
+      ]
+    },
+    {
+      "class_guid": "86773490-37A9-48F9-BCF1-70D521A03F1D",
+      "base_class_guids": [
+        "855F0A64-6286-4FFC-B918-BC394F600107"
+      ],
+      "namespaces": [
+        "Component"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d",
+        "jointmodes-20d3aef2a07d/planar.f3d"
       ]
     },
     {
@@ -2960,6 +3242,24 @@
       "example_files": [
         "faceedits-3f120cbee8d9/replace_plane.f3d",
         "faceedits-3f120cbee8d9/replace_plane_tangent.f3d"
+      ]
+    },
+    {
+      "class_guid": "8C188F11-5D1B-4E1C-8E87-AF7214CA3C83",
+      "base_class_guids": [
+        "e7a40f47-69e6-4b3c-8a72-ed2f15ca4969A"
+      ],
+      "namespaces": [
+        "Component"
+      ],
+      "stored_versions_or_flags": [
+        3
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/ball.f3d",
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d"
       ]
     },
     {
@@ -3053,6 +3353,26 @@
         "moretools-380212ab6368/CircularPatternSymmetricHoldout.f3d",
         "moretools-88a2cd6cad0b/CircularPattern.f3d",
         "moretools-88a2cd6cad0b/CircularPatternSymmetric.f3d"
+      ]
+    },
+    {
+      "class_guid": "8DFDD543-F823-43AA-BDAF-C638E023F0A0",
+      "base_class_guids": [
+        "9DD3D1F9-3DAB-4230-937F-240074B40CE7"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        5
+      ],
+      "observed_semantics": [
+        "Named feature: Joint"
+      ],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/ball.f3d",
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d"
       ]
     },
     {
@@ -3302,6 +3622,20 @@
         "embossmodes-e40cc931d978/multiple_profiles.f3d",
         "embossmodes-e40cc931d978/no_chain.f3d"
       ]
+    },
+    {
+      "class_guid": "9DD3D1F9-3DAB-4230-937F-240074B40CE7",
+      "base_class_guids": [
+        "1DD16F52-2005-43DE-937E-070C5CAB03E3"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        3
+      ],
+      "observed_semantics": [],
+      "example_files": []
     },
     {
       "class_guid": "9F412B74-4FC8-400B-B922-29E7DB86DD33",
@@ -3568,6 +3902,20 @@
         "extents-f0f33a9a605f/distance_positive.f3d",
         "extents-f0f33a9a605f/from_plane.f3d"
       ]
+    },
+    {
+      "class_guid": "ABBB9453-B093-4877-9077-69C4F286F76F",
+      "base_class_guids": [
+        ""
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
     },
     {
       "class_guid": "AC202226-A700-462A-BC41-13631C9E95D5",
@@ -4144,6 +4492,20 @@
       ]
     },
     {
+      "class_guid": "C3244640-3DD5-42BD-9F7E-139C09CF1EA3",
+      "base_class_guids": [
+        "ABBB9453-B093-4877-9077-69C4F286F76F"
+      ],
+      "namespaces": [
+        ""
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
       "base_class_guids": [
         "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
@@ -4268,6 +4630,20 @@
       "example_files": []
     },
     {
+      "class_guid": "CA12EC7A-FB0A-4045-A429-072D0874B557",
+      "base_class_guids": [
+        "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
+      ],
+      "namespaces": [
+        "CommonData"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "CA4D1989-5940-421E-9472-6EC13C9655A9",
       "base_class_guids": [
         ""
@@ -4295,7 +4671,8 @@
       "observed_semantics": [],
       "example_files": [
         "holeplacements-04adf73afe93/sketch_point.f3d",
-        "holeplacements-04adf73afe93/sketch_points.f3d"
+        "holeplacements-04adf73afe93/sketch_points.f3d",
+        "sketchprojections-67c0c4531b8f/body_edge.f3d"
       ]
     },
     {
@@ -4952,6 +5329,24 @@
       "example_files": []
     },
     {
+      "class_guid": "E554CFFE-A849-4B9D-8323-B6FE2180D7C9",
+      "base_class_guids": [
+        "CA12EC7A-FB0A-4045-A429-072D0874B557"
+      ],
+      "namespaces": [
+        "CommonData"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "jointmodes-20d3aef2a07d/ball.f3d",
+        "jointmodes-20d3aef2a07d/cylindrical.f3d",
+        "jointmodes-20d3aef2a07d/pin_slot.f3d"
+      ]
+    },
+    {
       "class_guid": "E55D0457-898F-4A8E-B1A5-C85BDBA8794F",
       "base_class_guids": [
         "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
@@ -5050,6 +5445,20 @@
       "example_files": []
     },
     {
+      "class_guid": "E9577D96-F5AA-4B6A-B7DE-AB4B6FA509D1",
+      "base_class_guids": [
+        "fb5325c6-2345-49f4-b584-f63b50a85390"
+      ],
+      "namespaces": [
+        ""
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "E9F2168E-EB4D-4547-9B47-449B294FA81C",
       "base_class_guids": [
         ""
@@ -5105,6 +5514,20 @@
       ],
       "stored_versions_or_flags": [
         8
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
+      "class_guid": "ECE74E76-963C-4BF4-A70D-01F62AB233A8",
+      "base_class_guids": [
+        ""
+      ],
+      "namespaces": [
+        "Component"
+      ],
+      "stored_versions_or_flags": [
+        0
       ],
       "observed_semantics": [],
       "example_files": []
@@ -5174,7 +5597,8 @@
       "observed_semantics": [],
       "example_files": [
         "holeplacements-04adf73afe93/sketch_point.f3d",
-        "holeplacements-04adf73afe93/sketch_points.f3d"
+        "holeplacements-04adf73afe93/sketch_points.f3d",
+        "sketchprojections-67c0c4531b8f/body_edge.f3d"
       ]
     },
     {
@@ -5541,6 +5965,20 @@
       ]
     },
     {
+      "class_guid": "b96995c7-216b-4189-a583-c4d39d0da2c8",
+      "base_class_guids": [
+        "63D6AD42-466A-40B7-9CCD-EB21BC500EF6"
+      ],
+      "namespaces": [
+        "Component"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "d0edef7c-5879-45a4-9651-900659cc4fdd",
       "base_class_guids": [
         "03bc52c5-f13f-4f61-9e9f-e5c1e876c3ef"
@@ -5587,12 +6025,40 @@
       ]
     },
     {
+      "class_guid": "e7a40f47-69e6-4b3c-8a72-ed2f15ca4969A",
+      "base_class_guids": [
+        "63D6AD42-466A-40B7-9CCD-EB21BC500EF6"
+      ],
+      "namespaces": [
+        "Component"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "eb7847af-e60d-4ab0-a736-4ac00c1f1d21",
       "base_class_guids": [
         "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
       ],
       "namespaces": [
         "Scene"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
+      "class_guid": "fb5325c6-2345-49f4-b584-f63b50a85390",
+      "base_class_guids": [
+        ""
+      ],
+      "namespaces": [
+        "Component"
       ],
       "stored_versions_or_flags": [
         0
