@@ -32,6 +32,7 @@ from decode_body_bindings import decode_body_bindings
 from decode_body_properties import decode_body_properties
 from decode_body_selections import decode_body_selections
 from decode_brep_recipes import decode_recipes
+from decode_component_body_proxies import decode_component_body_proxies
 from decode_body_placement import decode_body_placement
 
 
@@ -205,6 +206,14 @@ def decode_basics(path, zstd_library=None):
         dependency_summary = decode_dependencies(data, records, features, assembly_summary)
         body_property_summary = decode_body_properties(data, records, assembly_summary)
         body_selection_summary = decode_body_selections(data, records, body_property_summary)
+        component_body_summary = decode_component_body_proxies(data, records, body_selection_summary, assembly_summary)
+        body_selection_summary["selection_proxies"].extend(component_body_summary["decoded"])
+        resolved_component_proxies = {item["selection_record_object_id"] for item in component_body_summary["decoded"]}
+        body_selection_summary["unresolved"] = [item for item in body_selection_summary["unresolved"]
+                                                if item["kind"] != "BodySelectionProxy"
+                                                or item["object_id"] not in resolved_component_proxies]
+        body_selection_summary["unresolved"].extend(component_body_summary["unresolved"])
+        body_selection_summary["component_context_scope"] = component_body_summary["scope"]
         recipe_summary = decode_recipes(data, records)
         body_binding_summary = decode_body_bindings(data, records, name, asm_summary, body_property_summary)
         body_placement_summary = decode_body_placement(body_binding_summary, assembly_summary, asm_summary)
