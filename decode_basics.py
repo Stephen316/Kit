@@ -15,6 +15,7 @@ import struct
 
 from decode_parameters import decode_stream, read_string
 from decode_sketch import decode_sketches
+from decode_modeling import decode_modeling
 from fusion_archive import read_members
 
 
@@ -50,7 +51,7 @@ def record_fragments(data):
 def named_features(data, records):
     features = []
     starts = [r.start for r in records]
-    for kind in ("Sketch", "Extrude"):
+    for kind in ("Sketch", "Extrude", "Revolve"):
         marker = struct.pack("<I", len(kind)) + kind.encode("utf-16le")
         for match in re.finditer(re.escape(marker), data):
             index = bisect_right(starts, match.start()) - 1
@@ -68,7 +69,7 @@ def named_features(data, records):
                     "stored_index": stored_index, "record_offset": record.start,
                     "type_code": record.type_code, "parameters": [],
                 }
-                if kind == "Extrude":
+                if kind != "Sketch":
                     name, _ = read_string(chunk, cursor + 8)
                     item["name"] = name or None
                 else:
@@ -136,7 +137,7 @@ def attach_parameters(data, records, features, parameters):
 
 
 def sketch_references(data, records, features):
-    by_feature = {f["object_id"]: f for f in features if f["kind"] == "Extrude"}
+    by_feature = {f["object_id"]: f for f in features if f["kind"] in ("Extrude", "Revolve")}
     by_sketch = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
     for record in records:
         body = data[record.body:record.end]
@@ -180,10 +181,12 @@ def decode_basics(path, zstd_library=None):
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
+        modeling_summary = decode_modeling(data, records, features)
         streams.append({
             "member": name, "features": features, "unbound_parameters": unbound,
             "rejected_parameters": rejected, "candidate_record_headers": len(records),
             "sketch_decoding": sketch_summary,
+            "modeling_decoding": modeling_summary,
         })
     return {
         "file": str(path), "status": "experimental partial decoder",
@@ -193,7 +196,8 @@ def decode_basics(path, zstd_library=None):
             "Type codes are local to the document and not treated as universal feature identifiers.",
             "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
             "No exact profile selection, topology, general sketch solver or native writer.",
-            "No general feature history, suppression, end-condition or operation-type decoder.",
+            "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
+            "No general feature history, suppression, all end conditions, axis selection, or body reconstruction.",
         ],
         "streams": streams,
     }

@@ -16,6 +16,10 @@ from fusion_archive import read_members
 
 
 ROLES = {"AlongDistance": {"mm", "cm", "m", "in", "ft"}, "TaperAngle": {"deg", "rad"}}
+ROLES["AgainstDistance"] = ROLES["AlongDistance"]
+ROLES["Side2TaperAngle"] = ROLES["TaperAngle"]
+ROLES["AlongAngle"] = ROLES["TaperAngle"]
+ROLES["AgainstAngle"] = ROLES["TaperAngle"]
 
 
 def read_string(data, position):
@@ -76,7 +80,7 @@ def decode_stream(data):
                     "layout": "u32-length UTF16LE strings followed by LE float64",
                 }
                 # Internal units are research hypotheses checked against API truth.
-                if role == "TaperAngle" or role.startswith("Angular Dimension-"):
+                if role in ("TaperAngle", "Side2TaperAngle", "AlongAngle", "AgainstAngle") or role.startswith("Angular Dimension-"):
                     item["hypothesized_value_degrees"] = math.degrees(value)
                 else:
                     item["hypothesized_value_mm"] = value * 10
