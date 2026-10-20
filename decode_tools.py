@@ -21,7 +21,8 @@ def decode_tools(data, records, features):
     supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken", "Hole",
                  "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer", "SplitBody",
                  "OffsetFaces", "ReplaceFace", "DeleteFace", "SurfacePatch", "SurfaceOffset", "SurfaceStitch",
-                 "Unstitch", "ReverseNormal", "SurfaceDeleteFace", "Pipe", "Thread"}
+                 "Unstitch", "ReverseNormal", "SurfaceDeleteFace", "Pipe", "Thread",
+                 "SurfaceExtend", "SurfaceUntrim", "SurfaceRuled", "SurfaceTrim"}
     decoded, unresolved = [], []
     axes = known_construction_entities(data, records, features)
     for feature in features:
@@ -46,8 +47,9 @@ def decode_tools(data, records, features):
                 settings = decode_thread(data, records, body, feature)
             elif kind == "Pipe":
                 settings = decode_pipe(data, records, body, feature, features)
-            elif kind in ("SurfacePatch", "SurfaceOffset", "SurfaceStitch", "Unstitch", "ReverseNormal", "SurfaceDeleteFace"):
-                settings = decode_surface_tool(data, records, body, feature)
+            elif kind in ("SurfacePatch", "SurfaceOffset", "SurfaceStitch", "Unstitch", "ReverseNormal", "SurfaceDeleteFace",
+                          "SurfaceExtend", "SurfaceUntrim", "SurfaceRuled", "SurfaceTrim"):
+                settings = decode_surface_tool(data, records, body, feature, axes)
             elif kind in ("OffsetFaces", "ReplaceFace", "DeleteFace"):
                 settings = decode_face_tool(data, records, body, feature, axes)
             elif kind == "SplitBody":

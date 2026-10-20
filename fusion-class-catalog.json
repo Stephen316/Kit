@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 190,
+  "file_count": 207,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -191,10 +191,27 @@
     "threadmodes-d51d2ae60564/partial_low.f3d",
     "tappedholes-409e96788503/cosmetic_full.f3d",
     "tappedholes-409e96788503/cosmetic_partial.f3d",
-    "tappedholes-409e96788503/modeled_full.f3d"
+    "tappedholes-409e96788503/modeled_full.f3d",
+    "surfacebounds-8804bbf80755/extend_no_chain.f3d",
+    "surfacebounds-ac801bb00fae/extend_aligned.f3d",
+    "surfacebounds-ac801bb00fae/extend_natural.f3d",
+    "surfacebounds-ac801bb00fae/extend_perpendicular.f3d",
+    "surfacebounds-ac801bb00fae/extend_perpendicular_negative.f3d",
+    "surfacebounds-ac801bb00fae/extend_tangent.f3d",
+    "surfacebounds-ac801bb00fae/extend_two_edges.f3d",
+    "surfacebounds-ac801bb00fae/ruled_direction.f3d",
+    "surfacebounds-ac801bb00fae/ruled_mitered.f3d",
+    "surfacebounds-ac801bb00fae/ruled_normal.f3d",
+    "surfacebounds-ac801bb00fae/ruled_tangent.f3d",
+    "surfacebounds-ac801bb00fae/trim_negative.f3d",
+    "surfacebounds-ac801bb00fae/trim_positive.f3d",
+    "surfacebounds-ac801bb00fae/untrim_all.f3d",
+    "surfacebounds-ac801bb00fae/untrim_external.f3d",
+    "surfacebounds-ac801bb00fae/untrim_internal.f3d",
+    "surfacebounds-ac801bb00fae/untrim_manual.f3d"
   ],
-  "class_count": 295,
-  "classes_with_observed_semantics": 42,
+  "class_count": 302,
+  "classes_with_observed_semantics": 46,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -1405,6 +1422,26 @@
       ],
       "example_files": [
         "sketchtools-8a6b662b0d6f/sketchtools.f3d"
+      ]
+    },
+    {
+      "class_guid": "4082E43B-D693-40D7-B44B-26800C9148DB",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: SurfaceUntrim"
+      ],
+      "example_files": [
+        "surfacebounds-ac801bb00fae/untrim_all.f3d",
+        "surfacebounds-ac801bb00fae/untrim_external.f3d",
+        "surfacebounds-ac801bb00fae/untrim_internal.f3d"
       ]
     },
     {
@@ -3195,6 +3232,24 @@
       "example_files": []
     },
     {
+      "class_guid": "A274C21A-7C8A-4F96-8B10-7E3A760C8029",
+      "base_class_guids": [
+        "5C069ACB-169F-4555-9792-815B4671DDA0"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "surfacebounds-ac801bb00fae/ruled_direction.f3d",
+        "surfacebounds-ac801bb00fae/ruled_mitered.f3d",
+        "surfacebounds-ac801bb00fae/ruled_normal.f3d"
+      ]
+    },
+    {
       "class_guid": "A2EDAFD4-B122-49CC-AF09-96BE5C57A89D",
       "base_class_guids": [
         "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D"
@@ -3715,6 +3770,26 @@
       "example_files": []
     },
     {
+      "class_guid": "BB4EDD5D-0BE0-4E13-B667-365B7C99C972",
+      "base_class_guids": [
+        "3FED63D9-CDC5-4334-A5C5-6C10271320D5"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [
+        "Named feature: SurfaceRuled"
+      ],
+      "example_files": [
+        "surfacebounds-ac801bb00fae/ruled_direction.f3d",
+        "surfacebounds-ac801bb00fae/ruled_mitered.f3d",
+        "surfacebounds-ac801bb00fae/ruled_normal.f3d"
+      ]
+    },
+    {
       "class_guid": "BC84911E-A581-4E51-ABE4-B0F681CFED06",
       "base_class_guids": [
         "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D"
@@ -4179,6 +4254,24 @@
       ]
     },
     {
+      "class_guid": "D1CE84CC-84E0-4BA0-95D8-4DAE97E6EBEA",
+      "base_class_guids": [
+        "5C069ACB-169F-4555-9792-815B4671DDA0"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "surfacebounds-ac801bb00fae/ruled_direction.f3d",
+        "surfacebounds-ac801bb00fae/ruled_mitered.f3d",
+        "surfacebounds-ac801bb00fae/ruled_normal.f3d"
+      ]
+    },
+    {
       "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
       "base_class_guids": [
         "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
@@ -4194,6 +4287,26 @@
         "extents-f0f33a9a605f/distance_negative.f3d",
         "extents-f0f33a9a605f/distance_positive.f3d",
         "extents-f0f33a9a605f/from_plane.f3d"
+      ]
+    },
+    {
+      "class_guid": "D2BCAE08-CF42-4316-865F-8ED1DFD548E4",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [
+        "Named feature: SurfaceExtend"
+      ],
+      "example_files": [
+        "surfacebounds-8804bbf80755/extend_no_chain.f3d",
+        "surfacebounds-ac801bb00fae/extend_aligned.f3d",
+        "surfacebounds-ac801bb00fae/extend_natural.f3d"
       ]
     },
     {
@@ -4410,6 +4523,23 @@
         "holeplacements-04adf73afe93/sketch_point.f3d",
         "moretools-380212ab6368/SweepPartial.f3d",
         "moretools-88a2cd6cad0b/Sweep.f3d"
+      ]
+    },
+    {
+      "class_guid": "DA2BF3FE-24A1-45F4-9DED-53AF92FAB1E7",
+      "base_class_guids": [
+        "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "surfacebounds-ac801bb00fae/trim_negative.f3d",
+        "surfacebounds-ac801bb00fae/trim_positive.f3d"
       ]
     },
     {
@@ -5064,6 +5194,25 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "FF1741AE-E78B-4A5F-8418-751899E12F66",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: SurfaceTrim"
+      ],
+      "example_files": [
+        "surfacebounds-ac801bb00fae/trim_negative.f3d",
+        "surfacebounds-ac801bb00fae/trim_positive.f3d"
+      ]
     },
     {
       "class_guid": "FF23079A-D99C-47AB-940E-2F4E18F022AB",

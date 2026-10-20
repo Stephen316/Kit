@@ -1,0 +1,32 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "extend_no_chain.f3d",
+      "kind": "ExtendFeature",
+      "settings": {
+        "input_edge_count": 1,
+        "distance_cm": 0.4,
+        "extend_type": 0,
+        "is_chaining_enabled": true,
+        "alignment": 0,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "extendDistance",
+          "value": 0.4,
+          "unit": "mm",
+          "created_by": "ProbeSurfaceBoundary"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "case": "ruled_alternate",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSurfaceBoundaries.py\", line 75, in run\n    profile = root.createBRepEdgeProfile(edge, False)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 89236, in createBRepEdgeProfile\n    return _fusion.Component_createBRepEdgeProfile(self, edges, chainEdges)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: 3 : invalid free edge\n"
+    }
+  ]
+}
