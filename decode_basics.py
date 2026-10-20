@@ -49,6 +49,7 @@ from decode_construction_modes import decode_construction_modes
 from decode_construction_vertex_points import decode_construction_vertex_points
 from decode_profiles import decode_profiles
 from decode_timeline import decode_timeline
+from decode_timeline_state_details import decode_timeline_state_details
 from decode_assembly import decode_assembly
 from decode_dependencies import decode_dependencies
 from asm_records import inspect_asm_members
@@ -69,6 +70,9 @@ from decode_remaining_body_inputs import decode_remaining_body_input, MIRROR_COM
 from decode_mirror_datum_outputs import decode_mirror_datum_outputs
 from decode_mirror_nested_occurrences import decode_mirror_nested_occurrences
 from decode_special_fillets import decode_special_fillets
+from decode_surface_extrudes import decode_surface_extrudes
+from decode_body_mapping_variants import decode_body_mapping_variants
+from decode_recipe_components import decode_recipe_components
 from decode_brep_recipes import decode_recipes
 from decode_component_body_proxies import decode_component_body_proxies
 from decode_combine import attach_combine_bodies
@@ -348,6 +352,25 @@ def decode_basics(path, zstd_library=None):
                                                   "scope": "Explicit native projection relationship; source details in sketch_projections"}
         profile_summary = decode_profiles(data, records, features)
         modeling_summary = decode_modeling(data, records, features)
+        surface_extrude_summary = decode_surface_extrudes(data, records, features)
+        surface_extrude_ids, open_profile_ids = set(), set()
+        for extrusion in surface_extrude_summary["decoded"]:
+            feature = next(f for f in features if f["object_id"] == extrusion["feature_object_id"])
+            feature.update(extrusion["settings"])
+            feature["surface_extrusion_source"] = {k: v for k, v in extrusion.items() if k not in ("settings", "feature_object_id")}
+            feature["decode_level"] = "Observed one-sided sheet extrusion controls and explicit sketch source; surface regeneration unsupported"
+            surface_extrude_ids.add(feature["object_id"])
+            if extrusion["profile"].get("profile_kind") == "SketchOpenProfile":
+                feature["open_profile_selection"] = extrusion["profile"]
+                open_profile_ids.add(feature["object_id"])
+                profile_summary["decoded"].append({"feature_object_id": feature["object_id"], "kind": "SketchOpenProfile",
+                                                   "descriptor_object_id": extrusion["profile"]["descriptor_object_id"], "curve_count": 1})
+        modeling_summary["unresolved"] = [item for item in modeling_summary["unresolved"]
+                                              if item["object_id"] not in surface_extrude_ids
+                                              or item["reason"] != "Unsupported extrusion start prefix"]
+        profile_summary["unresolved"] = [item for item in profile_summary["unresolved"]
+                                             if item["feature_object_id"] not in open_profile_ids
+                                             or item["reason"] != "Profile source reference is unresolved"]
         placement_summary = decode_placement(data, records, features)
         construction_summary = decode_construction(data, records, features)
         plane_definition_summary = decode_plane_definitions(data, records, features)
@@ -413,9 +436,21 @@ def decode_basics(path, zstd_library=None):
                                                      if f["object_id"] not in resolved_joint_definitions]
         discovery_summary["unsupported_feature_count"] = len(discovery_summary["unsupported_features"])
         discovery_summary["class_decoded_joint_definition_count"] = len(resolved_joint_definitions)
-        timeline_summary = decode_timeline(data, records, features)
+        timeline_state_summary = decode_timeline_state_details(data, records, features)
+        recovered_states = {item["object_id"]: item["state"] for item in timeline_state_summary["states"]}
+        timeline_summary = decode_timeline(data, records, features, feature_state_overrides=recovered_states)
         dependency_summary = decode_dependencies(data, records, features, assembly_summary)
         component_creation_summary = decode_component_creation(data, records, features, assembly_summary)
+        timeline_state_summary = decode_timeline_state_details(data, records, features, assembly=assembly_summary,
+                                                               component_creation=component_creation_summary)
+        timeline_aliases = {(item["history_record_object_id"], item["native_history_entry_object_id"]): item
+                            for item in timeline_state_summary["occurrence_aliases"]}
+        for sequence in timeline_summary["sequences"]:
+            for entry in sequence["visible_entries"]:
+                for visible in [entry]+entry.get("children", []):
+                    alias = timeline_aliases.get((sequence["history_record_object_id"], visible["object_id"]))
+                    if alias is not None:
+                        visible["occurrence_creation"] = alias
         copy_paste_summary = decode_copy_paste_occurrences(data, records, features, assembly_summary, component_creation_summary)
         pin_provenance_summary = decode_pin_provenance(data, records, assembly_summary, features)
         decoded_assembly_feature_ids = set()
@@ -445,6 +480,13 @@ def decode_basics(path, zstd_library=None):
         discovery_summary["class_decoded_pin_provenance_count"] = len(pin_provenance_summary["decoded"])
         discovery_summary["class_decoded_copy_paste_count"] = len(copy_paste_summary["decoded"])
         body_property_summary = decode_body_properties(data, records, assembly_summary)
+        body_mapping_variant_summary = decode_body_mapping_variants(data, records, name, asm_summary, body_property_summary)
+        recovered_body_names = {item["object_id"]: item for item in body_mapping_variant_summary["passive_body_name_updates"]}
+        for body in body_property_summary["bodies"]:
+            if body["object_id"] in recovered_body_names:
+                body.update(recovered_body_names[body["object_id"]])
+        body_property_summary["unresolved"] = [item for item in body_property_summary["unresolved"]
+                                                  if item["kind"] != "BodyName" or item["object_id"] not in recovered_body_names]
         body_selection_summary = decode_body_selections(data, records, body_property_summary)
         component_body_summary = decode_component_body_proxies(data, records, body_selection_summary, assembly_summary)
         body_selection_summary["selection_proxies"].extend(component_body_summary["decoded"])
@@ -557,7 +599,19 @@ def decode_basics(path, zstd_library=None):
             feature = next(f for f in features if f["object_id"] == item["feature_object_id"])
             feature["body_input_associations"] = item["body_selection_groups"]
         recipe_summary = decode_recipes(data, records)
+        recipe_component_summary = decode_recipe_components(data, records, recipe_summary)
+        existing_recipe_ids = {item["object_id"] for item in recipe_summary["recipes"]}
+        recipe_summary["recipes"].extend(item for item in recipe_component_summary["recipes"] if item["object_id"] not in existing_recipe_ids)
+        recovered_recipe_ids = {item["object_id"] for item in recipe_component_summary["recipes"]}
+        recipe_summary["unresolved"] = [item for item in recipe_summary["unresolved"] if item["object_id"] not in recovered_recipe_ids]
+        if recovered_recipe_ids:
+            recipe_summary["scope"] += "; "+recipe_component_summary["scope"]
         body_binding_summary = decode_body_bindings(data, records, name, asm_summary, body_property_summary)
+        existing_mapping_ids = {item["mapping_record_object_id"] for item in body_binding_summary["decoded"]}
+        body_binding_summary["decoded"].extend(item for item in body_mapping_variant_summary["decoded"]
+                                                 if item["mapping_record_object_id"] not in existing_mapping_ids)
+        recovered_mapping_ids = {item["mapping_record_object_id"] for item in body_mapping_variant_summary["decoded"]}
+        body_binding_summary["unresolved"] = [item for item in body_binding_summary["unresolved"] if item["object_id"] not in recovered_mapping_ids]
         body_placement_summary = decode_body_placement(body_binding_summary, assembly_summary, asm_summary)
         if any(r.is_primary and r.class_guid == NATIVE_JOINT_GUID for r in records):
             label_joint_cache_placements(assembly_summary, body_placement_summary, features)
@@ -615,6 +669,10 @@ def decode_basics(path, zstd_library=None):
             "silhouette_direction_sources": silhouette_direction_summary,
             "sketch_surface_constraints": surface_constraint_summary,
             "special_fillets": special_fillet_summary,
+            "surface_extrudes": surface_extrude_summary,
+            "body_mapping_variants": body_mapping_variant_summary,
+            "recipe_reference_components": recipe_component_summary,
+            "timeline_state_details": timeline_state_summary,
             "remaining_body_inputs": remaining_input_summary,
             "mirror_datum_outputs": mirror_datum_summary,
             "mirror_nested_occurrences": mirror_nested_summary,

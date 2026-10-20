@@ -47,14 +47,17 @@ def read_group(body, object_id):
             "member_feature_ids": members}
 
 
-def decode_timeline(data, records, features):
+def decode_timeline(data, records, features, *, feature_state_overrides=None):
     by_feature = {f["object_id"]: f for f in features}
     by_offset = {r.start: r for r in records}
     unresolved, groups, sequences = [], {}, []
     for feature in features:
         record = by_offset[feature["record_offset"]]
         try:
-            feature["state"] = feature_state(data[record.body:record.end])
+            if feature_state_overrides is not None and feature["object_id"] in feature_state_overrides:
+                feature["state"] = dict(feature_state_overrides[feature["object_id"]])
+            else:
+                feature["state"] = feature_state(data[record.body:record.end])
         except (ValueError, IndexError, struct.error) as error:
             unresolved.append({"object_id": feature["object_id"], "reason": str(error)})
     for record in records:

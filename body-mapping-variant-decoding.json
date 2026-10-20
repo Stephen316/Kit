@@ -1,0 +1,575 @@
+{
+  "samples": [
+    {
+      "archive": "advanced-627f7fe095f4/advanced.f3d",
+      "checks": {
+        "original_positive_mapping_output_unchanged": true,
+        "new_pass_has_no_unresolved_observed_candidates": true,
+        "recovered_mapping_ids_do_not_duplicate_original_positive_ids": true,
+        "empty_tables_have_no_bodies_bindings_or_blob": true,
+        "passive_mappings_have_explicit_blob_and_no_ASM_root_guess": true
+      },
+      "recovered": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "component_object_id": 3,
+            "context_record_object_id": 18,
+            "body_count": 0,
+            "bindings": [],
+            "history_blob_member": null,
+            "mapping_status": "ExplicitEmptyMappingNoBodiesOrBlob",
+            "scope": "Typed reciprocal native mapping/body collection/context/component joins only; ASM root/final-body lifecycle unresolved"
+          }
+        ],
+        "unresolved": [],
+        "passive_body_name_updates": [],
+        "passive_body_name_unresolved": [],
+        "scope": "Recovered observed empty/passive-reference variants only; ordinary positive-count mappings remain in original decoder"
+      },
+      "unchanged_original_positive_mapping_ids": [],
+      "original_rejections": [
+        {
+          "object_id": 8,
+          "reason": "Unsupported native body mapping count"
+        }
+      ],
+      "scope": "Only explicit native body/collection/context/blob references and stored names validated; no ASM-root, canonical/final body or geometry association inferred"
+    },
+    {
+      "archive": "assembly-acc48a9dc05d/assembly.f3d",
+      "checks": {
+        "original_positive_mapping_output_unchanged": true,
+        "new_pass_has_no_unresolved_observed_candidates": true,
+        "recovered_mapping_ids_do_not_duplicate_original_positive_ids": true,
+        "empty_tables_have_no_bodies_bindings_or_blob": true,
+        "passive_mappings_have_explicit_blob_and_no_ASM_root_guess": true
+      },
+      "recovered": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "component_object_id": 3,
+            "context_record_object_id": 18,
+            "body_count": 0,
+            "bindings": [],
+            "history_blob_member": null,
+            "mapping_status": "ExplicitEmptyMappingNoBodiesOrBlob",
+            "scope": "Typed reciprocal native mapping/body collection/context/component joins only; ASM root/final-body lifecycle unresolved"
+          }
+        ],
+        "unresolved": [],
+        "passive_body_name_updates": [],
+        "passive_body_name_unresolved": [],
+        "scope": "Recovered observed empty/passive-reference variants only; ordinary positive-count mappings remain in original decoder"
+      },
+      "unchanged_original_positive_mapping_ids": [
+        206,
+        334,
+        475
+      ],
+      "original_rejections": [
+        {
+          "object_id": 8,
+          "reason": "Unsupported native body mapping count"
+        }
+      ],
+      "scope": "Only explicit native body/collection/context/blob references and stored names validated; no ASM-root, canonical/final body or geometry association inferred"
+    },
+    {
+      "archive": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "checks": {
+        "original_positive_mapping_output_unchanged": true,
+        "new_pass_has_no_unresolved_observed_candidates": true,
+        "recovered_mapping_ids_do_not_duplicate_original_positive_ids": true,
+        "empty_tables_have_no_bodies_bindings_or_blob": true,
+        "passive_mappings_have_explicit_blob_and_no_ASM_root_guess": true,
+        "positive_multi_count_already_supported": true,
+        "original_named_mapping_names_match_actual_API": true
+      },
+      "recovered": {
+        "decoded": [],
+        "unresolved": [],
+        "passive_body_name_updates": [],
+        "passive_body_name_unresolved": [],
+        "scope": "Recovered observed empty/passive-reference variants only; ordinary positive-count mappings remain in original decoder"
+      },
+      "unchanged_original_positive_mapping_ids": [
+        8,
+        206,
+        269
+      ],
+      "original_rejections": [],
+      "scope": "Only explicit native body/collection/context/blob references and stored names validated; no ASM-root, canonical/final body or geometry association inferred"
+    },
+    {
+      "archive": "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d",
+      "checks": {
+        "original_positive_mapping_output_unchanged": true,
+        "new_pass_has_no_unresolved_observed_candidates": true,
+        "recovered_mapping_ids_do_not_duplicate_original_positive_ids": true,
+        "empty_tables_have_no_bodies_bindings_or_blob": true,
+        "passive_mappings_have_explicit_blob_and_no_ASM_root_guess": true,
+        "stored_passive_names_and_components_match_independent_actual_API": true,
+        "both_PM_and_DM_links_preserved_without_alias_collapse": true
+      },
+      "recovered": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "component_object_id": 3,
+            "context_record_object_id": 18,
+            "body_count": 0,
+            "bindings": [],
+            "history_blob_member": null,
+            "mapping_status": "ExplicitEmptyMappingNoBodiesOrBlob",
+            "scope": "Typed reciprocal native mapping/body collection/context/component joins only; ASM root/final-body lifecycle unresolved"
+          },
+          {
+            "mapping_record_object_id": 392,
+            "owner_object_id": 391,
+            "component_object_id": 388,
+            "context_record_object_id": 402,
+            "body_count": 1,
+            "bindings": [
+              {
+                "stored_handle": 0,
+                "native_body_object_id": 473,
+                "stored_body_tag": "0_473",
+                "native_body_record_offset": 55876,
+                "mapping_entry_ordinal": 0,
+                "name": "OccurrenceInputBody",
+                "name_status": "Stored custom name recovered",
+                "component_object_id": 388,
+                "component_name": "OccurrenceMirrorSource(Mirror)",
+                "passive_partner_body_object_id": 464,
+                "passive_reference_attribute": {
+                  "key": "BASEFEAT_DM_BODY_REF",
+                  "type": "PassiveRefMetaType",
+                  "referenced_body_object_id": 464,
+                  "stored_body_tag": "0_473",
+                  "attribute_value_relative_offset": 52,
+                  "tag_relative_offset": 63
+                },
+                "association_status": "ASM root association unresolved",
+                "handle_scope": "Opaque stored handle; never treated as ASM record index"
+              }
+            ],
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.ec49eb04-f7bc-487f-a258-833819447ac6.smbh",
+            "mapping_status": "ExplicitPassiveBodyCollectionContextBlobMapping",
+            "scope": "Typed reciprocal native mapping/body collection/context/component joins only; ASM root/final-body lifecycle unresolved"
+          }
+        ],
+        "unresolved": [],
+        "passive_body_name_updates": [
+          {
+            "object_id": 464,
+            "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+            "record_offset": 54121,
+            "name": "OccurrenceInputBody",
+            "name_status": "Stored custom name recovered",
+            "collection_object_id": 406,
+            "component_object_id": 388,
+            "component_name": "OccurrenceMirrorSource(Mirror)",
+            "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+            "name_helper_object_id": 469,
+            "name_field_offset": 54774,
+            "stored_body_tag": "0_464",
+            "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer",
+            "passive_reference_attribute": {
+              "key": "BASEFEAT_PM_BODY_REF",
+              "type": "PassiveRefMetaType",
+              "referenced_body_object_id": 473,
+              "stored_body_tag": "0_464",
+              "attribute_value_relative_offset": 52,
+              "tag_relative_offset": 63
+            },
+            "passive_partner_body_object_id": 473,
+            "passive_partner_collection_object_id": 391,
+            "passive_reference_scope": "Explicit reciprocal PM/DM-key stored body links; distinct native bodies/collections retained, final lifecycle meaning unresolved"
+          },
+          {
+            "object_id": 473,
+            "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+            "record_offset": 55876,
+            "name": "OccurrenceInputBody",
+            "name_status": "Stored custom name recovered",
+            "collection_object_id": 391,
+            "component_object_id": 388,
+            "component_name": "OccurrenceMirrorSource(Mirror)",
+            "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+            "name_helper_object_id": 482,
+            "name_field_offset": 56529,
+            "stored_body_tag": "0_473",
+            "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer",
+            "passive_reference_attribute": {
+              "key": "BASEFEAT_DM_BODY_REF",
+              "type": "PassiveRefMetaType",
+              "referenced_body_object_id": 464,
+              "stored_body_tag": "0_473",
+              "attribute_value_relative_offset": 52,
+              "tag_relative_offset": 63
+            },
+            "passive_partner_body_object_id": 464,
+            "passive_partner_collection_object_id": 406,
+            "passive_reference_scope": "Explicit reciprocal PM/DM-key stored body links; distinct native bodies/collections retained, final lifecycle meaning unresolved"
+          }
+        ],
+        "passive_body_name_unresolved": [],
+        "scope": "Recovered observed empty/passive-reference variants only; ordinary positive-count mappings remain in original decoder"
+      },
+      "unchanged_original_positive_mapping_ids": [
+        206
+      ],
+      "original_rejections": [
+        {
+          "object_id": 8,
+          "reason": "Unsupported native body mapping count"
+        },
+        {
+          "object_id": 392,
+          "reason": "Unsupported attribute layout"
+        }
+      ],
+      "scope": "Only explicit native body/collection/context/blob references and stored names validated; no ASM-root, canonical/final body or geometry association inferred"
+    },
+    {
+      "archive": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
+      "checks": {
+        "original_positive_mapping_output_unchanged": true,
+        "new_pass_has_no_unresolved_observed_candidates": true,
+        "recovered_mapping_ids_do_not_duplicate_original_positive_ids": true,
+        "empty_tables_have_no_bodies_bindings_or_blob": true,
+        "passive_mappings_have_explicit_blob_and_no_ASM_root_guess": true,
+        "stored_passive_names_and_components_match_independent_actual_API": true,
+        "both_PM_and_DM_links_preserved_without_alias_collapse": true
+      },
+      "recovered": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "component_object_id": 3,
+            "context_record_object_id": 18,
+            "body_count": 0,
+            "bindings": [],
+            "history_blob_member": null,
+            "mapping_status": "ExplicitEmptyMappingNoBodiesOrBlob",
+            "scope": "Typed reciprocal native mapping/body collection/context/component joins only; ASM root/final-body lifecycle unresolved"
+          },
+          {
+            "mapping_record_object_id": 206,
+            "owner_object_id": 205,
+            "component_object_id": 202,
+            "context_record_object_id": 216,
+            "body_count": 0,
+            "bindings": [],
+            "history_blob_member": null,
+            "mapping_status": "ExplicitEmptyMappingNoBodiesOrBlob",
+            "scope": "Typed reciprocal native mapping/body collection/context/component joins only; ASM root/final-body lifecycle unresolved"
+          },
+          {
+            "mapping_record_object_id": 471,
+            "owner_object_id": 470,
+            "component_object_id": 467,
+            "context_record_object_id": 481,
+            "body_count": 1,
+            "bindings": [
+              {
+                "stored_handle": 0,
+                "native_body_object_id": 552,
+                "stored_body_tag": "0_552",
+                "native_body_record_offset": 63456,
+                "mapping_entry_ordinal": 0,
+                "name": "NestedSourceBody",
+                "name_status": "Stored custom name recovered",
+                "component_object_id": 467,
+                "component_name": "NestedMirrorSource(Mirror)",
+                "passive_partner_body_object_id": 543,
+                "passive_reference_attribute": {
+                  "key": "BASEFEAT_DM_BODY_REF",
+                  "type": "PassiveRefMetaType",
+                  "referenced_body_object_id": 543,
+                  "stored_body_tag": "0_552",
+                  "attribute_value_relative_offset": 52,
+                  "tag_relative_offset": 63
+                },
+                "association_status": "ASM root association unresolved",
+                "handle_scope": "Opaque stored handle; never treated as ASM record index"
+              }
+            ],
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.340bdecb-f582-4d78-819b-eed1b2d5023a.smbh",
+            "mapping_status": "ExplicitPassiveBodyCollectionContextBlobMapping",
+            "scope": "Typed reciprocal native mapping/body collection/context/component joins only; ASM root/final-body lifecycle unresolved"
+          }
+        ],
+        "unresolved": [],
+        "passive_body_name_updates": [
+          {
+            "object_id": 543,
+            "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+            "record_offset": 61707,
+            "name": "NestedSourceBody",
+            "name_status": "Stored custom name recovered",
+            "collection_object_id": 485,
+            "component_object_id": 467,
+            "component_name": "NestedMirrorSource(Mirror)",
+            "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+            "name_helper_object_id": 548,
+            "name_field_offset": 62360,
+            "stored_body_tag": "0_543",
+            "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer",
+            "passive_reference_attribute": {
+              "key": "BASEFEAT_PM_BODY_REF",
+              "type": "PassiveRefMetaType",
+              "referenced_body_object_id": 552,
+              "stored_body_tag": "0_543",
+              "attribute_value_relative_offset": 52,
+              "tag_relative_offset": 63
+            },
+            "passive_partner_body_object_id": 552,
+            "passive_partner_collection_object_id": 470,
+            "passive_reference_scope": "Explicit reciprocal PM/DM-key stored body links; distinct native bodies/collections retained, final lifecycle meaning unresolved"
+          },
+          {
+            "object_id": 552,
+            "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+            "record_offset": 63456,
+            "name": "NestedSourceBody",
+            "name_status": "Stored custom name recovered",
+            "collection_object_id": 470,
+            "component_object_id": 467,
+            "component_name": "NestedMirrorSource(Mirror)",
+            "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+            "name_helper_object_id": 561,
+            "name_field_offset": 64109,
+            "stored_body_tag": "0_552",
+            "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer",
+            "passive_reference_attribute": {
+              "key": "BASEFEAT_DM_BODY_REF",
+              "type": "PassiveRefMetaType",
+              "referenced_body_object_id": 543,
+              "stored_body_tag": "0_552",
+              "attribute_value_relative_offset": 52,
+              "tag_relative_offset": 63
+            },
+            "passive_partner_body_object_id": 543,
+            "passive_partner_collection_object_id": 485,
+            "passive_reference_scope": "Explicit reciprocal PM/DM-key stored body links; distinct native bodies/collections retained, final lifecycle meaning unresolved"
+          }
+        ],
+        "passive_body_name_unresolved": [],
+        "scope": "Recovered observed empty/passive-reference variants only; ordinary positive-count mappings remain in original decoder"
+      },
+      "unchanged_original_positive_mapping_ids": [
+        269
+      ],
+      "original_rejections": [
+        {
+          "object_id": 8,
+          "reason": "Unsupported native body mapping count"
+        },
+        {
+          "object_id": 206,
+          "reason": "Unsupported native body mapping count"
+        },
+        {
+          "object_id": 471,
+          "reason": "Unsupported attribute layout"
+        }
+      ],
+      "scope": "Only explicit native body/collection/context/blob references and stored names validated; no ASM-root, canonical/final body or geometry association inferred"
+    },
+    {
+      "archive": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+      "checks": {
+        "original_positive_mapping_output_unchanged": true,
+        "new_pass_has_no_unresolved_observed_candidates": true,
+        "recovered_mapping_ids_do_not_duplicate_original_positive_ids": true,
+        "empty_tables_have_no_bodies_bindings_or_blob": true,
+        "passive_mappings_have_explicit_blob_and_no_ASM_root_guess": true,
+        "stored_passive_names_and_components_match_independent_actual_API": true,
+        "both_PM_and_DM_links_preserved_without_alias_collapse": true
+      },
+      "recovered": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "component_object_id": 3,
+            "context_record_object_id": 18,
+            "body_count": 0,
+            "bindings": [],
+            "history_blob_member": null,
+            "mapping_status": "ExplicitEmptyMappingNoBodiesOrBlob",
+            "scope": "Typed reciprocal native mapping/body collection/context/component joins only; ASM root/final-body lifecycle unresolved"
+          },
+          {
+            "mapping_record_object_id": 206,
+            "owner_object_id": 205,
+            "component_object_id": 202,
+            "context_record_object_id": 216,
+            "body_count": 0,
+            "bindings": [],
+            "history_blob_member": null,
+            "mapping_status": "ExplicitEmptyMappingNoBodiesOrBlob",
+            "scope": "Typed reciprocal native mapping/body collection/context/component joins only; ASM root/final-body lifecycle unresolved"
+          },
+          {
+            "mapping_record_object_id": 471,
+            "owner_object_id": 470,
+            "component_object_id": 467,
+            "context_record_object_id": 481,
+            "body_count": 1,
+            "bindings": [
+              {
+                "stored_handle": 0,
+                "native_body_object_id": 552,
+                "stored_body_tag": "0_552",
+                "native_body_record_offset": 63456,
+                "mapping_entry_ordinal": 0,
+                "name": "NestedSourceBody",
+                "name_status": "Stored custom name recovered",
+                "component_object_id": 467,
+                "component_name": "NestedMirrorSource(Mirror)",
+                "passive_partner_body_object_id": 543,
+                "passive_reference_attribute": {
+                  "key": "BASEFEAT_DM_BODY_REF",
+                  "type": "PassiveRefMetaType",
+                  "referenced_body_object_id": 543,
+                  "stored_body_tag": "0_552",
+                  "attribute_value_relative_offset": 52,
+                  "tag_relative_offset": 63
+                },
+                "association_status": "ASM root association unresolved",
+                "handle_scope": "Opaque stored handle; never treated as ASM record index"
+              }
+            ],
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c1003197-5261-48f8-969c-b86ffea6b3d2.smbh",
+            "mapping_status": "ExplicitPassiveBodyCollectionContextBlobMapping",
+            "scope": "Typed reciprocal native mapping/body collection/context/component joins only; ASM root/final-body lifecycle unresolved"
+          }
+        ],
+        "unresolved": [],
+        "passive_body_name_updates": [
+          {
+            "object_id": 543,
+            "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+            "record_offset": 61707,
+            "name": "NestedSourceBody",
+            "name_status": "Stored custom name recovered",
+            "collection_object_id": 485,
+            "component_object_id": 467,
+            "component_name": "NestedMirrorSource(Mirror)",
+            "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+            "name_helper_object_id": 548,
+            "name_field_offset": 62360,
+            "stored_body_tag": "0_543",
+            "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer",
+            "passive_reference_attribute": {
+              "key": "BASEFEAT_PM_BODY_REF",
+              "type": "PassiveRefMetaType",
+              "referenced_body_object_id": 552,
+              "stored_body_tag": "0_543",
+              "attribute_value_relative_offset": 52,
+              "tag_relative_offset": 63
+            },
+            "passive_partner_body_object_id": 552,
+            "passive_partner_collection_object_id": 470,
+            "passive_reference_scope": "Explicit reciprocal PM/DM-key stored body links; distinct native bodies/collections retained, final lifecycle meaning unresolved"
+          },
+          {
+            "object_id": 552,
+            "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20",
+            "record_offset": 63456,
+            "name": "NestedSourceBody",
+            "name_status": "Stored custom name recovered",
+            "collection_object_id": 470,
+            "component_object_id": 467,
+            "component_name": "NestedMirrorSource(Mirror)",
+            "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references",
+            "name_helper_object_id": 561,
+            "name_field_offset": 64109,
+            "stored_body_tag": "0_552",
+            "name_evidence": "Unique owner reference + typed helper reference + bounded UTF-16 field and observed trailer",
+            "passive_reference_attribute": {
+              "key": "BASEFEAT_DM_BODY_REF",
+              "type": "PassiveRefMetaType",
+              "referenced_body_object_id": 543,
+              "stored_body_tag": "0_552",
+              "attribute_value_relative_offset": 52,
+              "tag_relative_offset": 63
+            },
+            "passive_partner_body_object_id": 543,
+            "passive_partner_collection_object_id": 485,
+            "passive_reference_scope": "Explicit reciprocal PM/DM-key stored body links; distinct native bodies/collections retained, final lifecycle meaning unresolved"
+          }
+        ],
+        "passive_body_name_unresolved": [],
+        "scope": "Recovered observed empty/passive-reference variants only; ordinary positive-count mappings remain in original decoder"
+      },
+      "unchanged_original_positive_mapping_ids": [
+        269
+      ],
+      "original_rejections": [
+        {
+          "object_id": 8,
+          "reason": "Unsupported native body mapping count"
+        },
+        {
+          "object_id": 206,
+          "reason": "Unsupported native body mapping count"
+        },
+        {
+          "object_id": 471,
+          "reason": "Unsupported attribute layout"
+        }
+      ],
+      "scope": "Only explicit native body/collection/context/blob references and stored names validated; no ASM-root, canonical/final body or geometry association inferred"
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Empty mapping owner points to another collection",
+      "passed": true,
+      "reason": "Mapping/owner body collection reference is not reciprocal"
+    },
+    {
+      "check": "Empty mapping count contradicts exact record size",
+      "passed": true,
+      "reason": "Body mapping variant count exceeds bounded record"
+    },
+    {
+      "check": "Passive linked-body reference loses reciprocal PM/DM typed partner",
+      "passed": true,
+      "reason": "Not observed one-attribute passive native body"
+    },
+    {
+      "check": "Typed collection context points to a different component",
+      "passed": true,
+      "reason": "Mapping typed context and collection component references disagree"
+    }
+  ],
+  "interface": "decode_body_mapping_variants(data,records,member,asm_summary,body_properties)",
+  "body_name_interface": "decode_passive_body_names(data,records,body_properties)",
+  "integration": "Merge recovered mapping IDs into original result and remove only their original rejections. Apply passive_body_name_updates to matching body_properties IDs and remove only their recovered BodyName rejections. Leave original positive-count mappings/root-candidate policy unchanged.",
+  "finding": "Audited Unsupported native body mapping count examples are exactly zero-entry tables with empty filename, not an unsupported positive multi-count format.",
+  "validation_command": "python3 decode_body_mapping_variants.py --validate --zstd-library <local libzstd path>",
+  "coverage": {
+    "focused_archives": 6,
+    "recovered_empty_mappings": 7,
+    "recovered_passive_populated_mappings": 3,
+    "recovered_passive_body_names": 6,
+    "malformed_guards": 4
+  },
+  "limitations": [
+    "Zero-entry records explicitly contain no body IDs and an empty filename; no blob or geometry is invented.",
+    "PassiveRefMetaType support is bounded to one observed PM/DM key and a reciprocal typed D393 body reference; no general attribute grammar or PM/DM lifecycle meaning assigned.",
+    "Native body identities, owner collections and context/component/blob links are explicit. Opaque handles remain opaque, and populated ASM root/final-body identity remains unresolved.",
+    "Positive multi-count tables were already supported by the original decoder; existing output/experimental root-candidate behavior is preserved separately.",
+    "No broad audit sweep performed; six targeted archives include empty-root, assembly, multi-count named bodies and three actual mirrored-component controls."
+  ]
+}

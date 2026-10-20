@@ -154,7 +154,7 @@ def decode_sketch_surface_constraints(data, records, features):
             anchor = anchors[anchor_id]
             source = {"kind":"BRepFaceRecipe","input_recipe":input_recipe,"output_naming_recipe":output_recipe,
                       "body_anchor":anchor,"context_object_id":context,
-                      "recipe_native_reference_value":output_terms[0]["stored_reference_value"],
+                      "recipe_stored_numeric_reference_value":output_terms[0]["stored_reference_value"],
                       "uninterpreted_descriptor_trailer_hex":d[209:265].hex(),
                       "topology_status":"Explicit face term and independent source-body anchor retained; recipe numeric body identity and persistent ASM face mapping unresolved"}
         else:

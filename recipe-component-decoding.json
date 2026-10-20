@@ -1,0 +1,2927 @@
+{
+  "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics",
+  "integration": {
+    "individual_reader": "decode_counted_recipe(data,record,primary_records=None)",
+    "additional_summary": "decode_recipe_components(data,records,prior_summary=None)",
+    "merge": "Merge only newly framed recipes by object_id with existing recipe_decoding; clear corresponding successful failure IDs. Existing0/1 output stays with default reader, whose record-collision diagnostic is explicitly numerical only.",
+    "callback": "decode_reference_components(count,take) consumes exactly4*(count+1) bytes for observed counts0/1/2; bounded take is supplied by shared reader.",
+    "validator": "decode_recipe_components.validate_fixtures(root,zstd_library=None)",
+    "expected_outputs": "Representative samples[].expected_recipe is complete opt-in output; corpus_files[].new_recipe_ids and fingerprints cover all184 newly framed recipes."
+  },
+  "grammar": {
+    "observed_reference_field": "u32 component_count followed by component_count raw32 values followed by separate u32zero terminator. Signed and unsigned component interpretations are both retained, without object-ID assumptions.",
+    "count0": "Empty component tuple then zero32. Legacy reader returned stored_reference_tag0/value0.",
+    "count1": "One raw32 value then zero32. Legacy reader consumed the pair as one64-bit number; all3494 observed count-one components are positive32 and following32 is zero.",
+    "count2": "Two raw32 values then zero32; a separate global separatorzero follows the whole name table. The old8-byte branch would leave an extra zero before the payload-kind length.",
+    "observed_tuple_patterns": {
+      "[305,-307]": 7,
+      "[305,-338]": 73,
+      "[305,-369]": 98,
+      "[301,303]": 6
+    },
+    "unobserved": "Counts3+ and nonzero tuple terminators remain rejected."
+  },
+  "audit": {
+    "archives": 559,
+    "primary_recipe_records": 1296,
+    "count0_terms": 280,
+    "count1_terms": 3494,
+    "count2_terms": 184,
+    "unframed_records": 0,
+    "procedure": "Offline bounded count-array diagnostic over existing saved archives; followup validation below rechecks all11 affected archives without Fusion/API calls."
+  },
+  "identity_correction": {
+    "counterexample": "Count2 positive tuple[301,303] appears in six hollow-cylinder face recipes while neither301 nor303 is a primary record in that stream. Positive305 in Emboss tuples coincides with sketch-placement classF47A46FB without a typed recipe reference chain. Negative component magnitudes can coincide with sketch line or parameter record IDs; those numerical matches establish no association.",
+    "new_reader": "No native-identity lookup or numeric-record collision field is emitted for component tuples, even when a primary record has the same number.",
+    "shared_default_repair": "Root renamed matching_primary_record to numeric_record_collision with explicit coincidence-only scope; surface constraint field recipe_native_reference_value renamed recipe_stored_numeric_reference_value. Existing historical report snapshots are not identity evidence."
+  },
+  "limitations": [
+    "Structural recipe/name framing only; payloads remain explicitly retained and opaque unless an existing decoder has established their independent structure.",
+    "Counted tuple roles, sign meaning, persistent body/face/edge identities and topology operations unresolved. This stage adds no geometry regeneration or full native writer.",
+    "Saved API truth locates modeling scenarios, but it does not expose recipe component tuples. No API geometry comparison is invented for these fields.",
+    "Recipe-frame byte reconstruction in validation copies opaque payloads unchanged; it demonstrates framing, not CAD regeneration."
+  ],
+  "samples": [
+    {
+      "file": "embossmodes-e40cc931d978/engraved.f3d",
+      "expected_recipe": {
+        "object_id": 384,
+        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "record_offset": 47175,
+        "stored_header_fields": [
+          1,
+          3
+        ],
+        "name_table": [
+          {
+            "table_index": 0,
+            "terms": [
+              {
+                "name": "5",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  305
+                ],
+                "stored_reference_components_uint32": [
+                  305
+                ],
+                "stored_reference_component_bytes_hex": "31010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          },
+          {
+            "table_index": 1,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 2,
+                "stored_reference_components_int32": [
+                  305,
+                  -307
+                ],
+                "stored_reference_components_uint32": [
+                  305,
+                  4294966989
+                ],
+                "stored_reference_component_bytes_hex": "31010000cdfeffff",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          }
+        ],
+        "payload_kind": "edge_recipe_data",
+        "payload_relative_offset": 92,
+        "payload_length": 28,
+        "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+        "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+      },
+      "recipe_frame_bytes_roundtrip": true,
+      "primary_lookup_independence": true,
+      "API_context": {
+        "source": "embossmodes-e40cc931d978/ground_truth.json",
+        "actual_depth_cm": -0.15000000000000002,
+        "actual_input_profile_types": [
+          "adsk::fusion::Profile"
+        ],
+        "scope": "Actual Emboss/Deboss scenario only; no recipe tuple exposed by API"
+      }
+    },
+    {
+      "file": "embossmodes-e40cc931d978/multiple_profiles.f3d",
+      "expected_recipe": {
+        "object_id": 399,
+        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "record_offset": 48608,
+        "stored_header_fields": [
+          1,
+          3
+        ],
+        "name_table": [
+          {
+            "table_index": 0,
+            "terms": [
+              {
+                "name": "8",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  305
+                ],
+                "stored_reference_components_uint32": [
+                  305
+                ],
+                "stored_reference_component_bytes_hex": "31010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          },
+          {
+            "table_index": 1,
+            "terms": [
+              {
+                "name": "6",
+                "stored_index": 0,
+                "stored_reference_component_count": 2,
+                "stored_reference_components_int32": [
+                  305,
+                  -307
+                ],
+                "stored_reference_components_uint32": [
+                  305,
+                  4294966989
+                ],
+                "stored_reference_component_bytes_hex": "31010000cdfeffff",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          }
+        ],
+        "payload_kind": "edge_recipe_data",
+        "payload_relative_offset": 92,
+        "payload_length": 28,
+        "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+        "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+      },
+      "recipe_frame_bytes_roundtrip": true,
+      "primary_lookup_independence": true,
+      "API_context": {
+        "source": "embossmodes-e40cc931d978/ground_truth.json",
+        "actual_depth_cm": 0.2,
+        "actual_input_profile_types": [
+          "adsk::fusion::Profile",
+          "adsk::fusion::Profile"
+        ],
+        "scope": "Actual Emboss/Deboss scenario only; no recipe tuple exposed by API"
+      }
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+      "expected_recipe": {
+        "object_id": 661,
+        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "record_offset": 69585,
+        "stored_header_fields": [
+          1,
+          3
+        ],
+        "name_table": [
+          {
+            "table_index": 0,
+            "terms": [
+              {
+                "name": "35",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  305
+                ],
+                "stored_reference_components_uint32": [
+                  305
+                ],
+                "stored_reference_component_bytes_hex": "31010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          },
+          {
+            "table_index": 1,
+            "terms": [
+              {
+                "name": "32",
+                "stored_index": 0,
+                "stored_reference_component_count": 2,
+                "stored_reference_components_int32": [
+                  305,
+                  -338
+                ],
+                "stored_reference_components_uint32": [
+                  305,
+                  4294966958
+                ],
+                "stored_reference_component_bytes_hex": "31010000aefeffff",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          }
+        ],
+        "payload_kind": "edge_recipe_data",
+        "payload_relative_offset": 94,
+        "payload_length": 28,
+        "payload_hex": "00000000ffffffff0100000001000000ffffffff00000000ffffffff",
+        "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+      },
+      "recipe_frame_bytes_roundtrip": true,
+      "primary_lookup_independence": true,
+      "API_context": {
+        "source": "embosstext-cd769aa41cdf/ground_truth.json",
+        "actual_depth_cm": 0.2,
+        "actual_input_profile_types": [
+          "adsk::fusion::SketchText",
+          "adsk::fusion::Profile"
+        ],
+        "scope": "Actual Emboss/Deboss scenario only; no recipe tuple exposed by API"
+      }
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/two_texts.f3d",
+      "expected_recipe": {
+        "object_id": 1137,
+        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "record_offset": 123874,
+        "stored_header_fields": [
+          1,
+          3
+        ],
+        "name_table": [
+          {
+            "table_index": 0,
+            "terms": [
+              {
+                "name": "181",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  305
+                ],
+                "stored_reference_components_uint32": [
+                  305
+                ],
+                "stored_reference_component_bytes_hex": "31010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          },
+          {
+            "table_index": 1,
+            "terms": [
+              {
+                "name": "107",
+                "stored_index": 0,
+                "stored_reference_component_count": 2,
+                "stored_reference_components_int32": [
+                  305,
+                  -369
+                ],
+                "stored_reference_components_uint32": [
+                  305,
+                  4294966927
+                ],
+                "stored_reference_component_bytes_hex": "310100008ffeffff",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          },
+          {
+            "table_index": 2,
+            "terms": [
+              {
+                "name": "141",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  305
+                ],
+                "stored_reference_components_uint32": [
+                  305
+                ],
+                "stored_reference_component_bytes_hex": "31010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          },
+          {
+            "table_index": 3,
+            "terms": [
+              {
+                "name": "130",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  305
+                ],
+                "stored_reference_components_uint32": [
+                  305
+                ],
+                "stored_reference_component_bytes_hex": "31010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          }
+        ],
+        "payload_kind": "edge_recipe_data",
+        "payload_relative_offset": 150,
+        "payload_length": 156,
+        "payload_hex": "00000000ffffffff0100000001000000ffffffff02000000ffffffff0100000001000000ffffffff0200000002000000ffffffff0000000000000000ffffffff00000000ffffffff0000000000000000ffffffff00000000ffffffff0100000001000000ffffffff0200000000000000ffffffff0000000000000000ffffffff03000000ffffffff0000000000000000ffffffff00000000ffffffff",
+        "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+      },
+      "recipe_frame_bytes_roundtrip": true,
+      "primary_lookup_independence": true,
+      "API_context": {
+        "source": "embosstext-cd769aa41cdf/ground_truth.json",
+        "actual_depth_cm": 0.2,
+        "actual_input_profile_types": [
+          "adsk::fusion::SketchText",
+          "adsk::fusion::SketchText"
+        ],
+        "scope": "Actual Emboss/Deboss scenario only; no recipe tuple exposed by API"
+      }
+    },
+    {
+      "file": "silhouettesplits-f21b83e21695/shelled_hollow_axis_x.f3d",
+      "expected_recipe": {
+        "object_id": 314,
+        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "record_offset": 36498,
+        "stored_header_fields": [
+          1,
+          3
+        ],
+        "name_table": [
+          {
+            "table_index": 0,
+            "terms": [
+              {
+                "name": "3",
+                "stored_index": 0,
+                "stored_reference_component_count": 2,
+                "stored_reference_components_int32": [
+                  301,
+                  303
+                ],
+                "stored_reference_components_uint32": [
+                  301,
+                  303
+                ],
+                "stored_reference_component_bytes_hex": "2d0100002f010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          }
+        ],
+        "payload_kind": "face_recipe_data",
+        "payload_relative_offset": 67,
+        "payload_length": 8,
+        "payload_hex": "00000000ffffffff",
+        "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics",
+        "uninterpreted_payload_int32": [
+          0,
+          -1
+        ]
+      },
+      "recipe_frame_bytes_roundtrip": true,
+      "primary_lookup_independence": true,
+      "API_context": {
+        "source": "silhouettesplits-f21b83e21695/ground_truth.json",
+        "actual_operation": 1,
+        "actual_target_name": "SilhouetteTarget",
+        "actual_target_faces": 6,
+        "scope": "Actual hollow-cylinder ShelledBody scenario only; no recipe tuple exposed by API"
+      }
+    }
+  ],
+  "corpus_files": [
+    {
+      "file": "embossmodes-e40cc931d978/engraved.f3d",
+      "new_recipe_ids": [
+        384
+      ],
+      "new_recipe_count": 1,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 384,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 28,
+          "payload_relative_offset": 92,
+          "reference_components_int32": [
+            305,
+            -307
+          ],
+          "record_sha256": "80080e744ba7360b3c762e8bfb4ae39be8c350f2c6cca526b162b330e4bb852a"
+        }
+      ]
+    },
+    {
+      "file": "embossmodes-e40cc931d978/multiple_profiles.f3d",
+      "new_recipe_ids": [
+        399,
+        401
+      ],
+      "new_recipe_count": 2,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 399,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 28,
+          "payload_relative_offset": 92,
+          "reference_components_int32": [
+            305,
+            -307
+          ],
+          "record_sha256": "e5adbfe14fd9f43c2e3b911250020daa124105924b376af421c85af21323036a"
+        },
+        {
+          "object_id": 401,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 28,
+          "payload_relative_offset": 92,
+          "reference_components_int32": [
+            305,
+            -307
+          ],
+          "record_sha256": "8db296bc66ecd90db00e1922d3ff7aee9fad3d93a01ee56f4ca62b5b3f9efd0b"
+        }
+      ]
+    },
+    {
+      "file": "embossmodes-e40cc931d978/no_chain.f3d",
+      "new_recipe_ids": [
+        384
+      ],
+      "new_recipe_count": 1,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 384,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 28,
+          "payload_relative_offset": 92,
+          "reference_components_int32": [
+            305,
+            -307
+          ],
+          "record_sha256": "80080e744ba7360b3c762e8bfb4ae39be8c350f2c6cca526b162b330e4bb852a"
+        }
+      ]
+    },
+    {
+      "file": "embossmodes-e40cc931d978/raised.f3d",
+      "new_recipe_ids": [
+        384
+      ],
+      "new_recipe_count": 1,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 384,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 28,
+          "payload_relative_offset": 92,
+          "reference_components_int32": [
+            305,
+            -307
+          ],
+          "record_sha256": "80080e744ba7360b3c762e8bfb4ae39be8c350f2c6cca526b162b330e4bb852a"
+        }
+      ]
+    },
+    {
+      "file": "embossmodes-e40cc931d978/rotated.f3d",
+      "new_recipe_ids": [
+        384
+      ],
+      "new_recipe_count": 1,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 384,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 28,
+          "payload_relative_offset": 92,
+          "reference_components_int32": [
+            305,
+            -307
+          ],
+          "record_sha256": "80080e744ba7360b3c762e8bfb4ae39be8c350f2c6cca526b162b330e4bb852a"
+        }
+      ]
+    },
+    {
+      "file": "embossmodes-e40cc931d978/shifted.f3d",
+      "new_recipe_ids": [
+        384
+      ],
+      "new_recipe_count": 1,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 384,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 28,
+          "payload_relative_offset": 92,
+          "reference_components_int32": [
+            305,
+            -307
+          ],
+          "record_sha256": "80080e744ba7360b3c762e8bfb4ae39be8c350f2c6cca526b162b330e4bb852a"
+        }
+      ]
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+      "new_recipe_ids": [
+        661,
+        663,
+        665,
+        667,
+        669,
+        671,
+        673,
+        675,
+        677,
+        679,
+        681,
+        683,
+        685,
+        687,
+        689,
+        691,
+        693,
+        695,
+        697,
+        699,
+        701,
+        703,
+        705,
+        707,
+        709
+      ],
+      "new_recipe_count": 25,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 661,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 28,
+          "payload_relative_offset": 94,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "b5b3d13e46375d0462e5b0a946930ed4c99e0030010b664156162cf3f1092c6c"
+        },
+        {
+          "object_id": 663,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "408918a9aa841613345e1da36aab510502b8ced9b3e87026d46ce8483afd7a17"
+        },
+        {
+          "object_id": 665,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "a3ced690b3bdc52d16faa91e8b52598adc72260af39d400ab57b651790bb6b4c"
+        },
+        {
+          "object_id": 667,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "1162ab56d8e3345a12b0d6b24709abff0211f50c42c6b4e009daf07ae7f3968a"
+        },
+        {
+          "object_id": 669,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "780f14c3e1e09f29322be6f61b8f7022a2cee45a5fce930ccb268f9563a3f069"
+        },
+        {
+          "object_id": 671,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "0aeeecf25cbb8ba014b87c62c4cff0c86ea4c0df6731c0825d891cb10299460c"
+        },
+        {
+          "object_id": 673,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "199fca76a426076794f43e30acf6a734d3c669d98bcd89aad9c88889ec501350"
+        },
+        {
+          "object_id": 675,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "e60bb9c496b77dd431e4734b63f0a59a5a0c8fb5b2893865921cd4f960ede995"
+        },
+        {
+          "object_id": 677,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "6f507a0f975fdb8ad7b04e112968625be8271295b190809c8533c36856ce4931"
+        },
+        {
+          "object_id": 679,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "7a2570fba4852eaed3ea66c425879e7136d94c1083f4e6039c8704d99e2ba18b"
+        },
+        {
+          "object_id": 681,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "a17a49ca105a3dbc042a7c34cc91ca076fdcc46d7d71f1117ad7a18c5aa60ce7"
+        },
+        {
+          "object_id": 683,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "7c5f8e7227534a23f2159bb8cceb9e6443d7bd15ae1b5da221b89c9c40b9a97d"
+        },
+        {
+          "object_id": 685,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "d5204c5060c7d946b9ab61f9d80b5718dfce3a386478d2e2b4ef1e51284943ed"
+        },
+        {
+          "object_id": 687,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "22624e5f077a34eb1d956e8e7cf88b168b57f626f977b649164a0fa998049f00"
+        },
+        {
+          "object_id": 689,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "2927d3160d8f538d6b67ad9c839cd88e837fc59f14fe7eae35954a4e38023a7e"
+        },
+        {
+          "object_id": 691,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "ba4b0881b48aeac11564e094612f491aee70adf2ea9128bd76bd588f07d69517"
+        },
+        {
+          "object_id": 693,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "7355b553d83caf28817235ffb302c4c137c9d8f565b75f163dfee0015003c1f6"
+        },
+        {
+          "object_id": 695,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "ead9acfe4c0a9ac9c43b57e190b8f9d800ff0e026658e81e67f811983670d29a"
+        },
+        {
+          "object_id": 697,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "4ec9348f217b4fca8d2a871709e8a3cdfe7ee32abc60997a5a6b436825e8425b"
+        },
+        {
+          "object_id": 699,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "d6e526038ce508acb56d4799e5a6dc347d5379432a94bc14d22adb53d996e7c1"
+        },
+        {
+          "object_id": 701,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "d4ea87254558ca3c0da399f4aff82c40230ae54dfdb2cda6d74357197bd6d0c2"
+        },
+        {
+          "object_id": 703,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "2dd9de0f8c449819600b244579c6c28ca260aeb0f8dc9fe00d3033d0dc7d2633"
+        },
+        {
+          "object_id": 705,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "69bda541cc4686a3c4591d3e5d93850849d68d2a78fb760743ebb01887e80a9d"
+        },
+        {
+          "object_id": 707,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "80a8e0f2272b30de06eface228bb832d6569d1810643fce44fd804e1fde0006b"
+        },
+        {
+          "object_id": 709,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "bc519af616c241fa73f953820824a95e9a67d6c33cde8cff0b76e1551f77a4d1"
+        }
+      ]
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/text_deboss.f3d",
+      "new_recipe_ids": [
+        605,
+        607,
+        609,
+        611,
+        613,
+        615,
+        617,
+        619,
+        621,
+        623,
+        625,
+        627,
+        629,
+        631,
+        633,
+        635,
+        637,
+        639,
+        641,
+        643,
+        645,
+        647,
+        649,
+        651
+      ],
+      "new_recipe_count": 24,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 605,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "a91bdd604700eba842013e66814c642be750eea87ff7a6d592ea6186d2412a6a"
+        },
+        {
+          "object_id": 607,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "d9699b7946628937081127e8775fab2cd5077fadf6679888a60dd965b7dc3bdb"
+        },
+        {
+          "object_id": 609,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "255e85227e0ab4d3aa7b1227e5dc14e68ecb92fca0b24684a567871bbcd10343"
+        },
+        {
+          "object_id": 611,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "9e9f1032e8357e964eb458bf64efc04d56fa4b0954e31e9922df00cfd6f865cf"
+        },
+        {
+          "object_id": 613,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "b6ade32ed8e2581a55db4b1ef65054b40bb86f44bf2f463bb7cd8fe5966b99ff"
+        },
+        {
+          "object_id": 615,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "62a1640a27f3a4e43c1d61c3c614a2d72525744ce6f9ca2ca75c7ab1248c3d6d"
+        },
+        {
+          "object_id": 617,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "c048787979fd6e4726f7958c2cbde7df84a0cbf3a47ac3657f9fe68f0ad64044"
+        },
+        {
+          "object_id": 619,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "1ba633cff8ca3d3fe10d1ff6d9bcf60d1a76e4099f2ee345a09f746c053a1025"
+        },
+        {
+          "object_id": 621,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "e080bddb067cad7f296e01a2e55a28e0df795e6e7cde6eb368c5b7ce6786d60a"
+        },
+        {
+          "object_id": 623,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "d9a3af1b83b70612cfc42ab796f4f86bb11e1d02b80b71a5bcb606d73b9812dc"
+        },
+        {
+          "object_id": 625,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "0616ff22d09c44b600a21b46a1fd3e4acaa635a96c9f539da94cb801a586a458"
+        },
+        {
+          "object_id": 627,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "622a81089230c85cea96dc5514b67b4cc439291743b52e9b056a5a7a74271dc4"
+        },
+        {
+          "object_id": 629,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "3bccd0fa72c638fbad1d4ee46bd17248f6728cc69d682ae7bd933feb7d2d3175"
+        },
+        {
+          "object_id": 631,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "83c29260416d7b9cc7a33d83c6a04ba7e6f54be506c85b9b36cc3fc41d0fc495"
+        },
+        {
+          "object_id": 633,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "57bac0651c43a805dbc5cdbc6a3490d35628ce8ec9b3d76332d3561503b6cc30"
+        },
+        {
+          "object_id": 635,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "e9205558ef7dca1660edd8c24a70fe625b1dd94456f539f266c7815f300b213a"
+        },
+        {
+          "object_id": 637,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "e22479f507e03bd1b368d35d1852d36edca17e2a9c3e7029eaaaaa829e0a2357"
+        },
+        {
+          "object_id": 639,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "43a59ab92757084853b23dab121ecc3faa7816dc5aa98136c62b07a550a248fc"
+        },
+        {
+          "object_id": 641,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "34a26bd28fbeacc0e3d323ae9a2c5a4b489519adcb617317f20e57e29be0ef61"
+        },
+        {
+          "object_id": 643,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "9f2755372166e51c503db2a27b2a6dda9b7515e2bd872c8fefb91d51152be805"
+        },
+        {
+          "object_id": 645,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "f18cd1104636f80e177a89410d86544cf1fe0dcf8942498bd0a5a95e5c9e8027"
+        },
+        {
+          "object_id": 647,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "65d4e35a450030a7f00ce4b54a78fe504914b4c80613acb9208bc64ab29c77c3"
+        },
+        {
+          "object_id": 649,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "6c389d0fd9b0c2eb733acaecc074c67d99043490e259595c29ebab7b3f3c244a"
+        },
+        {
+          "object_id": 651,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "ba59c750ec3b443f71046060e8f0a7ed28520e3d1cca5eff08021dbb8c51817c"
+        }
+      ]
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/text_emboss.f3d",
+      "new_recipe_ids": [
+        605,
+        607,
+        609,
+        611,
+        613,
+        615,
+        617,
+        619,
+        621,
+        623,
+        625,
+        627,
+        629,
+        631,
+        633,
+        635,
+        637,
+        639,
+        641,
+        643,
+        645,
+        647,
+        649,
+        651
+      ],
+      "new_recipe_count": 24,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 605,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "d7770df62f5937b181e910241a25f0c56dd54cc341f68e8d7bfc791c9b3cb6c0"
+        },
+        {
+          "object_id": 607,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "5280acbc061a9404f293bcae191c4ab9ca094745ac71fc021170ad4c1b8b854d"
+        },
+        {
+          "object_id": 609,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "a476e325729f4855b83b7eafc263afd2a3e83e368a92614ca7699e45902d117e"
+        },
+        {
+          "object_id": 611,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "a027383c34a642774b9306b2ad91b645104c29a9bf73b823c855f66ccfbdc2a4"
+        },
+        {
+          "object_id": 613,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "df88da4961091ff110f5a90ab0bfd69647e9af32ac0c5df9b54d1d1c1a622c83"
+        },
+        {
+          "object_id": 615,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "41fa4962331169807e630d21485de2dc861eedf65c75adf3a70c079fedb01564"
+        },
+        {
+          "object_id": 617,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "8f9faff5bdd808d8b0edf12485fe7a5bf2c3ec9226e046c726321e52979d5226"
+        },
+        {
+          "object_id": 619,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "76ea8246b5b15662efb39137fc33b23ae6c36e701044fc0bb52a44abbdc86773"
+        },
+        {
+          "object_id": 621,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "282bd36c0303e1383cac4930f5a58c18d9ca869e0897cdedd5dcaad2d952d1b3"
+        },
+        {
+          "object_id": 623,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "3cbcbbe99819a7e3009746da6c665f4000822cfae7537e6bf96f660615fcf063"
+        },
+        {
+          "object_id": 625,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "cfde75f1674d900c790b90c7e7037f749849792c1364427827c863b14d8f45ea"
+        },
+        {
+          "object_id": 627,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "628d04d357566d34cd479bb55dfe76b4f5ca1838611a972470a60660fcfe14e6"
+        },
+        {
+          "object_id": 629,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "b90c4f65316fd9f2a465b41c46bc0c548c5aa544f9c2faa8b9651f48f414c6c3"
+        },
+        {
+          "object_id": 631,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "4b70b43d0951cedec834b17657412c526b92473c5d17e94f5a13196b3c73127d"
+        },
+        {
+          "object_id": 633,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "0806fcd8c94bba22e65b4c4418bd0761ecd0c1160fc75b0f0f40d1fcf088672e"
+        },
+        {
+          "object_id": 635,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "48392b04a5c98e6cb066a0387fb7ff2892d3ef7b840f9411f27d3a96bbb3c7af"
+        },
+        {
+          "object_id": 637,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "a4f064ca587bd43f41738a735ad89824c04b6d5628d0c66451785e6cd7e0111b"
+        },
+        {
+          "object_id": 639,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "5aa1109c43a6d7d85ebc9ae30c05b1d1bd896716fd874623d9b437088a7a16a7"
+        },
+        {
+          "object_id": 641,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "3713fda811df4d9926a5607fc7b0adc70a9e61fc4a2de95eca4bcfa4d471d1e3"
+        },
+        {
+          "object_id": 643,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "94fddd4e7841e36c71924371089ca0e3d455428fa64709a95ab1f5a30120b3e9"
+        },
+        {
+          "object_id": 645,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "7ac51e68c5a354e62b85abf277b80121a83ea5ccc112acf76239d04d594903cc"
+        },
+        {
+          "object_id": 647,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "9bf61cd51e55a58c3f0cc1baf9c0d721cd000b472c7cf024ea6544b1b6a66d71"
+        },
+        {
+          "object_id": 649,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "1fc98750fbbb86ef80249edc6e3dc404c0f01fbf979f226237dcb8b39623c207"
+        },
+        {
+          "object_id": 651,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 146,
+          "reference_components_int32": [
+            305,
+            -338
+          ],
+          "record_sha256": "de43aa2299fdf680fa1212a7dfd50fc981a23618490078c1ef09da34e1c158fa"
+        }
+      ]
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/two_texts.f3d",
+      "new_recipe_ids": [
+        1137,
+        1139,
+        1141,
+        1143,
+        1145,
+        1147,
+        1149,
+        1151,
+        1153,
+        1155,
+        1157,
+        1159,
+        1161,
+        1163,
+        1165,
+        1167,
+        1169,
+        1171,
+        1173,
+        1175,
+        1177,
+        1179,
+        1181,
+        1183,
+        1185,
+        1187,
+        1189,
+        1191,
+        1193,
+        1195,
+        1197,
+        1199,
+        1201,
+        1203,
+        1205,
+        1207,
+        1209,
+        1211,
+        1213,
+        1215,
+        1217,
+        1219,
+        1221,
+        1223,
+        1225,
+        1227,
+        1229,
+        1231,
+        1233,
+        1235,
+        1237,
+        1239,
+        1241,
+        1243,
+        1245,
+        1247,
+        1249,
+        1251,
+        1253,
+        1255,
+        1257,
+        1259,
+        1261,
+        1263,
+        1265,
+        1267,
+        1269,
+        1271,
+        1273,
+        1275,
+        1277,
+        1279,
+        1281,
+        1283,
+        1285,
+        1287,
+        1289,
+        1291,
+        1293,
+        1295,
+        1297,
+        1299,
+        1301,
+        1303,
+        1305,
+        1307,
+        1309,
+        1311,
+        1313,
+        1315,
+        1317,
+        1319,
+        1321,
+        1323,
+        1325,
+        1327,
+        1329,
+        1331
+      ],
+      "new_recipe_count": 98,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 1137,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "6fe88469123af921bccbdbf13d4bc552c04fa77697584743d5d9a27e167c4059"
+        },
+        {
+          "object_id": 1139,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "7b96cca29e7bcddcf24f402ddc707c5e0579d4dbf51de8560cacd3f8c1185428"
+        },
+        {
+          "object_id": 1141,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "3ad87892622f1147cd03ef79baab9584b98a2eb75a9895219144628dbf1e368f"
+        },
+        {
+          "object_id": 1143,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "b061f9306f89b8d4e6cf801b6eeae3103d2fd1e80e917e61c084a97ef834e96b"
+        },
+        {
+          "object_id": 1145,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "06fd962347ddde4fcf1e52a7142feb7488694f0c88e5ff149865c633085e0c77"
+        },
+        {
+          "object_id": 1147,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "b0cc088abf980fbb68abdbb512f150eeb85e3e379456540c24e439087e1f6978"
+        },
+        {
+          "object_id": 1149,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "517393af6c405b6994fca6ac7c34a609754e99e16581ad15e3b58196691183d1"
+        },
+        {
+          "object_id": 1151,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "ad5f9e9b0b4b3ae0694b65fa36513019c90111d1f0270f55c23e66c1540a59fa"
+        },
+        {
+          "object_id": 1153,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "3fb46a858f2735a156cfb0432da97bb5db4630a5c622ddf95c86d3697fa46ae2"
+        },
+        {
+          "object_id": 1155,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "c5c8410cc337c2fdf1db73cbae433cc41848107fdbc7aa246bd42d334c5afd0b"
+        },
+        {
+          "object_id": 1157,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "c6c1434146354588d23cdcd6ff558405c183eae25f63fce5466ed3165a18cd18"
+        },
+        {
+          "object_id": 1159,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "11355ca0cdbe8259c8f028d3b0008c3a7ca22f2290dfe059276691e93e117b0f"
+        },
+        {
+          "object_id": 1161,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "62681445783fbf6bad15f2b2c601ad8fb131a504f83430187f00e1bea1deba2e"
+        },
+        {
+          "object_id": 1163,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "17d1f443e6e6218533d94df3f9c169a27289d6aba1587aad45860ee6bce6a146"
+        },
+        {
+          "object_id": 1165,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "6bf27ca055fc6aafca359b6bfb58baaa825d1a38ecd285f397957fe92c421ab7"
+        },
+        {
+          "object_id": 1167,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "7a764641b2f185dde3adc50c7e9c03d3ed27dd37f432dc48a719f41cd549a9b5"
+        },
+        {
+          "object_id": 1169,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "8eb981b5c517f82b09ad75b6d7bcb40c46a8e6d1d0aeb578dc18350acf8fd691"
+        },
+        {
+          "object_id": 1171,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "00f524a23ceec8e5dfd31571792a1bafefddb529a6b52a30b99f1e1accaeb8cb"
+        },
+        {
+          "object_id": 1173,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "17c47f735ffce9e7ba2cda6872b693f3048b4fd0fc3eec2b60f44586fccc62fe"
+        },
+        {
+          "object_id": 1175,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "ee5ccfe8699fbc7448dfb1a04af8e59d10625e1ce2bb47b159b8dba53a6861a8"
+        },
+        {
+          "object_id": 1177,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "c7c2c6c61b1f949eeab347d0cc0303f193153eaf43ec960c3b53ef09df1ba74b"
+        },
+        {
+          "object_id": 1179,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "88824b67e310cd8da04878348987a83dff96cba1e6e82cf51a3739504c46c70e"
+        },
+        {
+          "object_id": 1181,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "09e6533c36044296198fc376b813bca6280d22c2f549bdcc9e3e3d134966f64f"
+        },
+        {
+          "object_id": 1183,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "25ff3bbca84707945e755b3dd223236eda47f67c663d2389039494963c021ac5"
+        },
+        {
+          "object_id": 1185,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "753793b7c732efc394bdbb7dbe63e3b2c161fea469c362bff56f2589a5d2d35a"
+        },
+        {
+          "object_id": 1187,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "890937bcc492280373434b0d55631e85d1315a5ab219b04b69563ec8abc7762d"
+        },
+        {
+          "object_id": 1189,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "b1c97ca4e8e3d67441993227bc6e8b1cf7de78bf4e88dde4ad53d300ed346bf5"
+        },
+        {
+          "object_id": 1191,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "29783f86af36be663e8381ba9227fe3531690f94d1c84efa0a7adfae10c92689"
+        },
+        {
+          "object_id": 1193,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "02f3630f7f7e96b0264b9a34cef4d506e4a8a5152bfc12f5059e2903b3d53713"
+        },
+        {
+          "object_id": 1195,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "4821ef0f87ebfc6e811faee74d9cf73b60a5b9e02c19cf602d1c12435b8a1165"
+        },
+        {
+          "object_id": 1197,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "90a9b4773f2ac4fed902315732d9ac40759bc01994423aa35477b2c83affdf44"
+        },
+        {
+          "object_id": 1199,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "3d8ba50beb66f90d707a3a089655e9c32739b1853ae7a31a776c7b15abe128e0"
+        },
+        {
+          "object_id": 1201,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "5b856a8f80b9e7b68cc80c53fa47363b1ca29081d6a5bec06c62facdcbf31037"
+        },
+        {
+          "object_id": 1203,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "fcb28d982bb1551e84bad52a0fb60d6995e6dc1de89ac5c7f96cbb836665184b"
+        },
+        {
+          "object_id": 1205,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "b5500b013c23f1c56112d221121ae3779877004970ccd1d265c4a1f4619800a7"
+        },
+        {
+          "object_id": 1207,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "96bc10fa3190b231e9f4a913d069fa87df93a0672c4bb71f23f54a069d960038"
+        },
+        {
+          "object_id": 1209,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "a7510be2708acf5f156e39de5ec4e6cb1c6f0625cd5fe89e2dfaf2d2396c96c2"
+        },
+        {
+          "object_id": 1211,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "adb73b593f32a60f1eb71a95432ca2edc5c3ae0fe78fc4e76cce1c5a1a978c71"
+        },
+        {
+          "object_id": 1213,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "63be2149babfa4090a7aaf7d7b39b18a0f195f828be6a5a4ff34c7c5bc89d8ac"
+        },
+        {
+          "object_id": 1215,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "89db200f2c07eae4fa62022ad710ef1e0ce041be7f9399cf222fd811e897e147"
+        },
+        {
+          "object_id": 1217,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "82ac4164a395a0a1d46f48163d8f57acfc9d982e794a0df8ba4228f1964c9474"
+        },
+        {
+          "object_id": 1219,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "a5deffcf5dcb96c1baae3db048b80ccda56806c19a97cf4a91eee69ad4ed629f"
+        },
+        {
+          "object_id": 1221,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "8f080adf784500e75c74b3e3e508c2322f85dc6297ac92011ffce06c034f8736"
+        },
+        {
+          "object_id": 1223,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "da9cfcfa723edcf98e919788aeb9bc3ce66fd36451dcf7906c77358a42fe4a78"
+        },
+        {
+          "object_id": 1225,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "abaaa5de51696cb9bdbba5c79b8df899b615eeb1a1842c3be1661c05ee4c8e96"
+        },
+        {
+          "object_id": 1227,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "6af59f5cb67cf373a16ea880888184c9b3298dbfee7217e3bd3fb4143a2a2db1"
+        },
+        {
+          "object_id": 1229,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "ff41581e78c409d60a79785c7d1fe990b86607143601df1f04d0794c3ecb755e"
+        },
+        {
+          "object_id": 1231,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "42908dc537fc726a5718e1adf0cd97f8aeeb09405f47fcd8a7c557e02c6b4365"
+        },
+        {
+          "object_id": 1233,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "344c73999fdbd730f7f7d08c906cf4da0737f89a8d48eec436e255f583142011"
+        },
+        {
+          "object_id": 1235,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "b0c0ab070eba99f393bbc4c5eba9e80ec381299070568015af3ae5cefe6de833"
+        },
+        {
+          "object_id": 1237,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "29d835adbcd5705bfb546df927d17cb22d240624d8ebfd85e3d083e07d1e1095"
+        },
+        {
+          "object_id": 1239,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "22bc1ae5356acff1a56031c8997c8cbdbc582d240732c71ee9a3691fc326b62a"
+        },
+        {
+          "object_id": 1241,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "9451c6754df2151ed0894cfc9d42a9c9eac289eadcb7f62f5b3c3d600ec264b7"
+        },
+        {
+          "object_id": 1243,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "f69d4d5439e638e99ce3faeb422a164a2e0f163581fc9060bb20299201bbe0a2"
+        },
+        {
+          "object_id": 1245,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "ad5e2a9115d319acaf6d02068de92c577272e884256e10bdf45d6dd573cfa901"
+        },
+        {
+          "object_id": 1247,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "b5fffbc308163480208d66eafeb1f168f1ab5fe5010b70cc0a55c657f075eb2b"
+        },
+        {
+          "object_id": 1249,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "80b2854c7ec2e7ba7b85b9f306fdda0317ea9e1f9b61fe55490fdd0dcdcf6257"
+        },
+        {
+          "object_id": 1251,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "11f3d32724783d548b01dbeeb9a57dea6cdb1e73211360507af5dd52a8fc79c3"
+        },
+        {
+          "object_id": 1253,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "b15506ca067b0e082da15cab2f77ccec07833714e2b7be5745c338a62dfc50eb"
+        },
+        {
+          "object_id": 1255,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "dd5bf17c8c81bda16d390143a100ab56644a3eec2af24956ad6f66720d503055"
+        },
+        {
+          "object_id": 1257,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "809ed7ec78fd2ac6b6db4618d61b0562218af8451ae50760db32f3eaba7762ca"
+        },
+        {
+          "object_id": 1259,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "258f0b92a0578717149013596e4cfed1634024847c872afaf4b29d573091daa2"
+        },
+        {
+          "object_id": 1261,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "65946618a3bc46d73ca1c9d323f9b4d9656fc2e947326fdc55ef76d4eef966d7"
+        },
+        {
+          "object_id": 1263,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "3b8c3eee12dd90f771466695d2559ee8553aa50eb05187bff26bef7e488645f8"
+        },
+        {
+          "object_id": 1265,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "fa20c84719e24b84bfdbdcbe44db1a5c1c75edcb4dd0676b030332a7376db1ca"
+        },
+        {
+          "object_id": 1267,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "5d442b8778df698883c127a0ffc28efeb038e2fc285a0272ed2370c717933dfa"
+        },
+        {
+          "object_id": 1269,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "d2b646e4bdd601bf8ba0871b51c9eca9769062d337905252ce8857c47616d2fe"
+        },
+        {
+          "object_id": 1271,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "d732d70330a2b30936ca01223812a0a9eb671b3b8b67dd0a816a686df854ca9a"
+        },
+        {
+          "object_id": 1273,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "c28df603fec276d43ec028a8c1bb02086a9cf65c5105bcb5159fc121f1b56b51"
+        },
+        {
+          "object_id": 1275,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "434441d2887da959b99ff91ce7f19f34206b24db343972a6b3a20ce29c041d6e"
+        },
+        {
+          "object_id": 1277,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "c7c20936ba0472ae3c9001d7f428f97335cb81ed7dffdead0fd6871dffe2c591"
+        },
+        {
+          "object_id": 1279,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "085bba9d71bc8f94ff67a09669a68ab0c4ee1c5833903e33d0d425d5e47dac32"
+        },
+        {
+          "object_id": 1281,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "ad06d89b6e95b69bfe6030dac1915b9c3d4308554496a71edcec6365d60bf430"
+        },
+        {
+          "object_id": 1283,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "a3ada24e5c694470b54634e47fb3f1116220db4dbdc12df4cc2a071f7e8f5f80"
+        },
+        {
+          "object_id": 1285,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "5bbb38ef5f3c8046aab61f8480547174170426a34f4ed2a34da3f8946f5bc2f3"
+        },
+        {
+          "object_id": 1287,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "cc70116e41900e1ad97584471df436afa50d22f1d905ec7a6bcbdd3ceb996164"
+        },
+        {
+          "object_id": 1289,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "2c1457e34bf33888ce201b277591b40fa452c62a0804747b9c0747a7145fdaad"
+        },
+        {
+          "object_id": 1291,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "af84909017aaeb74d9061107cbddfcd5b5df5897b03a22c7e6418cfe0dfabdfc"
+        },
+        {
+          "object_id": 1293,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "0ce095a47a7c59d02b446b2abc868718ba28a9b4a96e7ce6da5032d58608b8ee"
+        },
+        {
+          "object_id": 1295,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "f2862ba853728175c56c144d9679d855967d823eae9bca37aee6e271134f7540"
+        },
+        {
+          "object_id": 1297,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "f91f0132d1c3999b0a20ea80218722638447982257acf17a5b0a01df4564ca2b"
+        },
+        {
+          "object_id": 1299,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "c0bca6d5a6aaadc2bb2b1d341ba5e33bb638b9c04f22491082d95724b63eb1a1"
+        },
+        {
+          "object_id": 1301,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "c25ebd5cc0e8e829270dad6f5f2cafa94a0a060d26526d4efe66538c561182f8"
+        },
+        {
+          "object_id": 1303,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "cbff314081cc5a5496ffff70d74439356a8e81cd4e65670949e26ea3ea95f313"
+        },
+        {
+          "object_id": 1305,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "121e8da1e6ba42a052e64180b878795694337f536fdd156239f5bf547cc49eec"
+        },
+        {
+          "object_id": 1307,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "d32df8b91edaa6f0418a2452da2342e748c0181442def675abb8e91844d1e2cc"
+        },
+        {
+          "object_id": 1309,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "52624a361577fa15d3680befa8420e5b07157b5d5ecdf1f5132a4b0bf1a21aa5"
+        },
+        {
+          "object_id": 1311,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "26af471006e6d0138984ed3ffff77499a0c3e88fbe89f6514289a8757577d430"
+        },
+        {
+          "object_id": 1313,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "f5205e31ccdc8a23d74c194c3bb02936a92bf1d507fc50cd6948d0aede567e98"
+        },
+        {
+          "object_id": 1315,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "830d3973ed6723ec70d5cbbb93036af123ae266554a4f705a27bf28b704901ae"
+        },
+        {
+          "object_id": 1317,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "2c71e5fdd40f3fed17292ee24bb7bd7be633cbc23a84322df73bfc52eed8f628"
+        },
+        {
+          "object_id": 1319,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "bbdbc9a1fdac935d83f8f8ce4f5c7371fbbb583f742c02e2f98c388c31d6b350"
+        },
+        {
+          "object_id": 1321,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "d26c4fcca2b9e70741e47f1d0eb13853cd0eab9355005e98315700dd99fd4c03"
+        },
+        {
+          "object_id": 1323,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "a900ab630aa01884a3c2b726c7a4e5b0e9255d50632ec78b24a0403b1c4db763"
+        },
+        {
+          "object_id": 1325,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "544a5b55583b8237e95d0b03ecf7b62c676a57046f1bc00b7e9a15f7e35fd564"
+        },
+        {
+          "object_id": 1327,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "bec93a9b70445acd8d819053e903963b2b91dc313db1a8bf9fa3ab336c21f06c"
+        },
+        {
+          "object_id": 1329,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "3ed8cb78ce681a4ab7b561f453d44074a20f10c8962aade8b56417da0d471ab0"
+        },
+        {
+          "object_id": 1331,
+          "payload_kind": "edge_recipe_data",
+          "payload_length": 156,
+          "payload_relative_offset": 150,
+          "reference_components_int32": [
+            305,
+            -369
+          ],
+          "record_sha256": "0d012f81ffe91628dbd10cb5298e2673590f5d2bc375037d9c6e34f09465b51e"
+        }
+      ]
+    },
+    {
+      "file": "silhouettesplits-f21b83e21695/shelled_hollow_axis_x.f3d",
+      "new_recipe_ids": [
+        314,
+        316,
+        320,
+        324,
+        326,
+        330
+      ],
+      "new_recipe_count": 6,
+      "all_prior_reference_tag_failures_framed": true,
+      "all_recipe_frames_reencoded_exactly": true,
+      "all_outputs_independent_of_primary_lookup": true,
+      "fingerprints": [
+        {
+          "object_id": 314,
+          "payload_kind": "face_recipe_data",
+          "payload_length": 8,
+          "payload_relative_offset": 67,
+          "reference_components_int32": [
+            301,
+            303
+          ],
+          "record_sha256": "31db2b11e510ebbaf8050e05b6c66cbe124f1f1a61920b3fef0c3ccc8f4ce46a"
+        },
+        {
+          "object_id": 316,
+          "payload_kind": "face_recipe_data",
+          "payload_length": 8,
+          "payload_relative_offset": 67,
+          "reference_components_int32": [
+            301,
+            303
+          ],
+          "record_sha256": "f59d6962f777a54508c463377fa10ea9ff3cac5ccaa8667b1ea44d355240123c"
+        },
+        {
+          "object_id": 320,
+          "payload_kind": "face_recipe_data",
+          "payload_length": 8,
+          "payload_relative_offset": 67,
+          "reference_components_int32": [
+            301,
+            303
+          ],
+          "record_sha256": "7288f636a28a70457ccf8d71e0c3fc00ff2e0753a10e32025676bf82741ea880"
+        },
+        {
+          "object_id": 324,
+          "payload_kind": "face_recipe_data",
+          "payload_length": 8,
+          "payload_relative_offset": 67,
+          "reference_components_int32": [
+            301,
+            303
+          ],
+          "record_sha256": "f59d6962f777a54508c463377fa10ea9ff3cac5ccaa8667b1ea44d355240123c"
+        },
+        {
+          "object_id": 326,
+          "payload_kind": "face_recipe_data",
+          "payload_length": 8,
+          "payload_relative_offset": 67,
+          "reference_components_int32": [
+            301,
+            303
+          ],
+          "record_sha256": "7288f636a28a70457ccf8d71e0c3fc00ff2e0753a10e32025676bf82741ea880"
+        },
+        {
+          "object_id": 330,
+          "payload_kind": "face_recipe_data",
+          "payload_length": 8,
+          "payload_relative_offset": 67,
+          "reference_components_int32": [
+            301,
+            303
+          ],
+          "record_sha256": "31db2b11e510ebbaf8050e05b6c66cbe124f1f1a61920b3fef0c3ccc8f4ce46a"
+        }
+      ]
+    }
+  ],
+  "legacy_controls": [
+    {
+      "file": "combinemodes-dcb4956eca6b/intersect_keep.f3d",
+      "object_id": 366,
+      "expected_count": 0,
+      "expected_recipe": {
+        "object_id": 366,
+        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "record_offset": 46419,
+        "stored_header_fields": [
+          1,
+          3
+        ],
+        "name_table": [
+          {
+            "table_index": 0,
+            "terms": [
+              {
+                "name": "304",
+                "stored_index": 7,
+                "stored_reference_component_count": 0,
+                "stored_reference_components_int32": [],
+                "stored_reference_components_uint32": [],
+                "stored_reference_component_bytes_hex": "",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          }
+        ],
+        "payload_kind": "body_recipe_data",
+        "payload_relative_offset": 61,
+        "payload_length": 8,
+        "payload_hex": "00000000ffffffff",
+        "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics",
+        "uninterpreted_payload_int32": [
+          0,
+          -1
+        ]
+      },
+      "recipe_frame_bytes_roundtrip": true,
+      "no_new_summary_recipe": true
+    },
+    {
+      "file": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+      "object_id": 313,
+      "expected_count": 1,
+      "expected_recipe": {
+        "object_id": 313,
+        "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+        "record_offset": 36119,
+        "stored_header_fields": [
+          1,
+          3
+        ],
+        "name_table": [
+          {
+            "table_index": 0,
+            "terms": [
+              {
+                "name": "3",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_component_bytes_hex": "2d010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          },
+          {
+            "table_index": 1,
+            "terms": [
+              {
+                "name": "4",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_component_bytes_hex": "2d010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          },
+          {
+            "table_index": 2,
+            "terms": [
+              {
+                "name": "1",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_component_bytes_hex": "2d010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          },
+          {
+            "table_index": 3,
+            "terms": [
+              {
+                "name": "2",
+                "stored_index": 0,
+                "stored_reference_component_count": 1,
+                "stored_reference_components_int32": [
+                  301
+                ],
+                "stored_reference_components_uint32": [
+                  301
+                ],
+                "stored_reference_component_bytes_hex": "2d010000",
+                "stored_reference_terminator_uint32": 0,
+                "reference_scope": "Opaque counted recipe numeric tuple; native object/entity correspondence and persistent topology meaning unresolved"
+              }
+            ]
+          }
+        ],
+        "payload_kind": "edge_recipe_data",
+        "payload_relative_offset": 138,
+        "payload_length": 116,
+        "payload_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff000000000000000000000000",
+        "scope": "Observed name-reference component arrays of count0/1/2 plus explicit zero terminators; signed/unsigned values retained without native design/entity identity or topology semantics"
+      },
+      "recipe_frame_bytes_roundtrip": true,
+      "no_new_summary_recipe": true
+    }
+  ],
+  "malformed_checks": [
+    {
+      "name": "unobserved component count3",
+      "rejected": true,
+      "reason": "Unobserved recipe reference component count"
+    },
+    {
+      "name": "nonzero component tuple terminator",
+      "rejected": true,
+      "reason": "Recipe reference component terminator must be zero"
+    },
+    {
+      "name": "zero recipe entry count",
+      "rejected": true,
+      "reason": "Unsupported recipe name-table count"
+    },
+    {
+      "name": "oversized ASCII recipe name",
+      "rejected": true,
+      "reason": "Unsupported recipe name length"
+    },
+    {
+      "name": "truncated component tuple payload",
+      "rejected": true,
+      "reason": "Truncated topology recipe"
+    }
+  ],
+  "summary": {
+    "affected_archives": 11,
+    "new_count_two_recipes": 184,
+    "edge_recipes": 178,
+    "face_recipes": 6,
+    "representative_full_outputs": 5,
+    "legacy_count_controls": 2,
+    "malformed_checks": 5,
+    "all_passed": true
+  }
+}

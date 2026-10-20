@@ -6,7 +6,7 @@ import struct
 RECIPE_GUID = "7ACC2A03-0261-4879-A14A-A93D661A5BDC"
 
 
-def decode_recipe(data, record, primary_records=None):
+def decode_recipe(data, record, primary_records=None, *, reference_decoder=None):
     body = data[record.body:record.end]
     cursor = 0
 
@@ -47,6 +47,10 @@ def decode_recipe(data, record, primary_records=None):
         for _ in range(term_count):
             term = {"name": text(), "stored_index": integer()}
             tag = integer()
+            if reference_decoder is not None:
+                term.update(reference_decoder(tag, take))
+                terms.append(term)
+                continue
             if tag == 1:
                 value = struct.unpack("<Q", take(8))[0]
             elif tag == 0:
@@ -58,9 +62,9 @@ def decode_recipe(data, record, primary_records=None):
             term.update(stored_reference_tag=tag, stored_reference_value=value)
             target = (primary_records or {}).get(value) if tag == 1 else None
             if target is not None:
-                term["matching_primary_record"] = {"object_id": target.object_id, "class_guid": target.class_guid,
-                                                   "record_offset": target.start,
-                                                   "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"}
+                term["numeric_record_collision"] = {"object_id": target.object_id, "class_guid": target.class_guid,
+                                                    "record_offset": target.start,
+                                                    "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"}
             terms.append(term)
         names.append({"table_index": index, "terms": terms})
     if integer() != 0:

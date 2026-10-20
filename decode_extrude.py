@@ -12,7 +12,7 @@ def optional_reference(body, cursor):
     return reference(body, cursor), cursor+11
 
 
-def decode_extrude(body, feature):
+def decode_extrude(body, feature, *, allow_surface=False):
     if body[:6] != b"\0\x01\0\0\0\0":
         raise ValueError("Unsupported extrusion prefix")
     source, cursor = optional_reference(body, 6)
@@ -22,8 +22,9 @@ def decode_extrude(body, feature):
     operation, mode = struct.unpack_from("<II", body, cursor)
     operation_kind = {1: "Join", 2: "Cut", 3: "Intersect", 4: "NewBody"}.get(operation, "Unknown")
     mode_kind = {1: "OneSided", 2: "TwoSided", 3: "Symmetric"}.get(mode, "Unknown")
-    if body[cursor+12:cursor+14] != b"\0\x01":
+    if (body[cursor+12] != 0 or body[cursor+13] not in ((0, 1) if allow_surface else (1,))):
         raise ValueError("Unsupported extrusion start prefix")
+    is_solid = bool(body[cursor+13])
     start_code = struct.unpack_from("<I", body, cursor+14)[0]
     start_kind = {0: "ProfilePlane", 1: "Offset", 2: "FromEntity"}.get(start_code, "Unknown")
     direction = numbers(body, cursor+18, 3)
@@ -103,6 +104,9 @@ def decode_extrude(body, feature):
         unresolved.append("Unrecognized end condition")
     if source or code_one == 2 or (mode == 2 and code_two == 2):
         unresolved.append("Referenced start/end geometry selection not decoded")
-    return {"operation": {"stored_code": operation, "kind": operation_kind}, "extent": extent,
-            "start": start, "extrusion_reference_fields": refs,
-            "stored_second_extent_enabled": enabled_two}, unresolved
+    result = {"operation": {"stored_code": operation, "kind": operation_kind}, "extent": extent,
+              "start": start, "extrusion_reference_fields": refs,
+              "stored_second_extent_enabled": enabled_two}
+    if allow_surface:
+        result["is_solid"] = is_solid
+    return result, unresolved
