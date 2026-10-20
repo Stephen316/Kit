@@ -86,7 +86,7 @@ def decode_sketches(data, records, features):
             continue
         try:
             props, cursor = attributes(body, 2)
-            if props.get("EntityGenesis") not in (0, 2, 64):
+            if props.get("EntityGenesis") not in (0, 2, 64, 128, 130, 256, 258, 512):
                 continue
             owner = reference(body, len(body) - 11)
             if owner not in sketches:
@@ -97,17 +97,26 @@ def decode_sketches(data, records, features):
                 item.update({"kind": "Point", "entity_tag": props["pt_tag"],
                              "position_cm": numbers(body, cursor + 19, 3)})
                 entities[record.object_id] = item
-            elif "crv_primary_id" in props and props.get("EntityGenesis") == 2:
+            elif "crv_primary_id" in props and props.get("EntityGenesis") in (2, 128, 130, 256, 258, 512):
                 curves.append((record, body, props, cursor, item))
         except (ValueError, UnicodeError, struct.error):
             continue
     spline_entities, spline_skipped = decode_splines(data, records, sketches, entities)
     entities.update(spline_entities)
     skipped.extend(spline_skipped)
+    offset_side_ids = {r.object_id for r in records if r.class_guid == "04e598ff-2979-5e41-8bc0-5c435c810909"}
     for record, body, props, cursor, item in curves:
         try:
             auxiliary_parent = None
-            if len(body) - cursor == 182:
+            offset_curve, offset_side = False, None
+            if ((record.class_guid == "DCA267ED-D615-4934-B64F-AD805E8003E2" and len(body)-cursor == 182)
+                    or (record.class_guid == "F0130424-8B7E-4092-93C9-1CA807482534" and len(body)-cursor == 173)):
+                try:
+                    offset_side = reference(body, len(body)-48)
+                    offset_curve = offset_side in offset_side_ids
+                except ValueError:
+                    pass
+            if len(body) - cursor == 182 and not offset_curve:
                 try:
                     parent = reference(body, cursor)
                     if parent in {r.object_id for r, *_ in curves}:
@@ -117,9 +126,13 @@ def decode_sketches(data, records, features):
                     pass
             values = numbers(body, cursor, 12)
             origin = values[:3]
-            if props.get("crv_secondary_id") != 0:
+            if props.get("crv_secondary_id") != 0 and not (offset_curve and props["EntityGenesis"] == 512):
                 raise ValueError("Secondary curve representation is unsupported")
-            if len(body) - cursor == 171:
+            if offset_curve:
+                item.update(offset_side_record_object_id=offset_side,
+                            secondary_entity_tag=props["crv_secondary_id"],
+                            secondary_tag_status="Observed offset representation; secondary tag semantics unresolved")
+            if len(body) - cursor == 171 or (offset_curve and record.class_guid == "DCA267ED-D615-4934-B64F-AD805E8003E2"):
                 first = reference(body, cursor + 96)
                 start_id = reference(body, cursor + 107)
                 start, end = entities[start_id], entities[first]
@@ -133,7 +146,7 @@ def decode_sketches(data, records, features):
                              "start_cm": start["position_cm"], "end_cm": end["position_cm"]})
                 if auxiliary_parent is not None:
                     item["auxiliary_parent_id"] = auxiliary_parent
-            elif len(body) - cursor in (162, 182):
+            elif len(body) - cursor in (162, 182) or (offset_curve and record.class_guid == "F0130424-8B7E-4092-93C9-1CA807482534"):
                 first = reference(body, cursor + 96)
                 center = entities[first]
                 normal, axis = values[3:6], values[6:9]
@@ -199,7 +212,9 @@ def decode_sketches(data, records, features):
             # lines, circles, arcs and ellipses, including ellipse axis lines.
             fixed = struct.unpack_from("<I", body, len(body) - 51)[0]
             construction = struct.unpack_from("<I", body, len(body) - 46)[0]
-            if fixed in (0, 1) and construction in (0, 1):
+            if offset_curve:
+                item["state_status"] = "Offset curve fixed/construction state layout unresolved"
+            elif fixed in (0, 1) and construction in (0, 1):
                 item.update(is_fixed=bool(fixed), is_construction=bool(construction))
             else:
                 item["unrecognized_state_flags"] = [fixed, construction]
@@ -359,6 +374,9 @@ def decode_sketches(data, records, features):
             if parameter is not None:
                 unsupported_dimensions.append({"object_id": record.object_id, "reason": str(error)})
             continue
+    from decode_sketch_tools import decode_sketch_tools
+    tools = decode_sketch_tools(data, records, sketches, entities)
     return {"unsupported_curves": skipped, "unknown_constraint_codes": unknown_constraints,
+            "tool_constraints": tools,
             "unsupported_dimensions": unsupported_dimensions,
             "scope": "Observed primitives, NURBS, conics, geometric constraints and dimensions; not a constraint solver"}

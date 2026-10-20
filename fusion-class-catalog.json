@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 130,
+  "file_count": 132,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -131,10 +131,12 @@
     "splits-efce4ef164c9/offset_plane.f3d",
     "splits-efce4ef164c9/xz_extend.f3d",
     "splits-efce4ef164c9/yz_extend.f3d",
-    "splits-efce4ef164c9/yz_no_extend.f3d"
+    "splits-efce4ef164c9/yz_no_extend.f3d",
+    "sketchtools-85066e723410/sketchtools.f3d",
+    "sketchtools-8a6b662b0d6f/sketchtools.f3d"
   ],
-  "class_count": 264,
-  "classes_with_observed_semantics": 25,
+  "class_count": 273,
+  "classes_with_observed_semantics": 28,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -155,6 +157,22 @@
       ]
     },
     {
+      "class_guid": "02D7CF7C-B3B5-594B-9837-DF7E0340878A",
+      "base_class_guids": [
+        "834C9DEF-4C39-4587-A08D-A5BD1267B7B4"
+      ],
+      "namespaces": [
+        "CommonData"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtools-85066e723410/sketchtools.f3d"
+      ]
+    },
+    {
       "class_guid": "03bc52c5-f13f-4f61-9e9f-e5c1e876c3ef",
       "base_class_guids": [
         "eb7847af-e60d-4ab0-a736-4ac00c1f1d21"
@@ -167,6 +185,22 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "04e598ff-2979-5e41-8bc0-5c435c810909",
+      "base_class_guids": [
+        "02D7CF7C-B3B5-594B-9837-DF7E0340878A"
+      ],
+      "namespaces": [
+        "MSketch"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtools-85066e723410/sketchtools.f3d"
+      ]
     },
     {
       "class_guid": "074F9459-89C2-4B7D-8AB4-DCE67AE944FE",
@@ -929,6 +963,22 @@
       ]
     },
     {
+      "class_guid": "33C30948-5A39-5E71-A836-A6928CA6B4DE",
+      "base_class_guids": [
+        "5C069ACB-169F-4555-9792-815B4671DDA0"
+      ],
+      "namespaces": [
+        "EntityTracking"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtools-85066e723410/sketchtools.f3d"
+      ]
+    },
+    {
       "class_guid": "362B7EC3-0F09-47C8-A3BE-DC066715CDAE",
       "base_class_guids": [
         "63D6AD42-466A-40B7-9CCD-EB21BC500EF6"
@@ -1172,6 +1222,24 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C",
+      "base_class_guids": [
+        "60403D47-0C49-49B0-BDE8-1679608164A2"
+      ],
+      "namespaces": [
+        "MSketch"
+      ],
+      "stored_versions_or_flags": [
+        5
+      ],
+      "observed_semantics": [
+        "Observed sketch relationship: SketchRectangularPattern"
+      ],
+      "example_files": [
+        "sketchtools-8a6b662b0d6f/sketchtools.f3d"
+      ]
     },
     {
       "class_guid": "40DCC3F41D-E94F-B3B1-3E95-9B6ABE572C",
@@ -2255,6 +2323,24 @@
       ]
     },
     {
+      "class_guid": "8269E861-0BB7-47E0-9911-5AE3EC475058",
+      "base_class_guids": [
+        "60403D47-0C49-49B0-BDE8-1679608164A2"
+      ],
+      "namespaces": [
+        "MSketch"
+      ],
+      "stored_versions_or_flags": [
+        3
+      ],
+      "observed_semantics": [
+        "Observed sketch relationship: SketchCircularPattern"
+      ],
+      "example_files": [
+        "sketchtools-85066e723410/sketchtools.f3d"
+      ]
+    },
+    {
       "class_guid": "830A2A2B-0AA9-4D6A-ACA1-F7A2B2A06573",
       "base_class_guids": [
         "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
@@ -2407,7 +2493,8 @@
       "observed_semantics": [],
       "example_files": [
         "advanced-627f7fe095f4/advanced.f3d",
-        "dimensions-f83a2edd2f72/dimensions.f3d"
+        "dimensions-f83a2edd2f72/dimensions.f3d",
+        "sketchtools-85066e723410/sketchtools.f3d"
       ]
     },
     {
@@ -3735,6 +3822,22 @@
       ]
     },
     {
+      "class_guid": "D3BD153B-EB8A-405E-9D29-69EE0C3D227C",
+      "base_class_guids": [
+        "60403D47-0C49-49B0-BDE8-1679608164A2"
+      ],
+      "namespaces": [
+        "MSketch"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtools-85066e723410/sketchtools.f3d"
+      ]
+    },
+    {
       "class_guid": "D45FD6C4-161B-4240-BFAC-83A7C2C97A0C",
       "base_class_guids": [
         "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47"
@@ -4208,6 +4311,22 @@
       ]
     },
     {
+      "class_guid": "F09AEF85-2A09-5DF1-BB5B-79A2E48D6CFF",
+      "base_class_guids": [
+        "5C069ACB-169F-4555-9792-815B4671DDA0"
+      ],
+      "namespaces": [
+        "EntityTracking"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtools-85066e723410/sketchtools.f3d"
+      ]
+    },
+    {
       "class_guid": "F279874A-17AB-43DA-BF8E-80259802D06E",
       "base_class_guids": [
         "DCA267ED-D615-4934-B64F-AD805E8003E2"
@@ -4529,6 +4648,24 @@
       ]
     },
     {
+      "class_guid": "afc07c10-99ac-5304-ae1b-dbee335b0e43",
+      "base_class_guids": [
+        "d2c6c8c8-34bc-523b-8455-df66128fa4e5"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [
+        "Observed sketch relationship: OffsetCurves"
+      ],
+      "example_files": [
+        "sketchtools-85066e723410/sketchtools.f3d"
+      ]
+    },
+    {
       "class_guid": "d0edef7c-5879-45a4-9651-900659cc4fdd",
       "base_class_guids": [
         "03bc52c5-f13f-4f61-9e9f-e5c1e876c3ef"
@@ -4538,6 +4675,20 @@
       ],
       "stored_versions_or_flags": [
         0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
+      "class_guid": "d2c6c8c8-34bc-523b-8455-df66128fa4e5",
+      "base_class_guids": [
+        "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+      ],
+      "namespaces": [
+        "MSketch"
+      ],
+      "stored_versions_or_flags": [
+        4
       ],
       "observed_semantics": [],
       "example_files": []

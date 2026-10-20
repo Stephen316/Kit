@@ -31,7 +31,7 @@ The main entry point is `decode_basics.decode_basics(path, zstd_library=None)`. 
 | Parameters | Numeric model values, expressions as text, display units, explicit feature-binding references | General expression evaluation and full user-parameter schema |
 | Sketch geometry | Points, lines, circles, arcs, ellipses, elliptical arcs, fitted/control/fixed NURBS, conics | Projected geometry and general trimmed/intersection representations |
 | Sketch placement | Observed rigid transforms into parent-component coordinates and composed world coordinates through decoded occurrence paths | Other placement definitions and unresolved instance contexts |
-| Constraints | Observed basic geometric constraints and smoothness; internal spline control polygons reported separately | Sketch patterns, offsets, surface constraints and a general solver |
+| Constraints | Observed basic constraints, smoothness, signed offset parent/child pairs, and single-circle rectangular/circular sketch patterns; internal spline control polygons reported separately | General pattern inputs, suppression, arbitrary axes, topology-changing offsets, surface constraints and a solver |
 | Dimensions | Linear orientations, offset, radius, diameter, angle, ellipse radii, concentric spacing, tangent distance, linear diameter | Tangent-side choices; driving state outside the observed shared linear class |
 | Profile selection | Sketch curve tags, loop membership, outer/inner flags for observed profiles | General trimming and loop traversal order |
 | Extrusion | Join/cut/intersect/new body; one/two-sided and symmetric extents; profile/offset/entity starts; distance/to-entity/through-all ends; taper | Full input topology, all combinations and end-condition variants |
@@ -60,6 +60,8 @@ Non-distance holes can retain an inactive saved depth. It is reported as cached 
 
 `split-decoding.json` compares five planar split cases: extension on/off, origin and offset construction planes, and one/two target bodies. The tool proxy's stored operation flag agrees with the feature, and both input proxy owners are checked. Counted target descriptors remain explicit without claiming decoded body topology or regenerated result solids. Selection proxies with optional numeric attributes use the same bounded list reader as ordinary proxies.
 
+`sketch-tool-decoding.json` compares ten offset/pattern cases, including both offset signs, closed rectangle/circle offsets, full/partial/symmetric circular patterns and spacing/extent rectangular patterns. Relationships use explicit entity lists and numeric bindings; stored curve positions are independently compared with the API. The first export retains three documented-null-direction API errors; a focused retry creates those three rectangular cases using numeric property setters. The decoder reports these relationships under sketch `constraints`, with recognized-but-unsupported layouts listed in `sketch_decoding.tool_constraints.unresolved`. Offset fixed/construction state, secondary tag semantics, topology-match flags and instance suppression remain partial.
+
 `assembly_decoding.occurrence_paths` expands native occurrences through their parent components. Repeated instances share component definitions but have separate world transforms. A modeling feature's input-sketch component is recorded as source context. Its parent component is resolved separately through an explicit dependency-scope edge and typed component datum when that layout is recognized. Sketch ownership provides an independent consistency check.
 
 The feature `stored_index` is an internal native field. It is **not a global timeline position**. Record-offset order also must not be used as modeling history: a controlled reorder changed the explicit history list while leaving record order unchanged.
@@ -79,6 +81,6 @@ The metadata index validates object/header identities, registered primary classe
 
 The active request is to keep expanding coverage until the user stops the work. Completed stages must be committed locally with focused checks. Do not push, overwrite unrelated project work, or describe partial decoding as complete translation.
 
-Useful next areas are broader dependency semantics, external/flexible assembly definitions and joints; broader timeline composition; remaining sketch patterns and offsets; feature-specific selections and modes; and BRep topology. A native writer, full geometry regeneration, and integration with the Kit translation pipeline remain separate unfinished work.
+Useful next areas are broader dependency semantics, external/flexible assembly definitions and joints; broader timeline composition; general sketch pattern/offset variants; feature-specific selections and modes; and BRep topology. A native writer, full geometry regeneration, and integration with the Kit translation pipeline remain separate unfinished work.
 
 Use small controlled API examples, vary one setting where practical, and retain unknown fields. Prefer metadata/class identities and explicit references over byte searches or inference from geometry alone.

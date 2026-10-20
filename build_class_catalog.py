@@ -28,6 +28,12 @@ def build_catalog(paths, zstd_library=None):
                 if entry["record_count"] and len(current["example_files"]) < 3:
                     current["example_files"].add(str(path))
             for feature in stream["features"]:
+                for constraint in feature.get("constraints", []):
+                    if constraint.get("class_guid") in classes:
+                        entry = classes[constraint["class_guid"]]
+                        entry["observed_semantics"].add("Observed sketch relationship: "+constraint["kind"])
+                        if len(entry["example_files"]) < 3:
+                            entry["example_files"].add(str(path))
                 if feature.get("class_guid"):
                     entry = classes[feature["class_guid"]]
                     if feature["kind"] == "UnsupportedFeature":
