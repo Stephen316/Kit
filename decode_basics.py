@@ -31,6 +31,7 @@ from asm_records import inspect_asm_members
 from decode_body_bindings import decode_body_bindings
 from decode_body_properties import decode_body_properties
 from decode_body_selections import decode_body_selections
+from decode_brep_recipes import decode_recipes
 from decode_body_placement import decode_body_placement
 
 
@@ -204,6 +205,7 @@ def decode_basics(path, zstd_library=None):
         dependency_summary = decode_dependencies(data, records, features, assembly_summary)
         body_property_summary = decode_body_properties(data, records, assembly_summary)
         body_selection_summary = decode_body_selections(data, records, body_property_summary)
+        recipe_summary = decode_recipes(data, records)
         body_binding_summary = decode_body_bindings(data, records, name, asm_summary, body_property_summary)
         body_placement_summary = decode_body_placement(body_binding_summary, assembly_summary, asm_summary)
         resolved_selection_features = {s["feature_object_id"] for s in selection_summary["resolved"]}
@@ -230,6 +232,7 @@ def decode_basics(path, zstd_library=None):
             "body_blob_bindings": body_binding_summary,
             "body_properties": body_property_summary,
             "body_selections": body_selection_summary,
+            "recipe_decoding": recipe_summary,
             "body_placement": body_placement_summary,
         })
     return {
