@@ -4,15 +4,17 @@ import math
 import struct
 
 from decode_placement import rigid_matrix
-from decode_selection import native_origin_axes, resolve_native_selection
+from decode_selection import native_origin_entities, resolve_native_selection
 from decode_sketch import numbers, reference
 from decode_holes import decode_hole
+from decode_body_tools import decode_body_tool
 
 
 def decode_tools(data, records, features):
-    supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken", "Hole"}
+    supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken", "Hole",
+                 "Scale", "Mirror", "Shell"}
     decoded, unresolved = [], []
-    axes = native_origin_axes(data, records)
+    axes = native_origin_entities(data, records)
     for feature in features:
         kind = feature["kind"]
         if kind not in supported:
@@ -31,7 +33,9 @@ def decode_tools(data, records, features):
 
         try:
             settings = {}
-            if kind == "Hole":
+            if kind in ("Scale", "Mirror", "Shell"):
+                settings = decode_body_tool(data, records, body, feature, axes)
+            elif kind == "Hole":
                 settings = decode_hole(data, records, body, feature)
             elif kind == "Move":
                 if body[:2] != b"\0\0":

@@ -39,7 +39,8 @@ The main entry point is `decode_basics.decode_basics(path, zstd_library=None)`. 
 | Construction geometry | Offset/angle plane geometry, custom axis/point names and geometry | Complete parametric support-entity definitions |
 | Other modeling tools | Partial sweep, loft, circular pattern, combine, draft, free-move and thicken settings | Complete input body/face/edge references and reconstruction |
 | Holes | Observed single-position default-direction simple, counterbore and countersink holes; distance/through-all/to-entity ends; position, direction, diameter and tip parameters | Threads, supporting/target faces, multiple positions and other direction layouts |
-| Dress-up/body tools | Fillet, chamfer, shell, rectangular pattern, mirror and scale names and numeric parameters; split-body record/name | Feature-specific modes and complete topology selection |
+| Scale, mirror and shell | Uniform/nonuniform scale factors and observed origin-point selection; mirror native origin planes, combine state and stitch tolerance; shell inside/outside thicknesses, sharp/rounded type and tangent-chain state | Selected bodies/faces, arbitrary scale points/planes and mirror compute options |
+| Dress-up/body tools | Fillet, chamfer and rectangular pattern names and numeric parameters; split-body record/name | Feature-specific modes and complete topology selection |
 | Unknown features | Observed feature-class ancestry exposes unsupported feature records explicitly | Unknown ancestry and unimplemented native fields |
 | Timeline and state | Explicit ordered feature references, groups and collapse state, suppression and rollback flags; visible indices and derived marker position in observed root-component cases | General assembly/component history composition and other group/state layouts |
 | Local assemblies | Component definitions, repeated/native occurrences, parent collections, nested rigid transforms, explicit sketch ownership and world sketch coordinates | External references, flexible components, joints and grounding semantics |
@@ -48,6 +49,8 @@ The main entry point is `decode_basics.decode_basics(path, zstd_library=None)`. 
 Internal lengths use centimetres and angles use radians in the recovered numeric records. Display units such as `mm` are separate. Sweep path fractions are unitless. Sketch-local geometry remains available alongside decoded component-coordinate values.
 
 Non-distance holes can retain an inactive saved depth. It is reported as cached data, never as the active extent. Hole diameters are stored model parameters; thread definitions and their effect on the physical hole are not yet decoded. The six hole reference files compare these settings, position and direction directly with Fusion's API.
+
+`body-tool-decoding.json` compares 12 scale, mirror and shell examples with API values, including explicit combine/tangent contrasts and a separate scale factor. The first body-tool generator run retained seven exports and two API-property errors; the corrected run exported all nine cases. Scale-point evidence comes from the actual input construction point because reading the completed feature's point requires rolling its history back. Inactive shell thickness bindings are represented as null rather than invented numeric parameters.
 
 `assembly_decoding.occurrence_paths` expands native occurrences through their parent components. Repeated instances share component definitions but have separate world transforms. A modeling feature's input-sketch component is recorded as source context. Its parent component is resolved separately through an explicit dependency-scope edge and typed component datum when that layout is recognized. Sketch ownership provides an independent consistency check.
 

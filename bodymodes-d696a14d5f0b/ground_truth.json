@@ -1,0 +1,110 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "scale_holdout.f3d",
+      "kind": "ScaleFeature",
+      "settings": {
+        "is_uniform": true,
+        "point_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "point_evidence": "API input: root.originConstructionPoint",
+        "factor": 0.65
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "ScaleFactor",
+          "value": 0.65,
+          "unit": "",
+          "created_by": "ProbeBodyTool"
+        }
+      ]
+    },
+    {
+      "file": "mirror_xy_combine.f3d",
+      "kind": "MirrorFeature",
+      "settings": {
+        "is_combine": true,
+        "plane_name": "XY",
+        "plane_origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "plane_normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "shell_tangent.f3d",
+      "kind": "ShellFeature",
+      "settings": {
+        "inside_cm": 0.15000000000000002,
+        "outside_cm": null,
+        "shell_type": 0,
+        "is_tangent_chain": true
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "innerThickness",
+          "value": 0.15000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeBodyTool"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

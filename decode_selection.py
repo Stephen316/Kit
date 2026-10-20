@@ -5,6 +5,7 @@ import uuid
 
 from decode_parameters import read_string
 from decode_sketch import attributes, numbers, reference, same
+from decode_placement import cross
 
 
 def native_origin_axes(data, records):
@@ -33,6 +34,43 @@ def native_origin_axes(data, records):
     return axes
 
 
+def native_origin_entities(data, records):
+    known = native_origin_axes(data, records)
+    expected = {"XY": [0., 0., 1.], "XZ": [0., 1., 0.], "YZ": [1., 0., 0.]}
+    for record in records:
+        body = data[record.body:record.end]
+        try:
+            if body[:2] != b"\0\x01":
+                continue
+            props, cursor = attributes(body, 2)
+            if props != {"EntityGenesis": 0}:
+                continue
+            if record.class_guid == "8D424E29-DE23-4B1F-A3AD-84C52A497D1A" and len(body) == 233:
+                coordinates = numbers(body, cursor+21, 9)
+                origin, x_axis, y_axis = coordinates[:3], coordinates[3:6], coordinates[6:]
+                normal = cross(x_axis, y_axis)
+                name, _ = read_string(body, cursor+119)
+                if name not in expected or not same(origin, [0, 0, 0]) or not same(normal, expected[name]):
+                    continue
+                entity = {"kind": "ConstructionPlane", "name": name, "origin_cm": origin,
+                          "x_axis": x_axis, "y_axis": y_axis, "normal": normal}
+            elif record.class_guid == "0E18EEF2-0D6F-480C-997E-5EBC7369AE5F" and len(body) == 146:
+                position = numbers(body, cursor, 3)
+                name, _ = read_string(body, cursor+34)
+                if name != "O" or not same(position, [0, 0, 0]):
+                    continue
+                entity = {"kind": "ConstructionPoint", "name": name, "position_cm": position}
+            else:
+                continue
+            entity.update(object_id=record.object_id,
+                          origin_container_object_id=reference(body, len(body)-11),
+                          scope="Native component origin entity; occurrence context unresolved")
+            known[record.object_id] = entity
+        except (ValueError, UnicodeError, struct.error):
+            continue
+    return known
+
+
 def resolve_native_selection(data, records, selection_id, known_entities):
     candidates = []
     for proxy in records:
@@ -45,6 +83,9 @@ def resolve_native_selection(data, records, selection_id, known_entities):
             elif (len(body) == 202 and body[:6] == b"\0\0\x08\0\0\0"
                   and struct.unpack_from("<I", body, 99)[0] == 1):
                 descriptor_id = reference(body, 103)
+            elif (len(body) == 178 and proxy.class_guid == "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44"
+                  and struct.unpack_from("<I", body, 75)[0] == 1):
+                descriptor_id = reference(body, 79)
             else:
                 continue
             for descriptor in records:
@@ -84,7 +125,7 @@ def resolve_native_selection(data, records, selection_id, known_entities):
 
 
 def decode_selections(data, records, features):
-    known = native_origin_axes(data, records)
+    known = native_origin_entities(data, records)
     for feature in features:
         if feature["kind"] == "ConstructionPlane" and "plane_object_id" in feature:
             known[feature["plane_object_id"]] = {
