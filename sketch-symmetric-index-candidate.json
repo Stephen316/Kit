@@ -1,0 +1,108 @@
+{
+  "status": "Candidate frozen before holdout exports are read",
+  "frozen_utc": "2026-10-20T22:51:24.382494+00:00",
+  "formula": {
+    "circular_symmetric_seed_index": "quantity // 2",
+    "rectangular_seed_index": "(qOne//2 if symmetricOne else0) + qOne*(qTwo//2 if symmetricTwo else0)",
+    "native_to_api_ordinal": "r+1 if r<seed_index; r if r>seed_index; reject r==seed_index",
+    "API_mask_index": "API ordinal - 1; source is ordinal0 and cannot be suppressed"
+  },
+  "scope_candidate": [
+    "Single Circle seed",
+    "Circular symmetric positive180-degree partial patterns",
+    "Rectangular symmetric default-axis positive Spacing patterns",
+    "Existing native dependency-count bound remains"
+  ],
+  "discovery": [
+    {
+      "file": "sketchsymmetricindices-2ba1d336c9cf/circular_odd_low.f3d",
+      "sha256": "a31c6de0982cbb56bbf3ede1b1c7035420e451ae84fbe6429e77a23aa78bd8d1",
+      "native_indices": [
+        0
+      ],
+      "candidate_seed_index": 2,
+      "predicted_api_ordinals": [
+        1
+      ],
+      "actual_api_ordinals": [
+        1
+      ],
+      "agrees": true
+    },
+    {
+      "file": "sketchsymmetricindices-2ba1d336c9cf/circular_even_high.f3d",
+      "sha256": "e4c3e663df999cac119b84ca16e3fc38323b94b32396abf61fd0a2a95e92d505",
+      "native_indices": [
+        5
+      ],
+      "candidate_seed_index": 3,
+      "predicted_api_ordinals": [
+        5
+      ],
+      "actual_api_ordinals": [
+        5
+      ],
+      "agrees": true
+    },
+    {
+      "file": "sketchsymmetricindices-2ba1d336c9cf/rectangular_first_even.f3d",
+      "sha256": "81e783d1ff75f99c106712246117cc5262a3c5272b32dc7d572a10697f9b5a39",
+      "native_indices": [
+        0
+      ],
+      "candidate_seed_index": 2,
+      "predicted_api_ordinals": [
+        1
+      ],
+      "actual_api_ordinals": [
+        1
+      ],
+      "agrees": true
+    },
+    {
+      "file": "sketchsymmetricindices-2ba1d336c9cf/rectangular_second_odd.f3d",
+      "sha256": "d1cd07b69c9ab0dd568f8c34b31c8f581e6405a697fe7fac0ffd4a968ccb83d7",
+      "native_indices": [
+        1
+      ],
+      "candidate_seed_index": 2,
+      "predicted_api_ordinals": [
+        2
+      ],
+      "actual_api_ordinals": [
+        2
+      ],
+      "agrees": true
+    }
+  ],
+  "holdout_predictions_before_capture_read": {
+    "circular_odd_holdout": {
+      "quantity": 7,
+      "seed_index": 3,
+      "expected_native_indices": [
+        5
+      ],
+      "expected_api_ordinals": [
+        5
+      ]
+    },
+    "rectangular_both_holdout": {
+      "qOne": 3,
+      "qTwo": 4,
+      "seed_index": 7,
+      "expected_native_indices": [
+        0,
+        11
+      ],
+      "expected_api_ordinals": [
+        1,
+        11
+      ]
+    }
+  },
+  "identity_scope": "No native IDs assigned from coordinates; native explicit role lists and API mask indices provide identity/order evidence",
+  "limitations": [
+    "The holdouts test new quantities/both axes/multiple suppression, not every symmetry/angle/type combination",
+    "Full-circle/negative-angle/mixed-curved or Point suppression rules are unproven"
+  ]
+}

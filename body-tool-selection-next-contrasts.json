@@ -37,24 +37,21 @@
   },
   "needed_contrasts": [
     {
-      "priority": 3,
+      "priority": 7,
       "cases": [
-        "Mirror one BRepFace",
-        "Mirror one Occurrence",
-        "Mirror one construction entity"
+        "Nested occurrence Mirror with explicit source/derived ownership"
       ],
-      "purpose": "Cover remaining documented input kinds separately and preserve context"
+      "purpose": "Distinguish currently captured root-frame provenance from other assembly contexts"
     },
     {
-      "priority": 6,
+      "priority": 8,
       "cases": [
-        "Mirror multiple feature inputs",
-        "Scale multiple Sketch inputs"
+        "Construction-plane Mirror with another input orientation/offset and independently available result geometry"
       ],
-      "purpose": "Cover counted input collections beyond the observed single Sketch or single Extrude feature"
+      "purpose": "Interpret output datum controls without relying on unavailable mirrorPlane/isCombine getters"
     }
   ],
-  "status": "Follow-up capture branches implemented; remaining named input combinations and exact topology/equations remain unsupported",
+  "status": "Previously named follow-up inputs captured; three settings cases and two partial provenance cases decoded. General feature combinations, missing controls and topology/regeneration remain unresolved.",
   "sdk_source": "Local adsk/fusion.py MirrorFeatureInput/ScaleFeatureInput/ShellFeatureInput documentation",
   "completed_followup_contrasts": {
     "mirror_capture": "mirrorfeatures-1ffa1b15c612",
@@ -67,6 +64,24 @@
       "Scale non-origin ConstructionPoint",
       "Shell two bodies",
       "Shell mixed body and face from a different body"
+    ]
+  },
+  "completed_remaining_input_capture": {
+    "folder": "remainingbodyinputs-7b3357274e85",
+    "decoded_settings": [
+      "Mirror two Extrude features",
+      "Mirror two boss BRepFaces",
+      "Uniform Scale two Sketches"
+    ],
+    "separate_provenance": [
+      "Occurrence Mirror explicit source/derived occurrence linkage; isCombine/tolerance getters unavailable",
+      "Construction-plane Mirror source/plane native IDs; mirrorPlane/combine/tolerance getter failures retained"
+    ],
+    "remaining_limits": [
+      "General reflection/regeneration",
+      "Other occurrence/datum contexts",
+      "Persistent selected/result face topology",
+      "Unavailable API getter semantics"
     ]
   }
 }

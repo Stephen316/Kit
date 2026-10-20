@@ -22,7 +22,7 @@ from decode_sketch import attributes, reference, same
 MIRROR = 'D1728651-3640-4CCF-8083-AF7703013978'
 
 
-def decode_mirror_modes(data, records, body, feature, known, features):
+def decode_mirror_modes(data, records, body, feature, known, features, *, allowed_feature_counts=(1,)):
     if feature['kind'] != 'Mirror' or feature['class_guid'] != MIRROR:
         raise ValueError('Not an observed native Mirror feature')
     result = decode_body_tool(data, records, body, feature, known)
@@ -66,7 +66,7 @@ def decode_mirror_modes(data, records, body, feature, known, features):
     if proxy_ids != descriptor_ids or len(set(descriptor_ids)) != count:
         raise ValueError('Mirror collection and control proxy descriptor lists disagree')
     if entity_type == 1:
-        if count != 1:
+        if count not in allowed_feature_counts:
             raise ValueError('Only captured single-Extrude Mirror feature input supported')
         selected = []
         named = {f['object_id']: f for f in features}
@@ -106,7 +106,8 @@ def decode_mirror_modes(data, records, body, feature, known, features):
         result.update(input_kind='Feature', input_count=count, input_feature_count=count,
                       input_body_count=0, input_face_count=0, input_features=selected, input_selections=selected,
                       input_entity_collection_object_id=collection_id, input_selection_record_object_ids=[proxy_id],
-                      input_selection_status='Explicit owned single-Extrude feature input decoded; feature regeneration not applied')
+                      input_selection_status='Explicit owned single-Extrude feature input decoded; feature regeneration not applied' if count == 1
+                          else 'Explicit owned ordered Extrude feature inputs decoded; feature regeneration not applied')
     else:
         if compute != 2:
             raise ValueError('Uncaptured stored Mirror body-input compute code')

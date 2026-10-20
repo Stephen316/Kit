@@ -1,0 +1,1196 @@
+{
+  "scope": "Observed SilhouetteSplit operation/direction and historical body provenance; additional anchors distinct from API result-body/root-body collections",
+  "integration": {
+    "function": "decode_silhouette_splits(data, records, features, body_selections=None)",
+    "main_stream_key": "silhouette_splits",
+    "validator": "validate_silhouette_splits.validate(root, zstd_library=None)",
+    "expected_outputs": "samples[].expected_summary contains complete main/helper summary for equality checks."
+  },
+  "layout_evidence": {
+    "operations": "Native/API integer0 FacesOnly,1 ShelledBody,2 SolidBody verified in actual successful captures.",
+    "directions": "Typed F2A direction control ->5A1B descriptor ->90055 native identity leaf selects origin AxisX/AxisY or PlaneYZ; method7 Axis/method14 Plane, repeated descriptor and feature owners must agree.",
+    "targets": "Owned body proxy/descriptor resolves explicit historical native body/anchor; original SilhouetteCylinder owner retained even after a Shell modifies that same named body.",
+    "additional_anchors": "Captured FacesOnly stores zero additional anchors yet API Feature.bodies/root collection each contains one body. Captured SolidBody/ShelledBody stores one additional owned anchor while both API collections contain two bodies. These are observed distinctions, not a general result-collection reconstruction rule."
+  },
+  "limitations": [
+    "Only captured root-context one-target operation/direction layouts; other direction types, occurrence contexts and control combinations unverified.",
+    "Persistent silhouette curves, exact result topology, native face/edge identity, regeneration and replay remain unresolved.",
+    "API health/suppression, face/edge counts, volumes and bounding boxes are retained as observations only; they are not claimed as decoded native controls/geometry.",
+    "One solid-cylinder ShelledBody request failed in the kernel, while one explicitly hollow-cylinder ShelledBody request succeeded; this is fixture evidence, not a universal acceptance rule.",
+    "The hollow-cylinder target remains API isSolid=True; hollow construction is documented by the captured Shell setup and parameters, not inferred from isSolid=False."
+  ],
+  "samples": [
+    {
+      "file": "silhouettesplits-7d78a686cdbb/faces_axis_x.f3d",
+      "sha256": "e8275df9bac66c59e11edc0b85c5a6cf95711dc16accb68f55bfbc04ad1fba0e",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 267,
+            "kind": "SilhouetteSplit",
+            "operation": "FacesOnly",
+            "operation_code": 0,
+            "view_direction": {
+              "entity": {
+                "kind": "ConstructionAxis",
+                "name": "X",
+                "object_id": 39,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "direction": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "origin_container_object_id": 37,
+                "scope": "Native component origin axis; occurrence transforms unresolved"
+              },
+              "selection_object_id": 268,
+              "descriptor_object_id": 271,
+              "terminal_object_id": 274,
+              "namespace_text": "86085926-de47-429c-911c-8507c4077c7b",
+              "entity_guid_text": "613a700a-df3f-411d-aca6-90c745e7ffdd",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            },
+            "stored_direction_method_code": 7,
+            "direction_control_object_id": 268,
+            "target": {
+              "selection_record_object_id": 275,
+              "descriptor_object_id": 278,
+              "native_body_object_id": 260,
+              "body_anchor_object_id": 266,
+              "source_owner_object_id": 234
+            },
+            "stored_additional_body_anchors": [],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed root-context SilhouetteSplit FacesOnly/ShelledBody/SolidBody and construction axis/plane directions; other source/layout variants and regeneration unsupported"
+      },
+      "api_comparisons": {
+        "operation_code": true,
+        "operation_name": true,
+        "exact_direction_type": true,
+        "exact_direction_name": true,
+        "direction_origin_cm": true,
+        "direction_vector_or_plane_normal": true,
+        "explicit_target_body_name": true,
+        "historical_body_owner_name_matches_seed_parameter_createdBy": true,
+        "explicit_root_collection_count_matches_API": true,
+        "explicit_root_collection_names_match_API": true,
+        "captured_Feature_bodies_count_matches_root_API_count": true
+      },
+      "native_structure_checks": {
+        "main_helper_complete_output_equality": true,
+        "method_correspondence": true,
+        "historical_owner_is_original_seed_Extrude": true,
+        "one_explicit_target_root_collection": true,
+        "additional_anchors_are_not_total_API_result_body_count": true,
+        "captured_additional_anchor_count": true
+      },
+      "anchor_vs_collection_observation": {
+        "stored_additional_anchor_count": 0,
+        "API_feature_body_count": 1,
+        "API_root_body_count": 1,
+        "native_root_body_ids": [
+          260
+        ],
+        "historical_target_body_id": 260,
+        "historical_target_owner_name": "SilhouetteCylinder"
+      },
+      "API_observations": {
+        "actual_direction": {
+          "entity_type": "adsk::fusion::ConstructionAxis",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQhtHpNo9d6c5E2Va2Y+w11QDVRgpGJspmBkaJ5obGCTqpqQZp+maGBqm6CYmJ5rpWhokm5uYppqnpaWkgNUCzWBAA2D7DBTA1oGsN7YEAH/U25GHAAAA",
+          "name": "X",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "actual_target": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQhtHpNo9d6c5E2Va2Y+w11QDVRgpGJspmBkaJ5obGCTqpqQZp+maGBqm6CYmJ5rpWhokm5uYppqnpaWkgNUCzWBAA2D7DBTA1oGsNzIzAACgHqqyiAAAAA==",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 3,
+          "edges": 2,
+          "volume_cm3": 50.265482457434544,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        },
+        "settings": {
+          "operation": 0,
+          "is_suppressed": false,
+          "health_state": 0,
+          "warning": ""
+        },
+        "feature_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQhtHpNo9d6c5E2Va2Y+w11QDVRgpGJspmBkaJ5obGCTqpqQZp+maGBqm6CYmJ5rpWhokm5uYppqnpaWkgNUCzWBAA2D7DBTA1oGsNzIzAACgHqqyiAAAAA==",
+            "name": "SilhouetteTarget",
+            "is_solid": true,
+            "faces": 6,
+            "edges": 10,
+            "volume_cm3": 50.265482457436704,
+            "bounding_box_cm": [
+              [
+                -1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                3.0,
+                2.5,
+                4.0
+              ]
+            ]
+          }
+        ],
+        "root_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQhtHpNo9d6c5E2Va2Y+w11QDVRgpGJspmBkaJ5obGCTqpqQZp+maGBqm6CYmJ5rpWhokm5uYppqnpaWkgNUCzWBAA2D7DBTA1oGsNzIzAACgHqqyiAAAAA==",
+            "name": "SilhouetteTarget",
+            "is_solid": true,
+            "faces": 6,
+            "edges": 10,
+            "volume_cm3": 50.265482457436704,
+            "bounding_box_cm": [
+              [
+                -1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                3.0,
+                2.5,
+                4.0
+              ]
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "unit": "mm",
+            "value": 4.0,
+            "created_by": "SilhouetteCylinder"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "unit": "deg",
+            "value": 0.0,
+            "created_by": "SilhouetteCylinder"
+          }
+        ]
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true,
+      "explicit_target_role_matches_owned_input_proxy": true
+    },
+    {
+      "file": "silhouettesplits-7d78a686cdbb/faces_axis_y.f3d",
+      "sha256": "5a87fb216decd50b1d2ffb4c33f9cb8ec810e3db6c0c29a558a376a93ce295e2",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 267,
+            "kind": "SilhouetteSplit",
+            "operation": "FacesOnly",
+            "operation_code": 0,
+            "view_direction": {
+              "entity": {
+                "kind": "ConstructionAxis",
+                "name": "Y",
+                "object_id": 40,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "direction": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "origin_container_object_id": 37,
+                "scope": "Native component origin axis; occurrence transforms unresolved"
+              },
+              "selection_object_id": 268,
+              "descriptor_object_id": 271,
+              "terminal_object_id": 274,
+              "namespace_text": "41d662b3-ce19-4a0e-b3ae-d1d5c9b6f9d4",
+              "entity_guid_text": "af94038a-63d8-4e4f-ac9a-b286b6b3c4d4",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            },
+            "stored_direction_method_code": 7,
+            "direction_control_object_id": 268,
+            "target": {
+              "selection_record_object_id": 275,
+              "descriptor_object_id": 278,
+              "native_body_object_id": 260,
+              "body_anchor_object_id": 266,
+              "source_owner_object_id": 234
+            },
+            "stored_additional_body_anchors": [],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed root-context SilhouetteSplit FacesOnly/ShelledBody/SolidBody and construction axis/plane directions; other source/layout variants and regeneration unsupported"
+      },
+      "api_comparisons": {
+        "operation_code": true,
+        "operation_name": true,
+        "exact_direction_type": true,
+        "exact_direction_name": true,
+        "direction_origin_cm": true,
+        "direction_vector_or_plane_normal": true,
+        "explicit_target_body_name": true,
+        "historical_body_owner_name_matches_seed_parameter_createdBy": true,
+        "explicit_root_collection_count_matches_API": true,
+        "explicit_root_collection_names_match_API": true,
+        "captured_Feature_bodies_count_matches_root_API_count": true
+      },
+      "native_structure_checks": {
+        "main_helper_complete_output_equality": true,
+        "method_correspondence": true,
+        "historical_owner_is_original_seed_Extrude": true,
+        "one_explicit_target_root_collection": true,
+        "additional_anchors_are_not_total_API_result_body_count": true,
+        "captured_additional_anchor_count": true
+      },
+      "anchor_vs_collection_observation": {
+        "stored_additional_anchor_count": 0,
+        "API_feature_body_count": 1,
+        "API_root_body_count": 1,
+        "native_root_body_ids": [
+          260
+        ],
+        "historical_target_body_id": 260,
+        "historical_target_owner_name": "SilhouetteCylinder"
+      },
+      "API_observations": {
+        "actual_direction": {
+          "entity_type": "adsk::fusion::ConstructionAxis",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguO1pM3nJL34Nq+7ePXktp9XgCqMFIzNFBLTLE0MjC0Sdc2MUyx0TVJN0nQTky0TdZOMLMySzJKMk01STMBqgWYwoAGwfQYKYOtA1psYAAD/yOixhwAAAA==",
+          "name": "Y",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        },
+        "actual_target": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguO1pM3nJL34Nq+7ePXktp9XgCqMFIzNFBLTLE0MjC0Sdc2MUyx0TVJN0nQTky0TdZOMLMySzJKMk01STMBqgWYwoAGwfQYKYOtA1huZGQAAUAO/i4gAAAA=",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 3,
+          "edges": 2,
+          "volume_cm3": 50.265482457434544,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        },
+        "settings": {
+          "operation": 0,
+          "is_suppressed": false,
+          "health_state": 0,
+          "warning": ""
+        },
+        "feature_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguO1pM3nJL34Nq+7ePXktp9XgCqMFIzNFBLTLE0MjC0Sdc2MUyx0TVJN0nQTky0TdZOMLMySzJKMk01STMBqgWYwoAGwfQYKYOtA1huZGQAAUAO/i4gAAAA=",
+            "name": "SilhouetteTarget",
+            "is_solid": true,
+            "faces": 6,
+            "edges": 8,
+            "volume_cm3": 50.2654824574367,
+            "bounding_box_cm": [
+              [
+                -1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                3.0,
+                2.5,
+                4.0
+              ]
+            ]
+          }
+        ],
+        "root_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZguO1pM3nJL34Nq+7ePXktp9XgCqMFIzNFBLTLE0MjC0Sdc2MUyx0TVJN0nQTky0TdZOMLMySzJKMk01STMBqgWYwoAGwfQYKYOtA1huZGQAAUAO/i4gAAAA=",
+            "name": "SilhouetteTarget",
+            "is_solid": true,
+            "faces": 6,
+            "edges": 8,
+            "volume_cm3": 50.2654824574367,
+            "bounding_box_cm": [
+              [
+                -1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                3.0,
+                2.5,
+                4.0
+              ]
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "unit": "mm",
+            "value": 4.0,
+            "created_by": "SilhouetteCylinder"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "unit": "deg",
+            "value": 0.0,
+            "created_by": "SilhouetteCylinder"
+          }
+        ]
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true,
+      "explicit_target_role_matches_owned_input_proxy": true
+    },
+    {
+      "file": "silhouettesplits-7d78a686cdbb/solid_axis_x.f3d",
+      "sha256": "4b7be3ad15fdef384de541e1906a73e93077014fa3685d50897bad20a64943ea",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 267,
+            "kind": "SilhouetteSplit",
+            "operation": "SolidBody",
+            "operation_code": 2,
+            "view_direction": {
+              "entity": {
+                "kind": "ConstructionAxis",
+                "name": "X",
+                "object_id": 39,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "direction": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "origin_container_object_id": 37,
+                "scope": "Native component origin axis; occurrence transforms unresolved"
+              },
+              "selection_object_id": 268,
+              "descriptor_object_id": 271,
+              "terminal_object_id": 274,
+              "namespace_text": "75a71fab-0e68-479e-b1d7-16696b087367",
+              "entity_guid_text": "7713a680-634a-4439-bcdd-d1f153ea52da",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            },
+            "stored_direction_method_code": 7,
+            "direction_control_object_id": 268,
+            "target": {
+              "selection_record_object_id": 275,
+              "descriptor_object_id": 278,
+              "native_body_object_id": 260,
+              "body_anchor_object_id": 266,
+              "source_owner_object_id": 234
+            },
+            "stored_additional_body_anchors": [
+              {
+                "object_id": 302,
+                "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                "native_body_object_id": 298,
+                "source_owner_object_id": 267,
+                "native_uuid_text": "8360f502-0e6f-4526-ae44-9bcc7a8abb6a",
+                "stored_flags": [
+                  0,
+                  1
+                ],
+                "native_body_reference_offset": 35166,
+                "body_properties": {
+                  "name": "SilhouetteTarget (1)",
+                  "name_status": "Stored custom name recovered",
+                  "stored_body_tag": "0_298",
+                  "component_object_id": 3,
+                  "component_name": "(Unsaved)",
+                  "collection_object_id": 7,
+                  "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+                },
+                "association": "Typed anchor contains an explicit reference to the native body record",
+                "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+              }
+            ],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed root-context SilhouetteSplit FacesOnly/ShelledBody/SolidBody and construction axis/plane directions; other source/layout variants and regeneration unsupported"
+      },
+      "api_comparisons": {
+        "operation_code": true,
+        "operation_name": true,
+        "exact_direction_type": true,
+        "exact_direction_name": true,
+        "direction_origin_cm": true,
+        "direction_vector_or_plane_normal": true,
+        "explicit_target_body_name": true,
+        "historical_body_owner_name_matches_seed_parameter_createdBy": true,
+        "explicit_root_collection_count_matches_API": true,
+        "explicit_root_collection_names_match_API": true,
+        "captured_Feature_bodies_count_matches_root_API_count": true,
+        "additional_body_name_matches_second_API_result": true
+      },
+      "native_structure_checks": {
+        "main_helper_complete_output_equality": true,
+        "method_correspondence": true,
+        "historical_owner_is_original_seed_Extrude": true,
+        "one_explicit_target_root_collection": true,
+        "additional_anchors_are_not_total_API_result_body_count": true,
+        "captured_additional_anchor_count": true,
+        "additional_anchor_is_owned_by_split": true,
+        "additional_body_is_distinct_from_historical_target": true,
+        "additional_body_occurs_in_explicit_root_collection": true
+      },
+      "anchor_vs_collection_observation": {
+        "stored_additional_anchor_count": 1,
+        "API_feature_body_count": 2,
+        "API_root_body_count": 2,
+        "native_root_body_ids": [
+          260,
+          298
+        ],
+        "historical_target_body_id": 260,
+        "historical_target_owner_name": "SilhouetteCylinder"
+      },
+      "API_observations": {
+        "actual_direction": {
+          "entity_type": "adsk::fusion::ConstructionAxis",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2wJAMJ8yJuHAAAA",
+          "name": "X",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "actual_target": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2RmAAA5wnAHiAAAAA==",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 3,
+          "edges": 2,
+          "volume_cm3": 50.265482457434544,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        },
+        "settings": {
+          "operation": 2,
+          "is_suppressed": false,
+          "health_state": 0,
+          "warning": ""
+        },
+        "feature_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2RmAAA5wnAHiAAAAA==",
+            "name": "SilhouetteTarget",
+            "is_solid": true,
+            "faces": 4,
+            "edges": 6,
+            "volume_cm3": 25.132741228718352,
+            "bounding_box_cm": [
+              [
+                1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                3.0,
+                2.5,
+                4.0
+              ]
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2RpAQDEVjOOiAAAAA==",
+            "name": "SilhouetteTarget (1)",
+            "is_solid": true,
+            "faces": 4,
+            "edges": 6,
+            "volume_cm3": 25.132741228718345,
+            "bounding_box_cm": [
+              [
+                -1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                1.0,
+                2.5,
+                4.0
+              ]
+            ]
+          }
+        ],
+        "root_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2RmAAA5wnAHiAAAAA==",
+            "name": "SilhouetteTarget",
+            "is_solid": true,
+            "faces": 4,
+            "edges": 6,
+            "volume_cm3": 25.132741228718352,
+            "bounding_box_cm": [
+              [
+                1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                3.0,
+                2.5,
+                4.0
+              ]
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQuly+dV8Ge7zNl4Xy8zmKE4HqjBSMDZTMDc3NE40szDQNTM2SdQ1MTG21E1KTknRTTFMMzQ1Tk00NUpJBKsFmsGABsD2GSiArQNZb2RpAQDEVjOOiAAAAA==",
+            "name": "SilhouetteTarget (1)",
+            "is_solid": true,
+            "faces": 4,
+            "edges": 6,
+            "volume_cm3": 25.132741228718345,
+            "bounding_box_cm": [
+              [
+                -1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                1.0,
+                2.5,
+                4.0
+              ]
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "unit": "mm",
+            "value": 4.0,
+            "created_by": "SilhouetteCylinder"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "unit": "deg",
+            "value": 0.0,
+            "created_by": "SilhouetteCylinder"
+          }
+        ]
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true,
+      "explicit_target_role_matches_owned_input_proxy": true
+    },
+    {
+      "file": "silhouettesplits-7d78a686cdbb/faces_plane_yz.f3d",
+      "sha256": "e4956cac16edabfee9e50305451b671afdae9e5b2fc0c43d2f942a5ecd58b2d2",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 267,
+            "kind": "SilhouetteSplit",
+            "operation": "FacesOnly",
+            "operation_code": 0,
+            "view_direction": {
+              "entity": {
+                "kind": "ConstructionPlane",
+                "name": "YZ",
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "x_axis": [
+                  -0.0,
+                  1.0,
+                  0.0
+                ],
+                "y_axis": [
+                  0.0,
+                  -0.0,
+                  1.0
+                ],
+                "normal": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "object_id": 44,
+                "origin_container_object_id": 37,
+                "scope": "Native component origin entity; occurrence context unresolved"
+              },
+              "selection_object_id": 268,
+              "descriptor_object_id": 271,
+              "terminal_object_id": 274,
+              "namespace_text": "f9ed859d-c582-4c6a-bfeb-57774d405f2b",
+              "entity_guid_text": "74896100-268a-466d-9824-9e4c0050f180",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            },
+            "stored_direction_method_code": 14,
+            "direction_control_object_id": 268,
+            "target": {
+              "selection_record_object_id": 275,
+              "descriptor_object_id": 278,
+              "native_body_object_id": 260,
+              "body_anchor_object_id": 266,
+              "source_owner_object_id": 234
+            },
+            "stored_additional_body_anchors": [],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed root-context SilhouetteSplit FacesOnly/ShelledBody/SolidBody and construction axis/plane directions; other source/layout variants and regeneration unsupported"
+      },
+      "api_comparisons": {
+        "operation_code": true,
+        "operation_name": true,
+        "exact_direction_type": true,
+        "exact_direction_name": true,
+        "direction_origin_cm": true,
+        "direction_vector_or_plane_normal": true,
+        "explicit_target_body_name": true,
+        "historical_body_owner_name_matches_seed_parameter_createdBy": true,
+        "explicit_root_collection_count_matches_API": true,
+        "explicit_root_collection_names_match_API": true,
+        "captured_Feature_bodies_count_matches_root_API_count": true
+      },
+      "native_structure_checks": {
+        "main_helper_complete_output_equality": true,
+        "method_correspondence": true,
+        "historical_owner_is_original_seed_Extrude": true,
+        "one_explicit_target_root_collection": true,
+        "additional_anchors_are_not_total_API_result_body_count": true,
+        "captured_additional_anchor_count": true
+      },
+      "anchor_vs_collection_observation": {
+        "stored_additional_anchor_count": 0,
+        "API_feature_body_count": 1,
+        "API_root_body_count": 1,
+        "native_root_body_ids": [
+          260
+        ],
+        "historical_target_body_id": 260,
+        "historical_target_owner_name": "SilhouetteCylinder"
+      },
+      "API_observations": {
+        "actual_direction": {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws+3rXOPNvlk7X8dXu7rEK8NVGGkYGymYG5iYWlmaGCga2RmkahrYmaWomtpYWSia5lqkmxgYGqQZmhhAFYLNIMBDYDtM1AAWwey3sQEACQwU66HAAAA",
+          "name": "YZ",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "actual_target": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws+3rXOPNvlk7X8dXu7rEK8NVGGkYGymYG5iYWlmaGCga2RmkahrYmaWomtpYWSia5lqkmxgYGqQZmhhAFYLNIMBDYDtM1AAWwey3sjMAADwds3+iAAAAA==",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 3,
+          "edges": 2,
+          "volume_cm3": 50.265482457434544,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        },
+        "settings": {
+          "operation": 0,
+          "is_suppressed": false,
+          "health_state": 0,
+          "warning": ""
+        },
+        "feature_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws+3rXOPNvlk7X8dXu7rEK8NVGGkYGymYG5iYWlmaGCga2RmkahrYmaWomtpYWSia5lqkmxgYGqQZmhhAFYLNIMBDYDtM1AAWwey3sjMAADwds3+iAAAAA==",
+            "name": "SilhouetteTarget",
+            "is_solid": true,
+            "faces": 6,
+            "edges": 10,
+            "volume_cm3": 50.265482457436704,
+            "bounding_box_cm": [
+              [
+                -1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                3.0,
+                2.5,
+                4.0
+              ]
+            ]
+          }
+        ],
+        "root_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws+3rXOPNvlk7X8dXu7rEK8NVGGkYGymYG5iYWlmaGCga2RmkahrYmaWomtpYWSia5lqkmxgYGqQZmhhAFYLNIMBDYDtM1AAWwey3sjMAADwds3+iAAAAA==",
+            "name": "SilhouetteTarget",
+            "is_solid": true,
+            "faces": 6,
+            "edges": 10,
+            "volume_cm3": 50.265482457436704,
+            "bounding_box_cm": [
+              [
+                -1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                3.0,
+                2.5,
+                4.0
+              ]
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "unit": "mm",
+            "value": 4.0,
+            "created_by": "SilhouetteCylinder"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "unit": "deg",
+            "value": 0.0,
+            "created_by": "SilhouetteCylinder"
+          }
+        ]
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true,
+      "explicit_target_role_matches_owned_input_proxy": true
+    },
+    {
+      "file": "silhouettesplits-f21b83e21695/shelled_hollow_axis_x.f3d",
+      "sha256": "d61783e3fab8e338c04b824af02a6cee738b463ffb9d5ead84ea3d0b89940bbc",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 282,
+            "kind": "SilhouetteSplit",
+            "operation": "ShelledBody",
+            "operation_code": 1,
+            "view_direction": {
+              "entity": {
+                "kind": "ConstructionAxis",
+                "name": "X",
+                "object_id": 39,
+                "origin_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "direction": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "origin_container_object_id": 37,
+                "scope": "Native component origin axis; occurrence transforms unresolved"
+              },
+              "selection_object_id": 283,
+              "descriptor_object_id": 286,
+              "terminal_object_id": 289,
+              "namespace_text": "120f3116-026d-4f29-8904-4ff8e5f8f0db",
+              "entity_guid_text": "59324f76-1fdc-4272-85c7-d451d8918df3",
+              "association": "Explicit selection -> descriptor -> native object reference chain"
+            },
+            "stored_direction_method_code": 7,
+            "direction_control_object_id": 283,
+            "target": {
+              "selection_record_object_id": 290,
+              "descriptor_object_id": 293,
+              "native_body_object_id": 260,
+              "body_anchor_object_id": 266,
+              "source_owner_object_id": 234
+            },
+            "stored_additional_body_anchors": [
+              {
+                "object_id": 339,
+                "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                "native_body_object_id": 335,
+                "source_owner_object_id": 282,
+                "native_uuid_text": "23b93ae6-3e73-401b-86e6-10a99b94eb25",
+                "stored_flags": [
+                  0,
+                  1
+                ],
+                "native_body_reference_offset": 39029,
+                "body_properties": {
+                  "name": "SilhouetteTarget (1)",
+                  "name_status": "Stored custom name recovered",
+                  "stored_body_tag": "0_335",
+                  "component_object_id": 3,
+                  "component_name": "(Unsaved)",
+                  "collection_object_id": 7,
+                  "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+                },
+                "association": "Typed anchor contains an explicit reference to the native body record",
+                "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+              }
+            ],
+            "additional_anchor_scope": "Explicit owned additional body records; not the total result-body collection",
+            "geometry_status": "Observed operation and historical input provenance; silhouette curves, result topology and regeneration unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed root-context SilhouetteSplit FacesOnly/ShelledBody/SolidBody and construction axis/plane directions; other source/layout variants and regeneration unsupported"
+      },
+      "api_comparisons": {
+        "operation_code": true,
+        "operation_name": true,
+        "exact_direction_type": true,
+        "exact_direction_name": true,
+        "direction_origin_cm": true,
+        "direction_vector_or_plane_normal": true,
+        "explicit_target_body_name": true,
+        "historical_body_owner_name_matches_seed_parameter_createdBy": true,
+        "explicit_root_collection_count_matches_API": true,
+        "explicit_root_collection_names_match_API": true,
+        "captured_Feature_bodies_count_matches_root_API_count": true,
+        "additional_body_name_matches_second_API_result": true
+      },
+      "native_structure_checks": {
+        "main_helper_complete_output_equality": true,
+        "method_correspondence": true,
+        "historical_owner_is_original_seed_Extrude": true,
+        "one_explicit_target_root_collection": true,
+        "additional_anchors_are_not_total_API_result_body_count": true,
+        "captured_additional_anchor_count": true,
+        "additional_anchor_is_owned_by_split": true,
+        "additional_body_is_distinct_from_historical_target": true,
+        "additional_body_occurs_in_explicit_root_collection": true
+      },
+      "anchor_vs_collection_observation": {
+        "stored_additional_anchor_count": 1,
+        "API_feature_body_count": 2,
+        "API_root_body_count": 2,
+        "native_root_body_ids": [
+          260,
+          335
+        ],
+        "historical_target_body_id": 260,
+        "historical_target_owner_name": "SilhouetteCylinder"
+      },
+      "API_observations": {
+        "actual_direction": {
+          "entity_type": "adsk::fusion::ConstructionAxis",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZghC/oRhTrr9mJ4v/j6c/PtwGqjBSMDZTMLU0NjJJMzfTNUxLSdY1MTI30rUwTTbXTTExNUyxsDS0SEkzBqsFmsGABsD2GSiArQNZb2wJAEHiisuHAAAA",
+          "name": "X",
+          "origin_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "direction": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "actual_target": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZghC/oRhTrr9mJ4v/j6c/PtwGqjBSMDZTMLU0NjJJMzfTNUxLSdY1MTI30rUwTTbXTTExNUyxsDS0SEkzBqsFmsGABsD2GSiArQNZb2RmAAA9UpFziAAAAA==",
+          "name": "SilhouetteTarget",
+          "is_solid": true,
+          "faces": 6,
+          "edges": 4,
+          "volume_cm3": 13.621945745964766,
+          "bounding_box_cm": [
+            [
+              -1.0,
+              -1.5,
+              0.0
+            ],
+            [
+              3.0,
+              2.5,
+              4.0
+            ]
+          ]
+        },
+        "settings": {
+          "operation": 1,
+          "is_suppressed": false,
+          "health_state": 0,
+          "warning": ""
+        },
+        "feature_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZghC/oRhTrr9mJ4v/j6c/PtwGqjBSMDZTMLU0NjJJMzfTNUxLSdY1MTI30rUwTTbXTTExNUyxsDS0SEkzBqsFmsGABsD2GSiArQNZb2RmAAA9UpFziAAAAA==",
+            "name": "SilhouetteTarget",
+            "is_solid": true,
+            "faces": 7,
+            "edges": 12,
+            "volume_cm3": 6.810972872982681,
+            "bounding_box_cm": [
+              [
+                1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                3.0,
+                2.5,
+                4.0
+              ]
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZghC/oRhTrr9mJ4v/j6c/PtwGqjBSMDZTMLU0NjJJMzfTNUxLSdY1MTI30rUwTTbXTTExNUyxsDS0SEkzBqsFmsGABsD2GSiArQNZb2xsCgDAOE5/iAAAAA==",
+            "name": "SilhouetteTarget (1)",
+            "is_solid": true,
+            "faces": 7,
+            "edges": 12,
+            "volume_cm3": 6.810972872982673,
+            "bounding_box_cm": [
+              [
+                -1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                1.0,
+                2.5,
+                4.0
+              ]
+            ]
+          }
+        ],
+        "root_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZghC/oRhTrr9mJ4v/j6c/PtwGqjBSMDZTMLU0NjJJMzfTNUxLSdY1MTI30rUwTTbXTTExNUyxsDS0SEkzBqsFmsGABsD2GSiArQNZb2RmAAA9UpFziAAAAA==",
+            "name": "SilhouetteTarget",
+            "is_solid": true,
+            "faces": 7,
+            "edges": 12,
+            "volume_cm3": 6.810972872982681,
+            "bounding_box_cm": [
+              [
+                1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                3.0,
+                2.5,
+                4.0
+              ]
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZghC/oRhTrr9mJ4v/j6c/PtwGqjBSMDZTMLU0NjJJMzfTNUxLSdY1MTI30rUwTTbXTTExNUyxsDS0SEkzBqsFmsGABsD2GSiArQNZb2xsCgDAOE5/iAAAAA==",
+            "name": "SilhouetteTarget (1)",
+            "is_solid": true,
+            "faces": 7,
+            "edges": 12,
+            "volume_cm3": 6.810972872982673,
+            "bounding_box_cm": [
+              [
+                -1.0,
+                -1.5,
+                0.0
+              ],
+              [
+                1.0,
+                2.5,
+                4.0
+              ]
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "unit": "mm",
+            "value": 4.0,
+            "created_by": "SilhouetteCylinder"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "unit": "deg",
+            "value": 0.0,
+            "created_by": "SilhouetteCylinder"
+          },
+          {
+            "name": "d3",
+            "role": "innerThickness",
+            "unit": "mm",
+            "value": 0.2,
+            "created_by": "SilhouetteHollowSource"
+          }
+        ]
+      },
+      "getter_errors": [],
+      "main_reader_summary_exact": true,
+      "explicit_target_role_matches_owned_input_proxy": true
+    }
+  ],
+  "failed_API_attempts": [
+    {
+      "capture_folder": "silhouettesplits-7d78a686cdbb",
+      "case": "shelled_axis_x",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSilhouetteSplitModes.py\", line 72, in run\n    feature = root.features.silhouetteSplitFeatures.add(inputs)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 68343, in add\n    return _fusion.SilhouetteSplitFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : SilhouetteSplit1 / Compute Failed // SILHOUETTE_SPLIT_SHEET_FAIL - Failed to create splitting surface\n",
+      "partial": {
+        "file": "shelled_axis_x.f3d",
+        "getter_errors": [],
+        "requested": {
+          "operation": 1,
+          "direction_type": "adsk::fusion::ConstructionAxis",
+          "direction_name": "X"
+        }
+      },
+      "archive_exported": false
+    }
+  ],
+  "malformed_checks": [
+    {
+      "name": "unknown operation control3",
+      "rejected": true,
+      "reason": "Unobserved SilhouetteSplit operation/control fields"
+    },
+    {
+      "name": "additional anchor count disagrees with FacesOnly",
+      "rejected": true,
+      "reason": "Unobserved SilhouetteSplit additional body-anchor count"
+    },
+    {
+      "name": "direction control owner replaced by historical seed owner",
+      "rejected": true,
+      "reason": "SilhouetteSplit direction count/owner correspondence changed"
+    },
+    {
+      "name": "direction native identity leaf replaced by BRepBody ID",
+      "rejected": true,
+      "reason": "Only observed explicit construction direction sources supported"
+    }
+  ],
+  "summary": {
+    "successful_archives": 5,
+    "preserved_failed_API_attempts": 1,
+    "getter_errors": 0,
+    "API_comparisons": 57,
+    "native_structure_and_main_equality_checks": 36,
+    "malformed_checks": 4,
+    "all_passed": true
+  }
+}

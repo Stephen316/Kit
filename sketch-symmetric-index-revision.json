@@ -1,0 +1,50 @@
+{
+  "status": "Revised rectangular seed-rounding candidate; not proven by new boundary captures yet",
+  "recorded_utc": "2026-10-20T22:54:27.361680+00:00",
+  "original_frozen_candidate": "sketch-symmetric-index-candidate.json",
+  "reason": "All masks matched original candidate but API pre-array layout disproved its even rectangular source location. Edge-index holdouts did not distinguish the rounding hypotheses.",
+  "revised_rule": {
+    "circular_seed": "quantity//2, unchanged",
+    "rectangular_seed": "((qOne-1)//2 if symmetricOne else0) + qOne*((qTwo-1)//2 if symmetricTwo else0)",
+    "normalization": "r+1 if r<seed, r if r>seed, reject r==seed; unchanged"
+  },
+  "boundary_predictions_before_capture_read": {
+    "rectangular_first_even_boundary": {
+      "qOne": 4,
+      "qTwo": 2,
+      "symmetry": [
+        true,
+        false
+      ],
+      "revised_seed_index": 1,
+      "requested_api_indices": [
+        1
+      ],
+      "revised_expected_native_indices": [
+        2
+      ],
+      "original_expected_native_indices": [
+        1
+      ]
+    },
+    "rectangular_both_boundary": {
+      "qOne": 3,
+      "qTwo": 4,
+      "symmetry": [
+        true,
+        true
+      ],
+      "revised_seed_index": 4,
+      "requested_api_indices": [
+        4
+      ],
+      "revised_expected_native_indices": [
+        5
+      ],
+      "original_expected_native_indices": [
+        4
+      ]
+    }
+  },
+  "identity_scope": "Native IDs remain taken only from exported role lists. API layout checks challenge the seed-position model; they do not assign native identities."
+}

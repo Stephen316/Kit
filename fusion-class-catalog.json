@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 521,
+  "file_count": 539,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -319,6 +319,11 @@
     "rectsymmetry-f09c57dcfd51/symmetric_both_odd.f3d",
     "rectsymmetry-f09c57dcfd51/symmetric_one.f3d",
     "rectsymmetry-f09c57dcfd51/symmetric_two.f3d",
+    "remainingbodyinputs-7b3357274e85/mirror_boss_faces.f3d",
+    "remainingbodyinputs-7b3357274e85/mirror_construction_plane.f3d",
+    "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d",
+    "remainingbodyinputs-7b3357274e85/mirror_two_features.f3d",
+    "remainingbodyinputs-7b3357274e85/scale_two_sketches.f3d",
     "revolveaxes-14700158dba9/brep_edge_offset_x.f3d",
     "revolveaxes-36bd04ac77e1/custom_two_points.f3d",
     "revolveaxes-a83b542c4a07/brep_edge.f3d",
@@ -342,6 +347,11 @@
     "scaleshellinputs-97ef1cfd19e4/scale_vertex.f3d",
     "scaleshellinputs-97ef1cfd19e4/shell_body_and_other_face.f3d",
     "scaleshellinputs-97ef1cfd19e4/shell_two_bodies.f3d",
+    "silhouettesplits-7d78a686cdbb/faces_axis_x.f3d",
+    "silhouettesplits-7d78a686cdbb/faces_axis_y.f3d",
+    "silhouettesplits-7d78a686cdbb/faces_plane_yz.f3d",
+    "silhouettesplits-7d78a686cdbb/solid_axis_x.f3d",
+    "silhouettesplits-f21b83e21695/shelled_hollow_axis_x.f3d",
     "sketchcurvedpatterns-185c2406ef52/circular_arc.f3d",
     "sketchcurvedpatterns-185c2406ef52/circular_ellipse.f3d",
     "sketchcurvedpatterns-185c2406ef52/rectangular_arc.f3d",
@@ -377,6 +387,14 @@
     "sketchprojections-67c0c4531b8f/linked_point.f3d",
     "sketchprojections-8fedd685854a/broken_line.f3d",
     "sketchprojections-8fedd685854a/unlinked_line.f3d",
+    "sketchsymmetricindices-2ba1d336c9cf/circular_even_high.f3d",
+    "sketchsymmetricindices-2ba1d336c9cf/circular_odd_low.f3d",
+    "sketchsymmetricindices-2ba1d336c9cf/rectangular_first_even.f3d",
+    "sketchsymmetricindices-2ba1d336c9cf/rectangular_second_odd.f3d",
+    "sketchsymmetricindices-bde2c81eaa4a/circular_odd_holdout.f3d",
+    "sketchsymmetricindices-bde2c81eaa4a/rectangular_both_holdout.f3d",
+    "sketchsymmetricindices-daa09c9428a1/rectangular_both_boundary.f3d",
+    "sketchsymmetricindices-daa09c9428a1/rectangular_first_even_boundary.f3d",
     "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
     "sketchtextcontrols-9318aff8ae89/center.f3d",
     "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d",
@@ -524,8 +542,8 @@
     "userparameters-e9c6959ff5fd/text.f3d",
     "userparameters-e9c6959ff5fd/unitless.f3d"
   ],
-  "class_count": 350,
-  "classes_with_observed_semantics": 54,
+  "class_count": 359,
+  "classes_with_observed_semantics": 59,
   "classes": [
     {
       "class_guid": "00D157C2-2332-4BD5-BB53-048C4081D1C3",
@@ -609,6 +627,20 @@
       ],
       "stored_versions_or_flags": [
         0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
+      "class_guid": "046D6232-EDAB-414D-9CB0-A2E3F115AE1C",
+      "base_class_guids": [
+        "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        12
       ],
       "observed_semantics": [],
       "example_files": []
@@ -2137,7 +2169,8 @@
       "observed_semantics": [],
       "example_files": [
         "splinepatches-900d152c2380/splinepatches.f3d",
-        "splinepatches-ac5e846e59c0/splinepatches.f3d"
+        "splinepatches-ac5e846e59c0/splinepatches.f3d",
+        "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d"
       ]
     },
     {
@@ -2476,7 +2509,8 @@
       "observed_semantics": [],
       "example_files": [
         "splinepatches-900d152c2380/splinepatches.f3d",
-        "splinepatches-ac5e846e59c0/splinepatches.f3d"
+        "splinepatches-ac5e846e59c0/splinepatches.f3d",
+        "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d"
       ]
     },
     {
@@ -2868,6 +2902,24 @@
       "example_files": []
     },
     {
+      "class_guid": "66E375EA-40F1-4115-8D83-0F23DD30593E",
+      "base_class_guids": [
+        "54F9ACE8-B5B8-4A6E-B582-64F629511DE4"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Unsupported feature with stored label: DerivedInstance"
+      ],
+      "example_files": [
+        "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d"
+      ]
+    },
+    {
       "class_guid": "693D6578-4BCE-44F8-B15A-2CE5162A23EE",
       "base_class_guids": [
         "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47"
@@ -2991,6 +3043,25 @@
         "analytic-86a12b291d0a/analytic.f3d",
         "assembly-acc48a9dc05d/assembly.f3d",
         "bodymodes-405fbd002680/mirror_xy.f3d"
+      ]
+    },
+    {
+      "class_guid": "71BBEDD5-81F8-4585-816B-05908C207204",
+      "base_class_guids": [
+        "046D6232-EDAB-414D-9CB0-A2E3F115AE1C"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Unsupported feature with stored label: MirrorComponent",
+        "Observed occurrence Mirror source/derived provenance; controls and regeneration unsupported"
+      ],
+      "example_files": [
+        "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d"
       ]
     },
     {
@@ -3204,7 +3275,8 @@
         0
       ],
       "observed_semantics": [
-        "Named feature: CreateComponent"
+        "Named feature: CreateComponent",
+        "Unsupported feature with stored label: CreateComponent"
       ],
       "example_files": [
         "assembly-acc48a9dc05d/assembly.f3d",
@@ -4008,6 +4080,20 @@
       "example_files": []
     },
     {
+      "class_guid": "9E2D2819-C150-4A61-8B38-38445E107D10",
+      "base_class_guids": [
+        ""
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "9F412B74-4FC8-400B-B922-29E7DB86DD33",
       "base_class_guids": [
         "735FD678-4ADD-4F4B-A8B1-88CAA010394E"
@@ -4201,6 +4287,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "analytic-86a12b291d0a/analytic.f3d",
         "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
+      "class_guid": "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D",
+      "base_class_guids": [
+        "C3F8A1D2-5E7B-4A9C-8D6F-2B1C4E5A9F7D"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: Mirror"
+      ],
+      "example_files": [
+        "remainingbodyinputs-7b3357274e85/mirror_construction_plane.f3d"
       ]
     },
     {
@@ -4516,6 +4620,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "analytic-86a12b291d0a/analytic.f3d",
         "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
+      "class_guid": "B1E5B971-C007-48C9-8FF5-F4CCD91F87A4",
+      "base_class_guids": [
+        "D7015B81-AB4D-4C89-BED7-AA4411E1964A"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        10
+      ],
+      "observed_semantics": [
+        "Unsupported feature with stored label: Derived Base Feature"
+      ],
+      "example_files": [
+        "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d"
       ]
     },
     {
@@ -4947,6 +5069,20 @@
       ]
     },
     {
+      "class_guid": "C3F8A1D2-5E7B-4A9C-8D6F-2B1C4E5A9F7D",
+      "base_class_guids": [
+        "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "C444E6AD-33DC-4877-B037-A3A5518856B1",
       "base_class_guids": [
         "3EF91258-FE47-45A5-957D-1295C3679496"
@@ -5285,6 +5421,26 @@
       ]
     },
     {
+      "class_guid": "D1C361B7-FA73-4D59-9406-066780667135",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: SilhouetteSplit"
+      ],
+      "example_files": [
+        "silhouettesplits-7d78a686cdbb/faces_axis_x.f3d",
+        "silhouettesplits-7d78a686cdbb/faces_axis_y.f3d",
+        "silhouettesplits-7d78a686cdbb/faces_plane_yz.f3d"
+      ]
+    },
+    {
       "class_guid": "D1CE84CC-84E0-4BA0-95D8-4DAE97E6EBEA",
       "base_class_guids": [
         "5C069ACB-169F-4555-9792-815B4671DDA0"
@@ -5458,7 +5614,7 @@
         1
       ],
       "observed_semantics": [
-        "Unsupported feature with stored label: CopyPaste"
+        "Named feature: CopyPaste"
       ],
       "example_files": [
         "assembly-acc48a9dc05d/assembly.f3d"
@@ -5865,6 +6021,22 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "E8F5A2B1-4C3D-4E7F-9A8B-1D2E3F4A5B6C",
+      "base_class_guids": [
+        "CB818863-9C9D-432E-858A-4B4B3963F7E0"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "remainingbodyinputs-7b3357274e85/mirror_construction_plane.f3d"
+      ]
     },
     {
       "class_guid": "E9577D96-F5AA-4B6A-B7DE-AB4B6FA509D1",

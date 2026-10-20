@@ -21,12 +21,14 @@ def primary_records(records):
     return {identity: items[0] for identity, items in grouped.items() if len(items) == 1}
 
 
-def decode_scale_sketch(data, records, body, feature, known, features):
+def decode_scale_sketch(data, records, body, feature, known, features, *, allowed_sketch_counts=(1,)):
     """A bounded scalar-reader opt-in, followed by explicit native Sketch identity."""
-    if feature['class_guid'] != SCALE or body[32:37] != bytes.fromhex('0101000000'):
+    count = struct.unpack_from('<I', body, 33)[0] if len(body) >= 37 else 0
+    if (feature['class_guid'] != SCALE or body[32:33] != b'\1'
+            or count not in allowed_sketch_counts or not 1 <= count <= 1024):
         raise ValueError('Only observed uniform single-Sketch Scale layout supported')
     result = decode_body_tool(data, records, body, feature, known,
-                             allowed_uniform_scale_prefixes=(bytes.fromhex('0101000000'),))
+                             allowed_uniform_scale_prefixes=(b'\1'+struct.pack('<I', count),))
     primary = primary_records(records)
 
     def typed(identity, guid):
@@ -35,37 +37,43 @@ def decode_scale_sketch(data, records, body, feature, known, features):
             raise ValueError('Scale Sketch typed reference missing, ambiguous or wrong class')
         return data[record.body:record.end]
 
-    descriptor_id = reference(body, 37)
-    descriptor = typed(descriptor_id, DESCRIPTOR)
-    if (len(descriptor) != 252 or descriptor[:2] != bytes(2)
-            or struct.unpack_from('<I', descriptor, 13)[0] != 1
-            or reference(descriptor, 241) != feature['object_id']):
-        raise ValueError('Unsupported Scale Sketch descriptor count/owner')
-    namespace, cursor = read_string(descriptor, 17)
-    entity_uuid, cursor = read_string(descriptor, cursor)
-    for text in (namespace, entity_uuid):
-        if len(text) != 36:
-            raise ValueError('Unsupported Scale Sketch UUID length')
-        uuid.UUID(text)
-    if cursor != 169 or descriptor[cursor:cursor+12] != struct.pack('<QI', 2, 0):
-        raise ValueError('Only observed root-context Scale Sketch descriptor supported')
-    leaf_id = reference(descriptor, 2)
-    leaf = typed(leaf_id, LEAF)
-    if len(leaf) != 10 or leaf[:2] != bytes(2):
-        raise ValueError('Unsupported Scale Sketch identity leaf')
-    sketch_id = struct.unpack_from('<Q', leaf, 2)[0]
-    matches = [s for s in features if s['kind'] == 'Sketch' and s['sketch_object_id'] == sketch_id]
-    if len(matches) != 1:
-        raise ValueError('Explicit Scale Sketch ID unresolved or ambiguous')
-    sketch = matches[0]
-    typed(sketch_id, '44A64366-4BD3-4B24-881A-F94C206E8F2D')
-    result.update(input_kind='Sketch', input_count=1, input_body_count=0, input_face_count=0,
-                  input_selections=[{'kind': 'Sketch', 'descriptor_object_id': descriptor_id,
-                                     'terminal_object_id': leaf_id, 'sketch_object_id': sketch_id,
-                                     'sketch_feature_object_id': sketch['object_id'], 'sketch_name': sketch['name'],
-                                     'namespace_text': namespace, 'entity_guid_text': entity_uuid,
-                                     'association': 'Owned typed descriptor and native Sketch-ID leaf; no geometry-based matching'}],
-                  input_selection_status='Observed single root-context Sketch input; scale-history replay unsupported')
+    selected = []
+    for index in range(count):
+        descriptor_id = reference(body, 37+11*index)
+        descriptor = typed(descriptor_id, DESCRIPTOR)
+        if (len(descriptor) != 252 or descriptor[:2] != bytes(2)
+                or struct.unpack_from('<I', descriptor, 13)[0] != 1
+                or reference(descriptor, 241) != feature['object_id']):
+            raise ValueError('Unsupported Scale Sketch descriptor count/owner')
+        namespace, cursor = read_string(descriptor, 17)
+        entity_uuid, cursor = read_string(descriptor, cursor)
+        for text in (namespace, entity_uuid):
+            if len(text) != 36:
+                raise ValueError('Unsupported Scale Sketch UUID length')
+            uuid.UUID(text)
+        if cursor != 169 or descriptor[cursor:cursor+12] != struct.pack('<QI', 2, 0):
+            raise ValueError('Only observed root-context Scale Sketch descriptor supported')
+        leaf_id = reference(descriptor, 2)
+        leaf = typed(leaf_id, LEAF)
+        if len(leaf) != 10 or leaf[:2] != bytes(2):
+            raise ValueError('Unsupported Scale Sketch identity leaf')
+        sketch_id = struct.unpack_from('<Q', leaf, 2)[0]
+        matches = [s for s in features if s['kind'] == 'Sketch' and s['sketch_object_id'] == sketch_id]
+        if len(matches) != 1:
+            raise ValueError('Explicit Scale Sketch ID unresolved or ambiguous')
+        sketch = matches[0]
+        typed(sketch_id, '44A64366-4BD3-4B24-881A-F94C206E8F2D')
+        selected.append({'kind': 'Sketch', 'descriptor_object_id': descriptor_id,
+                         'terminal_object_id': leaf_id, 'sketch_object_id': sketch_id,
+                         'sketch_feature_object_id': sketch['object_id'], 'sketch_name': sketch['name'],
+                         'namespace_text': namespace, 'entity_guid_text': entity_uuid,
+                         'association': 'Owned typed descriptor and native Sketch-ID leaf; no geometry-based matching'})
+    if len({item['sketch_object_id'] for item in selected}) != count:
+        raise ValueError('Duplicate Scale Sketch source identity')
+    result.update(input_kind='Sketch', input_count=count, input_body_count=0, input_face_count=0,
+                  input_selections=selected,
+                  input_selection_status='Observed single root-context Sketch input; scale-history replay unsupported' if count == 1
+                      else 'Observed ordered root-context Sketch inputs; scale-history replay unsupported')
     return result
 
 

@@ -82,7 +82,7 @@ def decode_body_tool_selections(data, records, features, body_selections=None):
         kind=feature['kind']
         if kind not in ('Scale','Mirror','Shell') or 'tool_settings' not in feature:continue
         if kind == 'Scale' and feature['tool_settings'].get('input_kind') == 'Sketch':continue
-        if kind == 'Mirror' and feature['tool_settings'].get('input_kind') == 'Feature':continue
+        if kind == 'Mirror' and feature['tool_settings'].get('input_kind') in ('Feature','Face'):continue
         owner=feature['object_id']
         record=primary.get(owner)
         if record is None:continue

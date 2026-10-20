@@ -29,7 +29,8 @@ def captured_symmetric_suppression(indices, settings, total):
     raise ValueError("Uncaptured symmetric quantity/symmetry/native suppression-index combination")
 
 
-def decode_sketch_pattern_coverage(data, records, features):
+def decode_sketch_pattern_coverage(data, records, features, *,
+                                   symmetric_suppression_mapper=captured_symmetric_suppression):
     """Return new patterns/unresolved; no feature mutation or geometry additions."""
     sketches = {f["sketch_object_id"]:f for f in features if f["kind"] == "Sketch"}
     geometry = {g["object_id"]:g for s in sketches.values() for g in s.get("geometry",[])}
@@ -56,7 +57,7 @@ def decode_sketch_pattern_coverage(data, records, features):
                 continue
             pattern, owner = decode_sketch_pattern(data,record,sketches,geometry,
                 member_kinds=("Line","Circle","Point"), allow_single_direction=True,
-                symmetric_suppression_mapper=captured_symmetric_suppression)
+                symmetric_suppression_mapper=symmetric_suppression_mapper)
             if pattern["seed_entity_count"] != 1:
                 raise ValueError("Only captured single-seed sketch-pattern coverage variants supported")
             seed = geometry[pattern["entity_ids"][0]]

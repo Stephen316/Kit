@@ -32,7 +32,7 @@ from decode_dimension_controls import decode_dimension_controls
 from decode_dimension_control_modes import decode_dimension_control_modes
 from decode_modeling import decode_modeling
 from decode_placement import decode_placement
-from decode_selection import decode_selections
+from decode_selection import decode_selections, known_construction_entities
 from decode_revolve_axes import decode_revolve_axes
 from decode_tools import decode_tools
 from decode_pipe_paths import inspect_pipe_edge_path
@@ -58,9 +58,12 @@ from decode_body_tool_selections import decode_body_tool_selections
 from decode_component_creation import decode_component_creation
 from decode_pin_provenance import decode_pin_provenance
 from decode_selection_context_recipes import decode_selection_context_recipes
-from decode_sketch_pattern_coverage import decode_sketch_pattern_coverage
+from decode_sketch_symmetric_indices import decode_sketch_symmetric_indices
 from decode_scale_inputs import decode_scale_vertex_points
 from decode_direct_body_features import decode_direct_body_features
+from decode_copy_paste_occurrences import decode_copy_paste_occurrences
+from decode_silhouette_splits import decode_silhouette_splits
+from decode_remaining_body_inputs import decode_remaining_body_input, MIRROR_COMPONENT, MIRROR_DATUM
 from decode_brep_recipes import decode_recipes
 from decode_component_body_proxies import decode_component_body_proxies
 from decode_combine import attach_combine_bodies
@@ -236,7 +239,7 @@ def decode_basics(path, zstd_library=None):
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
         curved_pattern_summary = decode_sketch_mixed_patterns(data, records, features)
-        pattern_coverage_summary = decode_sketch_pattern_coverage(data, records, features)
+        pattern_coverage_summary = decode_sketch_symmetric_indices(data, records, features)
         curved_sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
         recovered_curve_ids = set()
         for geometry in curved_pattern_summary["additional_geometry"]:
@@ -394,6 +397,7 @@ def decode_basics(path, zstd_library=None):
         timeline_summary = decode_timeline(data, records, features)
         dependency_summary = decode_dependencies(data, records, features, assembly_summary)
         component_creation_summary = decode_component_creation(data, records, features, assembly_summary)
+        copy_paste_summary = decode_copy_paste_occurrences(data, records, features, assembly_summary, component_creation_summary)
         pin_provenance_summary = decode_pin_provenance(data, records, assembly_summary, features)
         decoded_assembly_feature_ids = set()
         feature_by_id = {f["object_id"]: f for f in features}
@@ -410,11 +414,17 @@ def decode_basics(path, zstd_library=None):
             feature.update(kind="Pin", pin_provenance=pin,
                            decode_level="Observed explicit Pin occurrence provenance; current grounded state unresolved")
             decoded_assembly_feature_ids.add(feature["object_id"])
+        for copied in copy_paste_summary["decoded"]:
+            feature = feature_by_id[copied["feature_object_id"]]
+            feature.update(kind="CopyPaste", copy_paste_occurrence=copied,
+                           decode_level="Observed explicit source/created occurrence links and historical caches; general copying/replay unsupported")
+            decoded_assembly_feature_ids.add(feature["object_id"])
         discovery_summary["unsupported_features"] = [f for f in discovery_summary["unsupported_features"]
                                                      if f["object_id"] not in decoded_assembly_feature_ids]
         discovery_summary["unsupported_feature_count"] = len(discovery_summary["unsupported_features"])
         discovery_summary["class_decoded_component_creation_count"] = len(component_creation_summary["decoded"])
         discovery_summary["class_decoded_pin_provenance_count"] = len(pin_provenance_summary["decoded"])
+        discovery_summary["class_decoded_copy_paste_count"] = len(copy_paste_summary["decoded"])
         body_property_summary = decode_body_properties(data, records, assembly_summary)
         body_selection_summary = decode_body_selections(data, records, body_property_summary)
         component_body_summary = decode_component_body_proxies(data, records, body_selection_summary, assembly_summary)
@@ -427,6 +437,7 @@ def decode_basics(path, zstd_library=None):
         body_selection_summary["component_context_scope"] = component_body_summary["scope"]
         selection_context_summary = decode_selection_context_recipes(data, records, body_selection_summary)
         direct_body_summary = decode_direct_body_features(data, records, body_selection_summary)
+        silhouette_summary = decode_silhouette_splits(data, records, features, body_selection_summary)
         direct_body_ids = set()
         for direct_body in direct_body_summary["decoded"]:
             feature = feature_by_id.get(direct_body["feature_object_id"])
@@ -434,11 +445,47 @@ def decode_basics(path, zstd_library=None):
                 feature.update(kind=direct_body["kind"], direct_body_feature=direct_body,
                                decode_level="Observed explicit body provenance; general direct editing, lifecycle and regeneration unsupported")
                 direct_body_ids.add(feature["object_id"])
+        silhouette_ids = set()
+        for split in silhouette_summary["decoded"]:
+            feature = feature_by_id[split["feature_object_id"]]
+            feature.update(kind="SilhouetteSplit", tool_settings={k: v for k, v in split.items() if k not in ("feature_object_id", "kind")},
+                           decode_level="Observed SilhouetteSplit operation and historical source selections; silhouette geometry/regeneration unsupported")
+            silhouette_ids.add(feature["object_id"])
+            tool_summary["decoded"].append({"object_id": feature["object_id"], "kind": "SilhouetteSplit"})
         discovery_summary["unsupported_features"] = [f for f in discovery_summary["unsupported_features"]
-                                                     if f["object_id"] not in direct_body_ids]
+                                                     if f["object_id"] not in direct_body_ids|silhouette_ids]
         discovery_summary["unsupported_feature_count"] = len(discovery_summary["unsupported_features"])
         discovery_summary["class_decoded_direct_body_feature_count"] = len(direct_body_ids)
+        discovery_summary["class_decoded_silhouette_split_count"] = len(silhouette_ids)
         attach_combine_bodies(features, body_selection_summary)
+        remaining_input_summary = {"decoded_settings": [], "partial": [], "unresolved": [],
+                                   "scope": "Observed additional feature/face/Sketch inputs and separate occurrence/datum provenance; unavailable controls and regeneration remain unresolved"}
+        known_input_entities = known_construction_entities(data, records, features)
+        resolved_input_ids = set()
+        for feature in features:
+            settings = feature.get("tool_settings", {})
+            candidate = (feature["class_guid"] in (MIRROR_COMPONENT, MIRROR_DATUM)
+                         or feature["kind"] == "Mirror" and settings.get("input_kind") is None
+                         or feature["kind"] == "Scale" and "tool_settings" not in feature)
+            if not candidate:
+                continue
+            source_record = next(r for r in records if r.start == feature["record_offset"])
+            try:
+                inputs = decode_remaining_body_input(data, records, data[source_record.body:source_record.end],
+                                                     feature, known_input_entities, features, assembly_summary)
+                if inputs["status"] == "DecodedSettings":
+                    feature.update(tool_settings=inputs["settings"],
+                                   decode_level="Observed additional input identities and available controls; topology and regeneration unsupported")
+                    remaining_input_summary["decoded_settings"].append({"feature_object_id": feature["object_id"], "settings": inputs["settings"]})
+                    resolved_input_ids.add(feature["object_id"])
+                    if not any(item["object_id"] == feature["object_id"] for item in tool_summary["decoded"]):
+                        tool_summary["decoded"].append({"object_id": feature["object_id"], "kind": feature["kind"]})
+                else:
+                    feature["input_provenance"] = inputs["provenance"]
+                    remaining_input_summary["partial"].append(inputs["provenance"])
+            except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
+                remaining_input_summary["unresolved"].append({"feature_object_id": feature["object_id"], "reason": str(error)})
+        tool_summary["unresolved"] = [item for item in tool_summary["unresolved"] if item["object_id"] not in resolved_input_ids]
         scale_vertex_summary = decode_scale_vertex_points(data, records, features, body_selection_summary)
         for selected_point in scale_vertex_summary["decoded"]:
             feature_by_id[selected_point["feature_object_id"]]["tool_settings"].update(
@@ -498,6 +545,7 @@ def decode_basics(path, zstd_library=None):
             "assembly_decoding": assembly_summary,
             "component_creations": component_creation_summary,
             "pin_provenance": pin_provenance_summary,
+            "copy_paste_occurrences": copy_paste_summary,
             "joint_decoding": joint_summary,
             "dependency_decoding": dependency_summary,
             "body_blob_bindings": body_binding_summary,
@@ -505,6 +553,8 @@ def decode_basics(path, zstd_library=None):
             "body_selections": body_selection_summary,
             "selection_context_recipes": selection_context_summary,
             "direct_body_features": direct_body_summary,
+            "silhouette_splits": silhouette_summary,
+            "remaining_body_inputs": remaining_input_summary,
             "scale_vertex_points": scale_vertex_summary,
             "body_tool_selections": body_tool_selection_summary,
             "tool_body_inputs": tool_body_summary,

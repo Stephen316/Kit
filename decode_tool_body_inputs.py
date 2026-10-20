@@ -96,6 +96,11 @@ def decode_tool_body_inputs(data, records, features, body_selections):
             if (len(matches) == 1 and matches[0]["kind"] == "Body"
                     and ids == [matches[0]["descriptor_object_id"]]):
                 return "BodyTool", "Decoded explicit Boundary Fill body-tool partition agrees with the selected descriptor"
+        if feature["kind"] == "SilhouetteSplit":
+            target = settings.get("target", {})
+            if (target.get("selection_record_object_id") == selected["selection_record_object_id"]
+                    and ids == [target.get("descriptor_object_id")]):
+                return "TargetBody", "Decoded explicit SilhouetteSplit target field agrees with the owned proxy and descriptor"
         return "OwnedBodySelection", "Owned referenced body selection; operation-specific input role remains unresolved"
 
     for owner_id, selections in by_owner.items():

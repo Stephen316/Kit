@@ -1,0 +1,3421 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "circular_odd_low.f3d",
+      "requested": {
+        "stage": "discovery",
+        "quantity": 5,
+        "total_angle_expression": "180 deg",
+        "is_symmetric": true,
+        "center_point": {
+          "identity": {
+            "type": "adsk::fusion::SketchPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBgYAY9SM1o4AAAA=",
+            "is_valid": true,
+            "getter_errors": []
+          },
+          "sketch_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "getter_errors": []
+        },
+        "is_suppressed": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "suppressed_api_indices": [
+          0
+        ]
+      },
+      "seeds_before_pattern": [
+        {
+          "api_order_index": 0,
+          "identity": {
+            "type": "adsk::fusion::SketchCircle",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMFKwMqNAAqBWIDAPEKsGySAAAA",
+            "is_valid": true,
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "is_reference": false,
+          "is_fixed": false,
+          "is_2d": true,
+          "is_construction": false,
+          "sketch_name": "SymmetricIndexProbe",
+          "attached_constraints": [],
+          "center_point": {
+            "identity": {
+              "type": "adsk::fusion::SketchPoint",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBoYA9eSLoY4AAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "sketch_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "world_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "getter_errors": []
+          },
+          "radius_cm": 0.2999999999999998,
+          "geometry_type": "adsk::core::Circle3D",
+          "geometry_data_sketch_cm": [
+            true,
+            [
+              2.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            0.2999999999999998
+          ]
+        }
+      ],
+      "settings": {
+        "identity": {
+          "type": "adsk::fusion::CircularPatternConstraint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmAgD8XUGciAAAAA==",
+          "is_valid": true,
+          "getter_errors": []
+        },
+        "getter_errors": [],
+        "parameters": {
+          "quantity": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmBgDQPE9yiAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d1",
+            "role": "C-Pattern1-Count",
+            "value": 5.0,
+            "expression": "5",
+            "unit": ""
+          },
+          "totalAngle": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmCQBBIfDiiAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d2",
+            "role": "C-Pattern1-Angle",
+            "value": 3.141592653589793,
+            "expression": "180 deg",
+            "unit": "deg"
+          }
+        },
+        "is_symmetric": true,
+        "is_suppressed": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "entities": [
+          {
+            "api_order_index": 0,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMFKwMqNAAqBWIDAPEKsGySAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::CircularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmAgD8XUGciAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBoYA9eSLoY4AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "world_cm": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                2.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          }
+        ],
+        "created_entities": [
+          {
+            "api_order_index": 0,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMFKwMqNAAqNTBTMAAALaK5a5IAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::CircularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmAgD8XUGciAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBqYA7CDmpo4AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                2.1213203435596424,
+                -0.7071067811865477,
+                0.0
+              ],
+              "world_cm": [
+                2.1213203435596424,
+                -0.7071067811865477,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                2.1213203435596424,
+                -0.7071067811865477,
+                0.0
+              ],
+              [
+                -0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 1,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMFKwMqNAAqNQA6BgAnjydhkgAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::CircularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmAgD8XUGciAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBuYAwEHoSI4AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                0.7071067811865474,
+                2.121320343559643,
+                0.0
+              ],
+              "world_cm": [
+                0.7071067811865474,
+                2.121320343559643,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                0.7071067811865474,
+                2.121320343559643,
+                0.0
+              ],
+              [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 2,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMFKwMqNAAqNQSyAPq5iNeSAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::CircularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmAgD8XUGciAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBpYAx2xQr44AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                -0.9999999999999996,
+                2.0,
+                0.0
+              ],
+              "world_cm": [
+                -0.9999999999999996,
+                2.0,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                -0.9999999999999996,
+                2.0,
+                0.0
+              ],
+              [
+                0.0,
+                -0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          }
+        ],
+        "center_point": {
+          "identity": {
+            "type": "adsk::fusion::SketchPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBgYAY9SM1o4AAAA=",
+            "is_valid": true,
+            "getter_errors": []
+          },
+          "sketch_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "getter_errors": []
+        },
+        "all_sketch_constraints": [
+          {
+            "type": "adsk::fusion::CircularPatternConstraint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmAgD8XUGciAAAAA==",
+            "is_valid": true,
+            "getter_errors": []
+          }
+        ],
+        "all_model_parameters": [
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmBgDQPE9yiAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d1",
+            "role": "C-Pattern1-Count",
+            "value": 5.0,
+            "expression": "5",
+            "unit": ""
+          },
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmCQBBIfDiiAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d2",
+            "role": "C-Pattern1-Angle",
+            "value": 3.141592653589793,
+            "expression": "180 deg",
+            "unit": "deg"
+          }
+        ],
+        "input_direction_getters": {
+          "getter_errors": []
+        },
+        "pre_suppression": {
+          "getter_errors": [],
+          "is_suppressed": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "created_entities": [
+            {
+              "api_order_index": 0,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMFKwMqNAAqNTBRMAAAQ3Y9aJIAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::CircularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmAgD8XUGciAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBsYA2YWFT44AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  1.0000000000000004,
+                  -1.9999999999999998,
+                  0.0
+                ],
+                "world_cm": [
+                  1.0000000000000004,
+                  -1.9999999999999998,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  1.0000000000000004,
+                  -1.9999999999999998,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 1,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMFKwMqNAAqNTBTMAAALaK5a5IAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::CircularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmAgD8XUGciAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBqYA7CDmpo4AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  2.1213203435596424,
+                  -0.7071067811865477,
+                  0.0
+                ],
+                "world_cm": [
+                  2.1213203435596424,
+                  -0.7071067811865477,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  2.1213203435596424,
+                  -0.7071067811865477,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 2,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMFKwMqNAAqNQA6BgAnjydhkgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::CircularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmAgD8XUGciAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBuYAwEHoSI4AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  0.7071067811865474,
+                  2.121320343559643,
+                  0.0
+                ],
+                "world_cm": [
+                  0.7071067811865474,
+                  2.121320343559643,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  0.7071067811865474,
+                  2.121320343559643,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 3,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMFKwMqNAAqNQSyAPq5iNeSAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::CircularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArQNZb2RmAgD8XUGciAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvCn+rgqH7/fC+3OTLSODqgFqjBSMDZTsExJNDZKSjHUTTE1SNI1MU4x100yMzPQNUmzMLA0T00xNDA0AqsFmsGABsD2GSiArTMyNQORBkCFBpYAx2xQr44AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  -0.9999999999999996,
+                  2.0,
+                  0.0
+                ],
+                "world_cm": [
+                  -0.9999999999999996,
+                  2.0,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  -0.9999999999999996,
+                  2.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "circular_even_high.f3d",
+      "requested": {
+        "stage": "discovery",
+        "quantity": 6,
+        "total_angle_expression": "180 deg",
+        "is_symmetric": true,
+        "center_point": {
+          "identity": {
+            "type": "adsk::fusion::SketchPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYEBACNK5euOAAAA",
+            "is_valid": true,
+            "getter_errors": []
+          },
+          "sketch_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "getter_errors": []
+        },
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "suppressed_api_indices": [
+          4
+        ]
+      },
+      "seeds_before_pattern": [
+        {
+          "api_order_index": 0,
+          "identity": {
+            "type": "adsk::fusion::SketchCircle",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUCkQGwAAyVt+7JIAAAA=",
+            "is_valid": true,
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "is_reference": false,
+          "is_fixed": false,
+          "is_2d": true,
+          "is_construction": false,
+          "sketch_name": "SymmetricIndexProbe",
+          "attached_constraints": [],
+          "center_point": {
+            "identity": {
+              "type": "adsk::fusion::SketchPoint",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYEhALV64pyOAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "sketch_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "world_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "getter_errors": []
+          },
+          "radius_cm": 0.2999999999999998,
+          "geometry_type": "adsk::core::Circle3D",
+          "geometry_data_sketch_cm": [
+            true,
+            [
+              2.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            0.2999999999999998
+          ]
+        }
+      ],
+      "settings": {
+        "identity": {
+          "type": "adsk::fusion::CircularPatternConstraint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+          "is_valid": true,
+          "getter_errors": []
+        },
+        "getter_errors": [],
+        "parameters": {
+          "quantity": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZWQIA5vqPfogAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d1",
+            "role": "C-Pattern1-Count",
+            "value": 6.0,
+            "expression": "6",
+            "unit": ""
+          },
+          "totalAngle": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZGwEALxJG8IgAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d2",
+            "role": "C-Pattern1-Angle",
+            "value": 3.141592653589793,
+            "expression": "180 deg",
+            "unit": "deg"
+          }
+        },
+        "is_symmetric": true,
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "entities": [
+          {
+            "api_order_index": 0,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUCkQGwAAyVt+7JIAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::CircularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYEhALV64pyOAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "world_cm": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                2.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          }
+        ],
+        "created_entities": [
+          {
+            "api_order_index": 0,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUKmBiYIBAHsn8+iSAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::CircularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYExAJkb7HKOAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                0.33302252754525874,
+                -2.2111300269652547,
+                0.0
+              ],
+              "world_cm": [
+                0.33302252754525874,
+                -2.2111300269652547,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                0.33302252754525874,
+                -2.2111300269652547,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0000000000000002
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 1,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUKmBmYIBABXzd+uSAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::CircularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYEpAKy+j5uOAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                1.5690905050450485,
+                -1.5930960382153598,
+                0.0
+              ],
+              "world_cm": [
+                1.5690905050450485,
+                -1.5930960382153598,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                1.5690905050450485,
+                -1.5930960382153598,
+                0.0
+              ],
+              [
+                -0.0,
+                0.0,
+                1.0000000000000002
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 2,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUKkB0DEAH97p4ZIAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::CircularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYE5AIDfgXWOAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                2.205819241042368,
+                -0.3665535102099986,
+                0.0
+              ],
+              "world_cm": [
+                2.205819241042368,
+                -0.3665535102099986,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.29999999999999977,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                2.205819241042368,
+                -0.3665535102099986,
+                0.0
+              ],
+              [
+                -0.0,
+                0.0,
+                1.0000000000000002
+              ],
+              0.29999999999999977
+            ]
+          },
+          {
+            "api_order_index": 3,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUKkhkAUAwuhGV5IAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::CircularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYElAIfyOZKOAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                1.030248736457422,
+                1.9845874989598935,
+                0.0
+              ],
+              "world_cm": [
+                1.030248736457422,
+                1.9845874989598935,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.29999999999999977,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                1.030248736457422,
+                1.9845874989598935,
+                0.0
+              ],
+              [
+                0.0,
+                -0.0,
+                1.0000000000000002
+              ],
+              0.29999999999999977
+            ]
+          }
+        ],
+        "center_point": {
+          "identity": {
+            "type": "adsk::fusion::SketchPoint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYEBACNK5euOAAAA",
+            "is_valid": true,
+            "getter_errors": []
+          },
+          "sketch_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "world_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "getter_errors": []
+        },
+        "all_sketch_constraints": [
+          {
+            "type": "adsk::fusion::CircularPatternConstraint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+            "is_valid": true,
+            "getter_errors": []
+          }
+        ],
+        "all_model_parameters": [
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZWQIA5vqPfogAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d1",
+            "role": "C-Pattern1-Count",
+            "value": 6.0,
+            "expression": "6",
+            "unit": ""
+          },
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZGwEALxJG8IgAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d2",
+            "role": "C-Pattern1-Angle",
+            "value": 3.141592653589793,
+            "expression": "180 deg",
+            "unit": "deg"
+          }
+        ],
+        "input_direction_getters": {
+          "getter_errors": []
+        },
+        "pre_suppression": {
+          "getter_errors": [],
+          "is_suppressed": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "created_entities": [
+            {
+              "api_order_index": 0,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUKmBiYIBAHsn8+iSAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::CircularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYExAJkb7HKOAAAA",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  0.33302252754525874,
+                  -2.2111300269652547,
+                  0.0
+                ],
+                "world_cm": [
+                  0.33302252754525874,
+                  -2.2111300269652547,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  0.33302252754525874,
+                  -2.2111300269652547,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 1,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUKmBmYIBABXzd+uSAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::CircularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYEpAKy+j5uOAAAA",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  1.5690905050450485,
+                  -1.5930960382153598,
+                  0.0
+                ],
+                "world_cm": [
+                  1.5690905050450485,
+                  -1.5930960382153598,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  1.5690905050450485,
+                  -1.5930960382153598,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 2,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUKkB0DEAH97p4ZIAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::CircularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYE5AIDfgXWOAAAA",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  2.205819241042368,
+                  -0.3665535102099986,
+                  0.0
+                ],
+                "world_cm": [
+                  2.205819241042368,
+                  -0.3665535102099986,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  2.205819241042368,
+                  -0.3665535102099986,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 3,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUKkhkAUAwuhGV5IAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::CircularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoYElAIfyOZKOAAAA",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  1.030248736457422,
+                  1.9845874989598935,
+                  0.0
+                ],
+                "world_cm": [
+                  1.030248736457422,
+                  1.9845874989598935,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  1.030248736457422,
+                  1.9845874989598935,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 4,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtMDY3AtJEBUCmIDQCsPMJUkgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::CircularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOtA1huZmQMA4dc3mYgAAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQqo4+6LbT7wXLf3RuWPuvY/zgCqMFIzNFIzSzI0NDFINdRMNUi10TUySknQtDMySdJPNU1IsjCyTDFPNzMFqgWYwoAGwfQYKYOuMTM1ApAFQoaEhAPRL+YWOAAAA",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  -0.33302252754525874,
+                  2.2111300269652547,
+                  0.0
+                ],
+                "world_cm": [
+                  -0.33302252754525874,
+                  2.2111300269652547,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  -0.33302252754525874,
+                  2.2111300269652547,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "rectangular_first_even.f3d",
+      "requested": {
+        "stage": "discovery",
+        "quantity_one": 4,
+        "quantity_two": 2,
+        "distance_one_expression": "20 mm",
+        "distance_two_expression": "15 mm",
+        "distance_type": 1,
+        "symmetric_one": true,
+        "symmetric_two": false,
+        "direction_two_setting": "Both directions left unset; default sketch axes",
+        "is_suppressed": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "suppressed_api_indices": [
+          0
+        ]
+      },
+      "seeds_before_pattern": [
+        {
+          "api_order_index": 0,
+          "identity": {
+            "type": "adsk::fusion::SketchCircle",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASoHYAABLKV6ykgAAAA==",
+            "is_valid": true,
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "is_reference": false,
+          "is_fixed": false,
+          "is_2d": true,
+          "is_construction": false,
+          "sketch_name": "SymmetricIndexProbe",
+          "attached_constraints": [],
+          "center_point": {
+            "identity": {
+              "type": "adsk::fusion::SketchPoint",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoYAgAedj8yI4AAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "sketch_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "world_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "getter_errors": []
+          },
+          "radius_cm": 0.2999999999999998,
+          "geometry_type": "adsk::core::Circle3D",
+          "geometry_data_sketch_cm": [
+            true,
+            [
+              2.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            0.2999999999999998
+          ]
+        }
+      ],
+      "settings": {
+        "identity": {
+          "type": "adsk::fusion::RectangularPatternConstraint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+          "is_valid": true,
+          "getter_errors": []
+        },
+        "getter_errors": [],
+        "parameters": {
+          "quantityOne": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMEgCLC9opiAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d1",
+            "role": "R-Pattern1-uCount",
+            "value": 4.0,
+            "expression": "4",
+            "unit": ""
+          },
+          "quantityTwo": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjcCABC4xOniAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d2",
+            "role": "R-Pattern1-vCount",
+            "value": 2.0,
+            "expression": "2",
+            "unit": ""
+          },
+          "distanceOne": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjcFADhdnc5iAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d3",
+            "role": "R-Pattern1-uDistance",
+            "value": 2.0,
+            "expression": "20 mm",
+            "unit": "mm"
+          },
+          "distanceTwo": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjcAgBcCsZHiAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d4",
+            "role": "R-Pattern1-vDistance",
+            "value": 1.5,
+            "expression": "15 mm",
+            "unit": "mm"
+          }
+        },
+        "distance_type": 1,
+        "symmetric_one": true,
+        "symmetric_two": false,
+        "is_suppressed": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "entities": [
+          {
+            "api_order_index": 0,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASoHYAABLKV6ykgAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoYAgAedj8yI4AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "world_cm": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                2.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          }
+        ],
+        "created_entities": [
+          {
+            "api_order_index": 0,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASg2AWgCXgVe1kgAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoYAoAYByRz44AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "world_cm": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                4.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 1,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASg2AjgEAnazJv5IAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoYA4ATH2fIY4AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                6.0,
+                1.0,
+                0.0
+              ],
+              "world_cm": [
+                6.0,
+                1.0,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                6.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 2,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASg2BLABAmmYJkgAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoYAkAS1Anxo4AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                0.0,
+                2.5,
+                0.0
+              ],
+              "world_cm": [
+                0.0,
+                2.5,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                0.0,
+                2.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 3,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASkFsAC5O4gqSAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoaAgAOOnn0Y4AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                2.0,
+                2.5,
+                0.0
+              ],
+              "world_cm": [
+                2.0,
+                2.5,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                2.0,
+                2.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 4,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASg1NFAwAnDJvDpIAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoaAwAFIjpP44AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                4.0,
+                2.5,
+                0.0
+              ],
+              "world_cm": [
+                4.0,
+                2.5,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                4.0,
+                2.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 5,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASoFqDQDy5usNkgAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoaAoAIS2K1o4AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                6.0,
+                2.5,
+                0.0
+              ],
+              "world_cm": [
+                6.0,
+                2.5,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                6.0,
+                2.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          }
+        ],
+        "direction_one": null,
+        "direction_two": null,
+        "all_sketch_constraints": [
+          {
+            "type": "adsk::fusion::RectangularPatternConstraint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+            "is_valid": true,
+            "getter_errors": []
+          }
+        ],
+        "all_model_parameters": [
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMEgCLC9opiAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d1",
+            "role": "R-Pattern1-uCount",
+            "value": 4.0,
+            "expression": "4",
+            "unit": ""
+          },
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjcCABC4xOniAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d2",
+            "role": "R-Pattern1-vCount",
+            "value": 2.0,
+            "expression": "2",
+            "unit": ""
+          },
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjcFADhdnc5iAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d3",
+            "role": "R-Pattern1-uDistance",
+            "value": 2.0,
+            "expression": "20 mm",
+            "unit": "mm"
+          },
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjcAgBcCsZHiAAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d4",
+            "role": "R-Pattern1-vDistance",
+            "value": 1.5,
+            "expression": "15 mm",
+            "unit": "mm"
+          }
+        ],
+        "input_direction_getters": {
+          "getter_errors": [],
+          "directionOneEntity": null,
+          "directionTwoEntity": null
+        },
+        "pre_suppression": {
+          "getter_errors": [],
+          "is_suppressed": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "created_entities": [
+            {
+              "api_order_index": 0,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASg1MFAwA+VXTtpIAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoYAwAVbnyJo4AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "world_cm": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 1,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASg2AWgCXgVe1kgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoYAoAYByRz44AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  4.0,
+                  1.0,
+                  0.0
+                ],
+                "world_cm": [
+                  4.0,
+                  1.0,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  4.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 2,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASg2AjgEAnazJv5IAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoYA4ATH2fIY4AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  6.0,
+                  1.0,
+                  0.0
+                ],
+                "world_cm": [
+                  6.0,
+                  1.0,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  6.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 3,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASg2BLABAmmYJkgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoYAkAS1Anxo4AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  0.0,
+                  2.5,
+                  0.0
+                ],
+                "world_cm": [
+                  0.0,
+                  2.5,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  0.0,
+                  2.5,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 4,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASkFsAC5O4gqSAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoaAgAOOnn0Y4AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  2.0,
+                  2.5,
+                  0.0
+                ],
+                "world_cm": [
+                  2.0,
+                  2.5,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  2.0,
+                  2.5,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 5,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASg1NFAwAnDJvDpIAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoaAwAFIjpP44AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  4.0,
+                  2.5,
+                  0.0
+                ],
+                "world_cm": [
+                  4.0,
+                  2.5,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  4.0,
+                  2.5,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 6,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dqaASmjQyASoFqDQDy5usNkgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAWwey3sjMHACMJmLOiAAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwl9PSeXiF06W81d3PTkjwSoBVGGkYGymkJJoamJgkZyom5RoaaxrkmJpqZtoYGKoa5BqkmJkYpZsaZRoBlYLNIMBDYDtM1AAW2dkClZmAFRoaAoAIS2K1o4AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  6.0,
+                  2.5,
+                  0.0
+                ],
+                "world_cm": [
+                  6.0,
+                  2.5,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  6.0,
+                  2.5,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "file": "rectangular_second_odd.f3d",
+      "requested": {
+        "stage": "discovery",
+        "quantity_one": 2,
+        "quantity_two": 3,
+        "distance_one_expression": "20 mm",
+        "distance_two_expression": "15 mm",
+        "distance_type": 1,
+        "symmetric_one": false,
+        "symmetric_two": true,
+        "direction_two_setting": "Both directions left unset; default sketch axes",
+        "is_suppressed": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "suppressed_api_indices": [
+          1
+        ]
+      },
+      "seeds_before_pattern": [
+        {
+          "api_order_index": 0,
+          "identity": {
+            "type": "adsk::fusion::SketchCircle",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7fyDsaCzIgE8zyO+wEI7E+u76DvsfILfFSmFbNiQyS5BArJlEJM7SeYYwveJ0Gz11J3r9ex4L3U7GyHQRyApMg58YOZeMURmVD4Lqmo5NMeUiJy1jOo33kfgdQOLXyFDTfQCHEhWXpIAAAA=",
+            "is_valid": true,
+            "getter_errors": []
+          },
+          "getter_errors": [],
+          "is_reference": false,
+          "is_fixed": false,
+          "is_2d": true,
+          "is_construction": false,
+          "sketch_name": "SymmetricIndexProbe",
+          "attached_constraints": [],
+          "center_point": {
+            "identity": {
+              "type": "adsk::fusion::SketchPoint",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7e4PxoLOigRQ8YgvsNDOxPou+g47n+B3xSuFQDabyS5BBPJlEL+iJLpi6D9Hod7C1J7r9ex4L6GZnRDoFEiyjAMfmLgz7JUZjc+MZpYPSxojUWE9o/pN6SModTLo98lB4hdQaV3hjgAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "sketch_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "world_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "getter_errors": []
+          },
+          "radius_cm": 0.2999999999999998,
+          "geometry_type": "adsk::core::Circle3D",
+          "geometry_data_sketch_cm": [
+            true,
+            [
+              2.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ],
+            0.2999999999999998
+          ]
+        }
+      ],
+      "settings": {
+        "identity": {
+          "type": "adsk::fusion::RectangularPatternConstraint",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+          "is_valid": true,
+          "getter_errors": []
+        },
+        "getter_errors": [],
+        "parameters": {
+          "quantityOne": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmbGANG1AJuIAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d1",
+            "role": "R-Pattern1-uCount",
+            "value": 2.0,
+            "expression": "2",
+            "unit": ""
+          },
+          "quantityTwo": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmZmAF5BauuIAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d2",
+            "role": "R-Pattern1-vCount",
+            "value": 3.0,
+            "expression": "3",
+            "unit": ""
+          },
+          "distanceOne": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaWAM9c1XuIAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d3",
+            "role": "R-Pattern1-uDistance",
+            "value": 2.0,
+            "expression": "20 mm",
+            "unit": "mm"
+          },
+          "distanceTwo": {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RuZGAAa0HPWIAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d4",
+            "role": "R-Pattern1-vDistance",
+            "value": 1.5,
+            "expression": "15 mm",
+            "unit": "mm"
+          }
+        },
+        "distance_type": 1,
+        "symmetric_one": false,
+        "symmetric_two": true,
+        "is_suppressed": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "entities": [
+          {
+            "api_order_index": 0,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7fyDsaCzIgE8zyO+wEI7E+u76DvsfILfFSmFbNiQyS5BArJlEJM7SeYYwveJ0Gz11J3r9ex4L3U7GyHQRyApMg58YOZeMURmVD4Lqmo5NMeUiJy1jOo33kfgdQOLXyFDTfQCHEhWXpIAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7e4PxoLOigRQ8YgvsNDOxPou+g47n+B3xSuFQDabyS5BBPJlEL+iJLpi6D9Hod7C1J7r9ex4L6GZnRDoFEiyjAMfmLgz7JUZjc+MZpYPSxojUWE9o/pN6SModTLo98lB4hdQaV3hjgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "world_cm": [
+                2.0,
+                1.0,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                2.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          }
+        ],
+        "created_entities": [
+          {
+            "api_order_index": 0,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOlNDIzBtZABUamCiYAAArjTbWpIAAAA=",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7fyDsaCzIgFO8YgvsNDOxNqLvsPOJ/hduSuFQDabyS5BBPJlEL+iJLpi6LOj0Gz11F3r/e74LHU7OyEQFEiSjAOfeHAw7JUZja+EZpZOOzRGosJ6RvWb0kdQ6mTQ/MlBCh98CFMPjgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                2.0,
+                -0.5,
+                0.0
+              ],
+              "world_cm": [
+                2.0,
+                -0.5,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                2.0,
+                -0.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 1,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OsQ2AQAhF7dzBWNBZkQCe5xEnsNDOxPouOoedI7iuSCmE8ENe/ocgAVkziI0rSaYYwneJ0Gz11J3r9ex4L3U7GyHQRyApMg58YOZeMURmVD4Lqmo5NMeUiJw1j+pXnkfgcQOLbyFDyZ55AcrNwVOSAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7e4PxoLOigRQ8YgvsNDOxPou+g47n+B3xSuFQDabyS5BBPJlEL+iJLpi6D9Hod7C1J7r9ex4L6GZnRDoFEiyjAMfmLgz7JUZjc+MZpYPSxojUWE9o/pN6SModTLo98lBGl9lzD4IjgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "world_cm": [
+                4.0,
+                1.0,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                4.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 2,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOlNDIzBtZABUaghkAQAX+27lkgAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7e4PxoLOigRQ8YgvsNDOxPou+g47n+B3xSuFQDabyS5BBPJlEL+iJLpi6D9Hod7C1J7r9ex4L6GZnRDoFEiyjAMfmLgz7JUZjc+MZpYPSxojUWE9o/pN6SModTLo98lBshdi4YbvjgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                2.0,
+                2.5,
+                0.0
+              ],
+              "world_cm": [
+                2.0,
+                2.5,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                2.0,
+                2.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          },
+          {
+            "api_order_index": 3,
+            "identity": {
+              "type": "adsk::fusion::SketchCircle",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NsQ2AQAhF7W4HY0FnRQKo5xEnsNDOxPouOoedI7iuSCmE8EJe+AQJyJpBbJwkGTH03yVCvYWpPdfr2fFeQjObIdBFICkyDnxg5k6xj8yofBZU1XJojikRuWs/ql95HoHHDSy+hUz9+AV5L+rmkgAAAA==",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "is_reference": false,
+            "is_fixed": false,
+            "is_2d": true,
+            "is_construction": false,
+            "sketch_name": "SymmetricIndexProbe",
+            "attached_constraints": [
+              {
+                "type": "adsk::fusion::RectangularPatternConstraint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              }
+            ],
+            "center_point": {
+              "identity": {
+                "type": "adsk::fusion::SketchPoint",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOiNTMxBpAFRoaAgAEVhG+I4AAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "sketch_cm": [
+                4.0,
+                2.5,
+                0.0
+              ],
+              "world_cm": [
+                4.0,
+                2.5,
+                0.0
+              ],
+              "getter_errors": []
+            },
+            "radius_cm": 0.2999999999999998,
+            "geometry_type": "adsk::core::Circle3D",
+            "geometry_data_sketch_cm": [
+              true,
+              [
+                4.0,
+                2.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ],
+              0.2999999999999998
+            ]
+          }
+        ],
+        "direction_one": null,
+        "direction_two": null,
+        "all_sketch_constraints": [
+          {
+            "type": "adsk::fusion::RectangularPatternConstraint",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+            "is_valid": true,
+            "getter_errors": []
+          }
+        ],
+        "all_model_parameters": [
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmbGANG1AJuIAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d1",
+            "role": "R-Pattern1-uCount",
+            "value": 2.0,
+            "expression": "2",
+            "unit": ""
+          },
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmZmAF5BauuIAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d2",
+            "role": "R-Pattern1-vCount",
+            "value": 3.0,
+            "expression": "3",
+            "unit": ""
+          },
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaWAM9c1XuIAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d3",
+            "role": "R-Pattern1-uDistance",
+            "value": 2.0,
+            "expression": "20 mm",
+            "unit": "mm"
+          },
+          {
+            "identity": {
+              "type": "adsk::fusion::ModelParameter",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RuZGAAa0HPWIAAAA",
+              "is_valid": true,
+              "getter_errors": []
+            },
+            "getter_errors": [],
+            "name": "d4",
+            "role": "R-Pattern1-vDistance",
+            "value": 1.5,
+            "expression": "15 mm",
+            "unit": "mm"
+          }
+        ],
+        "input_direction_getters": {
+          "getter_errors": [],
+          "directionOneEntity": null,
+          "directionTwoEntity": null
+        },
+        "pre_suppression": {
+          "getter_errors": [],
+          "is_suppressed": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "created_entities": [
+            {
+              "api_order_index": 0,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOlNDIzBtZABUamCiYAAArjTbWpIAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7fyDsaCzIgFO8YgvsNDOxNqLvsPOJ/hduSuFQDabyS5BBPJlEL+iJLpi6LOj0Gz11F3r/e74LHU7OyEQFEiSjAOfeHAw7JUZja+EZpZOOzRGosJ6RvWb0kdQ6mTQ/MlBCh98CFMPjgAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  2.0,
+                  -0.5,
+                  0.0
+                ],
+                "world_cm": [
+                  2.0,
+                  -0.5,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  2.0,
+                  -0.5,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 1,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7fyDsaCzIgE8zyO+wEI7E+u76DvsfILfFSmFkN2QyS5BArJlEDt3kswxhO8TodnqqTvX69nxXup2NkKgj0BSZBz4wMy9YojMqHwWVNVyaI4pETlrGdVvvI/A6wYWVyFDyXJfwOBfWZIAAAA=",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7fyDsaCzIgH08IgvsNDOxNqLvsPOJ/hduSuFQDabyS5BBPJlEL+iJLpiGLKj0Gz11F3r/e74LHU7OyHQK5AkGQOfeHBvOCgzGl8JzSyddmiMRIX1jOo3pY+g1EnQ/MlBCh9JrTDmjgAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  4.0,
+                  -0.5,
+                  0.0
+                ],
+                "world_cm": [
+                  4.0,
+                  -0.5,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  4.0,
+                  -0.5,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 2,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OsQ2AQAhF7dzBWNBZkQCe5xEnsNDOxPouOoedI7iuSCmE8ENe/ocgAVkziI0rSaYYwneJ0Gz11J3r9ex4L3U7GyHQRyApMg58YOZeMURmVD4Lqmo5NMeUiJw1j+pXnkfgcQOLbyFDyZ55AcrNwVOSAAAA",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7e4PxoLOigRQ8YgvsNDOxPou+g47n+B3xSuFQDabyS5BBPJlEL+iJLpi6D9Hod7C1J7r9ex4L6GZnRDoFEiyjAMfmLgz7JUZjc+MZpYPSxojUWE9o/pN6SModTLo98lBGl9lzD4IjgAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  4.0,
+                  1.0,
+                  0.0
+                ],
+                "world_cm": [
+                  4.0,
+                  1.0,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  4.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 3,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOlNDIzBtZABUaghkAQAX+27lkgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NMQ6AQAgE7e4PxoLOigRQ8YgvsNDOxPou+g47n+B3xSuFQDabyS5BBPJlEL+iJLpi6D9Hod7C1J7r9ex4L6GZnRDoFEiyjAMfmLgz7JUZjc+MZpYPSxojUWE9o/pN6SModTLo98lBshdi4YbvjgAAAA==",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  2.0,
+                  2.5,
+                  0.0
+                ],
+                "world_cm": [
+                  2.0,
+                  2.5,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  2.0,
+                  2.5,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            },
+            {
+              "api_order_index": 4,
+              "identity": {
+                "type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12NsQ2AQAhF7W4HY0FnRQKo5xEnsNDOxPouOoedI7iuSCmE8EJe+AQJyJpBbJwkGTH03yVCvYWpPdfr2fFeQjObIdBFICkyDnxg5k6xj8yofBZU1XJojikRuWs/ql95HoHHDSy+hUz9+AV5L+rmkgAAAA==",
+                "is_valid": true,
+                "getter_errors": []
+              },
+              "getter_errors": [],
+              "is_reference": false,
+              "is_fixed": false,
+              "is_2d": true,
+              "is_construction": false,
+              "sketch_name": "SymmetricIndexProbe",
+              "attached_constraints": [
+                {
+                  "type": "adsk::fusion::RectangularPatternConstraint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOpD1RmaGAP3UDnWIAAAA",
+                  "is_valid": true,
+                  "getter_errors": []
+                }
+              ],
+              "center_point": {
+                "identity": {
+                  "type": "adsk::fusion::SketchPoint",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZglQou7V6ml/D9Ajddl92GU+gCiMFYzMFA6NkI3NTw1TdJENjS10TM0NDXUvDtGRdS0vL5FTLJDMLCwMDsFqgGQxoAGyfgQLYOiNTMxBpAFRoaAgAEVhG+I4AAAA=",
+                  "is_valid": true,
+                  "getter_errors": []
+                },
+                "sketch_cm": [
+                  4.0,
+                  2.5,
+                  0.0
+                ],
+                "world_cm": [
+                  4.0,
+                  2.5,
+                  0.0
+                ],
+                "getter_errors": []
+              },
+              "radius_cm": 0.2999999999999998,
+              "geometry_type": "adsk::core::Circle3D",
+              "geometry_data_sketch_cm": [
+                true,
+                [
+                  4.0,
+                  2.5,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                0.2999999999999998
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "sdk_scope": "Pattern inputs accept same-sketch points/curves; suppression excludes the seed; rectangular directionTwo defaults perpendicular to directionOne",
+  "prepared_status": "Prepared and uncaptured; no general native suppression-index rule claimed",
+  "case_plan": {
+    "circular_odd_low": {
+      "stage": "discovery",
+      "quantity": 5,
+      "suppressed_api_indices": [
+        0
+      ]
+    },
+    "circular_even_high": {
+      "stage": "discovery",
+      "quantity": 6,
+      "suppressed_api_indices": [
+        4
+      ]
+    },
+    "rectangular_first_even": {
+      "stage": "discovery",
+      "quantity_one": 4,
+      "quantity_two": 2,
+      "symmetric_one": true,
+      "symmetric_two": false,
+      "suppressed_api_indices": [
+        0
+      ]
+    },
+    "rectangular_second_odd": {
+      "stage": "discovery",
+      "quantity_one": 2,
+      "quantity_two": 3,
+      "symmetric_one": false,
+      "symmetric_two": true,
+      "suppressed_api_indices": [
+        1
+      ]
+    },
+    "circular_odd_holdout": {
+      "stage": "holdout",
+      "quantity": 7,
+      "suppressed_api_indices": [
+        4
+      ]
+    },
+    "rectangular_both_holdout": {
+      "stage": "holdout",
+      "quantity_one": 3,
+      "quantity_two": 4,
+      "symmetric_one": true,
+      "symmetric_two": true,
+      "suppressed_api_indices": [
+        0,
+        10
+      ]
+    }
+  },
+  "native_id_scope": "Only offline exported native records establish native IDs; API tokens remain opaque",
+  "identity_scope": "API tokens retained as opaque evidence; entity relationships and result order come from actual getters, never coordinate matching",
+  "unsupported_scope": [
+    "Only six prepared probes; no new native rule is supported until actual captures and holdouts agree",
+    "Full-circle, negative-angle and mixed-curved symmetric suppression remain outside this batch"
+  ]
+}
