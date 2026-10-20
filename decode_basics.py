@@ -17,6 +17,7 @@ from decode_sketch import decode_sketches
 from decode_modeling import decode_modeling
 from decode_placement import decode_placement
 from decode_selection import decode_selections
+from decode_tools import decode_tools
 from fusion_archive import read_members
 from fusion_records import Record, record_fragments
 
@@ -27,7 +28,9 @@ def named_features(data, records):
     labels = {"Sketch": "Sketch", "Extrude": "Extrude", "Revolve": "Revolve",
               "Fillet": "Fillet", "Chamfer": "Chamfer", "Shell": "Shell", "Hole": "Hole",
               "R-Pattern": "RectangularPattern", "Mirror": "Mirror", "Scale": "Scale",
-              "WorkPlane": "ConstructionPlane"}
+              "WorkPlane": "ConstructionPlane", "Sweep": "Sweep", "Loft": "Loft",
+              "C-Pattern": "CircularPattern", "Combine": "Combine", "Draft": "Draft",
+              "Split": "SplitBody", "Move": "Move", "Thicken": "Thicken"}
     for label, kind in labels.items():
         marker = struct.pack("<I", len(label)) + label.encode("utf-16le")
         for match in re.finditer(re.escape(marker), data):
@@ -170,6 +173,7 @@ def decode_basics(path, zstd_library=None):
         modeling_summary = decode_modeling(data, records, features)
         placement_summary = decode_placement(data, records, features)
         selection_summary = decode_selections(data, records, features)
+        tool_summary = decode_tools(data, records, features)
         resolved_selection_features = {s["feature_object_id"] for s in selection_summary["resolved"]}
         unresolved_selection_features = {s["feature_object_id"] for s in selection_summary["unresolved"]}
         modeling_summary["unresolved"] = [
@@ -183,6 +187,7 @@ def decode_basics(path, zstd_library=None):
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,
             "selection_decoding": selection_summary,
+            "tool_decoding": tool_summary,
         })
     return {
         "file": str(path), "status": "experimental partial decoder",

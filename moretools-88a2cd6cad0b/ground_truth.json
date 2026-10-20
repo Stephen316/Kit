@@ -1,0 +1,434 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "Sweep.f3d",
+      "name": "ProbeSweep",
+      "kind": "SweepFeature",
+      "settings": {},
+      "body_count": 1,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweep"
+        },
+        {
+          "name": "d5",
+          "role": "TwistAngle",
+          "value": 0.2617993877991494,
+          "unit": "deg",
+          "created_by": "ProbeSweep"
+        },
+        {
+          "name": "d6",
+          "role": "TaperAngle",
+          "value": 0.05235987755982989,
+          "unit": "deg",
+          "created_by": "ProbeSweep"
+        }
+      ]
+    },
+    {
+      "file": "Loft.f3d",
+      "name": "ProbeLoft",
+      "kind": "LoftFeature",
+      "settings": {
+        "section_count": 2
+      },
+      "body_count": 1,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "LoftEndPlane"
+        }
+      ]
+    },
+    {
+      "file": "CircularPattern.f3d",
+      "name": "ProbeCircularPattern",
+      "kind": "CircularPatternFeature",
+      "settings": {
+        "quantity": 4.0,
+        "total_angle_radians": 4.71238898038469,
+        "is_symmetric": false,
+        "axis_name": "Z"
+      },
+      "body_count": 4,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "countU",
+          "value": 4.0,
+          "unit": "",
+          "created_by": "ProbeCircularPattern"
+        },
+        {
+          "name": "d4",
+          "role": "TotalAngle",
+          "value": 4.71238898038469,
+          "unit": "deg",
+          "created_by": "ProbeCircularPattern"
+        }
+      ]
+    },
+    {
+      "file": "CircularPatternSymmetric.f3d",
+      "name": "ProbeCircularPatternSymmetric",
+      "kind": "CircularPatternFeature",
+      "settings": {
+        "quantity": 6.0,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": true,
+        "axis_name": "Z"
+      },
+      "body_count": 6,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "countU",
+          "value": 6.0,
+          "unit": "",
+          "created_by": "ProbeCircularPatternSymmetric"
+        },
+        {
+          "name": "d4",
+          "role": "TotalAngle",
+          "value": 3.141592653589793,
+          "unit": "deg",
+          "created_by": "ProbeCircularPatternSymmetric"
+        }
+      ]
+    },
+    {
+      "file": "CombineJoin.f3d",
+      "name": "ProbeCombineJoin",
+      "kind": "CombineFeature",
+      "settings": {
+        "operation": 0,
+        "keep_tool_bodies": true
+      },
+      "body_count": 2,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "ToolExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ToolExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "CombineCut.f3d",
+      "name": "ProbeCombineCut",
+      "kind": "CombineFeature",
+      "settings": {
+        "operation": 1,
+        "keep_tool_bodies": true
+      },
+      "body_count": 2,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "ToolExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ToolExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "CombineIntersect.f3d",
+      "name": "ProbeCombineIntersect",
+      "kind": "CombineFeature",
+      "settings": {
+        "operation": 2,
+        "keep_tool_bodies": true
+      },
+      "body_count": 2,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "ToolExtrusion"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ToolExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "Draft.f3d",
+      "name": "ProbeDraft",
+      "kind": "DraftFeature",
+      "settings": {},
+      "body_count": 1,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "Angle1",
+          "value": 0.08726646259971647,
+          "unit": "deg",
+          "created_by": "ProbeDraft"
+        },
+        {
+          "name": "d4",
+          "role": "Angle2",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeDraft"
+        }
+      ]
+    },
+    {
+      "file": "SplitBody.f3d",
+      "name": "ProbeSplitBody",
+      "kind": "SplitBodyFeature",
+      "settings": {
+        "splitting_plane": "YZ"
+      },
+      "body_count": 2,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "MoveTranslate.f3d",
+      "name": "ProbeMoveTranslate",
+      "kind": "MoveFeature",
+      "settings": {
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          1.7,
+          0.0,
+          1.0,
+          0.0,
+          -0.8,
+          0.0,
+          0.0,
+          1.0,
+          2.3,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "body_count": 1,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "MoveRotate.f3d",
+      "name": "ProbeMoveRotate",
+      "kind": "MoveFeature",
+      "settings": {
+        "transform": [
+          0.8191520442889918,
+          -0.573576436351046,
+          0.0,
+          1.7,
+          0.573576436351046,
+          0.8191520442889918,
+          0.0,
+          -0.8,
+          0.0,
+          0.0,
+          1.0,
+          2.3,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "body_count": 1,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "Thicken.f3d",
+      "name": "ProbeThicken",
+      "kind": "ThickenFeature",
+      "settings": {},
+      "body_count": 2,
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d3",
+          "role": "Thickness",
+          "value": 0.15000000000000002,
+          "unit": "mm",
+          "created_by": "ProbeThicken"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

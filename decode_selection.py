@@ -40,9 +40,13 @@ def resolve_native_selection(data, records, selection_id, known_entities):
             continue
         body = data[proxy.body:proxy.end]
         try:
-            if len(body) != 105 or body[:6] != b"\0\0\x01\0\0\0":
+            if len(body) == 105 and body[:6] == b"\0\0\x01\0\0\0":
+                descriptor_id = reference(body, 6)
+            elif (len(body) == 202 and body[:6] == b"\0\0\x08\0\0\0"
+                  and struct.unpack_from("<I", body, 99)[0] == 1):
+                descriptor_id = reference(body, 103)
+            else:
                 continue
-            descriptor_id = reference(body, 6)
             for descriptor in records:
                 if descriptor.object_id != descriptor_id:
                     continue
