@@ -11,11 +11,13 @@ from decode_body_tools import decode_body_tool
 from decode_patterns import decode_rectangular_pattern
 from decode_edge_tools import decode_edge_tool
 from decode_split import decode_split
+from decode_face_tools import decode_face_tool
 
 
 def decode_tools(data, records, features):
     supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken", "Hole",
-                 "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer", "SplitBody"}
+                 "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer", "SplitBody",
+                 "OffsetFaces", "ReplaceFace", "DeleteFace"}
     decoded, unresolved = [], []
     axes = known_construction_entities(data, records, features)
     for feature in features:
@@ -36,7 +38,9 @@ def decode_tools(data, records, features):
 
         try:
             settings = {}
-            if kind == "SplitBody":
+            if kind in ("OffsetFaces", "ReplaceFace", "DeleteFace"):
+                settings = decode_face_tool(data, records, body, feature, axes)
+            elif kind == "SplitBody":
                 settings = decode_split(data, records, body, feature, axes)
             elif kind in ("Fillet", "Chamfer"):
                 settings = decode_edge_tool(data, records, body, feature)

@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 154,
+  "file_count": 161,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -155,10 +155,17 @@
     "namedbodies-3c7c11fc2924/namedbodies.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
     "splinepatches-ac5e846e59c0/splinepatches.f3d",
-    "splinepatches-900d152c2380/splinepatches.f3d"
+    "splinepatches-900d152c2380/splinepatches.f3d",
+    "faceedits-3f120cbee8d9/delete_hole_face.f3d",
+    "faceedits-3f120cbee8d9/offset_cylinder.f3d",
+    "faceedits-3f120cbee8d9/offset_negative.f3d",
+    "faceedits-3f120cbee8d9/offset_positive.f3d",
+    "faceedits-3f120cbee8d9/offset_two_faces.f3d",
+    "faceedits-3f120cbee8d9/replace_plane.f3d",
+    "faceedits-3f120cbee8d9/replace_plane_tangent.f3d"
   ],
-  "class_count": 280,
-  "classes_with_observed_semantics": 31,
+  "class_count": 283,
+  "classes_with_observed_semantics": 34,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -753,6 +760,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "discovery-08660c033d4d/discovery.f3d"
+      ]
+    },
+    {
+      "class_guid": "29EF07D3-7BAF-4FA1-A28A-43A36279EA6D",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: DeleteFace"
+      ],
+      "example_files": [
+        "faceedits-3f120cbee8d9/delete_hole_face.f3d"
       ]
     },
     {
@@ -2554,6 +2579,25 @@
       ]
     },
     {
+      "class_guid": "8BD31492-18F4-45C9-8512-D720CCFC2450",
+      "base_class_guids": [
+        "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [
+        "Named feature: ReplaceFace"
+      ],
+      "example_files": [
+        "faceedits-3f120cbee8d9/replace_plane.f3d",
+        "faceedits-3f120cbee8d9/replace_plane_tangent.f3d"
+      ]
+    },
+    {
       "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
       "base_class_guids": [
         "0C3F3829-F0DB-4379-9479-CFEF71087971"
@@ -3858,6 +3902,26 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "discovery-08660c033d4d/discovery.f3d"
+      ]
+    },
+    {
+      "class_guid": "D087EFE5-2D28-42e6-BB45-61739E7D0204",
+      "base_class_guids": [
+        "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: OffsetFaces"
+      ],
+      "example_files": [
+        "faceedits-3f120cbee8d9/offset_cylinder.f3d",
+        "faceedits-3f120cbee8d9/offset_negative.f3d",
+        "faceedits-3f120cbee8d9/offset_positive.f3d"
       ]
     },
     {
