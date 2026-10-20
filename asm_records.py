@@ -143,6 +143,10 @@ def inspect_asm_members(members, include_records=False):
             summary = {key: value for key, value in result.items() if key != "records"}
             summary.update(member=member, record_count=len(result["records"]), record_type_counts=counts,
                            blob_role="history" if member.endswith(".smbh") else "body data", topology=topology)
+            declared = result["header"]["stored_entity_count"]
+            summary["declared_root_records"] = [
+                {"index": r["index"], "kind": r["name"]} for r in result["records"][:declared]
+            ] if 0 <= declared <= len(result["records"]) else []
             summary["scope"] = "Typed token framing with separately reported partial topology; final visible-body identity unresolved"
             if include_records:
                 summary["records"] = result["records"]

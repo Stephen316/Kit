@@ -28,6 +28,7 @@ from decode_timeline import decode_timeline
 from decode_assembly import decode_assembly
 from decode_dependencies import decode_dependencies
 from asm_records import inspect_asm_members
+from decode_body_bindings import decode_body_bindings
 
 
 def named_features(data, records):
@@ -172,6 +173,7 @@ def sketch_references(data, records, features):
 def decode_basics(path, zstd_library=None):
     streams = []
     members = read_members(path, zstd_library)
+    asm_summary = inspect_asm_members(members)
     for name, data in members.items():
         if not name.endswith("FusionDesignSegmentType1/BulkStream.dat"):
             continue
@@ -191,6 +193,7 @@ def decode_basics(path, zstd_library=None):
         timeline_summary = decode_timeline(data, records, features)
         assembly_summary = decode_assembly(data, records, features)
         dependency_summary = decode_dependencies(data, records, features, assembly_summary)
+        body_binding_summary = decode_body_bindings(data, records, name, asm_summary)
         resolved_selection_features = {s["feature_object_id"] for s in selection_summary["resolved"]}
         unresolved_selection_features = {s["feature_object_id"] for s in selection_summary["unresolved"]}
         modeling_summary["unresolved"] = [
@@ -212,6 +215,7 @@ def decode_basics(path, zstd_library=None):
             "timeline_decoding": timeline_summary,
             "assembly_decoding": assembly_summary,
             "dependency_decoding": dependency_summary,
+            "body_blob_bindings": body_binding_summary,
         })
     return {
         "file": str(path), "status": "experimental partial decoder",
@@ -225,7 +229,7 @@ def decode_basics(path, zstd_library=None):
             "Timeline/state layouts and local rigid assemblies are partial; no complete history regeneration or body reconstruction.",
         ],
         "streams": streams,
-        "asm_decoding": inspect_asm_members(members),
+        "asm_decoding": asm_summary,
     }
 
 

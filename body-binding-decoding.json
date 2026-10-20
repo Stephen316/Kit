@@ -1,0 +1,171 @@
+{
+  "focused_validation": [
+    {
+      "file": "holes-926347c1eaa8/simple.f3d",
+      "mapping_count_and_each_ordered_candidate_geometry_match_api": true,
+      "associations": [
+        {
+          "native_body_object_id": 275,
+          "candidate_asm_body_index": 1,
+          "matching_api_geometry_body_name": "Body1"
+        }
+      ],
+      "ordered_root_association_is_still_experimental": true
+    },
+    {
+      "file": "tools-fda3948848f4/Fillet.f3d",
+      "mapping_count_and_each_ordered_candidate_geometry_match_api": true,
+      "associations": [
+        {
+          "native_body_object_id": 275,
+          "candidate_asm_body_index": 1,
+          "matching_api_geometry_body_name": "Body1"
+        }
+      ],
+      "ordered_root_association_is_still_experimental": true
+    },
+    {
+      "file": "splits-efce4ef164c9/multiple_bodies.f3d",
+      "mapping_count_and_each_ordered_candidate_geometry_match_api": true,
+      "associations": [
+        {
+          "native_body_object_id": 275,
+          "candidate_asm_body_index": 1,
+          "matching_api_geometry_body_name": "Body1"
+        },
+        {
+          "native_body_object_id": 354,
+          "candidate_asm_body_index": 2,
+          "matching_api_geometry_body_name": "Body2"
+        },
+        {
+          "native_body_object_id": 391,
+          "candidate_asm_body_index": 3,
+          "matching_api_geometry_body_name": "Body3"
+        },
+        {
+          "native_body_object_id": 396,
+          "candidate_asm_body_index": 4,
+          "matching_api_geometry_body_name": "Body4"
+        }
+      ],
+      "ordered_root_association_is_still_experimental": true
+    }
+  ],
+  "decodings": [
+    {
+      "file": "holes-926347c1eaa8/simple.f3d",
+      "body_blob_bindings": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f8916c5c-11c3-45d6-9e7e-121a1d09cd66.smbh",
+            "body_count": 1,
+            "bindings": [
+              {
+                "stored_handle": 1,
+                "native_body_object_id": 275,
+                "stored_body_tag": "0_275",
+                "native_body_record_offset": 32613,
+                "mapping_entry_ordinal": 0,
+                "handle_scope": "Opaque stored handle; not an ASM record index",
+                "candidate_asm_body_index": 1,
+                "association_status": "Experimental ordered-entry/leading-root association; requires broader validation"
+              }
+            ],
+            "scope": "Explicit native body/blob mapping; ordered ASM root association remains experimental"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Native mapping tables and conditional root candidates; no guaranteed final-body identity"
+      }
+    },
+    {
+      "file": "tools-fda3948848f4/Fillet.f3d",
+      "body_blob_bindings": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.bc150bd1-3316-4cd1-b477-548ae4ae03cb.smbh",
+            "body_count": 1,
+            "bindings": [
+              {
+                "stored_handle": 2,
+                "native_body_object_id": 275,
+                "stored_body_tag": "0_275",
+                "native_body_record_offset": 31983,
+                "mapping_entry_ordinal": 0,
+                "handle_scope": "Opaque stored handle; not an ASM record index",
+                "candidate_asm_body_index": 1,
+                "association_status": "Experimental ordered-entry/leading-root association; requires broader validation"
+              }
+            ],
+            "scope": "Explicit native body/blob mapping; ordered ASM root association remains experimental"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Native mapping tables and conditional root candidates; no guaranteed final-body identity"
+      }
+    },
+    {
+      "file": "splits-efce4ef164c9/multiple_bodies.f3d",
+      "body_blob_bindings": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6ee902a6-5a5a-4a6a-8676-c762cae831b2.smbh",
+            "body_count": 4,
+            "bindings": [
+              {
+                "stored_handle": 0,
+                "native_body_object_id": 275,
+                "stored_body_tag": "0_275",
+                "native_body_record_offset": 33192,
+                "mapping_entry_ordinal": 0,
+                "handle_scope": "Opaque stored handle; not an ASM record index",
+                "candidate_asm_body_index": 1,
+                "association_status": "Experimental ordered-entry/leading-root association; requires broader validation"
+              },
+              {
+                "stored_handle": 1,
+                "native_body_object_id": 354,
+                "stored_body_tag": "0_354",
+                "native_body_record_offset": 43038,
+                "mapping_entry_ordinal": 1,
+                "handle_scope": "Opaque stored handle; not an ASM record index",
+                "candidate_asm_body_index": 2,
+                "association_status": "Experimental ordered-entry/leading-root association; requires broader validation"
+              },
+              {
+                "stored_handle": 2,
+                "native_body_object_id": 391,
+                "stored_body_tag": "0_391",
+                "native_body_record_offset": 48463,
+                "mapping_entry_ordinal": 2,
+                "handle_scope": "Opaque stored handle; not an ASM record index",
+                "candidate_asm_body_index": 3,
+                "association_status": "Experimental ordered-entry/leading-root association; requires broader validation"
+              },
+              {
+                "stored_handle": 3,
+                "native_body_object_id": 396,
+                "stored_body_tag": "0_396",
+                "native_body_record_offset": 49508,
+                "mapping_entry_ordinal": 3,
+                "handle_scope": "Opaque stored handle; not an ASM record index",
+                "candidate_asm_body_index": 4,
+                "association_status": "Experimental ordered-entry/leading-root association; requires broader validation"
+              }
+            ],
+            "scope": "Explicit native body/blob mapping; ordered ASM root association remains experimental"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Native mapping tables and conditional root candidates; no guaranteed final-body identity"
+      }
+    }
+  ]
+}
