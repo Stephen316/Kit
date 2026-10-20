@@ -148,12 +148,15 @@ def decode_placement(data, records, features):
         feature["placement_status"] = "Observed rigid transform decoded"
         matrix = placement["sketch_to_component_matrix"]
         for geometry in feature.get("geometry", []):
-            for key in ("position_cm", "start_cm", "end_cm", "center_cm"):
+            for key in ("position_cm", "start_cm", "end_cm", "center_cm", "apex_cm"):
                 if key in geometry:
                     geometry["component_"+key] = transform_point(matrix, geometry[key])
-            for key in ("normal", "reference_axis", "major_axis", "minor_axis"):
+            for key in ("normal", "reference_axis", "stored_major_axis", "stored_minor_axis"):
                 if key in geometry:
                     geometry["component_"+key] = transform_vector(matrix, geometry[key])
+            if "nurbs" in geometry:
+                geometry["component_control_points_cm"] = [
+                    transform_point(matrix, p) for p in geometry["nurbs"]["control_points_cm"]]
         resolved.append(feature["object_id"])
     return {"decoded_sketch_placements": len(resolved), "unresolved_sketches": unresolved,
             "decoded_construction_planes": plane_count,

@@ -71,6 +71,8 @@ def constraint_prefix(body):
 
 
 def decode_sketches(data, records, features):
+    from decode_nurbs import decode_splines
+
     sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
     for sketch in sketches.values():
         sketch.update({"coordinate_system": "sketch-local", "coordinate_units": "cm",
@@ -82,21 +84,24 @@ def decode_sketches(data, records, features):
             continue
         try:
             props, cursor = attributes(body, 2)
-            if props.get("EntityGenesis") != 2:
+            if props.get("EntityGenesis") not in (0, 2, 64):
                 continue
             owner = reference(body, len(body) - 11)
             if owner not in sketches:
                 continue
             item = {"object_id": record.object_id, "sketch_object_id": owner,
-                    "record_offset": record.start}
+                    "record_offset": record.start, "entity_genesis": props["EntityGenesis"]}
             if "pt_tag" in props and len(body) - cursor == 99:
                 item.update({"kind": "Point", "entity_tag": props["pt_tag"],
                              "position_cm": numbers(body, cursor + 19, 3)})
                 entities[record.object_id] = item
-            elif "crv_primary_id" in props:
+            elif "crv_primary_id" in props and props.get("EntityGenesis") == 2:
                 curves.append((record, body, props, cursor, item))
         except (ValueError, UnicodeError, struct.error):
             continue
+    spline_entities, spline_skipped = decode_splines(data, records, sketches, entities)
+    entities.update(spline_entities)
+    skipped.extend(spline_skipped)
     for record, body, props, cursor, item in curves:
         try:
             auxiliary_parent = None
@@ -159,20 +164,32 @@ def decode_sketches(data, records, features):
             elif len(body) - cursor == 192:
                 values = numbers(body, cursor, 13)
                 center_id = reference(body, cursor + 104)
-                major_axis_id = reference(body, cursor + 116)
-                minor_axis_id = reference(body, cursor + 127)
                 center = entities[center_id]
                 if (center["sketch_object_id"] != item["sketch_object_id"]
                         or not same(center["position_cm"], origin)
                         or not 0 < values[10] <= values[9]
-                        or not same(values[11:], [0, 2 * math.pi])
                         or not same([sum(x*x for x in values[3:6]), sum(x*x for x in values[6:9]),
                                      sum(x*y for x, y in zip(values[3:6], values[6:9]))], [1, 1, 0])):
                     raise ValueError("Unsupported ellipse representation")
                 item.update({"kind": "Ellipse", "center_point_id": center_id, "center_cm": origin,
                              "major_radius_cm": values[9], "minor_radius_cm": values[10],
-                             "stored_major_axis": values[3:6], "stored_minor_axis": values[6:9],
-                             "major_axis_entity_id": major_axis_id, "minor_axis_entity_id": minor_axis_id})
+                             "stored_major_axis": values[3:6], "stored_minor_axis": values[6:9]})
+                if same(values[11:], [0, 2 * math.pi]):
+                    item.update(major_axis_entity_id=reference(body, cursor+116),
+                                minor_axis_entity_id=reference(body, cursor+127))
+                else:
+                    end_id, start_id = reference(body, cursor+115), reference(body, cursor+128)
+                    if not 0 < values[12]-values[11] <= 2*math.pi:
+                        raise ValueError("Unsupported elliptical arc interval")
+                    for identity, angle in ((start_id, values[11]), (end_id, values[12])):
+                        expected = [o+values[9]*math.cos(angle)*a+values[10]*math.sin(angle)*b
+                                    for o, a, b in zip(origin, values[3:6], values[6:9])]
+                        if (entities[identity]["sketch_object_id"] != item["sketch_object_id"]
+                                or not same(entities[identity]["position_cm"], expected)):
+                            raise ValueError("Elliptical arc endpoint disagrees with geometry")
+                    item.update(kind="EllipticalArc", start_point_id=start_id, end_point_id=end_id,
+                                start_cm=entities[start_id]["position_cm"], end_cm=entities[end_id]["position_cm"],
+                                start_angle_radians=values[11], end_angle_radians=values[12])
             else:
                 raise ValueError("Unrecognized curve record size")
             item["entity_tag"] = props["crv_primary_id"]
@@ -288,4 +305,4 @@ def decode_sketches(data, records, features):
         except (ValueError, KeyError, struct.error):
             continue
     return {"unsupported_curves": skipped, "unknown_constraint_codes": unknown_constraints,
-            "scope": "Observed basic primitives, geometric constraints and dimensions; not a constraint solver"}
+            "scope": "Observed primitives, NURBS, conics, geometric constraints and dimensions; not a constraint solver"}

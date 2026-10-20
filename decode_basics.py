@@ -181,7 +181,7 @@ def decode_basics(path, zstd_library=None):
         "limitations": [
             "Candidate header boundaries and field semantics are inferred from a small corpus.",
             "Type codes are local to the document and not treated as universal feature identifiers.",
-            "Sketch support covers observed points, lines, circles, arcs, ellipses, basic constraints and dimensions.",
+            "Sketch support covers observed points, lines, circular/elliptical arcs, ellipses, NURBS, basic constraints and dimensions.",
             "No exact profile selection, topology, general sketch solver or native writer.",
             "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
             "No general feature history, suppression, all end conditions, axis selection, or body reconstruction.",
