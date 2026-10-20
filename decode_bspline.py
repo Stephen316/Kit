@@ -61,6 +61,9 @@ def decode_bspline(record):
         rational = representation == "nurbs"
         degree = read_token(tokens, 9, "integer")
         form = read_token(tokens, 10, "enum")
+        if form == 1:
+            from decode_exact_curve_form_one import decode_exact_curve_form_one
+            return decode_exact_curve_form_one(record)
         if form != 0:
             raise ValueError("Unsupported spline curve form")
         knots, compact, count, cursor = knot_vector(tokens, 12, read_token(tokens, 11, "integer"), degree)
