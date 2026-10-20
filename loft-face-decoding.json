@@ -1,0 +1,2189 @@
+{
+  "scope": "Observed Loft BRepFace Free start and single BRep-edge Tangent/Smooth start to Free sketch-profile end; historical ownership/recipes explicit, exact topology unresolved.",
+  "fusion_version": "2705.1.30",
+  "generator": "GenerateLoftFaceModes.py",
+  "capture_folder": "loftfaces-055501f619c5",
+  "summary": {
+    "successful_archives": 4,
+    "case_failures": 1,
+    "getter_errors": 0,
+    "api_comparisons": 79,
+    "all_passed": true,
+    "prior_public_reader_exact_matches": 30,
+    "malformed_checks": 8
+  },
+  "integration": {
+    "function": "decode_loft_faces(data, records, body, feature, features)",
+    "dispatcher": "Root may append this independent helper to public decode_loft readers. It imports modes and source resolvers only; no public decode_loft import/cycle.",
+    "modes_opt_in": "allow_edge_end_conditions=False default; explicit opt-in code1 Tangent/code2 Smooth requires no angle and positive finite exact-side Weight binding. Other defaults/profile/point/guide hooks unchanged.",
+    "section_callback": "Existing section_resolver hook selects profile/face/edge fields while common modes retains section order, closures, controls and result anchors."
+  },
+  "layout": {
+    "source_sections": "2F32 section36 with10zero prefix, owner@10, proxy@21, uint32@32:2 sketch profile,3 BRepFace,7 single edge section. Actual API normalizes documented one-edge Path input to BRepEdge.",
+    "face_descriptor": "Owned5662 topology descriptor prefix00000000 with bounded_face_recipe_data; reused existing strict native-face/body-anchor resolver.",
+    "edge_descriptor": "Owned5662 descriptor276 prefix00000001 (byte3 retained raw), one edge_recipe_data reference@4, namespace UUIDs, one typedC46D context and one typed historical body anchor. Exact edge recipe-to-ASM identity remains opaque.",
+    "conditions": "Main stored condition code0 Free,1 Tangent,2 Smooth for these captures. Weighted variants have no angle reference and a Start Weight binding; Tangent1vs2 contrasts confirm active weight. Destination remains Free.",
+    "alignment": "API start/end edge alignment enums are0 in all successful captures; no independent native alignment-field contrast, so production returns null alignment fields and explicit unresolved status."
+  },
+  "findings": [
+    "BRepFace Free succeeded. Calling documented setTangentEndCondition on BRepFace throws Tangent endCondition can only be applied to BRepEdge; original failed-case evidence retained, no unchanged retry.",
+    "Documented Path.create(single circular boundary BRepEdge,noChainedCurves) is accepted as a Loft section, then actual created section.entity is BRepEdge. No undocumented direct BRepEdge section input was used.",
+    "Tangent weights1/2 and Smooth weight1 succeeded with actual getter classes and parameter values matching native codes/bindings.",
+    "Face/edge source anchor identifies historical native cylinder body and named seed feature. API source geometry/body evidence is independent; no recipe numeric token is assumed to be an ASM face/edge ID."
+  ],
+  "failures": [
+    {
+      "case": "face_tangent_weight1",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateLoftFaceModes.py\", line 181, in run\n    accepted = face_section.setTangentEndCondition(value(weight))\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 46274, in setTangentEndCondition\n    return _fusion.LoftSection_setTangentEndCondition(self, weight)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nRuntimeError: 3 : Tangent endCondition can only be applied to BRepEdge.\n",
+      "partial_capture_retained_in": "loftfaces-055501f619c5/ground_truth.json"
+    }
+  ],
+  "limitations": [
+    "Only first BRepFace+Free or first BRepEdge+Tangent/Smooth, final single Free sketch profile; open solid NewBody/two sections/no guides.",
+    "End-side face/edge conditions, Free edge start, other operations, surface/closed lofts, multiple BRep edges and guide combinations unverified and rejected.",
+    "Exact circular edge/planar face geometry cannot be reconstructed from the unresolved topology recipe alone; API geometry retained only as observations.",
+    "Alignment enum encoding, context transforms, topology regeneration, solving and native file writing unresolved.",
+    "API tokens/tempIds are opaque evidence, not compared as native identities; default UI result labels are not inferred from empty stored names."
+  ],
+  "samples": [
+    {
+      "file": "loftfaces-055501f619c5/face_free.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::BRepFace",
+          "api": "adsk::fusion::BRepFace",
+          "passed": true
+        },
+        {
+          "field": "section0.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.source_body_name",
+          "decoded": "LoftFaceCylinderBody",
+          "api": "LoftFaceCylinderBody",
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section1.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.sketch_name",
+          "decoded": "LoftFaceDestinationSection",
+          "api": "LoftFaceDestinationSection",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.curve_type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.profile.circle.radius_cm",
+          "decoded": 0.6,
+          "api": 0.6,
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          375,
+          383
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 375,
+            "face": {
+              "selection_record_object_id": 376,
+              "descriptor_object_id": 379,
+              "body_anchor_object_id": 266,
+              "native_body_object_id": 260,
+              "source_owner_object_id": 234,
+              "namespace_text": "9925ab12-d620-4dab-9050-40f866d73c6c",
+              "entity_guid_text": "ccbfc23c-9961-491d-b782-14b2f250df6f",
+              "context_record_object_ids": [
+                401
+              ],
+              "recipe": {
+                "object_id": 382,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 39556,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37081,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37081,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37081,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "bounded_face_recipe_data",
+                "payload_relative_offset": 122,
+                "payload_length": 132,
+                "payload_hex": "00000000ffffffff0100000001000000ffffffff0200000002000000ffffffff00000000ffffffff01000000ffffffff0200000002000000ffffffff00000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                "uninterpreted_payload_int32": [
+                  0,
+                  -1,
+                  1,
+                  1,
+                  -1,
+                  2,
+                  2,
+                  -1,
+                  0,
+                  -1,
+                  1,
+                  -1,
+                  2,
+                  2,
+                  -1,
+                  0,
+                  -1,
+                  1,
+                  1,
+                  -1,
+                  0,
+                  0,
+                  -1,
+                  1,
+                  0,
+                  2,
+                  2,
+                  2,
+                  2,
+                  1,
+                  0,
+                  1,
+                  -1
+                ]
+              },
+              "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+              "context_scope": "Context identities retained; no occurrence transform inferred",
+              "stored_section_code": 3,
+              "geometry_status": "API source is a planar cylinder end face; exact native recipe-to-ASM face mapping unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 383,
+            "profile": {
+              "selection_record_object_id": 384,
+              "descriptor_object_id": 387,
+              "loop_definition_object_id": 390,
+              "sketch_object_id": 289,
+              "sketch_name": "LoftFaceDestinationSection",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 316,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 391,
+        "result_body_anchor_object_ids": [
+          416
+        ],
+        "result_anchor_list_end_relative_offset": 117,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit face/edge recipe and historical native body at start, explicit sketch profile membership at end; exact topology unresolved",
+        "source_section_kind": "BRepFace",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "start_edge_alignment": null,
+        "end_edge_alignment": null,
+        "edge_alignment_status": "Actual captured API alignment enums are0; native alignment encoding is not independently identified",
+        "scope": "Captured Free face start or positive-weight Tangent/Smooth edge start with Free profile end; no topology regeneration"
+      },
+      "api_input_observations": {
+        "source_section": {
+          "entity_type": "adsk::fusion::BRepFace",
+          "temp_id": 0,
+          "body": {
+            "name": "LoftFaceCylinderBody",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 3.1415926535899286,
+            "face_count": 3,
+            "edge_count": 2,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "geometry_type": "adsk::core::Plane",
+          "area_cm2": 3.141592653589793,
+          "centroid_world_cm": [
+            3.8981718325193755e-17,
+            0.0,
+            1.0
+          ],
+          "plane_origin_cm": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "plane_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_param_reversed": false,
+          "loop_count": 1,
+          "edges": [
+            {
+              "temp_id": 1,
+              "geometry_type": "adsk::core::Circle3D",
+              "body_name": "LoftFaceCylinderBody",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          ]
+        },
+        "setter_returned": true,
+        "input_condition": {
+          "condition_type": "adsk::fusion::LoftFreeEndCondition"
+        }
+      },
+      "api_settings_observations": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 6.1575216010357305,
+            "face_count": 3,
+            "edge_count": 2,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              4.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepFace",
+              "temp_id": 0,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Plane",
+              "area_cm2": 3.141592653589793,
+              "centroid_world_cm": [
+                3.8981718325193755e-17,
+                0.0,
+                1.0
+              ],
+              "plane_origin_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "is_param_reversed": false,
+              "loop_count": 1,
+              "edges": [
+                {
+                  "temp_id": 1,
+                  "geometry_type": "adsk::core::Circle3D",
+                  "body_name": "LoftFaceCylinderBody",
+                  "start_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    1.0
+                  ],
+                  "end_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    1.0
+                  ],
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "sketch_name": "LoftFaceDestinationSection",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_tangent_weight1.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "section0.condition_type",
+          "decoded": "adsk::fusion::LoftTangentEndCondition",
+          "api": "adsk::fusion::LoftTangentEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.weight",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "section0.source_body_name",
+          "decoded": "LoftFaceCylinderBody",
+          "api": "LoftFaceCylinderBody",
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section1.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.sketch_name",
+          "decoded": "LoftFaceDestinationSection",
+          "api": "LoftFaceDestinationSection",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.curve_type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.profile.circle.radius_cm",
+          "decoded": 0.6,
+          "api": 0.6,
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          372,
+          380
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 372,
+            "edge": {
+              "selection_record_object_id": 373,
+              "descriptor_object_id": 376,
+              "stored_section_code": 7,
+              "stored_descriptor_flag_at_3": 1,
+              "recipe": {
+                "object_id": 379,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 40019,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "body_anchor_object_id": 266,
+              "native_body_object_id": 260,
+              "source_owner_object_id": 234,
+              "context_record_object_ids": [
+                400
+              ],
+              "namespace_text": "5ea05c8e-840f-4fce-a859-47f2646d2e62",
+              "entity_guid_text": "f0790b9c-b618-484f-a696-2137223458d2",
+              "representation_status": "Captured documented one-edge Path input normalizes to actual API BRepEdge section",
+              "identity_scope": "Owned edge recipe and typed historical body anchor; exact ASM edge/curve identity unresolved",
+              "context_scope": "Explicit typed context retained; coordinate transform unresolved"
+            },
+            "end_condition": {
+              "type": "Tangent",
+              "stored_condition_code": 1,
+              "stored_endpoint_integer": -1,
+              "byte_length": 32,
+              "stored_post_weight_field": 0,
+              "weight": 1.0,
+              "weight_binding_object_id": 370
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 380,
+            "profile": {
+              "selection_record_object_id": 381,
+              "descriptor_object_id": 384,
+              "loop_definition_object_id": 387,
+              "sketch_object_id": 289,
+              "sketch_name": "LoftFaceDestinationSection",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 316,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Tangent",
+          "stored_condition_code": 1,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 1.0,
+          "weight_binding_object_id": 370
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Tangent",
+          "stored_condition_code": 1,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 1.0,
+          "weight_binding_object_id": 370
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 388,
+        "result_body_anchor_object_ids": [
+          415
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit face/edge recipe and historical native body at start, explicit sketch profile membership at end; exact topology unresolved",
+        "source_section_kind": "BRepEdge",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "start_edge_alignment": null,
+        "end_edge_alignment": null,
+        "edge_alignment_status": "Actual captured API alignment enums are0; native alignment encoding is not independently identified",
+        "scope": "Captured Free face start or positive-weight Tangent/Smooth edge start with Free profile end; no topology regeneration"
+      },
+      "api_input_observations": {
+        "source_section": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "segments": [
+            {
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "temp_id": 1,
+                "body": {
+                  "name": "LoftFaceCylinderBody",
+                  "component_name": "(Unsaved)",
+                  "is_solid": true,
+                  "volume_cm3": 3.1415926535899286,
+                  "face_count": 3,
+                  "edge_count": 2,
+                  "bounding_box_min_cm": [
+                    -1.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "bounding_box_max_cm": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Circle3D",
+                "start_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  1.0
+                ],
+                "end_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  1.0
+                ],
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            }
+          ]
+        },
+        "setter_returned": true,
+        "input_condition": {
+          "condition_type": "adsk::fusion::LoftTangentEndCondition",
+          "weight": 1.0
+        }
+      },
+      "api_settings_observations": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 7.180625061160563,
+            "face_count": 3,
+            "edge_count": 3,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              4.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftTangentEndCondition",
+              "weight": 1.0
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "sketch_name": "LoftFaceDestinationSection",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_tangent_weight2.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "section0.condition_type",
+          "decoded": "adsk::fusion::LoftTangentEndCondition",
+          "api": "adsk::fusion::LoftTangentEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.weight",
+          "decoded": 2.0,
+          "api": 2.0,
+          "passed": true
+        },
+        {
+          "field": "section0.source_body_name",
+          "decoded": "LoftFaceCylinderBody",
+          "api": "LoftFaceCylinderBody",
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section1.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.sketch_name",
+          "decoded": "LoftFaceDestinationSection",
+          "api": "LoftFaceDestinationSection",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.curve_type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.profile.circle.radius_cm",
+          "decoded": 0.6,
+          "api": 0.6,
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          372,
+          380
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 372,
+            "edge": {
+              "selection_record_object_id": 373,
+              "descriptor_object_id": 376,
+              "stored_section_code": 7,
+              "stored_descriptor_flag_at_3": 1,
+              "recipe": {
+                "object_id": 379,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 40019,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "body_anchor_object_id": 266,
+              "native_body_object_id": 260,
+              "source_owner_object_id": 234,
+              "context_record_object_ids": [
+                400
+              ],
+              "namespace_text": "03da1d94-ff16-4ffc-afa9-195cdafe58a5",
+              "entity_guid_text": "deb6d9e9-ff2b-42a0-ac16-90654d5a3d4a",
+              "representation_status": "Captured documented one-edge Path input normalizes to actual API BRepEdge section",
+              "identity_scope": "Owned edge recipe and typed historical body anchor; exact ASM edge/curve identity unresolved",
+              "context_scope": "Explicit typed context retained; coordinate transform unresolved"
+            },
+            "end_condition": {
+              "type": "Tangent",
+              "stored_condition_code": 1,
+              "stored_endpoint_integer": -1,
+              "byte_length": 32,
+              "stored_post_weight_field": 0,
+              "weight": 2.0,
+              "weight_binding_object_id": 370
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 380,
+            "profile": {
+              "selection_record_object_id": 381,
+              "descriptor_object_id": 384,
+              "loop_definition_object_id": 387,
+              "sketch_object_id": 289,
+              "sketch_name": "LoftFaceDestinationSection",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 316,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Tangent",
+          "stored_condition_code": 1,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 2.0,
+          "weight_binding_object_id": 370
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Tangent",
+          "stored_condition_code": 1,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 2.0,
+          "weight_binding_object_id": 370
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 388,
+        "result_body_anchor_object_ids": [
+          415
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit face/edge recipe and historical native body at start, explicit sketch profile membership at end; exact topology unresolved",
+        "source_section_kind": "BRepEdge",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "start_edge_alignment": null,
+        "end_edge_alignment": null,
+        "edge_alignment_status": "Actual captured API alignment enums are0; native alignment encoding is not independently identified",
+        "scope": "Captured Free face start or positive-weight Tangent/Smooth edge start with Free profile end; no topology regeneration"
+      },
+      "api_input_observations": {
+        "source_section": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "segments": [
+            {
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "temp_id": 1,
+                "body": {
+                  "name": "LoftFaceCylinderBody",
+                  "component_name": "(Unsaved)",
+                  "is_solid": true,
+                  "volume_cm3": 3.1415926535899286,
+                  "face_count": 3,
+                  "edge_count": 2,
+                  "bounding_box_min_cm": [
+                    -1.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "bounding_box_max_cm": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Circle3D",
+                "start_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  1.0
+                ],
+                "end_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  1.0
+                ],
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            }
+          ]
+        },
+        "setter_returned": true,
+        "input_condition": {
+          "condition_type": "adsk::fusion::LoftTangentEndCondition",
+          "weight": 2.0
+        }
+      },
+      "api_settings_observations": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 7.946745981673562,
+            "face_count": 3,
+            "edge_count": 3,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              4.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftTangentEndCondition",
+              "weight": 2.0
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "sketch_name": "LoftFaceDestinationSection",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "getter_errors": []
+    },
+    {
+      "file": "loftfaces-055501f619c5/edge_path_smooth_weight1.f3d",
+      "comparisons": [
+        {
+          "field": "operation",
+          "decoded": 3,
+          "api": 3,
+          "passed": true
+        },
+        {
+          "field": "is_solid",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "is_closed",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "is_tangent_edges_merged",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section_count",
+          "decoded": 2,
+          "api": 2,
+          "passed": true
+        },
+        {
+          "field": "guide_count",
+          "decoded": 0,
+          "api": 0,
+          "passed": true
+        },
+        {
+          "field": "is_centerline",
+          "decoded": false,
+          "api": false,
+          "passed": true
+        },
+        {
+          "field": "section0.entity_type",
+          "decoded": "adsk::fusion::BRepEdge",
+          "api": "adsk::fusion::BRepEdge",
+          "passed": true
+        },
+        {
+          "field": "section0.condition_type",
+          "decoded": "adsk::fusion::LoftSmoothEndCondition",
+          "api": "adsk::fusion::LoftSmoothEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section0.weight",
+          "decoded": 1.0,
+          "api": 1.0,
+          "passed": true
+        },
+        {
+          "field": "section0.source_body_name",
+          "decoded": "LoftFaceCylinderBody",
+          "api": "LoftFaceCylinderBody",
+          "passed": true
+        },
+        {
+          "field": "section1.entity_type",
+          "decoded": "adsk::fusion::Profile",
+          "api": "adsk::fusion::Profile",
+          "passed": true
+        },
+        {
+          "field": "section1.condition_type",
+          "decoded": "adsk::fusion::LoftFreeEndCondition",
+          "api": "adsk::fusion::LoftFreeEndCondition",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.sketch_name",
+          "decoded": "LoftFaceDestinationSection",
+          "api": "LoftFaceDestinationSection",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop.is_outer",
+          "decoded": true,
+          "api": true,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.loop.curve_count",
+          "decoded": 1,
+          "api": 1,
+          "passed": true
+        },
+        {
+          "field": "section1.profile.curve_type",
+          "decoded": "adsk::fusion::SketchCircle",
+          "api": "adsk::fusion::SketchCircle",
+          "passed": true
+        },
+        {
+          "field": "section1.profile.circle.center_world_cm",
+          "decoded": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "api": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "passed": true
+        },
+        {
+          "field": "section1.profile.circle.radius_cm",
+          "decoded": 0.6,
+          "api": 0.6,
+          "passed": true
+        }
+      ],
+      "decoded_settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          372,
+          380
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 372,
+            "edge": {
+              "selection_record_object_id": 373,
+              "descriptor_object_id": 376,
+              "stored_section_code": 7,
+              "stored_descriptor_flag_at_3": 1,
+              "recipe": {
+                "object_id": 379,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "record_offset": 40019,
+                "stored_header_fields": [
+                  1,
+                  3
+                ],
+                "name_table": [
+                  {
+                    "table_index": 0,
+                    "terms": [
+                      {
+                        "name": "-1",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 1,
+                    "terms": [
+                      {
+                        "name": "3",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "table_index": 2,
+                    "terms": [
+                      {
+                        "name": "2",
+                        "stored_index": 0,
+                        "stored_reference_tag": 1,
+                        "stored_reference_value": 301,
+                        "matching_primary_record": {
+                          "object_id": 301,
+                          "class_guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+                          "record_offset": 37201,
+                          "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "payload_kind": "edge_recipe_data",
+                "payload_relative_offset": 114,
+                "payload_length": 120,
+                "payload_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff01000000000000000200000002000000020000000200000001000000000000000100000000000000",
+                "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+              },
+              "body_anchor_object_id": 266,
+              "native_body_object_id": 260,
+              "source_owner_object_id": 234,
+              "context_record_object_ids": [
+                400
+              ],
+              "namespace_text": "7c86cd04-4c98-4ad7-a6f8-64800f5b438f",
+              "entity_guid_text": "736a26f1-eed6-41d4-a803-b8e3a0934abd",
+              "representation_status": "Captured documented one-edge Path input normalizes to actual API BRepEdge section",
+              "identity_scope": "Owned edge recipe and typed historical body anchor; exact ASM edge/curve identity unresolved",
+              "context_scope": "Explicit typed context retained; coordinate transform unresolved"
+            },
+            "end_condition": {
+              "type": "Smooth",
+              "stored_condition_code": 2,
+              "stored_endpoint_integer": -1,
+              "byte_length": 32,
+              "stored_post_weight_field": 0,
+              "weight": 1.0,
+              "weight_binding_object_id": 370
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 380,
+            "profile": {
+              "selection_record_object_id": 381,
+              "descriptor_object_id": 384,
+              "loop_definition_object_id": 387,
+              "sketch_object_id": 289,
+              "sketch_name": "LoftFaceDestinationSection",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 316,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Smooth",
+          "stored_condition_code": 2,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 1.0,
+          "weight_binding_object_id": 370
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Smooth",
+          "stored_condition_code": 2,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 1.0,
+          "weight_binding_object_id": 370
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 388,
+        "result_body_anchor_object_ids": [
+          415
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit face/edge recipe and historical native body at start, explicit sketch profile membership at end; exact topology unresolved",
+        "source_section_kind": "BRepEdge",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "start_edge_alignment": null,
+        "end_edge_alignment": null,
+        "edge_alignment_status": "Actual captured API alignment enums are0; native alignment encoding is not independently identified",
+        "scope": "Captured Free face start or positive-weight Tangent/Smooth edge start with Free profile end; no topology regeneration"
+      },
+      "api_input_observations": {
+        "source_section": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "segments": [
+            {
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "temp_id": 1,
+                "body": {
+                  "name": "LoftFaceCylinderBody",
+                  "component_name": "(Unsaved)",
+                  "is_solid": true,
+                  "volume_cm3": 3.1415926535899286,
+                  "face_count": 3,
+                  "edge_count": 2,
+                  "bounding_box_min_cm": [
+                    -1.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "bounding_box_max_cm": [
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Circle3D",
+                "start_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  1.0
+                ],
+                "end_world_cm": [
+                  -1.0,
+                  -1.2246467991473532e-16,
+                  1.0
+                ],
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "radius_cm": 1.0
+              }
+            }
+          ]
+        },
+        "setter_returned": true,
+        "input_condition": {
+          "condition_type": "adsk::fusion::LoftSmoothEndCondition",
+          "weight": 1.0
+        }
+      },
+      "api_settings_observations": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 7.309321983470017,
+            "face_count": 3,
+            "edge_count": 3,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              4.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftSmoothEndCondition",
+              "weight": 1.0
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "sketch_name": "LoftFaceDestinationSection",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "getter_errors": []
+    }
+  ],
+  "prior_compatibility": [
+    "loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
+    "loftcurvedguides-79a1266af54e/quarter_arc_centerline.f3d",
+    "loftguides-265bcb9af34a/closure_closed_four.f3d",
+    "loftguides-265bcb9af34a/closure_closed_surface.f3d",
+    "loftguides-265bcb9af34a/closure_open_four.f3d",
+    "loftguides-265bcb9af34a/one_rail.f3d",
+    "loftguides-265bcb9af34a/surface_one_rail.f3d",
+    "loftguides-265bcb9af34a/two_rails.f3d",
+    "loftoperations-0cfcad35feb7/cut.f3d",
+    "loftoperations-0cfcad35feb7/intersect.f3d",
+    "loftoperations-0cfcad35feb7/join.f3d",
+    "loftoperations-0cfcad35feb7/new_body.f3d",
+    "loftoperations-0cfcad35feb7/new_component.f3d",
+    "loftpointholdouts-35b5ac0d2f42/tangent_start_weight2.f3d",
+    "loftpointholdouts-bb91509a13e4/construction_sharp_end.f3d",
+    "loftpointholdouts-bb91509a13e4/construction_sharp_start.f3d",
+    "loftpointholdouts-bb91509a13e4/tangent_start_weight1.f3d",
+    "loftpointholdouts-bb91509a13e4/vertex_construction_sharp_end.f3d",
+    "loftpoints-f5bbdb97a568/sharp_end.f3d",
+    "loftpoints-f5bbdb97a568/sharp_start.f3d",
+    "loftpoints-f5bbdb97a568/tangent_end_weight1.f3d",
+    "loftpoints-f5bbdb97a568/tangent_end_weight2.f3d",
+    "lofts-03b4a6f1ce2f/centerline.f3d",
+    "lofts-03b4a6f1ce2f/solid_three.f3d",
+    "lofts-838ea6e83e97/both_direction.f3d",
+    "lofts-838ea6e83e97/end_direction.f3d",
+    "lofts-838ea6e83e97/solid_two.f3d",
+    "lofts-838ea6e83e97/start_direction.f3d",
+    "lofts-838ea6e83e97/surface_two.f3d",
+    "lofts-838ea6e83e97/unmerged.f3d"
+  ],
+  "malformed_checks": [
+    {
+      "case": "section owner mismatch",
+      "rejected": true,
+      "reason": "Unsupported Loft face/edge section layout/owner"
+    },
+    {
+      "case": "edge proxy owner mismatch",
+      "rejected": true,
+      "reason": "Loft edge section proxy owner disagrees"
+    },
+    {
+      "case": "unobserved edge descriptor prefix flag",
+      "rejected": true,
+      "reason": "Unsupported Loft edge descriptor prefix/layout/owner"
+    },
+    {
+      "case": "wrong typed edge recipe reference",
+      "rejected": true,
+      "reason": "Loft face/edge typed reference missing, ambiguous or wrong class"
+    },
+    {
+      "case": "edge endpoint condition no longer Tangent or Smooth",
+      "rejected": true,
+      "reason": "Unsupported Loft end-condition type/bindings"
+    },
+    {
+      "case": "nonpositive Tangent weight",
+      "rejected": true,
+      "reason": "Loft edge end-condition weight must be positive"
+    },
+    {
+      "case": "wrong side Weight role",
+      "rejected": true,
+      "reason": "Loft binding role disagrees with end control: Start Weight"
+    },
+    {
+      "case": "unverified surface face or edge Loft",
+      "rejected": true,
+      "reason": "Only observed two-section open solid NewBody face/edge Loft without guides supported"
+    }
+  ]
+}

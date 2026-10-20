@@ -1,0 +1,1475 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "face_free.f3d",
+      "case": "face_free",
+      "getter_errors": [],
+      "source_face_before_loft": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3VPS0oEMRD1DJ7gbVwWJNVJugMuBsHZCa7cNkklAWFQGfQebj3D3Eev4tJKmEUrmArUq6pXn2fAsJgCfF6cn3OkKBLJ5Zkpm5Soep+qpOZmXmCU2/mmI42tmuuZgI+r0+Un7k7v97vv9nV9UAb3uSK5CU9CMQZLLtpCeV6YrMvc2JvSQhtcnXHx5419BmOdwwQbA9QpwDiklydjh9eQYH+nFG4SBvn57anUsrYkdT1WeXypa0mvCTd7YI+uj7qkW3RpND6PAne4YTwo/Le4bTdnDXy2cdkPgE8fKnUBAAA=",
+        "temp_id": 0,
+        "body": {
+          "name": "LoftFaceCylinderBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkzV1ULXFHxXTwhw+JF23SYHqMJIwdhMITk5KS3ZyDhZ19LSzFDXxNIwRTfJ3MJI19AkySjNyNQgJc0sDawWaAYDGgDbZ6AAtg5kvZGZAQCNNNu3iAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 3.1415926535899286,
+          "face_count": 3,
+          "edge_count": 2,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "geometry_type": "adsk::core::Plane",
+        "area_cm2": 3.141592653589793,
+        "centroid_world_cm": [
+          3.8981718325193755e-17,
+          0.0,
+          1.0
+        ],
+        "plane_origin_cm": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "plane_normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "is_param_reversed": false,
+        "loop_count": 1,
+        "edges": [
+          {
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPP05DMQzGOUNP8C2Mlhy/5OVFYmCBDYmJtUryEoTEgBAH6doz9D70Kh2x0w5VJeJI/sX+/CcMgcM0I5TFh1gSpVoT+RKFCudMLYTcau4+ygJWrenZSN9OzVtkxv7+sPnFy2H3+njqx4dPVYj1rbX0KlOllGZHPrmVSlyEnC/SJfDa5z602uPu5ox5jDHOY4KLE9QpQAtoJHV5PnvD24BcBRhtfW/b71Y/vtp2zT8ZT7A/kbMreIb9SNFADBzeFP9NXpfzZVm52FjhDyzN+d1eAQAA",
+            "temp_id": 1,
+            "geometry_type": "adsk::core::Circle3D",
+            "body_name": "LoftFaceCylinderBody",
+            "start_world_cm": [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.0
+            ],
+            "end_world_cm": [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.0
+            ],
+            "center_world_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0
+          }
+        ]
+      },
+      "destination_profile_before_loft": {
+        "entity_type": "adsk::fusion::Profile",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5ipulromoLv6gkBDj/SrtvkAMUNFYwVjCwswSygGiANZBlZAFmGCiY4dRkpGJspJCcnpSUbGSfrWlqaGeqaWBqm6CaZWxjpGpokGaUZmRqkpJmlwWxmQANg+wwUwNYZGZhA7INCA1OIK0AqADNEKsm+AAAA",
+        "sketch_name": "LoftFaceDestinationSection",
+        "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkzV1ULXFHxXTwhw+JF23SYHqMJIwdhMITk5KS3ZyDhZ19LSzFDXxNIwRTfJ3MJI19AkySjNyNQgJc0sDawWaAYDGgDbZ6AAtg5kvZGFJQCnoYRQiAAAAA==",
+        "profile_loop_count": 1,
+        "profile_loops": [
+          {
+            "is_outer": true,
+            "curves": [
+              {
+                "entity_type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkzV1ULXFHxXTwhw+JF23SYHqMJIwdhMITk5KS3ZyDhZ19LSzFDXxNIwRTfJ3MJI19AkySjNyNQgJc0sDawWaAYDGgDbZ6AAts7U0AhMG1lYKhgamCoYAAC/PHWSkgAAAA==",
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                "radius_cm": 0.6
+              }
+            ]
+          }
+        ]
+      },
+      "source_section_before_loft": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3VPS0oEMRD1DJ7gbVwWJNVJugMuBsHZCa7cNkklAWFQGfQebj3D3Eev4tJKmEUrmArUq6pXn2fAsJgCfF6cn3OkKBLJ5Zkpm5Soep+qpOZmXmCU2/mmI42tmuuZgI+r0+Un7k7v97vv9nV9UAb3uSK5CU9CMQZLLtpCeV6YrMvc2JvSQhtcnXHx5419BmOdwwQbA9QpwDiklydjh9eQYH+nFG4SBvn57anUsrYkdT1WeXypa0mvCTd7YI+uj7qkW3RpND6PAne4YTwo/Le4bTdnDXy2cdkPgE8fKnUBAAA=",
+        "temp_id": 0,
+        "body": {
+          "name": "LoftFaceCylinderBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkzV1ULXFHxXTwhw+JF23SYHqMJIwdhMITk5KS3ZyDhZ19LSzFDXxNIwRTfJ3MJI19AkySjNyNQgJc0sDawWaAYDGgDbZ6AAtg5kvZGZAQCNNNu3iAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 3.1415926535899286,
+          "face_count": 3,
+          "edge_count": 2,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "geometry_type": "adsk::core::Plane",
+        "area_cm2": 3.141592653589793,
+        "centroid_world_cm": [
+          3.8981718325193755e-17,
+          0.0,
+          1.0
+        ],
+        "plane_origin_cm": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "plane_normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "is_param_reversed": false,
+        "loop_count": 1,
+        "edges": [
+          {
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPP05DMQzGOUNP8C2Mlhy/5OVFYmCBDYmJtUryEoTEgBAH6doz9D70Kh2x0w5VJeJI/sX+/CcMgcM0I5TFh1gSpVoT+RKFCudMLYTcau4+ygJWrenZSN9OzVtkxv7+sPnFy2H3+njqx4dPVYj1rbX0KlOllGZHPrmVSlyEnC/SJfDa5z602uPu5ox5jDHOY4KLE9QpQAtoJHV5PnvD24BcBRhtfW/b71Y/vtp2zT8ZT7A/kbMreIb9SNFADBzeFP9NXpfzZVm52FjhDyzN+d1eAQAA",
+            "temp_id": 1,
+            "geometry_type": "adsk::core::Circle3D",
+            "body_name": "LoftFaceCylinderBody",
+            "start_world_cm": [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.0
+            ],
+            "end_world_cm": [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.0
+            ],
+            "center_world_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0
+          }
+        ]
+      },
+      "requested_condition": {
+        "type": "Free"
+      },
+      "setter_returned": true,
+      "actual_input_condition": {
+        "condition_type": "adsk::fusion::LoftFreeEndCondition"
+      },
+      "settings": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkzV1ULXFHxXTwhw+JF23SYHqMJIwdhMITk5KS3ZyDhZ19LSzFDXxNIwRTfJ3MJI19AkySjNyNQgJc0sDawWaAYDGgDbZ6AAtg5kvYmhEQDUvxkSiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 6.1575216010357305,
+            "face_count": 3,
+            "edge_count": 2,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              4.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepFace",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3VPS0oEMRD1DJ7gbVwWJNVJugMuBsHZCa7cNkklAWFQGfQebj3D3Eev4tJKmEUrmArUq6pXn2fAsJgCfF6cn3OkKBLJ5Zkpm5Soep+qpOZmXmCU2/mmI42tmuuZgI+r0+Un7k7v97vv9nV9UAb3uSK5CU9CMQZLLtpCeV6YrMvc2JvSQhtcnXHx5419BmOdwwQbA9QpwDiklydjh9eQYH+nFG4SBvn57anUsrYkdT1WeXypa0mvCTd7YI+uj7qkW3RpND6PAne4YTwo/Le4bTdnDXy2cdkPgE8fKnUBAAA=",
+              "temp_id": 0,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkzV1ULXFHxXTwhw+JF23SYHqMJIwdhMITk5KS3ZyDhZ19LSzFDXxNIwRTfJ3MJI19AkySjNyNQgJc0sDawWaAYDGgDbZ6AAtg5kvZGZAQCNNNu3iAAAAA==",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Plane",
+              "area_cm2": 3.141592653589793,
+              "centroid_world_cm": [
+                3.8981718325193755e-17,
+                0.0,
+                1.0
+              ],
+              "plane_origin_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "plane_normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "is_param_reversed": false,
+              "loop_count": 1,
+              "edges": [
+                {
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPP05DMQzGOUNP8C2Mlhy/5OVFYmCBDYmJtUryEoTEgBAH6doz9D70Kh2x0w5VJeJI/sX+/CcMgcM0I5TFh1gSpVoT+RKFCudMLYTcau4+ygJWrenZSN9OzVtkxv7+sPnFy2H3+njqx4dPVYj1rbX0KlOllGZHPrmVSlyEnC/SJfDa5z602uPu5ox5jDHOY4KLE9QpQAtoJHV5PnvD24BcBRhtfW/b71Y/vtp2zT8ZT7A/kbMreIb9SNFADBzeFP9NXpfzZVm52FjhDyzN+d1eAQAA",
+                  "temp_id": 1,
+                  "geometry_type": "adsk::core::Circle3D",
+                  "body_name": "LoftFaceCylinderBody",
+                  "start_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    1.0
+                  ],
+                  "end_world_cm": [
+                    -1.0,
+                    -1.2246467991473532e-16,
+                    1.0
+                  ],
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "radius_cm": 1.0
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U5ipulromoLv6gkBDj/SrtvkAMUNFYwVjCwswSygGiANZBlZAFmGCiY4dRkpGJspJCcnpSUbGSfrWlqaGeqaWBqm6CaZWxjpGpokGaUZmRqkpJmlwWxmQANg+wwUwNYZGZhA7INCA1OIK0AqADNEKsm+AAAA",
+              "sketch_name": "LoftFaceDestinationSection",
+              "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkzV1ULXFHxXTwhw+JF23SYHqMJIwdhMITk5KS3ZyDhZ19LSzFDXxNIwRTfJ3MJI19AkySjNyNQgJc0sDawWaAYDGgDbZ6AAtg5kvZGFJQCnoYRQiAAAAA==",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwkzV1ULXFHxXTwhw+JF23SYHqMJIwdhMITk5KS3ZyDhZ19LSzFDXxNIwRTfJ3MJI19AkySjNyNQgJc0sDawWaAYDGgDbZ6AAts7U0AhMG1lYKhgamCoYAAC/PHWSkgAAAA==",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "created_by": "LoftFaceCylinderSeed"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "LoftFaceCylinderSeed"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 4.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        }
+      ]
+    },
+    {
+      "file": "edge_path_tangent_weight1.f3d",
+      "case": "edge_path_tangent_weight1",
+      "getter_errors": [],
+      "source_face_before_loft": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3VPS0oFMRD0Bl6hLtDS3cnkJVvB59KdIIhDPjPwFn4QvYFrz+DS03gYT2AnvMUomAS6Ul39KYZC4ALqWksr1ZEkbuQ1MeXkEkmWMHkV55cJbNqu5440GhL4zgTcfdy+v51efX3eXH63+7NiCu19V94lLqlSCRLJR79SDimQddypOj/FpkNrPU7+nDGPMcZ5OEgKsGAAY5Gediwj2pcgvymDG4JRHl8f2tLmNddlfl7q4WmZW37JON8De0STULd0gW6NxtOR0A43imuD/ya35Xz0oMc7NvsBAbeaYnUBAAA=",
+        "temp_id": 0,
+        "body": {
+          "name": "LoftFaceCylinderBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtyCmL4Wfv9zKyLdP6Xk6iUBVRgpGJsppBmYWxokWSbrJpkZWuiaWJik6SaaWZrpGhkamxsZGZuYWqQYgdUCzWBAA2D7DBTA1oGsNzIzAACssRbKiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 3.1415926535899286,
+          "face_count": 3,
+          "edge_count": 2,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "geometry_type": "adsk::core::Plane",
+        "area_cm2": 3.141592653589793,
+        "centroid_world_cm": [
+          3.8981718325193755e-17,
+          0.0,
+          1.0
+        ],
+        "plane_origin_cm": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "plane_normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "is_param_reversed": false,
+        "loop_count": 1,
+        "edges": [
+          {
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPS0pEMRBF3YFbuBsoqark5SULUIfOBKGxye+JA0HEJTh2DQ5djYtxBVbSPWgaTAJ1uHXrE4ZC4ALqVksr1ZEkbuQ1MeXkEkmWsHgV5/sCNu/w8yCNRgI/lIDHr93nx+Xdz/fD7W97uSrm0NF34zVxSZVKkEg++o1ySIGs46rq/BKbTq/1uDg7cx5jjvNwkNXBggGsgGbSludDHHgu6InA6O2p7996fX7t+5bfM64RTSYZT3GD8SPDATpAcG/4b/K0nI/L6vHOFf4A1DlNT14BAAA=",
+            "temp_id": 1,
+            "geometry_type": "adsk::core::Circle3D",
+            "body_name": "LoftFaceCylinderBody",
+            "start_world_cm": [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.0
+            ],
+            "end_world_cm": [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.0
+            ],
+            "center_world_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0
+          }
+        ]
+      },
+      "destination_profile_before_loft": {
+        "entity_type": "adsk::fusion::Profile",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U4hbENPXwu9/bkWk+6eUXL0koLihgrGCkYUlmAVUA6SBLCMLIMtQwQSnLiMFYzOFNANzS4Mky2TdJDNDC10TC5M03UQzSzNdI0NjcyMjYxNTixS4zQxoAGyfgQLYOiMDE4h9UGhgCnEFSAUAZqMfLb4AAAA=",
+        "sketch_name": "LoftFaceDestinationSection",
+        "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtyCmL4Wfv9zKyLdP6Xk6iUBVRgpGJsppBmYWxokWSbrJpkZWuiaWJik6SaaWZrpGhkamxsZGZuYWqQYgdUCzWBAA2D7DBTA1oGsN7KwBACGJEktiAAAAA==",
+        "profile_loop_count": 1,
+        "profile_loops": [
+          {
+            "is_outer": true,
+            "curves": [
+              {
+                "entity_type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtyCmL4Wfv9zKyLdP6Xk6iUBVRgpGJsppBmYWxokWSbrJpkZWuiaWJik6SaaWZrpGhkamxsZGZuYWqQYgdUCzWBAA2D7DBTA1pkaGoFpIwtLBUMDUwUDAFzyNHKSAAAA",
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                "radius_cm": 0.6
+              }
+            ]
+          }
+        ]
+      },
+      "source_section_before_loft": {
+        "entity_type": "adsk::fusion::Path",
+        "count": 1,
+        "segments": [
+          {
+            "is_opposed_to_entity": false,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPS0pEMRBF3YFbuBsoqark5SULUIfOBKGxye+JA0HEJTh2DQ5djYtxBVbSPWgaTAJ1uHXrE4ZC4ALqVksr1ZEkbuQ1MeXkEkmWsHgV5/sCNu/w8yCNRgI/lIDHr93nx+Xdz/fD7W97uSrm0NF34zVxSZVKkEg++o1ySIGs46rq/BKbTq/1uDg7cx5jjvNwkNXBggGsgGbSludDHHgu6InA6O2p7996fX7t+5bfM64RTSYZT3GD8SPDATpAcG/4b/K0nI/L6vHOFf4A1DlNT14BAAA=",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtyCmL4Wfv9zKyLdP6Xk6iUBVRgpGJsppBmYWxokWSbrJpkZWuiaWJik6SaaWZrpGhkamxsZGZuYWqQYgdUCzWBAA2D7DBTA1oGsNzIzAACssRbKiAAAAA==",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          }
+        ]
+      },
+      "requested_condition": {
+        "type": "Tangent",
+        "weight": 1.0
+      },
+      "setter_returned": true,
+      "actual_input_condition": {
+        "condition_type": "adsk::fusion::LoftTangentEndCondition",
+        "weight": 1.0
+      },
+      "settings": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtyCmL4Wfv9zKyLdP6Xk6iUBVRgpGJsppBmYWxokWSbrJpkZWuiaWJik6SaaWZrpGhkamxsZGZuYWqQYgdUCzWBAA2D7DBTA1oGsNzE0BABPa932iAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 7.180625061160563,
+            "face_count": 3,
+            "edge_count": 3,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              4.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPS0pEMRBF3YFbuBsoqark5SULUIfOBKGxye+JA0HEJTh2DQ5djYtxBVbSPWgaTAJ1uHXrE4ZC4ALqVksr1ZEkbuQ1MeXkEkmWsHgV5/sCNu/w8yCNRgI/lIDHr93nx+Xdz/fD7W97uSrm0NF34zVxSZVKkEg++o1ySIGs46rq/BKbTq/1uDg7cx5jjvNwkNXBggGsgGbSludDHHgu6InA6O2p7996fX7t+5bfM64RTSYZT3GD8SPDATpAcG/4b/K0nI/L6vHOFf4A1DlNT14BAAA=",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtyCmL4Wfv9zKyLdP6Xk6iUBVRgpGJsppBmYWxokWSbrJpkZWuiaWJik6SaaWZrpGhkamxsZGZuYWqQYgdUCzWBAA2D7DBTA1oGsNzIzAACssRbKiAAAAA==",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftTangentEndCondition",
+              "weight": 1.0
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U4hbENPXwu9/bkWk+6eUXL0koLihgrGCkYUlmAVUA6SBLCMLIMtQwQSnLiMFYzOFNANzS4Mky2TdJDNDC10TC5M03UQzSzNdI0NjcyMjYxNTixS4zQxoAGyfgQLYOiMDE4h9UGhgCnEFSAUAZqMfLb4AAAA=",
+              "sketch_name": "LoftFaceDestinationSection",
+              "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtyCmL4Wfv9zKyLdP6Xk6iUBVRgpGJsppBmYWxokWSbrJpkZWuiaWJik6SaaWZrpGhkamxsZGZuYWqQYgdUCzWBAA2D7DBTA1oGsN7KwBACGJEktiAAAAA==",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtyCmL4Wfv9zKyLdP6Xk6iUBVRgpGJsppBmYWxokWSbrJpkZWuiaWJik6SaaWZrpGhkamxsZGZuYWqQYgdUCzWBAA2D7DBTA1pkaGoFpIwtLBUMDUwUDAFzyNHKSAAAA",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "created_by": "LoftFaceCylinderSeed"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "LoftFaceCylinderSeed"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 4.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d5",
+          "role": "Start Weight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeLoftFace"
+        }
+      ]
+    },
+    {
+      "file": "edge_path_tangent_weight2.f3d",
+      "case": "edge_path_tangent_weight2",
+      "getter_errors": [],
+      "source_face_before_loft": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3VPTUqEMQwVvIPgQngXCKQ/U79uBWfrTlwIH+2XFtyoDONNvIILV95nziJqGmbxKdgW8pq8vOQxPBxCgiTJvYZOPbiJYuZKk6RIvccWLrvUxU1g5Q4+D+QnRQ5xZBJODxev32c3nx/v5/eHr7s3ZXjTbVWVW1YhXyn6wlQWlyhz2kTZlCCxGFc1Tv4cm8ewcREBLidoUABbZJQDO4v6JbjfKYWrBKM+vTxKk7mXpc27tjw8t1nKvuBqC2wx/NGwdI1hjex5K/gBV4xbhf8W1+189OCP1zb7AUq3W651AQAA",
+        "temp_id": 0,
+        "body": {
+          "name": "LoftFaceCylinderBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvMt2Sn/xfz/rF8pGXPrX8RSoAojBWMzhZTUJLMUy1RL3bQ0oyRdE6NEA93EZEMzXUsDM1OTFNNE4xSTRLBaoBkMaABsn4EC2DqQ9UZmBgD+K8YaiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 3.1415926535899286,
+          "face_count": 3,
+          "edge_count": 2,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "geometry_type": "adsk::core::Plane",
+        "area_cm2": 3.141592653589793,
+        "centroid_world_cm": [
+          3.8981718325193755e-17,
+          0.0,
+          1.0
+        ],
+        "plane_origin_cm": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "plane_normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "is_param_reversed": false,
+        "loop_count": 1,
+        "edges": [
+          {
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPMWpDMQyGA7lDIEPgv4BAlh3nvQO0a7fSIRDsZ7tkCyFH6RU6dOp9cpbQVnIyhEBtgz7kX78khsDBR5RYxpZ9o+bdQGHkTEOJgVoL1W9ayZMbwKo1PRvJoOQQLBMxP68+fhcvl++v5fb88/apCum+NatzHdVIMgVJTGlykUaO61DWyZeQulY9Zg+n92P0dgEebuOhQQFaQP1Th+drNHxMyF2CUct73R3rtD/UXUmnhCfYTuTsCZ5hGykaiIHDq+K/n/flfBtWbreP8AdZIo0wXgEAAA==",
+            "temp_id": 1,
+            "geometry_type": "adsk::core::Circle3D",
+            "body_name": "LoftFaceCylinderBody",
+            "start_world_cm": [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.0
+            ],
+            "end_world_cm": [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.0
+            ],
+            "center_world_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0
+          }
+        ]
+      },
+      "destination_profile_before_loft": {
+        "entity_type": "adsk::fusion::Profile",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U2C+JTvlv5j/n/UrJWNu/YtYChQ3VDBWMLKwBLOAaoA0kGVkAWQZKpjg1GWkYGymkJKaZJZimWqpm5ZmlKRrYpRooJuYbGima2lgZmqSYpponGKSCLOZAQ2A7TNQAFtnZGACsQ8KDUwhrgCpAACfG1ErvgAAAA==",
+        "sketch_name": "LoftFaceDestinationSection",
+        "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvMt2Sn/xfz/rF8pGXPrX8RSoAojBWMzhZTUJLMUy1RL3bQ0oyRdE6NEA93EZEMzXUsDM1OTFNNE4xSTRLBaoBkMaABsn4EC2DqQ9UYWlgDUvpn9iAAAAA==",
+        "profile_loop_count": 1,
+        "profile_loops": [
+          {
+            "is_outer": true,
+            "curves": [
+              {
+                "entity_type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvMt2Sn/xfz/rF8pGXPrX8RSoAojBWMzhZTUJLMUy1RL3bQ0oyRdE6NEA93EZEMzXUsDM1OTFNNE4xSTRLBaoBkMaABsn4EC2DpTQyMwbWRhqWBoYKpgAADQGbA9kgAAAA==",
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                "radius_cm": 0.6
+              }
+            ]
+          }
+        ]
+      },
+      "source_section_before_loft": {
+        "entity_type": "adsk::fusion::Path",
+        "count": 1,
+        "segments": [
+          {
+            "is_opposed_to_entity": false,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPMWpDMQyGA7lDIEPgv4BAlh3nvQO0a7fSIRDsZ7tkCyFH6RU6dOp9cpbQVnIyhEBtgz7kX78khsDBR5RYxpZ9o+bdQGHkTEOJgVoL1W9ayZMbwKo1PRvJoOQQLBMxP68+fhcvl++v5fb88/apCum+NatzHdVIMgVJTGlykUaO61DWyZeQulY9Zg+n92P0dgEebuOhQQFaQP1Th+drNHxMyF2CUct73R3rtD/UXUmnhCfYTuTsCZ5hGykaiIHDq+K/n/flfBtWbreP8AdZIo0wXgEAAA==",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvMt2Sn/xfz/rF8pGXPrX8RSoAojBWMzhZTUJLMUy1RL3bQ0oyRdE6NEA93EZEMzXUsDM1OTFNNE4xSTRLBaoBkMaABsn4EC2DqQ9UZmBgD+K8YaiAAAAA==",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          }
+        ]
+      },
+      "requested_condition": {
+        "type": "Tangent",
+        "weight": 2.0
+      },
+      "setter_returned": true,
+      "actual_input_condition": {
+        "condition_type": "adsk::fusion::LoftTangentEndCondition",
+        "weight": 2.0
+      },
+      "settings": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvMt2Sn/xfz/rF8pGXPrX8RSoAojBWMzhZTUJLMUy1RL3bQ0oyRdE6NEA93EZEMzXUsDM1OTFNNE4xSTRLBaoBkMaABsn4EC2DqQ9SaGhgAd8Q0miAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 7.946745981673562,
+            "face_count": 3,
+            "edge_count": 3,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              4.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPMWpDMQyGA7lDIEPgv4BAlh3nvQO0a7fSIRDsZ7tkCyFH6RU6dOp9cpbQVnIyhEBtgz7kX78khsDBR5RYxpZ9o+bdQGHkTEOJgVoL1W9ayZMbwKo1PRvJoOQQLBMxP68+fhcvl++v5fb88/apCum+NatzHdVIMgVJTGlykUaO61DWyZeQulY9Zg+n92P0dgEebuOhQQFaQP1Th+drNHxMyF2CUct73R3rtD/UXUmnhCfYTuTsCZ5hGykaiIHDq+K/n/flfBtWbreP8AdZIo0wXgEAAA==",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvMt2Sn/xfz/rF8pGXPrX8RSoAojBWMzhZTUJLMUy1RL3bQ0oyRdE6NEA93EZEMzXUsDM1OTFNNE4xSTRLBaoBkMaABsn4EC2DqQ9UZmBgD+K8YaiAAAAA==",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftTangentEndCondition",
+              "weight": 2.0
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U2C+JTvlv5j/n/UrJWNu/YtYChQ3VDBWMLKwBLOAaoA0kGVkAWQZKpjg1GWkYGymkJKaZJZimWqpm5ZmlKRrYpRooJuYbGima2lgZmqSYpponGKSCLOZAQ2A7TNQAFtnZGACsQ8KDUwhrgCpAACfG1ErvgAAAA==",
+              "sketch_name": "LoftFaceDestinationSection",
+              "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvMt2Sn/xfz/rF8pGXPrX8RSoAojBWMzhZTUJLMUy1RL3bQ0oyRdE6NEA93EZEMzXUsDM1OTFNNE4xSTRLBaoBkMaABsn4EC2DqQ9UYWlgDUvpn9iAAAAA==",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAvMt2Sn/xfz/rF8pGXPrX8RSoAojBWMzhZTUJLMUy1RL3bQ0oyRdE6NEA93EZEMzXUsDM1OTFNNE4xSTRLBaoBkMaABsn4EC2DpTQyMwbWRhqWBoYKpgAADQGbA9kgAAAA==",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "created_by": "LoftFaceCylinderSeed"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "LoftFaceCylinderSeed"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 4.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d5",
+          "role": "Start Weight",
+          "value": 2.0,
+          "unit": "",
+          "created_by": "ProbeLoftFace"
+        }
+      ]
+    },
+    {
+      "file": "edge_path_smooth_weight1.f3d",
+      "case": "edge_path_smooth_weight1",
+      "getter_errors": [],
+      "source_face_before_loft": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3VPu04EMQykoOcX5gcsOY/1Je0hrkDUNBSr7MYr0cAJQUdx1bW0fAF/Q82vUOJEVyxIJJE88Ywfw/BwCIK8UTfkNNCg3lMUZUpLqcRSljlliUEVbNqm54Z8MuQQW0bwevw8v3m//vr4roeLu8s3U/jWdxOkeFkcqVah6GqkkjjQlDQUziGWqXat9Tj7c/o8Rh8XEeCywIIB9EUaHdj1aF+C+50yuEowpseXh6p1XMqs45PO93sda3ku2O6AHZJJqFm6QrNG/flO+AZXiluD/5Lrcj558KfbN/sBLUMfaHUBAAA=",
+        "temp_id": 0,
+        "body": {
+          "name": "LoftFaceCylinderBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQk3bWRafGV7Xl/1IaeCPdu4HqjBSMDZTMDc2SzQySzPUTU1NMdM1MUwx0U20MDDWTbJINU40sDQ2SUxKAasFmsGABsD2GSiArQNZb2RmAAAX4ASoiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 3.1415926535899286,
+          "face_count": 3,
+          "edge_count": 2,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        },
+        "geometry_type": "adsk::core::Plane",
+        "area_cm2": 3.141592653589793,
+        "centroid_world_cm": [
+          3.8981718325193755e-17,
+          0.0,
+          1.0
+        ],
+        "plane_origin_cm": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "plane_normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "is_param_reversed": false,
+        "loop_count": 1,
+        "edges": [
+          {
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPPU4DMRCFKei5wrvASOOx1+utIygiahqKyIlno3RRlDIFFS0tJ8htqLkKJTMmRRQJ29J8evPmxwxBQMyYRg3DVAYaVIRSVqYy10ac67wpU05RFWxe97OTFKOA5ErG6f3r/vlz+X3+aW8Pr4sPc4j3HWOukudAqi1TCi1RLRxpXTRWnmKq69a91uPu5vR5jD4uISKMERYMYAXUk7Y8/0XHW0GuBIa2ra4OutntddXqseIRxWQK/gRP8B8ZOohDwIvhv8nrcr4sK5fbV/gFIfnDRl4BAAA=",
+            "temp_id": 1,
+            "geometry_type": "adsk::core::Circle3D",
+            "body_name": "LoftFaceCylinderBody",
+            "start_world_cm": [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.0
+            ],
+            "end_world_cm": [
+              -1.0,
+              -1.2246467991473532e-16,
+              1.0
+            ],
+            "center_world_cm": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0
+          }
+        ]
+      },
+      "destination_profile_before_loft": {
+        "entity_type": "adsk::fusion::Profile",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U6hpO8viM8Pr+rIfKQ380c79QHFDBWMFIwtLMAuoBkgDWUYWQJahgglOXUYKxmYK5sZmiUZmaYa6qakpZromhikmuokWBsa6SRapxokGlsYmiUkpMJsZ0ADYPgMFsHVGBiYQ+6DQwBTiCpAKAAahiQ++AAAA",
+        "sketch_name": "LoftFaceDestinationSection",
+        "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQk3bWRafGV7Xl/1IaeCPdu4HqjBSMDZTMDc2SzQySzPUTU1NMdM1MUwx0U20MDDWTbJINU40sDQ2SUxKAasFmsGABsD2GSiArQNZb2RhCQA9dVtPiAAAAA==",
+        "profile_loop_count": 1,
+        "profile_loops": [
+          {
+            "is_outer": true,
+            "curves": [
+              {
+                "entity_type": "adsk::fusion::SketchCircle",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQk3bWRafGV7Xl/1IaeCPdu4HqjBSMDZTMDc2SzQySzPUTU1NMdM1MUwx0U20MDDWTbJINU40sDQ2SUxKAasFmsGABsD2GSiArTM1NALTRhaWCoYGpgoGAD28vEOSAAAA",
+                "center_world_cm": [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                "radius_cm": 0.6
+              }
+            ]
+          }
+        ]
+      },
+      "source_section_before_loft": {
+        "entity_type": "adsk::fusion::Path",
+        "count": 1,
+        "segments": [
+          {
+            "is_opposed_to_entity": false,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPPU4DMRCFKei5wrvASOOx1+utIygiahqKyIlno3RRlDIFFS0tJ8htqLkKJTMmRRQJ29J8evPmxwxBQMyYRg3DVAYaVIRSVqYy10ac67wpU05RFWxe97OTFKOA5ErG6f3r/vlz+X3+aW8Pr4sPc4j3HWOukudAqi1TCi1RLRxpXTRWnmKq69a91uPu5vR5jD4uISKMERYMYAXUk7Y8/0XHW0GuBIa2ra4OutntddXqseIRxWQK/gRP8B8ZOohDwIvhv8nrcr4sK5fbV/gFIfnDRl4BAAA=",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQk3bWRafGV7Xl/1IaeCPdu4HqjBSMDZTMDc2SzQySzPUTU1NMdM1MUwx0U20MDDWTbJINU40sDQ2SUxKAasFmsGABsD2GSiArQNZb2RmAAAX4ASoiAAAAA==",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          }
+        ]
+      },
+      "requested_condition": {
+        "type": "Smooth",
+        "weight": 1.0
+      },
+      "setter_returned": true,
+      "actual_input_condition": {
+        "condition_type": "adsk::fusion::LoftSmoothEndCondition",
+        "weight": 1.0
+      },
+      "settings": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQk3bWRafGV7Xl/1IaeCPdu4HqjBSMDZTMDc2SzQySzPUTU1NMdM1MUwx0U20MDDWTbJINU40sDQ2SUxKAasFmsGABsD2GSiArQNZb2JoCAD0Os+UiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 7.309321983470017,
+            "face_count": 3,
+            "edge_count": 3,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              1.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              4.0
+            ]
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPPU4DMRCFKei5wrvASOOx1+utIygiahqKyIlno3RRlDIFFS0tJ8htqLkKJTMmRRQJ29J8evPmxwxBQMyYRg3DVAYaVIRSVqYy10ac67wpU05RFWxe97OTFKOA5ErG6f3r/vlz+X3+aW8Pr4sPc4j3HWOukudAqi1TCi1RLRxpXTRWnmKq69a91uPu5vR5jD4uISKMERYMYAXUk7Y8/0XHW0GuBIa2ra4OutntddXqseIRxWQK/gRP8B8ZOohDwIvhv8nrcr4sK5fbV/gFIfnDRl4BAAA=",
+              "temp_id": 1,
+              "body": {
+                "name": "LoftFaceCylinderBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQk3bWRafGV7Xl/1IaeCPdu4HqjBSMDZTMDc2SzQySzPUTU1NMdM1MUwx0U20MDDWTbJINU40sDQ2SUxKAasFmsGABsD2GSiArQNZb2RmAAAX4ASoiAAAAA==",
+                "component_name": "(Unsaved)",
+                "is_solid": true,
+                "volume_cm3": 3.1415926535899286,
+                "face_count": 3,
+                "edge_count": 2,
+                "bounding_box_min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "bounding_box_max_cm": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "geometry_type": "adsk::core::Circle3D",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftSmoothEndCondition",
+              "weight": 1.0
+            }
+          },
+          {
+            "index": 1,
+            "entity": {
+              "entity_type": "adsk::fusion::Profile",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U6hpO8viM8Pr+rIfKQ380c79QHFDBWMFIwtLMAuoBkgDWUYWQJahgglOXUYKxmYK5sZmiUZmaYa6qakpZromhikmuokWBsa6SRapxokGlsYmiUkpMJsZ0ADYPgMFsHVGBiYQ+6DQwBTiCpAKAAahiQ++AAAA",
+              "sketch_name": "LoftFaceDestinationSection",
+              "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQk3bWRafGV7Xl/1IaeCPdu4HqjBSMDZTMDc2SzQySzPUTU1NMdM1MUwx0U20MDDWTbJINU40sDQ2SUxKAasFmsGABsD2GSiArQNZb2RhCQA9dVtPiAAAAA==",
+              "profile_loop_count": 1,
+              "profile_loops": [
+                {
+                  "is_outer": true,
+                  "curves": [
+                    {
+                      "entity_type": "adsk::fusion::SketchCircle",
+                      "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQk3bWRafGV7Xl/1IaeCPdu4HqjBSMDZTMDc2SzQySzPUTU1NMdM1MUwx0U20MDDWTbJINU40sDQ2SUxKAasFmsGABsD2GSiArTM1NALTRhaWCoYGpgoGAD28vEOSAAAA",
+                      "center_world_cm": [
+                        0.0,
+                        0.0,
+                        4.0
+                      ],
+                      "radius_cm": 0.6
+                    }
+                  ]
+                }
+              ]
+            },
+            "end_condition": {
+              "condition_type": "adsk::fusion::LoftFreeEndCondition"
+            }
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "created_by": "LoftFaceCylinderSeed"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "LoftFaceCylinderSeed"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 4.0,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d5",
+          "role": "Start Weight",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeLoftFace"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "case": "face_tangent_weight1",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateLoftFaceModes.py\", line 181, in run\n    accepted = face_section.setTangentEndCondition(value(weight))\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 46274, in setTangentEndCondition\n    return _fusion.LoftSection_setTangentEndCondition(self, weight)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nRuntimeError: 3 : Tangent endCondition can only be applied to BRepEdge.\n",
+      "partial_capture": {
+        "file": "face_tangent_weight1.f3d",
+        "case": "face_tangent_weight1",
+        "getter_errors": [],
+        "source_face_before_loft": {
+          "entity_type": "adsk::fusion::BRepFace",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3VPPUpGMRD0KNNZLWSTvLykVPA7gmDjI8nmgY1+iB7BK1hYeg8r7yFaWlrYuwlf8RRMAjuZnf0ZAwuGC3DGWs9rpNjqSl6mSkXKTBI41ioS0xpgVNv1piMbFTF8ZwKOL18uvl5Pnh4/Hz6e396/VWF735y5Cs9Mk5sL+RRZ+2YhV0z1fk5l4jS02uPozxnzDMY4DwdOARoUYCzS087wiPol8G9K4YYwKDf319JkWXNty22rV/u2SL7LON0BO0SVULd0hm6NxrMjYTvcKM4V/pvclpuDB3u4Y7MfIAeSf3UBAAA=",
+          "temp_id": 0,
+          "body": {
+            "name": "LoftFaceCylinderBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnrc3siPhx1nTXvZ+nDRvQdfgSqMFIzNFBITDZNTDM0NdU2NzZN0TSwtDHWTUhJTdI2TDJJNTMwtk0wNLcFqgWYwoAGwfQYKYOtA1huZGQAAzWGC/ogAAAA=",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 3.1415926535899286,
+            "face_count": 3,
+            "edge_count": 2,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "geometry_type": "adsk::core::Plane",
+          "area_cm2": 3.141592653589793,
+          "centroid_world_cm": [
+            3.8981718325193755e-17,
+            0.0,
+            1.0
+          ],
+          "plane_origin_cm": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "plane_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_param_reversed": false,
+          "loop_count": 1,
+          "edges": [
+            {
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPPU4EMQyFOYo7Kku2k5lkSgo4AtI2rJI4g+gQ4gpcgYJy77EV91hBSUlBjx22WK1EEsmfnp9/QiDAEGYIJBJ5zZh7WzHq1LBqTagz59ZU87LOQOZ1PzlJNmKIrsxwebfffL9fvb1+vXzuDh8/5hDvWwo35cQ4hVQxLpmtb1EMlVqMaakTL8NrPS7OzphHMMZFCMApgAUDsAIcSVue/qLjuSAnAkHX+7596u3hsW+1PBe4hmwysj+BG/AfGTqIA8Ot4b/J03I6LivHO1b4BWOnsRJeAQAA",
+              "temp_id": 1,
+              "geometry_type": "adsk::core::Circle3D",
+              "body_name": "LoftFaceCylinderBody",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          ]
+        },
+        "destination_profile_before_loft": {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U1CP2xv58bDjrGkvWx8uuvfgK1DcUMFYwcjCEswCqgHSQJaRBZBlqGCCU5eRgrGZQmKiYXKKobmhrqmxeZKuiaWFoW5SSmKKrnGSQbKJibllkqmhJcxmBjQAts9AAWydkYEJxD4oNDCFuAKkAgBZ6Y4RvgAAAA==",
+          "sketch_name": "LoftFaceDestinationSection",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnrc3siPhx1nTXvZ+nDRvQdfgSqMFIzNFBITDZNTDM0NdU2NzZN0TSwtDHWTUhJTdI2TDJJNTMwtk0wNLcFqgWYwoAGwfQYKYOtA1htZWAIA5/TdGYgAAAA=",
+          "profile_loop_count": 1,
+          "profile_loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchCircle",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnrc3siPhx1nTXvZ+nDRvQdfgSqMFIzNFBITDZNTDM0NdU2NzZN0TSwtDHWTUhJTdI2TDJJNTMwtk0wNLcFqgWYwoAGwfQYKYOtMDY3AtJGFpYKhgamCAQBh5/CvkgAAAA==",
+                  "center_world_cm": [
+                    0.0,
+                    0.0,
+                    4.0
+                  ],
+                  "radius_cm": 0.6
+                }
+              ]
+            }
+          ]
+        },
+        "source_section_before_loft": {
+          "entity_type": "adsk::fusion::BRepFace",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3VPPUpGMRD0KNNZLWSTvLykVPA7gmDjI8nmgY1+iB7BK1hYeg8r7yFaWlrYuwlf8RRMAjuZnf0ZAwuGC3DGWs9rpNjqSl6mSkXKTBI41ioS0xpgVNv1piMbFTF8ZwKOL18uvl5Pnh4/Hz6e396/VWF735y5Cs9Mk5sL+RRZ+2YhV0z1fk5l4jS02uPozxnzDMY4DwdOARoUYCzS087wiPol8G9K4YYwKDf319JkWXNty22rV/u2SL7LON0BO0SVULd0hm6NxrMjYTvcKM4V/pvclpuDB3u4Y7MfIAeSf3UBAAA=",
+          "temp_id": 0,
+          "body": {
+            "name": "LoftFaceCylinderBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnrc3siPhx1nTXvZ+nDRvQdfgSqMFIzNFBITDZNTDM0NdU2NzZN0TSwtDHWTUhJTdI2TDJJNTMwtk0wNLcFqgWYwoAGwfQYKYOtA1huZGQAAzWGC/ogAAAA=",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 3.1415926535899286,
+            "face_count": 3,
+            "edge_count": 2,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "geometry_type": "adsk::core::Plane",
+          "area_cm2": 3.141592653589793,
+          "centroid_world_cm": [
+            3.8981718325193755e-17,
+            0.0,
+            1.0
+          ],
+          "plane_origin_cm": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "plane_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "is_param_reversed": false,
+          "loop_count": 1,
+          "edges": [
+            {
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/3WPPU4EMQyFOYo7Kku2k5lkSgo4AtI2rJI4g+gQ4gpcgYJy77EV91hBSUlBjx22WK1EEsmfnp9/QiDAEGYIJBJ5zZh7WzHq1LBqTagz59ZU87LOQOZ1PzlJNmKIrsxwebfffL9fvb1+vXzuDh8/5hDvWwo35cQ4hVQxLpmtb1EMlVqMaakTL8NrPS7OzphHMMZFCMApgAUDsAIcSVue/qLjuSAnAkHX+7596u3hsW+1PBe4hmwysj+BG/AfGTqIA8Ot4b/J03I6LivHO1b4BWOnsRJeAQAA",
+              "temp_id": 1,
+              "geometry_type": "adsk::core::Circle3D",
+              "body_name": "LoftFaceCylinderBody",
+              "start_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "end_world_cm": [
+                -1.0,
+                -1.2246467991473532e-16,
+                1.0
+              ],
+              "center_world_cm": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "radius_cm": 1.0
+            }
+          ]
+        },
+        "requested_condition": {
+          "type": "Tangent",
+          "weight": 1.0
+        }
+      }
+    }
+  ],
+  "sdk_caveat": "LoftSections.add accepts BRepFace; Tangent/Smooth setter docs say ignored unless section defined by BRepEdge. Actual getters determine captured behavior.",
+  "identity_scope": "API entity tokens/tempIds retained as opaque evidence; no native numeric ID or ASM identity interpretation."
+}

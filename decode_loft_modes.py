@@ -17,7 +17,7 @@ SECTION_GUID = "2F3200BA-FDFB-48C6-97D4-71A4A0D86190"
 
 def decode_loft_modes(data, records, body, feature, features, *, allowed_operation_codes=(4,),
                       profile_resolver=resolve_sketch_profiles, allow_point_end_conditions=False,
-                      section_resolver=None, guide_resolver=None):
+                      section_resolver=None, guide_resolver=None, allow_edge_end_conditions=False):
     if (feature["class_guid"] != LOFT_GUID or len(body) < 110
             or body[0] != 0 or body[1] not in (0, 1)):
         raise ValueError("Unsupported Loft class/prefix")
@@ -81,6 +81,12 @@ def decode_loft_modes(data, records, body, feature, features, *, allowed_operati
                     raise ValueError("Loft point tangent weight must be positive")
                 result.update(type="PointTangent", weight=weight, weight_binding_object_id=weight_id)
                 return result, cursor
+        if allow_edge_end_conditions and angle_id is None and weight_id is not None and code in (1, 2):
+            weight = parameter(weight_id, side+" Weight")
+            if weight <= 0:
+                raise ValueError("Loft edge end-condition weight must be positive")
+            result.update(type={1: "Tangent", 2: "Smooth"}[code], weight=weight, weight_binding_object_id=weight_id)
+            return result, cursor
         if code != 3 or angle_id is None or weight_id is None:
             raise ValueError("Unsupported Loft end-condition type/bindings")
         angle = parameter(angle_id, side+" TakeOff Angle")
