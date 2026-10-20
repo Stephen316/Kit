@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 216,
+  "file_count": 225,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -217,10 +217,19 @@
     "pathpatterns-de9857f6a1bc/spacing.f3d",
     "pathpatterns-de9857f6a1bc/start_offset.f3d",
     "pathpatterns-de9857f6a1bc/suppressed_instance.f3d",
-    "pathpatterns-de9857f6a1bc/symmetric.f3d"
+    "pathpatterns-de9857f6a1bc/symmetric.f3d",
+    "boundaryfills-a0953038318b/component_middle.f3d",
+    "boundaryfills-a0953038318b/cut_middle.f3d",
+    "boundaryfills-a0953038318b/intersect_middle.f3d",
+    "boundaryfills-a0953038318b/join_middle.f3d",
+    "boundaryfills-a0953038318b/new_first.f3d",
+    "boundaryfills-a0953038318b/new_middle.f3d",
+    "boundaryfills-a0953038318b/new_middle_remove.f3d",
+    "boundaryfills-a0953038318b/new_two.f3d",
+    "boundaryfills-a0953038318b/plane_first.f3d"
   ],
-  "class_count": 304,
-  "classes_with_observed_semantics": 47,
+  "class_count": 309,
+  "classes_with_observed_semantics": 49,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -790,6 +799,24 @@
       ]
     },
     {
+      "class_guid": "233D4E1B-1C2F-4622-96A0-0027622078CB",
+      "base_class_guids": [
+        "5C069ACB-169F-4555-9792-815B4671DDA0"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "boundaryfills-a0953038318b/component_middle.f3d",
+        "boundaryfills-a0953038318b/cut_middle.f3d",
+        "boundaryfills-a0953038318b/intersect_middle.f3d"
+      ]
+    },
+    {
       "class_guid": "2343b7ab-a2e0-4c66-8b74-99a05e4c670b",
       "base_class_guids": [
         "74d7fef9-44e9-494d-a25d-81ec33d2841e"
@@ -979,6 +1006,7 @@
       "observed_semantics": [],
       "example_files": [
         "assembly-acc48a9dc05d/assembly.f3d",
+        "boundaryfills-a0953038318b/component_middle.f3d",
         "namedbodies-3c7c11fc2924/namedbodies.f3d"
       ]
     },
@@ -1557,6 +1585,26 @@
       ]
     },
     {
+      "class_guid": "49004167-470D-4892-B50E-5C589B1486D2",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Named feature: BoundaryFill"
+      ],
+      "example_files": [
+        "boundaryfills-a0953038318b/component_middle.f3d",
+        "boundaryfills-a0953038318b/cut_middle.f3d",
+        "boundaryfills-a0953038318b/intersect_middle.f3d"
+      ]
+    },
+    {
       "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
       "base_class_guids": [
         "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B"
@@ -1607,6 +1655,24 @@
         "edgemodes-52695761f185/fillet_curvature.f3d",
         "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
         "tools-fda3948848f4/Fillet.f3d"
+      ]
+    },
+    {
+      "class_guid": "4A782808-FBDD-4351-A10A-F7AE5693D330",
+      "base_class_guids": [
+        "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Unsupported feature with stored label: RemoveBody"
+      ],
+      "example_files": [
+        "boundaryfills-a0953038318b/new_middle_remove.f3d"
       ]
     },
     {
@@ -1771,6 +1837,7 @@
       ],
       "example_files": [
         "assembly-acc48a9dc05d/assembly.f3d",
+        "boundaryfills-a0953038318b/component_middle.f3d",
         "namedbodies-3c7c11fc2924/namedbodies.f3d"
       ]
     },
@@ -1909,6 +1976,24 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "5AC5B5CD-44C7-45B7-9CDC-F79B215A825D",
+      "base_class_guids": [
+        "60F291CB-499B-4AB1-B0E5-340368671724"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "boundaryfills-a0953038318b/component_middle.f3d",
+        "boundaryfills-a0953038318b/cut_middle.f3d",
+        "boundaryfills-a0953038318b/intersect_middle.f3d"
+      ]
     },
     {
       "class_guid": "5C069ACB-169F-4555-9792-815B4671DDA0",
@@ -2469,6 +2554,22 @@
       "example_files": []
     },
     {
+      "class_guid": "772DE81C-5009-4BB7-9D8C-54DBAF536216",
+      "base_class_guids": [
+        "5C069ACB-169F-4555-9792-815B4671DDA0"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "boundaryfills-a0953038318b/plane_first.f3d"
+      ]
+    },
+    {
       "class_guid": "778FECF0-46E7-4EB8-A8D0-52C950CCEAAE",
       "base_class_guids": [
         "63D6AD42-466A-40B7-9CCD-EB21BC500EF6"
@@ -2520,6 +2621,7 @@
       ],
       "example_files": [
         "assembly-acc48a9dc05d/assembly.f3d",
+        "boundaryfills-a0953038318b/component_middle.f3d",
         "namedbodies-3c7c11fc2924/namedbodies.f3d"
       ]
     },
@@ -3045,7 +3147,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "assembly-acc48a9dc05d/assembly.f3d"
+        "assembly-acc48a9dc05d/assembly.f3d",
+        "boundaryfills-a0953038318b/component_middle.f3d"
       ]
     },
     {
@@ -5293,7 +5396,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "assembly-acc48a9dc05d/assembly.f3d"
+        "assembly-acc48a9dc05d/assembly.f3d",
+        "boundaryfills-a0953038318b/component_middle.f3d"
       ]
     },
     {

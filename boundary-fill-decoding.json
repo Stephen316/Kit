@@ -1,0 +1,1757 @@
+{
+  "status": "Experimental observed Boundary Fill controls and selected-cell records",
+  "fixture_directory": "boundaryfills-a0953038318b",
+  "fusion_version": "2705.1.30",
+  "api_sample_count": 9,
+  "previous_api_attempt": {
+    "directory": "boundaryfills-8ab7ff242e08",
+    "scope": "Nine features were created, but isRemoveTools getter required timeline rollback; no archives exported. All owned documents closed; generator corrected."
+  },
+  "checks": {
+    "operation_matches": 9,
+    "removal_flag_matches": 9,
+    "selected_count_matches": 9,
+    "tool_count_matches": 9,
+    "observed_box_membership_matches": 8,
+    "reciprocal_tool_descriptor_owners": 9,
+    "reciprocal_result_controller_owners": 9
+  },
+  "samples": [
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "feature_object_id": 359,
+      "settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_remove_tools": false,
+        "remove_body_feature_object_ids": [],
+        "body_tool_count": 2,
+        "plane_tool_count": 0,
+        "tools": [
+          {
+            "selection_record_object_id": 360,
+            "kind": "Body",
+            "descriptor_object_id": 363,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          },
+          {
+            "selection_record_object_id": 367,
+            "kind": "Body",
+            "descriptor_object_id": 370,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          }
+        ],
+        "selected_cell_count": 1,
+        "selected_cells": [
+          {
+            "object_id": 380,
+            "stored_cell_key": 2,
+            "body_tool_group_one_object_ids": [
+              367,
+              360
+            ],
+            "body_tool_group_two_object_ids": [],
+            "plane_tool_object_ids": [],
+            "face_recipes": [
+              {
+                "object_id": 374,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003500000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 375,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003600000000010000003001000000000000010000003600000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 376,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003100000000010000003001000000000000010000003100000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 377,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003400000000010000003001000000000000010000003400000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 378,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000033000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 379,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003200000000010000003001000000000000010000003200000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              }
+            ],
+            "plane_recipes": [],
+            "membership_scope": "Group one matches inside and group two outside for the observed closed boxes only",
+            "cell_key_scope": "Native key retained; not an API bRepCells array index",
+            "geometry_status": "Explicit selected-cell definition retained; boundaries are not rebuilt"
+          }
+        ],
+        "result_controller_object_id": 381,
+        "selected_definition_end_offset": 75,
+        "remaining_feature_bytes_scope": "Later shared feature metadata/auxiliary fields are not interpreted here",
+        "selection_status": "Owned typed tool descriptors and chosen-cell memberships retained; face-to-ASM mapping unresolved",
+        "operation_scope": "NewComponent creation normalizes this feature to NewBody and uses separate component wrappers",
+        "geometry_status": "Controls/cell references decoded; Boolean cell generation is not implemented"
+      },
+      "api_evidence": {
+        "file": "new_middle.f3d",
+        "operation": 3,
+        "cells_before_add": [
+          {
+            "index": 0,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 1,
+            "selected": true,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 2,
+            "selected": false,
+            "source_tools": [
+              "ToolB",
+              "ToolA"
+            ],
+            "geometry": {
+              "min_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "requested_choices": [
+          1
+        ],
+        "tool_names": [
+          "ToolA",
+          "ToolB"
+        ],
+        "output_bodies": [
+          {
+            "name": "Body3",
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 4.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "is_remove_tools": false
+      },
+      "box_membership_check": {
+        "matches": true,
+        "scope": "Unordered native body membership pairs match selected API cell midpoints in the two overlapping box tools"
+      }
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "feature_object_id": 359,
+      "settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_remove_tools": false,
+        "remove_body_feature_object_ids": [],
+        "body_tool_count": 2,
+        "plane_tool_count": 0,
+        "tools": [
+          {
+            "selection_record_object_id": 360,
+            "kind": "Body",
+            "descriptor_object_id": 363,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          },
+          {
+            "selection_record_object_id": 367,
+            "kind": "Body",
+            "descriptor_object_id": 370,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          }
+        ],
+        "selected_cell_count": 1,
+        "selected_cells": [
+          {
+            "object_id": 380,
+            "stored_cell_key": 1,
+            "body_tool_group_one_object_ids": [
+              360
+            ],
+            "body_tool_group_two_object_ids": [
+              367
+            ],
+            "plane_tool_object_ids": [],
+            "face_recipes": [
+              {
+                "object_id": 374,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003100000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 375,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003400000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 376,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003600000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 377,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003300000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 378,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003200000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 379,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000020000002d33000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              }
+            ],
+            "plane_recipes": [],
+            "membership_scope": "Group one matches inside and group two outside for the observed closed boxes only",
+            "cell_key_scope": "Native key retained; not an API bRepCells array index",
+            "geometry_status": "Explicit selected-cell definition retained; boundaries are not rebuilt"
+          }
+        ],
+        "result_controller_object_id": 381,
+        "selected_definition_end_offset": 75,
+        "remaining_feature_bytes_scope": "Later shared feature metadata/auxiliary fields are not interpreted here",
+        "selection_status": "Owned typed tool descriptors and chosen-cell memberships retained; face-to-ASM mapping unresolved",
+        "operation_scope": "NewComponent creation normalizes this feature to NewBody and uses separate component wrappers",
+        "geometry_status": "Controls/cell references decoded; Boolean cell generation is not implemented"
+      },
+      "api_evidence": {
+        "file": "new_first.f3d",
+        "operation": 3,
+        "cells_before_add": [
+          {
+            "index": 0,
+            "selected": true,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 1,
+            "selected": false,
+            "source_tools": [
+              "ToolB",
+              "ToolA"
+            ],
+            "geometry": {
+              "min_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 2,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "requested_choices": [
+          0
+        ],
+        "tool_names": [
+          "ToolA",
+          "ToolB"
+        ],
+        "output_bodies": [
+          {
+            "name": "Body3",
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 8.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "is_remove_tools": false
+      },
+      "box_membership_check": {
+        "matches": true,
+        "scope": "Unordered native body membership pairs match selected API cell midpoints in the two overlapping box tools"
+      }
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "feature_object_id": 359,
+      "settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_remove_tools": false,
+        "remove_body_feature_object_ids": [],
+        "body_tool_count": 2,
+        "plane_tool_count": 0,
+        "tools": [
+          {
+            "selection_record_object_id": 360,
+            "kind": "Body",
+            "descriptor_object_id": 363,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          },
+          {
+            "selection_record_object_id": 367,
+            "kind": "Body",
+            "descriptor_object_id": 370,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          }
+        ],
+        "selected_cell_count": 2,
+        "selected_cells": [
+          {
+            "object_id": 380,
+            "stored_cell_key": 2,
+            "body_tool_group_one_object_ids": [
+              367,
+              360
+            ],
+            "body_tool_group_two_object_ids": [],
+            "plane_tool_object_ids": [],
+            "face_recipes": [
+              {
+                "object_id": 374,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003500000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 375,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003600000000010000003001000000000000010000003600000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 376,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003100000000010000003001000000000000010000003100000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 377,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003400000000010000003001000000000000010000003400000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 378,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000033000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 379,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003200000000010000003001000000000000010000003200000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              }
+            ],
+            "plane_recipes": [],
+            "membership_scope": "Group one matches inside and group two outside for the observed closed boxes only",
+            "cell_key_scope": "Native key retained; not an API bRepCells array index",
+            "geometry_status": "Explicit selected-cell definition retained; boundaries are not rebuilt"
+          },
+          {
+            "object_id": 387,
+            "stored_cell_key": 3,
+            "body_tool_group_one_object_ids": [
+              367
+            ],
+            "body_tool_group_two_object_ids": [
+              360
+            ],
+            "plane_tool_object_ids": [],
+            "face_recipes": [
+              {
+                "object_id": 381,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000032000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 382,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000034000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 383,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000036000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 384,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000035000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 385,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000031000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 386,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000020000002d3500000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              }
+            ],
+            "plane_recipes": [],
+            "membership_scope": "Group one matches inside and group two outside for the observed closed boxes only",
+            "cell_key_scope": "Native key retained; not an API bRepCells array index",
+            "geometry_status": "Explicit selected-cell definition retained; boundaries are not rebuilt"
+          }
+        ],
+        "result_controller_object_id": 388,
+        "selected_definition_end_offset": 86,
+        "remaining_feature_bytes_scope": "Later shared feature metadata/auxiliary fields are not interpreted here",
+        "selection_status": "Owned typed tool descriptors and chosen-cell memberships retained; face-to-ASM mapping unresolved",
+        "operation_scope": "NewComponent creation normalizes this feature to NewBody and uses separate component wrappers",
+        "geometry_status": "Controls/cell references decoded; Boolean cell generation is not implemented"
+      },
+      "api_evidence": {
+        "file": "new_two.f3d",
+        "operation": 3,
+        "cells_before_add": [
+          {
+            "index": 0,
+            "selected": true,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 1,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 2,
+            "selected": true,
+            "source_tools": [
+              "ToolB",
+              "ToolA"
+            ],
+            "geometry": {
+              "min_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "requested_choices": [
+          0,
+          2
+        ],
+        "tool_names": [
+          "ToolA",
+          "ToolB"
+        ],
+        "output_bodies": [
+          {
+            "name": "Body3",
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 12.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "is_remove_tools": false
+      },
+      "box_membership_check": {
+        "matches": true,
+        "scope": "Unordered native body membership pairs match selected API cell midpoints in the two overlapping box tools"
+      }
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "feature_object_id": 359,
+      "settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_remove_tools": true,
+        "remove_body_feature_object_ids": [
+          387,
+          398
+        ],
+        "body_tool_count": 2,
+        "plane_tool_count": 0,
+        "tools": [
+          {
+            "selection_record_object_id": 360,
+            "kind": "Body",
+            "descriptor_object_id": 363,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          },
+          {
+            "selection_record_object_id": 367,
+            "kind": "Body",
+            "descriptor_object_id": 370,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          }
+        ],
+        "selected_cell_count": 1,
+        "selected_cells": [
+          {
+            "object_id": 380,
+            "stored_cell_key": 3,
+            "body_tool_group_one_object_ids": [
+              367
+            ],
+            "body_tool_group_two_object_ids": [
+              360
+            ],
+            "plane_tool_object_ids": [],
+            "face_recipes": [
+              {
+                "object_id": 374,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000036000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 375,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000032000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 376,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000034000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 377,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000035000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 378,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000031000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 379,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000020000002d3500000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              }
+            ],
+            "plane_recipes": [],
+            "membership_scope": "Group one matches inside and group two outside for the observed closed boxes only",
+            "cell_key_scope": "Native key retained; not an API bRepCells array index",
+            "geometry_status": "Explicit selected-cell definition retained; boundaries are not rebuilt"
+          }
+        ],
+        "result_controller_object_id": 381,
+        "selected_definition_end_offset": 97,
+        "remaining_feature_bytes_scope": "Later shared feature metadata/auxiliary fields are not interpreted here",
+        "selection_status": "Owned typed tool descriptors and chosen-cell memberships retained; face-to-ASM mapping unresolved",
+        "operation_scope": "NewComponent creation normalizes this feature to NewBody and uses separate component wrappers",
+        "geometry_status": "Controls/cell references decoded; Boolean cell generation is not implemented"
+      },
+      "api_evidence": {
+        "file": "new_middle_remove.f3d",
+        "operation": 3,
+        "cells_before_add": [
+          {
+            "index": 0,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 1,
+            "selected": true,
+            "source_tools": [
+              "ToolB",
+              "ToolA"
+            ],
+            "geometry": {
+              "min_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 2,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "requested_choices": [
+          1
+        ],
+        "tool_names": [
+          "ToolA",
+          "ToolB"
+        ],
+        "output_bodies": [
+          {
+            "name": "Body3",
+            "geometry": {
+              "min_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 8.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "is_remove_tools": true
+      },
+      "box_membership_check": {
+        "matches": true,
+        "scope": "Unordered native body membership pairs match selected API cell midpoints in the two overlapping box tools"
+      }
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "feature_object_id": 359,
+      "settings": {
+        "operation": "Join",
+        "stored_operation_code": 1,
+        "is_remove_tools": false,
+        "remove_body_feature_object_ids": [],
+        "body_tool_count": 2,
+        "plane_tool_count": 0,
+        "tools": [
+          {
+            "selection_record_object_id": 371,
+            "kind": "Body",
+            "descriptor_object_id": 374,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          },
+          {
+            "selection_record_object_id": 378,
+            "kind": "Body",
+            "descriptor_object_id": 381,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          }
+        ],
+        "selected_cell_count": 1,
+        "selected_cells": [
+          {
+            "object_id": 391,
+            "stored_cell_key": 1,
+            "body_tool_group_one_object_ids": [
+              371
+            ],
+            "body_tool_group_two_object_ids": [
+              378
+            ],
+            "plane_tool_object_ids": [],
+            "face_recipes": [
+              {
+                "object_id": 385,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003100000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 386,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003400000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 387,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003600000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 388,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003300000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 389,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003200000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 390,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000020000002d33000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              }
+            ],
+            "plane_recipes": [],
+            "membership_scope": "Group one matches inside and group two outside for the observed closed boxes only",
+            "cell_key_scope": "Native key retained; not an API bRepCells array index",
+            "geometry_status": "Explicit selected-cell definition retained; boundaries are not rebuilt"
+          }
+        ],
+        "result_controller_object_id": 392,
+        "selected_definition_end_offset": 71,
+        "remaining_feature_bytes_scope": "Later shared feature metadata/auxiliary fields are not interpreted here",
+        "selection_status": "Owned typed tool descriptors and chosen-cell memberships retained; face-to-ASM mapping unresolved",
+        "operation_scope": "NewComponent creation normalizes this feature to NewBody and uses separate component wrappers",
+        "geometry_status": "Controls/cell references decoded; Boolean cell generation is not implemented"
+      },
+      "api_evidence": {
+        "file": "join_middle.f3d",
+        "operation": 0,
+        "cells_before_add": [
+          {
+            "index": 0,
+            "selected": false,
+            "source_tools": [
+              "ToolB",
+              "ToolA"
+            ],
+            "geometry": {
+              "min_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 1,
+            "selected": true,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 2,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "requested_choices": [
+          1
+        ],
+        "tool_names": [
+          "ToolA",
+          "ToolB"
+        ],
+        "output_bodies": [
+          {
+            "name": "ToolA",
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 12.0
+            }
+          },
+          {
+            "name": "ToolB",
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 12.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "is_remove_tools": false
+      },
+      "box_membership_check": {
+        "matches": true,
+        "scope": "Unordered native body membership pairs match selected API cell midpoints in the two overlapping box tools"
+      }
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "feature_object_id": 359,
+      "settings": {
+        "operation": "Cut",
+        "stored_operation_code": 2,
+        "is_remove_tools": false,
+        "remove_body_feature_object_ids": [],
+        "body_tool_count": 2,
+        "plane_tool_count": 0,
+        "tools": [
+          {
+            "selection_record_object_id": 367,
+            "kind": "Body",
+            "descriptor_object_id": 370,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          },
+          {
+            "selection_record_object_id": 374,
+            "kind": "Body",
+            "descriptor_object_id": 377,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          }
+        ],
+        "selected_cell_count": 1,
+        "selected_cells": [
+          {
+            "object_id": 387,
+            "stored_cell_key": 3,
+            "body_tool_group_one_object_ids": [
+              374
+            ],
+            "body_tool_group_two_object_ids": [
+              367
+            ],
+            "plane_tool_object_ids": [],
+            "face_recipes": [
+              {
+                "object_id": 381,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000036000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 382,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000032000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 383,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000034000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 384,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000035000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 385,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000031000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 386,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000020000002d3500000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              }
+            ],
+            "plane_recipes": [],
+            "membership_scope": "Group one matches inside and group two outside for the observed closed boxes only",
+            "cell_key_scope": "Native key retained; not an API bRepCells array index",
+            "geometry_status": "Explicit selected-cell definition retained; boundaries are not rebuilt"
+          }
+        ],
+        "result_controller_object_id": 388,
+        "selected_definition_end_offset": 71,
+        "remaining_feature_bytes_scope": "Later shared feature metadata/auxiliary fields are not interpreted here",
+        "selection_status": "Owned typed tool descriptors and chosen-cell memberships retained; face-to-ASM mapping unresolved",
+        "operation_scope": "NewComponent creation normalizes this feature to NewBody and uses separate component wrappers",
+        "geometry_status": "Controls/cell references decoded; Boolean cell generation is not implemented"
+      },
+      "api_evidence": {
+        "file": "cut_middle.f3d",
+        "operation": 1,
+        "cells_before_add": [
+          {
+            "index": 0,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 1,
+            "selected": true,
+            "source_tools": [
+              "ToolB",
+              "ToolA"
+            ],
+            "geometry": {
+              "min_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 2,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "requested_choices": [
+          1
+        ],
+        "tool_names": [
+          "ToolA",
+          "ToolB"
+        ],
+        "output_bodies": [
+          {
+            "name": "ToolB",
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 4.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "is_remove_tools": false
+      },
+      "box_membership_check": {
+        "matches": true,
+        "scope": "Unordered native body membership pairs match selected API cell midpoints in the two overlapping box tools"
+      }
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "feature_object_id": 359,
+      "settings": {
+        "operation": "Intersect",
+        "stored_operation_code": 3,
+        "is_remove_tools": false,
+        "remove_body_feature_object_ids": [],
+        "body_tool_count": 2,
+        "plane_tool_count": 0,
+        "tools": [
+          {
+            "selection_record_object_id": 367,
+            "kind": "Body",
+            "descriptor_object_id": 370,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          },
+          {
+            "selection_record_object_id": 374,
+            "kind": "Body",
+            "descriptor_object_id": 377,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          }
+        ],
+        "selected_cell_count": 1,
+        "selected_cells": [
+          {
+            "object_id": 387,
+            "stored_cell_key": 3,
+            "body_tool_group_one_object_ids": [
+              374
+            ],
+            "body_tool_group_two_object_ids": [
+              367
+            ],
+            "plane_tool_object_ids": [],
+            "face_recipes": [
+              {
+                "object_id": 381,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000032000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 382,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000034000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 383,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000036000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 384,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000035000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 385,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000031000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 386,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000020000002d3500000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              }
+            ],
+            "plane_recipes": [],
+            "membership_scope": "Group one matches inside and group two outside for the observed closed boxes only",
+            "cell_key_scope": "Native key retained; not an API bRepCells array index",
+            "geometry_status": "Explicit selected-cell definition retained; boundaries are not rebuilt"
+          }
+        ],
+        "result_controller_object_id": 388,
+        "selected_definition_end_offset": 71,
+        "remaining_feature_bytes_scope": "Later shared feature metadata/auxiliary fields are not interpreted here",
+        "selection_status": "Owned typed tool descriptors and chosen-cell memberships retained; face-to-ASM mapping unresolved",
+        "operation_scope": "NewComponent creation normalizes this feature to NewBody and uses separate component wrappers",
+        "geometry_status": "Controls/cell references decoded; Boolean cell generation is not implemented"
+      },
+      "api_evidence": {
+        "file": "intersect_middle.f3d",
+        "operation": 2,
+        "cells_before_add": [
+          {
+            "index": 0,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 1,
+            "selected": true,
+            "source_tools": [
+              "ToolB",
+              "ToolA"
+            ],
+            "geometry": {
+              "min_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 2,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "requested_choices": [
+          1
+        ],
+        "tool_names": [
+          "ToolA",
+          "ToolB"
+        ],
+        "output_bodies": [
+          {
+            "name": "ToolB",
+            "geometry": {
+              "min_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 8.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "is_remove_tools": false
+      },
+      "box_membership_check": {
+        "matches": true,
+        "scope": "Unordered native body membership pairs match selected API cell midpoints in the two overlapping box tools"
+      }
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "feature_object_id": 422,
+      "settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_remove_tools": false,
+        "remove_body_feature_object_ids": [],
+        "body_tool_count": 2,
+        "plane_tool_count": 0,
+        "tools": [
+          {
+            "selection_record_object_id": 423,
+            "kind": "Body",
+            "descriptor_object_id": 432,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Primary descriptor retained; occurrence-context bytes unresolved",
+            "unresolved_proxy_context_hex": "01aa01000000000000000001ad0100000000000000000100000001d3010000000000000000000000000500000000000000000000000000010100006095c02a3a39f33e0101000001a901000000000000000001000001a801000000000000000000"
+          },
+          {
+            "selection_record_object_id": 436,
+            "kind": "Body",
+            "descriptor_object_id": 445,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Primary descriptor retained; occurrence-context bytes unresolved",
+            "unresolved_proxy_context_hex": "01b701000000000000000001ba0100000000000000000100000001d501000000000000000000000000050000000000000000000000000001010000a0dfeb2287b3eb3e0101000001b601000000000000000001000001b501000000000000000000"
+          }
+        ],
+        "selected_cell_count": 1,
+        "selected_cells": [
+          {
+            "object_id": 455,
+            "stored_cell_key": 2,
+            "body_tool_group_one_object_ids": [
+              423,
+              436
+            ],
+            "body_tool_group_two_object_ids": [],
+            "plane_tool_object_ids": [],
+            "face_recipes": [
+              {
+                "object_id": 449,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003500000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 450,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003600000000010000003001000000000000010000003600000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 451,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003100000000010000003001000000000000010000003100000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 452,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003400000000010000003001000000000000010000003400000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 453,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "0000010000000300000001000000010000000100000033000000000100000030010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 454,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000002000000010000003200000000010000003001000000000000010000003200000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              }
+            ],
+            "plane_recipes": [],
+            "membership_scope": "Group one matches inside and group two outside for the observed closed boxes only",
+            "cell_key_scope": "Native key retained; not an API bRepCells array index",
+            "geometry_status": "Explicit selected-cell definition retained; boundaries are not rebuilt"
+          }
+        ],
+        "result_controller_object_id": 456,
+        "selected_definition_end_offset": 75,
+        "remaining_feature_bytes_scope": "Later shared feature metadata/auxiliary fields are not interpreted here",
+        "selection_status": "Owned typed tool descriptors and chosen-cell memberships retained; face-to-ASM mapping unresolved",
+        "operation_scope": "NewComponent creation normalizes this feature to NewBody and uses separate component wrappers",
+        "geometry_status": "Controls/cell references decoded; Boolean cell generation is not implemented"
+      },
+      "api_evidence": {
+        "file": "component_middle.f3d",
+        "operation": 3,
+        "cells_before_add": [
+          {
+            "index": 0,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 1,
+            "selected": true,
+            "source_tools": [
+              "ToolA",
+              "ToolB"
+            ],
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 2,
+            "selected": false,
+            "source_tools": [
+              "ToolB",
+              "ToolA"
+            ],
+            "geometry": {
+              "min_cm": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "requested_choices": [
+          1
+        ],
+        "tool_names": [
+          "ToolA",
+          "ToolB"
+        ],
+        "output_bodies": [
+          {
+            "name": "Body1",
+            "geometry": {
+              "min_cm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 4.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "is_remove_tools": false
+      },
+      "box_membership_check": {
+        "matches": true,
+        "scope": "Unordered native body membership pairs match selected API cell midpoints in the two overlapping box tools"
+      }
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "feature_object_id": 304,
+      "settings": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_remove_tools": false,
+        "remove_body_feature_object_ids": [],
+        "body_tool_count": 1,
+        "plane_tool_count": 1,
+        "tools": [
+          {
+            "selection_record_object_id": 305,
+            "kind": "Body",
+            "descriptor_object_id": 308,
+            "descriptor_class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          },
+          {
+            "selection_record_object_id": 312,
+            "kind": "ConstructionPlane",
+            "descriptor_object_id": 315,
+            "descriptor_class_guid": "5A1BF548-241F-46FD-9FB5-E4B05126EB9D",
+            "selection": null,
+            "proxy_status": "Observed shared proxy layout"
+          }
+        ],
+        "selected_cell_count": 1,
+        "selected_cells": [
+          {
+            "object_id": 325,
+            "stored_cell_key": 2,
+            "body_tool_group_one_object_ids": [
+              305
+            ],
+            "body_tool_group_two_object_ids": [],
+            "plane_tool_object_ids": [
+              312
+            ],
+            "face_recipes": [
+              {
+                "object_id": 319,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003600000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 320,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003200000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 321,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003500000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 322,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003400000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              },
+              {
+                "object_id": 323,
+                "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                "payload_hex": "000001000000030000000100000001000000010000003100000000010000002d010000000000000000000010000000666163655f7265636970655f6461746100000000ffffffff"
+              }
+            ],
+            "plane_recipes": [
+              {
+                "object_id": 324,
+                "plane_selection_record_object_id": 312,
+                "stored_side_flag": 0,
+                "side_semantics": "Unresolved"
+              }
+            ],
+            "membership_scope": "Group one matches inside and group two outside for the observed closed boxes only",
+            "cell_key_scope": "Native key retained; not an API bRepCells array index",
+            "geometry_status": "Explicit selected-cell definition retained; boundaries are not rebuilt"
+          }
+        ],
+        "result_controller_object_id": 326,
+        "selected_definition_end_offset": 75,
+        "remaining_feature_bytes_scope": "Later shared feature metadata/auxiliary fields are not interpreted here",
+        "selection_status": "Owned typed tool descriptors and chosen-cell memberships retained; face-to-ASM mapping unresolved",
+        "operation_scope": "NewComponent creation normalizes this feature to NewBody and uses separate component wrappers",
+        "geometry_status": "Controls/cell references decoded; Boolean cell generation is not implemented"
+      },
+      "api_evidence": {
+        "file": "plane_first.f3d",
+        "operation": 3,
+        "cells_before_add": [
+          {
+            "index": 0,
+            "selected": true,
+            "source_tools": [
+              "ToolA",
+              "ToolPlane"
+            ],
+            "geometry": {
+              "min_cm": [
+                1.2000000000000002,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          },
+          {
+            "index": 1,
+            "selected": false,
+            "source_tools": [
+              "ToolA",
+              "ToolPlane"
+            ],
+            "geometry": {
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                1.2000000000000002,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "requested_choices": [
+          0
+        ],
+        "tool_names": [
+          "ToolA",
+          "ToolPlane"
+        ],
+        "output_bodies": [
+          {
+            "name": "Body2",
+            "geometry": {
+              "min_cm": [
+                1.2000000000000002,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                3.0,
+                2.0,
+                2.0
+              ],
+              "volume_cm3": 7.199999999999999
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "is_remove_tools": false
+      },
+      "box_membership_check": null
+    }
+  ],
+  "limitations": [
+    "Only overlapping closed boxes and one box with one construction plane are sampled.",
+    "Native selected-cell keys are not API bRepCells array indices; available-cell order varies between runs.",
+    "Observed body group one matches inside and group two outside only for the sampled closed boxes.",
+    "Plane side flag semantics, general open-surface membership and persistent face-to-ASM mapping remain unresolved.",
+    "NewComponent creates component wrappers and normalizes the actual Boundary Fill feature operation to NewBody.",
+    "The decoder retains primary descriptors but leaves the observed NewComponent occurrence proxy context opaque.",
+    "Boolean cell generation, exact cell-boundary reconstruction and native file writing are not implemented."
+  ]
+}
