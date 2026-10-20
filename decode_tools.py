@@ -15,6 +15,7 @@ from decode_face_tools import decode_face_tool
 from decode_surface_tools import decode_surface_tool
 from decode_pipe import decode_pipe
 from decode_threads import decode_thread
+from decode_path_patterns import decode_path_pattern
 
 
 def decode_tools(data, records, features):
@@ -22,7 +23,7 @@ def decode_tools(data, records, features):
                  "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer", "SplitBody",
                  "OffsetFaces", "ReplaceFace", "DeleteFace", "SurfacePatch", "SurfaceOffset", "SurfaceStitch",
                  "Unstitch", "ReverseNormal", "SurfaceDeleteFace", "Pipe", "Thread",
-                 "SurfaceExtend", "SurfaceUntrim", "SurfaceRuled", "SurfaceTrim"}
+                 "SurfaceExtend", "SurfaceUntrim", "SurfaceRuled", "SurfaceTrim", "PathPattern"}
     decoded, unresolved = [], []
     axes = known_construction_entities(data, records, features)
     for feature in features:
@@ -43,7 +44,9 @@ def decode_tools(data, records, features):
 
         try:
             settings = {}
-            if kind == "Thread":
+            if kind == "PathPattern":
+                settings = decode_path_pattern(data, records, body, feature, features)
+            elif kind == "Thread":
                 settings = decode_thread(data, records, body, feature)
             elif kind == "Pipe":
                 settings = decode_pipe(data, records, body, feature, features)

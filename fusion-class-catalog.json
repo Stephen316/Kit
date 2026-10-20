@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 207,
+  "file_count": 216,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -208,10 +208,19 @@
     "surfacebounds-ac801bb00fae/untrim_all.f3d",
     "surfacebounds-ac801bb00fae/untrim_external.f3d",
     "surfacebounds-ac801bb00fae/untrim_internal.f3d",
-    "surfacebounds-ac801bb00fae/untrim_manual.f3d"
+    "surfacebounds-ac801bb00fae/untrim_manual.f3d",
+    "pathpatterns-de9857f6a1bc/arc_along.f3d",
+    "pathpatterns-de9857f6a1bc/arc_identical.f3d",
+    "pathpatterns-de9857f6a1bc/extent.f3d",
+    "pathpatterns-de9857f6a1bc/flipped.f3d",
+    "pathpatterns-de9857f6a1bc/multiple_bodies.f3d",
+    "pathpatterns-de9857f6a1bc/spacing.f3d",
+    "pathpatterns-de9857f6a1bc/start_offset.f3d",
+    "pathpatterns-de9857f6a1bc/suppressed_instance.f3d",
+    "pathpatterns-de9857f6a1bc/symmetric.f3d"
   ],
-  "class_count": 302,
-  "classes_with_observed_semantics": 46,
+  "class_count": 304,
+  "classes_with_observed_semantics": 47,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -3539,6 +3548,26 @@
       ]
     },
     {
+      "class_guid": "B0B3D9E5-1C25-47BC-ABCD-E723F193DF1B",
+      "base_class_guids": [
+        "4F7231DF-25A3-48AB-9327-8D79B19E4B4D"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: PathPattern"
+      ],
+      "example_files": [
+        "pathpatterns-de9857f6a1bc/arc_along.f3d",
+        "pathpatterns-de9857f6a1bc/arc_identical.f3d",
+        "pathpatterns-de9857f6a1bc/extent.f3d"
+      ]
+    },
+    {
       "class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
       "base_class_guids": [
         "518AD6D6-763A-472C-9F19-9CFF03E8DC45"
@@ -3552,6 +3581,7 @@
       "observed_semantics": [],
       "example_files": [
         "holeplacements-04adf73afe93/center_edge.f3d",
+        "pathpatterns-de9857f6a1bc/arc_along.f3d",
         "pipemodes-87cfa7d8d82b/partial_closed.f3d"
       ]
     },
@@ -3823,6 +3853,24 @@
       ],
       "example_files": [
         "moretools-88a2cd6cad0b/Thicken.f3d"
+      ]
+    },
+    {
+      "class_guid": "BE1FB171-D98A-4A4D-99C2-3738627CF79C",
+      "base_class_guids": [
+        "3EF91258-FE47-45A5-957D-1295C3679496"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        4
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "pathpatterns-de9857f6a1bc/arc_along.f3d",
+        "pathpatterns-de9857f6a1bc/arc_identical.f3d",
+        "pathpatterns-de9857f6a1bc/extent.f3d"
       ]
     },
     {

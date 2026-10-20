@@ -92,6 +92,41 @@ def native_proxy_references(data, record):
     return [reference(body, cursor+4+11*i) for i in range(count)], props
 
 
+def resolve_single_sketch_curve(data, records, selection_id, owner_id, features, allowed_kinds):
+    """Resolve the observed proxy/descriptor/leaf sketch-ID and curve-tag chain."""
+    def primary(identity, guid):
+        matches = [r for r in records if r.is_primary and r.object_id == identity and r.class_guid == guid]
+        if len(matches) != 1:
+            raise ValueError("Sketch-curve selection reference missing or ambiguous")
+        return matches[0]
+
+    proxy = primary(selection_id, "2CA5A1CD-C99B-4C9B-91AF-57989148E841")
+    chunk = data[proxy.body:proxy.end]
+    if reference(chunk, len(chunk)-11) != owner_id:
+        raise ValueError("Sketch-curve proxy owner disagrees with feature")
+    descriptors, _ = native_proxy_references(data, proxy)
+    if len(descriptors) != 1:
+        raise ValueError("Only observed single-curve selections supported")
+    descriptor = primary(descriptors[0], "5A1BF548-241F-46FD-9FB5-E4B05126EB9D")
+    chunk = data[descriptor.body:descriptor.end]
+    if len(chunk) != 263 or chunk[:2] != b"\0\0" or reference(chunk, 252) != owner_id:
+        raise ValueError("Unsupported sketch-curve descriptor layout/owner")
+    terminal_id = reference(chunk, 2)
+    terminal = primary(terminal_id, "E2CEFD18-D755-4E09-8E7F-953A2F6D43F8")
+    chunk = data[terminal.body:terminal.end]
+    if len(chunk) != 26 or chunk[:10] != b"\0"*10:
+        raise ValueError("Unsupported sketch-curve leaf")
+    sketch_id, tag = struct.unpack_from("<QQ", chunk, 10)
+    curves = [g for f in features if f["kind"] == "Sketch" and f["sketch_object_id"] == sketch_id
+              for g in f.get("geometry", []) if g.get("entity_tag") == tag and g["kind"] in allowed_kinds]
+    if len(curves) != 1:
+        raise ValueError("Sketch/curve tag missing, unsupported or ambiguous")
+    curve = curves[0]
+    return {"selection_record_object_id": selection_id, "descriptor_object_id": descriptors[0],
+            "terminal_object_id": terminal_id, "sketch_object_id": sketch_id, "curve_object_id": curve["object_id"],
+            "curve_entity_tag": tag, "kind": curve["kind"], "is_closed": curve["kind"] in ("Circle", "Ellipse")}
+
+
 def resolve_native_selection(data, records, selection_id, known_entities):
     candidates = []
     for proxy in records:
