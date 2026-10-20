@@ -23,6 +23,7 @@ from fusion_records import Record, record_fragments
 from fusion_metadata import design_records
 from discover_features import discover_features
 from decode_construction import decode_construction
+from decode_profiles import decode_profiles
 
 
 def named_features(data, records):
@@ -177,6 +178,7 @@ def decode_basics(path, zstd_library=None):
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
+        profile_summary = decode_profiles(data, records, features)
         modeling_summary = decode_modeling(data, records, features)
         placement_summary = decode_placement(data, records, features)
         construction_summary = decode_construction(data, records, features)
@@ -194,6 +196,7 @@ def decode_basics(path, zstd_library=None):
             "record_index": record_index,
             "feature_discovery": discovery_summary,
             "sketch_decoding": sketch_summary,
+            "profile_decoding": profile_summary,
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,
             "construction_decoding": construction_summary,
@@ -207,7 +210,7 @@ def decode_basics(path, zstd_library=None):
             "Version-8 MetaStream indexes validate record boundaries; field semantics remain inferred from a small corpus.",
             "Type codes are local to the document and not treated as universal feature identifiers.",
             "Sketch support covers observed points, lines, circular/elliptical arcs, ellipses, NURBS, basic constraints and dimensions.",
-            "No exact profile selection, topology, general sketch solver or native writer.",
+            "Profile membership is partial; no general trimmed-contour reconstruction, topology, sketch solver or native writer.",
             "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
             "No general feature history, suppression, all end conditions, arbitrary axis selection, or body reconstruction.",
         ],
