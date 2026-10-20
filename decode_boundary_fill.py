@@ -7,6 +7,7 @@ faces to ASM topology or treating native cell keys as API array indices.
 import struct
 
 from decode_selection import native_proxy_references, resolve_native_selection
+from decode_boundary_planes import resolve_boundary_plane_selection
 from decode_sketch import attributes, reference
 
 
@@ -84,9 +85,17 @@ def decode_boundary_fill(data, records, body, feature, known=None):
         if reference(descriptor, len(descriptor)-11) != feature["object_id"]:
             raise ValueError("Boundary Fill tool descriptor owner disagrees with feature")
         selection = resolve_native_selection(data, records, identity, known or {}) if identity in plane_tools else None
+        plane_error = None
+        if identity in plane_tools and selection is None:
+            try:
+                selection = resolve_boundary_plane_selection(data, records, identity, known or {}, feature["object_id"])
+            except (ValueError, UnicodeError, IndexError, struct.error) as error:
+                plane_error = str(error)
         item = {"selection_record_object_id": identity, "kind": "Body" if identity in body_tools else "ConstructionPlane",
                 "descriptor_object_id": descriptors[0], "descriptor_class_guid": descriptor_class,
                 "selection": selection, "proxy_status": context_status}
+        if plane_error is not None:
+            item["unresolved_plane_selection_reason"] = plane_error
         if context_bytes is not None:
             item["unresolved_proxy_context_hex"] = context_bytes
         tool_inputs.append(item)
