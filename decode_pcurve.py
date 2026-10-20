@@ -13,11 +13,11 @@ def decode_pcurve(record):
         raise ValueError("Only observed non-rational pcurve caches supported")
     degree = read_token(tokens, 8, "integer")
     form = read_token(tokens, 9, "enum")
-    if degree != 1 or form not in (0, 2):
-        raise ValueError("Only observed degree-one UV curve forms supported")
+    if (degree, form) not in ((1, 0), (1, 2), (3, 0)):
+        raise ValueError("Only observed degree-one/cubic UV curve forms supported")
     knots, compact, count, cursor = knot_vector(tokens, 11, read_token(tokens, 10, "integer"), degree)
-    if count != 2:
-        raise ValueError("Only observed two-control UV curves supported")
+    if count != degree+1:
+        raise ValueError("Only observed single-span UV curve grids supported")
     flat = [read_token(tokens, cursor+i, "double") for i in range(2*count)]
     cursor += 2*count
     if len(tokens) != cursor+14:
@@ -41,7 +41,8 @@ def decode_pcurve(record):
             "stored_inline_surface_ref": support_ref,
             "reference_scope": "Inline support reference namespace unresolved; parent face resolved separately through coedge/loop",
             "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
-            "representation": "Observed explicit degree-one non-rational parameter curve cache"}
+            "representation": "Stored explicit degree-one/cubic non-rational UV cache; exact coedge parameterization is not reconstructed",
+            "cache_status": "Matches observed API spline geometry; sampled exact coedge evaluations may differ"}
 
 
 def evaluate_pcurve(cache, parameter):

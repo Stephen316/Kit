@@ -252,7 +252,7 @@ def decode_topology(parsed):
                            "shell_indices": shells, "face_indices": faces, "loop_indices": loops,
                            "coedge_indices": coedges, "edge_indices": sorted(edges), "vertex_indices": sorted(vertices),
                            "pcurve_indices": sorted({nodes[c]["pcurve_index"] for c in coedges if nodes[c]["pcurve_index"] is not None}),
-                           "pcurve_status": "Observed degree-one UV caches decoded; other pcurve layouts remain unsupported",
+                           "pcurve_status": "Observed single-span degree-one/cubic UV caches decoded; other pcurve layouts remain unsupported",
                            "face_trim_loops": loop_rings,
                            "raw_vertex_positions": raw_positions, "transform_index": root["transform_index"],
                            "body_transform_is_identity": bool(identity),
