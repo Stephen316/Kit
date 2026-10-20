@@ -16,6 +16,7 @@ from decode_parameters import decode_stream, read_string
 from decode_sketch import decode_sketches
 from decode_modeling import decode_modeling
 from decode_placement import decode_placement
+from decode_selection import decode_selections
 from fusion_archive import read_members
 from fusion_records import Record, record_fragments
 
@@ -168,12 +169,20 @@ def decode_basics(path, zstd_library=None):
         sketch_summary = decode_sketches(data, records, features)
         modeling_summary = decode_modeling(data, records, features)
         placement_summary = decode_placement(data, records, features)
+        selection_summary = decode_selections(data, records, features)
+        resolved_selection_features = {s["feature_object_id"] for s in selection_summary["resolved"]}
+        unresolved_selection_features = {s["feature_object_id"] for s in selection_summary["unresolved"]}
+        modeling_summary["unresolved"] = [
+            item for item in modeling_summary["unresolved"]
+            if item["reason"] != "Referenced start/end geometry selection not decoded"
+            or item["object_id"] not in resolved_selection_features-unresolved_selection_features]
         streams.append({
             "member": name, "features": features, "unbound_parameters": unbound,
             "rejected_parameters": rejected, "candidate_record_headers": len(records),
             "sketch_decoding": sketch_summary,
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,
+            "selection_decoding": selection_summary,
         })
     return {
         "file": str(path), "status": "experimental partial decoder",
@@ -184,7 +193,7 @@ def decode_basics(path, zstd_library=None):
             "Sketch support covers observed points, lines, circular/elliptical arcs, ellipses, NURBS, basic constraints and dimensions.",
             "No exact profile selection, topology, general sketch solver or native writer.",
             "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
-            "No general feature history, suppression, all end conditions, axis selection, or body reconstruction.",
+            "No general feature history, suppression, all end conditions, arbitrary axis selection, or body reconstruction.",
         ],
         "streams": streams,
     }
