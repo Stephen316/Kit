@@ -35,26 +35,35 @@ def run(context):
         design = adsk.fusion.Design.cast(doc.products.itemByProductType("DesignProductType"))
         design.designType = adsk.fusion.DesignTypes.ParametricDesignType
         root = design.rootComponent
-        knots = [0., 0., 0., 1., 1., 1.]
-        for rational in (False, True):
-            case = {"name": "RationalPatch" if rational else "PolynomialPatch"}
+        for name, rational, nu, du in (("PolynomialPatch", False, 3, 2), ("RationalPatch", True, 3, 2),
+                                       ("CubicRationalPatch", True, 4, 3), ("InteriorKnotRationalPatch", True, 4, 2)):
+            case = {"name": name}
             truth["cases"].append(case)
-            controls = [adsk.core.Point3D.create(u*1.2, v*1.3, [[0., .2, .1], [.15, 1.2, -.1], [.3, .1, .4]][u][v])
-                        for u in range(3) for v in range(3)]
-            weights = [1., .9, 1., .8, .65, .8, 1., .9, 1.] if rational else []
+            ku = [0.]*(du+1)+([.35] if nu == 4 and du == 2 else [])+[1.]*(du+1)
+            kv = [0., 0., 0., 1., 1., 1.]
+            controls = [adsk.core.Point3D.create(u*1.2, v*1.3,
+                        [[0., .2, .1], [.15, 1.2, -.1], [.3, .1, .4], [.2, -.3, .5]][u][v])
+                        for u in range(nu) for v in range(3)]
+            weights = ([1., .9, 1., .8, .65, .8, 1.1, .85, 1.2, 1., .9, 1.][:nu*3] if rational else [])
             properties = 9 if rational else 1
-            surface = adsk.core.NurbsSurface.create(2, 2, 3, 3, controls, knots, knots, weights, properties, properties)
+            surface = adsk.core.NurbsSurface.create(du, 2, nu, 3, controls, ku, kv, weights, properties, properties)
             if not surface:
                 raise RuntimeError("NURBS surface creation failed")
             case["input_surface"] = surface_data(surface)
             definition = adsk.fusion.BRepBodyDefinition.create()
             face = definition.lumpDefinitions.add().shellDefinitions.add().faceDefinitions.add(surface, False)
             loop = face.loopDefinitions.add()
-            corners = [definition.createVertexDefinition(controls[i]) for i in (0, 6, 8, 2)]
-            for i, indices in enumerate(((0, 3, 6), (6, 7, 8), (8, 5, 2), (2, 1, 0))):
+            corners = [definition.createVertexDefinition(controls[i]) for i in (0, (nu-1)*3, nu*3-1, 2)]
+            boundaries = ([u*3 for u in range(nu)], list(range((nu-1)*3, nu*3)),
+                          [u*3+2 for u in reversed(range(nu))], [2, 1, 0])
+            for i, indices in enumerate(boundaries):
                 points = [controls[j] for j in indices]
-                curve = (adsk.core.NurbsCurve3D.createRational(points, 2, knots, [weights[j] for j in indices], False)
-                         if rational else adsk.core.NurbsCurve3D.createNonRational(points, 2, knots, False))
+                degree, knots = (du, ku) if i%2 == 0 else (2, kv)
+                # Reversed controls require a reflected knot vector as well.
+                if i >= 2:
+                    knots = [1.-k for k in reversed(knots)]
+                curve = (adsk.core.NurbsCurve3D.createRational(points, degree, knots, [weights[j] for j in indices], False)
+                         if rational else adsk.core.NurbsCurve3D.createNonRational(points, degree, knots, False))
                 edge = definition.createEdgeDefinitionByCurve(corners[i], corners[(i+1)%4], curve)
                 loop.bRepCoEdgeDefinitions.add(edge, False)
             temporary = definition.createBody()
@@ -72,6 +81,26 @@ def run(context):
             body = feature.bodies.item(0)
             case.update(face_count=body.faces.count, edge_count=body.edges.count, vertex_count=body.vertices.count,
                         stored_surface=surface_data(body.faces.item(0).geometry))
+            case["curves"] = []
+            for edge in body.edges:
+                geometry = edge.geometry
+                curve = {"kind": geometry.objectType.split("::")[-1]}
+                if curve["kind"] == "NurbsCurve3D":
+                    ok, points, degree, knots, is_rational, edge_weights, periodic = geometry.getData()
+                    if not ok:
+                        raise RuntimeError("Boundary NURBS getData failed")
+                    curve.update(controls_cm=[p.asArray() for p in points], degree=degree, knots=knots,
+                                 rational=is_rational, weights=edge_weights, periodic=periodic)
+                ok, low, high = geometry.evaluator.getParameterExtents()
+                if not ok:
+                    raise RuntimeError("Boundary parameter extents failed")
+                parameters = [low+(high-low)*fraction for fraction in (.17, .51, .83)]
+                ok, points = geometry.evaluator.getPointsAtParameters(parameters)
+                if not ok:
+                    raise RuntimeError("Boundary evaluation failed")
+                curve.update(parameter_domain=[low, high], evaluation_parameters=parameters,
+                             evaluation_points_cm=[p.asArray() for p in points])
+                case["curves"].append(curve)
         if not design.exportManager.execute(design.exportManager.createFusionArchiveExportOptions(str(output/"splinepatches.f3d"))):
             raise RuntimeError("Spline patch export failed")
     except Exception:

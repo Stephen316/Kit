@@ -34,6 +34,18 @@ def knot_vector(tokens, cursor, unique_count, degree):
     return full, pairs, controls, cursor
 
 
+def scalar_lists(tokens, cursor, count):
+    """Read observed length-prefixed lists without assigning them field meanings."""
+    result = []
+    for _ in range(count):
+        size = read_token(tokens, cursor, "integer")
+        if not 0 <= size <= 100000:
+            raise ValueError("Unsupported spline trailer list size")
+        result.append([read_token(tokens, cursor+1+i, "double") for i in range(size)])
+        cursor += 1+size
+    return result, cursor
+
+
 def decode_bspline(record):
     tokens, name = record["tokens"], record["name"]
     if read_token(tokens, 3, "boolean_token") or tokens[4]["kind"] != "subtype_start":
@@ -43,24 +55,47 @@ def decode_bspline(record):
     if version != 23100:
         raise ValueError("Unsupported observed spline payload version")
     if name == "intcurve-curve" and procedural == "exact_int_cur":
-        if read_token(tokens, 8, "entity_name") != "nubs" or read_token(tokens, 7, "enum") != 0:
-            raise ValueError("Only observed non-rational exact curve caches supported")
+        representation = read_token(tokens, 8, "entity_name")
+        if representation not in ("nubs", "nurbs") or read_token(tokens, 7, "enum") != 0:
+            raise ValueError("Unsupported exact curve representation")
+        rational = representation == "nurbs"
         degree = read_token(tokens, 9, "integer")
         form = read_token(tokens, 10, "enum")
         if form != 0:
             raise ValueError("Unsupported spline curve form")
         knots, compact, count, cursor = knot_vector(tokens, 12, read_token(tokens, 11, "integer"), degree)
-        flat = [read_token(tokens, cursor+i, "double") for i in range(3*count)]
-        cursor += 3*count
-        if len(tokens) != cursor+20 or tokens[-3]["kind"] != "subtype_end":
-            raise ValueError("Unsupported exact curve cache trailer")
+        stride = 4 if rational else 3
+        flat = [read_token(tokens, cursor+i, "double") for i in range(stride*count)]
+        cursor += stride*count
+        trailer_start = cursor
+        read_token(tokens, cursor, "double")
         if [read_token(tokens, cursor+i, "entity_name") for i in range(1,5)] != ["null_surface", "null_surface", "nullbs", "nullbs"]:
             raise ValueError("Exact curve has unimplemented support-surface definitions")
+        if read_token(tokens, cursor+5, "boolean_token") or read_token(tokens, cursor+6, "boolean_token"):
+            raise ValueError("Unsupported exact curve trailer flags")
+        cursor += 7
+        lists, cursor = scalar_lists(tokens, cursor, 4)
+        for expected_kind in ("boolean_token", "double", "boolean_token", "double", "enum", "enum", "subtype_end"):
+            read_token(tokens, cursor, expected_kind)
+            cursor += 1
+        interval = []
+        for _ in range(2):
+            finite = read_token(tokens, cursor, "boolean_token")
+            cursor += 1
+            interval.append(read_token(tokens, cursor, "double") if finite else None)
+            cursor += int(finite)
+        if cursor != len(tokens):
+            raise ValueError("Unsupported exact curve cache trailer")
+        weights = flat[3::4] if rational else []
+        if any(not math.isfinite(w) or w <= 0 for w in weights):
+            raise ValueError("Unsupported exact curve rational weights")
         return {"degree": degree, "knots": knots, "stored_compact_knots": compact,
-                "raw_control_points": [flat[i:i+3] for i in range(0, len(flat), 3)], "weights": [],
+                "raw_control_points": [flat[i:i+3] for i in range(0, len(flat), stride)],
+                "weights": weights, "is_rational": rational,
                 "parameter_domain": [knots[degree], knots[-degree-1]], "stored_form_code": form,
-                "stored_cache_trailer": tokens[cursor:],
-                "representation": "Observed non-rational exact_int_cur NUBS cache; support/trailer semantics remain partial"}
+                "stored_parameter_interval": interval, "stored_trailer_scalar_lists": lists,
+                "stored_cache_trailer": tokens[trailer_start:],
+                "representation": "Observed clamped exact_int_cur polynomial/rational curve; trailer scalar-list semantics remain partial"}
     if name == "spline-surface" and procedural == "exact_spl_sur":
         if read_token(tokens, 7, "enum") != 0:
             raise ValueError("Unsupported exact surface wrapper")
@@ -93,10 +128,12 @@ def decode_bspline(record):
     stride = 4 if rational else 3
     flat = [read_token(tokens, cursor+i, "double") for i in range(stride*nu*nv)]
     cursor += stride*nu*nv
+    lists = []
     if procedural == "exact_spl_sur":
-        expected = (["double"]+["integer"]*6+["boolean_token"]+
-                    ["boolean_token", "double"]*4+["enum", "subtype_end"]+["boolean_token"]*4)
-        if [t["kind"] for t in tokens[cursor:]] != expected:
+        lists, suffix = scalar_lists(tokens, cursor+1, 6)
+        expected = (["boolean_token"]+["boolean_token", "double"]*4+
+                    ["enum", "subtype_end"]+["boolean_token"]*4)
+        if [t["kind"] for t in tokens[suffix:]] != expected:
             raise ValueError("Unsupported exact surface trailer")
     elif len(tokens) != cursor+13 or tokens[cursor+8]["kind"] != "subtype_end":
         raise ValueError("Unsupported loft surface cache trailer")
@@ -114,6 +151,7 @@ def decode_bspline(record):
             "parameter_domain_u": [ku[du], ku[-du-1]], "parameter_domain_v": [kv[dv], kv[-dv-1]],
             "stored_axis_flags": flags, "periodicity_status": "Native axis flags preserved; general form semantics unverified",
             "stored_cache_trailer_scalar": read_token(tokens, cursor, "double"),
+            "stored_trailer_scalar_lists": lists,
             "stored_cache_trailer": tokens[cursor:], "procedural_subtype": procedural,
             "representation": ("Stored exact spline grid; observed clamped open polynomial/rational surface layout"
                                if procedural == "exact_spl_sur" else
