@@ -1,0 +1,531 @@
+{
+  "status": "pass",
+  "checked_files": 2,
+  "snapshot_sequence": "Five snapshots isolate additions; only baseline and final snapshot used for focused verification.",
+  "checks": [
+    "Line endpoints and circle center/radius match Fusion API readings.",
+    "Unconstrained geometry reports no geometric constraints.",
+    "Horizontal, vertical and coincident rules resolve to the intended entity IDs.",
+    "Radius dimension resolves to the circle and API parameter value."
+  ],
+  "limitations": [
+    "Observed layouts from Fusion 2705.1.30 only.",
+    "No arcs, splines, general dimensions, full constraint grammar, plane/world transforms, solver or writer."
+  ],
+  "results": [
+    {
+      "file": "sketches-0ccea2ac0f9c/baseline.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Only observed point, line, circle, H/V/coincident and radial-dimension layouts are supported.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "No general feature history, suppression, end-condition or operation-type decoder."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 23264,
+              "type_code": "312",
+              "parameters": [],
+              "name": "BasicSketch",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 23006,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 24567,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 24836,
+                  "kind": "Point",
+                  "entity_tag": 102,
+                  "position_cm": [
+                    4.0,
+                    2.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 236,
+                  "sketch_object_id": 202,
+                  "record_offset": 25461,
+                  "kind": "Point",
+                  "entity_tag": 104,
+                  "position_cm": [
+                    6.0,
+                    2.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 238,
+                  "sketch_object_id": 202,
+                  "record_offset": 25730,
+                  "kind": "Point",
+                  "entity_tag": 105,
+                  "position_cm": [
+                    6.0,
+                    5.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 244,
+                  "sketch_object_id": 202,
+                  "record_offset": 26355,
+                  "kind": "Point",
+                  "entity_tag": 107,
+                  "position_cm": [
+                    9.0,
+                    3.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 232,
+                  "sketch_object_id": 202,
+                  "record_offset": 25105,
+                  "kind": "Line",
+                  "start_point_id": 228,
+                  "end_point_id": 230,
+                  "start_cm": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    4.0,
+                    2.0,
+                    0.0
+                  ],
+                  "entity_tag": 103
+                },
+                {
+                  "object_id": 240,
+                  "sketch_object_id": 202,
+                  "record_offset": 25999,
+                  "kind": "Line",
+                  "start_point_id": 236,
+                  "end_point_id": 238,
+                  "start_cm": [
+                    6.0,
+                    2.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    6.0,
+                    5.0,
+                    0.0
+                  ],
+                  "entity_tag": 106
+                },
+                {
+                  "object_id": 246,
+                  "sketch_object_id": 202,
+                  "record_offset": 26624,
+                  "kind": "Circle",
+                  "center_point_id": 244,
+                  "center_cm": [
+                    9.0,
+                    3.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.25,
+                  "radius_mm": 12.5,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 108
+                }
+              ],
+              "constraints": [],
+              "dimensions": []
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 239,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed point/line/full-circle and H/V/coincident/radius records; not a constraint solver"
+          }
+        }
+      ],
+      "reference": {
+        "file": "baseline.f3d",
+        "sketch_name": "BasicSketch",
+        "lines": [
+          {
+            "start": [
+              1.0,
+              2.0,
+              0.0
+            ],
+            "end": [
+              4.0,
+              2.0,
+              0.0
+            ]
+          },
+          {
+            "start": [
+              6.0,
+              2.0,
+              0.0
+            ],
+            "end": [
+              6.0,
+              5.0,
+              0.0
+            ]
+          }
+        ],
+        "circles": [
+          {
+            "center": [
+              9.0,
+              3.0,
+              0.0
+            ],
+            "radius": 1.25
+          }
+        ],
+        "constraint_types": [],
+        "dimensions": []
+      }
+    },
+    {
+      "file": "sketches-0ccea2ac0f9c/radius.f3d",
+      "status": "experimental partial decoder",
+      "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
+      "limitations": [
+        "Candidate header boundaries and field semantics are inferred from a small corpus.",
+        "Type codes are local to the document and not treated as universal feature identifiers.",
+        "Only observed point, line, circle, H/V/coincident and radial-dimension layouts are supported.",
+        "No exact profile selection, topology, general sketch solver or native writer.",
+        "No general feature history, suppression, end-condition or operation-type decoder."
+      ],
+      "streams": [
+        {
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "features": [
+            {
+              "kind": "Sketch",
+              "object_id": 207,
+              "stored_index": 1,
+              "record_offset": 23431,
+              "type_code": "315",
+              "parameters": [
+                {
+                  "role": "Radial Dimension-2",
+                  "parameter_name": "d1",
+                  "display_units": "mm",
+                  "raw_float64": 1.25,
+                  "role_offset": 28177,
+                  "value_offset": 28237,
+                  "expression_candidates": [
+                    "12.50 mm"
+                  ],
+                  "layout": "u32-length UTF16LE strings followed by LE float64",
+                  "hypothesized_value_mm": 12.5,
+                  "parameter_object_id": 297,
+                  "binding_object_id": 298,
+                  "binding_offset": 28257,
+                  "association": "explicit owner and parameter references with matching numeric payload"
+                }
+              ],
+              "name": "BasicSketch",
+              "sketch_object_id": 202,
+              "coordinate_system": "sketch-local",
+              "coordinate_units": "cm",
+              "geometry": [
+                {
+                  "object_id": 205,
+                  "sketch_object_id": 202,
+                  "record_offset": 23173,
+                  "kind": "Point",
+                  "entity_tag": 100,
+                  "position_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 228,
+                  "sketch_object_id": 202,
+                  "record_offset": 24775,
+                  "kind": "Point",
+                  "entity_tag": 101,
+                  "position_cm": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 230,
+                  "sketch_object_id": 202,
+                  "record_offset": 25044,
+                  "kind": "Point",
+                  "entity_tag": 102,
+                  "position_cm": [
+                    4.0,
+                    2.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 236,
+                  "sketch_object_id": 202,
+                  "record_offset": 25669,
+                  "kind": "Point",
+                  "entity_tag": 104,
+                  "position_cm": [
+                    4.0,
+                    2.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 238,
+                  "sketch_object_id": 202,
+                  "record_offset": 25938,
+                  "kind": "Point",
+                  "entity_tag": 105,
+                  "position_cm": [
+                    4.0,
+                    5.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 244,
+                  "sketch_object_id": 202,
+                  "record_offset": 26563,
+                  "kind": "Point",
+                  "entity_tag": 107,
+                  "position_cm": [
+                    9.0,
+                    3.0,
+                    0.0
+                  ]
+                },
+                {
+                  "object_id": 232,
+                  "sketch_object_id": 202,
+                  "record_offset": 25313,
+                  "kind": "Line",
+                  "start_point_id": 228,
+                  "end_point_id": 230,
+                  "start_cm": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    4.0,
+                    2.0,
+                    0.0
+                  ],
+                  "entity_tag": 103
+                },
+                {
+                  "object_id": 240,
+                  "sketch_object_id": 202,
+                  "record_offset": 26207,
+                  "kind": "Line",
+                  "start_point_id": 236,
+                  "end_point_id": 238,
+                  "start_cm": [
+                    4.0,
+                    2.0,
+                    0.0
+                  ],
+                  "end_cm": [
+                    4.0,
+                    5.0,
+                    0.0
+                  ],
+                  "entity_tag": 106
+                },
+                {
+                  "object_id": 246,
+                  "sketch_object_id": 202,
+                  "record_offset": 26832,
+                  "kind": "Circle",
+                  "center_point_id": 244,
+                  "center_cm": [
+                    9.0,
+                    3.0,
+                    0.0
+                  ],
+                  "radius_cm": 1.25,
+                  "radius_mm": 12.5,
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "reference_axis": [
+                    1.0,
+                    0.0,
+                    -0.0
+                  ],
+                  "entity_tag": 108
+                }
+              ],
+              "constraints": [
+                {
+                  "kind": "Horizontal",
+                  "object_id": 260,
+                  "entity_ids": [
+                    232
+                  ],
+                  "stored_code": 64,
+                  "record_offset": 27179,
+                  "evidence": "explicit stored constraint and repeated entity references"
+                },
+                {
+                  "kind": "Vertical",
+                  "object_id": 271,
+                  "entity_ids": [
+                    240
+                  ],
+                  "stored_code": 128,
+                  "record_offset": 27310,
+                  "evidence": "explicit stored constraint and repeated entity references"
+                },
+                {
+                  "kind": "Coincident",
+                  "object_id": 282,
+                  "entity_ids": [
+                    230,
+                    236
+                  ],
+                  "stored_code": 1,
+                  "record_offset": 27441,
+                  "evidence": "explicit stored constraint and repeated entity references"
+                }
+              ],
+              "dimensions": [
+                {
+                  "kind": "Radius",
+                  "object_id": 296,
+                  "entity_id": 246,
+                  "parameter_name": "d1",
+                  "value_cm": 1.25,
+                  "value_mm": 12.5,
+                  "expression_candidates": [
+                    "12.50 mm"
+                  ],
+                  "binding_object_id": 298,
+                  "record_offset": 27598
+                }
+              ]
+            }
+          ],
+          "unbound_parameters": [],
+          "rejected_parameters": [],
+          "candidate_record_headers": 248,
+          "sketch_decoding": {
+            "unsupported_curves": [],
+            "unknown_constraint_codes": [],
+            "scope": "Observed point/line/full-circle and H/V/coincident/radius records; not a constraint solver"
+          }
+        }
+      ],
+      "reference": {
+        "file": "radius.f3d",
+        "sketch_name": "BasicSketch",
+        "lines": [
+          {
+            "start": [
+              1.0,
+              2.0,
+              0.0
+            ],
+            "end": [
+              4.0,
+              2.0,
+              0.0
+            ]
+          },
+          {
+            "start": [
+              4.0,
+              2.0,
+              0.0
+            ],
+            "end": [
+              4.0,
+              5.0,
+              0.0
+            ]
+          }
+        ],
+        "circles": [
+          {
+            "center": [
+              9.0,
+              3.0,
+              0.0
+            ],
+            "radius": 1.25
+          }
+        ],
+        "constraint_types": [
+          "adsk::fusion::HorizontalConstraint",
+          "adsk::fusion::VerticalConstraint",
+          "adsk::fusion::CoincidentConstraint"
+        ],
+        "dimensions": [
+          {
+            "type": "adsk::fusion::SketchRadialDimension",
+            "parameter_name": "d1",
+            "value": 1.25
+          }
+        ]
+      }
+    }
+  ]
+}

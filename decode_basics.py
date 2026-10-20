@@ -1,7 +1,8 @@
 """Experimental named-feature and parameter-reference decoding for Fusion.
 
 Layouts are inferred from Fusion 2705.1.30 samples, not a complete schema.
-Unknown fields remain unknown; no geometry, topology or file writing is provided.
+Unknown fields remain unknown; only basic sketch geometry is interpreted, with
+no body topology or file writing provided.
 """
 
 import argparse
@@ -13,6 +14,7 @@ import re
 import struct
 
 from decode_parameters import decode_stream, read_string
+from decode_sketch import decode_sketches
 from fusion_archive import read_members
 
 
@@ -71,9 +73,12 @@ def named_features(data, records):
                     item["name"] = name or None
                 else:
                     # The sketch feature points to a separate named sketch object.
-                    if len(chunk) < 21 or chunk[12] != 1:
+                    # A counted list of parameter bindings precedes that pointer.
+                    count = struct.unpack_from("<I", chunk, 3)[0]
+                    root_offset = 13 + count * 11
+                    if count > 1024 or root_offset + 8 > len(chunk) or chunk[root_offset - 1] != 1:
                         continue
-                    root_id = struct.unpack_from("<Q", chunk, 13)[0]
+                    root_id = struct.unpack_from("<Q", chunk, root_offset)[0]
                     roots = []
                     for candidate in records:
                         if candidate.object_id != root_id:
@@ -174,9 +179,11 @@ def decode_basics(path, zstd_library=None):
         parameters, rejected = decode_stream(data)
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
+        sketch_summary = decode_sketches(data, records, features)
         streams.append({
             "member": name, "features": features, "unbound_parameters": unbound,
             "rejected_parameters": rejected, "candidate_record_headers": len(records),
+            "sketch_decoding": sketch_summary,
         })
     return {
         "file": str(path), "status": "experimental partial decoder",
@@ -184,7 +191,8 @@ def decode_basics(path, zstd_library=None):
         "limitations": [
             "Candidate header boundaries and field semantics are inferred from a small corpus.",
             "Type codes are local to the document and not treated as universal feature identifiers.",
-            "No sketch geometry, constraints, exact profile selection, topology, or native writer.",
+            "Only observed point, line, circle, H/V/coincident and radial-dimension layouts are supported.",
+            "No exact profile selection, topology, general sketch solver or native writer.",
             "No general feature history, suppression, end-condition or operation-type decoder.",
         ],
         "streams": streams,

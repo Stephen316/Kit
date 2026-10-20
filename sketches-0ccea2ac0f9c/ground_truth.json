@@ -1,0 +1,235 @@
+{
+  "fusion_version": "2705.1.30",
+  "coordinate_units": "cm",
+  "samples": [
+    {
+      "file": "baseline.f3d",
+      "sketch_name": "BasicSketch",
+      "lines": [
+        {
+          "start": [
+            1.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            2.0,
+            0.0
+          ]
+        },
+        {
+          "start": [
+            6.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            6.0,
+            5.0,
+            0.0
+          ]
+        }
+      ],
+      "circles": [
+        {
+          "center": [
+            9.0,
+            3.0,
+            0.0
+          ],
+          "radius": 1.25
+        }
+      ],
+      "constraint_types": [],
+      "dimensions": []
+    },
+    {
+      "file": "horizontal.f3d",
+      "sketch_name": "BasicSketch",
+      "lines": [
+        {
+          "start": [
+            1.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            2.0,
+            0.0
+          ]
+        },
+        {
+          "start": [
+            6.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            6.0,
+            5.0,
+            0.0
+          ]
+        }
+      ],
+      "circles": [
+        {
+          "center": [
+            9.0,
+            3.0,
+            0.0
+          ],
+          "radius": 1.25
+        }
+      ],
+      "constraint_types": [
+        "adsk::fusion::HorizontalConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "file": "vertical.f3d",
+      "sketch_name": "BasicSketch",
+      "lines": [
+        {
+          "start": [
+            1.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            2.0,
+            0.0
+          ]
+        },
+        {
+          "start": [
+            6.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            6.0,
+            5.0,
+            0.0
+          ]
+        }
+      ],
+      "circles": [
+        {
+          "center": [
+            9.0,
+            3.0,
+            0.0
+          ],
+          "radius": 1.25
+        }
+      ],
+      "constraint_types": [
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "file": "coincident.f3d",
+      "sketch_name": "BasicSketch",
+      "lines": [
+        {
+          "start": [
+            1.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            2.0,
+            0.0
+          ]
+        },
+        {
+          "start": [
+            4.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            5.0,
+            0.0
+          ]
+        }
+      ],
+      "circles": [
+        {
+          "center": [
+            9.0,
+            3.0,
+            0.0
+          ],
+          "radius": 1.25
+        }
+      ],
+      "constraint_types": [
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint",
+        "adsk::fusion::CoincidentConstraint"
+      ],
+      "dimensions": []
+    },
+    {
+      "file": "radius.f3d",
+      "sketch_name": "BasicSketch",
+      "lines": [
+        {
+          "start": [
+            1.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            2.0,
+            0.0
+          ]
+        },
+        {
+          "start": [
+            4.0,
+            2.0,
+            0.0
+          ],
+          "end": [
+            4.0,
+            5.0,
+            0.0
+          ]
+        }
+      ],
+      "circles": [
+        {
+          "center": [
+            9.0,
+            3.0,
+            0.0
+          ],
+          "radius": 1.25
+        }
+      ],
+      "constraint_types": [
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint",
+        "adsk::fusion::CoincidentConstraint"
+      ],
+      "dimensions": [
+        {
+          "type": "adsk::fusion::SketchRadialDimension",
+          "parameter_name": "d1",
+          "value": 1.25
+        }
+      ]
+    }
+  ]
+}
