@@ -17,7 +17,7 @@ from decode_parameters import decode_stream, read_string
 from decode_parameter_tables import decode_parameter_tables
 from decode_expression_dependencies import derive_expression_dependencies
 from decode_sketch import decode_sketches
-from decode_sketch_texts import decode_sketch_texts
+from decode_sketch_text_controls import decode_sketch_text_controls
 from decode_sketch_coverage import decode_sketch_coverage
 from decode_offset_details import decode_offset_details
 from decode_sketch_projections import decode_sketch_projections
@@ -221,7 +221,7 @@ def decode_basics(path, zstd_library=None):
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
-        sketch_text_summary = decode_sketch_texts(data, records, features)
+        sketch_text_summary = decode_sketch_text_controls(data, records, features)
         text_sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
         for text in sketch_text_summary["texts"]:
             text_sketches[text["sketch_object_id"]].setdefault("texts", []).append(text)

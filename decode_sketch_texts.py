@@ -32,7 +32,32 @@ OPAQUE_LAYOUT = bytes.fromhex(
 SCOPE = "Five controlled rectangle text variants; other text layouts and opaque controls remain unsupported"
 
 
-def decode_sketch_texts(data, records, features):
+def _observed_text_controls(prefix, flags, tail):
+    """Strict original five-capture controls; opt-in readers may extend these."""
+    if prefix != OPAQUE_PREFIX:
+        raise ValueError("Unobserved SketchText prefix controls")
+    if flags[:5] != b"\x01\0\0\0\0" or flags[5] not in (0, 1) or flags[6] != 0:
+        raise ValueError("Unsupported SketchText style flags")
+    if len(tail) != 183 or tail[:5] != b"\x01\0\0\0\0":
+        raise ValueError("Unsupported SketchText layout suffix")
+    if tail[9:172] != OPAQUE_LAYOUT:
+        raise ValueError("Unobserved SketchText opaque layout controls")
+    weight = struct.unpack_from("<I", tail, 5)[0]
+    if (weight, flags[5]) not in ((400, 0), (700, 0), (400, 1)):
+        raise ValueError("Unobserved SketchText formatting combination")
+    return {
+        "text_properties": {
+            "text_style": (1 if weight == 700 else 0) | (2 if flags[5] else 0),
+            "text_style_status": "Three captured API style values, bounded by unchanged opaque controls; combined and underline variants unverified",
+            "bold": weight == 700, "italic": bool(flags[5]), "native_font_weight": weight,
+            "underline": None, "is_horizontal_flip": None, "is_vertical_flip": None,
+        },
+        "definition_properties": {"horizontal_alignment": None, "vertical_alignment": None,
+                                  "character_spacing_percent": None},
+    }
+
+
+def decode_sketch_texts(data, records, features, *, controls_decoder=None):
     """Return texts/unresolved; caller may attach each text by sketch_object_id.
 
     This does not mutate features or require already decoded primitive geometry.
@@ -148,8 +173,6 @@ def decode_sketch_texts(data, records, features):
                     or props["EntityGenesis"] != 0):
                 raise ValueError("Unsupported SketchText source attributes")
             prefix = body[cursor:cursor+25]
-            if prefix != OPAQUE_PREFIX:
-                raise ValueError("Unobserved SketchText prefix controls")
             font, cursor = read_string(body, cursor+25)
             if not font or body[cursor] != 0:
                 raise ValueError("Unsupported SketchText font/height marker")
@@ -159,19 +182,11 @@ def decode_sketch_texts(data, records, features):
             height_binding_id = reference(body, cursor+9)
             cursor += 20
             flags = body[cursor:cursor+7]
-            if flags[:5] != b"\x01\0\0\0\0" or flags[5] not in (0, 1) or flags[6] != 0:
-                raise ValueError("Unsupported SketchText style flags")
             content, cursor = read_string(body, cursor+7, allow_text_controls=True)
             text_binding_id = reference(body, cursor)
             cursor += 11
             tail = body[cursor:]
-            if len(tail) != 183 or tail[:5] != b"\x01\0\0\0\0":
-                raise ValueError("Unsupported SketchText layout suffix")
-            if tail[9:172] != OPAQUE_LAYOUT:
-                raise ValueError("Unobserved SketchText opaque layout controls")
-            weight = struct.unpack_from("<I", tail, 5)[0]
-            if (weight, flags[5]) not in ((400, 0), (700, 0), (400, 1)):
-                raise ValueError("Unobserved SketchText formatting combination")
+            controls = (controls_decoder or _observed_text_controls)(prefix, flags, tail)
             owner = reference(tail, 172)
             feature = sketches.get(owner)
             if feature is None:
@@ -228,10 +243,7 @@ def decode_sketch_texts(data, records, features):
                 "kind": "Text", "object_id": record.object_id, "record_offset": record.start,
                 "class_guid": TEXT, "sketch_object_id": owner, "sketch_feature_object_id": feature["object_id"],
                 "entity_tag": props["textex_tag"], "text": content, "font_name": font, "height_cm": height,
-                "text_style": (1 if weight == 700 else 0) | (2 if flags[5] else 0),
-                "text_style_status": "Three captured API style values, bounded by unchanged opaque controls; combined and underline variants unverified",
-                "bold": weight == 700, "italic": bool(flags[5]), "native_font_weight": weight,
-                "underline": None, "is_horizontal_flip": None, "is_vertical_flip": None,
+                **controls["text_properties"],
                 "is_fixed": None, "is_reference": None,
                 "text_parameter": text_parameter_value,
                 "height_parameter": {"parameter_object_id": height_id, "binding_object_id": height_binding_id,
@@ -239,8 +251,7 @@ def decode_sketch_texts(data, records, features):
                                      "value_cm": height, "expression_candidates": height_parameter["expression_candidates"],
                                      "stored_parameter_index": height_index},
                 "definition": {"kind": "MultiLineTextDefinition", "controller_object_id": controller.object_id,
-                               "rectangle_lines": lines, "horizontal_alignment": None, "vertical_alignment": None,
-                               "character_spacing_percent": None,
+                               "rectangle_lines": lines, **controls["definition_properties"],
                                "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"},
                 "uninterpreted": {"prefix_hex": prefix.hex(), "style_flags_hex": flags.hex(),
                                   "layout_suffix_without_weight_or_owner_hex": (tail[:5]+tail[9:172]).hex()},
