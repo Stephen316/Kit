@@ -19,6 +19,7 @@ from decode_path_patterns import decode_path_pattern
 from decode_combine import decode_combine
 from decode_sweep import decode_sweep
 from decode_thicken import decode_thicken
+from decode_emboss import decode_emboss
 from decode_boundary_fill import decode_boundary_fill
 
 
@@ -27,7 +28,7 @@ def decode_tools(data, records, features):
                  "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer", "SplitBody",
                  "OffsetFaces", "ReplaceFace", "DeleteFace", "SurfacePatch", "SurfaceOffset", "SurfaceStitch",
                  "Unstitch", "ReverseNormal", "SurfaceDeleteFace", "Pipe", "Thread",
-                 "SurfaceExtend", "SurfaceUntrim", "SurfaceRuled", "SurfaceTrim", "PathPattern", "BoundaryFill"}
+                 "SurfaceExtend", "SurfaceUntrim", "SurfaceRuled", "SurfaceTrim", "PathPattern", "BoundaryFill", "Emboss"}
     decoded, unresolved = [], []
     axes = known_construction_entities(data, records, features)
     for feature in features:
@@ -48,7 +49,9 @@ def decode_tools(data, records, features):
 
         try:
             settings = {}
-            if kind == "BoundaryFill":
+            if kind == "Emboss":
+                settings = decode_emboss(data, records, body, feature, features)
+            elif kind == "BoundaryFill":
                 settings = decode_boundary_fill(data, records, body, feature, axes)
             elif kind == "PathPattern":
                 settings = decode_path_pattern(data, records, body, feature, features)

@@ -53,7 +53,7 @@ def named_features(data, records):
               "UnStitch": "Unstitch", "Reverse Normal": "ReverseNormal", "SurfaceDeleteFace": "SurfaceDeleteFace",
               "Pipe": "Pipe", "Thread": "Thread", "SurfaceExtend": "SurfaceExtend",
               "SurfaceUntrim": "SurfaceUntrim", "SurfaceRuled": "SurfaceRuled", "SurfaceTrim": "SurfaceTrim",
-              "PathPattern": "PathPattern", "BoundaryFill": "BoundaryFill"}
+              "PathPattern": "PathPattern", "BoundaryFill": "BoundaryFill", "Emboss": "Emboss"}
     for label, kind in labels.items():
         marker = struct.pack("<I", len(label)) + label.encode("utf-16le")
         for match in re.finditer(re.escape(marker), data):
