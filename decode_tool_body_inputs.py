@@ -76,6 +76,14 @@ def decode_tool_body_inputs(data, records, features, body_selections):
             expected = [item["descriptor_object_id"] for item in settings.get("input_descriptors", [])]
             if expected and ids == expected and settings.get("input_body_count") == len(ids):
                 return "PatternInputBody", "Decoded explicit pattern input-descriptor collection agrees with the body proxy list"
+        if feature["kind"] == "Sweep" and settings.get("sweep_mode") == "SolidBody":
+            candidates = [("ToolBody", settings["solid_body"])] + [
+                ("TargetBody", item) for item in settings.get("input_bodies", [])]
+            matches = [(role, item) for role, item in candidates
+                       if item["selection_record_object_id"] == selected["selection_record_object_id"]
+                       and ids == [item["descriptor_object_id"]]]
+            if len(matches) == 1:
+                return matches[0][0], "Decoded explicit solid Sweep tool/target fields agree with owned proxy and descriptor"
         if feature["kind"] == "Combine":
             matches = [item for item in settings.get("input_selections", [])
                        if item["selection_record_object_id"] == selected["selection_record_object_id"]]

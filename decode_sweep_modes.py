@@ -9,7 +9,7 @@ from decode_brep_recipes import decode_recipe
 from decode_parameters import read_string
 from decode_profile_selections import resolve_sketch_profiles
 from decode_selection import native_proxy_references
-from decode_sketch import attributes, reference, same
+from decode_sketch import attributes, numbers, reference, same
 
 
 SWEEP = "FCBB1707-4450-46B3-9E65-0F61682EA8CA"
@@ -18,9 +18,18 @@ CURVE_DESCRIPTOR = "5A1BF548-241F-46FD-9FB5-E4B05126EB9D"
 CURVE_LEAF = "E2CEFD18-D755-4E09-8E7F-953A2F6D43F8"
 
 
-def decode_sweep_modes(data, records, body, feature, features, *, allowed_operation_codes=(4,), allow_two_sided=False):
+def decode_sweep_modes(data, records, body, feature, features, *, allowed_operation_codes=(4,), allow_two_sided=False,
+                       profile_resolver=None, allowed_header_vectors=((1., 0., 0.),),
+                       allowed_new_body_anchor_counts=(1,)):
     """Strict defaults; optional observed operations/branches serve the wrapper."""
     allowed_operation_codes = tuple(allowed_operation_codes)
+    allowed_header_vectors = tuple(tuple(v) for v in allowed_header_vectors)
+    allowed_new_body_anchor_counts = tuple(allowed_new_body_anchor_counts)
+    if (not allowed_header_vectors or any(len(v) != 3 or not all(math.isfinite(x) for x in v) for v in allowed_header_vectors)
+            or not allowed_new_body_anchor_counts or len(set(allowed_new_body_anchor_counts)) != len(allowed_new_body_anchor_counts)
+            or any(type(count) is not int or count not in (1, 2) for count in allowed_new_body_anchor_counts)
+            or (profile_resolver is not None and not callable(profile_resolver))):
+        raise ValueError("Unsupported Sweep profile reader options")
     if (not allowed_operation_codes or len(set(allowed_operation_codes)) != len(allowed_operation_codes)
             or any(code not in (1, 2, 3, 4) for code in allowed_operation_codes)
             or type(allow_two_sided) is not bool):
@@ -33,7 +42,7 @@ def decode_sweep_modes(data, records, body, feature, features, *, allowed_operat
     if (props or operation not in allowed_operation_codes or body[base+4] not in (0, 1)
             or body[base+5:base+11] != struct.pack("<I", 3)+b"\0\0"
             or body[base+11] not in (0, 1)
-            or body[base+14:base+38] != struct.pack("<ddd", 1., 0., 0.)):
+            or tuple(numbers(body, base+14, 3)) not in allowed_header_vectors):
         raise ValueError("Unsupported observed Sweep mode control header")
     grouped = {}
     for record in records:
@@ -77,8 +86,13 @@ def decode_sweep_modes(data, records, body, feature, features, *, allowed_operat
     rail_id, cursor = optional(cursor)
     control_id, cursor = reference(body, cursor), cursor+11
     _, control = typed(control_id, "B3E4AB56-412B-45EA-85E5-79BE88865B41")
-    if len(control) != 85 or reference(control, 6) != owner or reference(control, 74) != owner:
+    control_count = struct.unpack_from("<I", control, 17)[0]
+    if (control_count not in allowed_new_body_anchor_counts or len(control) != 74+11*control_count
+            or reference(control, 6) != owner or reference(control, len(control)-11) != owner):
         raise ValueError("Sweep mode result control owner/layout disagrees")
+    control_context_ids = [reference(control, 21+11*i) for i in range(control_count)]
+    if len(set(control_context_ids)) != control_count:
+        raise ValueError("Duplicate Sweep result control context references")
     parameter(cursor, "TaperAngle")
     parameter(cursor+11, "TwistAngle")
     mode = struct.unpack_from("<I", body, cursor+22)[0]
@@ -86,17 +100,26 @@ def decode_sweep_modes(data, records, body, feature, features, *, allowed_operat
     if mode not in (1, 2, 3, 4, 5) or count != 1:
         raise ValueError("Unsupported Sweep mode/profile count")
     profile_id = reference(body, cursor+30)
-    profiles = resolve_sketch_profiles(data, records, profile_id, owner, features)
-    if len(profiles) != 1:
-        raise ValueError("Only observed single sketch-profile Sweep modes supported")
+    resolver = resolve_sketch_profiles if profile_resolver is None else profile_resolver
+    profiles = resolver(data, records, profile_id, owner, features)
+    if (profile_resolver is None and len(profiles) != 1) or (profile_resolver is not None and len(profiles) not in (1, 2)):
+        raise ValueError("Unsupported Sweep resolved profile count")
     after_profile = cursor+41
     anchor_count = struct.unpack_from("<I", body, after_profile+4)[0]
-    if body[after_profile:after_profile+4] != b"\0"*4 or anchor_count != (1 if operation == 4 else 0):
+    if (body[after_profile:after_profile+4] != b"\0"*4
+            or anchor_count not in (allowed_new_body_anchor_counts if operation == 4 else (0,))):
         raise ValueError("Unsupported Sweep mode result-anchor list")
     anchor_ids = [reference(body, after_profile+8+11*i) for i in range(anchor_count)]
     anchor_map = {a["object_id"]: a for a in decode_body_selections(data, records)["body_anchors"]}
     if any(i not in anchor_map or anchor_map[i]["source_owner_object_id"] != owner for i in anchor_ids):
         raise ValueError("Sweep result native body anchor unresolved or owner disagrees")
+    if profile_resolver is not None:
+        if operation == 4 and control_count != anchor_count:
+            raise ValueError("Sweep result control/context count disagrees with observed result-anchor count")
+        for context_id in control_context_ids:
+            _, context_payload = typed(context_id, "C46D3EEB-40E1-43FA-83DC-9CB204335417")
+            if len(context_payload) != 171:
+                raise ValueError("Unsupported Sweep result control context payload")
 
     def path(identity):
         record, _ = owned(identity, PROXY)
@@ -208,7 +231,7 @@ def decode_sweep_modes(data, records, body, feature, features, *, allowed_operat
             "taper_angle_radians": None if guided or mode == 1 else values["TaperAngle"],
             "twist_angle_radians": None if guided or mode == 1 else values["TwistAngle"],
             "angle_control_status": "SDK ignores taper/twist in guide modes; native bindings retained" if guided else "Single-path orientation controls activity",
-            "path": source_path, "profile": profiles[0],
+            "path": source_path, "profile": profiles[0] if len(profiles) == 1 else None,
             "profile_scaling": scaling if is_rail else None, "stored_scaling_bits": list(scaling_bits),
             "extent": {3: "PerpendicularToPath", 4: "FullExtents"}.get(mode),
             "guide_rail": stored_rail if mode == 3 else None, "stored_guide_rail": stored_rail,
@@ -220,6 +243,10 @@ def decode_sweep_modes(data, records, body, feature, features, *, allowed_operat
             "result_control_record_object_id": control_id, "uninterpreted_result_control_prefix_hex": control[:6].hex(),
             "result_body_anchors": [anchor_map[i] for i in anchor_ids],
             "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved"}
-    if allowed_operation_codes != (4,) or allow_two_sided:
+    if profile_resolver is not None:
+        result["profiles"] = profiles
+        result["stored_header_vector"] = numbers(body, base+14, 3)
+        result["result_control_context_record_object_ids"] = control_context_ids
+    if allowed_operation_codes != (4,) or allow_two_sided or profile_resolver is not None:
         result["result_anchor_list_end_relative_offset"] = after_profile+8+11*anchor_count
     return result
