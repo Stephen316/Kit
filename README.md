@@ -41,11 +41,12 @@ The main entry point is `decode_basics.decode_basics(path, zstd_library=None)`. 
 | Dress-up/body tools | Fillet, chamfer, shell, hole, rectangular pattern, mirror and scale names and numeric parameters; split-body record/name | Feature-specific modes and complete topology selection |
 | Unknown features | Observed feature-class ancestry exposes unsupported feature records explicitly | Unknown ancestry and unimplemented native fields |
 | Timeline and state | Explicit ordered feature references, groups and collapse state, suppression and rollback flags; visible indices and derived marker position in observed root-component cases | General assembly/component history composition and other group/state layouts |
-| Local assemblies | Component definitions, repeated/native occurrences, parent collections, nested rigid transforms, explicit sketch ownership and world sketch coordinates | External references, flexible components, joints, grounding semantics and general modeling-feature ownership |
+| Local assemblies | Component definitions, repeated/native occurrences, parent collections, nested rigid transforms, explicit sketch ownership and world sketch coordinates | External references, flexible components, joints and grounding semantics |
+| Dependencies and ownership | Paired forward/reverse tables and explicit component-scope references for observed feature records | Other edge meanings and unobserved scope datum layouts |
 
 Internal lengths use centimetres and angles use radians in the recovered numeric records. Display units such as `mm` are separate. Sweep path fractions are unitless. Sketch-local geometry remains available alongside decoded component-coordinate values.
 
-`assembly_decoding.occurrence_paths` expands native occurrences through their parent components. Repeated instances share component definitions but have separate world transforms. A modeling feature's input-sketch component is recorded as source context; it is not assumed to prove that feature's parent component.
+`assembly_decoding.occurrence_paths` expands native occurrences through their parent components. Repeated instances share component definitions but have separate world transforms. A modeling feature's input-sketch component is recorded as source context. Its parent component is resolved separately through an explicit dependency-scope edge and typed component datum when that layout is recognized. Sketch ownership provides an independent consistency check.
 
 The feature `stored_index` is an internal native field. It is **not a global timeline position**. Record-offset order also must not be used as modeling history: a controlled reorder changed the explicit history list while leaving record order unchanged.
 
@@ -64,6 +65,6 @@ The metadata index validates object/header identities, registered primary classe
 
 The active request is to keep expanding coverage until the user stops the work. Completed stages must be committed locally with focused checks. Do not push, overwrite unrelated project work, or describe partial decoding as complete translation.
 
-Useful next areas are general modeling-feature ownership, external/flexible assembly definitions and joints; broader timeline composition; remaining sketch patterns and offsets; feature-specific selections and modes; and BRep topology. A native writer, full geometry regeneration, and integration with the Kit translation pipeline remain separate unfinished work.
+Useful next areas are broader dependency semantics, external/flexible assembly definitions and joints; broader timeline composition; remaining sketch patterns and offsets; feature-specific selections and modes; and BRep topology. A native writer, full geometry regeneration, and integration with the Kit translation pipeline remain separate unfinished work.
 
 Use small controlled API examples, vary one setting where practical, and retain unknown fields. Prefer metadata/class identities and explicit references over byte searches or inference from geometry alone.

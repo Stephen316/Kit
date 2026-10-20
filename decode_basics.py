@@ -26,6 +26,7 @@ from decode_construction import decode_construction
 from decode_profiles import decode_profiles
 from decode_timeline import decode_timeline
 from decode_assembly import decode_assembly
+from decode_dependencies import decode_dependencies
 
 
 def named_features(data, records):
@@ -188,6 +189,7 @@ def decode_basics(path, zstd_library=None):
         tool_summary = decode_tools(data, records, features)
         timeline_summary = decode_timeline(data, records, features)
         assembly_summary = decode_assembly(data, records, features)
+        dependency_summary = decode_dependencies(data, records, features, assembly_summary)
         resolved_selection_features = {s["feature_object_id"] for s in selection_summary["resolved"]}
         unresolved_selection_features = {s["feature_object_id"] for s in selection_summary["unresolved"]}
         modeling_summary["unresolved"] = [
@@ -208,6 +210,7 @@ def decode_basics(path, zstd_library=None):
             "tool_decoding": tool_summary,
             "timeline_decoding": timeline_summary,
             "assembly_decoding": assembly_summary,
+            "dependency_decoding": dependency_summary,
         })
     return {
         "file": str(path), "status": "experimental partial decoder",
