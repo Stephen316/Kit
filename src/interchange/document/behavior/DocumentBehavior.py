@@ -13,4 +13,6 @@ from interchange.document.behavior.DocumentValidBehavior import DocumentValid
 
 # focused method contracts keep the immutable document schema independently reviewable
 class DocumentApi(DocumentIo, DocumentValid, DocumentLookup):
-    locals()["__slots__"] = ()
+    KSlotsValue = ()
+
+    locals()["__slots__"] = KSlotsValue
