@@ -1,7 +1,7 @@
 """Syntactically derive numeric arithmetic references from owned parameter names.
 
 This is an explicit derived view, not a native dependency-table decoder or an
-expression evaluator. Only the bounded arithmetic grammar is admitted; function,
+expression evaluator. Only the bounded arithmetic grammar and observed unary sqrt/abs calls are admitted;
 Text, comparison and other syntax stays unresolved rather than losing references.
 """
 
@@ -11,6 +11,7 @@ import re
 NUMBER = re.compile(r'(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?')
 NAME = re.compile(r'[A-Za-z_][A-Za-z_0-9]*')
 UNITS = frozenset(('mm', 'cm', 'm', 'in', 'ft', 'deg', 'rad'))
+UNARY_FUNCTIONS = frozenset(('sqrt', 'abs'))
 
 
 class ArithmeticReferences:
@@ -84,7 +85,14 @@ class ArithmeticReferences:
             return {'kind': 'NumericLiteral', 'spelling': text, 'unit_spelling': unit}
         if kind == 'name':
             if self.current()[1] == '(':
-                raise ValueError('Function syntax is outside the supported arithmetic subset')
+                if text not in UNARY_FUNCTIONS:
+                    raise ValueError('Function is outside the observed unary subset: '+text)
+                self.position += 1
+                argument = self.expression_node(depth+1)
+                if self.current()[1] != ')':
+                    raise ValueError('Expected one complete function argument and closing parenthesis')
+                self.position += 1
+                return {'kind': 'FunctionCall', 'name': text, 'arguments': [argument]}
             parameter = self.names.get(text)
             if parameter is None:
                 raise ValueError('Name is not a unique parameter in the owned collection: '+text)
@@ -154,6 +162,6 @@ def derive_expression_dependencies(parameters, parameter_tables):
             unresolved.append({'parameter_object_id': identity, 'parameter_name': parameter['parameter_name'],
                                'stored_expressions': expressions, 'reason': str(error)})
     return {'derived': decoded, 'unresolved': unresolved,
-            'scope': 'Derived numeric arithmetic references only; + - * /, unary signs, parentheses and bounded numeric unit spellings',
+            'scope': 'Derived numeric arithmetic references only; + - * /, unary signs, parentheses, observed unary sqrt/abs calls and bounded numeric unit spellings',
             'limitations': ['No expression evaluation, dimensional validation, native dependency-edge interpretation or dependency ordering is implemented.',
-                            'Functions, comparisons, Text, exponentiation, compound units and external/scoped names remain unresolved.']}
+                            'Other functions, comparisons, Text, exponentiation, compound units and external/scoped names remain unresolved.']}

@@ -1,0 +1,865 @@
+{
+  "scope": "Derived references only; no native dependency graph or expression evaluation",
+  "samples": [
+    {
+      "file": "parameterfunctions-bc10224394fe/sqrt_sum.f3d",
+      "checks": [
+        {
+          "name": "probeWidth",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeScale",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeAllowance",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeResult",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        }
+      ],
+      "derived": [
+        {
+          "parameter_object_id": 202,
+          "parameter_name": "probeWidth",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "7.3 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "7.3",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 203,
+          "parameter_name": "probeScale",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "2.5",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "2.5",
+            "unit_spelling": null
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 204,
+          "parameter_name": "probeAllowance",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "1.2 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "1.2",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 205,
+          "parameter_name": "probeResult",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "sqrt(probeScale + 1)",
+          "syntax_tree": {
+            "kind": "FunctionCall",
+            "name": "sqrt",
+            "arguments": [
+              {
+                "kind": "Binary",
+                "operator": "+",
+                "left": {
+                  "kind": "ParameterReference",
+                  "parameter_object_id": 203,
+                  "parameter_name": "probeScale"
+                },
+                "right": {
+                  "kind": "NumericLiteral",
+                  "spelling": "1",
+                  "unit_spelling": null
+                }
+              }
+            ]
+          },
+          "reference_occurrences": [
+            {
+              "parameter_object_id": 203,
+              "parameter_name": "probeScale",
+              "expression_start": 5,
+              "expression_end": 15
+            }
+          ],
+          "referenced_parameter_object_ids": [
+            203
+          ],
+          "referenced_parameter_names": [
+            "probeScale"
+          ],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        }
+      ],
+      "unresolved": [],
+      "both_entrypoints_equal": true
+    },
+    {
+      "file": "parameterfunctions-bc10224394fe/abs_difference.f3d",
+      "checks": [
+        {
+          "name": "probeWidth",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeScale",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeAllowance",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeResult",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        }
+      ],
+      "derived": [
+        {
+          "parameter_object_id": 202,
+          "parameter_name": "probeWidth",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "7.3 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "7.3",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 203,
+          "parameter_name": "probeScale",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "2.5",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "2.5",
+            "unit_spelling": null
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 204,
+          "parameter_name": "probeAllowance",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "1.2 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "1.2",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 205,
+          "parameter_name": "probeResult",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "abs(probeAllowance - probeWidth)",
+          "syntax_tree": {
+            "kind": "FunctionCall",
+            "name": "abs",
+            "arguments": [
+              {
+                "kind": "Binary",
+                "operator": "-",
+                "left": {
+                  "kind": "ParameterReference",
+                  "parameter_object_id": 204,
+                  "parameter_name": "probeAllowance"
+                },
+                "right": {
+                  "kind": "ParameterReference",
+                  "parameter_object_id": 202,
+                  "parameter_name": "probeWidth"
+                }
+              }
+            ]
+          },
+          "reference_occurrences": [
+            {
+              "parameter_object_id": 204,
+              "parameter_name": "probeAllowance",
+              "expression_start": 4,
+              "expression_end": 18
+            },
+            {
+              "parameter_object_id": 202,
+              "parameter_name": "probeWidth",
+              "expression_start": 21,
+              "expression_end": 31
+            }
+          ],
+          "referenced_parameter_object_ids": [
+            204,
+            202
+          ],
+          "referenced_parameter_names": [
+            "probeAllowance",
+            "probeWidth"
+          ],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        }
+      ],
+      "unresolved": [],
+      "both_entrypoints_equal": true
+    },
+    {
+      "file": "parameterfunctions-bc10224394fe/nested_sqrt.f3d",
+      "checks": [
+        {
+          "name": "probeWidth",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeScale",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeAllowance",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeResult",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        }
+      ],
+      "derived": [
+        {
+          "parameter_object_id": 202,
+          "parameter_name": "probeWidth",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "7.3 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "7.3",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 203,
+          "parameter_name": "probeScale",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "2.5",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "2.5",
+            "unit_spelling": null
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 204,
+          "parameter_name": "probeAllowance",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "1.2 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "1.2",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 205,
+          "parameter_name": "probeResult",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "sqrt(probeScale * sqrt(probeScale))",
+          "syntax_tree": {
+            "kind": "FunctionCall",
+            "name": "sqrt",
+            "arguments": [
+              {
+                "kind": "Binary",
+                "operator": "*",
+                "left": {
+                  "kind": "ParameterReference",
+                  "parameter_object_id": 203,
+                  "parameter_name": "probeScale"
+                },
+                "right": {
+                  "kind": "FunctionCall",
+                  "name": "sqrt",
+                  "arguments": [
+                    {
+                      "kind": "ParameterReference",
+                      "parameter_object_id": 203,
+                      "parameter_name": "probeScale"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "reference_occurrences": [
+            {
+              "parameter_object_id": 203,
+              "parameter_name": "probeScale",
+              "expression_start": 5,
+              "expression_end": 15
+            },
+            {
+              "parameter_object_id": 203,
+              "parameter_name": "probeScale",
+              "expression_start": 23,
+              "expression_end": 33
+            }
+          ],
+          "referenced_parameter_object_ids": [
+            203
+          ],
+          "referenced_parameter_names": [
+            "probeScale"
+          ],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        }
+      ],
+      "unresolved": [],
+      "both_entrypoints_equal": true
+    },
+    {
+      "file": "parameterfunctions-bc10224394fe/nested_unary_abs.f3d",
+      "checks": [
+        {
+          "name": "probeWidth",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeScale",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeAllowance",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeResult",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        }
+      ],
+      "derived": [
+        {
+          "parameter_object_id": 202,
+          "parameter_name": "probeWidth",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "7.3 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "7.3",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 203,
+          "parameter_name": "probeScale",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "2.5",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "2.5",
+            "unit_spelling": null
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 204,
+          "parameter_name": "probeAllowance",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "1.2 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "1.2",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 205,
+          "parameter_name": "probeResult",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "-abs(-probeWidth) + 20 mm",
+          "syntax_tree": {
+            "kind": "Binary",
+            "operator": "+",
+            "left": {
+              "kind": "Unary",
+              "operator": "-",
+              "operand": {
+                "kind": "FunctionCall",
+                "name": "abs",
+                "arguments": [
+                  {
+                    "kind": "Unary",
+                    "operator": "-",
+                    "operand": {
+                      "kind": "ParameterReference",
+                      "parameter_object_id": 202,
+                      "parameter_name": "probeWidth"
+                    }
+                  }
+                ]
+              }
+            },
+            "right": {
+              "kind": "NumericLiteral",
+              "spelling": "20",
+              "unit_spelling": "mm"
+            }
+          },
+          "reference_occurrences": [
+            {
+              "parameter_object_id": 202,
+              "parameter_name": "probeWidth",
+              "expression_start": 6,
+              "expression_end": 16
+            }
+          ],
+          "referenced_parameter_object_ids": [
+            202
+          ],
+          "referenced_parameter_names": [
+            "probeWidth"
+          ],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        }
+      ],
+      "unresolved": [],
+      "both_entrypoints_equal": true
+    },
+    {
+      "file": "parameterexpressions-3ddbef2b20bd/product_sum.f3d",
+      "checks": [
+        {
+          "name": "probeWidth",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeScale",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeAllowance",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeResult",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        }
+      ],
+      "derived": [
+        {
+          "parameter_object_id": 202,
+          "parameter_name": "probeWidth",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "7.3 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "7.3",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 203,
+          "parameter_name": "probeScale",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "2.5",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "2.5",
+            "unit_spelling": null
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 204,
+          "parameter_name": "probeAllowance",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "1.2 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "1.2",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 205,
+          "parameter_name": "probeResult",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "probeWidth * probeScale + 1 mm",
+          "syntax_tree": {
+            "kind": "Binary",
+            "operator": "+",
+            "left": {
+              "kind": "Binary",
+              "operator": "*",
+              "left": {
+                "kind": "ParameterReference",
+                "parameter_object_id": 202,
+                "parameter_name": "probeWidth"
+              },
+              "right": {
+                "kind": "ParameterReference",
+                "parameter_object_id": 203,
+                "parameter_name": "probeScale"
+              }
+            },
+            "right": {
+              "kind": "NumericLiteral",
+              "spelling": "1",
+              "unit_spelling": "mm"
+            }
+          },
+          "reference_occurrences": [
+            {
+              "parameter_object_id": 202,
+              "parameter_name": "probeWidth",
+              "expression_start": 0,
+              "expression_end": 10
+            },
+            {
+              "parameter_object_id": 203,
+              "parameter_name": "probeScale",
+              "expression_start": 13,
+              "expression_end": 23
+            }
+          ],
+          "referenced_parameter_object_ids": [
+            202,
+            203
+          ],
+          "referenced_parameter_names": [
+            "probeWidth",
+            "probeScale"
+          ],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        }
+      ],
+      "unresolved": [],
+      "both_entrypoints_equal": true
+    },
+    {
+      "file": "parameterexpressions-3ddbef2b20bd/function_outside_subset.f3d",
+      "checks": [
+        {
+          "name": "probeWidth",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeScale",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeAllowance",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeResult",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        }
+      ],
+      "derived": [
+        {
+          "parameter_object_id": 202,
+          "parameter_name": "probeWidth",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "7.3 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "7.3",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 203,
+          "parameter_name": "probeScale",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "2.5",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "2.5",
+            "unit_spelling": null
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 204,
+          "parameter_name": "probeAllowance",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "1.2 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "1.2",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 205,
+          "parameter_name": "probeResult",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "sqrt(probeScale)",
+          "syntax_tree": {
+            "kind": "FunctionCall",
+            "name": "sqrt",
+            "arguments": [
+              {
+                "kind": "ParameterReference",
+                "parameter_object_id": 203,
+                "parameter_name": "probeScale"
+              }
+            ]
+          },
+          "reference_occurrences": [
+            {
+              "parameter_object_id": 203,
+              "parameter_name": "probeScale",
+              "expression_start": 5,
+              "expression_end": 15
+            }
+          ],
+          "referenced_parameter_object_ids": [
+            203
+          ],
+          "referenced_parameter_names": [
+            "probeScale"
+          ],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        }
+      ],
+      "unresolved": [],
+      "both_entrypoints_equal": true
+    },
+    {
+      "file": "parameterexpressions-3ddbef2b20bd/text_name_literal.f3d",
+      "checks": [
+        {
+          "name": "probeWidth",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeScale",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        },
+        {
+          "name": "probeAllowance",
+          "reference_names_match_api": true,
+          "stored_expression_matches_api": true
+        }
+      ],
+      "derived": [
+        {
+          "parameter_object_id": 202,
+          "parameter_name": "probeWidth",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "7.3 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "7.3",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 203,
+          "parameter_name": "probeScale",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "2.5",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "2.5",
+            "unit_spelling": null
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        },
+        {
+          "parameter_object_id": 204,
+          "parameter_name": "probeAllowance",
+          "collection_object_id": 16,
+          "name_registry_object_id": 17,
+          "stored_expression": "1.2 mm",
+          "syntax_tree": {
+            "kind": "NumericLiteral",
+            "spelling": "1.2",
+            "unit_spelling": "mm"
+          },
+          "reference_occurrences": [],
+          "referenced_parameter_object_ids": [],
+          "referenced_parameter_names": [],
+          "source": "Syntactically derived from completely parsed stored arithmetic and reciprocal owned names; not an explicit native dependency table"
+        }
+      ],
+      "unresolved": [
+        {
+          "parameter_object_id": 205,
+          "parameter_name": "probeResult",
+          "stored_expressions": [
+            "'probeWidth literal'"
+          ],
+          "reason": "Text expression analysis is outside the numeric arithmetic subset"
+        }
+      ],
+      "both_entrypoints_equal": true
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Unknown function",
+      "passed": true,
+      "reason": "Function is outside the observed unary subset: sin"
+    },
+    {
+      "check": "Extra function argument",
+      "passed": true,
+      "reason": "Unsupported expression token at offset 14"
+    },
+    {
+      "check": "Missing function argument",
+      "passed": true,
+      "reason": "Expected numeric literal, parameter name or parenthesized expression at offset 5"
+    },
+    {
+      "check": "Trailing syntax",
+      "passed": true,
+      "reason": "Unconsumed expression syntax at offset 17"
+    },
+    {
+      "check": "Excessive call nesting",
+      "passed": true,
+      "reason": "Expression nesting limit exceeded"
+    }
+  ],
+  "summary": {
+    "new_archives": 4,
+    "prior_archives": 3,
+    "api_parameter_checks": 27,
+    "unresolved_text_expressions": 1,
+    "negative_checks": 5,
+    "all_passed": true
+  }
+}
