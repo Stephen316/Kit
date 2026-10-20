@@ -1,0 +1,121 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "sketch_line.f3d",
+      "getter_errors": [],
+      "actual_axis": {
+        "entity_type": "adsk::fusion::SketchLine",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtM94/Z5Hm4Fk5V9v8n/yJ8CVGGkYGymYJiSamSRYmyqa2yeYqprYmaQpGuZaJGka2xokGhgmGaUZGxgAFYLNIMBDYDtM1AAW2dqaASmjQyASg2MFQwAPpzquZIAAAA=",
+        "sketch_name": "AxisSupportSketch",
+        "start_cm": [
+          1.0,
+          -1.0,
+          0.0
+        ],
+        "end_cm": [
+          2.7888543819998315,
+          2.5777087639996634,
+          0.0
+        ]
+      },
+      "settings": {
+        "operation": 3,
+        "is_solid": true,
+        "is_project_axis": false,
+        "angle_radians": 1.2740903539558606,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 1.2740903539558606,
+          "unit": "deg"
+        }
+      ]
+    },
+    {
+      "file": "sketch_line_reversed.f3d",
+      "getter_errors": [],
+      "actual_axis": {
+        "entity_type": "adsk::fusion::SketchLine",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvHGkseLX/o3Lv296+q9No5EoAojBWMzhRRLg0Rjs1QTXTPLtERdkzQTM12LJONU3cREE1NTQxOzlJTkZLBaoBkMaABsn4EC2DpTQyMwbWQAVGpgrGAAALWYhOOSAAAA",
+        "sketch_name": "AxisSupportSketch",
+        "start_cm": [
+          2.7888543819998315,
+          2.5777087639996634,
+          0.0
+        ],
+        "end_cm": [
+          1.0,
+          -1.0,
+          0.0
+        ]
+      },
+      "settings": {
+        "operation": 3,
+        "is_solid": true,
+        "is_project_axis": false,
+        "angle_radians": 1.2740903539558606,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 1.2740903539558606,
+          "unit": "deg"
+        }
+      ]
+    },
+    {
+      "file": "brep_edge.f3d",
+      "getter_errors": [],
+      "actual_axis": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OMW5CMQyGexRLwGjJsR2TzFU5QrcKPfKSiq1CXKFH6NitAzsrx+AgPUKTgFDfiyL5z+8vv03A4EAMXPISkyrmYgOqLwlDkIRl9Ewx5miegCrb+K44VOVAm2OwuCx+r1/P5894+n77WS0rwS3XNAnvUkDKyaMGLhiEHZrP47rorpiWztaMp9np8wj6OAUBJoNatLpt6d4Wcr32XWaGzQ39ZxDk8T1vDzntP/J2HI4DvEAAdPfLsKlParKJu/d6Q6R7PGk+8JY94WTSfnyo3B9wIYODfwEAAA==",
+        "body_name": "AxisSeedBody",
+        "start_cm": [
+          0.0,
+          3.0,
+          0.0
+        ],
+        "end_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "geometry_type": "adsk::core::Line3D"
+      },
+      "settings": {
+        "operation": 3,
+        "is_solid": true,
+        "is_project_axis": false,
+        "angle_radians": 1.2740903539558606,
+        "result_body_count": 1
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 0.5,
+          "unit": "mm"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg"
+        },
+        {
+          "name": "d3",
+          "role": "AlongAngle",
+          "value": 1.2740903539558606,
+          "unit": "deg"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

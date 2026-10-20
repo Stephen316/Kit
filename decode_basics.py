@@ -28,6 +28,7 @@ from decode_dimension_control_modes import decode_dimension_control_modes
 from decode_modeling import decode_modeling
 from decode_placement import decode_placement
 from decode_selection import decode_selections
+from decode_revolve_axes import decode_revolve_axes
 from decode_tools import decode_tools
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -292,6 +293,17 @@ def decode_basics(path, zstd_library=None):
             f["kind"] == "ConstructionPlane" and "plane_to_component_matrix" in f for f in features)
         placement_summary["scope"] = "Observed rigid sketch transforms and native construction-plane caches; explicit definitions reported separately"
         selection_summary = decode_selections(data, records, features)
+        revolve_axis_summary = decode_revolve_axes(data, records, features)
+        selection_summary["scope"] += "; "+revolve_axis_summary["scope"]
+        revolve_features = {f["object_id"]: f for f in features if f["kind"] == "Revolve"}
+        for selected_axis in revolve_axis_summary["decoded"]:
+            revolve_features[selected_axis["feature_object_id"]]["revolve"].update(
+                axis=selected_axis["axis"], axis_selection="Observed native axis source reference and geometry decoded")
+            selection_summary["resolved"].append({"feature_object_id": selected_axis["feature_object_id"],
+                                                   "selection_object_id": selected_axis["selection_object_id"]})
+        resolved_axis_keys = {(a["feature_object_id"], a["selection_object_id"]) for a in revolve_axis_summary["decoded"]}
+        selection_summary["unresolved"] = [a for a in selection_summary["unresolved"]
+                                             if (a["feature_object_id"], a["selection_object_id"]) not in resolved_axis_keys]
         tool_summary = decode_tools(data, records, features)
         pattern_placement_summary = decode_pattern_placements(data, records, features)
         assembly_summary = decode_assembly(data, records, features)
@@ -363,6 +375,7 @@ def decode_basics(path, zstd_library=None):
             "construction_modes": construction_mode_summary,
             "construction_vertex_points": construction_vertex_summary,
             "selection_decoding": selection_summary,
+            "revolve_axes": revolve_axis_summary,
             "tool_decoding": tool_summary,
             "pattern_placements": pattern_placement_summary,
             "timeline_decoding": timeline_summary,

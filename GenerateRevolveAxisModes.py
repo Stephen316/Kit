@@ -9,7 +9,7 @@ import uuid
 import adsk.core
 import adsk.fusion
 
-CASES = ('custom_two_points', 'sketch_line', 'sketch_line_reversed', 'brep_edge')
+CASES = ('custom_two_points', 'sketch_line', 'sketch_line_reversed', 'brep_edge', 'brep_edge_offset_x')
 
 
 def run(context):
@@ -32,17 +32,18 @@ def run(context):
             root = design.rootComponent
             supports = root.sketches.add(root.xYConstructionPlane)
             supports.name = 'AxisSupportSketch'
-            if case == 'brep_edge':
-                supports.sketchCurves.sketchLines.addTwoPointRectangle(point(0,0,0), point(.5,3,0))
+            if case.startswith('brep_edge'):
+                x_axis = case == 'brep_edge_offset_x'
+                supports.sketchCurves.sketchLines.addTwoPointRectangle(point(1.1,-.6,0) if x_axis else point(0,0,0), point(4.8,0,0) if x_axis else point(.5,3,0))
                 seed = root.features.extrudeFeatures.addSimple(supports.profiles.item(0), value('5 mm'), adsk.fusion.FeatureOperations.NewBodyFeatureOperation)
                 seed.name = 'AxisSeedExtrusion'
                 seed.bodies.item(0).name = 'AxisSeedBody'
                 candidates = [e for e in seed.startFaces.item(0).edges
-                              if all(abs(v.geometry.x) < 1e-9 and abs(v.geometry.z) < 1e-9 for v in (e.startVertex,e.endVertex))]
+                              if all(abs(v.geometry.y if x_axis else v.geometry.x) < 1e-9 and abs(v.geometry.z) < 1e-9 for v in (e.startVertex,e.endVertex))]
                 if len(candidates) != 1:
                     raise RuntimeError('Expected unique seed y-directed boundary edge')
                 axis = candidates[0]
-                origin, direction = [0,0,0], [0,1,0]
+                origin, direction = ([1.1,0,0], [1,0,0]) if x_axis else ([0,0,0], [0,1,0])
             else:
                 origin, direction = [1,-1,0], [1/math.sqrt(5),2/math.sqrt(5),0]
                 a, b = point(*origin), point(*[a+4*b for a,b in zip(origin,direction)])
