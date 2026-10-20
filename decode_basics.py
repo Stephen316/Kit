@@ -17,6 +17,7 @@ from decode_parameters import decode_stream, read_string
 from decode_parameter_tables import decode_parameter_tables
 from decode_sketch import decode_sketches
 from decode_sketch_coverage import decode_sketch_coverage
+from decode_offset_details import decode_offset_details
 from decode_sketch_projections import decode_sketch_projections
 from decode_sketch_pattern_details import decode_sketch_pattern_details
 from decode_dimension_controls import decode_dimension_controls
@@ -25,6 +26,7 @@ from decode_modeling import decode_modeling
 from decode_placement import decode_placement
 from decode_selection import decode_selections
 from decode_tools import decode_tools
+from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
 from fusion_records import Record, record_fragments
 from fusion_metadata import design_records
@@ -209,6 +211,7 @@ def decode_basics(path, zstd_library=None):
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
         sketch_coverage_summary = decode_sketch_coverage(data, records, features, record_index, sketch_summary)
+        offset_detail_summary = decode_offset_details(data, records, features)
         sketch_pattern_summary = decode_sketch_pattern_details(data, records, features)
         dimension_control_summary = decode_dimension_controls(data, records, features)
         dimension_mode_summary = decode_dimension_control_modes(data, records, features, dimension_control_summary)
@@ -249,6 +252,7 @@ def decode_basics(path, zstd_library=None):
         placement_summary["scope"] = "Observed rigid sketch transforms and native construction-plane caches; explicit definitions reported separately"
         selection_summary = decode_selections(data, records, features)
         tool_summary = decode_tools(data, records, features)
+        pattern_placement_summary = decode_pattern_placements(data, records, features)
         assembly_summary = decode_assembly(data, records, features)
         joint_summary = decode_joints(data, records, assembly_summary, features)
         resolved_joint_definitions = set()
@@ -300,6 +304,7 @@ def decode_basics(path, zstd_library=None):
             "feature_discovery": discovery_summary,
             "sketch_decoding": sketch_summary,
             "sketch_record_coverage": sketch_coverage_summary,
+            "offset_details": offset_detail_summary,
             "sketch_projections": projection_summary,
             "sketch_pattern_details": sketch_pattern_summary,
             "dimension_controls": dimension_control_summary,
@@ -313,6 +318,7 @@ def decode_basics(path, zstd_library=None):
             "construction_modes": construction_mode_summary,
             "selection_decoding": selection_summary,
             "tool_decoding": tool_summary,
+            "pattern_placements": pattern_placement_summary,
             "timeline_decoding": timeline_summary,
             "assembly_decoding": assembly_summary,
             "joint_decoding": joint_summary,
