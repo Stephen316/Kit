@@ -2,9 +2,7 @@
 
 import struct
 
-from decode_placement import rigid_matrix
 from decode_selection import known_construction_entities
-from decode_sketch import numbers, reference
 from decode_holes import decode_hole
 from decode_body_tools import decode_body_tool
 from decode_patterns import decode_rectangular_pattern
@@ -22,6 +20,7 @@ from decode_emboss import decode_emboss
 from decode_draft import decode_draft
 from decode_circular_patterns import decode_circular_pattern
 from decode_loft import decode_loft
+from decode_move import decode_move
 from decode_boundary_fill import decode_boundary_fill
 
 
@@ -67,26 +66,7 @@ def decode_tools(data, records, features):
             elif kind == "Hole":
                 settings = decode_hole(data, records, body, feature)
             elif kind == "Move":
-                if body[:2] != b"\0\0":
-                    raise ValueError("Unrecognized move prefix")
-                backend_id = reference(body, 2)
-                choices = []
-                for backend in records:
-                    if backend.object_id != backend_id:
-                        continue
-                    chunk = data[backend.body:backend.end]
-                    if len(chunk) != 237 or chunk[:24] != b"\0"*24:
-                        continue
-                    if struct.unpack_from("<I", chunk, 24)[0] != 5 or chunk[28] != 0:
-                        continue
-                    if reference(chunk, 164) != feature["object_id"] or reference(chunk, 226) != feature["object_id"]:
-                        continue
-                    choices.append(rigid_matrix(numbers(chunk, 29, 16)))
-                if len(choices) != 1:
-                    raise ValueError("Free-move transform unresolved or ambiguous")
-                settings = {"definition": "FreeMove", "transform": choices[0],
-                            "matrix_order": "row-major; column-vector multiplication", "translation_units": "cm",
-                            "transform_record_object_id": backend_id}
+                settings = decode_move(data, records, body, feature, axes, features)
             elif kind == "Combine":
                 settings = decode_combine(data, records, body, feature)
             elif kind == "CircularPattern":
