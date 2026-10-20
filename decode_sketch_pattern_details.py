@@ -17,7 +17,7 @@ POINT_HELPER_GUID = "362B7EC3-0F09-47C8-A3BE-DC066715CDAE"
 
 
 def decode_sketch_pattern_details(data, records, features):
-    decoded, unresolved = [], []
+    decoded, unresolved, skipped = [], [], []
 
     def primary(identity, guid):
         matches = [r for r in records if r.is_primary and r.object_id == identity and r.class_guid == guid]
@@ -33,6 +33,13 @@ def decode_sketch_pattern_details(data, records, features):
         geometry = {g["object_id"]: g for g in sketch.get("geometry", [])}
         for pattern in sketch.get("constraints", []):
             if pattern["kind"] not in ("SketchCircularPattern", "SketchRectangularPattern"):
+                continue
+            members = pattern["entity_ids"]+pattern["created_entity_ids"]
+            if (pattern.get("seed_entity_count", 1) != 1
+                    or pattern.get("suppressed_instance_ordinals") or pattern.get("direction_selections")
+                    or any(geometry.get(identity, {}).get("kind") != "Circle" for identity in members)):
+                skipped.append({"object_id": pattern["object_id"],
+                                "reason": "Expanded pattern shape; optional legacy center-helper reader not applied"})
                 continue
             try:
                 guid = CIRCULAR if pattern["kind"] == "SketchCircularPattern" else RECTANGULAR
@@ -109,6 +116,6 @@ def decode_sketch_pattern_details(data, records, features):
                                 "scope": "Existing ordered single-circle member roles enriched with explicit reciprocal center-point/helper provenance; no inferred lattice positions"})
             except (ValueError, KeyError, IndexError, struct.error) as error:
                 unresolved.append({"object_id": pattern["object_id"], "reason": str(error)})
-    return {"patterns": decoded, "unresolved": unresolved,
+    return {"patterns": decoded, "unresolved": unresolved, "skipped": skipped,
             "scope": "Observed single-circle pattern member ownership and reciprocal native center helpers",
             "limitations": "Multi-entity seeds, non-circle pattern members, suppression states and selected nondefault directions remain unresolved"}

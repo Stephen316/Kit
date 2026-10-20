@@ -1,10 +1,11 @@
-"""Observed offset relationships and single-circle sketch pattern definitions."""
+"""Observed offset relationships and bounded Line/Circle sketch patterns."""
 
 from collections import Counter
 import math
 import struct
 
-from decode_sketch import constraint_prefix, numbers, reference, same
+from decode_sketch import constraint_prefix, numbers, reference
+from decode_sketch_pattern_modes import decode_sketch_pattern
 
 OFFSET = "afc07c10-99ac-5304-ae1b-dbee335b0e43"
 CIRCULAR = "8269E861-0BB7-47E0-9911-5AE3EC475058"
@@ -101,62 +102,7 @@ def decode_sketch_tools(data, records, sketches, entities):
                           "dimension_object_id": dimension_id, "relationship_object_id": association_id,
                           "topology_match_status": "Observed one-to-one stored pairs; general topology-match flag unresolved"}
             else:
-                dependencies, props, cursor = constraint_prefix(body)
-                if props != {"EntityGenesis": 2}:
-                    raise ValueError("Unsupported sketch pattern attributes")
-                head = body[cursor:]
-                if record.class_guid == CIRCULAR:
-                    owner = reference(head, 43)
-                    sketch = sketches[owner]
-                    angle = parameter(sketch, reference(head, 0), "-Angle")
-                    quantity = parameter(sketch, reference(head, 11), "-Count")
-                    count = struct.unpack_from("<Q", head, 30)[0]
-                    if count < 2 or quantity["raw_float64"] != count or not math.isclose(numbers(head, 22, 1)[0], angle["raw_float64"], abs_tol=1e-9):
-                        raise ValueError("Circular pattern cached parameters disagree")
-                    if head[38:42] != b"\0"*4 or head[42] not in (0, 1):
-                        raise ValueError("Unsupported circular pattern flags")
-                    code_offset, list_offset = 54, 66
-                    result = {"kind": "SketchCircularPattern", "quantity": count,
-                              "total_angle_radians": angle["raw_float64"], "is_symmetric": bool(head[42])}
-                    expected_code, expected_count = 0x10000000, count+1
-                else:
-                    owner = reference(head, 131)
-                    sketch = sketches[owner]
-                    if any(head[i] not in (0, 1) for i in range(3)) or head[3:15] != b"\0"*12:
-                        raise ValueError("Only observed default-axis rectangular patterns supported")
-                    result = {"kind": "SketchRectangularPattern", "distance_type": "Extent" if head[0] else "Spacing",
-                              "symmetric_one": bool(head[1]), "symmetric_two": bool(head[2]),
-                              "direction_one": numbers(head, 30, 3), "direction_two": numbers(head, 88, 3)}
-                    for side, count_offset, count_ref, distance_offset, distance_ref, letter in (
-                            ("one", 15, 19, 54, 62, "u"), ("two", 73, 77, 112, 120, "v")):
-                        qty = parameter(sketch, reference(head, count_ref), "-"+letter+"Count")
-                        dist = parameter(sketch, reference(head, distance_ref), "-"+letter+"Distance")
-                        count = struct.unpack_from("<I", head, count_offset)[0]
-                        if count < 1 or qty["raw_float64"] != count or not math.isclose(numbers(head, distance_offset, 1)[0], dist["raw_float64"], abs_tol=1e-9):
-                            raise ValueError("Rectangular sketch pattern cached parameters disagree")
-                        result["quantity_"+side], result["distance_"+side+"_cm"] = count, dist["raw_float64"]
-                    if not same(result["direction_one"], [1, 0, 0]) or not same(result["direction_two"], [0, 1, 0]):
-                        raise ValueError("Unsupported sketch pattern default axes")
-                    expected_count = result["quantity_one"]*result["quantity_two"]
-                    expected_code, code_offset, list_offset = 0x20000000, 142, 154
-                if struct.unpack_from("<Q", head, code_offset)[0] != expected_code:
-                    raise ValueError("Unsupported sketch pattern kind code")
-                copy_count = struct.unpack_from("<I", head, list_offset-4)[0]
-                if copy_count != expected_count or not 2 <= copy_count <= 1024:
-                    raise ValueError("Only observed single-entity sketch patterns supported")
-                copied = [reference(head, list_offset+11*i) for i in range(copy_count)]
-                if len(head) != list_offset+11*copy_count+1 or head[-1] != 0 or Counter(copied) != Counter(dependencies):
-                    raise ValueError("Sketch pattern entity copies disagree")
-                if record.class_guid == CIRCULAR:
-                    center = scoped(copied[-1], owner)
-                    if center["kind"] != "Point":
-                        raise ValueError("Sketch circular pattern center is not a point")
-                    result.update(center_entity_id=copied[-1], center_cm=center["position_cm"])
-                    copied = copied[:-1]
-                if any(scoped(i, owner)["kind"] != "Circle" for i in copied):
-                    raise ValueError("Only observed single-circle sketch patterns supported")
-                result.update(object_id=record.object_id, entity_ids=[copied[0]], created_entity_ids=copied[1:],
-                              suppression_status="Instance suppression states unresolved")
+                result, owner = decode_sketch_pattern(data, record, sketches, entities)
             result["record_offset"] = record.start
             result["class_guid"] = record.class_guid
             sketches[owner]["constraints"].append(result)
@@ -164,4 +110,4 @@ def decode_sketch_tools(data, records, sketches, entities):
         except (ValueError, KeyError, IndexError, struct.error) as error:
             unresolved.append({"object_id": record.object_id, "class_guid": record.class_guid, "reason": str(error)})
     return {"decoded": decoded, "unresolved": unresolved,
-            "scope": "Observed offset pairs and single-circle patterns; no offset/pattern solver"}
+            "scope": "Observed offset pairs and Line/Circle patterns with explicit directions and non-symmetric suppression; no solver"}
