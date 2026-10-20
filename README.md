@@ -40,10 +40,13 @@ The main entry point is `decode_basics.decode_basics(path, zstd_library=None)`. 
 | Other modeling tools | Partial sweep, loft, circular pattern, combine, draft, free-move and thicken settings | Complete input body/face/edge references and reconstruction |
 | Dress-up/body tools | Fillet, chamfer, shell, hole, rectangular pattern, mirror and scale names and numeric parameters; split-body record/name | Feature-specific modes and complete topology selection |
 | Unknown features | Observed feature-class ancestry exposes unsupported feature records explicitly | Unknown ancestry and unimplemented native fields |
+| Timeline and state | Explicit ordered feature references, groups and collapse state, suppression and rollback flags; visible indices and derived marker position in observed root-component cases | General assembly/component history composition and other group/state layouts |
 
 Internal lengths use centimetres and angles use radians in the recovered numeric records. Display units such as `mm` are separate. Sweep path fractions are unitless. Sketch-local geometry remains available alongside decoded component-coordinate values.
 
-The feature `stored_index` is an internal native field. It is **not a verified global timeline position**. Record-offset order also must not be treated as a complete, verified modeling history.
+The feature `stored_index` is an internal native field. It is **not a global timeline position**. Record-offset order also must not be used as modeling history: a controlled reorder changed the explicit history list while leaving record order unchanged.
+
+Use `timeline_decoding.sequences` for observed history order. `feature_order` excludes group markers; `visible_entries` reflects decoded group expansion. Marker position is derived from rollback flags and group projection. Multiple history owners remain separate. Missing or unrecognized records are reported rather than assigned a guessed order.
 
 ## Evidence and navigation
 
@@ -58,6 +61,6 @@ The metadata index validates object/header identities, registered primary classe
 
 The active request is to keep expanding coverage until the user stops the work. Completed stages must be committed locally with focused checks. Do not push, overwrite unrelated project work, or describe partial decoding as complete translation.
 
-Useful next areas are verified timeline order and suppression; component/assembly ownership and transforms; remaining sketch patterns and offsets; feature-specific selections and modes; and BRep topology. A native writer, full geometry regeneration, and integration with the Kit translation pipeline remain separate unfinished work.
+Useful next areas are component/assembly ownership and transforms; broader timeline composition; remaining sketch patterns and offsets; feature-specific selections and modes; and BRep topology. A native writer, full geometry regeneration, and integration with the Kit translation pipeline remain separate unfinished work.
 
 Use small controlled API examples, vary one setting where practical, and retain unknown fields. Prefer metadata/class identities and explicit references over byte searches or inference from geometry alone.
