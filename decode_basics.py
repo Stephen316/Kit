@@ -15,6 +15,7 @@ import struct
 from decode_parameters import decode_stream, read_string
 from decode_sketch import decode_sketches
 from decode_modeling import decode_modeling
+from decode_placement import decode_placement
 from fusion_archive import read_members
 from fusion_records import Record, record_fragments
 
@@ -24,7 +25,8 @@ def named_features(data, records):
     starts = [r.start for r in records]
     labels = {"Sketch": "Sketch", "Extrude": "Extrude", "Revolve": "Revolve",
               "Fillet": "Fillet", "Chamfer": "Chamfer", "Shell": "Shell", "Hole": "Hole",
-              "R-Pattern": "RectangularPattern", "Mirror": "Mirror", "Scale": "Scale"}
+              "R-Pattern": "RectangularPattern", "Mirror": "Mirror", "Scale": "Scale",
+              "WorkPlane": "ConstructionPlane"}
     for label, kind in labels.items():
         marker = struct.pack("<I", len(label)) + label.encode("utf-16le")
         for match in re.finditer(re.escape(marker), data):
@@ -165,11 +167,13 @@ def decode_basics(path, zstd_library=None):
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
         modeling_summary = decode_modeling(data, records, features)
+        placement_summary = decode_placement(data, records, features)
         streams.append({
             "member": name, "features": features, "unbound_parameters": unbound,
             "rejected_parameters": rejected, "candidate_record_headers": len(records),
             "sketch_decoding": sketch_summary,
             "modeling_decoding": modeling_summary,
+            "placement_decoding": placement_summary,
         })
     return {
         "file": str(path), "status": "experimental partial decoder",
