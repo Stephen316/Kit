@@ -199,8 +199,9 @@ def validate(zstd_library):
             assert control['keyed_associations'] == control['old_ordinal_candidates']
             report['prior_success_controls'].append(control)
         else:
-            assert control['old_ordinal_candidates'] == 0 and len(control['unresolved']) == 1
-            control['status'] = 'Already had no ordinal association; stricter key rejection withdraws no prior candidate'
+            assert control['old_ordinal_candidates'] == 0 and not control['unresolved']
+            assert control['keyed_associations'] == 2
+            control['status'] = 'Previously unsupported mixed BODY/edge roots now have two typed BODY identifier associations'
             report['existing_unsupported_control'] = control
     report['summary'] = {'files': len(report['cases']),
                          'populated_mappings': sum(len(c['mappings']) for c in report['cases']),
@@ -215,13 +216,163 @@ def validate(zstd_library):
     return report
 
 
+def validate_mixed(zstd_library):
+    """Report new mixed-root evidence without overwriting the historical report."""
+    from decode_brep import decode_topology
+    root = Path(__file__).resolve().parent
+    files = [
+        'pipeedgecontrasts-5bd287323ae7/line_full.f3d',
+        'pipeedgecontrasts-5bd287323ae7/circle_full.f3d',
+        'pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d',
+        'pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d',
+        'pipepaths-3d11bd427946/brep_edge_circular.f3d',
+    ]
+    report = {'status': 'Observed bounded mixed initial BODY/detached-edge roots decoded',
+              'cases': [], 'guards': [], 'limitations': [
+                  'The auxiliary edge has no coedge and belongs to neither decoded BODY graph; no owning body is assigned.',
+                  'API curve/endpoints corroborate its cached shape only, never identify it as a selected persistent BRep edge.',
+                  'BODY matches use exact same-blob stored IDs and typed native references, independently of auxiliary-root ordering or shape.',
+                  'Every initial BODY must be declared, IDs must be unique and bijective, and mixed-layout bodies must have decoded initial geometry graphs.',
+                  'Mixed roots other than BODY and the bounded detached Line/Ellipse edge variant remain unsupported.',
+                  'History and trailing snapshots, closure controls, current visibility, final lifecycle and joint solving remain unresolved.',
+                  'Bodies with no vertices remain associated by typed ID; curved extrema are not inferred from vertex bounds.',
+              ]}
+    linear_context = None
+    for relative in files:
+        path = root / relative
+        truth = json.loads((path.parent / 'ground_truth.json').read_text())
+        actual = next(s for s in truth['samples'] if s['file'] == path.name)
+        members = read_members(path, zstd_library)
+        model = decode_basics(path, zstd_library)
+        for stream in model['streams']:
+            member = stream['member']
+            data = members[member]
+            records, _ = design_records(data, members[member.replace('BulkStream.dat', 'MetaStream.dat')])
+            bindings = baseline_bindings(data, records, member, model, stream)
+            decoded = decode_body_asm_identifiers(data, records, member, members, bindings)
+            assert not decoded['unresolved'] and len(decoded['decoded']) == 1
+            mapping = decoded['decoded'][0]
+            blob = mapping['history_blob_member']
+            parsed = inspect_asm(members[blob])
+            topology = decode_topology(parsed)
+            graphs = {g['body_index']: g for g in topology['body_graphs']}
+            nodes = {n['index']: n for n in topology['nodes']}
+            aux, = mapping['auxiliary_declared_roots']
+            assert len(mapping['bindings']) == 2 and aux['asm_record_index'] == 2
+            assert aux['body_graph_membership'] == []
+            assert all(p['asm_body_index'] in graphs for p in mapping['bindings'])
+            assert all(p['asm_body_index'] in (1, 3) for p in mapping['bindings'])
+            old_count = sum('candidate_asm_body_index' in e for m in bindings['decoded'] for e in m['bindings'])
+            assert old_count == 0
+            assert actual['settings']['root_body_count'] == len(mapping['bindings']) == 2
+            source = actual.get('source_before_pipe') or actual['source_entities_before_pipe'][0]
+            provenance = stream['pipe_path_provenance']['partial'][0]['path']
+            source_id = provenance['native_body_object_id']
+            source_patch = next(p for p in mapping['bindings'] if p['native_body_object_id'] == source_id)
+            native = next(e for m in bindings['decoded'] for e in m['bindings'] if e['native_body_object_id'] == source_id)
+            assert native['name'] == source['body_name']
+            endpoint_keys = ('start_vertex', 'end_vertex')
+            if all(k in source for k in endpoint_keys):
+                api_points = [source[k]['point_cm'] for k in endpoint_keys]
+            else:
+                api_points = [source['start_vertex_point_cm'], source['end_vertex_point_cm']]
+            cached_points = [nodes[i]['raw_origin'] for i in aux['endpoint_point_indices']]
+            assert close_points(cached_points, api_points)
+            source_vertices = graphs[source_patch['asm_body_index']]['raw_vertex_positions']
+            assert all(any(close_points([p], [q]) for q in source_vertices) for p in api_points)
+            api_geometry_type = source['natural_geometry']['geometry_type']
+            expected_curve = 'straight-curve' if api_geometry_type.endswith('Line3D') else 'ellipse-curve'
+            assert aux['curve_kind'] == expected_curve
+            curve = nodes[aux['curve_index']]
+            evaluator = source['trimmed_edge_evaluator']
+            evaluated = []
+            for sample in evaluator['samples']:
+                parameter = sample['parameter']
+                if curve['kind'] == 'straight-curve':
+                    point = [o + parameter * d for o, d in zip(curve['raw_origin'], curve['direction'])]
+                else:
+                    normal, major = curve['normal'], curve['stored_reference_axis']
+                    minor = [normal[1] * major[2] - normal[2] * major[1],
+                             normal[2] * major[0] - normal[0] * major[2],
+                             normal[0] * major[1] - normal[1] * major[0]]
+                    point = [o + a * math.cos(parameter) + b * curve['stored_axis_ratio'] * math.sin(parameter)
+                             for o, a, b in zip(curve['raw_origin'], major, minor)]
+                assert close_points([point], [sample['point_cm']])
+                evaluated.append({'parameter': parameter, 'cached_curve_point_cm': point})
+            # Shape agreement is evidence after framing and BODY joining, not an
+            # identity join between the detached cache and a persistent edge.
+            report['cases'].append({
+                'file': relative, 'mapping': mapping,
+                'declared_root_kinds': [r['name'] for r in parsed['records'][:parsed['header']['stored_entity_count']]],
+                'body_graph_indices': sorted(graphs), 'old_ordinal_candidate_count': old_count,
+                'api_corroboration': {
+                    'actual_root_body_count': 2, 'actual_result_body_count': actual['settings']['result_body_count'],
+                    'typed_pipe_source_native_body_object_id': source_id,
+                    'source_native_name_agrees_actual_api': True,
+                    'auxiliary_cached_endpoint_points_match_saved_api': True,
+                    'cached_endpoint_points_cm': cached_points,
+                    'source_body_graph_contains_saved_api_endpoint_points': True,
+                    'auxiliary_primitive_kind_agrees_saved_api_geometry': True,
+                    'auxiliary_curve_samples_match_actual_trimmed_edge_evaluator': evaluated,
+                    'persistent_auxiliary_edge_identity': 'Unresolved; shape agreement does not establish identity',
+                },
+                'body_graph_vertex_counts': {str(g['body_index']): g['counts']['vertex'] for g in graphs.values()},
+            })
+            if relative.endswith('/line_full.f3d'):
+                linear_context = data, records, member, members, bindings, parsed, mapping, topology
+    data, records, member, members, bindings, parsed, mapping, topology = linear_context
+    blob = mapping['history_blob_member']
+    edge = parsed['records'][2]
+    vertex = parsed['records'][edge['tokens'][3]['value']]
+
+    def rejected(label, raw):
+        result = decode_body_asm_identifiers(data, records, member, {**members, blob: bytes(raw)}, bindings)
+        assert not result['decoded'] and len(result['unresolved']) == 1, (label, result)
+        assert result['unresolved'][0]['ordinal_candidates_must_be_discarded']
+        report['guards'].append({'guard': label, 'rejected': True, 'reason': result['unresolved'][0]['reason']})
+
+    changed = bytearray(members[blob])
+    struct.pack_into('<q', changed, 31, 3)  # ASM header stored_entity_count: q64 at offset31.
+    rejected('A BODY outside the shortened declared root table cannot be silently ignored', changed)
+    changed = bytearray(members[blob])
+    changed[edge['offset'] + 2:edge['offset'] + 6] = b'face'
+    rejected('Unsupported extra declared root kind cannot masquerade as the observed detached edge', changed)
+    changed = bytearray(members[blob])
+    struct.pack_into('<q', changed, vertex['tokens'][3]['offset'] + 1, -1)
+    rejected('Detached edge endpoint vertex must point reciprocally back to that edge', changed)
+    changed = bytearray(members[blob])
+    history_record = next(r for r in parsed['records'] if r['section'] == 'history')
+    struct.pack_into('<q', changed, edge['tokens'][3]['offset'] + 1, history_record['index'])
+    rejected('Auxiliary endpoint pointer cannot escape into a history-section record', changed)
+    changed = bytearray(members[blob])
+    graphs = {g['body_index']: g for g in topology['body_graphs']}
+    face = parsed['records'][graphs[3]['face_indices'][0]]
+    struct.pack_into('<q', changed, face['tokens'][5]['offset'] + 1, graphs[1]['shell_indices'][0])
+    rejected('Keyed mixed-root BODY must retain an actual reciprocal initial geometry body graph', changed)
+    previous = validate(zstd_library)
+    historical = json.loads((root / 'body-asm-identifier-decoding.json').read_text())
+    assert previous['cases'] == historical['cases']
+    report['prior_fixture_preservation'] = previous['summary']
+    report['historical_seven_focused_case_outputs_exact'] = True
+    report['summary'] = {'mixed_files': len(report['cases']),
+                         'new_body_associations': sum(len(c['mapping']['bindings']) for c in report['cases']),
+                         'detached_auxiliary_roots': len(report['cases']),
+                         'api_shape_and_source_body_corroborations': len(report['cases']),
+                         'malformed_guards': len(report['guards']),
+                         'prior_focused_body_associations_preserved': previous['summary']['body_associations'],
+                         'prior_diverse_candidates_preserved': previous['summary']['diverse_prior_candidates_preserved']}
+    return report
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--zstd-library')
-    parser.add_argument('--output', default='body-asm-identifier-decoding.json')
+    parser.add_argument('--mixed', action='store_true', help='Validate mixed BODY/detached-edge roots and preserve the historical report')
+    parser.add_argument('--output')
     args = parser.parse_args()
     zstd = args.zstd_library or next(Path('/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production').glob(
         '*/Autodesk Fusion.app/Contents/Frameworks/Python.framework/Versions/3.14/lib/libzstd.1.5.7.dylib'))
-    report = validate(zstd)
-    Path(args.output).write_text(json.dumps(report, indent=2) + '\n')
+    report = validate_mixed(zstd) if args.mixed else validate(zstd)
+    output = args.output or ('mixed-body-root-decoding.json' if args.mixed else 'body-asm-identifier-decoding.json')
+    Path(output).write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], sort_keys=True))

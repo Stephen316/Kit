@@ -1,0 +1,655 @@
+{
+  "stage": "Stored tangent-distance measurement geometry caches",
+  "status": "Three saved Circle/Circle caches decoded; native tangent-side selector semantics remain unresolved",
+  "existing_coverage_review": {
+    "files": [
+      "dimensions-f83a2edd2f72/dimensions.f3d",
+      "dimcontrols-2a0d0bdbc8a6/*.f3d"
+    ],
+    "finding": "No existing core dimension or annotation helper failures found in inspected captures. Ellipse major/minor, concentric and linear-diameter dimensions already share supported linear annotation layout. New output concerns only previously opaque geometry cache fields."
+  },
+  "observed_schema": {
+    "class_guid": "A9E23439-6F4F-4ED3-A610-319F0AFABEED",
+    "relative_to": "End of native constraint attributes",
+    "dependency_extras": "Raw captured values[12,0,0] or[4,0,0]; first zero-identity placeholder slot semantics remain unresolved",
+    "fields": [
+      {
+        "offset": 0,
+        "size": 24,
+        "meaning": "Raw invariant header <u32=2,f64=0,f64=1,u32=2>; semantics unassigned"
+      },
+      {
+        "offset": 24,
+        "size": 96,
+        "meaning": "Full-circle geometry copy for explicit source role0"
+      },
+      {
+        "offset": 120,
+        "size": 96,
+        "meaning": "Full-circle geometry copy for explicit source role1"
+      },
+      {
+        "offset": 216,
+        "size": 2,
+        "meaning": "Opaque captured bytes0001; no API side mapping"
+      },
+      {
+        "offset": 218,
+        "size": 48,
+        "meaning": "Stored dimension-line points in second-source/first-source order"
+      },
+      {
+        "offset": 266,
+        "size": 48,
+        "meaning": "Stored on-circle contact points in second-source/first-source order"
+      },
+      {
+        "offset": 314,
+        "size": 1,
+        "meaning": "Opaque captured zero byte"
+      },
+      {
+        "offset": 315,
+        "size": 8,
+        "meaning": "Stored distance matching native bound parameter and contact separation"
+      },
+      {
+        "offset": 323,
+        "size": 24,
+        "meaning": "Repeated first-source contact anchor"
+      },
+      {
+        "offset": 347,
+        "meaning": "Existing separately decoded reference/style block begins; not duplicated here"
+      }
+    ],
+    "scope": "Only separated positively ordered horizontal XY circles, unchanged opaque header/controls. No generalized rotated/line/point/arc geometry support."
+  },
+  "validation": {
+    "checks": 36,
+    "saved_cases": 3,
+    "independent_source_geometries": 2,
+    "same_geometry_driving_reference_contrast": true,
+    "source_circle_geometry_matches_actual_API": {
+      "dimensioncontrol_modes": true,
+      "original_dimensions_fixture": "No saved source geometry getters; native copies validated against independently decoded circle records and API parameter value only"
+    },
+    "malformed_guards": [
+      {
+        "mutation": "ordered_source_copy",
+        "rejected": true,
+        "reason": "Tangent ordered full-circle copy disagrees with explicit source or XY scope"
+      },
+      {
+        "mutation": "contact_cache",
+        "rejected": true,
+        "reason": "Tangent stored contact/anchor points disagree with captured source-role geometry"
+      },
+      {
+        "mutation": "distance_cache",
+        "rejected": true,
+        "reason": "Tangent contact distance disagrees with native cache/bound parameter"
+      },
+      {
+        "mutation": "unvaried_control",
+        "rejected": true,
+        "reason": "Unobserved tangent geometry cache header/control bytes"
+      }
+    ],
+    "prior_other_dimension_noops": [
+      "dimcontrols-2a0d0bdbc8a6/radius_reference.f3d",
+      "dimcontrols-2a0d0bdbc8a6/angle_driving.f3d"
+    ],
+    "identity": "Source IDs chosen from explicit ordered dimension inputs, before checking geometry; no coordinate-based ID assignment"
+  },
+  "samples": [
+    {
+      "file": "dimensions-f83a2edd2f72/dimensions.f3d",
+      "sha256": "26bd97755ee574099c63dcd4551f6a165db7313a37003ab673f6bc5cccb3dcb4",
+      "actual_API": {
+        "name": "DimensionTangentDistance",
+        "geometric_constraints": [],
+        "dimension": {
+          "kind": "SketchTangentDistanceDimension",
+          "is_driving": true,
+          "parameter_name": "d9",
+          "parameter_value": 5.7,
+          "parameter_role": "Tangent Dimension-2",
+          "parameter_unit": "mm",
+          "parameter_object_type": "adsk::fusion::ModelParameter"
+        }
+      },
+      "output": {
+        "decoded": [
+          {
+            "object_id": 620,
+            "kind": "TangentDistanceGeometryCache",
+            "sketch_object_id": 583,
+            "binding_object_id": 622,
+            "entity_ids": [
+              610,
+              616
+            ],
+            "stored_dependency_extras": [
+              12,
+              0,
+              0
+            ],
+            "dependency_extra_scope": "Raw captured values only; first placeholder slot meaning unresolved",
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_geometry_copies": [
+              {
+                "source_entity_object_id": 610,
+                "source_role_index": 0,
+                "body_relative_offset": 131,
+                "kind": "FullCircle",
+                "center_cm": [
+                  0.7,
+                  1.1,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "reference_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "radius_cm": 0.5,
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 6.283185307179586
+              },
+              {
+                "source_entity_object_id": 616,
+                "source_role_index": 1,
+                "body_relative_offset": 227,
+                "kind": "FullCircle",
+                "center_cm": [
+                  5.0,
+                  1.1,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "reference_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "radius_cm": 0.9000000000000004,
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 6.283185307179586
+              }
+            ],
+            "stored_contact_points_cm": [
+              [
+                5.9,
+                1.1,
+                0.0
+              ],
+              [
+                0.19999999999999996,
+                1.1,
+                0.0
+              ]
+            ],
+            "stored_contact_source_entity_ids": [
+              616,
+              610
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                5.9,
+                4.0,
+                0.0
+              ],
+              [
+                0.19999999999999996,
+                4.0,
+                0.0
+              ]
+            ],
+            "stored_repeated_anchor_cm": [
+              0.19999999999999996,
+              1.1,
+              0.0
+            ],
+            "cached_distance_cm": 5.7,
+            "uninterpreted_header_hex": "020000000000000000000000000000000000f03f02000000",
+            "uninterpreted_pre_contact_control_hex": "0001",
+            "uninterpreted_post_contact_control_byte": 0,
+            "side_selector_status": "All captured API creation side arguments are False/False; native byte-to-side mapping unproven and deliberately not returned",
+            "geometry_consistency": {
+              "ordered_circle_copies_match_explicit_sources": true,
+              "stored_contacts_on_their_source_circles": true,
+              "contact_distance_matches_bound_parameter": true,
+              "projection_points_match_contacts_and_annotation_line": true,
+              "identity_scope": "IDs assigned from explicit ordered dimension inputs before geometry validation; no coordinate-based source assignment"
+            },
+            "scope": "Observed separated horizontal XY Circle/Circle TangentDistance source copies, stored contact/projection points, repeated anchor and distance cache; native side flags unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed separated horizontal XY Circle/Circle TangentDistance source copies, stored contact/projection points, repeated anchor and distance cache; native side flags unresolved",
+        "limitations": "No new tangent-side enum, driving/annotation flag decoding, rotated/overlapping circle support, line/point/arc input variants or solver regeneration"
+      }
+    },
+    {
+      "file": "dimcontrols-2a0d0bdbc8a6/tangent_driving.f3d",
+      "sha256": "b259b66cb9c3aec3aed975593695b51c4c1092f7703b531261f99fa00903a177",
+      "actual_API": {
+        "file": "tangent_driving.f3d",
+        "kind": "tangent",
+        "sketch_name": "ProbeDimension",
+        "dimension": {
+          "object_type": "adsk::fusion::SketchTangentDistanceDimension",
+          "is_driving": true,
+          "value": 5.9,
+          "requested_creation_text_position_cm": [
+            3.1,
+            4.3,
+            0
+          ],
+          "creation_text_position_getter_cm": [
+            3.1,
+            4.3,
+            0.0
+          ],
+          "requested_updated_text_position_cm": [
+            3.4,
+            4.8,
+            0
+          ],
+          "updated_text_position_getter_cm": [
+            3.4,
+            4.8,
+            0.0
+          ],
+          "parameter_name": "d1",
+          "parameter_value": 5.9,
+          "parameter_expression": "59.00 mm",
+          "parameter_role": "Tangent Dimension-2",
+          "parameter_unit": "mm",
+          "parameter_object_type": "adsk::fusion::ModelParameter"
+        },
+        "geometry": [
+          {
+            "kind": "SketchCircle",
+            "center_cm": [
+              0.8,
+              1.2,
+              0.0
+            ],
+            "radius_cm": 0.5999999999999999
+          },
+          {
+            "kind": "SketchCircle",
+            "center_cm": [
+              5.2,
+              1.2,
+              0.0
+            ],
+            "radius_cm": 0.9000000000000004
+          }
+        ],
+        "requested_tangent_sides": {
+          "entity_one_closest_to_two": false,
+          "entity_two_closest_to_one": false
+        },
+        "tangent_side_scope": "Creation arguments only; no per-side getter or setter in installed SDK. No independent tangent-side contrast in this paired driving probe."
+      },
+      "output": {
+        "decoded": [
+          {
+            "object_id": 240,
+            "kind": "TangentDistanceGeometryCache",
+            "sketch_object_id": 202,
+            "binding_object_id": 242,
+            "entity_ids": [
+              230,
+              236
+            ],
+            "stored_dependency_extras": [
+              4,
+              0,
+              0
+            ],
+            "dependency_extra_scope": "Raw captured values only; first placeholder slot meaning unresolved",
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_geometry_copies": [
+              {
+                "source_entity_object_id": 230,
+                "source_role_index": 0,
+                "body_relative_offset": 131,
+                "kind": "FullCircle",
+                "center_cm": [
+                  0.8,
+                  1.2,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "reference_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "radius_cm": 0.5999999999999999,
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 6.283185307179586
+              },
+              {
+                "source_entity_object_id": 236,
+                "source_role_index": 1,
+                "body_relative_offset": 227,
+                "kind": "FullCircle",
+                "center_cm": [
+                  5.2,
+                  1.2,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "reference_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "radius_cm": 0.9000000000000004,
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 6.283185307179586
+              }
+            ],
+            "stored_contact_points_cm": [
+              [
+                6.1000000000000005,
+                1.2,
+                0.0
+              ],
+              [
+                0.20000000000000018,
+                1.2,
+                0.0
+              ]
+            ],
+            "stored_contact_source_entity_ids": [
+              236,
+              230
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                6.1000000000000005,
+                4.8,
+                0.0
+              ],
+              [
+                0.20000000000000018,
+                4.8,
+                0.0
+              ]
+            ],
+            "stored_repeated_anchor_cm": [
+              0.20000000000000018,
+              1.2,
+              0.0
+            ],
+            "cached_distance_cm": 5.9,
+            "uninterpreted_header_hex": "020000000000000000000000000000000000f03f02000000",
+            "uninterpreted_pre_contact_control_hex": "0001",
+            "uninterpreted_post_contact_control_byte": 0,
+            "side_selector_status": "All captured API creation side arguments are False/False; native byte-to-side mapping unproven and deliberately not returned",
+            "geometry_consistency": {
+              "ordered_circle_copies_match_explicit_sources": true,
+              "stored_contacts_on_their_source_circles": true,
+              "contact_distance_matches_bound_parameter": true,
+              "projection_points_match_contacts_and_annotation_line": true,
+              "identity_scope": "IDs assigned from explicit ordered dimension inputs before geometry validation; no coordinate-based source assignment"
+            },
+            "scope": "Observed separated horizontal XY Circle/Circle TangentDistance source copies, stored contact/projection points, repeated anchor and distance cache; native side flags unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed separated horizontal XY Circle/Circle TangentDistance source copies, stored contact/projection points, repeated anchor and distance cache; native side flags unresolved",
+        "limitations": "No new tangent-side enum, driving/annotation flag decoding, rotated/overlapping circle support, line/point/arc input variants or solver regeneration"
+      }
+    },
+    {
+      "file": "dimcontrols-2a0d0bdbc8a6/tangent_reference.f3d",
+      "sha256": "9885819a20a5670970503ad4d97a8fb5ff1299d5ee1c6fdcb39b0514dd41f82b",
+      "actual_API": {
+        "file": "tangent_reference.f3d",
+        "kind": "tangent",
+        "sketch_name": "ProbeDimension",
+        "dimension": {
+          "object_type": "adsk::fusion::SketchTangentDistanceDimension",
+          "is_driving": false,
+          "value": 5.9,
+          "requested_creation_text_position_cm": [
+            3.1,
+            4.3,
+            0
+          ],
+          "creation_text_position_getter_cm": [
+            3.1,
+            4.3,
+            0.0
+          ],
+          "requested_updated_text_position_cm": [
+            3.4,
+            4.8,
+            0
+          ],
+          "updated_text_position_getter_cm": [
+            3.4,
+            4.8,
+            0.0
+          ],
+          "parameter_name": "d1",
+          "parameter_value": 5.9,
+          "parameter_expression": "59.00 mm",
+          "parameter_role": "Tangent Dimension-2",
+          "parameter_unit": "mm",
+          "parameter_object_type": "adsk::fusion::ModelParameter"
+        },
+        "geometry": [
+          {
+            "kind": "SketchCircle",
+            "center_cm": [
+              0.8,
+              1.2,
+              0.0
+            ],
+            "radius_cm": 0.5999999999999999
+          },
+          {
+            "kind": "SketchCircle",
+            "center_cm": [
+              5.2,
+              1.2,
+              0.0
+            ],
+            "radius_cm": 0.9000000000000004
+          }
+        ],
+        "requested_tangent_sides": {
+          "entity_one_closest_to_two": false,
+          "entity_two_closest_to_one": false
+        },
+        "tangent_side_scope": "Creation arguments only; no per-side getter or setter in installed SDK. No independent tangent-side contrast in this paired driving probe."
+      },
+      "output": {
+        "decoded": [
+          {
+            "object_id": 240,
+            "kind": "TangentDistanceGeometryCache",
+            "sketch_object_id": 202,
+            "binding_object_id": 242,
+            "entity_ids": [
+              230,
+              236
+            ],
+            "stored_dependency_extras": [
+              4,
+              0,
+              0
+            ],
+            "dependency_extra_scope": "Raw captured values only; first placeholder slot meaning unresolved",
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_geometry_copies": [
+              {
+                "source_entity_object_id": 230,
+                "source_role_index": 0,
+                "body_relative_offset": 131,
+                "kind": "FullCircle",
+                "center_cm": [
+                  0.8,
+                  1.2,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "reference_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "radius_cm": 0.5999999999999999,
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 6.283185307179586
+              },
+              {
+                "source_entity_object_id": 236,
+                "source_role_index": 1,
+                "body_relative_offset": 227,
+                "kind": "FullCircle",
+                "center_cm": [
+                  5.2,
+                  1.2,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "reference_axis": [
+                  1.0,
+                  0.0,
+                  -0.0
+                ],
+                "radius_cm": 0.9000000000000004,
+                "start_angle_radians": 0.0,
+                "end_angle_radians": 6.283185307179586
+              }
+            ],
+            "stored_contact_points_cm": [
+              [
+                6.1000000000000005,
+                1.2,
+                0.0
+              ],
+              [
+                0.20000000000000018,
+                1.2,
+                0.0
+              ]
+            ],
+            "stored_contact_source_entity_ids": [
+              236,
+              230
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                6.1000000000000005,
+                4.8,
+                0.0
+              ],
+              [
+                0.20000000000000018,
+                4.8,
+                0.0
+              ]
+            ],
+            "stored_repeated_anchor_cm": [
+              0.20000000000000018,
+              1.2,
+              0.0
+            ],
+            "cached_distance_cm": 5.9,
+            "uninterpreted_header_hex": "020000000000000000000000000000000000f03f02000000",
+            "uninterpreted_pre_contact_control_hex": "0001",
+            "uninterpreted_post_contact_control_byte": 0,
+            "side_selector_status": "All captured API creation side arguments are False/False; native byte-to-side mapping unproven and deliberately not returned",
+            "geometry_consistency": {
+              "ordered_circle_copies_match_explicit_sources": true,
+              "stored_contacts_on_their_source_circles": true,
+              "contact_distance_matches_bound_parameter": true,
+              "projection_points_match_contacts_and_annotation_line": true,
+              "identity_scope": "IDs assigned from explicit ordered dimension inputs before geometry validation; no coordinate-based source assignment"
+            },
+            "scope": "Observed separated horizontal XY Circle/Circle TangentDistance source copies, stored contact/projection points, repeated anchor and distance cache; native side flags unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed separated horizontal XY Circle/Circle TangentDistance source copies, stored contact/projection points, repeated anchor and distance cache; native side flags unresolved",
+        "limitations": "No new tangent-side enum, driving/annotation flag decoding, rotated/overlapping circle support, line/point/arc input variants or solver regeneration"
+      }
+    }
+  ],
+  "integration": {
+    "signature": "decode_tangent_dimension_caches(data,records,features,dimension_controls=None)",
+    "shared_hook": "None required",
+    "call_order": "After existing dimension_controls; pass that summary to reuse binding/owner/target/expression proof.",
+    "mutation": false,
+    "merge": "Expose summary or attach each successful result as dimension.geometry_cache keyed by object_id. Preserve existing driving/annotation/tangent_side_status fields; no existing records/errors need replacing."
+  },
+  "next_discriminating_capture": {
+    "status": "Plan only, not implemented/dispatched/observed",
+    "purpose": "Resolve genuine native tangent-side selectors rather than infer invariant bytes fromFalse/False.",
+    "base_geometry": "Circles(.8,1.2,0),r.6 and(5.2,1.2,0),r.9 inXY; use reference dimension to preserve source geometry.",
+    "new_combinations": [
+      {
+        "one_closest_to_two": true,
+        "two_closest_to_one": false,
+        "predicted_value_cm": 4.7
+      },
+      {
+        "one_closest_to_two": false,
+        "two_closest_to_one": true,
+        "predicted_value_cm": 4.1
+      },
+      {
+        "one_closest_to_two": true,
+        "two_closest_to_one": true,
+        "predicted_value_cm": 2.9
+      }
+    ],
+    "baseline": "ExistingFalse/False5.9cm is evidence only for that creation input; re-export baseline in same new batch for clean comparison.",
+    "actual_getters": "Capture entityOne/circleOrArc identities and geometry, dimension.value, parameter.value/expression, textPosition after setter and isDriving independently. SDK offers no side getters; requested sides need geometric/value confirmation.",
+    "holdout": "One rotated separated-circle case after a candidate rule is frozen; do not generalize horizontal cache framing first."
+  },
+  "limitations": [
+    "Native side boolean encoding, style semantics and unknown header fields remain opaque.",
+    "Contact/projection labels are cached geometry observations, not solver replay or an active side-selection control.",
+    "General source geometry variants and 3D/assembly transforms remain unsupported.",
+    "No Fusion dispatch, new captures, shared edits or Git mutations."
+  ]
+}

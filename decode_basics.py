@@ -33,11 +33,13 @@ from decode_face_boundary_projections import decode_face_boundary_projections
 from decode_sketch_pattern_details import decode_sketch_pattern_details
 from decode_dimension_controls import decode_dimension_controls
 from decode_dimension_control_modes import decode_dimension_control_modes
+from decode_tangent_dimension_caches import decode_tangent_dimension_caches
 from decode_modeling import decode_modeling
 from decode_placement import decode_placement
 from decode_selection import decode_selections, known_construction_entities
 from decode_revolve_axes import decode_revolve_axes
 from decode_tools import decode_tools
+from decode_hole_point_sources import decode_hole_point_sources
 from decode_pipe_paths import inspect_pipe_edge_path
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -71,6 +73,7 @@ from decode_direct_body_features import decode_direct_body_features
 from decode_copy_paste_occurrences import decode_copy_paste_occurrences
 from decode_silhouette_splits import decode_silhouette_splits
 from decode_silhouette_directions import decode_silhouette_directions
+from decode_silhouette_line_contexts import decode_silhouette_line_contexts
 from decode_remaining_body_inputs import decode_remaining_body_input, MIRROR_COMPONENT, MIRROR_DATUM
 from decode_mirror_datum_outputs import decode_mirror_datum_outputs
 from decode_mirror_nested_occurrences import decode_mirror_nested_occurrences
@@ -321,6 +324,9 @@ def decode_basics(path, zstd_library=None):
         dimension_control_summary = decode_dimension_controls(data, records, features)
         dimension_mode_summary = decode_dimension_control_modes(data, records, features, dimension_control_summary)
         dimensions_by_id = {d["object_id"]: d for f in features if f["kind"] == "Sketch" for d in f["dimensions"]}
+        tangent_cache_summary = decode_tangent_dimension_caches(data, records, features, dimension_control_summary)
+        for cache in tangent_cache_summary["decoded"]:
+            dimensions_by_id[cache["object_id"]]["geometry_cache"] = cache
         annotations_by_id = {a["object_id"]: a for a in dimension_control_summary["decoded"]}
         for mode in dimension_mode_summary["decoded"]:
             dimensions_by_id[mode["object_id"]].update(is_driving=mode["is_driving"], driving_status=mode["driving_status"])
@@ -429,6 +435,10 @@ def decode_basics(path, zstd_library=None):
         selection_summary["unresolved"] = [a for a in selection_summary["unresolved"]
                                              if (a["feature_object_id"], a["selection_object_id"]) not in resolved_axis_keys]
         tool_summary = decode_tools(data, records, features)
+        hole_point_summary = decode_hole_point_sources(data, records, features)
+        for sources in hole_point_summary["decoded"]:
+            hole = next(f for f in features if f["object_id"] == sources["feature_object_id"])
+            hole["tool_settings"].update(point_sources=sources["point_sources"], association_status=sources["association"])
         pipe_provenance_summary = {"partial": [], "unresolved": [],
                                    "scope": "Separate source provenance and observed edge Pipe controls without full decoded settings; closure and geometry stay unresolved"}
         pipe_vertex_summary = {"decoded": [], "unresolved": [],
@@ -570,6 +580,11 @@ def decode_basics(path, zstd_library=None):
         direct_body_summary = decode_direct_body_features(data, records, body_selection_summary)
         silhouette_summary = decode_silhouette_splits(data, records, features, body_selection_summary)
         silhouette_direction_summary = decode_silhouette_directions(data, records, features, body_selection_summary)
+        silhouette_line_summary = decode_silhouette_line_contexts(data, records, features, body_selection_summary,
+                                                                 source_summary=silhouette_direction_summary)
+        silhouette_direction_by_id = {item["feature_object_id"]: item for item in silhouette_direction_summary["decoded"]}
+        for cache in silhouette_line_summary["decoded"]:
+            silhouette_direction_by_id[cache["feature_object_id"]]["view_direction"]["entity"]["cached_source_line_context"] = cache
         original_silhouette_ids = {item["feature_object_id"] for item in silhouette_summary["decoded"]}
         extended_silhouette_ids = {item["feature_object_id"] for item in silhouette_direction_summary["decoded"]}
         extended_silhouettes = {item["feature_object_id"]: item for item in silhouette_direction_summary["decoded"]}
@@ -726,6 +741,7 @@ def decode_basics(path, zstd_library=None):
             "sketch_pattern_coverage": pattern_coverage_summary,
             "dimension_controls": dimension_control_summary,
             "dimension_control_modes": dimension_mode_summary,
+            "tangent_dimension_caches": tangent_cache_summary,
             "profile_decoding": profile_summary,
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,
@@ -737,6 +753,7 @@ def decode_basics(path, zstd_library=None):
             "selection_decoding": selection_summary,
             "revolve_axes": revolve_axis_summary,
             "tool_decoding": tool_summary,
+            "hole_point_sources": hole_point_summary,
             "pipe_path_provenance": pipe_provenance_summary,
             "pipe_vertex_contexts": pipe_vertex_summary,
             "pattern_placements": pattern_placement_summary,
@@ -755,6 +772,7 @@ def decode_basics(path, zstd_library=None):
             "direct_body_features": direct_body_summary,
             "silhouette_splits": silhouette_summary,
             "silhouette_direction_sources": silhouette_direction_summary,
+            "silhouette_line_contexts": silhouette_line_summary,
             "sketch_surface_constraints": surface_constraint_summary,
             "special_fillets": special_fillet_summary,
             "surface_extrudes": surface_extrude_summary,

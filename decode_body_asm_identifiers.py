@@ -24,10 +24,12 @@ def _body_identifiers(parsed):
     count = parsed['header']['stored_entity_count']
     if not 2 <= count <= limit or records[0]['name'] != 'asmheader':
         raise ValueError('Unsupported ASM initial root table framing')
-    roots = records[1:count]
-    if any(r['name'] != 'body' or r['section'] != 'geometry' for r in roots):
-        raise ValueError('ASM declared root table contains non-BODY entries')
-    if [r['index'] for r in records[:limit] if r['name'] == 'body'] != [r['index'] for r in roots]:
+    declared = records[1:count]
+    if any(r['name'] not in ('body', 'edge') or r['section'] != 'geometry' for r in declared):
+        raise ValueError('Unsupported ASM mixed declared root kind or section')
+    roots = [r for r in declared if r['name'] == 'body']
+    auxiliary = [r for r in declared if r['name'] != 'body']
+    if not roots or [r['index'] for r in records[:limit] if r['name'] == 'body'] != [r['index'] for r in roots]:
         raise ValueError('ASM initial BODY table is not exactly the declared root table')
 
     def pointer(token, expected=None):
@@ -67,7 +69,61 @@ def _body_identifiers(parsed):
             visited.add(lump['index'])
             lump = pointer(lt[3], 'lump')
         result[identity] = body
-    return result
+    evidence = []
+    if auxiliary:
+        # The observed extra edge is a detached initial-geometry root, not an
+        # edge of either keyed body. Verify its own reciprocal vertex links and
+        # require actual initial body graphs, without assigning an owning body.
+        from decode_brep import decode_topology
+        topology = decode_topology(parsed)
+        nodes = {n['index']: n for n in topology['nodes']}
+        graphs = {g['body_index']: g for g in topology['body_graphs']}
+        for body in roots:
+            node = nodes.get(body['index'])
+            if node is None or node['kind'] != 'body' or body['index'] not in graphs:
+                raise ValueError('Mixed-root keyed BODY lacks a decoded initial geometry body graph')
+        for edge in auxiliary:
+            tokens = edge['tokens']
+            if (len(tokens) != 11 or [t['kind'] for t in tokens] != [
+                    'pointer', 'integer', 'pointer', 'pointer', 'double', 'pointer', 'double',
+                    'pointer', 'pointer', 'boolean_token', 'string']
+                    or tokens[1]['value'] != -1 or tokens[2]['value'] != -1 or tokens[7]['value'] != -1):
+                raise ValueError('Unsupported mixed-root detached edge layout')
+            edge_node = nodes.get(edge['index'])
+            if edge_node is None or edge_node['kind'] != 'edge':
+                raise ValueError('Mixed-root edge lacks decoded initial geometry')
+            if any(edge['index'] in g['edge_indices'] for g in graphs.values()):
+                raise ValueError('Mixed-root edge is not the observed detached auxiliary variant')
+            pointer(tokens[0])
+            vertex_ids, point_ids = [], []
+            for offset in (3, 5):
+                vertex = pointer(tokens[offset], 'vertex')
+                if vertex is None:
+                    raise ValueError('Mixed-root auxiliary edge has no endpoint vertex')
+                vt = vertex['tokens']
+                if (len(vt) != 6 or [t['kind'] for t in vt] != [
+                        'pointer', 'integer', 'pointer', 'pointer', 'integer', 'pointer']
+                        or vt[1]['value'] != -1 or vt[2]['value'] != -1):
+                    raise ValueError('Unsupported mixed-root auxiliary vertex layout')
+                owner = pointer(vt[3], 'edge')
+                point = pointer(vt[5], 'point')
+                if owner is None or owner['index'] != edge['index']:
+                    raise ValueError('Mixed-root auxiliary edge/vertex ownership is not reciprocal')
+                point_node = nodes.get(point['index']) if point is not None else None
+                if point_node is None or point_node['kind'] != 'point' or vertex['index'] not in nodes:
+                    raise ValueError('Mixed-root endpoint point geometry is unresolved')
+                vertex_ids.append(vertex['index'])
+                point_ids.append(point['index'])
+            curve = pointer(tokens[8])
+            curve_node = nodes.get(curve['index']) if curve is not None else None
+            if curve_node is None or curve_node['kind'] not in ('straight-curve', 'ellipse-curve'):
+                raise ValueError('Mixed-root auxiliary curve is not a decoded observed Line/Ellipse primitive')
+            evidence.append({'asm_record_index': edge['index'], 'kind': 'edge', 'stored_entity_id': -1,
+                             'endpoint_vertex_indices': vertex_ids, 'endpoint_point_indices': point_ids,
+                             'curve_index': curve['index'], 'curve_kind': curve['name'],
+                             'ownership_status': 'Detached initial-geometry auxiliary edge; no native body/edge identity association inferred',
+                             'body_graph_membership': []})
+    return result, evidence
 
 
 def decode_body_asm_identifiers(data, records, member, members, body_blob_bindings):
@@ -128,7 +184,7 @@ def decode_body_asm_identifiers(data, records, member, members, body_blob_bindin
                 raise ValueError('Explicit same-asset ASM history blob is unavailable')
             if blob_member not in parsed_blobs:
                 parsed_blobs[blob_member] = _body_identifiers(inspect_asm(members[blob_member]))
-            roots = parsed_blobs[blob_member]
+            roots, auxiliary = parsed_blobs[blob_member]
             if set(roots) != {h for h, _ in entries}:
                 raise ValueError('Native handles and initial ASM BODY stored IDs are not a bijection')
             patches = []
@@ -146,8 +202,12 @@ def decode_body_asm_identifiers(data, records, member, members, body_blob_bindin
                     'previous_ordinal_candidate': old,
                     'ordinal_candidate_conflict': old is not None and old != body['index'],
                 })
-            decoded.append({'mapping_record_object_id': mapping_id, 'owner_object_id': owner,
-                            'history_blob_member': blob_member, 'body_count': count, 'bindings': patches})
+            output = {'mapping_record_object_id': mapping_id, 'owner_object_id': owner,
+                      'history_blob_member': blob_member, 'body_count': count, 'bindings': patches}
+            if auxiliary:
+                output['auxiliary_declared_roots'] = auxiliary
+                output['root_table_status'] = 'Mixed initial BODY and bounded detached-edge roots; BODY association uses stored IDs only'
+            decoded.append(output)
         except (ValueError, IndexError, KeyError, TypeError, UnicodeError, struct.error) as error:
             unresolved.append({'mapping_record_object_id': mapping_id, 'reason': str(error),
                                'ordinal_candidates_must_be_discarded': True})
