@@ -1,9 +1,9 @@
 """Limited modeling-feature fields inferred from controlled Fusion exports."""
 
-import math
 import struct
 
 from decode_extrude import decode_extrude
+from decode_revolve import decode_revolve
 
 
 def decode_modeling(data, records, features):
@@ -18,8 +18,6 @@ def decode_modeling(data, records, features):
         record = by_offset[feature["record_offset"]]
         body = data[record.body:record.end]
         try:
-            if not body.startswith(b"\0\x01"):
-                raise ValueError("Unrecognized modeling-feature prefix")
             roles = {}
             for parameter in feature["parameters"]:
                 roles.setdefault(parameter["role"], []).append(parameter)
@@ -29,14 +27,7 @@ def decode_modeling(data, records, features):
                 feature.update(fields)
                 unknown.extend({"object_id": feature["object_id"], "reason": reason} for reason in reasons)
             else:
-                operation = struct.unpack_from("<I", body, 6)[0]
-                # Only the new-body revolve operation has reference evidence.
-                feature["operation"] = {"stored_code": operation, "kind": "NewBody" if operation == 4 else "Unknown"}
-                feature["revolve"] = {"axis_selection": "Undecoded"}
-                if "AlongAngle" in roles and len(roles["AlongAngle"]) == 1:
-                    angle = roles["AlongAngle"][0]["raw_float64"]
-                    feature["revolve"].update(angle_radians=angle, angle_degrees=math.degrees(angle),
-                                               is_full_turn=math.isclose(abs(angle), 2*math.pi, abs_tol=1e-10))
+                feature.update(decode_revolve(body, feature))
         except (ValueError, IndexError, struct.error) as error:
             unknown.append({"object_id": feature["object_id"], "reason": str(error)})
-    return {"unresolved": unknown, "scope": "Observed extrusion starts/end conditions and revolve angles; no body regeneration"}
+    return {"unresolved": unknown, "scope": "Observed extrusion starts/ends and angular revolve modes; no body regeneration"}

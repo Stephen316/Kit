@@ -183,16 +183,8 @@ def decode_selections(data, records, features):
                 else:
                     unresolved.append({"feature_object_id": feature["object_id"], "selection_object_id": identity})
         elif feature["kind"] == "Revolve":
-            record = next(r for r in records if r.start == feature["record_offset"])
-            body = data[record.body:record.end]
             try:
-                angle_binding = reference(body, 20)
-                angle_parameters = [p for p in feature["parameters"] if p["role"] == "AlongAngle"
-                                    and p["binding_object_id"] == angle_binding]
-                if len(angle_parameters) != 1:
-                    continue
-                identity = reference(body, 31)
-                feature["revolve"]["axis_selection_record_object_id"] = identity
+                identity = feature["revolve"]["axis_selection_record_object_id"]
                 selection = resolve_native_selection(data, records, identity, known)
                 if selection and selection["entity"]["kind"] == "ConstructionAxis":
                     feature["revolve"].update(axis_selection="Observed native construction axis reference decoded",
