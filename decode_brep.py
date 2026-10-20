@@ -62,7 +62,7 @@ def decode_topology(parsed):
             raise ValueError("Unsupported primitive interval trailer")
         return bounds
 
-    geometry = {"point", "straight-curve", "ellipse-curve", "plane-surface",
+    geometry = {"point", "straight-curve", "ellipse-curve", "plane-surface", "transform",
                 "cone-surface", "sphere-surface", "torus-surface"}
     sizes = {"body": (6,), "lump": (6,), "shell": (8,), "face": (10, 11), "loop": (6,),
              "coedge": (11,), "edge": (11,), "vertex": (6,), "point": (4,), "straight-curve": (7, 8, 9),
@@ -72,6 +72,21 @@ def decode_topology(parsed):
         if name not in LINKS and name not in geometry:
             continue
         try:
+            if name == "transform":
+                if len(record["tokens"]) != 10:
+                    raise ValueError("Unsupported body transform field count")
+                vectors = [token(record, i, ("direction_vector",)) for i in range(2, 6)]
+                scale = token(record, 6, ("double",))
+                flags = [token(record, i, ("boolean_token",)) for i in range(7, 10)]
+                expected = ([1., 0., 0.], [0., 1., 0.], [0., 0., 1.], [0., 0., 0.])
+                identity = (all(math.isclose(x, y, abs_tol=1e-12) for a,b in zip(vectors, expected) for x,y in zip(a,b))
+                            and math.isclose(scale, 1., abs_tol=1e-12) and not any(flags))
+                nodes[record["index"]] = {"index": record["index"], "kind": name,
+                                          "attribute_index": link(record, 0), "stored_entity_id": token(record, 1, ("integer",)),
+                                          "stored_vectors": vectors, "stored_scale": scale, "stored_flags": flags,
+                                          "is_observed_identity": identity,
+                                          "scope": "Observed identity recognized; non-identity transform interpretation unverified"}
+                continue
             if name in sizes and len(record["tokens"]) not in sizes[name]:
                 raise ValueError("Unsupported observed entity field count")
             node = {"index": record["index"], "kind": name, "offset": record["offset"],
@@ -211,10 +226,15 @@ def decode_topology(parsed):
             raw_positions = [get(get(v, "vertex")["point_index"], "point")["raw_origin"] for v in sorted(vertices)]
             counts = {"lump": len(lumps), "shell": len(shells), "face": len(faces), "loop": len(loops),
                       "coedge": len(coedges), "edge": len(edges), "vertex": len(vertices)}
+            transform = nodes.get(root["transform_index"])
+            identity = root["transform_index"] is None or (transform is not None and transform.get("is_observed_identity"))
             graphs.append({"body_index": root["index"], "counts": counts, "lump_indices": lumps,
                            "shell_indices": shells, "face_indices": faces, "loop_indices": loops,
                            "coedge_indices": coedges, "edge_indices": sorted(edges), "vertex_indices": sorted(vertices),
                            "raw_vertex_positions": raw_positions, "transform_index": root["transform_index"],
+                           "body_transform_is_identity": bool(identity),
+                           "body_transform_status": "No transform reference or observed identity" if identity
+                                                    else "Body transform unresolved; component/world coordinates omitted",
                            "surface_record_types": dict(Counter(records[nodes[f]["surface_index"]]["name"] for f in faces)),
                            "analytic_surfaces": [
                                {"face_index": f, "surface_index": nodes[f]["surface_index"],
