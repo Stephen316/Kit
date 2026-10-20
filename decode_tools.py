@@ -14,6 +14,7 @@ from decode_surface_tools import decode_surface_tool
 from decode_pipe import decode_pipe
 from decode_threads import decode_thread
 from decode_path_patterns import decode_path_pattern
+from decode_path_pattern_composites import decode_path_pattern_composites
 from decode_combine import decode_combine
 from decode_sweep import decode_sweep
 from decode_thicken import decode_thicken
@@ -46,7 +47,14 @@ def decode_tools(data, records, features):
             elif kind == "BoundaryFill":
                 settings = decode_boundary_fill(data, records, body, feature, axes)
             elif kind == "PathPattern":
-                settings = decode_path_pattern(data, records, body, feature, features)
+                try:
+                    settings = decode_path_pattern(data, records, body, feature, features)
+                except (ValueError, KeyError, IndexError, struct.error) as single_error:
+                    try:
+                        settings = decode_path_pattern_composites(data, records, body, feature, features)
+                    except (ValueError, KeyError, IndexError, struct.error) as composite_error:
+                        raise ValueError("Unsupported PathPattern variant; single path: "+str(single_error)
+                                         +"; composite path: "+str(composite_error)) from composite_error
             elif kind == "Thread":
                 settings = decode_thread(data, records, body, feature)
             elif kind == "Pipe":

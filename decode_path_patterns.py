@@ -6,7 +6,7 @@ from decode_selection import native_proxy_references, resolve_single_sketch_curv
 from decode_sketch import numbers, reference
 
 
-def decode_path_pattern(data, records, body, feature, features):
+def decode_path_pattern(data, records, body, feature, features, *, path_resolver=None):
     if feature["class_guid"] != "B0B3D9E5-1C25-47BC-ABCD-E723F193DF1B" or body[:6] != bytes.fromhex("000100000000"):
         raise ValueError("Unsupported body path-pattern prefix/class")
 
@@ -46,7 +46,9 @@ def decode_path_pattern(data, records, body, feature, features):
     distance = parameter(distance_id, "PathPatternDelta")
     if distance <= 0:
         raise ValueError("Only observed positive path-pattern distances supported")
-    path = resolve_single_sketch_curve(data, records, reference(chunk, 64), feature["object_id"], features, ("Line", "Arc"))
+    selection_id = reference(chunk, 64)
+    path = (path_resolver(data, records, selection_id, feature["object_id"], features) if path_resolver
+            else resolve_single_sketch_curve(data, records, selection_id, feature["object_id"], features, ("Line", "Arc")))
     native_start = numbers(chunk, 105, 1)[0]
     if not 0 <= native_start <= 1:
         raise ValueError("Path-pattern start fraction outside observed domain")
