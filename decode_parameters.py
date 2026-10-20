@@ -30,10 +30,46 @@ def read_string(data, position, *, allow_text_controls=False):
     return text, end
 
 
+def _bound_text_binding(data, records, binding_id, parameter_id, text, stored_index):
+    """Validate the captured SketchText model binding and its reciprocal copies."""
+    def typed(identity, guid):
+        matches = [r for r in records if r.is_primary and r.object_id == identity]
+        if len(matches) != 1 or matches[0].class_guid != guid:
+            raise ValueError("Bound Text typed reference missing, ambiguous or wrong class")
+        record = matches[0]
+        return record, data[record.body:record.end]
+
+    def reference(payload, offset):
+        if payload[offset:offset+1] != b"\1" or payload[offset+9:offset+11] != b"\0\0":
+            raise ValueError("Invalid bound Text reference framing")
+        return struct.unpack_from("<Q", payload, offset+1)[0]
+
+    record, body = typed(binding_id, "e5460b7b-000b-4a70-ab52-4c2fcc470eb2")
+    if body[:5] != bytes.fromhex("0101000000") or body[16:21] != bytes.fromhex("0100000000"):
+        raise ValueError("Unobserved bound Text binding prefix/value kind")
+    owner = reference(body, 5)
+    typed(owner, "8DA771B7-52ED-42FC-94E2-2353FE141373")
+    cached, cursor = read_string(body, 21, allow_text_controls=True)
+    if (cached != text or len(body) != cursor+56 or reference(body, cursor) != parameter_id
+            or struct.unpack_from("<II", body, cursor+11) != (stored_index, 0)
+            or reference(body, cursor+19) != owner or body[cursor+30:cursor+33] != bytes.fromhex("010000")
+            or body[cursor+44] != 0 or reference(body, cursor+45) != owner):
+        raise ValueError("Bound Text value/parameter/index/owner copies disagree")
+    bookkeeping = reference(body, cursor+33)
+    _, bookkeeping_body = typed(bookkeeping, "6CCF41D5-40BE-48ED-A834-18F3EAED6C57")
+    if len(bookkeeping_body) != 39 or reference(bookkeeping_body, 12) != binding_id:
+        raise ValueError("Bound Text bookkeeping link does not reciprocate binding")
+    return {"binding_owner_object_id": owner, "binding_offset": record.start,
+            "binding_bookkeeping_object_id": bookkeeping,
+            "binding_value_representation": "UTF16LE",
+            "binding_status": "Typed SketchText model binding with matching cached text and reciprocal parameter/index/owner copies"}
+
+
 def decode_stream(data, records=None):
-    """Decode observed numeric model parameters and numeric/text user records."""
+    """Decode observed numeric/Text model and user parameter layouts."""
     parameters, rejected = [], []
-    for record in record_fragments(data) if records is None else records:
+    records = list(record_fragments(data) if records is None else records)
+    for record in records:
         body = data[record.body:record.end]
         if len(body) < 31 or body[:7] != b"\0" * 7 or body[7:11] != b"\x06\0\0\0":
             continue
@@ -71,8 +107,12 @@ def decode_stream(data, records=None):
             if binding_id is None and (record.class_guid != "7A6A3D31-BE74-4E19-9115-20642944C2E4"
                                        or role != "User Parameter"):
                 raise ValueError("Unobserved unbound parameter variant")
-            if value_kind == 1 and (binding_id is not None or units != "Text"):
-                raise ValueError("Only observed unbound Text user parameters are decoded")
+            if value_kind == 1 and units != "Text":
+                raise ValueError("Unobserved Text parameter units")
+            if value_kind == 1 and binding_id is not None and (
+                    record.class_guid != "7A6A3D31-BE74-4E19-9115-20642944C2E4"
+                    or not re.fullmatch(r"Text[1-9][0-9]*-Text", role)):
+                raise ValueError("Only observed SketchText bound Text model parameters are decoded")
             if cursor + 20 != len(body):
                 raise ValueError("Unrecognized numeric parameter suffix length")
             value = struct.unpack_from("<d", body, cursor)[0]
@@ -104,8 +144,12 @@ def decode_stream(data, records=None):
                 if body[cursor:cursor+8] != bytes(8):
                     raise ValueError("Unobserved text parameter numeric placeholder")
                 item.pop("raw_float64")
-                item.update(text_value=reserved_text, internal_units="Text",
+                item.update(text_value=reserved_text, value_type="Text", internal_units="Text",
                             layout="observed Text user parameter with stored expression and text value")
+                if binding_id is not None:
+                    item.update(_bound_text_binding(data, records, binding_id, record.object_id, reserved_text, stored_index))
+                    item.update(parameter_kind="ModelParameter", stored_parameter_index=stored_index,
+                                layout="observed SketchText model parameter with reciprocal UTF16LE text binding")
             elif units in ("deg", "rad"):
                 item.update(internal_units="rad", hypothesized_value_degrees=math.degrees(value))
             elif units in ("mm", "cm", "m", "in", "ft"):
@@ -136,7 +180,7 @@ def decode_file(path, zstd_library=None):
                             "derived_expression_dependencies": expression_dependencies})
     return {
         "file": str(path), "sha256": hashlib.sha256(Path(path).read_bytes()).hexdigest(),
-        "scope": "Observed numeric model and numeric/text user parameters with reciprocal name tables; no expression evaluation or feature regeneration",
+        "scope": "Observed numeric/Text model and user parameters with reciprocal name tables; no expression evaluation or feature regeneration",
         "streams": records,
     }
 

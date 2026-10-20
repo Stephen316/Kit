@@ -60,7 +60,7 @@ def build_catalog(paths, zstd_library=None):
                     if parameter.get("parameter_kind") == "UserParameter":
                         label = "Observed Text user parameter" if parameter.get("value_type") == "Text" else "Observed numeric user parameter"
                     else:
-                        label = "Observed numeric model parameter"
+                        label = "Observed Text model parameter" if parameter.get("value_type") == "Text" else "Observed numeric model parameter"
                     entry["observed_semantics"].add(label)
                     if len(entry["example_files"]) < 3:
                         entry["example_files"].add(str(path))

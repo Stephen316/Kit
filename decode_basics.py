@@ -17,6 +17,7 @@ from decode_parameters import decode_stream, read_string
 from decode_parameter_tables import decode_parameter_tables
 from decode_expression_dependencies import derive_expression_dependencies
 from decode_sketch import decode_sketches
+from decode_sketch_texts import decode_sketch_texts
 from decode_sketch_coverage import decode_sketch_coverage
 from decode_offset_details import decode_offset_details
 from decode_sketch_projections import decode_sketch_projections
@@ -125,12 +126,19 @@ def named_features(data, records):
 def attach_parameters(data, records, features, parameters):
     by_id = {f["object_id"]: f for f in features}
     starts = [r.start for r in records]
-    pending = {}
+    pending, attached = {}, set()
     for parameter in parameters:
+        owner = parameter.get("binding_owner_object_id")
+        if parameter.get("value_type") == "Text" and owner in by_id and by_id[owner]["kind"] == "Sketch":
+            by_id[owner]["parameters"].append({
+                **parameter, "binding_object_id": parameter["declared_binding_object_id"],
+                "association": "Explicit sketch owner and reciprocal Text parameter binding with matching UTF16LE payload",
+            })
+            attached.add(parameter["role_offset"])
+            continue
         index = bisect_right(starts, parameter["role_offset"]) - 1
         if index >= 0:
             pending.setdefault(records[index].object_id, []).append(parameter)
-    attached = set()
     for record in records:
         body = data[record.body:record.end]
         if len(body) not in (82, 85) or body[:6] != b"\x01\x01\0\0\0\x01":
@@ -213,6 +221,10 @@ def decode_basics(path, zstd_library=None):
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
+        sketch_text_summary = decode_sketch_texts(data, records, features)
+        text_sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
+        for text in sketch_text_summary["texts"]:
+            text_sketches[text["sketch_object_id"]].setdefault("texts", []).append(text)
         sketch_coverage_summary = decode_sketch_coverage(data, records, features, record_index, sketch_summary)
         offset_detail_summary = decode_offset_details(data, records, features)
         sketch_pattern_summary = decode_sketch_pattern_details(data, records, features)
@@ -338,6 +350,7 @@ def decode_basics(path, zstd_library=None):
             "sketch_record_coverage": sketch_coverage_summary,
             "offset_details": offset_detail_summary,
             "sketch_projections": projection_summary,
+            "sketch_texts": sketch_text_summary,
             "sketch_pattern_details": sketch_pattern_summary,
             "dimension_controls": dimension_control_summary,
             "dimension_control_modes": dimension_mode_summary,

@@ -23,11 +23,15 @@ def decode_sketch_coverage(data, records, features, record_index, sketch_summary
     sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
     represented, geometry_owners = {}, {}
     for owner, sketch in sketches.items():
-        for key in ("geometry", "constraints", "dimensions", "internal_associations"):
+        for key in ("geometry", "constraints", "dimensions", "internal_associations", "texts"):
             for item in sketch.get(key, []):
                 represented[item["object_id"]] = {"sketch_object_id": owner, "representation": key}
                 if key == "geometry":
                     geometry_owners[item["object_id"]] = owner
+                if key == "texts":
+                    definition = item["definition"]
+                    represented[definition["controller_object_id"]] = {
+                        "sketch_object_id": owner, "representation": "ExplicitTextRectangleSupport"}
                 if item.get("kind") == "OffsetCurves":
                     for field in ("dimension_object_id", "relationship_object_id"):
                         represented[item[field]] = {"sketch_object_id": owner, "representation": "ExplicitOffsetSupport"}

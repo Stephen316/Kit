@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 443,
+  "file_count": 461,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -136,6 +136,11 @@
     "jointmodes-20d3aef2a07d/rigid.f3d",
     "jointmodes-20d3aef2a07d/rigid_flipped.f3d",
     "jointmodes-20d3aef2a07d/slider.f3d",
+    "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+    "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+    "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
+    "loftbrepends-e07e3859ed20/edge_start_free.f3d",
+    "loftbrepends-e07e3859ed20/face_end_free.f3d",
     "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
     "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
     "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d",
@@ -223,11 +228,19 @@
     "parameterexpressions-3ddbef2b20bd/repeated_reference.f3d",
     "parameterexpressions-3ddbef2b20bd/text_name_literal.f3d",
     "parameterexpressions-3ddbef2b20bd/unary_reference.f3d",
+    "parameterfunctions-bc10224394fe/abs_difference.f3d",
+    "parameterfunctions-bc10224394fe/nested_sqrt.f3d",
+    "parameterfunctions-bc10224394fe/nested_unary_abs.f3d",
+    "parameterfunctions-bc10224394fe/sqrt_sum.f3d",
     "parametertexts-d16f951482fc/model_favorite_false.f3d",
     "parametertexts-d16f951482fc/model_favorite_true.f3d",
     "parametertexts-d16f951482fc/model_multiline_comment.f3d",
     "parametertexts-d16f951482fc/text_multiline_value.f3d",
     "parametertexts-d16f951482fc/user_multiline_comment.f3d",
+    "pathpatterncomposites-b6b4cf615504/composite_along.f3d",
+    "pathpatterncomposites-b6b4cf615504/composite_identical.f3d",
+    "pathpatterncomposites-b6b4cf615504/composite_multiple.f3d",
+    "pathpatterncomposites-b6b4cf615504/spline_along.f3d",
     "pathpatterns-de9857f6a1bc/arc_along.f3d",
     "pathpatterns-de9857f6a1bc/arc_identical.f3d",
     "pathpatterns-de9857f6a1bc/extent.f3d",
@@ -318,6 +331,11 @@
     "sketchprojections-67c0c4531b8f/linked_point.f3d",
     "sketchprojections-8fedd685854a/broken_line.f3d",
     "sketchprojections-8fedd685854a/unlinked_line.f3d",
+    "sketchtexts-a16af12c28bf/bold.f3d",
+    "sketchtexts-a16af12c28bf/content_height.f3d",
+    "sketchtexts-a16af12c28bf/italic.f3d",
+    "sketchtexts-a16af12c28bf/multiline.f3d",
+    "sketchtexts-a16af12c28bf/plain.f3d",
     "sketchtools-85066e723410/sketchtools.f3d",
     "sketchtools-8a6b662b0d6f/sketchtools.f3d",
     "solidsweeps-5b5ecd5e01b9/solid_twist_sixty.f3d",
@@ -446,9 +464,27 @@
     "userparameters-e9c6959ff5fd/text.f3d",
     "userparameters-e9c6959ff5fd/unitless.f3d"
   ],
-  "class_count": 342,
+  "class_count": 348,
   "classes_with_observed_semantics": 54,
   "classes": [
+    {
+      "class_guid": "00D157C2-2332-4BD5-BB53-048C4081D1C3",
+      "base_class_guids": [
+        "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB"
+      ],
+      "namespaces": [
+        "MSketch"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtexts-a16af12c28bf/bold.f3d",
+        "sketchtexts-a16af12c28bf/content_height.f3d",
+        "sketchtexts-a16af12c28bf/italic.f3d"
+      ]
+    },
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
       "base_class_guids": [
@@ -859,6 +895,24 @@
       ]
     },
     {
+      "class_guid": "16DEFC4D-1816-4FB0-8E39-9BDA23954248",
+      "base_class_guids": [
+        "DCA267ED-D615-4934-B64F-AD805E8003E2"
+      ],
+      "namespaces": [
+        "MSketch"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtexts-a16af12c28bf/bold.f3d",
+        "sketchtexts-a16af12c28bf/content_height.f3d",
+        "sketchtexts-a16af12c28bf/italic.f3d"
+      ]
+    },
+    {
       "class_guid": "1787C882-91E2-4363-9C18-80C98EBE4C77",
       "base_class_guids": [
         "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
@@ -1086,7 +1140,7 @@
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
-        "splines-9a18bae21127/splines.f3d"
+        "pathpatterncomposites-b6b4cf615504/spline_along.f3d"
       ]
     },
     {
@@ -1102,7 +1156,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "loftcompositeguides-8ea2ef593872/spline_centerline.f3d"
+        "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
+        "pathpatterncomposites-b6b4cf615504/spline_along.f3d"
       ]
     },
     {
@@ -1430,9 +1485,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
-        "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
-        "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d"
+        "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+        "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+        "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d"
       ]
     },
     {
@@ -1892,7 +1947,7 @@
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
-        "splines-9a18bae21127/splines.f3d"
+        "pathpatterncomposites-b6b4cf615504/spline_along.f3d"
       ]
     },
     {
@@ -2243,6 +2298,20 @@
         "boundaryfills-a0953038318b/component_middle.f3d",
         "combinemodes-dcb4956eca6b/join_component.f3d"
       ]
+    },
+    {
+      "class_guid": "559FC9CE-EF4A-47D6-B91D-7780E11E2C77",
+      "base_class_guids": [
+        ""
+      ],
+      "namespaces": [
+        ""
+      ],
+      "stored_versions_or_flags": [
+        3
+      ],
+      "observed_semantics": [],
+      "example_files": []
     },
     {
       "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
@@ -3093,6 +3162,7 @@
         9
       ],
       "observed_semantics": [
+        "Observed Text model parameter",
         "Observed Text user parameter",
         "Observed numeric model parameter",
         "Observed numeric user parameter"
@@ -3405,6 +3475,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "analytic-86a12b291d0a/analytic.f3d",
         "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
+      "class_guid": "8B369926-123F-4F9D-878E-6D4C076128D3",
+      "base_class_guids": [
+        "60403D47-0C49-49B0-BDE8-1679608164A2"
+      ],
+      "namespaces": [
+        "MSketch"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtexts-a16af12c28bf/bold.f3d",
+        "sketchtexts-a16af12c28bf/content_height.f3d",
+        "sketchtexts-a16af12c28bf/italic.f3d"
       ]
     },
     {
@@ -4253,9 +4341,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
-        "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
-        "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d"
+        "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+        "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+        "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d"
       ]
     },
     {
@@ -4291,9 +4379,9 @@
         "Named feature: PathPattern"
       ],
       "example_files": [
-        "pathpatterns-de9857f6a1bc/arc_along.f3d",
-        "pathpatterns-de9857f6a1bc/arc_identical.f3d",
-        "pathpatterns-de9857f6a1bc/extent.f3d"
+        "pathpatterncomposites-b6b4cf615504/composite_along.f3d",
+        "pathpatterncomposites-b6b4cf615504/composite_identical.f3d",
+        "pathpatterncomposites-b6b4cf615504/composite_multiple.f3d"
       ]
     },
     {
@@ -4479,9 +4567,9 @@
         "Named feature: Loft"
       ],
       "example_files": [
-        "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
-        "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
-        "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d"
+        "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+        "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+        "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d"
       ]
     },
     {
@@ -4601,9 +4689,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "pathpatterns-de9857f6a1bc/arc_along.f3d",
-        "pathpatterns-de9857f6a1bc/arc_identical.f3d",
-        "pathpatterns-de9857f6a1bc/extent.f3d"
+        "pathpatterncomposites-b6b4cf615504/composite_along.f3d",
+        "pathpatterncomposites-b6b4cf615504/composite_identical.f3d",
+        "pathpatterncomposites-b6b4cf615504/composite_multiple.f3d"
       ]
     },
     {
@@ -4809,9 +4897,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
-        "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
-        "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d"
+        "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+        "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
+        "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d"
       ]
     },
     {
@@ -5312,7 +5400,7 @@
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
-        "splines-9a18bae21127/splines.f3d"
+        "pathpatterncomposites-b6b4cf615504/spline_along.f3d"
       ]
     },
     {
@@ -5442,6 +5530,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "analytic-86a12b291d0a/analytic.f3d",
         "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
+      "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+      "base_class_guids": [
+        "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B"
+      ],
+      "namespaces": [
+        "Geometry"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtexts-a16af12c28bf/bold.f3d",
+        "sketchtexts-a16af12c28bf/content_height.f3d",
+        "sketchtexts-a16af12c28bf/italic.f3d"
       ]
     },
     {
@@ -5765,7 +5871,7 @@
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
-        "splines-9a18bae21127/splines.f3d"
+        "pathpatterncomposites-b6b4cf615504/spline_along.f3d"
       ]
     },
     {
@@ -5960,7 +6066,7 @@
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
-        "splines-9a18bae21127/splines.f3d"
+        "pathpatterncomposites-b6b4cf615504/spline_along.f3d"
       ]
     },
     {
@@ -6242,6 +6348,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "analytic-86a12b291d0a/analytic.f3d",
         "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
+      "class_guid": "e5460b7b-000b-4a70-ab52-4c2fcc470eb2",
+      "base_class_guids": [
+        "B24D5130-8751-4272-8143-D230D8757873"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtexts-a16af12c28bf/bold.f3d",
+        "sketchtexts-a16af12c28bf/content_height.f3d",
+        "sketchtexts-a16af12c28bf/italic.f3d"
       ]
     },
     {

@@ -1,4 +1,4 @@
-"""Observed native parameter collections, names and unbound user parameters.
+"""Observed native parameter collections and names for model/user parameters.
 
 Names resolve through reciprocal typed records, never through substring matches
 in expressions. Expression dependency and evaluation semantics remain unknown.
@@ -103,6 +103,6 @@ def decode_parameter_tables(data, records, parameters):
         except (ValueError, UnicodeError, IndexError, struct.error) as error:
             unresolved.append({"object_id": record.object_id, "reason": str(error)})
     return {"decoded": decoded, "user_parameters": users, "unresolved": unresolved,
-            "scope": "Observed parameter collection membership, names and reciprocal ownership; numeric/Text user variants",
+            "scope": "Observed parameter collection membership, names and reciprocal ownership; numeric/Text model and user variants",
             "limitations": ["Expression evaluation and explicit expression dependency edges are unresolved",
                             "Other parameter types, name variants, other control characters and unobserved favorite flags are unverified"]}
