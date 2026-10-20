@@ -15,6 +15,7 @@ import struct
 
 from decode_parameters import decode_stream, read_string
 from decode_parameter_tables import decode_parameter_tables
+from decode_expression_dependencies import derive_expression_dependencies
 from decode_sketch import decode_sketches
 from decode_sketch_coverage import decode_sketch_coverage
 from decode_offset_details import decode_offset_details
@@ -302,9 +303,12 @@ def decode_basics(path, zstd_library=None):
             item for item in modeling_summary["unresolved"]
             if item["reason"] != "Referenced start/end geometry selection not decoded"
             or item["object_id"] not in resolved_selection_features-unresolved_selection_features]
+        parameter_table_summary = decode_parameter_tables(data, records, parameters)
+        expression_dependency_summary = derive_expression_dependencies(parameters, parameter_table_summary)
         streams.append({
             "member": name, "features": features, "unbound_parameters": unbound,
-            "parameter_tables": decode_parameter_tables(data, records, parameters),
+            "parameter_tables": parameter_table_summary,
+            "derived_expression_dependencies": expression_dependency_summary,
             "rejected_parameters": rejected, "candidate_record_headers": len(records),
             "record_index": record_index,
             "feature_discovery": discovery_summary,

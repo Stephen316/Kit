@@ -129,8 +129,11 @@ def decode_file(path, zstd_library=None):
             parameters, rejected = decode_stream(data, fragments)
             from decode_parameter_tables import decode_parameter_tables
             tables = decode_parameter_tables(data, fragments, parameters)
+            from decode_expression_dependencies import derive_expression_dependencies
+            expression_dependencies = derive_expression_dependencies(parameters, tables)
             records.append({"member": name, "parameters": parameters, "rejected": rejected,
-                            "record_index": index, "parameter_tables": tables})
+                            "record_index": index, "parameter_tables": tables,
+                            "derived_expression_dependencies": expression_dependencies})
     return {
         "file": str(path), "sha256": hashlib.sha256(Path(path).read_bytes()).hexdigest(),
         "scope": "Observed numeric model and numeric/text user parameters with reciprocal name tables; no expression evaluation or feature regeneration",
