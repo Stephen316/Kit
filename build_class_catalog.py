@@ -45,6 +45,15 @@ def build_catalog(paths, zstd_library=None):
                     if len(entry["example_files"]) < 3:
                         entry["example_files"].add(str(path))
             parameters = [p for f in stream["features"] for p in f["parameters"]]+stream["unbound_parameters"]
+            properties = stream.get("body_properties", {})
+            for key, label in (("bodies", "Observed native body properties"),
+                               ("collections", "Observed native body collection membership")):
+                for item in properties.get(key, []):
+                    if item.get("class_guid") in classes:
+                        entry = classes[item["class_guid"]]
+                        entry["observed_semantics"].add(label)
+                        if len(entry["example_files"]) < 3:
+                            entry["example_files"].add(str(path))
             for parameter in parameters:
                 if parameter.get("class_guid"):
                     entry = classes[parameter["class_guid"]]

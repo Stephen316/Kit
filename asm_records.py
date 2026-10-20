@@ -74,6 +74,8 @@ def inspect_asm(data):
               "resolution_tolerance": quantities[1]["value"], "normal_tolerance": quantities[2]["value"]}
     records, prefixes, current, depth = [], [], None, 0
     prefix_start = None
+    section = "geometry"
+    markers = {"Begin-of-ASM-History-Data", "End-of-ASM-History-Section", "End-of-ASM-data"}
     token_count, last_complete = 0, reader.cursor
     failure = None
     while reader.cursor < len(data):
@@ -93,12 +95,17 @@ def inspect_asm(data):
                 name = "-".join(prefixes+[token["value"]])
                 prefixes.clear()
                 current = {"index": len(records), "name": name,
-                           "offset": prefix_start if prefix_start is not None else token["offset"], "tokens": []}
+                           "offset": prefix_start if prefix_start is not None else token["offset"], "tokens": [],
+                           "section": section, "record_kind": "marker" if name in markers else "entity"}
                 prefix_start = None
-                if name == "End-of-ASM-data":
+                if name in markers:
                     current["end_offset"] = reader.cursor
                     records.append(current)
                     current, last_complete = None, reader.cursor
+                    if name == "Begin-of-ASM-History-Data":
+                        section = "history"
+                    elif name == "End-of-ASM-History-Section":
+                        section = "trailing_states"
                 continue
             if token["tag"] == 15:
                 depth += 1
@@ -124,7 +131,7 @@ def inspect_asm(data):
     return {"header": header, "records": records, "token_count": token_count,
             "complete_token_stream": failure is None, "unresolved_reason": failure,
             "last_complete_offset": last_complete, "total_bytes": len(data),
-            "scope": "Typed token records only; entity fields/topology remain uninterpreted"}
+            "scope": "Typed tokens with explicit history markers; pointer meanings outside the initial geometry section remain uninterpreted"}
 
 
 def inspect_asm_members(members, include_records=False):

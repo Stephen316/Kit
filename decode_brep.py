@@ -29,6 +29,7 @@ def decode_topology(parsed):
     if not parsed["complete_token_stream"]:
         return {"body_graphs": [], "unresolved": [{"reason": "ASM token stream incomplete"}], "nodes": []}
     records = parsed["records"]
+    geometry_limit = next((i for i, r in enumerate(records) if r.get("record_kind") == "marker"), len(records))
     nodes, unresolved = {}, []
 
     def token(record, index, kinds):
@@ -41,8 +42,8 @@ def decode_topology(parsed):
         target = token(record, index, ("pointer",))
         if target == -1:
             return None
-        if not 0 <= target < len(records)-1:
-            raise ValueError("ASM pointer outside record table")
+        if not 0 <= target < geometry_limit:
+            raise ValueError("ASM pointer outside initial geometry entity table")
         name = records[target]["name"]
         if expected and name != expected and not name.endswith("-"+expected):
             raise ValueError("ASM pointer target has unexpected type: "+name)
@@ -64,7 +65,7 @@ def decode_topology(parsed):
     sizes = {"body": (6,), "lump": (6,), "shell": (8,), "face": (10, 11), "loop": (6,),
              "coedge": (11,), "edge": (11,), "vertex": (6,), "point": (4,), "straight-curve": (7, 8, 9),
              "ellipse-curve": (9, 10, 11)}
-    for record in records:
+    for record in records[:geometry_limit]:
         name = record["name"]
         if name not in LINKS and name not in geometry:
             continue
@@ -212,4 +213,6 @@ def decode_topology(parsed):
         except (ValueError, KeyError, IndexError) as error:
             unresolved.append({"index": root["index"], "kind": "body_graph", "reason": str(error)})
     return {"nodes": list(nodes.values()), "body_graphs": graphs, "unresolved": unresolved,
-            "scope": "Observed reciprocal body/face/edge graphs and partial primitives; cached states remain separate"}
+            "initial_geometry_record_count": geometry_limit,
+            "history_status": "History journal and trailing state records retained as tokens; excluded from topology graphs",
+            "scope": "Observed reciprocal links within initial geometry entity tables; no history-state merging"}

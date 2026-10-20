@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 150,
+  "file_count": 151,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -151,10 +151,11 @@
     "holeplacements-04adf73afe93/reversed_all.f3d",
     "holeplacements-04adf73afe93/reversed_distance.f3d",
     "holeplacements-04adf73afe93/sketch_point.f3d",
-    "holeplacements-04adf73afe93/sketch_points.f3d"
+    "holeplacements-04adf73afe93/sketch_points.f3d",
+    "namedbodies-3c7c11fc2924/namedbodies.f3d"
   ],
   "class_count": 276,
-  "classes_with_observed_semantics": 28,
+  "classes_with_observed_semantics": 30,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -820,7 +821,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "assembly-acc48a9dc05d/assembly.f3d"
+        "assembly-acc48a9dc05d/assembly.f3d",
+        "namedbodies-3c7c11fc2924/namedbodies.f3d"
       ]
     },
     {
@@ -1559,7 +1561,8 @@
         "Observed feature ancestry; schema unsupported"
       ],
       "example_files": [
-        "assembly-acc48a9dc05d/assembly.f3d"
+        "assembly-acc48a9dc05d/assembly.f3d",
+        "namedbodies-3c7c11fc2924/namedbodies.f3d"
       ]
     },
     {
@@ -2232,7 +2235,8 @@
         "Unsupported feature with stored label: CreateComponent"
       ],
       "example_files": [
-        "assembly-acc48a9dc05d/assembly.f3d"
+        "assembly-acc48a9dc05d/assembly.f3d",
+        "namedbodies-3c7c11fc2924/namedbodies.f3d"
       ]
     },
     {
@@ -3764,7 +3768,9 @@
       "stored_versions_or_flags": [
         4
       ],
-      "observed_semantics": [],
+      "observed_semantics": [
+        "Observed native body collection membership"
+      ],
       "example_files": [
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -3866,7 +3872,9 @@
       "stored_versions_or_flags": [
         19
       ],
-      "observed_semantics": [],
+      "observed_semantics": [
+        "Observed native body properties"
+      ],
       "example_files": [
         "extents-f0f33a9a605f/distance_negative.f3d",
         "extents-f0f33a9a605f/distance_positive.f3d",

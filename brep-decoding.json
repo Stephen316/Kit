@@ -96,7 +96,7 @@
           "unresolved_reason": null,
           "last_complete_offset": 24608,
           "total_bytes": 24608,
-          "scope": "Typed token records only; entity fields/topology remain uninterpreted",
+          "scope": "Typed token framing with separately reported partial topology; final visible-body identity unresolved",
           "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.cd4f2d22-8cdc-44ae-8442-fae7c15cc87b.smb",
           "record_count": 257,
           "record_type_counts": {
@@ -4077,9 +4077,41 @@
               }
             ],
             "unresolved": [],
-            "scope": "Observed reciprocal body/face/edge graphs and partial primitives; cached states remain separate",
+            "initial_geometry_record_count": 256,
+            "history_status": "History journal and trailing state records retained as tokens; excluded from topology graphs",
+            "scope": "Observed reciprocal links within initial geometry entity tables; no history-state merging",
             "nodes_included": true
-          }
+          },
+          "declared_root_records": [
+            {
+              "index": 0,
+              "kind": "asmheader"
+            },
+            {
+              "index": 1,
+              "kind": "body"
+            },
+            {
+              "index": 2,
+              "kind": "face"
+            },
+            {
+              "index": 3,
+              "kind": "face"
+            },
+            {
+              "index": 4,
+              "kind": "body"
+            },
+            {
+              "index": 5,
+              "kind": "body"
+            },
+            {
+              "index": 6,
+              "kind": "body"
+            }
+          ]
         },
         {
           "header": {
@@ -4100,11 +4132,11 @@
           "unresolved_reason": null,
           "last_complete_offset": 17884,
           "total_bytes": 17884,
-          "scope": "Typed token records only; entity fields/topology remain uninterpreted",
+          "scope": "Typed token framing with separately reported partial topology; final visible-body identity unresolved",
           "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f8916c5c-11c3-45d6-9e7e-121a1d09cd66.smbh",
-          "record_count": 140,
+          "record_count": 142,
           "record_type_counts": {
-            "ATTRIB_CUSTOM-attrib": 20,
+            "ATTRIB_CUSTOM-attrib": 21,
             "Begin-of-ASM-History-Data": 1,
             "End-of-ASM-History-Section": 1,
             "End-of-ASM-data": 1,
@@ -4116,6 +4148,7 @@
             "edge": 15,
             "ellipse-curve": 2,
             "face": 9,
+            "history_stream": 1,
             "loop": 11,
             "lump": 1,
             "plane-surface": 6,
@@ -5886,45 +5919,6 @@
                   1.0,
                   2.0
                 ]
-              },
-              {
-                "index": 135,
-                "kind": "face",
-                "offset": 17447,
-                "attribute_index": 74,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 75,
-                "first_loop_index": 71,
-                "shell_index": 5,
-                "subshell_index": null,
-                "surface_index": 76,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 136,
-                "kind": "shell",
-                "offset": 17528,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_shell_index": null,
-                "subshell_index": null,
-                "first_face_index": 12,
-                "first_wire_index": null,
-                "lump_index": 3
-              },
-              {
-                "index": 137,
-                "kind": "body",
-                "offset": 17608,
-                "attribute_index": 129,
-                "stored_entity_id": 1,
-                "pattern_index": null,
-                "first_lump_index": 3,
-                "first_wire_index": null,
-                "transform_index": null
               }
             ],
             "body_graphs": [
@@ -6096,19 +6090,25 @@
                 "coordinate_scope": "Raw ASM points; body transform and units/context not applied"
               }
             ],
-            "unresolved": [
-              {
-                "index": 137,
-                "kind": "body_graph",
-                "reason": "Lump/body ownership is not reciprocal in this stored state"
-              }
-            ],
-            "scope": "Observed reciprocal body/face/edge graphs and partial primitives; cached states remain separate",
+            "unresolved": [],
+            "initial_geometry_record_count": 129,
+            "history_status": "History journal and trailing state records retained as tokens; excluded from topology graphs",
+            "scope": "Observed reciprocal links within initial geometry entity tables; no history-state merging",
             "nodes_included": true
-          }
+          },
+          "declared_root_records": [
+            {
+              "index": 0,
+              "kind": "asmheader"
+            },
+            {
+              "index": 1,
+              "kind": "body"
+            }
+          ]
         }
       ],
-      "scope": "Observed ASM token grammar; final body identity and topology unresolved"
+      "scope": "Observed ASM tokens and reciprocal topology; final visible-body identity unresolved"
     },
     {
       "file": "tools-fda3948848f4/Fillet.f3d",
@@ -6132,7 +6132,7 @@
           "unresolved_reason": null,
           "last_complete_offset": 16557,
           "total_bytes": 16557,
-          "scope": "Typed token records only; entity fields/topology remain uninterpreted",
+          "scope": "Typed token framing with separately reported partial topology; final visible-body identity unresolved",
           "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4ec0e261-5284-4876-b310-ae1f38b0dc43.smb",
           "record_count": 169,
           "record_type_counts": {
@@ -8659,9 +8659,29 @@
               }
             ],
             "unresolved": [],
-            "scope": "Observed reciprocal body/face/edge graphs and partial primitives; cached states remain separate",
+            "initial_geometry_record_count": 168,
+            "history_status": "History journal and trailing state records retained as tokens; excluded from topology graphs",
+            "scope": "Observed reciprocal links within initial geometry entity tables; no history-state merging",
             "nodes_included": true
-          }
+          },
+          "declared_root_records": [
+            {
+              "index": 0,
+              "kind": "asmheader"
+            },
+            {
+              "index": 1,
+              "kind": "body"
+            },
+            {
+              "index": 2,
+              "kind": "body"
+            },
+            {
+              "index": 3,
+              "kind": "body"
+            }
+          ]
         },
         {
           "header": {
@@ -8682,9 +8702,9 @@
           "unresolved_reason": null,
           "last_complete_offset": 22716,
           "total_bytes": 22716,
-          "scope": "Typed token records only; entity fields/topology remain uninterpreted",
+          "scope": "Typed token framing with separately reported partial topology; final visible-body identity unresolved",
           "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.bc150bd1-3316-4cd1-b477-548ae4ae03cb.smbh",
-          "record_count": 174,
+          "record_count": 176,
           "record_type_counts": {
             "ATTRIB_CUSTOM-attrib": 24,
             "Begin-of-ASM-History-Data": 1,
@@ -8695,9 +8715,10 @@
             "coedge": 45,
             "cone-surface": 1,
             "delta_state": 3,
-            "edge": 19,
+            "edge": 20,
             "ellipse-curve": 2,
             "face": 12,
+            "history_stream": 1,
             "loop": 11,
             "lump": 1,
             "plane-surface": 6,
@@ -10423,329 +10444,6 @@
                   0.0,
                   4.0
                 ]
-              },
-              {
-                "index": 133,
-                "kind": "face",
-                "offset": 18765,
-                "attribute_index": 128,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 63,
-                "first_loop_index": 13,
-                "shell_index": 5,
-                "subshell_index": null,
-                "surface_index": 14,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 136,
-                "kind": "straight-curve",
-                "offset": 19129,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  1.0,
-                  1.0,
-                  0.0
-                ],
-                "direction": [
-                  0.0,
-                  0.0,
-                  1.0
-                ],
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 142,
-                "kind": "straight-curve",
-                "offset": 19689,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  1.0,
-                  1.0,
-                  2.0
-                ],
-                "direction": [
-                  1.0,
-                  0.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 145,
-                "kind": "coedge",
-                "offset": 19986,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 30,
-                "previous_coedge_index": 140,
-                "partner_index": 67,
-                "edge_index": 68,
-                "loop_index": 13,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 146,
-                "kind": "straight-curve",
-                "offset": 20086,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  1.0,
-                  4.0,
-                  0.0
-                ],
-                "direction": [
-                  0.0,
-                  0.0,
-                  1.0
-                ],
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 149,
-                "kind": "coedge",
-                "offset": 20346,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 47,
-                "previous_coedge_index": 93,
-                "partner_index": 52,
-                "edge_index": 77,
-                "loop_index": 154,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 150,
-                "kind": "coedge",
-                "offset": 20446,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 71,
-                "previous_coedge_index": 66,
-                "partner_index": 30,
-                "edge_index": 48,
-                "loop_index": 154,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 151,
-                "kind": "straight-curve",
-                "offset": 20546,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  5.0,
-                  4.0,
-                  2.0
-                ],
-                "direction": [
-                  -1.0,
-                  0.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 152,
-                "kind": "coedge",
-                "offset": 20643,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 149,
-                "previous_coedge_index": 45,
-                "partner_index": 47,
-                "edge_index": 48,
-                "loop_index": 13,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 155,
-                "kind": "face",
-                "offset": 20904,
-                "attribute_index": 159,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 41,
-                "first_loop_index": 18,
-                "shell_index": 5,
-                "subshell_index": null,
-                "surface_index": 19,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 156,
-                "kind": "loop",
-                "offset": 20985,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_loop_index": null,
-                "first_coedge_index": 76,
-                "face_index": 41
-              },
-              {
-                "index": 158,
-                "kind": "loop",
-                "offset": 21146,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_loop_index": null,
-                "first_coedge_index": 93,
-                "face_index": 17
-              },
-              {
-                "index": 159,
-                "kind": "coedge",
-                "offset": 21207,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 93,
-                "previous_coedge_index": 47,
-                "partner_index": 90,
-                "edge_index": 96,
-                "loop_index": 154,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 160,
-                "kind": "coedge",
-                "offset": 21307,
-                "attribute_index": 112,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 66,
-                "previous_coedge_index": 71,
-                "partner_index": 109,
-                "edge_index": 113,
-                "loop_index": 154,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 161,
-                "kind": "face",
-                "offset": 21407,
-                "attribute_index": 25,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 26,
-                "first_loop_index": 154,
-                "shell_index": 5,
-                "subshell_index": null,
-                "surface_index": 28,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 164,
-                "kind": "shell",
-                "offset": 21751,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_shell_index": null,
-                "subshell_index": null,
-                "first_face_index": 17,
-                "first_wire_index": null,
-                "lump_index": 3
-              },
-              {
-                "index": 166,
-                "kind": "point",
-                "offset": 22033,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  1.0,
-                  4.0,
-                  2.0
-                ]
-              },
-              {
-                "index": 167,
-                "kind": "straight-curve",
-                "offset": 22093,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  1.0,
-                  4.0,
-                  2.0
-                ],
-                "direction": [
-                  0.0,
-                  -1.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 168,
-                "kind": "point",
-                "offset": 22190,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  1.0,
-                  1.0,
-                  2.0
-                ]
-              },
-              {
-                "index": 170,
-                "kind": "body",
-                "offset": 22331,
-                "attribute_index": 168,
-                "stored_entity_id": 2,
-                "pattern_index": null,
-                "first_lump_index": 3,
-                "first_wire_index": null,
-                "transform_index": null
               }
             ],
             "body_graphs": [
@@ -10907,114 +10605,25 @@
                 "coordinate_scope": "Raw ASM points; body transform and units/context not applied"
               }
             ],
-            "unresolved": [
-              {
-                "index": 128,
-                "kind": "edge",
-                "reason": "ASM pointer target has unexpected type: coedge"
-              },
-              {
-                "index": 129,
-                "kind": "edge",
-                "reason": "ASM pointer target has unexpected type: coedge"
-              },
-              {
-                "index": 130,
-                "kind": "edge",
-                "reason": "ASM pointer target has unexpected type: face"
-              },
-              {
-                "index": 131,
-                "kind": "edge",
-                "reason": "ASM pointer target has unexpected type: face"
-              },
-              {
-                "index": 135,
-                "kind": "face",
-                "reason": "ASM pointer target has unexpected type: edge"
-              },
-              {
-                "index": 137,
-                "kind": "vertex",
-                "reason": "ASM pointer target has unexpected type: shell"
-              },
-              {
-                "index": 138,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: face"
-              },
-              {
-                "index": 139,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: Begin-of-ASM-History-Data"
-              },
-              {
-                "index": 140,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: vertex"
-              },
-              {
-                "index": 141,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: ATTRIB_CUSTOM-attrib"
-              },
-              {
-                "index": 143,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: vertex"
-              },
-              {
-                "index": 144,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: vertex"
-              },
-              {
-                "index": 147,
-                "kind": "vertex",
-                "reason": "ASM pointer target has unexpected type: loop"
-              },
-              {
-                "index": 148,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: face"
-              },
-              {
-                "index": 153,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: face"
-              },
-              {
-                "index": 154,
-                "kind": "loop",
-                "reason": "ASM pointer target has unexpected type: straight-curve"
-              },
-              {
-                "index": 157,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: coedge"
-              },
-              {
-                "index": 162,
-                "kind": "loop",
-                "reason": "ASM pointer target has unexpected type: edge"
-              },
-              {
-                "index": 169,
-                "kind": "face",
-                "reason": "ASM pointer target has unexpected type: straight-curve"
-              },
-              {
-                "index": 170,
-                "kind": "body_graph",
-                "reason": "Lump/body ownership is not reciprocal in this stored state"
-              }
-            ],
-            "scope": "Observed reciprocal body/face/edge graphs and partial primitives; cached states remain separate",
+            "unresolved": [],
+            "initial_geometry_record_count": 122,
+            "history_status": "History journal and trailing state records retained as tokens; excluded from topology graphs",
+            "scope": "Observed reciprocal links within initial geometry entity tables; no history-state merging",
             "nodes_included": true
-          }
+          },
+          "declared_root_records": [
+            {
+              "index": 0,
+              "kind": "asmheader"
+            },
+            {
+              "index": 1,
+              "kind": "body"
+            }
+          ]
         }
       ],
-      "scope": "Observed ASM token grammar; final body identity and topology unresolved"
+      "scope": "Observed ASM tokens and reciprocal topology; final visible-body identity unresolved"
     },
     {
       "file": "splits-efce4ef164c9/multiple_bodies.f3d",
@@ -11038,7 +10647,7 @@
           "unresolved_reason": null,
           "last_complete_offset": 32908,
           "total_bytes": 32908,
-          "scope": "Typed token records only; entity fields/topology remain uninterpreted",
+          "scope": "Typed token framing with separately reported partial topology; final visible-body identity unresolved",
           "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.91f4113a-a84e-421e-a160-9de2f1a6d975.smb",
           "record_count": 336,
           "record_type_counts": {
@@ -16066,9 +15675,41 @@
               }
             ],
             "unresolved": [],
-            "scope": "Observed reciprocal body/face/edge graphs and partial primitives; cached states remain separate",
+            "initial_geometry_record_count": 335,
+            "history_status": "History journal and trailing state records retained as tokens; excluded from topology graphs",
+            "scope": "Observed reciprocal links within initial geometry entity tables; no history-state merging",
             "nodes_included": true
-          }
+          },
+          "declared_root_records": [
+            {
+              "index": 0,
+              "kind": "asmheader"
+            },
+            {
+              "index": 1,
+              "kind": "body"
+            },
+            {
+              "index": 2,
+              "kind": "body"
+            },
+            {
+              "index": 3,
+              "kind": "body"
+            },
+            {
+              "index": 4,
+              "kind": "body"
+            },
+            {
+              "index": 5,
+              "kind": "body"
+            },
+            {
+              "index": 6,
+              "kind": "body"
+            }
+          ]
         },
         {
           "header": {
@@ -16089,9 +15730,9 @@
           "unresolved_reason": null,
           "last_complete_offset": 73212,
           "total_bytes": 73212,
-          "scope": "Typed token records only; entity fields/topology remain uninterpreted",
+          "scope": "Typed token framing with separately reported partial topology; final visible-body identity unresolved",
           "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6ee902a6-5a5a-4a6a-8676-c762cae831b2.smbh",
-          "record_count": 562,
+          "record_count": 564,
           "record_type_counts": {
             "ATTRIB_CUSTOM-attrib": 81,
             "Begin-of-ASM-History-Data": 1,
@@ -16103,7 +15744,8 @@
             "delta_state": 6,
             "edge": 61,
             "ellipse-curve": 5,
-            "face": 40,
+            "face": 41,
+            "history_stream": 1,
             "loop": 37,
             "lump": 11,
             "plane-surface": 27,
@@ -21774,1526 +21416,6 @@
                   null,
                   null
                 ]
-              },
-              {
-                "index": 407,
-                "kind": "face",
-                "offset": 57757,
-                "attribute_index": 159,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 47,
-                "first_loop_index": 161,
-                "shell_index": 20,
-                "subshell_index": null,
-                "surface_index": 162,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 409,
-                "kind": "face",
-                "offset": 58040,
-                "attribute_index": 70,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 30,
-                "first_loop_index": 58,
-                "shell_index": 20,
-                "subshell_index": null,
-                "surface_index": 73,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 411,
-                "kind": "face",
-                "offset": 58323,
-                "attribute_index": 46,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 160,
-                "first_loop_index": 48,
-                "shell_index": 20,
-                "subshell_index": null,
-                "surface_index": 49,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 413,
-                "kind": "face",
-                "offset": 58606,
-                "attribute_index": 249,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 250,
-                "first_loop_index": 121,
-                "shell_index": 20,
-                "subshell_index": null,
-                "surface_index": 122,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 415,
-                "kind": "face",
-                "offset": 58889,
-                "attribute_index": 333,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 22,
-                "first_loop_index": 203,
-                "shell_index": 20,
-                "subshell_index": null,
-                "surface_index": 204,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 417,
-                "kind": "face",
-                "offset": 59172,
-                "attribute_index": 29,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": null,
-                "first_loop_index": 90,
-                "shell_index": 20,
-                "subshell_index": null,
-                "surface_index": 32,
-                "is_reversed": true,
-                "is_double_sided": false
-              },
-              {
-                "index": 419,
-                "kind": "edge",
-                "offset": 59351,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "start_vertex_index": 215,
-                "end_vertex_index": 343,
-                "first_coedge_index": 130,
-                "curve_index": 218,
-                "start_parameter": 0.0,
-                "end_parameter": 2.0,
-                "is_reversed": false,
-                "stored_trailing_text": "unknown"
-              },
-              {
-                "index": 420,
-                "kind": "edge",
-                "offset": 59449,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "start_vertex_index": 302,
-                "end_vertex_index": 346,
-                "first_coedge_index": 206,
-                "curve_index": 366,
-                "start_parameter": 0.0,
-                "end_parameter": 2.0,
-                "is_reversed": false,
-                "stored_trailing_text": "unknown"
-              },
-              {
-                "index": 421,
-                "kind": "edge",
-                "offset": 59547,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "start_vertex_index": 353,
-                "end_vertex_index": 214,
-                "first_coedge_index": 172,
-                "curve_index": 220,
-                "start_parameter": 0.0,
-                "end_parameter": 2.0,
-                "is_reversed": false,
-                "stored_trailing_text": "unknown"
-              },
-              {
-                "index": 422,
-                "kind": "edge",
-                "offset": 59645,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "start_vertex_index": 351,
-                "end_vertex_index": 304,
-                "first_coedge_index": 171,
-                "curve_index": 394,
-                "start_parameter": 0.0,
-                "end_parameter": 2.0,
-                "is_reversed": false,
-                "stored_trailing_text": "unknown"
-              },
-              {
-                "index": 423,
-                "kind": "straight-curve",
-                "offset": 59743,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  4.0,
-                  1.0,
-                  0.0
-                ],
-                "direction": [
-                  0.0,
-                  -1.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  0.0,
-                  2.0
-                ]
-              },
-              {
-                "index": 424,
-                "kind": "vertex",
-                "offset": 59858,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "first_edge_index": 270,
-                "point_index": 306,
-                "uninterpreted_field_4": 1
-              },
-              {
-                "index": 425,
-                "kind": "coedge",
-                "offset": 59921,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 171,
-                "previous_coedge_index": 172,
-                "partner_index": 126,
-                "edge_index": 212,
-                "loop_index": 121,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 426,
-                "kind": "coedge",
-                "offset": 60021,
-                "attribute_index": 269,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 211,
-                "previous_coedge_index": 267,
-                "partner_index": 253,
-                "edge_index": 270,
-                "loop_index": 121,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 427,
-                "kind": "coedge",
-                "offset": 60121,
-                "attribute_index": 213,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 253,
-                "previous_coedge_index": 75,
-                "partner_index": 74,
-                "edge_index": 128,
-                "loop_index": 90,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 428,
-                "kind": "coedge",
-                "offset": 60221,
-                "attribute_index": 340,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 338,
-                "previous_coedge_index": 127,
-                "partner_index": 172,
-                "edge_index": 270,
-                "loop_index": 90,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 429,
-                "kind": "straight-curve",
-                "offset": 60321,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  4.0,
-                  1.0,
-                  2.0
-                ],
-                "direction": [
-                  0.0,
-                  -1.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 430,
-                "kind": "coedge",
-                "offset": 60418,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 267,
-                "previous_coedge_index": 211,
-                "partner_index": 264,
-                "edge_index": 268,
-                "loop_index": 121,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 431,
-                "kind": "coedge",
-                "offset": 60518,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 296,
-                "previous_coedge_index": 264,
-                "partner_index": 208,
-                "edge_index": 301,
-                "loop_index": 203,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 432,
-                "kind": "coedge",
-                "offset": 60618,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 300,
-                "previous_coedge_index": 345,
-                "partner_index": 171,
-                "edge_index": 268,
-                "loop_index": 203,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 433,
-                "kind": "straight-curve",
-                "offset": 60718,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  8.0,
-                  -1.0,
-                  0.0
-                ],
-                "direction": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  0.0,
-                  2.0
-                ]
-              },
-              {
-                "index": 434,
-                "kind": "vertex",
-                "offset": 60833,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "first_edge_index": 131,
-                "point_index": 387,
-                "uninterpreted_field_4": 1
-              },
-              {
-                "index": 435,
-                "kind": "coedge",
-                "offset": 60896,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 206,
-                "previous_coedge_index": 130,
-                "partner_index": 337,
-                "edge_index": 342,
-                "loop_index": 58,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 436,
-                "kind": "coedge",
-                "offset": 60996,
-                "attribute_index": 217,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 256,
-                "previous_coedge_index": 209,
-                "partner_index": 75,
-                "edge_index": 131,
-                "loop_index": 58,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 437,
-                "kind": "coedge",
-                "offset": 61096,
-                "attribute_index": 384,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 75,
-                "previous_coedge_index": 253,
-                "partner_index": 252,
-                "edge_index": 339,
-                "loop_index": 90,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 438,
-                "kind": "coedge",
-                "offset": 61196,
-                "attribute_index": 129,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 127,
-                "previous_coedge_index": 338,
-                "partner_index": 130,
-                "edge_index": 131,
-                "loop_index": 90,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 439,
-                "kind": "straight-curve",
-                "offset": 61296,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  8.0,
-                  -1.0,
-                  2.0
-                ],
-                "direction": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 440,
-                "kind": "coedge",
-                "offset": 61393,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 209,
-                "previous_coedge_index": 256,
-                "partner_index": 296,
-                "edge_index": 297,
-                "loop_index": 58,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 441,
-                "kind": "coedge",
-                "offset": 61493,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 264,
-                "previous_coedge_index": 296,
-                "partner_index": 383,
-                "edge_index": 388,
-                "loop_index": 203,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 442,
-                "kind": "coedge",
-                "offset": 61593,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 345,
-                "previous_coedge_index": 300,
-                "partner_index": 206,
-                "edge_index": 297,
-                "loop_index": 203,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 443,
-                "kind": "loop",
-                "offset": 61693,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_loop_index": null,
-                "first_coedge_index": 172,
-                "face_index": 160
-              },
-              {
-                "index": 444,
-                "kind": "coedge",
-                "offset": 61754,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 172,
-                "previous_coedge_index": 171,
-                "partner_index": 336,
-                "edge_index": 350,
-                "loop_index": 121,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 445,
-                "kind": "loop",
-                "offset": 61854,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_loop_index": null,
-                "first_coedge_index": 253,
-                "face_index": 22
-              },
-              {
-                "index": 446,
-                "kind": "loop",
-                "offset": 61915,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_loop_index": null,
-                "first_coedge_index": 130,
-                "face_index": 47
-              },
-              {
-                "index": 447,
-                "kind": "coedge",
-                "offset": 61976,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 130,
-                "previous_coedge_index": 206,
-                "partner_index": 125,
-                "edge_index": 210,
-                "loop_index": 58,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 448,
-                "kind": "loop",
-                "offset": 62076,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_loop_index": null,
-                "first_coedge_index": 264,
-                "face_index": 250
-              },
-              {
-                "index": 451,
-                "kind": "shell",
-                "offset": 62278,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_shell_index": null,
-                "subshell_index": null,
-                "first_face_index": 89,
-                "first_wire_index": null,
-                "lump_index": 8
-              },
-              {
-                "index": 454,
-                "kind": "lump",
-                "offset": 62480,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_lump_index": null,
-                "first_shell_index": 20,
-                "body_index": 2
-              },
-              {
-                "index": 456,
-                "kind": "ellipse-curve",
-                "offset": 62604,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  1.0
-                ],
-                "normal": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "stored_reference_axis": [
-                  0.0,
-                  0.0,
-                  5.353970489272424
-                ],
-                "raw_major_radius": 5.353970489272424,
-                "raw_minor_radius": 5.353970489272424,
-                "stored_axis_ratio": 1.0,
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 458,
-                "kind": "point",
-                "offset": 62834,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  6.353970489272424
-                ]
-              },
-              {
-                "index": 462,
-                "kind": "plane-surface",
-                "offset": 63096,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  1.0
-                ],
-                "normal": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "stored_reference_axis": [
-                  0.0,
-                  0.0,
-                  1.0
-                ],
-                "is_v_reversed": false,
-                "u_interval": [
-                  null,
-                  null
-                ],
-                "v_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 467,
-                "kind": "ellipse-curve",
-                "offset": 63664,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  1.0
-                ],
-                "normal": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "stored_reference_axis": [
-                  0.0,
-                  0.0,
-                  5.353970489272424
-                ],
-                "raw_major_radius": 5.353970489272424,
-                "raw_minor_radius": 5.353970489272424,
-                "stored_axis_ratio": 1.0,
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 469,
-                "kind": "point",
-                "offset": 63892,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  6.353970489272424
-                ]
-              },
-              {
-                "index": 477,
-                "kind": "plane-surface",
-                "offset": 64802,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  1.0
-                ],
-                "normal": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "stored_reference_axis": [
-                  0.0,
-                  0.0,
-                  1.0
-                ],
-                "is_v_reversed": false,
-                "u_interval": [
-                  null,
-                  null
-                ],
-                "v_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 482,
-                "kind": "ellipse-curve",
-                "offset": 65370,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  1.0
-                ],
-                "normal": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "stored_reference_axis": [
-                  0.0,
-                  0.0,
-                  5.353970489272424
-                ],
-                "raw_major_radius": 5.353970489272424,
-                "raw_minor_radius": 5.353970489272424,
-                "stored_axis_ratio": 1.0,
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 484,
-                "kind": "point",
-                "offset": 65598,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  6.353970489272424
-                ]
-              },
-              {
-                "index": 486,
-                "kind": "body",
-                "offset": 65721,
-                "attribute_index": 480,
-                "stored_entity_id": 2,
-                "pattern_index": null,
-                "first_lump_index": 10,
-                "first_wire_index": null,
-                "transform_index": null
-              },
-              {
-                "index": 488,
-                "kind": "body",
-                "offset": 65891,
-                "attribute_index": 482,
-                "stored_entity_id": 0,
-                "pattern_index": null,
-                "first_lump_index": 6,
-                "first_wire_index": null,
-                "transform_index": null
-              },
-              {
-                "index": 490,
-                "kind": "body",
-                "offset": 66061,
-                "attribute_index": 484,
-                "stored_entity_id": 1,
-                "pattern_index": null,
-                "first_lump_index": 8,
-                "first_wire_index": null,
-                "transform_index": null
-              },
-              {
-                "index": 495,
-                "kind": "face",
-                "offset": 66716,
-                "attribute_index": 141,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 42,
-                "first_loop_index": 143,
-                "shell_index": 18,
-                "subshell_index": null,
-                "surface_index": 144,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 497,
-                "kind": "face",
-                "offset": 66999,
-                "attribute_index": 61,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 26,
-                "first_loop_index": 53,
-                "shell_index": 18,
-                "subshell_index": null,
-                "surface_index": 64,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 499,
-                "kind": "face",
-                "offset": 67282,
-                "attribute_index": 41,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 142,
-                "first_loop_index": 43,
-                "shell_index": 18,
-                "subshell_index": null,
-                "surface_index": 44,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 501,
-                "kind": "face",
-                "offset": 67565,
-                "attribute_index": 225,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 226,
-                "first_loop_index": 99,
-                "shell_index": 18,
-                "subshell_index": null,
-                "surface_index": 100,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 503,
-                "kind": "face",
-                "offset": 67848,
-                "attribute_index": 311,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": 21,
-                "first_loop_index": 179,
-                "shell_index": 18,
-                "subshell_index": null,
-                "surface_index": 180,
-                "is_reversed": false,
-                "is_double_sided": false
-              },
-              {
-                "index": 505,
-                "kind": "face",
-                "offset": 68131,
-                "attribute_index": 25,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_face_index": null,
-                "first_loop_index": 81,
-                "shell_index": 18,
-                "subshell_index": null,
-                "surface_index": 28,
-                "is_reversed": true,
-                "is_double_sided": false
-              },
-              {
-                "index": 507,
-                "kind": "edge",
-                "offset": 68310,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "start_vertex_index": 191,
-                "end_vertex_index": 321,
-                "first_coedge_index": 108,
-                "curve_index": 194,
-                "start_parameter": 0.0,
-                "end_parameter": 2.0,
-                "is_reversed": false,
-                "stored_trailing_text": "unknown"
-              },
-              {
-                "index": 508,
-                "kind": "edge",
-                "offset": 68408,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "start_vertex_index": 283,
-                "end_vertex_index": 324,
-                "first_coedge_index": 182,
-                "curve_index": 357,
-                "start_parameter": 0.0,
-                "end_parameter": 2.0,
-                "is_reversed": false,
-                "stored_trailing_text": "unknown"
-              },
-              {
-                "index": 509,
-                "kind": "edge",
-                "offset": 68506,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "start_vertex_index": 331,
-                "end_vertex_index": 190,
-                "first_coedge_index": 154,
-                "curve_index": 196,
-                "start_parameter": 0.0,
-                "end_parameter": 2.0,
-                "is_reversed": false,
-                "stored_trailing_text": "unknown"
-              },
-              {
-                "index": 510,
-                "kind": "edge",
-                "offset": 68604,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "start_vertex_index": 329,
-                "end_vertex_index": 285,
-                "first_coedge_index": 153,
-                "curve_index": 393,
-                "start_parameter": 0.0,
-                "end_parameter": 2.0,
-                "is_reversed": false,
-                "stored_trailing_text": "unknown"
-              },
-              {
-                "index": 511,
-                "kind": "straight-curve",
-                "offset": 68702,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  -2.0,
-                  1.0,
-                  0.0
-                ],
-                "direction": [
-                  0.0,
-                  -1.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  0.0,
-                  2.0
-                ]
-              },
-              {
-                "index": 512,
-                "kind": "vertex",
-                "offset": 68817,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "first_edge_index": 246,
-                "point_index": 287,
-                "uninterpreted_field_4": 1
-              },
-              {
-                "index": 513,
-                "kind": "coedge",
-                "offset": 68880,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 153,
-                "previous_coedge_index": 154,
-                "partner_index": 104,
-                "edge_index": 188,
-                "loop_index": 99,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 514,
-                "kind": "coedge",
-                "offset": 68980,
-                "attribute_index": 245,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 187,
-                "previous_coedge_index": 243,
-                "partner_index": 229,
-                "edge_index": 246,
-                "loop_index": 99,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 515,
-                "kind": "coedge",
-                "offset": 69080,
-                "attribute_index": 189,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 229,
-                "previous_coedge_index": 66,
-                "partner_index": 65,
-                "edge_index": 106,
-                "loop_index": 81,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 516,
-                "kind": "coedge",
-                "offset": 69180,
-                "attribute_index": 318,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 316,
-                "previous_coedge_index": 105,
-                "partner_index": 154,
-                "edge_index": 246,
-                "loop_index": 81,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 517,
-                "kind": "straight-curve",
-                "offset": 69280,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  -2.0,
-                  1.0,
-                  2.0
-                ],
-                "direction": [
-                  0.0,
-                  -1.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 518,
-                "kind": "coedge",
-                "offset": 69377,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 243,
-                "previous_coedge_index": 187,
-                "partner_index": 240,
-                "edge_index": 244,
-                "loop_index": 99,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 519,
-                "kind": "coedge",
-                "offset": 69477,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 277,
-                "previous_coedge_index": 240,
-                "partner_index": 184,
-                "edge_index": 282,
-                "loop_index": 179,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 520,
-                "kind": "coedge",
-                "offset": 69577,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 281,
-                "previous_coedge_index": 323,
-                "partner_index": 153,
-                "edge_index": 244,
-                "loop_index": 179,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 521,
-                "kind": "straight-curve",
-                "offset": 69677,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  2.0,
-                  -1.0,
-                  0.0
-                ],
-                "direction": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  0.0,
-                  2.0
-                ]
-              },
-              {
-                "index": 522,
-                "kind": "vertex",
-                "offset": 69792,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "first_edge_index": 109,
-                "point_index": 377,
-                "uninterpreted_field_4": 1
-              },
-              {
-                "index": 523,
-                "kind": "coedge",
-                "offset": 69855,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 182,
-                "previous_coedge_index": 108,
-                "partner_index": 315,
-                "edge_index": 320,
-                "loop_index": 53,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 524,
-                "kind": "coedge",
-                "offset": 69955,
-                "attribute_index": 193,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 232,
-                "previous_coedge_index": 185,
-                "partner_index": 66,
-                "edge_index": 109,
-                "loop_index": 53,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 525,
-                "kind": "coedge",
-                "offset": 70055,
-                "attribute_index": 374,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 66,
-                "previous_coedge_index": 229,
-                "partner_index": 228,
-                "edge_index": 317,
-                "loop_index": 81,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 526,
-                "kind": "coedge",
-                "offset": 70155,
-                "attribute_index": 107,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 105,
-                "previous_coedge_index": 316,
-                "partner_index": 108,
-                "edge_index": 109,
-                "loop_index": 81,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 527,
-                "kind": "straight-curve",
-                "offset": 70255,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  2.0,
-                  -1.0,
-                  2.0
-                ],
-                "direction": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 528,
-                "kind": "coedge",
-                "offset": 70352,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 185,
-                "previous_coedge_index": 232,
-                "partner_index": 277,
-                "edge_index": 278,
-                "loop_index": 53,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 529,
-                "kind": "coedge",
-                "offset": 70452,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 240,
-                "previous_coedge_index": 277,
-                "partner_index": 373,
-                "edge_index": 378,
-                "loop_index": 179,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 530,
-                "kind": "coedge",
-                "offset": 70552,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 323,
-                "previous_coedge_index": 281,
-                "partner_index": 182,
-                "edge_index": 278,
-                "loop_index": 179,
-                "pcurve_index": null,
-                "is_reversed": false,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 531,
-                "kind": "loop",
-                "offset": 70652,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_loop_index": null,
-                "first_coedge_index": 154,
-                "face_index": 142
-              },
-              {
-                "index": 532,
-                "kind": "coedge",
-                "offset": 70713,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 154,
-                "previous_coedge_index": 153,
-                "partner_index": 314,
-                "edge_index": 328,
-                "loop_index": 99,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 533,
-                "kind": "loop",
-                "offset": 70813,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_loop_index": null,
-                "first_coedge_index": 229,
-                "face_index": 21
-              },
-              {
-                "index": 534,
-                "kind": "loop",
-                "offset": 70874,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_loop_index": null,
-                "first_coedge_index": 108,
-                "face_index": 42
-              },
-              {
-                "index": 535,
-                "kind": "coedge",
-                "offset": 70935,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_coedge_index": 108,
-                "previous_coedge_index": 182,
-                "partner_index": 103,
-                "edge_index": 186,
-                "loop_index": 53,
-                "pcurve_index": null,
-                "is_reversed": true,
-                "uninterpreted_field_9": 0
-              },
-              {
-                "index": 536,
-                "kind": "loop",
-                "offset": 71035,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_loop_index": null,
-                "first_coedge_index": 240,
-                "face_index": 226
-              },
-              {
-                "index": 539,
-                "kind": "shell",
-                "offset": 71237,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_shell_index": null,
-                "subshell_index": null,
-                "first_face_index": 80,
-                "first_wire_index": null,
-                "lump_index": 6
-              },
-              {
-                "index": 542,
-                "kind": "lump",
-                "offset": 71439,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "next_lump_index": null,
-                "first_shell_index": 18,
-                "body_index": 1
-              },
-              {
-                "index": 544,
-                "kind": "ellipse-curve",
-                "offset": 71563,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  1.0
-                ],
-                "normal": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "stored_reference_axis": [
-                  0.0,
-                  0.0,
-                  5.353970489272424
-                ],
-                "raw_major_radius": 5.353970489272424,
-                "raw_minor_radius": 5.353970489272424,
-                "stored_axis_ratio": 1.0,
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 546,
-                "kind": "point",
-                "offset": 71793,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  6.353970489272424
-                ]
-              },
-              {
-                "index": 550,
-                "kind": "plane-surface",
-                "offset": 72055,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  1.0
-                ],
-                "normal": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "stored_reference_axis": [
-                  0.0,
-                  0.0,
-                  1.0
-                ],
-                "is_v_reversed": false,
-                "u_interval": [
-                  null,
-                  null
-                ],
-                "v_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 555,
-                "kind": "ellipse-curve",
-                "offset": 72623,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  1.0
-                ],
-                "normal": [
-                  0.0,
-                  1.0,
-                  0.0
-                ],
-                "stored_reference_axis": [
-                  0.0,
-                  0.0,
-                  5.353970489272424
-                ],
-                "raw_major_radius": 5.353970489272424,
-                "raw_minor_radius": 5.353970489272424,
-                "stored_axis_ratio": 1.0,
-                "parameter_interval": [
-                  null,
-                  null
-                ]
-              },
-              {
-                "index": 557,
-                "kind": "point",
-                "offset": 72851,
-                "attribute_index": null,
-                "stored_entity_id": -1,
-                "pattern_index": null,
-                "raw_origin": [
-                  3.0,
-                  0.0,
-                  6.353970489272424
-                ]
               }
             ],
             "body_graphs": [
@@ -23830,224 +21952,37 @@
                 "coordinate_scope": "Raw ASM points; body transform and units/context not applied"
               }
             ],
-            "unresolved": [
-              {
-                "index": 418,
-                "kind": "edge",
-                "reason": "ASM pointer target has unexpected type: loop"
-              },
-              {
-                "index": 449,
-                "kind": "loop",
-                "reason": "ASM pointer target has unexpected type: shell"
-              },
-              {
-                "index": 450,
-                "kind": "shell",
-                "reason": "ASM pointer target has unexpected type: loop"
-              },
-              {
-                "index": 452,
-                "kind": "lump",
-                "reason": "ASM pointer target has unexpected type: loop"
-              },
-              {
-                "index": 453,
-                "kind": "body",
-                "reason": "ASM pointer target has unexpected type: loop"
-              },
-              {
-                "index": 455,
-                "kind": "vertex",
-                "reason": "ASM pointer target has unexpected type: face"
-              },
-              {
-                "index": 457,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: shell"
-              },
-              {
-                "index": 459,
-                "kind": "body",
-                "reason": "ASM pointer target has unexpected type: body"
-              },
-              {
-                "index": 460,
-                "kind": "lump",
-                "reason": "ASM pointer target has unexpected type: lump"
-              },
-              {
-                "index": 461,
-                "kind": "shell",
-                "reason": "ASM pointer target has unexpected type: ellipse-curve"
-              },
-              {
-                "index": 463,
-                "kind": "face",
-                "reason": "ASM pointer target has unexpected type: point"
-              },
-              {
-                "index": 465,
-                "kind": "loop",
-                "reason": "ASM pointer target has unexpected type: body"
-              },
-              {
-                "index": 466,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: body"
-              },
-              {
-                "index": 468,
-                "kind": "edge",
-                "reason": "ASM pointer target has unexpected type: face"
-              },
-              {
-                "index": 470,
-                "kind": "vertex",
-                "reason": "ASM pointer target has unexpected type: shell"
-              },
-              {
-                "index": 474,
-                "kind": "body",
-                "reason": "ASM pointer target has unexpected type: edge"
-              },
-              {
-                "index": 475,
-                "kind": "lump",
-                "reason": "ASM pointer target has unexpected type: point"
-              },
-              {
-                "index": 476,
-                "kind": "shell",
-                "reason": "ASM pointer target has unexpected type: ATTRIB_CUSTOM-attrib"
-              },
-              {
-                "index": 478,
-                "kind": "face",
-                "reason": "ASM pointer target has unexpected type: ATTRIB_CUSTOM-attrib"
-              },
-              {
-                "index": 480,
-                "kind": "loop",
-                "reason": "ASM pointer target has unexpected type: body"
-              },
-              {
-                "index": 481,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: body"
-              },
-              {
-                "index": 483,
-                "kind": "edge",
-                "reason": "ASM pointer target has unexpected type: face"
-              },
-              {
-                "index": 485,
-                "kind": "vertex",
-                "reason": "ASM pointer target has unexpected type: shell"
-              },
-              {
-                "index": 492,
-                "kind": "face",
-                "reason": "ASM pointer target has unexpected type: coedge"
-              },
-              {
-                "index": 506,
-                "kind": "edge",
-                "reason": "ASM pointer target has unexpected type: loop"
-              },
-              {
-                "index": 537,
-                "kind": "loop",
-                "reason": "ASM pointer target has unexpected type: shell"
-              },
-              {
-                "index": 538,
-                "kind": "shell",
-                "reason": "ASM pointer target has unexpected type: loop"
-              },
-              {
-                "index": 540,
-                "kind": "lump",
-                "reason": "ASM pointer target has unexpected type: loop"
-              },
-              {
-                "index": 541,
-                "kind": "body",
-                "reason": "ASM pointer target has unexpected type: loop"
-              },
-              {
-                "index": 543,
-                "kind": "vertex",
-                "reason": "ASM pointer target has unexpected type: face"
-              },
-              {
-                "index": 545,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: shell"
-              },
-              {
-                "index": 547,
-                "kind": "body",
-                "reason": "ASM pointer target has unexpected type: body"
-              },
-              {
-                "index": 548,
-                "kind": "lump",
-                "reason": "ASM pointer target has unexpected type: lump"
-              },
-              {
-                "index": 549,
-                "kind": "shell",
-                "reason": "ASM pointer target has unexpected type: ellipse-curve"
-              },
-              {
-                "index": 551,
-                "kind": "face",
-                "reason": "ASM pointer target has unexpected type: point"
-              },
-              {
-                "index": 553,
-                "kind": "loop",
-                "reason": "ASM pointer target has unexpected type: body"
-              },
-              {
-                "index": 554,
-                "kind": "coedge",
-                "reason": "ASM pointer target has unexpected type: body"
-              },
-              {
-                "index": 556,
-                "kind": "edge",
-                "reason": "ASM pointer target has unexpected type: face"
-              },
-              {
-                "index": 558,
-                "kind": "vertex",
-                "reason": "ASM pointer target has unexpected type: shell"
-              },
-              {
-                "index": 486,
-                "kind": "body_graph",
-                "reason": "Lump/body ownership is not reciprocal in this stored state"
-              },
-              {
-                "index": 488,
-                "kind": "body_graph",
-                "reason": "Lump/body ownership is not reciprocal in this stored state"
-              },
-              {
-                "index": 490,
-                "kind": "body_graph",
-                "reason": "Lump/body ownership is not reciprocal in this stored state"
-              }
-            ],
-            "scope": "Observed reciprocal body/face/edge graphs and partial primitives; cached states remain separate",
+            "unresolved": [],
+            "initial_geometry_record_count": 397,
+            "history_status": "History journal and trailing state records retained as tokens; excluded from topology graphs",
+            "scope": "Observed reciprocal links within initial geometry entity tables; no history-state merging",
             "nodes_included": true
-          }
+          },
+          "declared_root_records": [
+            {
+              "index": 0,
+              "kind": "asmheader"
+            },
+            {
+              "index": 1,
+              "kind": "body"
+            },
+            {
+              "index": 2,
+              "kind": "body"
+            },
+            {
+              "index": 3,
+              "kind": "body"
+            },
+            {
+              "index": 4,
+              "kind": "body"
+            }
+          ]
         }
       ],
-      "scope": "Observed ASM token grammar; final body identity and topology unresolved"
+      "scope": "Observed ASM tokens and reciprocal topology; final visible-body identity unresolved"
     }
   ]
 }

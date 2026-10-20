@@ -54,8 +54,11 @@ def parse_metadata(data):
     segment_index, namespace = reader.u32(), reader.string(True)
     magic, version, field_one, field_two = [reader.u32() for _ in range(4)]
     repeated_kind, storage_namespace = reader.string(), reader.string()
-    storage_version = [reader.u32(), reader.u32()]
-    if magic != 1234 or version != 8 or kind != repeated_kind or storage_version != [1, 0]:
+    storage_fields = [reader.u32(), reader.u32()]
+    observed_storage_fields = {"FusionDesignSegmentType": [1, 0], "FusionBrowserSegmentType": [6, 0],
+                               "FusionACTSegmentType": [5, 0]}
+    if (magic != 1234 or version != 8 or kind != repeated_kind
+            or storage_fields != observed_storage_fields.get(kind)):
         raise ValueError("Unsupported Fusion metadata header/version")
     classes, declared, guids = {}, {}, set()
     for index in range(reader.count(100000)):
@@ -91,6 +94,7 @@ def parse_metadata(data):
         raise ValueError("Invalid next Fusion object identity")
     return {"kind": kind, "segment_index": segment_index, "namespace": namespace,
             "version": version, "uninterpreted_header_fields": [field_one, field_two],
+            "uninterpreted_storage_fields": storage_fields,
             "storage_namespace": storage_namespace, "classes": classes, "declared_types": declared,
             "stored_object_list": stored_objects, "primary": primary, "continuations": continuations,
             "next_object_id": next_identity, "reserved": reserved, "properties": properties}

@@ -6,11 +6,12 @@ from decode_parameters import read_string
 from decode_sketch import attributes, reference
 
 
-def decode_body_bindings(data, records, member, asm_summary):
+def decode_body_bindings(data, records, member, asm_summary, body_properties=None):
     decoded, unresolved = [], []
     asset = member.rsplit("/FusionDesignSegmentType1/", 1)[0]
     primary = {r.object_id: r for r in records if r.is_primary}
     streams = {s["member"]: s for s in asm_summary["streams"]}
+    properties = {b["object_id"]: b for b in (body_properties or {}).get("bodies", [])}
     for record in records:
         if not record.is_primary or record.class_guid != "74CA4562-59F8-4C97-8AD1-F8297C21F9AA":
             continue
@@ -53,6 +54,12 @@ def decode_body_bindings(data, records, member, asm_summary):
                         "stored_body_tag": tag, "native_body_record_offset": native.start,
                         "mapping_entry_ordinal": ordinal,
                         "handle_scope": "Opaque stored handle; not an ASM record index"}
+                prop = properties.get(identity)
+                if prop and "collection_object_id" in prop:
+                    if prop["collection_object_id"] != owner:
+                        raise ValueError("Blob mapping owner disagrees with native body collection")
+                    item.update(name=prop["name"], name_status=prop["name_status"],
+                                component_object_id=prop["component_object_id"], component_name=prop["component_name"])
                 if ordered_candidates:
                     item["candidate_asm_body_index"] = roots[ordinal+1]["index"]
                     item["association_status"] = "Experimental ordered-entry/leading-root association; requires broader validation"

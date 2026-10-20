@@ -29,6 +29,7 @@ from decode_assembly import decode_assembly
 from decode_dependencies import decode_dependencies
 from asm_records import inspect_asm_members
 from decode_body_bindings import decode_body_bindings
+from decode_body_properties import decode_body_properties
 
 
 def named_features(data, records):
@@ -193,7 +194,8 @@ def decode_basics(path, zstd_library=None):
         timeline_summary = decode_timeline(data, records, features)
         assembly_summary = decode_assembly(data, records, features)
         dependency_summary = decode_dependencies(data, records, features, assembly_summary)
-        body_binding_summary = decode_body_bindings(data, records, name, asm_summary)
+        body_property_summary = decode_body_properties(data, records, assembly_summary)
+        body_binding_summary = decode_body_bindings(data, records, name, asm_summary, body_property_summary)
         resolved_selection_features = {s["feature_object_id"] for s in selection_summary["resolved"]}
         unresolved_selection_features = {s["feature_object_id"] for s in selection_summary["unresolved"]}
         modeling_summary["unresolved"] = [
@@ -216,6 +218,7 @@ def decode_basics(path, zstd_library=None):
             "assembly_decoding": assembly_summary,
             "dependency_decoding": dependency_summary,
             "body_blob_bindings": body_binding_summary,
+            "body_properties": body_property_summary,
         })
     return {
         "file": str(path), "status": "experimental partial decoder",
