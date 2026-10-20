@@ -79,7 +79,11 @@ def decode_parameter_tables(data, records, parameters):
             for name, identity in entries:
                 _, raw = typed(identity, NUMERIC)
                 choices = by_id.get(identity, [])
-                if len(choices) != 1 or choices[0]["parameter_name"] != name:
+                if not choices:
+                    raise ValueError("Parameter table member has no successfully decoded parameter record")
+                if len(choices) != 1:
+                    raise ValueError("Parameter table member resolves to ambiguous decoded parameter records")
+                if choices[0]["parameter_name"] != name:
                     raise ValueError("Parameter table name does not match its decoded parameter record")
                 parameter = choices[0]
                 if raw[-12] != 0 or reference(raw, len(raw)-11) != record.object_id:

@@ -12,7 +12,7 @@ from decode_brep_recipes import RECIPE_GUID, decode_recipe
 from decode_parameters import read_string
 from decode_selection import resolve_native_selection
 from decode_silhouette_splits import DIRECTION, decode_silhouette_splits
-from decode_sketch import attributes, numbers, reference
+from decode_sketch import attributes, numbers, reference, same
 
 TOPOLOGY = '5662F619-2281-4AD9-93DC-1FCFDA1062E7'
 AXIS_GEOMETRY = '19031004-3AB6-4D13-ABBF-C51EE214688D'
@@ -152,7 +152,10 @@ def resolve_silhouette_direction(data, records, features, direction_id, descript
         raise ValueError('Only captured edge-defined custom-axis supported')
     edge = topology(inner_descriptor_id, feature_id, 'BRepEdge')
     if axis_id in known:
-        raise ValueError('Ordinary resolved construction-axis source remains owned by original reader')
+        existing = known[axis_id]
+        if (existing['kind'] != 'ConstructionAxis' or existing.get('feature_object_id') != feature_id
+                or not same(existing['origin_cm'], origin) or not same(existing['direction'], [v/length for v in vector])):
+            raise ValueError('Known construction-axis geometry disagrees with reciprocal native source')
     axis_entity = {'kind': 'ConstructionAxis', 'object_id': axis_id, 'feature_object_id': feature_id,
                    'name': name, 'origin_cm': origin, 'stored_line_vector': vector,
                    'direction': [v/length for v in vector],

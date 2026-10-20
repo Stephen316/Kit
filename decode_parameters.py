@@ -45,6 +45,9 @@ def _bound_text_binding(data, records, binding_id, parameter_id, text, stored_in
         return struct.unpack_from("<Q", payload, offset+1)[0]
 
     record, body = typed(binding_id, "e5460b7b-000b-4a70-ab52-4c2fcc470eb2")
+    if len(body) >= 21 and struct.unpack_from("<I", body, 16)[0] == 3:
+        from decode_parameter_text_bindings import validate_numbered_text_binding
+        return validate_numbered_text_binding(data, records, binding_id, parameter_id, text, stored_index)
     if body[:5] != bytes.fromhex("0101000000") or body[16:21] != bytes.fromhex("0100000000"):
         raise ValueError("Unobserved bound Text binding prefix/value kind")
     owner = reference(body, 5)

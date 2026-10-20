@@ -47,6 +47,7 @@ from decode_plane_definitions import decode_plane_definitions
 from decode_construction_definitions import decode_construction_definitions
 from decode_construction_modes import decode_construction_modes
 from decode_construction_vertex_points import decode_construction_vertex_points
+from decode_brep_edge_axes import decode_brep_edge_axes
 from decode_profiles import decode_profiles
 from decode_timeline import decode_timeline
 from decode_timeline_state_details import decode_timeline_state_details
@@ -60,6 +61,7 @@ from decode_body_tool_selections import decode_body_tool_selections
 from decode_component_creation import decode_component_creation
 from decode_pin_provenance import decode_pin_provenance
 from decode_selection_context_recipes import decode_selection_context_recipes
+from decode_selection_context_variants import decode_selection_context_variants
 from decode_sketch_symmetric_indices import decode_sketch_symmetric_indices
 from decode_scale_inputs import decode_scale_vertex_points
 from decode_direct_body_features import decode_direct_body_features
@@ -73,6 +75,8 @@ from decode_special_fillets import decode_special_fillets
 from decode_surface_extrudes import decode_surface_extrudes
 from decode_body_mapping_variants import decode_body_mapping_variants
 from decode_recipe_components import decode_recipe_components
+from decode_body_property_variants import decode_body_collection_attribute_variants
+from decode_text_literal_dependencies import derive_text_literal_dependencies
 from decode_brep_recipes import decode_recipes
 from decode_component_body_proxies import decode_component_body_proxies
 from decode_combine import attach_combine_bodies
@@ -377,6 +381,19 @@ def decode_basics(path, zstd_library=None):
         construction_definition_summary = decode_construction_definitions(data, records, features)
         construction_mode_summary = decode_construction_modes(data, records, features)
         construction_vertex_summary = decode_construction_vertex_points(data, records, features)
+        brep_axis_summary = decode_brep_edge_axes(data, records, features)
+        recovered_axis_ids = {item["feature_object_id"] for item in brep_axis_summary["definitions"]}
+        for definition in brep_axis_summary["definitions"]:
+            feature = next(f for f in features if f["object_id"] == definition["feature_object_id"])
+            feature.update(definition["cached_geometry"], construction_definition=definition,
+                           decode_level="Observed native axis cache and owned BRep edge definition; construction regeneration unsupported",
+                           selection_status="Explicit owned BRep edge recipe and historical source body",
+                           unresolved_inputs=["Exact persistent source edge geometry and ASM identity"])
+        construction_mode_summary["definitions"].extend(brep_axis_summary["definitions"])
+        if recovered_axis_ids:
+            construction_mode_summary["scope"] += "; "+brep_axis_summary["scope"]
+        construction_mode_summary["unresolved"] = [item for item in construction_mode_summary["unresolved"]
+                                                      if item["feature_object_id"] not in recovered_axis_ids]
         resolved_vertex_ids = {d["feature_object_id"] for d in construction_vertex_summary["definitions"]}
         construction_mode_summary["unresolved"] = [u for u in construction_mode_summary["unresolved"]
                                                    if u["feature_object_id"] not in resolved_vertex_ids]
@@ -480,6 +497,18 @@ def decode_basics(path, zstd_library=None):
         discovery_summary["class_decoded_pin_provenance_count"] = len(pin_provenance_summary["decoded"])
         discovery_summary["class_decoded_copy_paste_count"] = len(copy_paste_summary["decoded"])
         body_property_summary = decode_body_properties(data, records, assembly_summary)
+        body_property_variant_summary = decode_body_collection_attribute_variants(data, records, assembly_summary, body_property_summary)
+        existing_collection_ids = {item["object_id"] for item in body_property_summary["collections"]}
+        body_property_summary["collections"].extend(item for item in body_property_variant_summary["decoded_collections"]
+                                                    if item["object_id"] not in existing_collection_ids)
+        body_ownership_updates = {item["object_id"]: item for item in body_property_variant_summary["body_ownership_updates"]}
+        for body in body_property_summary["bodies"]:
+            if body["object_id"] in body_ownership_updates:
+                body.update(body_ownership_updates[body["object_id"]])
+                body.pop("ownership_status", None)
+        recovered_collection_ids = {item["object_id"] for item in body_property_variant_summary["decoded_collections"]}
+        body_property_summary["unresolved"] = [item for item in body_property_summary["unresolved"]
+                                                  if item["kind"] != "BodyCollection" or item["object_id"] not in recovered_collection_ids]
         body_mapping_variant_summary = decode_body_mapping_variants(data, records, name, asm_summary, body_property_summary)
         recovered_body_names = {item["object_id"]: item for item in body_mapping_variant_summary["passive_body_name_updates"]}
         for body in body_property_summary["bodies"]:
@@ -510,11 +539,26 @@ def decode_basics(path, zstd_library=None):
                 tool_summary["decoded"].append({"object_id": feature["object_id"], "kind": "Fillet"})
         tool_summary["unresolved"] = [item for item in tool_summary["unresolved"] if item["object_id"] not in special_fillet_ids]
         selection_context_summary = decode_selection_context_recipes(data, records, body_selection_summary)
+        selection_context_variant_summary = decode_selection_context_variants(data, records, body_selection_summary,
+                                                                              selection_context_summary)
+        recovered_context_ids = {item["descriptor_object_id"] for item in selection_context_variant_summary["contexts"]}
+        selection_context_summary["contexts"].extend(selection_context_variant_summary["contexts"])
+        context_variant_failures = {item["descriptor_object_id"]: item for item in selection_context_variant_summary["unresolved"]}
+        selection_context_summary["unresolved"] = [item for item in selection_context_summary["unresolved"]
+                                                      if item["descriptor_object_id"] not in recovered_context_ids]
+        for item in selection_context_summary["unresolved"]:
+            if item["descriptor_object_id"] in context_variant_failures:
+                item["additional_reason"] = context_variant_failures[item["descriptor_object_id"]]["reason"]
+        if recovered_context_ids:
+            selection_context_summary["scope"] += "; "+selection_context_variant_summary["scope"]
         direct_body_summary = decode_direct_body_features(data, records, body_selection_summary)
         silhouette_summary = decode_silhouette_splits(data, records, features, body_selection_summary)
         silhouette_direction_summary = decode_silhouette_directions(data, records, features, body_selection_summary)
         original_silhouette_ids = {item["feature_object_id"] for item in silhouette_summary["decoded"]}
         extended_silhouette_ids = {item["feature_object_id"] for item in silhouette_direction_summary["decoded"]}
+        extended_silhouettes = {item["feature_object_id"]: item for item in silhouette_direction_summary["decoded"]}
+        silhouette_summary["decoded"] = [extended_silhouettes.get(item["feature_object_id"], item)
+                                          for item in silhouette_summary["decoded"]]
         silhouette_summary["decoded"].extend(item for item in silhouette_direction_summary["decoded"]
                                               if item["feature_object_id"] not in original_silhouette_ids)
         silhouette_summary["unresolved"] = [item for item in silhouette_summary["unresolved"]
@@ -623,6 +667,15 @@ def decode_basics(path, zstd_library=None):
             or item["object_id"] not in resolved_selection_features-unresolved_selection_features]
         parameter_table_summary = decode_parameter_tables(data, records, parameters)
         expression_dependency_summary = derive_expression_dependencies(parameters, parameter_table_summary)
+        text_literal_summary = derive_text_literal_dependencies(parameters, parameter_table_summary)
+        text_literal_ids = {item["parameter_object_id"] for item in text_literal_summary["derived"]}
+        expression_dependency_summary["derived"].extend(text_literal_summary["derived"])
+        expression_dependency_summary["unresolved"] = [item for item in expression_dependency_summary["unresolved"]
+                                                         if item["parameter_object_id"] not in text_literal_ids]
+        if text_literal_ids:
+            expression_dependency_summary["scope"] += "; "+text_literal_summary["scope"]
+            expression_dependency_summary["limitations"] = [item.replace("comparisons, Text,", "comparisons, nonliteral Text,")
+                                                            for item in expression_dependency_summary["limitations"]]
         streams.append({
             "member": name, "features": features, "unbound_parameters": unbound,
             "parameter_tables": parameter_table_summary,
@@ -673,6 +726,10 @@ def decode_basics(path, zstd_library=None):
             "body_mapping_variants": body_mapping_variant_summary,
             "recipe_reference_components": recipe_component_summary,
             "timeline_state_details": timeline_state_summary,
+            "body_property_variants": body_property_variant_summary,
+            "brep_edge_axes": brep_axis_summary,
+            "text_literal_dependencies": text_literal_summary,
+            "selection_context_variants": selection_context_variant_summary,
             "remaining_body_inputs": remaining_input_summary,
             "mirror_datum_outputs": mirror_datum_summary,
             "mirror_nested_occurrences": mirror_nested_summary,
