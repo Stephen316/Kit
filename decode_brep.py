@@ -8,6 +8,7 @@ Local Fusion samples establish the accepted token signatures and extra fields.
 from collections import Counter
 import math
 from decode_analytic import decode_analytic_surface
+from decode_bspline import decode_bspline
 
 
 LINKS = {
@@ -19,7 +20,7 @@ LINKS = {
              "subshell": (6, "subshell"), "surface": (7, "surface")},
     "loop": {"next_loop": (3, "loop"), "first_coedge": (4, "coedge"), "face": (5, "face")},
     "coedge": {"next_coedge": (3, "coedge"), "previous_coedge": (4, "coedge"),
-               "partner": (5, "coedge"), "edge": (6, "edge"), "loop": (8, "loop"), "pcurve": (10, "curve")},
+               "partner": (5, "coedge"), "edge": (6, "edge"), "loop": (8, "loop"), "pcurve": (10, "pcurve")},
     "edge": {"start_vertex": (3, "vertex"), "end_vertex": (5, "vertex"),
              "first_coedge": (7, "coedge"), "curve": (8, "curve")},
     "vertex": {"first_edge": (3, "edge"), "point": (5, "point")},
@@ -63,7 +64,7 @@ def decode_topology(parsed):
         return bounds
 
     geometry = {"point", "straight-curve", "ellipse-curve", "plane-surface", "transform",
-                "cone-surface", "sphere-surface", "torus-surface"}
+                "cone-surface", "sphere-surface", "torus-surface", "spline-surface", "intcurve-curve"}
     sizes = {"body": (6,), "lump": (6,), "shell": (8,), "face": (10, 11), "loop": (6,),
              "coedge": (11,), "edge": (11,), "vertex": (6,), "point": (4,), "straight-curve": (7, 8, 9),
              "ellipse-curve": (9, 10, 11)}
@@ -111,6 +112,8 @@ def decode_topology(parsed):
                             stored_trailing_text=token(record, 10, ("string",)))
             elif name == "vertex":
                 node["uninterpreted_field_4"] = token(record, 4, ("integer",))
+            elif name in ("spline-surface", "intcurve-curve"):
+                node["bspline_surface" if name == "spline-surface" else "bspline_curve"] = decode_bspline(record)
             elif name in ("cone-surface", "sphere-surface", "torus-surface"):
                 node["analytic_surface"] = decode_analytic_surface(record)
             elif name in geometry:
@@ -231,6 +234,8 @@ def decode_topology(parsed):
             graphs.append({"body_index": root["index"], "counts": counts, "lump_indices": lumps,
                            "shell_indices": shells, "face_indices": faces, "loop_indices": loops,
                            "coedge_indices": coedges, "edge_indices": sorted(edges), "vertex_indices": sorted(vertices),
+                           "pcurve_indices": sorted({nodes[c]["pcurve_index"] for c in coedges if nodes[c]["pcurve_index"] is not None}),
+                           "pcurve_status": "Parameter-space trim references retained; general pcurve geometry remains undecoded",
                            "raw_vertex_positions": raw_positions, "transform_index": root["transform_index"],
                            "body_transform_is_identity": bool(identity),
                            "body_transform_status": "No transform reference or observed identity" if identity
@@ -241,8 +246,15 @@ def decode_topology(parsed):
                                 "face_is_reversed": nodes[f]["is_reversed"],
                                 "geometry": nodes.get(nodes[f]["surface_index"], {}).get("analytic_surface"),
                                 "geometry_status": "Observed analytic fields decoded" if nodes.get(nodes[f]["surface_index"], {}).get("analytic_surface")
+                                                   else "Cached spline surface decoded separately" if nodes.get(nodes[f]["surface_index"], {}).get("bspline_surface")
                                                    else "Surface geometry schema unresolved"}
                                for f in faces],
+                           "spline_surfaces": [{"face_index": f, "surface_index": nodes[f]["surface_index"],
+                                                "cache": nodes[nodes[f]["surface_index"]]["bspline_surface"]}
+                                               for f in faces if nodes.get(nodes[f]["surface_index"], {}).get("bspline_surface")],
+                           "spline_curves": [{"edge_index": e, "curve_index": nodes[e]["curve_index"],
+                                              "cache": nodes[nodes[e]["curve_index"]]["bspline_curve"]}
+                                             for e in sorted(edges) if nodes.get(nodes[e]["curve_index"], {}).get("bspline_curve")],
                            "all_coedges_have_partners": bool(coedges) and all(nodes[c]["partner_index"] is not None for c in coedges),
                            "identity_status": "Stored body graph; final visible body mapping unresolved",
                            "coordinate_scope": "Raw ASM points; body transform and units/context not applied"})
