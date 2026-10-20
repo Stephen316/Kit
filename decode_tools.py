@@ -14,13 +14,14 @@ from decode_split import decode_split
 from decode_face_tools import decode_face_tool
 from decode_surface_tools import decode_surface_tool
 from decode_pipe import decode_pipe
+from decode_threads import decode_thread
 
 
 def decode_tools(data, records, features):
     supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken", "Hole",
                  "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer", "SplitBody",
                  "OffsetFaces", "ReplaceFace", "DeleteFace", "SurfacePatch", "SurfaceOffset", "SurfaceStitch",
-                 "Unstitch", "ReverseNormal", "SurfaceDeleteFace", "Pipe"}
+                 "Unstitch", "ReverseNormal", "SurfaceDeleteFace", "Pipe", "Thread"}
     decoded, unresolved = [], []
     axes = known_construction_entities(data, records, features)
     for feature in features:
@@ -41,7 +42,9 @@ def decode_tools(data, records, features):
 
         try:
             settings = {}
-            if kind == "Pipe":
+            if kind == "Thread":
+                settings = decode_thread(data, records, body, feature)
+            elif kind == "Pipe":
                 settings = decode_pipe(data, records, body, feature, features)
             elif kind in ("SurfacePatch", "SurfaceOffset", "SurfaceStitch", "Unstitch", "ReverseNormal", "SurfaceDeleteFace"):
                 settings = decode_surface_tool(data, records, body, feature)

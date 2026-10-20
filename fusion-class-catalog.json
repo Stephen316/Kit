@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 178,
+  "file_count": 187,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -179,10 +179,19 @@
     "pipemodes-87cfa7d8d82b/partial_closed.f3d",
     "pipemodes-87cfa7d8d82b/partial_open.f3d",
     "pipemodes-87cfa7d8d82b/square.f3d",
-    "pipemodes-87cfa7d8d82b/triangular.f3d"
+    "pipemodes-87cfa7d8d82b/triangular.f3d",
+    "threadmodes-6b6a0a9b4a69/partial_high.f3d",
+    "threadmodes-6b6a0a9b4a69/partial_low.f3d",
+    "threadmodes-9574579d310b/left_handed.f3d",
+    "threadmodes-d51d2ae60564/cosmetic_full.f3d",
+    "threadmodes-d51d2ae60564/internal.f3d",
+    "threadmodes-d51d2ae60564/left_handed.f3d",
+    "threadmodes-d51d2ae60564/modeled_full.f3d",
+    "threadmodes-d51d2ae60564/partial_high.f3d",
+    "threadmodes-d51d2ae60564/partial_low.f3d"
   ],
-  "class_count": 294,
-  "classes_with_observed_semantics": 41,
+  "class_count": 295,
+  "classes_with_observed_semantics": 42,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -1732,6 +1741,26 @@
         "moretools-88a2cd6cad0b/Draft.f3d",
         "moretools-88a2cd6cad0b/Thicken.f3d",
         "tools-fda3948848f4/Chamfer.f3d"
+      ]
+    },
+    {
+      "class_guid": "584D9526-EF22-4F6F-9FE1-5FCF1F3CE575",
+      "base_class_guids": [
+        "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        5
+      ],
+      "observed_semantics": [
+        "Named feature: Thread"
+      ],
+      "example_files": [
+        "threadmodes-6b6a0a9b4a69/partial_high.f3d",
+        "threadmodes-6b6a0a9b4a69/partial_low.f3d",
+        "threadmodes-9574579d310b/left_handed.f3d"
       ]
     },
     {
