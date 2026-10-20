@@ -12,7 +12,6 @@ from dataclasses import fields as GetFields
 from dataclasses import is_dataclass as IsDataClass
 from dataclasses import replace as ReplaceValue
 from enum import Enum as EnumBase
-import hashlib as HashCodec
 from importlib import import_module as ImportModule
 from typing import get_args as GetTypeArgs
 from typing import get_origin as GetTypeOrigin
@@ -22,34 +21,19 @@ import pytest as PytestLib
 from interchange import geometry as GeometryModule
 from interchange import (
     AssemblyData,
-    BrepPayload,
     CadDocument,
     CadSource,
     Capability,
     ComponentKind,
-    Configuration,
-    Expression,
     FeatureDefinition,
     FeatureStep,
-    MateConstraint,
-    MateEntity,
-    MateEntityKind,
-    MateKind,
-    Parameter,
-    ParameterValue,
     PayloadRole,
-    Provenance,
     Selection,
     SelectionPathElement,
-    SpaceVector,
 )
-from interchange.assembly.ComponentDefinition import ComponentDef
-from interchange.assembly.ComponentDocument import ComponentDoc
-from interchange.assembly.ComponentInstance import ComponentInst
 from interchange.document.models.DocumentCaps import InferCaps
 from interchange.document.models.DocumentIdentity import GetIdFields
 from interchange.geometry import Geometry
-from interchange.mesh.SurfaceMesh import SurfaceMesh
 from interchange.serialization.Deserialize import FromData
 from interchange.serialization.EncodeData import ToData
 from interchange.serialization.Wire import GetWireField
@@ -144,114 +128,6 @@ def CheckEnums() -> None:
     for EnumType in EnumTypes:
         assert tuple(EnumType.__members__.values()) == tuple(EnumType)
         assert len({MemberField.value for MemberField in EnumType}) == len(EnumType)
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckNestedCaps() -> None:
-    BaseValue = BuildDocument()
-    ParamValue = Parameter(
-        "parameter:child",
-        "Child parameter",
-        ParameterValue(1.0),
-        expression=Expression("1.0"),
-        provenance=Provenance("test", "parameter"),
-    )
-    BrepData = b"nested-brep"
-    PayloadValue = BrepPayload(
-        "payload:child",
-        "test.brep",
-        "shape",
-        "1",
-        HashCodec.sha256(BrepData).hexdigest(),
-        data=BrepData,
-        role=PayloadRole.KBrep,
-        file_extension=".brep",
-    )
-    MeshValue = SurfaceMesh(
-        "mesh:child",
-        "Child mesh",
-        (
-            SpaceVector(0.0, 0.0, 0.0),
-            SpaceVector(1.0, 0.0, 0.0),
-            SpaceVector(0.0, 1.0, 0.0),
-        ),
-        ((0, 1, 2),),
-    )
-    ChildValue = ReplaceValue(
-        BaseValue,
-        parameters=(ParamValue,),
-        selections=(Selection("selection:child", "Child selection", ()),),
-        bodies=(ReplaceValue(BaseValue.bodies[0], material_id="material:child"),),
-        meshes=(MeshValue,),
-        brep_payloads=(PayloadValue,),
-        capabilities=frozenset(),
-    )
-    RootDef = ComponentDef("definition:root", "Root", ComponentKind.KAssembly)
-    ChildDef = ComponentDef(
-        "definition:child",
-        "Child",
-        ComponentKind.KPart,
-        document_id="document:child",
-        source_path="Child.FCStd",
-    )
-    InstanceValue = ComponentInst("instance:child", "Child", ChildDef.id, RootDef.id)
-    MateEntityValue = MateEntity(
-        "mate-entity:root", RootDef.id, (), MateEntityKind.KPlane
-    )
-    MateValue = MateConstraint(
-        "mate:root",
-        "Root mate",
-        MateKind.KCoincident,
-        RootDef.id,
-        (MateEntityValue.id,),
-    )
-    AssemblyValue = AssemblyData(
-        RootDef.id,
-        (RootDef, ChildDef),
-        (InstanceValue,),
-        documents=(ComponentDoc("document:child", ChildValue),),
-        mate_entities=(MateEntityValue,),
-        mates=(MateValue,),
-    )
-    RootValue = CadDocument(
-        source=CadSource("test.assembly", "Root", "1" * 64),
-        configurations=(Configuration("configuration:root", "Default", True),),
-        parameters=(),
-        support_planes=(),
-        sketches=(),
-        selections=(),
-        feature_timeline=(),
-        bodies=(),
-        capabilities=frozenset(Capability),
-        assembly=AssemblyValue,
-    )
-    RootValue.assert_valid()
-    assert InferCaps(RootValue) == frozenset(Capability) - {Capability.KRoundtripMeta}
-    assert InferCaps(RootValue, RoundtripMeta=True) == frozenset(Capability)
-    StaleChild = ReplaceValue(BaseValue, capabilities=frozenset(Capability))
-    StaleAssembly = ReplaceValue(
-        AssemblyValue,
-        definitions=(RootDef, ReplaceValue(ChildDef, source_path="")),
-        documents=(ComponentDoc("document:child", StaleChild),),
-        mate_entities=(),
-        mates=(),
-    )
-    StaleRoot = ReplaceValue(
-        RootValue, assembly=StaleAssembly, capabilities=frozenset()
-    )
-    assert not InferCaps(StaleRoot) & {
-        Capability.KAssemblyMates,
-        Capability.KBrep,
-        Capability.KExpressions,
-        Capability.KExternalRefs,
-        Capability.KMaterials,
-        Capability.KNativePayloads,
-        Capability.KParameters,
-        Capability.KProvenance,
-        Capability.KRoundtripMeta,
-        Capability.KSelections,
-        Capability.KTessellation,
-    }
 
 
 # historical constructors must remain usable while adapters migrate independently

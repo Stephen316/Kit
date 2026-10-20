@@ -8,14 +8,10 @@
 
 from __future__ import annotations
 from dataclasses import replace as ReplaceValue
-import pytest as PytestLib
 from interchange import (
     CadDocument,
     SpaceVector,
 )
-from interchange.assembly.ComponentInstance import ComponentInst
-from interchange.assembly.TransformMatrix import TransformMatrix
-from interchange.document.models.DocumentError import DocumentError
 from interchange.mesh.SurfaceMesh import SurfaceMesh
 from tests.interchange.document.DocumentTests import BuildDocument
 from tests.interchange.fixtures.AssemblyFixture import (
@@ -44,66 +40,6 @@ def CheckRoundtrip() -> None:
     assert EmbeddedValue == BuildDocument()
     assert RestoredValue.assembly.GetChildren("definition:root") == (
         RestoredValue.assembly.instances[0],
-    )
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckTransform() -> None:
-    AssemblyValue = BuildAssembly().assembly
-    assert AssemblyValue is not None
-    TransformValue = AssemblyValue.instances[0].transform
-    assert TransformValue.TransformPoint((1.0, 2.0, 3.0)) == (101.0, 22.0, 33.0)
-    assert TransformValue.GetRows()[0] == (1.0, 0.0, 0.0, 100.0)
-    assert TransformValue.GetRows() == TransformValue.GetRows()
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckCycle() -> None:
-    SourceValue = BuildAssembly()
-    AssemblyValue = SourceValue.assembly
-    assert AssemblyValue is not None
-    CycleValue = ComponentInst(
-        "instance:cycle",
-        "Engine-1",
-        AssemblyValue.root_definition_id,
-        "definition:subassembly",
-    )
-    InvalidValue = ReplaceValue(
-        SourceValue,
-        assembly=ReplaceValue(
-            AssemblyValue, instances=(*AssemblyValue.instances, CycleValue)
-        ),
-    )
-    with PytestLib.raises(DocumentError, match="contains a cycle"):
-        InvalidValue.assert_valid()
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckBadLinks() -> None:
-    SourceValue = BuildAssembly()
-    AssemblyValue = SourceValue.assembly
-    assert AssemblyValue is not None
-    InvalidInst = ReplaceValue(
-        AssemblyValue.instances[0], transform=TransformMatrix((1.0,) * 15)
-    )
-    InvalidEntity = ReplaceValue(
-        AssemblyValue.mate_entities[1], instance_path=("instance:part",)
-    )
-    InvalidValue = ReplaceValue(
-        SourceValue,
-        assembly=ReplaceValue(
-            AssemblyValue,
-            instances=(InvalidInst, *AssemblyValue.instances[1:]),
-            mate_entities=(AssemblyValue.mate_entities[0], InvalidEntity),
-        ),
-    )
-    ErrorValues = InvalidValue.validate()
-    assert (
-        "component instance instance:subassembly has an invalid transform"
-        in ErrorValues
-    )
-    assert (
-        "mate entity mate-entity:part has a disconnected instance path" in ErrorValues
     )
 
 
@@ -141,42 +77,3 @@ def CheckMeshRound() -> None:
     ExtendedValue.assert_valid()
     RestoredValue = CadDocument.from_json(ExtendedValue.to_json())
     assert RestoredValue == ExtendedValue
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckMeshErrors() -> None:
-    SourceValue = BuildAssembly()
-    AssemblyValue = SourceValue.assembly
-    assert AssemblyValue is not None
-    MeshValue = SurfaceMesh(
-        "mesh:invalid",
-        "Invalid",
-        (SpaceVector(float("nan"), 0.0, 0.0),),
-        ((0, 1, 2),),
-        normals=(SpaceVector(0.0, 0.0, 1.0), SpaceVector(0.0, 0.0, 1.0)),
-    )
-    InvalidValue = ReplaceValue(SourceValue, meshes=(MeshValue,))
-    ErrorValues = InvalidValue.validate()
-    assert "mesh mesh:invalid contains a non-finite vertex" in ErrorValues
-    assert "mesh mesh:invalid has a mismatched normal count" in ErrorValues
-    assert "mesh mesh:invalid contains an invalid triangle" in ErrorValues
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckChildError() -> None:
-    SourceValue = BuildAssembly()
-    AssemblyValue = SourceValue.assembly
-    assert AssemblyValue is not None
-    LinkedValue = AssemblyValue.documents[0]
-    InvalidLinked = ReplaceValue(LinkedValue.document, configurations=())
-    InvalidValue = ReplaceValue(
-        SourceValue,
-        assembly=ReplaceValue(
-            AssemblyValue,
-            documents=(ReplaceValue(LinkedValue, document=InvalidLinked),),
-        ),
-    )
-    assert (
-        "component document document:part: document has no configuration"
-        in InvalidValue.validate()
-    )

@@ -273,7 +273,7 @@ the drafting-standard class name and the user name. Default output is determinis
 Do **not** copy a donor's `Definition` and do **not** substitute one from an arbitrary corpus file —
 that is measured as a crash whenever the donor's generation differs from the host's.
 
-`tests/convert/solidworks/configuration/SolidworksDefinitionTests.py` pins the byte-identity of the body against the
-recorded digest, the default stream digest, all three drafting standards, four user-name lengths,
-the assembly CLSID, the view block, complete typed-byte accounting, and the absence of encoded
-vendor blocks.
+`tests/convert/solidworks/configuration/SolidworksDefinitionTests.py` retains the quality checks for
+complete typed-byte accounting and the absence of encoded vendor blocks. Stream-level unit tests
+have been removed; complete document writing and vendor-oracle coverage remain in the higher-level
+suites.

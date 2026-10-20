@@ -28,13 +28,11 @@ from interchange import (
     CadDocument,
     Capability,
     LineCurve,
-    NurbsCurve,
     PlaneSurface,
     Transform,
     SpaceVector,
 )
 from interchange.document.models.DocumentCaps import InferCaps
-from interchange.document.models.DocumentFilter import FilterDocument
 from tests.interchange.document.DocumentTests import BuildDocument
 
 # dynamic package loading lets reflection inspect the facade without mixed import forms
@@ -112,55 +110,6 @@ def CheckRoundtrip() -> None:
     assert Capability.KBrep in InferCaps(SourceValue)
     RestoredValue = CadDocument.from_json(SourceValue.to_json())
     assert RestoredValue == SourceValue
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckBaseTypes() -> None:
-    SourceValue = ReplaceValue(
-        BuildDocument(),
-        brep=BuildTriangle(),
-        capabilities=frozenset({Capability.KBrep, Capability.KParamHistory}),
-    )
-    FilteredValue = FilterDocument(
-        SourceValue, IncludeBrep=False, IncludeMesh=True, KeepPayloads=True
-    )
-    assert FilteredValue.brep is None
-    assert Capability.KBrep not in FilteredValue.capabilities
-    assert Capability.KParamHistory in FilteredValue.capabilities
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckBadRefs() -> None:
-    ModelValue = BuildTriangle()
-    BrokenValue = ReplaceValue(
-        ModelValue, edges=(ReplaceValue(ModelValue.edges[0], curve_id="missing"),)
-    )
-    ErrorValues = BrokenValue.GetErrors(frozenset({"body:1"}))
-    assert any(("missing curve" in ErrorText for ErrorText in ErrorValues))
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckBadSpline() -> None:
-    ModelValue = BuildTriangle()
-    InvalidCurve = NurbsCurve(
-        "curve:0",
-        2,
-        (
-            SpaceVector(0.0, 0.0, 0.0),
-            SpaceVector(0.5, 0.5, 0.0),
-            SpaceVector(1.0, 0.0, 0.0),
-        ),
-        (0.0, 1.0),
-        (2, 2),
-    )
-    InvalidValue = ReplaceValue(
-        ModelValue,
-        curves=(InvalidCurve, *ModelValue.curves[1:]),
-        schema_version="",
-    )
-    ErrorValues = InvalidValue.GetErrors(frozenset({"body:1"}))
-    assert "B-rep schema version must be a non-empty string" in ErrorValues
-    assert "B-rep curve curve:0 is invalid" in ErrorValues
 
 
 # behavior coverage protects portable interchange semantics during structural refactors

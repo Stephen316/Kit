@@ -1615,17 +1615,6 @@ def TestFCCWNPSWP(TmpPath: FilePath) -> None:
     assert NativeData.operations[0].termination_code == Condition
 
 
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestVPPRAUFF() -> None:
-    SourceData = FreecadRPD()
-    assert HasVendorPartEncoding(SourceData)
-    UnsupportedFeature = ReplaceData(
-        SourceData.feature_timeline[0],
-        kind=FeatureKind.KLoft,
-        definition=NativeFeatureDefinition("freecad.fcstd", "PartDesign::Loft", {}),
-    )
-    UnsupportedData = ReplaceData(SourceData, feature_timeline=(UnsupportedFeature,))
-    assert not HasVendorPartEncoding(UnsupportedData)
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible

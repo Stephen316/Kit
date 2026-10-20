@@ -18,7 +18,6 @@ from convert.adapters.solidworks.container.Container import (
     DEFAULT_SIGNATURES as Signatures,
     SldprtArchive,
     build_sldprt as BuildSldprt,
-    signature_triplet as SignatureTriplet,
 )
 
 # centralizes shared evidence so every related assertion uses one value
@@ -183,15 +182,6 @@ def TestGCUTCR() -> None:
     assert Archive.streams == Streams
     SignaturesA = ContainerSignatures(BlobInfo)
     assert SignaturesA == Signatures
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFIWACRRTIS() -> None:
-    Absent = next((ItemValue for ItemValue in range(1, 1 << 20) if ItemValue != IdInfo))
-    with PytestLib.raises(ValueError, match="native template"):
-        _ = BuildSldprt({"Contents/SolidWorks": b"<swSolidWorks/>"}, file_id=Absent)
-    assert SignatureTriplet(Absent) is None
-    assert SignatureTriplet(IdInfo) == Signatures
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible

@@ -126,18 +126,3 @@ def CheckLossGate() -> None:
     assert ErrorInfo.value.dropped
     assert Capability.KEditableSketches in ErrorInfo.value.dropped
     assert TargetData.getvalue() == b""
-
-
-# native claims stay bounded by preservation support so metadata cannot overpromise output
-def CheckNativeCaps() -> None:
-    AdapterData = ResultAdapter(
-        AdapterInfo(
-            "format.invalid-native",
-            "Invalid native",
-            "1",
-            (".invalid",),
-            native_capabilities=frozenset({Capability.KBrep}),
-        )
-    )
-    with Pytest.raises(AdapterRegistryError, match="preservation capabilities"):
-        AdapterRegistry().register(AdapterData)

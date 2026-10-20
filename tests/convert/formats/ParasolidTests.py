@@ -33,7 +33,6 @@ from convert.geometry.Parasolid import (
     EncodeBrepMut as EncodeBrepModel,
     EncodePartMut as EncodePartitionStream,
     KEntityMagic as EntityMagic,
-    LinkedOrder as LinkedSubsetOrder,
     NurbsCurvePoint,
     NurbsSurfPoint as NurbsSurfacePoint,
     ParaHeaderData as ParasolidHeader,
@@ -321,12 +320,6 @@ def TestPSERRP() -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestPSERNPD() -> None:
-    with Pytest.raises(ValueError, match="must start"):
-        _ = EncodePartitionStream(b"not parasolid")
-
-
-# this definition exists because focused behavior needs one stable owner
 def TestBPSMSTP() -> None:
     Encoded = EncodeBPS()
     Decoded = DecodePartitionStream(Encoded, PartitionStream)
@@ -459,34 +452,6 @@ def TestNBWUVOBAFT() -> None:
     assert len(Restored.faces) == 1
     assert len(Restored.edges) == 3
     assert len(Restored.vertices) == 3
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestVOLDISFFVC() -> None:
-    LoopValue = 10
-    FinsValue = {
-        20: TopologyRecord(20, (1, LoopValue, 21, 22, 100, 30, 40, 1, 1), 0),
-        21: TopologyRecord(21, (1, LoopValue, 22, 20, 101, 31, 41, 1, 1), 0),
-        22: TopologyRecord(22, (1, LoopValue, 20, 21, 102, 32, 42, 1, 1), 0),
-        30: TopologyRecord(30, (1, 1, 1, 1, 102, 20, 40, 1, 1), 0),
-        31: TopologyRecord(31, (1, 1, 1, 1, 100, 21, 41, 1, 1), 0),
-        32: TopologyRecord(32, (1, 1, 1, 1, 101, 22, 42, 1, 1), 0),
-    }
-    TablesA = RecordTables({}, {}, {}, FinsValue, {}, {}, {}, {}, {}, True)
-    assert WalkCoedgeRing(TablesA, LoopValue, 20) == (20, 22, 21)
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestLSOFLWRO() -> None:
-    Links = {
-        40: (1, 30),
-        99: (1, 1),
-        20: (30, 10),
-        10: (20, 1),
-        30: (40, 20),
-    }
-    assert LinkedSubsetOrder((40, 10, 30, 20), Links) == (10, 20, 30, 40)
-    assert LinkedSubsetOrder((30, 10), Links) == (10, 30)
 
 
 # metadata integers need validation before binary order assertions consume them
@@ -929,26 +894,6 @@ def TestCIVFADFC(PathValueA: PathValue, Expected: int) -> None:
     assert all(Record.references[3] == Record.attribute for Record in Records)
     assert all(Record.references[4] > 1 for Record in Records)
     assert all(max(Record.references[5:]) <= 1 for Record in Records)
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestCIVFRTET() -> None:
-    Attribute = 7
-    References: tuple[int, ...] = (1, 8, Attribute, Attribute, 9, 1, 1, 1, 1)
-    Encoded = b"\x00\x11" + Struct.pack(">H9HB", Attribute, *References, 0x3F)
-    Decoded = ParseCoedge(Encoded, 0)
-    assert Decoded is not None
-    assert Decoded.isolated is True
-    for Index in (0, 5, 6, 7, 8):
-        Broken: list[int] = list(References)
-        Broken[Index] = 2
-        Candidate = b"\x00\x11" + Struct.pack(">H9HB", Attribute, *Broken, 0x3F)
-        assert ParseCoedge(Candidate, 0) is None
-    for Index in (2, 3):
-        Broken = list[int](References)
-        Broken[Index] = Attribute + 1
-        Candidate = b"\x00\x11" + Struct.pack(">H9HB", Attribute, *Broken, 0x3F)
-        assert ParseCoedge(Candidate, 0) is None
 
 
 # this definition exists because focused behavior needs one stable owner

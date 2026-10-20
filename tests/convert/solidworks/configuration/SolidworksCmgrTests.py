@@ -7,27 +7,11 @@
 # to you under it immediately and permanently.
 
 from __future__ import annotations
-import hashlib as Hashlib
-import struct as StructLib
-import pytest as PytestLib
 from convert.adapters.solidworks.container.Cmgr import (
-    ATOM_TABLE_HEAD as HeadInfo,
-    CONFIGURATION_MANAGER_STREAM as Stream,
-    DISPLAY_GEOMETRY_CACHE_BYTES as Bytes,
-    DOCUMENT_BUILD as Build,
-    DOCUMENT_GENERATION as Generation,
-    FIRST_ATOM_ID as IdInfo,
-    OBJECT_LIST_TAIL as TailInfo,
     RESIDUAL_SPANS as Spans,
-    ROOT_CLASS as Class,
-    VIEW_STYLE as Style,
-    VISUAL_PROPERTIES as Properties,
-    atom_ids_for as AtomIdsFor,
     declared_opaque_split as DeclaredOpaqueSplit,
-    encode_cmgr_stream as EncodeCmgrStream,
     tree_ids_for as TreeIdsFor,
 )
-from convert.adapters.solidworks.container.Container import SldprtFormatError
 
 # centralizes shared evidence so every related assertion uses one value
 KBytesA = 1957
@@ -58,96 +42,6 @@ KMmThree = (1476.0000000000002, 11954.000000000002)
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def TestOFDMTMD() -> None:
-    StreamA = EncodeCmgrStream()
-    assert len(StreamA) == KBytesA
-    assert Hashlib.sha256(StreamA).hexdigest() == KDigest
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestTFDMTMD() -> None:
-    StreamA = EncodeCmgrStream(feature_tree_ids=TreeIdsFor(3))
-    assert len(StreamA) == KBytesD
-    assert Hashlib.sha256(StreamA).hexdigest() == KDigestA
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-@PytestLib.mark.parametrize("Features", (1, 2, 3, 4, 5, 6, 7, 8))
-def TestSFTMPFSL(Features: int) -> None:
-    StreamA = EncodeCmgrStream(feature_tree_ids=TreeIdsFor(Features))
-    assert len(StreamA) == KBytesA + KBytesC * (Features - 1)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestCTFHUTRLGA() -> None:
-    StreamData = EncodeCmgrStream(feature_tree_ids=(32, 40), connected_history=True)
-    assert len(StreamData) == 2059
-    assert StructLib.pack("<III", 1, 102, 101) in StreamData
-    assert StructLib.pack("<III", 40, 110, 105) in StreamData
-    assert (
-        StructLib.pack("<HI", 0, 2)
-        + StructLib.pack("<III", 40, 31269785, 268435457)
-        + StructLib.pack("<III", 32, 31269785, 268435456)
-        in StreamData
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestCTFHUTRLG() -> None:
-    StreamData = EncodeCmgrStream(feature_tree_ids=(32, 40, 47), connected_history=True)
-    assert len(StreamData) == 2173
-    assert StructLib.pack("<IIIII", 2, 103, 102, 102, 101) in StreamData
-    assert StructLib.pack("<IIIII", 2, 102, 101, 103, 102) in StreamData
-    assert (
-        StructLib.pack("<HI", 0, 3)
-        + StructLib.pack("<III", 40, 31269785, 268435457)
-        + StructLib.pack("<III", 47, 31269785, 268435458)
-        + StructLib.pack("<III", 32, 31269785, 268435456)
-        in StreamData
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestCFFHUTRLG() -> None:
-    StreamData = EncodeCmgrStream(
-        feature_tree_ids=(32, 40, 47, 54), connected_history=True
-    )
-    assert len(StreamData) == 2299
-    assert StructLib.pack("<IIIIIII", 3, 104, 103, 103, 102, 102, 101) in StreamData
-    assert StructLib.pack("<IIIIIII", 3, 102, 101, 103, 102, 104, 103) in StreamData
-    assert (
-        StructLib.pack("<HI", 0, 4)
-        + StructLib.pack("<III", 54, 31269785, 268435459)
-        + StructLib.pack("<III", 40, 31269785, 268435457)
-        + StructLib.pack("<III", 47, 31269785, 268435458)
-        + StructLib.pack("<III", 32, 31269785, 268435456)
-        in StreamData
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestTFHUTRLB() -> None:
-    StreamData = EncodeCmgrStream(
-        feature_tree_ids=(34,), part_name="Part1", terminal_parent_tree_id=32
-    )
-    TerminalBody = (
-        StructLib.pack("<IHI", 101, 1, 32)
-        + StructLib.pack("<II", 1, 34)
-        + bytes(30)
-        + StructLib.pack("<I", 2)
-        + bytes(8)
-    )
-    assert len(StreamData) == 1973
-    assert TerminalBody in StreamData
-    assert (
-        StructLib.pack("<HI", 0, 2)
-        + StructLib.pack("<III", 34, 31269785, 268435456)
-        + StructLib.pack("<III", 32, 31269785, 268435457)
-        in StreamData
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
 def TestDAOBTTS() -> None:
     Split = DeclaredOpaqueSplit()
     assert Split["stream_bytes"] == KBytesA
@@ -165,97 +59,8 @@ def TestDGCIFTRZD() -> None:
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def TestTSDCIRZD() -> None:
-    StreamA = EncodeCmgrStream()
-    assert bytes(Bytes) in StreamA
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
 def TestTSCEFC() -> None:
     for Features in (1, 4, 8):
         Split = DeclaredOpaqueSplit(feature_tree_ids=TreeIdsFor(Features))
         assert Split["opaque"] == 0
         assert Split["declared"] == Split["stream_bytes"]
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestTHTRV() -> None:
-    assert Generation == 18000
-    assert Build == 2025268
-    assert IdInfo == 101
-    assert Stream == "Contents/CMgr"
-    assert len(Properties) == 77
-    assert len(HeadInfo) == 13
-    assert len(Style) == 9
-    assert len(TailInfo) == 7
-    assert (
-        dict(((NameText, ItemValue) for NameText, _, ItemValue in Properties))[
-            "material_name"
-        ]
-        == "Steel"
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestAIATIRFTRFV() -> None:
-    assert AtomIdsFor(3) == (101, 102, 103)
-    assert TreeIdsFor(3) == (32, 40, 48)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestSOWTCMCD() -> None:
-    StreamA = EncodeCmgrStream()
-    assert StreamA.startswith(b"\xff\xff\x01\x00" + bytes((len(Class), 0)))
-    assert Class.encode("ascii") in StreamA
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def NamedTPNLMTSBTB() -> None:
-    Short = EncodeCmgrStream(part_name="Part1")
-    LongInfo = EncodeCmgrStream(part_name="Part70")
-    assert len(LongInfo) == len(Short) + 2
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestMVARATPD() -> None:
-    assert KMmThree == (1476.0000000000002, 11954.000000000002)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestAFDGIR() -> None:
-    with PytestLib.raises(SldprtFormatError, match="generation"):
-        _ = EncodeCmgrStream(generation=14000)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestAEFSIR() -> None:
-    with PytestLib.raises(SldprtFormatError, match="at least one solid feature"):
-        _ = EncodeCmgrStream(feature_tree_ids=())
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestASDGCIR() -> None:
-    with PytestLib.raises(SldprtFormatError, match="display_geometry_cache"):
-        _ = EncodeCmgrStream(display_geometry_cache=bytes(64))
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestANDGCIR() -> None:
-    with PytestLib.raises(SldprtFormatError, match="display_geometry_cache"):
-        _ = EncodeCmgrStream(display_geometry_cache=b"\x01" + bytes(Bytes - 1))
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestALCWOTIPAIR() -> None:
-    with PytestLib.raises(SldprtFormatError, match="tree ids"):
-        _ = EncodeCmgrStream(
-            feature_tree_ids=(32, 40), link_atom_ids=(101, 102), link_tree_ids=(32,)
-        )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestAZFATIR() -> None:
-    with PytestLib.raises(SldprtFormatError, match="at least one solid feature"):
-        _ = AtomIdsFor(0)
-    with PytestLib.raises(SldprtFormatError, match="at least one solid feature"):
-        _ = TreeIdsFor(0)

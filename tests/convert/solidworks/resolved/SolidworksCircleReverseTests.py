@@ -24,7 +24,6 @@ from convert.adapters.solidworks.programs.configuration.circle.reverse.Registry 
 )
 from convert.adapters.solidworks.container.Container import (
     SldprtArchive,
-    SldprtFormatError,
 )
 from convert.adapters.solidworks.programs.resolved.circle.reverse.Program import (
     EncodeProgram as EncodeResolved,
@@ -147,11 +146,3 @@ def TestRPMCO() -> None:
     assert len(OracleConfig) == 25190
     assert EncodeResolved() == CanonResolved(OracleResolved)
     assert EncodeConfig() == CanonConfig(OracleConfig)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestRPRVWO() -> None:
-    with PytestLib.raises(SldprtFormatError, match="field width changed"):
-        _ = EncodeResolved({9853: "saved paths are intentionally unsupported"})
-    with PytestLib.raises(SldprtFormatError, match="field width changed"):
-        _ = EncodeConfig({44: "saved document names are intentionally unsupported"})

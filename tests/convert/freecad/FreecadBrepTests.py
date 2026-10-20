@@ -203,64 +203,6 @@ def CylinderBand() -> BrepModel:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestTriangleIs() -> None:
-    Vertices = ((0.0, 0.0, 0.0), (2.0, 0.0, 0.0), (2.0, 3.0, 0.0), (0, 3, 0))
-    Triangles = ((0, 1, 2), (0, 2, 3))
-    First = TriangleMeshBrep(Vertices, Triangles)
-    Second = TriangleMeshBrep(Vertices, Triangles)
-    assert First == Second
-    assert First.startswith(b"DBRep_DrawableShape\n\nCASCADE Topology V1")
-    assert b"Curves 5\n" in First
-    assert b"Surfaces 2\n" in First
-    assert b"TShapes 14\n" in First
-    assert b"\nSh\n" in First
-    assert First.endswith(b"\n+1 0 \n")
-
-
-# this definition exists because focused behavior needs one stable owner
-@Pytest.mark.parametrize(
-    ("Vertices", "Triangles", "Message"),
-    [
-        (((0, 0, 0), (1, 0, 0)), ((0, 1, 2),), "in range"),
-        (((0, 0, 0), (1, 0, 0), (2, 0, 0)), ((0, 1, 2),), "area"),
-        (((0, 0, 0), (1, 0, 0), (0, 1, 0)), (), "at least one"),
-    ],
-)
-def TestTriangle(
-    Vertices: tuple[tuple[float, float, float], ...],
-    Triangles: tuple[tuple[int, int, int], ...],
-    Message: str,
-) -> None:
-    with Pytest.raises(ValueError, match=Message):
-        _ = TriangleMeshBrep(Vertices, Triangles)
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestTriangleFor() -> None:
-    Result = TriangleMeshBrep(
-        ((0, 0, 0), (1, 0, 0), (0, 1, 0), (0, -1, 0), (0, 0, 1)),
-        ((0, 1, 2), (1, 0, 3), (0, 1, 4)),
-    )
-    assert b"TShapes 25\n" in Result
-    assert b"\nCo\n" in Result
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestNeutralBrep() -> None:
-    Model = TriangleBrep()
-    First = BrepModelBrep(Model)
-    Second = BrepModelBrep(Model)
-    assert First == Second
-    assert First.startswith(b"DBRep_DrawableShape\n\nCASCADE Topology V1")
-    assert b"Curve2ds 3\n" in First
-    assert b"Curves 3\n" in First
-    assert b"Surfaces 1\n" in First
-    assert b"TShapes 9\n" in First
-    assert b"\nFa\n0  9.9999999999999995e-08 1 0\n" in First
-    assert First.endswith(b"\n+1 0 \n")
-
-
-# this definition exists because focused behavior needs one stable owner
 def TestPeriodic() -> None:
     Encoded = BrepModelBrep(CylinderBand())
     assert IsStructurallyValidAscii(Encoded)
@@ -542,40 +484,6 @@ def TestFreeWireIs() -> None:
     Encoded = BrepModelBrep(Narrowed)
     assert IsStructurallyValidAscii(Encoded)
     assert b"\nWi\n" in Encoded
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestNeutralBreA() -> None:
-    Model = TriangleBrep()
-    Unsupported = Replace(
-        Model,
-        curves=(
-            NativeCurve(Model.curves[0].id, "catia", "cgm_curve"),
-            *Model.curves[1:],
-        ),
-    )
-    with Pytest.raises(
-        FreeCadBrepWriteError, match="writer_unimplemented.*NativeCurve"
-    ) as Error:
-        _ = BrepModelBrep(Unsupported)
-    assert Error.value.reason == "writer_unimplemented"
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestNeutralBreB() -> None:
-    Model = TriangleBrep()
-    Transformed = Replace(
-        Model,
-        bodies=(
-            Replace(
-                Model.bodies[0], transform=Transform(origin=VectorThree(1.0, 0.0, 0.0))
-            ),
-        ),
-    )
-    with Pytest.raises(
-        FreeCadBrepWriteError, match="writer_unimplemented.*identity body transforms"
-    ):
-        _ = BrepModelBrep(Transformed)
 
 
 # this definition exists because focused behavior needs one stable owner

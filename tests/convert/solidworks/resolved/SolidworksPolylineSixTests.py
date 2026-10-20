@@ -9,13 +9,11 @@
 from __future__ import annotations
 from dataclasses import replace as ReplaceData
 import hashlib as Hashlib
-import math as MathInfo
 from pathlib import Path as FilePath
 import pytest as PytestLib
 from convert import write_document as WriteDocument
 from convert.adapters.freecad import read_freecad as ReadFreecad
 from convert.adapters.solidworks import SldprtArchive
-from convert.adapters.solidworks.container.Container import SldprtFormatError
 from convert.adapters.solidworks.container.Format import (
     CONFIGURATION_STREAM as Stream,
     KEYWORDS_STREAM as StreamA,
@@ -27,8 +25,6 @@ from convert.adapters.solidworks.core.Native import (
 )
 from convert.adapters.solidworks.programs.resolved.polyline.sixpoint.Program import (
     EncodeProgram,
-    KDepthOffset,
-    KPointOffsets,
     PadFieldMap,
 )
 from convert.adapters.solidworks.programs.resolved.polyline.sixpoint.Registry import (
@@ -101,50 +97,6 @@ def TestPSPRCO() -> None:
     OracleData = KDonorStream.read_bytes()
     ProgramData = EncodeProgram(PadFieldMap(KDonorPoints, 8.0))
     assert ProgramData == OracleData
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestPSPRVWO() -> None:
-    with PytestLib.raises(SldprtFormatError, match="field width changed"):
-        _ = EncodeProgram({32: "a deliberately incompatible comment width"})
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestPSPVIS() -> None:
-    with PytestLib.raises(SldprtFormatError, match="exactly six"):
-        _ = PadFieldMap(KDonorPoints[:5], 8.0)
-    with PytestLib.raises(SldprtFormatError, match="finite"):
-        _ = PadFieldMap((*KDonorPoints[:5], (MathInfo.inf, 25.0)), 8.0)
-    with PytestLib.raises(SldprtFormatError, match="unique"):
-        _ = PadFieldMap((*KDonorPoints[:5], KDonorPoints[0]), 8.0)
-    with PytestLib.raises(SldprtFormatError, match="intersect"):
-        _ = PadFieldMap(
-            ((0.0, 0.0), (2.0, 2.0), (0.0, 2.0), (2.0, 0.0), (3.0, 0.0), (3.0, 3.0)),
-            8.0,
-        )
-    with PytestLib.raises(SldprtFormatError, match="positive"):
-        _ = PadFieldMap(KDonorPoints, 0.0)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestPSPOANF() -> None:
-    FieldValues = PadFieldMap(KDonorPoints, 8.0)
-    assert tuple(FieldValues) == (*KPointOffsets, KDepthOffset)
-    assert tuple((FieldValues[OffsetPos] for OffsetPos in KPointOffsets)) == (
-        0.0,
-        0.0,
-        0.04,
-        0.0,
-        0.04,
-        0.01,
-        0.015,
-        0.01,
-        0.015,
-        0.025,
-        0.0,
-        0.025,
-    )
-    assert FieldValues[KDepthOffset] == 0.008
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible

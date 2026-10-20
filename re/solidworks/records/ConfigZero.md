@@ -651,12 +651,10 @@ than 18000, because the tables are 18000-only and rung 4 makes cross-generation 
 measured crash rather than a risk. **The tables must be re-recorded if Kit ever targets another
 generation.**
 
-`tests/convert/solidworks/configuration/SolidworksConfigZeroTests.py` pins the reference digest and length, the 88-byte
-per-feature step over 1–8 features, the 25148-byte `single_length_unit` variant, the atom region as
-the only feature-dependent content, the region reconstruction and its node tiling, the 17 unit records
-and the 62-byte `moUserUnits_c` block inside each, that every declared field names its owning class,
-that every opaque byte sits in a named span summing to the split's opaque figure, and the
-declared-versus-opaque accounting with `opaque <= 5118` so the debt can only shrink.
+`tests/convert/solidworks/configuration/SolidworksConfigZeroTests.py` retains the quality checks for
+typed-byte ownership, zero opaque bytes, absence of encoded vendor blocks, and rejection of raw
+donor prologues. Stream-level unit tests have been removed; complete document conversion, native
+archive roundtrips, and vendor-oracle coverage remain in the higher-level suites.
 
 ## 9. Dimensioned circle specialization
 

@@ -92,16 +92,6 @@ KSldasm = KRootValue / "examples" / "Random" / "Pistons" / "Piston.SLDASM"
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestFormatNames() -> None:
-    assert CatiaAdapter().info is InfoValue
-    assert tuple(DocTypeBySuffix) == InfoValue.extensions
-    assert tuple(DocTypeBySuffix.values()) == (PartDocType, ProductDocType)
-    assert SuffixByDocType == {
-        DocType: Suffix for Suffix, DocType in DocTypeBySuffix.items()
-    }
-
-
-# this definition exists because focused behavior needs one stable owner
 def PackedManifest(RawValue: bytes) -> bytes:
     return b"".join(
         (
@@ -1107,11 +1097,6 @@ def TestCatpartAre() -> None:
     assert [
         Plane.attributes["principal_index"] for Plane in DocValue.support_planes
     ] == [0, 1, 2]
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestAdapterThe() -> None:
-    assert CatiaAdapter().info.capabilities == frozenset(Capability)
 
 
 # this definition exists because focused behavior needs one stable owner

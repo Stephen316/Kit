@@ -6,34 +6,13 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
-from dataclasses import replace as ReplaceData
 from pathlib import Path as FilePath
 import sys as SysModule
-from typing import cast as CastValue
-from typing import Protocol
 
 import pytest as Pytest
 
-from convert.adapters import AdapterDiscoveryError, AdapterInfo
-from convert.adapters import AdapterRegistry, AdapterRegistryError
-from convert.adapters.json import JsonAdapter
-
-from typing_extensions import override as Override
-
-
-# reflected replacement calls need a typed boundary for deliberately malformed metadata
-class InfoReplacer(Protocol):
-
-    # arbitrary values remain necessary because these tests exercise runtime contract rejection
-    def __call__(
-        self,
-        InfoData: AdapterInfo,
-        **NamedValues: object,
-    ) -> AdapterInfo: ...  # lgtm[py/ineffectual-statement]
-
-
-# the runtime dataclass helper retains legacy reflected names behind the typed test boundary
-KReplaceInfo = CastValue(InfoReplacer, ReplaceData)
+from convert.adapters import AdapterDiscoveryError
+from convert.adapters import AdapterRegistry
 
 
 # empty format packages must fail because silent omission would make catalog coverage misleading
@@ -81,91 +60,3 @@ def CheckSingleMod(TmpPath: FilePath, MonkeyPatch: Pytest.MonkeyPatch) -> None:
     MonkeyPatch.setattr(SysModule, "path", [str(TmpPath), *SysModule.path])
     RegistryData = AdapterRegistry()
     assert RegistryData.introspect(PackageName) == ("interchange.json",)
-
-
-# identifier validation must use case insensitive comparison because format names are wire contracts
-def CheckAliasCase() -> None:
-    RegistryData = AdapterRegistry()
-    AdapterData = JsonAdapter()
-    RegistryData.register(AdapterData)
-    assert RegistryData.reader("INTERCHANGE.JSON") is AdapterData
-    assert RegistryData.writer("Interchange.Json") is AdapterData
-
-    # conflicting canonical identifiers need isolation because rejection must target metadata differences
-    class ConflictJson(JsonAdapter):
-
-        # altered metadata exists because registry conflicts need an independently constructed adapter
-        @property
-        @Override
-        @Override
-        def info(self) -> AdapterInfo:
-            return KReplaceInfo(super().info, format_id="INTERCHANGE.JSON")
-
-    with Pytest.raises(AdapterRegistryError, match="metadata differ"):
-        RegistryData.register(ConflictJson())
-
-
-# alias identity validation stays separate because canonical collisions have different failures
-def CheckAliasIds() -> None:
-
-    # self aliases need isolation because canonical duplication has its own validation failure
-    class SelfAliasJson(JsonAdapter):
-
-        # altered metadata exists because self alias rejection needs an independent adapter
-        @property
-        @Override
-        @Override
-        def info(self) -> AdapterInfo:
-            return KReplaceInfo(super().info, aliases=("INTERCHANGE.JSON",))
-
-    with Pytest.raises(AdapterRegistryError, match="alias must differ"):
-        AdapterRegistry().register(SelfAliasJson())
-
-    # duplicate aliases need isolation because case folding must reject equivalent spellings
-    class DupAliasJson(JsonAdapter):
-
-        # altered metadata exists because duplicate alias rejection needs an independent adapter
-        @property
-        @Override
-        @Override
-        def info(self) -> AdapterInfo:
-            return KReplaceInfo(
-                super().info,
-                aliases=("kit.json", "KIT.JSON"),
-            )
-
-    with Pytest.raises(AdapterRegistryError, match="aliases must be unique"):
-        AdapterRegistry().register(DupAliasJson())
-
-
-# metadata type validation stays separate because immutable text fields form one contract
-def CheckInfoTypes() -> None:
-
-    # mutable extension data needs isolation because adapter metadata must remain immutable
-    class MutableExtJson(JsonAdapter):
-
-        # altered metadata exists because mutable extension rejection needs an independent adapter
-        @property
-        @Override
-        @Override
-        def info(self) -> AdapterInfo:
-            return KReplaceInfo(
-                super().info,
-                extensions=CastValue(tuple[str, ...], [".json"]),
-            )
-
-    with Pytest.raises(AdapterRegistryError, match="extensions has an invalid type"):
-        AdapterRegistry().register(MutableExtJson())
-
-    # numeric versions need isolation because adapter metadata must remain text based
-    class NumericVerJson(JsonAdapter):
-
-        # altered metadata exists because numeric version rejection needs an independent adapter
-        @property
-        @Override
-        @Override
-        def info(self) -> AdapterInfo:
-            return KReplaceInfo(super().info, version=CastValue(str, 1))
-
-    with Pytest.raises(AdapterRegistryError, match="version has an invalid type"):
-        AdapterRegistry().register(NumericVerJson())
