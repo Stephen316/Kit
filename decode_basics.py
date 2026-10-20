@@ -21,6 +21,7 @@ from decode_tools import decode_tools
 from fusion_archive import read_members
 from fusion_records import Record, record_fragments
 from fusion_metadata import design_records
+from discover_features import discover_features
 
 
 def named_features(data, records):
@@ -169,6 +170,7 @@ def decode_basics(path, zstd_library=None):
             continue
         records, record_index = design_records(data, members.get(name.replace("BulkStream.dat", "MetaStream.dat")))
         features = named_features(data, records)
+        discovery_summary = discover_features(data, records, features, record_index)
         parameters, rejected = decode_stream(data, records)
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
@@ -187,6 +189,7 @@ def decode_basics(path, zstd_library=None):
             "member": name, "features": features, "unbound_parameters": unbound,
             "rejected_parameters": rejected, "candidate_record_headers": len(records),
             "record_index": record_index,
+            "feature_discovery": discovery_summary,
             "sketch_decoding": sketch_summary,
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,

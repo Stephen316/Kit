@@ -11,7 +11,7 @@ def decode_modeling(data, records, features):
     unknown = []
     for feature in features:
         if feature["kind"] not in ("Extrude", "Revolve"):
-            if feature["kind"] != "Sketch":
+            if feature["kind"] not in ("Sketch", "UnsupportedFeature"):
                 feature["decode_level"] = "Named feature and observed numeric parameters only"
                 feature["unresolved_inputs"] = ["Geometry/topology selection and feature-specific settings"]
             continue
