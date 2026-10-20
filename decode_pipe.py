@@ -7,7 +7,7 @@ from decode_selection import resolve_single_sketch_curve
 from decode_sketch import reference
 
 
-def decode_pipe(data, records, body, feature, features):
+def decode_pipe(data, records, body, feature, features, *, path_resolver=None):
     if (feature["class_guid"] != "73615646-8752-4EE6-AD02-0B90804B7CD7"
             or body[:6] != bytes.fromhex("000100000000") or body[6] not in (0, 1)
             or struct.unpack_from("<I", body, 7)[0] != 4 or body[11:13] != b"\0\1" or body[68] != 0):
@@ -30,7 +30,8 @@ def decode_pipe(data, records, body, feature, features):
     if section not in (0, 1, 2) or not (0 < against <= 1 and 0 < along <= 1 and size > 0 and thickness >= 0):
         raise ValueError("Unsupported Pipe section or parameter range")
     path_id = reference(body, 69)
-    path = resolve_single_sketch_curve(data, records, path_id, feature["object_id"], features, ("Line", "Circle"))
+    path = (path_resolver(data, records, path_id, feature["object_id"], features) if path_resolver
+            else resolve_single_sketch_curve(data, records, path_id, feature["object_id"], features, ("Line", "Circle")))
     closed = path["is_closed"]
     if not closed and not math.isclose(along, against, abs_tol=1e-12):
         raise ValueError("Observed open Pipe fraction copies disagree")

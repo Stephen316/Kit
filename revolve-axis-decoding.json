@@ -77,7 +77,6 @@
   "capture_status": {
     "original_attempt": "revolveaxes-976a431b7076: four getter failures, zero archives; generator corrected to component modelParameters",
     "retry_folder": "revolveaxes-36bd04ac77e1",
-    "retry_terminal": false,
     "successful_exports": 1,
     "remaining_cases": [
       "sketch_line",
@@ -95,11 +94,25 @@
     ],
     "fusion_pid_at_observation": 57366,
     "accessible_window_count": 0,
-    "interpretation": "Fusion is inside a native signal/crash handler during next document creation; process remains live. No restart or additional script dispatch performed."
+    "interpretation": "Fusion is inside a native signal/crash handler during next document creation; process remains live. No restart or additional script dispatch performed.",
+    "retry_terminal_at_stack_observation": false
   },
   "limitations": [
     "Only the completed custom-axis archive has independent native/API evidence.",
     "Other requested axis kinds are pending successful capture.",
     "Persistent topology, geometry regeneration and native file writing remain unresolved."
-  ]
+  ],
+  "recovery_observation": {
+    "old_process_exited": true,
+    "old_pid": 57366,
+    "completion_marker_present": false,
+    "background_relaunch_requested": true,
+    "new_pid": 903,
+    "pending_cases_still_unverified": true,
+    "crash_report_sent_by_agent": false,
+    "subsequent_successful_capture_folders": {
+      "sketchtextpaths-63fe53b89eed": 6,
+      "pipepaths-3d11bd427946": 4
+    }
+  }
 }

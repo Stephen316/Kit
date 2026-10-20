@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 461,
+  "file_count": 480,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -262,6 +262,10 @@
     "pipemodes-87cfa7d8d82b/partial_open.f3d",
     "pipemodes-87cfa7d8d82b/square.f3d",
     "pipemodes-87cfa7d8d82b/triangular.f3d",
+    "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+    "pipepaths-3d11bd427946/composite_circular.f3d",
+    "pipepaths-3d11bd427946/composite_square_hollow_partial.f3d",
+    "pipepaths-3d11bd427946/spline_circular.f3d",
     "placement-c6ad25e75d60/placement.f3d",
     "planedefinitions-6cd0820a832e/angle.f3d",
     "planedefinitions-6cd0820a832e/midplane.f3d",
@@ -298,6 +302,7 @@
     "rectsymmetry-f09c57dcfd51/symmetric_both_odd.f3d",
     "rectsymmetry-f09c57dcfd51/symmetric_one.f3d",
     "rectsymmetry-f09c57dcfd51/symmetric_two.f3d",
+    "revolveaxes-36bd04ac77e1/custom_two_points.f3d",
     "revolvemodes-8eb734486235/axis_x.f3d",
     "revolvemodes-8eb734486235/cut.f3d",
     "revolvemodes-8eb734486235/intersect.f3d",
@@ -331,6 +336,20 @@
     "sketchprojections-67c0c4531b8f/linked_point.f3d",
     "sketchprojections-8fedd685854a/broken_line.f3d",
     "sketchprojections-8fedd685854a/unlinked_line.f3d",
+    "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
+    "sketchtextcontrols-9318aff8ae89/center.f3d",
+    "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d",
+    "sketchtextcontrols-9318aff8ae89/middle.f3d",
+    "sketchtextcontrols-9318aff8ae89/right_bottom.f3d",
+    "sketchtextcontrols-9318aff8ae89/spacing.f3d",
+    "sketchtextcontrols-9318aff8ae89/underline.f3d",
+    "sketchtextcontrols-9318aff8ae89/vertical_flip.f3d",
+    "sketchtextpaths-63fe53b89eed/arc_along_above.f3d",
+    "sketchtextpaths-63fe53b89eed/arc_fit_above.f3d",
+    "sketchtextpaths-63fe53b89eed/line_along_above.f3d",
+    "sketchtextpaths-63fe53b89eed/line_along_below.f3d",
+    "sketchtextpaths-63fe53b89eed/line_along_center_spacing.f3d",
+    "sketchtextpaths-63fe53b89eed/line_fit_above.f3d",
     "sketchtexts-a16af12c28bf/bold.f3d",
     "sketchtexts-a16af12c28bf/content_height.f3d",
     "sketchtexts-a16af12c28bf/italic.f3d",
@@ -464,7 +483,7 @@
     "userparameters-e9c6959ff5fd/text.f3d",
     "userparameters-e9c6959ff5fd/unitless.f3d"
   ],
-  "class_count": 348,
+  "class_count": 349,
   "classes_with_observed_semantics": 54,
   "classes": [
     {
@@ -480,9 +499,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "sketchtexts-a16af12c28bf/bold.f3d",
-        "sketchtexts-a16af12c28bf/content_height.f3d",
-        "sketchtexts-a16af12c28bf/italic.f3d"
+        "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
+        "sketchtextcontrols-9318aff8ae89/center.f3d",
+        "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d"
       ]
     },
     {
@@ -907,9 +926,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "sketchtexts-a16af12c28bf/bold.f3d",
-        "sketchtexts-a16af12c28bf/content_height.f3d",
-        "sketchtexts-a16af12c28bf/italic.f3d"
+        "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
+        "sketchtextcontrols-9318aff8ae89/center.f3d",
+        "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d"
       ]
     },
     {
@@ -1157,7 +1176,8 @@
       "observed_semantics": [],
       "example_files": [
         "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
-        "pathpatterncomposites-b6b4cf615504/spline_along.f3d"
+        "pathpatterncomposites-b6b4cf615504/spline_along.f3d",
+        "pipepaths-3d11bd427946/spline_circular.f3d"
       ]
     },
     {
@@ -3490,9 +3510,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "sketchtexts-a16af12c28bf/bold.f3d",
-        "sketchtexts-a16af12c28bf/content_height.f3d",
-        "sketchtexts-a16af12c28bf/italic.f3d"
+        "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
+        "sketchtextcontrols-9318aff8ae89/center.f3d",
+        "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d"
       ]
     },
     {
@@ -3893,6 +3913,24 @@
         "embossmodes-e40cc931d978/engraved.f3d",
         "embossmodes-e40cc931d978/multiple_profiles.f3d",
         "embossmodes-e40cc931d978/no_chain.f3d"
+      ]
+    },
+    {
+      "class_guid": "9D30FCDC-EA07-4141-93E2-918B1A59E962",
+      "base_class_guids": [
+        "60403D47-0C49-49B0-BDE8-1679608164A2"
+      ],
+      "namespaces": [
+        "MSketch"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchtextpaths-63fe53b89eed/arc_along_above.f3d",
+        "sketchtextpaths-63fe53b89eed/arc_fit_above.f3d",
+        "sketchtextpaths-63fe53b89eed/line_along_above.f3d"
       ]
     },
     {
@@ -5545,9 +5583,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "sketchtexts-a16af12c28bf/bold.f3d",
-        "sketchtexts-a16af12c28bf/content_height.f3d",
-        "sketchtexts-a16af12c28bf/italic.f3d"
+        "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
+        "sketchtextcontrols-9318aff8ae89/center.f3d",
+        "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d"
       ]
     },
     {
@@ -6363,9 +6401,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "sketchtexts-a16af12c28bf/bold.f3d",
-        "sketchtexts-a16af12c28bf/content_height.f3d",
-        "sketchtexts-a16af12c28bf/italic.f3d"
+        "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
+        "sketchtextcontrols-9318aff8ae89/center.f3d",
+        "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d"
       ]
     },
     {
