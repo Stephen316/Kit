@@ -13,7 +13,7 @@ from decode_sketch_texts import OPAQUE_PREFIX, OPAQUE_LAYOUT, decode_sketch_text
 ALIGNMENT = {1: 0, 3: 1, 2: 2}
 
 
-def decode_rectangle_text_controls(prefix, flags, tail):
+def decode_rectangle_text_controls(prefix, flags, tail, *, allowed_layouts=(OPAQUE_LAYOUT,)):
     """Shared-reader callback; validates invariant bytes before returning controls."""
     if len(prefix) != 25 or prefix[:1]+prefix[9:] != OPAQUE_PREFIX[:1]+OPAQUE_PREFIX[9:]:
         raise ValueError("Unobserved rectangle text prefix controls")
@@ -24,7 +24,7 @@ def decode_rectangle_text_controls(prefix, flags, tail):
     if len(flags) != 7 or flags[6] != 0 or flags[4] not in (0, 1) or flags[5] not in (0, 1):
         raise ValueError("Unobserved rectangle text formatting flags")
     horizontal = struct.unpack_from("<I", flags, 0)[0]
-    if len(tail) != 183 or tail[9:172] != OPAQUE_LAYOUT or tail[4] not in (0, 1):
+    if len(tail) != 183 or tail[9:172] not in allowed_layouts or tail[4] not in (0, 1):
         raise ValueError("Unobserved rectangle text layout controls")
     vertical, weight = struct.unpack_from("<I", tail, 0)[0], struct.unpack_from("<I", tail, 5)[0]
     if horizontal not in ALIGNMENT or vertical not in ALIGNMENT or weight not in (400, 700):

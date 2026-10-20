@@ -20,6 +20,7 @@ from decode_combine import decode_combine
 from decode_sweep import decode_sweep
 from decode_thicken import decode_thicken
 from decode_emboss import decode_emboss
+from decode_emboss_texts import decode_emboss_texts
 from decode_draft import decode_draft
 from decode_circular_patterns import decode_circular_pattern
 from decode_loft import decode_loft
@@ -44,7 +45,14 @@ def decode_tools(data, records, features):
         try:
             settings = {}
             if kind == "Emboss":
-                settings = decode_emboss(data, records, body, feature, features)
+                try:
+                    settings = decode_emboss(data, records, body, feature, features)
+                except (ValueError, KeyError, IndexError, struct.error) as profile_error:
+                    try:
+                        settings = decode_emboss_texts(data, records, body, feature, features)
+                    except (ValueError, KeyError, IndexError, struct.error) as text_error:
+                        raise ValueError("Unsupported Emboss variant; profiles: "+str(profile_error)
+                                         +"; editable Text: "+str(text_error)) from text_error
             elif kind == "BoundaryFill":
                 settings = decode_boundary_fill(data, records, body, feature, axes)
             elif kind == "PathPattern":

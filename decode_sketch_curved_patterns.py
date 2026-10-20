@@ -17,7 +17,8 @@ ELLIPSE = "FF23079A-D99C-47AB-940E-2F4E18F022AB"
 FITTED = "D82E012F-6DDD-4AED-BDE1-C0F7F9100B9B"
 
 
-def decode_sketch_curved_patterns(data, records, features):
+def decode_sketch_curved_patterns(data, records, features, *,
+                                 allow_multiple_seeds=False, allow_circular_fitted=False):
     """Return patterns/additional_geometry/unresolved without mutating features.
 
     Additional geometry is published only after its owning pattern passes common
@@ -101,7 +102,8 @@ def decode_sketch_curved_patterns(data, records, features):
                     if genesis in (258,130):
                         extras[curve.object_id] = 4
                 else:
-                    if record.class_guid != RECTANGULAR or payload[cursor:] != b"\xff"*8:
+                    if ((record.class_guid != RECTANGULAR and not allow_circular_fitted)
+                            or payload[cursor:] != b"\xff"*8):
                         raise ValueError("Only observed rectangular split fitted-spline layout supported")
                     continuation = [r for r in records if r.object_id == curve.object_id and r.start != curve.start]
                     item = decode_spline(data,records,curve,props,continuation,sketches,local)
@@ -111,16 +113,34 @@ def decode_sketch_curved_patterns(data, records, features):
                 local[curve.object_id] = item
                 if curve.object_id not in entities:
                     new[curve.object_id] = item
+            member_kinds = (("Line","Circle","Arc","Ellipse","FittedSpline") if allow_multiple_seeds
+                            else ("Arc","Ellipse","FittedSpline"))
             pattern, owner = decode_sketch_pattern(data,record,sketches,local,
-                member_kinds=("Arc","Ellipse","FittedSpline"),dependency_extras=extras)
-            if pattern["seed_entity_count"] != 1 or pattern["suppressed_instance_ordinals"] or pattern.get("direction_selections"):
+                member_kinds=member_kinds,dependency_extras=extras)
+            if ((pattern["seed_entity_count"] != 1 and not allow_multiple_seeds)
+                    or pattern["suppressed_instance_ordinals"] or pattern.get("direction_selections")):
                 raise ValueError("Only observed single curved seed/default direction/unsuppressed patterns supported")
-            seed = local[pattern["entity_ids"][0]]
             members = pattern["entity_ids"] + pattern["created_entity_ids"]
+            # Common framing already validates positional groups. Each source ID
+            # below is explicitly attached to that member by the native group.
+            source_by_member = {association["entity_id"]: association["seed_entity_id"]
+                                for group in pattern["instance_groups"] for association in group["seed_associations"]}
+            if set(source_by_member) != set(members):
+                raise ValueError("Explicit pattern seed associations do not cover members")
             validation = []
             for identity in members:
                 member = local[identity]
-                if member["kind"] == "Arc":
+                seed = local[source_by_member[identity]]
+                if member["kind"] == "Circle":
+                    if not same([member["radius_cm"]],[seed["radius_cm"]]):
+                        raise ValueError("Explicit Circle member radius differs from assigned seed")
+                    support = {"center_point_id":member["center_point_id"]}
+                elif member["kind"] == "Line":
+                    vectors = [[b-a for a,b in zip(g["start_cm"],g["end_cm"])] for g in (member,seed)]
+                    if not same([sum(x*x for x in vectors[0])],[sum(x*x for x in vectors[1])]):
+                        raise ValueError("Explicit Line member length differs from assigned seed")
+                    support = {"start_point_id":member["start_point_id"],"end_point_id":member["end_point_id"]}
+                elif member["kind"] == "Arc":
                     if not same([member["radius_cm"],member["end_angle_radians"]-member["start_angle_radians"]],
                                 [seed["radius_cm"],seed["end_angle_radians"]-seed["start_angle_radians"]]):
                         raise ValueError("Explicit Arc member radius/sweep differs from seed")
@@ -133,12 +153,23 @@ def decode_sketch_curved_patterns(data, records, features):
                     a,b = member["nurbs"],seed["nurbs"]
                     if a["degree"] != b["degree"] or not same(a["knots"],b["knots"]) or not same(a["weights"],b["weights"]) or len(a["control_points_cm"]) != len(b["control_points_cm"]):
                         raise ValueError("Explicit spline member NURBS schema differs from seed")
-                    delta = [x-y for x,y in zip(member["start_cm"],seed["start_cm"])]
-                    if not all(same(p,[x+y for x,y in zip(q,delta)]) for p,q in zip(a["control_points_cm"],b["control_points_cm"])):
-                        raise ValueError("Explicit rectangular spline control points are not consistent translations")
+                    if record.class_guid == RECTANGULAR:
+                        delta = [x-y for x,y in zip(member["start_cm"],seed["start_cm"])]
+                        if not all(same(p,[x+y for x,y in zip(q,delta)]) for p,q in zip(a["control_points_cm"],b["control_points_cm"])):
+                            raise ValueError("Explicit rectangular spline control points are not consistent translations")
+                    else:
+                        # An independent shape check only. Native IDs, never
+                        # distances, determine the source/member assignment.
+                        for i in range(len(a["control_points_cm"])):
+                            for j in range(i):
+                                distances = [sum((x-y)**2 for x,y in zip(g["control_points_cm"][i],g["control_points_cm"][j])) for g in (a,b)]
+                                if not same(distances[:1],distances[1:]):
+                                    raise ValueError("Explicit circular spline control-point shape differs from assigned seed")
                     support = {"fit_point_ids":member["fit_point_ids"],"geometry_record_offset":member["geometry_record_offset"]}
                 validation.append({"entity_object_id":identity,"class_guid":primary[identity].class_guid,
                                    "kind":member["kind"],"entity_tag":member["entity_tag"],"support":support})
+                if pattern["seed_entity_count"] != 1:
+                    validation[-1]["seed_entity_object_id"] = source_by_member[identity]
             pattern["sketch_object_id"] = owner
             pattern["curved_member_provenance"] = validation
             pattern["dependency_extra_status"] = "Seed Ellipse observed extra4 accepted by typed native ID; raw tag meaning unresolved; other slots zero"

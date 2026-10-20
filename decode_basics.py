@@ -18,7 +18,9 @@ from decode_parameters import decode_stream, read_string
 from decode_parameter_tables import decode_parameter_tables
 from decode_expression_dependencies import derive_expression_dependencies
 from decode_sketch import decode_sketches
-from decode_sketch_curved_patterns import decode_sketch_curved_patterns
+from decode_sketch_mixed_patterns import decode_sketch_mixed_patterns
+from decode_emboss_texts import decode_consumed_sketch_texts
+from decode_pipe_edge_controls import inspect_pipe_edge_controls
 from decode_sketch_text_controls import decode_sketch_text_controls
 from decode_sketch_text_paths import decode_sketch_text_paths
 from decode_sketch_coverage import decode_sketch_coverage
@@ -52,6 +54,7 @@ from asm_records import inspect_asm_members
 from decode_body_bindings import decode_body_bindings
 from decode_body_properties import decode_body_properties
 from decode_body_selections import decode_body_selections
+from decode_body_tool_selections import decode_body_tool_selections
 from decode_brep_recipes import decode_recipes
 from decode_component_body_proxies import decode_component_body_proxies
 from decode_combine import attach_combine_bodies
@@ -226,7 +229,7 @@ def decode_basics(path, zstd_library=None):
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
-        curved_pattern_summary = decode_sketch_curved_patterns(data, records, features)
+        curved_pattern_summary = decode_sketch_mixed_patterns(data, records, features)
         curved_sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
         recovered_curve_ids = set()
         for geometry in curved_pattern_summary["additional_geometry"]:
@@ -250,12 +253,15 @@ def decode_basics(path, zstd_library=None):
         sketch_summary["tool_constraints"]["scope"] += "; "+curved_pattern_summary["scope"]
         sketch_text_summary = decode_sketch_text_controls(data, records, features)
         path_text_summary = decode_sketch_text_paths(data, records, features)
+        consumed_text_summary = decode_consumed_sketch_texts(data, records, features)
         text_by_id = {t["object_id"]: t for t in sketch_text_summary["texts"]}
         for text in path_text_summary["texts"]:
             text_by_id.setdefault(text["object_id"], text)
+        for text in consumed_text_summary["texts"]:
+            text_by_id.setdefault(text["object_id"], text)
         sketch_text_summary["texts"] = sorted(text_by_id.values(), key=lambda t: t["record_offset"])
         text_unresolved = {}
-        for item in sketch_text_summary["unresolved"]+path_text_summary["unresolved"]:
+        for item in sketch_text_summary["unresolved"]+path_text_summary["unresolved"]+consumed_text_summary["unresolved"]:
             if item["object_id"] in text_by_id:
                 continue
             if item["object_id"] not in text_unresolved:
@@ -264,6 +270,7 @@ def decode_basics(path, zstd_library=None):
                 text_unresolved[item["object_id"]]["additional_reason"] = item["reason"]
         sketch_text_summary["unresolved"] = list(text_unresolved.values())
         sketch_text_summary["scope"] += "; "+path_text_summary["scope"]
+        sketch_text_summary["scope"] += "; "+consumed_text_summary["scope"]
         text_sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
         for text in sketch_text_summary["texts"]:
             text_sketches[text["sketch_object_id"]].setdefault("texts", []).append(text)
@@ -347,13 +354,16 @@ def decode_basics(path, zstd_library=None):
                                              if (a["feature_object_id"], a["selection_object_id"]) not in resolved_axis_keys]
         tool_summary = decode_tools(data, records, features)
         pipe_provenance_summary = {"partial": [], "unresolved": [],
-                                   "scope": "Separate source provenance for Pipe variants without full decoded settings; closure and geometry stay unresolved"}
+                                   "scope": "Separate source provenance and observed edge Pipe controls without full decoded settings; closure and geometry stay unresolved"}
         for pipe in features:
             if pipe["kind"] != "Pipe" or "tool_settings" in pipe:
                 continue
             pipe_record = next(r for r in records if r.start == pipe["record_offset"])
             try:
-                source = inspect_pipe_edge_path(data, records, data[pipe_record.body:pipe_record.end], pipe, features)
+                try:
+                    source = inspect_pipe_edge_controls(data, records, data[pipe_record.body:pipe_record.end], pipe, features)
+                except (ValueError, KeyError, IndexError, struct.error):
+                    source = inspect_pipe_edge_path(data, records, data[pipe_record.body:pipe_record.end], pipe, features)
                 pipe_provenance_summary["partial"].append(source)
             except (ValueError, KeyError, IndexError, struct.error) as error:
                 pipe_provenance_summary["unresolved"].append({"feature_object_id": pipe["object_id"], "reason": str(error)})
@@ -386,6 +396,10 @@ def decode_basics(path, zstd_library=None):
         body_selection_summary["unresolved"].extend(component_body_summary["unresolved"])
         body_selection_summary["component_context_scope"] = component_body_summary["scope"]
         attach_combine_bodies(features, body_selection_summary)
+        body_tool_selection_summary = decode_body_tool_selections(data, records, features, body_selection_summary)
+        for selected_inputs in body_tool_selection_summary["decoded"]:
+            feature = next(f for f in features if f["object_id"] == selected_inputs["feature_object_id"])
+            feature["tool_settings"].update(selected_inputs["settings"])
         tool_body_summary = decode_tool_body_inputs(data, records, features, body_selection_summary)
         for item in tool_body_summary["decoded"]:
             feature = next(f for f in features if f["object_id"] == item["feature_object_id"])
@@ -439,6 +453,7 @@ def decode_basics(path, zstd_library=None):
             "body_blob_bindings": body_binding_summary,
             "body_properties": body_property_summary,
             "body_selections": body_selection_summary,
+            "body_tool_selections": body_tool_selection_summary,
             "tool_body_inputs": tool_body_summary,
             "recipe_decoding": recipe_summary,
             "body_placement": body_placement_summary,

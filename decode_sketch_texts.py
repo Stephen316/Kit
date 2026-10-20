@@ -57,7 +57,7 @@ def _observed_text_controls(prefix, flags, tail):
     }
 
 
-def decode_sketch_texts(data, records, features, *, controls_decoder=None, definition_decoder=None):
+def decode_sketch_texts(data, records, features, *, controls_decoder=None, definition_decoder=None, allow_text_tag_base=False):
     """Return texts/unresolved; caller may attach each text by sketch_object_id.
 
     This does not mutate features or require already decoded primitive geometry.
@@ -81,11 +81,12 @@ def decode_sketch_texts(data, records, features, *, controls_decoder=None, defin
         record = choices[0]
         return record, data[record.body:record.end]
 
-    def binding(identity, guid, owner, expected):
+    def binding(identity, guid, owner, expected, *, allow_numbered_slot=False):
         record, body = typed(identity, guid)
         kind = 1 if guid == TEXT_BINDING else 0
+        slot = struct.unpack_from('<I', body, 16)[0]
         if (body[:5] != b"\x01\x01\0\0\0" or reference(body, 5) != owner
-                or struct.unpack_from("<I", body, 16)[0] != kind or body[20] != 0):
+                or (not allow_numbered_slot and slot != kind) or body[20] != 0):
             raise ValueError("Unsupported SketchText binding prefix or owner")
         if kind:
             value, cursor = read_string(body, 21, allow_text_controls=True)
@@ -105,7 +106,7 @@ def decode_sketch_texts(data, records, features, *, controls_decoder=None, defin
         _, bookkeeping_body = typed(bookkeeping, "6CCF41D5-40BE-48ED-A834-18F3EAED6C57")
         if len(bookkeeping_body) != 39 or reference(bookkeeping_body, 12) != identity:
             raise ValueError("SketchText binding bookkeeping link mismatch")
-        return parameter_id, index, record
+        return parameter_id, index, record, slot
 
     def text_parameter(identity, binding_id, index, text):
         record, body = typed(identity, PARAMETER)
@@ -169,7 +170,12 @@ def decode_sketch_texts(data, records, features, *, controls_decoder=None, defin
         try:
             body = data[record.body:record.end]
             props, cursor = attributes(body, 2)
-            if (body[:2] != b"\0\x01" or set(props) != {"EntityGenesis", "textex_tag"}
+            allowed_attributes = {"EntityGenesis", "textex_tag"}
+            if allow_text_tag_base and "txt_tag_base" in props:
+                if type(props["txt_tag_base"]) is not int or props["txt_tag_base"] < 0:
+                    raise ValueError("Unsupported opaque SketchText tag base")
+                allowed_attributes.add("txt_tag_base")
+            if (body[:2] != b"\0\x01" or set(props) != allowed_attributes
                     or props["EntityGenesis"] != 0):
                 raise ValueError("Unsupported SketchText source attributes")
             prefix = body[cursor:cursor+25]
@@ -237,14 +243,19 @@ def decode_sketch_texts(data, records, features, *, controls_decoder=None, defin
                 # Only the nested definition receives callback fields. Core text,
                 # sketch ownership and reciprocal bindings stay in this reader.
                 definition = {**controls["definition_properties"], **decoded_definition}
-            height_id, height_index, _ = binding(height_binding_id, HEIGHT_BINDING, feature["object_id"], height)
-            text_id, text_index, _ = binding(text_binding_id, TEXT_BINDING, feature["object_id"], content)
+            numbered_slots = allow_text_tag_base and "txt_tag_base" in props
+            height_id, height_index, _, height_slot = binding(height_binding_id, HEIGHT_BINDING, feature["object_id"], height, allow_numbered_slot=numbered_slots)
+            text_id, text_index, _, text_slot = binding(text_binding_id, TEXT_BINDING, feature["object_id"], content, allow_numbered_slot=numbered_slots)
             height_parameter = numeric[height_id]
             text_parameter_value = text_parameter(text_id, text_binding_id, text_index, content)
             if (height_parameter["declared_binding_object_id"] != height_binding_id
                     or height_parameter["role"] != text_parameter_value["role"][:-4]+"Height"
                     or not same([height_parameter["raw_float64"]], [height])):
                 raise ValueError("SketchText height/text parameter roles or values disagree")
+            if numbered_slots:
+                ordinal = int(text_parameter_value["role"][4:-5])
+                if ordinal < 1 or (height_slot, text_slot) != (2*(ordinal-1), 2*(ordinal-1)+1):
+                    raise ValueError("SketchText numbered binding slots disagree with TextN roles")
             _, feature_body = typed(feature["object_id"], feature["class_guid"])
             count = struct.unpack_from("<I", feature_body, 3)[0]
             if count > 1024:
@@ -256,6 +267,10 @@ def decode_sketch_texts(data, records, features, *, controls_decoder=None, defin
                 "kind": "Text", "object_id": record.object_id, "record_offset": record.start,
                 "class_guid": TEXT, "sketch_object_id": owner, "sketch_feature_object_id": feature["object_id"],
                 "entity_tag": props["textex_tag"], "text": content, "font_name": font, "height_cm": height,
+                **({"opaque_tag_base": props["txt_tag_base"],
+                    "opaque_tag_base_status": "Stored optional txt_tag_base retained; glyph indexing/identity semantics unresolved",
+                    "native_binding_slots": {"height": height_slot, "text": text_slot}}
+                   if "txt_tag_base" in props else {}),
                 **controls["text_properties"],
                 "is_fixed": None, "is_reference": None,
                 "text_parameter": text_parameter_value,

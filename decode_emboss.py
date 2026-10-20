@@ -10,7 +10,7 @@ from decode_sketch import reference
 EMBOSS = 'C3A9ECCE-7D25-4432-A645-3A0D9687F22A'
 
 
-def decode_emboss(data, records, body, feature, features):
+def decode_emboss(data, records, body, feature, features, *, profile_resolver=resolve_sketch_profiles):
     if (feature['class_guid'] != EMBOSS or len(body) < 145 or body[:4] != b'\0'*4 or body[4] not in (0, 1)
             or struct.unpack_from('<I', body, 38)[0] != 1 or body[46:50] != b'\0'*4):
         raise ValueError('Unsupported Emboss class/control prefix')
@@ -41,7 +41,7 @@ def decode_emboss(data, records, body, feature, features):
     face_ids, cursor = counted(cursor+12)
     if len(face_ids) != 1 or reference(body, 69) != face_ids[0]:
         raise ValueError('Only observed repeated single-target Emboss face selection supported')
-    profiles = [p for identity in profile_ids for p in resolve_sketch_profiles(data, records, identity, feature['object_id'], features)]
+    profiles = [p for identity in profile_ids for p in profile_resolver(data, records, identity, feature['object_id'], features)]
     if not profiles:
         raise ValueError('Emboss profile membership unresolved')
     faces = [resolve_native_faces(data, records, identity, feature['object_id']) for identity in face_ids]

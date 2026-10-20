@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 490,
+  "file_count": 507,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -24,6 +24,10 @@
     "bodymodes-df9b7113539f/shell_inside.f3d",
     "bodymodes-df9b7113539f/shell_outside.f3d",
     "bodymodes-df9b7113539f/shell_rounded.f3d",
+    "bodyselections-62e42366c722/mirror_two_bodies_plane.f3d",
+    "bodyselections-62e42366c722/scale_two_bodies_point.f3d",
+    "bodyselections-62e42366c722/shell_body.f3d",
+    "bodyselections-62e42366c722/shell_two_faces.f3d",
     "boundaryfills-a0953038318b/component_middle.f3d",
     "boundaryfills-a0953038318b/cut_middle.f3d",
     "boundaryfills-a0953038318b/intersect_middle.f3d",
@@ -95,6 +99,10 @@
     "embossmodes-e40cc931d978/raised.f3d",
     "embossmodes-e40cc931d978/rotated.f3d",
     "embossmodes-e40cc931d978/shifted.f3d",
+    "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+    "embosstext-cd769aa41cdf/text_deboss.f3d",
+    "embosstext-cd769aa41cdf/text_emboss.f3d",
+    "embosstext-cd769aa41cdf/two_texts.f3d",
     "extents-f0f33a9a605f/distance_negative.f3d",
     "extents-f0f33a9a605f/distance_positive.f3d",
     "extents-f0f33a9a605f/from_plane.f3d",
@@ -256,6 +264,11 @@
     "patterns-35e49809a812/symmetric_two.f3d",
     "patterns-35e49809a812/two_extent.f3d",
     "patterns-35e49809a812/two_spacing.f3d",
+    "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+    "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+    "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+    "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+    "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
     "pipemodes-87cfa7d8d82b/circular.f3d",
     "pipemodes-87cfa7d8d82b/hollow.f3d",
     "pipemodes-87cfa7d8d82b/partial_closed.f3d",
@@ -331,6 +344,10 @@
     "sketches-0ccea2ac0f9c/horizontal.f3d",
     "sketches-0ccea2ac0f9c/radius.f3d",
     "sketches-0ccea2ac0f9c/vertical.f3d",
+    "sketchmixedpatterns-fcb7610f3c95/circular_arc_circle.f3d",
+    "sketchmixedpatterns-fcb7610f3c95/circular_fitted_spline.f3d",
+    "sketchmixedpatterns-fcb7610f3c95/rectangular_ellipse_line.f3d",
+    "sketchmixedpatterns-fcb7610f3c95/rectangular_fitted_spline_arc.f3d",
     "sketchpatternmodes-5b83cb71a99d/circular_line.f3d",
     "sketchpatternmodes-5b83cb71a99d/circular_line_circle.f3d",
     "sketchpatternmodes-5b83cb71a99d/circular_suppressed.f3d",
@@ -493,7 +510,7 @@
     "userparameters-e9c6959ff5fd/text.f3d",
     "userparameters-e9c6959ff5fd/unitless.f3d"
   ],
-  "class_count": 349,
+  "class_count": 350,
   "classes_with_observed_semantics": 54,
   "classes": [
     {
@@ -3792,6 +3809,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "analytic-86a12b291d0a/analytic.f3d",
         "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
+      "class_guid": "92F9A5F4-09AA-4B1B-9EE6-DF574D1D183C",
+      "base_class_guids": [
+        "6144EA59-3ACA-4172-9F14-A6531E94D69B"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+        "embosstext-cd769aa41cdf/text_deboss.f3d",
+        "embosstext-cd769aa41cdf/text_emboss.f3d"
       ]
     },
     {
