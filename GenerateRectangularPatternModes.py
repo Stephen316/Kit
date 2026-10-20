@@ -88,8 +88,11 @@ def run(context):
                 # The feature-wide setter is unimplemented in this Fusion build.
                 # This separately documented setter is an optional single-case
                 # probe; it is intentionally excluded from the default cases.
+                # Editing an element requires the parent feature rolled back.
+                feature.timelineObject.rollTo(True)
                 feature.patternElements.item(1).isSuppressed = True
                 feature.patternElements.item(4).isSuppressed = True
+                design.timeline.moveToEnd()
                 design.computeAll()
             settings = {"quantity_one": feature.quantityOne.value, "quantity_two": feature.quantityTwo.value,
                         "distance_one_cm": feature.distanceOne.value, "distance_two_cm": feature.distanceTwo.value,

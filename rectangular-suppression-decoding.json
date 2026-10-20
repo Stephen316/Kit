@@ -1,0 +1,104 @@
+{
+  "status": "No mapping decoder justified; nonempty modeling rectangular suppression remains unverified",
+  "wrapper": "GenerateRectangularSuppressionHoldout.py",
+  "generator": "GenerateRectangularPatternModes.py",
+  "attempts": [
+    {
+      "capture_directory": "rectmodes-f0d529b6e6b0",
+      "api_version": "2705.1.30",
+      "complete_marker_present": true,
+      "export_count": 0,
+      "sample_count": 0,
+      "timeline_state": "Element setter attempted after moving timeline to end",
+      "errors": [
+        {
+          "case": "body_suppressed_element",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRectangularPatternModes.py\", line 91, in run\n    feature.patternElements.item(1).isSuppressed = True\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 55989, in _set_isSuppressed\n    return _fusion.PatternElement__set_isSuppressed(self, value)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : Didn't roll editing feature back.\n"
+        }
+      ],
+      "evidence_status": "Failed setter only; no native suppression or getter contrast captured"
+    },
+    {
+      "capture_directory": "rectmodes-419a3a194fc0",
+      "api_version": "2705.1.30",
+      "complete_marker_present": true,
+      "export_count": 0,
+      "sample_count": 0,
+      "timeline_state": "Parent feature rolled immediately before element setter",
+      "errors": [
+        {
+          "case": "body_suppressed_element",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRectangularPatternModes.py\", line 93, in run\n    feature.patternElements.item(1).isSuppressed = True\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 55989, in _set_isSuppressed\n    return _fusion.PatternElement__set_isSuppressed(self, value)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 5 : API Function not yet implemented\n"
+        }
+      ],
+      "evidence_status": "Failed setter only; no native suppression or getter contrast captured"
+    }
+  ],
+  "timeline_bugfix": {
+    "file": "GenerateRectangularPatternModes.py",
+    "scope": "Optional body_suppressed_element branch only",
+    "sequence": [
+      "feature.timelineObject.rollTo(True)",
+      "PatternElement item1 and item4 isSuppressed setters",
+      "design.timeline.moveToEnd()",
+      "design.computeAll()"
+    ],
+    "actual_retry_result": "First element setter still raises RuntimeError5 API Function not yet implemented; subsequent setter and getters are not reached"
+  },
+  "earlier_feature_wide_failure": {
+    "ground_truth": "rectmodes-a069f8f4b8a2/ground_truth.json",
+    "case": "body_suppressed",
+    "setter": "RectangularPatternFeature.suppressedElementsIds",
+    "result": "RuntimeError5 API Function not yet implemented"
+  },
+  "local_sdk_inspection": {
+    "source": "/Users/stephenh/Library/Application Support/Autodesk/Autodesk Fusion 360/API/Python/defs/adsk/fusion.py",
+    "classes": [
+      {
+        "class": "RectangularPatternFeatureInput",
+        "source_line": 30407,
+        "suppression_properties": [],
+        "scope": "Modeling pattern API"
+      },
+      {
+        "class": "RectangularPatternFeature",
+        "source_line": 57577,
+        "suppression_properties": [
+          "suppressedElementsIds"
+        ],
+        "scope": "Modeling pattern API"
+      },
+      {
+        "class": "PatternElement",
+        "source_line": 27413,
+        "suppression_properties": [
+          "isSuppressed"
+        ],
+        "scope": "Modeling pattern API"
+      },
+      {
+        "class": "RectangularPatternConstraintInput",
+        "source_line": 30195,
+        "suppression_properties": [
+          "isSuppressed"
+        ],
+        "scope": "Sketch constraint input, distinct from modeling feature input"
+      }
+    ],
+    "modeling_input_suppression_setter_present": false,
+    "alternative_input_result": "RectangularPatternFeatureInput has no suppression property in the inspected local SDK. RectangularPatternConstraintInput.isSuppressed belongs to sketch pattern constraints and does not provide a modeling feature input substitute."
+  },
+  "focused_checks": {
+    "both_failed_captures_have_complete_markers": true,
+    "both_have_no_samples_or_f3d_exports": true,
+    "each_has_one_actual_api_exception": true,
+    "wrapper_and_generator_syntax_compile": true,
+    "modeling_input_has_no_suppression_member": true
+  },
+  "limitations": [
+    "No native-key-to-API-ID or native-instance-to-placement mapping can be established from these failed captures.",
+    "The Cantor key encoding and empty suppression reports remain separate from unproven nonempty suppression semantics.",
+    "No further retries of the unimplemented setters are proposed.",
+    "No suppression decoder source was created because there is no successful contrast to justify one."
+  ]
+}
