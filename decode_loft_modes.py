@@ -15,7 +15,8 @@ LOFT_GUID = "B6678572-C095-4DD1-9348-614677DD0B4A"
 SECTION_GUID = "2F3200BA-FDFB-48C6-97D4-71A4A0D86190"
 
 
-def decode_loft_modes(data, records, body, feature, features):
+def decode_loft_modes(data, records, body, feature, features, *, allowed_operation_codes=(4,),
+                      profile_resolver=resolve_sketch_profiles):
     if (feature["class_guid"] != LOFT_GUID or len(body) < 110
             or body[0] != 0 or body[1] not in (0, 1)):
         raise ValueError("Unsupported Loft class/prefix")
@@ -23,8 +24,8 @@ def decode_loft_modes(data, records, body, feature, features):
     if props or body[base:base+3] != b"\1\1\1" or body[base+3] not in (0, 1):
         raise ValueError("Unsupported observed Loft control prefix")
     operation = struct.unpack_from("<I", body, base+4)[0]
-    if operation != 4:
-        raise ValueError("Only observed NewBody loft operation supported")
+    if operation not in allowed_operation_codes or operation not in (1, 2, 3, 4):
+        raise ValueError("Unsupported or disabled Loft operation code")
 
     def primary(identity, guid):
         matches = [r for r in records if r.is_primary and r.object_id == identity and r.class_guid == guid]
@@ -129,18 +130,19 @@ def decode_loft_modes(data, records, body, feature, features):
                 or struct.unpack_from("<I", section, 32)[0] != 2):
             raise ValueError("Unsupported Loft profile section layout/owner")
         profile_id = reference(section, 21)
-        profiles = resolve_sketch_profiles(data, records, profile_id, feature["object_id"], features)
+        profiles = profile_resolver(data, records, profile_id, feature["object_id"], features)
         if len(profiles) != 1:
             raise ValueError("Only observed single-profile Loft sections supported")
         sections.append({"index": index, "section_record_object_id": section_id,
                          "profile": profiles[0],
                          "end_condition": None if is_closed else start if index == 0 else end if index == count-1 else None})
     body_count = struct.unpack_from("<I", body, cursor)[0]
-    if body_count != 1:
-        raise ValueError("Unsupported Loft result body-anchor count")
-    anchor_id = reference(body, cursor+4)
-    primary(anchor_id, "D26351F0-5940-4D23-AA20-2C35475A6D9E")
-    return {"operation": "NewBody", "stored_operation_code": operation, "is_solid": is_solid,
+    if body_count != (1 if operation == 4 else 0):
+        raise ValueError("Unsupported Loft operation/result body-anchor count")
+    anchor_ids = [reference(body, cursor+4+11*i) for i in range(body_count)]
+    for anchor_id in anchor_ids:
+        primary(anchor_id, "D26351F0-5940-4D23-AA20-2C35475A6D9E")
+    return {"operation": {1: "Join", 2: "Cut", 3: "Intersect", 4: "NewBody"}[operation], "stored_operation_code": operation, "is_solid": is_solid,
             "is_closed": is_closed,
             "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
             "closure_field_relative_offset": closure_relative_offset,
@@ -148,7 +150,8 @@ def decode_loft_modes(data, records, body, feature, features):
             "section_count": count, "section_input_record_object_ids": section_ids, "sections": sections,
             "start_condition": None if is_closed else start, "end_condition": None if is_closed else end,
             "stored_start_condition": start, "stored_end_condition": end,
-            "result_control_record_object_id": result_control_id, "result_body_anchor_object_ids": [anchor_id],
+            "result_control_record_object_id": result_control_id, "result_body_anchor_object_ids": anchor_ids,
+            "result_anchor_list_end_relative_offset": cursor+4+11*body_count,
             "guide_count": rail_count+int(centerline is not None), "is_centerline": centerline is not None,
             "centerline": centerline, "stored_rail_count": rail_count, "rails": rails,
             "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",

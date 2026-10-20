@@ -1,0 +1,577 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "new_body.f3d",
+      "seed_before_loft": {
+        "name": "StudyBlock",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQu2t+2HHTrnfWHHTlHlrQNw+oAojBWMzBZNkY9NkC3MjXaMkEwNdk1QjY11L85QUXfO0ZONkAzOTVAMTA7BaoBkMaABsn4EC2DqQ9UaW5gA4wEuuiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 48.0,
+        "bounding_box_min_cm": [
+          -2.0,
+          -2.0,
+          -0.5
+        ],
+        "bounding_box_max_cm": [
+          2.0,
+          2.0,
+          2.5
+        ]
+      },
+      "settings": {
+        "requested_operation": 3,
+        "result_bodies": [
+          {
+            "name": "Body2",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQu2t+2HHTrnfWHHTlHlrQNw+oAojBWMzBZNkY9NkC3MjXaMkEwNdk1QjY11L85QUXfO0ZONkAzOTVAMTA7BaoBkMaABsn4EC2DqQ9SZGFgDQeI3ZiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 6.1575216010357305,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              3.0
+            ]
+          }
+        ],
+        "root_body_count": 2,
+        "components": [
+          {
+            "name": "(Unsaved)",
+            "body_count": 2
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "feature_component_name": "(Unsaved)",
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "profile_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U6i9dT/s2Cn3GytumjJvDYjbBxQ3VDBWMDY0ALOAahTALCMLIMtQwQSnLiMFYzMFk2Rj02QLcyNdoyQTA12TVCNjXUvzlBRd87Rk42QDM5NUAxMDmM0MaABsn4EC2DojAxOIfVBoCHUFSAUAQA1DIL4AAAA=",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "profile_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U6i9dT/s2Cn3GytumjJvDYjbBxQ3VDBWMDYzBrOAaoA0kGVkAWQZKpjg1GUE1KNgkmxsmmxhbqRrlGRioGuSamSsa2mekqJrnpZsnGxgZpJqYGIAs5kBDYDtM1AAW2dkYAKxDwoNTSCuAKkAAI6VS3++AAAA",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ],
+        "participant_bodies": null
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": -0.5,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "StudyBlockExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "StudyBlockExtrude"
+        },
+        {
+          "name": "d5",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane2"
+        }
+      ]
+    },
+    {
+      "file": "join.f3d",
+      "seed_before_loft": {
+        "name": "StudyBlock",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtNAyxxjTsf2mf+P8vi+nnUBqMJIwdhMwcAkJdXQyDJJN8UkJVnXxNTUUtcizSxF1yTNKDXRKNXUKDnFDKwWaAYDGgDbZ6AAtg5kvZGlOQBbV9T4iAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 48.0,
+        "bounding_box_min_cm": [
+          -2.0,
+          -2.0,
+          -0.5
+        ],
+        "bounding_box_max_cm": [
+          2.0,
+          2.0,
+          2.5
+        ]
+      },
+      "settings": {
+        "requested_operation": 0,
+        "result_bodies": [
+          {
+            "name": "StudyBlock",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtNAyxxjTsf2mf+P8vi+nnUBqMJIwdhMwcAkJdXQyDJJN8UkJVnXxNTUUtcizSxF1yTNKDXRKNXUKDnFDKwWaAYDGgDbZ6AAtg5kvZGlOQBbV9T4iAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 48.63064563638727,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -0.5
+            ],
+            "bounding_box_max_cm": [
+              2.0,
+              2.0,
+              3.0
+            ]
+          }
+        ],
+        "root_body_count": 1,
+        "components": [
+          {
+            "name": "(Unsaved)",
+            "body_count": 1
+          }
+        ],
+        "operation": 0,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "feature_component_name": "(Unsaved)",
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "profile_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U3gaaJljzOnYPvP/UR7f17MuAMUNFYwVjA0NwCygGgUwy8gCyDJUMMGpy0jB2EzBwCQl1dDIMkk3xSQlWdfE1NRS1yLNLEXXJM0oNdEo1dQoOcUMZjMDGgDbZ6AAts7IwARiHxQaQl0BUgEAZPfWw74AAAA=",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "profile_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U3gaaJljzOnYPvP/UR7f17MuAMUNFYwVjM2MwSygGiANZBlZAFmGCiY4dRkB9SgYmKSkGhpZJummmKQk65qYmlrqWqSZpeiapBmlJhqlmholp5jBbGZAA2D7DBTA1hkZmEDsg0JDE4grQCoAqm/enL4AAAA=",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ],
+        "participant_bodies": null
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": -0.5,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "StudyBlockExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "StudyBlockExtrude"
+        },
+        {
+          "name": "d5",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane2"
+        }
+      ]
+    },
+    {
+      "file": "cut.f3d",
+      "seed_before_loft": {
+        "name": "StudyBlock",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwnbZ8+22G73MdovHRpauM7wBVGGkYGymkJZimWJkaJasm5hsaKFrYmycoptokGqha2qYlGxgYJZibJJiCFYLNIMBDYDtM1AAWwey3sjSHACVdSDYiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 48.0,
+        "bounding_box_min_cm": [
+          -2.0,
+          -2.0,
+          -0.5
+        ],
+        "bounding_box_max_cm": [
+          2.0,
+          2.0,
+          2.5
+        ]
+      },
+      "settings": {
+        "requested_operation": 1,
+        "result_bodies": [
+          {
+            "name": "StudyBlock",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwnbZ8+22G73MdovHRpauM7wBVGGkYGymkJZimWJkaJasm5hsaKFrYmycoptokGqha2qYlGxgYJZibJJiCFYLNIMBDYDtM1AAWwey3sjSHACVdSDYiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 42.47312403535118,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -0.5
+            ],
+            "bounding_box_max_cm": [
+              2.0,
+              2.0,
+              2.5
+            ]
+          }
+        ],
+        "root_body_count": 1,
+        "components": [
+          {
+            "name": "(Unsaved)",
+            "body_count": 1
+          }
+        ],
+        "operation": 1,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "feature_component_name": "(Unsaved)",
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "profile_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U9gue77ddqOX2W7x2MjSdYY3gOKGCsYKxoYGYBZQjQKYZWQBZBkqmODUZaRgbKaQlmKZYmRolqybmGxooWtibJyim2iQaqFrapiUbGBglmJskmIIs5kBDYDtM1AAW2dkYAKxDwoNoa4AqQAA4yelyr4AAAA=",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "profile_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U9gue77ddqOX2W7x2MjSdYY3gOKGCsYKxmbGYBZQDZAGsowsgCxDBROcuoyAehTSUixTjAzNknUTkw0tdE2MjVN0Ew1SLXRNDZOSDQzMUoxNUgxhNjOgAbB9Bgpg64wMTCD2QaGhCcQVIBUALb+tlb4AAAA=",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ],
+        "participant_bodies": [
+          {
+            "name": "StudyBlock",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwnbZ8+22G73MdovHRpauM7wBVGGkYGymkJZimWJkaJasm5hsaKFrYmycoptokGqha2qYlGxgYJZibJJiCFYLNIMBDYDtM1AAWwey3sjSHACVdSDYiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 48.0,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -0.5
+            ],
+            "bounding_box_max_cm": [
+              2.0,
+              2.0,
+              2.5
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": -0.5,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "StudyBlockExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "StudyBlockExtrude"
+        },
+        {
+          "name": "d5",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane2"
+        }
+      ]
+    },
+    {
+      "file": "intersect.f3d",
+      "seed_before_loft": {
+        "name": "StudyBlock",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwj2j6fks4T5mu3JSXlyz5WkFqjBSMDZTMDY1Mk6xtLTUTbRMSdY1SUw21U2yME/RTTQ1sUhLtExMNkg2A6sFmsGABsD2GSiArQNZb2RpDgDsD+2SiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 48.0,
+        "bounding_box_min_cm": [
+          -2.0,
+          -2.0,
+          -0.5
+        ],
+        "bounding_box_max_cm": [
+          2.0,
+          2.0,
+          2.5
+        ]
+      },
+      "settings": {
+        "requested_operation": 2,
+        "result_bodies": [
+          {
+            "name": "StudyBlock",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwj2j6fks4T5mu3JSXlyz5WkFqjBSMDZTMDY1Mk6xtLTUTbRMSdY1SUw21U2yME/RTTQ1sUhLtExMNkg2A6sFmsGABsD2GSiArQNZb2RpDgDsD+2SiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 5.526875964648474,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              2.5
+            ]
+          }
+        ],
+        "root_body_count": 1,
+        "components": [
+          {
+            "name": "(Unsaved)",
+            "body_count": 1
+          }
+        ],
+        "operation": 2,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "feature_component_name": "(Unsaved)",
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "profile_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U7hnND2fJdzHbFdOyotrtjytQHFDBWMFY0MDMAuoRgHMMrIAsgwVTHDqMlIwNlMwNjUyTrG0tNRNtExJ1jVJTDbVTbIwT9FNNDWxSEu0TEw2SDaD2cyABsD2GSiArTMyMIHYB4WGUFeAVAAAOAPkcr4AAAA=",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "profile_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U7hnND2fJdzHbFdOyotrtjytQHFDBWMFYzNjMAuoBkgDWUYWQJahgglOXUZAPQrGpkbGKZaWlrqJlinJuiaJyaa6SRbmKbqJpiYWaYmWickGyWYwmxnQANg+AwWwdUYGJhD7oNDQBOIKkAoA9pvsLb4AAAA=",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ],
+        "participant_bodies": [
+          {
+            "name": "StudyBlock",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwj2j6fks4T5mu3JSXlyz5WkFqjBSMDZTMDY1Mk6xtLTUTbRMSdY1SUw21U2yME/RTTQ1sUhLtExMNkg2A6sFmsGABsD2GSiArQNZb2RpDgDsD+2SiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 48.0,
+            "bounding_box_min_cm": [
+              -2.0,
+              -2.0,
+              -0.5
+            ],
+            "bounding_box_max_cm": [
+              2.0,
+              2.0,
+              2.5
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": -0.5,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "StudyBlockExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "StudyBlockExtrude"
+        },
+        {
+          "name": "d5",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane2"
+        }
+      ]
+    },
+    {
+      "file": "new_component.f3d",
+      "seed_before_loft": {
+        "name": "StudyBlock",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQpSCU9vyKd7c02fFtbGqHRcFqjBSMDZTMLY0M0kzSU7VNTNKS9I1MTU207U0NzDXNU5JNDQ0MbIwtExKBqsFmsGABsD2GSiArQNZb2RpDgDtmR/DiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 48.0,
+        "bounding_box_min_cm": [
+          -2.0,
+          -2.0,
+          -0.5
+        ],
+        "bounding_box_max_cm": [
+          2.0,
+          2.0,
+          2.5
+        ]
+      },
+      "settings": {
+        "requested_operation": 4,
+        "result_bodies": [
+          {
+            "name": "Body1",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQpSCU9vyKd7c02fFtbGqHRcFqjBSMDZTSE5MTk1OszTTTTVLNNI1SUpJ0U0ySjTWNU9OtDAxTk4xNU0xB6sFmsGABsD2GSiArQNZb2pgDABw0E43iAAAAA==",
+            "component_name": "Component1",
+            "is_solid": true,
+            "volume_cm3": 6.1575216010357305,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              1.0,
+              1.0,
+              3.0
+            ]
+          }
+        ],
+        "root_body_count": 1,
+        "components": [
+          {
+            "name": "(Unsaved)",
+            "body_count": 1
+          },
+          {
+            "name": "Component1",
+            "body_count": 1
+          }
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "feature_component_name": "Component1",
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "profile_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U4hScGpbPsWbe/qsuDZWteOiQHFDBWMFY0MDMAuoRgHMMrIAsgwVTHDqMlIwNlMwtjQzSTNJTtU1M0pL0jUxNTbTtTQ3MNc1Tkk0NDQxsjC0TEqG2cyABsD2GSiArTMyMIHYB4WGUFeAVAAAeAPm0b4AAAA=",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "profile_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0U4hScGpbPsWbe/qsuDZWteOiQHFDBWMFYzNjMAuoBkgDWUYWQJahgglOXUZAPQrGlmYmaSbJqbpmRmlJuiamxma6luYG5rrGKYmGhiZGFoaWSckwmxnQANg+AwWwdUYGJhD7oNDQBOIKkAoAtpvujr4AAAA=",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ],
+        "participant_bodies": null
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": -0.5,
+          "unit": "mm",
+          "created_by": "Plane1"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "StudyBlockExtrude"
+        },
+        {
+          "name": "d4",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "StudyBlockExtrude"
+        },
+        {
+          "name": "d5",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "created_by": "Plane2"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "token_scope": "Opaque API entity tokens retained as evidence; no native ID interpretation is assigned."
+}
