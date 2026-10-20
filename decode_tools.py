@@ -8,6 +8,7 @@ from decode_body_tools import decode_body_tool
 from decode_patterns import decode_rectangular_pattern
 from decode_edge_tools import decode_edge_tool
 from decode_split import decode_split
+from decode_split_face import decode_split_face
 from decode_face_tools import decode_face_tool
 from decode_surface_tools import decode_surface_tool
 from decode_pipe import decode_pipe
@@ -26,7 +27,7 @@ from decode_boundary_fill import decode_boundary_fill
 
 def decode_tools(data, records, features):
     supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken", "Hole",
-                 "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer", "SplitBody",
+                 "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer", "SplitBody", "SplitFace",
                  "OffsetFaces", "ReplaceFace", "DeleteFace", "SurfacePatch", "SurfaceOffset", "SurfaceStitch",
                  "Unstitch", "ReverseNormal", "SurfaceDeleteFace", "Pipe", "Thread",
                  "SurfaceExtend", "SurfaceUntrim", "SurfaceRuled", "SurfaceTrim", "PathPattern", "BoundaryFill", "Emboss"}
@@ -57,6 +58,8 @@ def decode_tools(data, records, features):
                 settings = decode_face_tool(data, records, body, feature, axes)
             elif kind == "SplitBody":
                 settings = decode_split(data, records, body, feature, axes)
+            elif kind == "SplitFace":
+                settings = decode_split_face(data, records, body, feature, axes, features)
             elif kind in ("Fillet", "Chamfer"):
                 settings = decode_edge_tool(data, records, body, feature)
             elif kind == "RectangularPattern":

@@ -56,7 +56,7 @@ def named_features(data, records):
               "R-Pattern": "RectangularPattern", "Mirror": "Mirror", "Scale": "Scale",
               "WorkPlane": "ConstructionPlane", "Sweep": "Sweep", "Loft": "Loft",
               "C-Pattern": "CircularPattern", "Combine": "Combine", "Draft": "Draft",
-              "Split": "SplitBody", "Move": "Move", "Thicken": "Thicken",
+              "Split": "SplitBody", "SplitFace": "SplitFace", "Move": "Move", "Thicken": "Thicken",
               "WorkAxis": "ConstructionAxis", "WorkPoint": "ConstructionPoint",
               "OffsetFaces": "OffsetFaces", "ReplaceFace": "ReplaceFace", "DeleteFace": "DeleteFace",
               "SurfacePatch": "SurfacePatch", "SurfaceOffset": "SurfaceOffset", "SurfaceStitch": "SurfaceStitch",

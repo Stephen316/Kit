@@ -1,0 +1,324 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "plane.f3d",
+      "feature_type": "adsk::fusion::SplitFaceFeature",
+      "split_type": 0,
+      "is_splitting_tool_extended": false,
+      "faces_to_split": [
+        {
+          "kind": "BRepFace",
+          "body_name": "TargetBody",
+          "geometry_type": "Plane",
+          "area_cm2": 6.0,
+          "point_on_face_cm": [
+            1.5,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "splitting_tools": [
+        {
+          "kind": "ConstructionPlane",
+          "name": "SplitToolPlane",
+          "origin_cm": [
+            1.2000000000000002,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "direction_entity": null,
+      "before_face_count": 6,
+      "result": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "plane_extended.f3d",
+      "feature_type": "adsk::fusion::SplitFaceFeature",
+      "split_type": 0,
+      "is_splitting_tool_extended": true,
+      "faces_to_split": [
+        {
+          "kind": "BRepFace",
+          "body_name": "TargetBody",
+          "geometry_type": "Plane",
+          "area_cm2": 6.0,
+          "point_on_face_cm": [
+            1.5,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "splitting_tools": [
+        {
+          "kind": "ConstructionPlane",
+          "name": "SplitToolPlane",
+          "origin_cm": [
+            1.2000000000000002,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "direction_entity": null,
+      "before_face_count": 6,
+      "result": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "line.f3d",
+      "feature_type": "adsk::fusion::SplitFaceFeature",
+      "split_type": 0,
+      "is_splitting_tool_extended": false,
+      "faces_to_split": [
+        {
+          "kind": "BRepFace",
+          "body_name": "TargetBody",
+          "geometry_type": "Plane",
+          "area_cm2": 6.0,
+          "point_on_face_cm": [
+            1.5,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "splitting_tools": [
+        {
+          "kind": "SketchLine",
+          "sketch_name": "SplitToolSketch",
+          "start_cm": [
+            1.2,
+            -1.0,
+            0.0
+          ],
+          "end_cm": [
+            1.2,
+            3.0,
+            0.0
+          ]
+        }
+      ],
+      "direction_entity": null,
+      "before_face_count": 6,
+      "result": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "line_extended.f3d",
+      "feature_type": "adsk::fusion::SplitFaceFeature",
+      "split_type": 0,
+      "is_splitting_tool_extended": true,
+      "faces_to_split": [
+        {
+          "kind": "BRepFace",
+          "body_name": "TargetBody",
+          "geometry_type": "Plane",
+          "area_cm2": 6.0,
+          "point_on_face_cm": [
+            1.5,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "splitting_tools": [
+        {
+          "kind": "SketchLine",
+          "sketch_name": "SplitToolSketch",
+          "start_cm": [
+            1.2,
+            -1.0,
+            0.0
+          ],
+          "end_cm": [
+            1.2,
+            3.0,
+            0.0
+          ]
+        }
+      ],
+      "direction_entity": null,
+      "before_face_count": 6,
+      "result": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "along_vector.f3d",
+      "feature_type": "adsk::fusion::SplitFaceFeature",
+      "split_type": 1,
+      "is_splitting_tool_extended": null,
+      "faces_to_split": [
+        {
+          "kind": "BRepFace",
+          "body_name": "TargetBody",
+          "geometry_type": "Plane",
+          "area_cm2": 6.0,
+          "point_on_face_cm": [
+            1.5,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "splitting_tools": [
+        {
+          "kind": "SketchLine",
+          "sketch_name": "SplitToolSketch",
+          "start_cm": [
+            1.2,
+            -1.0,
+            2.0
+          ],
+          "end_cm": [
+            1.2,
+            3.0,
+            2.0
+          ]
+        }
+      ],
+      "direction_entity": {
+        "kind": "ConstructionAxis",
+        "name": "Z",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "before_face_count": 6,
+      "result": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "closest_point.f3d",
+      "feature_type": "adsk::fusion::SplitFaceFeature",
+      "split_type": 2,
+      "is_splitting_tool_extended": null,
+      "faces_to_split": [
+        {
+          "kind": "BRepFace",
+          "body_name": "TargetBody",
+          "geometry_type": "Plane",
+          "area_cm2": 6.0,
+          "point_on_face_cm": [
+            1.5,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "splitting_tools": [
+        {
+          "kind": "SketchLine",
+          "sketch_name": "SplitToolSketch",
+          "start_cm": [
+            1.2,
+            -1.0,
+            2.0
+          ],
+          "end_cm": [
+            1.2,
+            3.0,
+            2.0
+          ]
+        }
+      ],
+      "direction_entity": null,
+      "before_face_count": 6,
+      "result": {
+        "body_count": 1,
+        "face_count": 7,
+        "volume_cm3": 6.0
+      }
+    },
+    {
+      "file": "multiple_faces.f3d",
+      "feature_type": "adsk::fusion::SplitFaceFeature",
+      "split_type": 0,
+      "is_splitting_tool_extended": false,
+      "faces_to_split": [
+        {
+          "kind": "BRepFace",
+          "body_name": "TargetBody",
+          "geometry_type": "Plane",
+          "area_cm2": 6.0,
+          "point_on_face_cm": [
+            1.5,
+            1.0,
+            1.0
+          ]
+        },
+        {
+          "kind": "BRepFace",
+          "body_name": "TargetBody",
+          "geometry_type": "Plane",
+          "area_cm2": 6.0,
+          "point_on_face_cm": [
+            1.5,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "splitting_tools": [
+        {
+          "kind": "ConstructionPlane",
+          "name": "SplitToolPlane",
+          "origin_cm": [
+            1.2000000000000002,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "direction_entity": null,
+      "before_face_count": 6,
+      "result": {
+        "body_count": 1,
+        "face_count": 8,
+        "volume_cm3": 6.0
+      }
+    }
+  ],
+  "errors": []
+}
