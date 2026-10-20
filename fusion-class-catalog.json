@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 66,
+  "file_count": 67,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "discovery-08660c033d4d/discovery.f3d",
@@ -51,6 +51,10 @@
     "output-7230965e9265/depth13.f3d",
     "output-7230965e9265/depth29.f3d",
     "placement-c6ad25e75d60/placement.f3d",
+    "profiles-66b0447c28ac/concentric_annulus.f3d",
+    "profiles-66b0447c28ac/concentric_disk.f3d",
+    "profiles-66b0447c28ac/disjoint_left.f3d",
+    "profiles-66b0447c28ac/disjoint_right.f3d",
     "sketches-0ccea2ac0f9c/baseline.f3d",
     "sketches-0ccea2ac0f9c/coincident.f3d",
     "sketches-0ccea2ac0f9c/horizontal.f3d",
@@ -64,12 +68,9 @@
     "tools-fda3948848f4/RectangularPattern.f3d",
     "tools-fda3948848f4/Scale.f3d",
     "tools-fda3948848f4/Shell.f3d",
-    "profiles-66b0447c28ac/concentric_annulus.f3d",
-    "profiles-66b0447c28ac/concentric_disk.f3d",
-    "profiles-66b0447c28ac/disjoint_left.f3d",
-    "profiles-66b0447c28ac/disjoint_right.f3d"
+    "dimensions-f83a2edd2f72/dimensions.f3d"
   ],
-  "class_count": 252,
+  "class_count": 255,
   "classes_with_observed_semantics": 22,
   "classes": [
     {
@@ -543,6 +544,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "dimensions-f83a2edd2f72/dimensions.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },
@@ -580,6 +582,22 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "discovery-08660c033d4d/discovery.f3d",
         "extents-f0f33a9a605f/distance_negative.f3d"
+      ]
+    },
+    {
+      "class_guid": "24DB790E-3DCD-4336-AFA3-6F119EF2239B",
+      "base_class_guids": [
+        "60403D47-0C49-49B0-BDE8-1679608164A2"
+      ],
+      "namespaces": [
+        "MSketch"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "dimensions-f83a2edd2f72/dimensions.f3d"
       ]
     },
     {
@@ -1119,6 +1137,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "dimensions-f83a2edd2f72/dimensions.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },
@@ -1397,7 +1416,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "advanced-627f7fe095f4/advanced.f3d"
+        "advanced-627f7fe095f4/advanced.f3d",
+        "dimensions-f83a2edd2f72/dimensions.f3d"
       ]
     },
     {
@@ -1885,6 +1905,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "dimensions-f83a2edd2f72/dimensions.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },
@@ -2161,6 +2182,7 @@
       "observed_semantics": [],
       "example_files": [
         "advanced-627f7fe095f4/advanced.f3d",
+        "dimensions-f83a2edd2f72/dimensions.f3d",
         "sketches-0ccea2ac0f9c/radius.f3d"
       ]
     },
@@ -2245,7 +2267,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "advanced-627f7fe095f4/advanced.f3d"
+        "advanced-627f7fe095f4/advanced.f3d",
+        "dimensions-f83a2edd2f72/dimensions.f3d"
       ]
     },
     {
@@ -2497,6 +2520,20 @@
       "example_files": []
     },
     {
+      "class_guid": "9F412B74-4FC8-400B-B922-29E7DB86DD33",
+      "base_class_guids": [
+        "735FD678-4ADD-4F4B-A8B1-88CAA010394E"
+      ],
+      "namespaces": [
+        ""
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "9FF71F46-205F-484B-A2B5-A245D0D8FE33",
       "base_class_guids": [
         "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B"
@@ -2674,6 +2711,22 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "discovery-08660c033d4d/discovery.f3d",
         "extents-f0f33a9a605f/distance_negative.f3d"
+      ]
+    },
+    {
+      "class_guid": "A9E23439-6F4F-4ED3-A610-319F0AFABEED",
+      "base_class_guids": [
+        "0C3F3829-F0DB-4379-9479-CFEF71087971"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "dimensions-f83a2edd2f72/dimensions.f3d"
       ]
     },
     {
@@ -3565,6 +3618,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "dimensions-f83a2edd2f72/dimensions.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },
@@ -3910,6 +3964,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "dimensions-f83a2edd2f72/dimensions.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },
@@ -3944,6 +3999,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "dimensions-f83a2edd2f72/dimensions.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },
@@ -4064,6 +4120,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "dimensions-f83a2edd2f72/dimensions.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },
@@ -4210,6 +4267,7 @@
       "observed_semantics": [],
       "example_files": [
         "advanced-627f7fe095f4/advanced.f3d",
+        "dimensions-f83a2edd2f72/dimensions.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },

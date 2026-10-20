@@ -76,7 +76,7 @@ def decode_sketches(data, records, features):
     sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
     for sketch in sketches.values():
         sketch.update({"coordinate_system": "sketch-local", "coordinate_units": "cm",
-                       "geometry": [], "constraints": [], "dimensions": []})
+                       "geometry": [], "constraints": [], "dimensions": [], "internal_associations": []})
     entities, curves, skipped = {}, [], []
     for record in records:
         body = data[record.body:record.end]
@@ -213,10 +213,13 @@ def decode_sketches(data, records, features):
         try:
             inputs, props, cursor = constraint_prefix(body)
             if props.get("EntityGenesis") == 0:
-                dimensions.append((record, body, inputs))
+                dimensions.append((record, body, inputs, cursor))
                 continue
             if props.get("EntityGenesis") != 2:
                 continue
+            if (record.class_guid == "24DB790E-3DCD-4336-AFA3-6F119EF2239B"
+                    and body[cursor:cursor+3] == b"\0\x01\x01"):
+                cursor += 3
             owner = reference(body, cursor)
             if owner not in sketches:
                 continue
@@ -232,8 +235,28 @@ def decode_sketches(data, records, features):
             dependency_order = inputs
             inputs = copied
             kinds = [entities[i]["kind"] for i in inputs]
+            if code == 2147483648:
+                splines = [entities[i] for i in inputs if entities[i]["kind"] == "ControlPointSpline"]
+                lines = [entities[i] for i in inputs if entities[i]["kind"] == "Line"]
+                if len(splines) == 1 and len(lines)+1 == len(inputs):
+                    points = splines[0]["nurbs"]["control_points_cm"]
+                    segments = list(zip(points, points[1:]))
+                    for line in lines:
+                        matches = [index for index, (a, b) in enumerate(segments)
+                                   if (same(line["start_cm"], a) and same(line["end_cm"], b))
+                                   or (same(line["start_cm"], b) and same(line["end_cm"], a))]
+                        if len(matches) != 1:
+                            break
+                        segments.pop(matches[0])
+                    else:
+                        if not segments:
+                            sketches[owner]["internal_associations"].append({
+                                "kind": "SplineControlPolygon", "object_id": record.object_id,
+                                "stored_code": code, "entity_ids": inputs, "spline_entity_id": splines[0]["object_id"],
+                                "scope": "Internal spline/control polygon membership; not a user geometric constraint"})
+                            continue
             kind = {1: "Coincident", 2: "Collinear", 4: "Concentric", 16: "Parallel",
-                    32: "Perpendicular", 64: "Horizontal", 128: "Vertical", 256: "Tangent",
+                    32: "Perpendicular", 64: "Horizontal", 128: "Vertical", 256: "Tangent", 512: "Smooth",
                     1024: "Symmetry", 2048: "Equal", 4096: "MidPoint"}.get(code)
             if kind in ("Horizontal", "Vertical") and kinds == ["Point", "Point"]:
                 kind += "Points"
@@ -246,6 +269,7 @@ def decode_sketches(data, records, features):
                 "Collinear": kinds == ["Line", "Line"],
                 "Concentric": len(kinds) == 2 and all(k in ("Circle", "Arc", "Ellipse") for k in kinds),
                 "Tangent": len(kinds) == 2 and all(k != "Point" for k in kinds),
+                "Smooth": len(kinds) == 2 and all(k != "Point" for k in kinds),
                 "Equal": kinds == ["Line", "Line"] or (len(kinds) == 2 and all(k in ("Circle", "Arc") for k in kinds)),
                 "MidPoint": sorted(kinds) == ["Line", "Point"],
                 "Symmetry": len(kinds) == 3 and kinds[0] == kinds[1] and kinds[2] == "Line",
@@ -263,7 +287,9 @@ def decode_sketches(data, records, features):
             continue
     # A radial dimension has both a sketch-owned representation and a reference
     # to a parameter binding owned by the sketch feature.
-    for record, body, inputs in dimensions:
+    unsupported_dimensions = []
+    for record, body, inputs, attributes_end in dimensions:
+        parameter = None
         try:
             target_count = len(inputs) - 1
             if not 1 <= target_count <= 2:
@@ -283,18 +309,43 @@ def decode_sketches(data, records, features):
             if len(parameters) != 1:
                 continue
             parameter = parameters[0]
-            kind = {"Radial": "Radius", "Diameter": "Diameter", "Linear": "Linear", "Angular": "Angle"}.get(parameter["role"].split()[0])
+            code = struct.unpack_from("<Q", body, cursor-8)[0]
+            kind = {0x4000: "Linear", 0x8000: "Angle", 0x10000: "Diameter", 0x20000: "Radius",
+                    0x400000: "Linear", 0x800000: "Linear", 0x1000000: "EllipseMajorRadius",
+                    0x2000000: "EllipseMinorRadius", 0x8000000: "ConcentricCircle",
+                    0x200000000: "LinearDiameter", 0x4000000000: "TangentDistance"}.get(code)
             kinds = [entities[i]["kind"] for i in targets]
-            if ((kind in ("Radius", "Diameter") and kinds not in (["Circle"], ["Arc"]))
-                    or (kind == "Linear" and kinds != ["Point", "Point"])
-                    or (kind == "Angle" and kinds != ["Line", "Line"]) or kind is None):
-                continue
+            if code == 0x4000 and kinds in (["Line", "Point"], ["Line", "Line"]):
+                kind = "Offset"
+            valid = {
+                "Radius": kinds in (["Circle"], ["Arc"]), "Diameter": kinds in (["Circle"], ["Arc"]),
+                "Linear": kinds == ["Point", "Point"], "Angle": kinds == ["Line", "Line"],
+                "Offset": kinds in (["Line", "Point"], ["Line", "Line"]),
+                "EllipseMajorRadius": kinds == ["Ellipse"], "EllipseMinorRadius": kinds == ["Ellipse"],
+                "ConcentricCircle": len(kinds) == 2 and all(k in ("Circle", "Arc") for k in kinds),
+                "LinearDiameter": kinds in (["Line", "Point"], ["Line", "Line"]),
+                "TangentDistance": len(kinds) == 2 and kinds[0] in ("Point", "Line", "Circle", "Arc") and kinds[1] in ("Circle", "Arc"),
+            }
+            if not valid.get(kind, False):
+                raise ValueError("Unsupported dimension code or target kinds: "+str(code))
             dimension = {
                 "kind": kind, "object_id": record.object_id, "entity_ids": targets,
                 "parameter_name": parameter["parameter_name"], "raw_value": parameter["raw_float64"],
                 "expression_candidates": parameter["expression_candidates"],
                 "binding_object_id": binding_id, "record_offset": record.start,
+                "stored_kind_code": code, "driving_status": "Undecoded for this dimension class",
             }
+            if kind == "Linear":
+                dimension["orientation"] = {0x4000: "Aligned", 0x400000: "Horizontal", 0x800000: "Vertical"}[code]
+            if kind == "Offset":
+                dimension["orientation"] = "PerpendicularToFirstLine"
+            if record.class_guid == "8C780195-72C0-4a56-A911-E43AB14357F2":
+                driven_flag = body[attributes_end+129]
+                if driven_flag in (0, 1):
+                    dimension.update(is_driving=not bool(driven_flag),
+                                     driving_status="Observed dimension reference flag decoded")
+            if kind == "TangentDistance":
+                dimension["tangent_sides_status"] = "Tangent-side choices remain undecoded"
             if kind == "Angle":
                 dimension.update(value_radians=parameter["raw_float64"], value_degrees=parameter["hypothesized_value_degrees"])
             else:
@@ -302,7 +353,10 @@ def decode_sketches(data, records, features):
             if len(targets) == 1:
                 dimension["entity_id"] = targets[0]
             sketch["dimensions"].append(dimension)
-        except (ValueError, KeyError, struct.error):
+        except (ValueError, KeyError, IndexError, struct.error) as error:
+            if parameter is not None:
+                unsupported_dimensions.append({"object_id": record.object_id, "reason": str(error)})
             continue
     return {"unsupported_curves": skipped, "unknown_constraint_codes": unknown_constraints,
+            "unsupported_dimensions": unsupported_dimensions,
             "scope": "Observed primitives, NURBS, conics, geometric constraints and dimensions; not a constraint solver"}
