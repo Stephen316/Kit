@@ -71,6 +71,19 @@ def native_origin_entities(data, records):
     return known
 
 
+def native_proxy_references(data, record):
+    """Observed counted proxy list, including its optional numeric attributes."""
+    body = data[record.body:record.end]
+    if (record.class_guid != "2CA5A1CD-C99B-4C9B-91AF-57989148E841" or len(body) < 6
+            or body[0] != 0 or body[1] not in (0, 1)):
+        raise ValueError("Not an observed native selection proxy")
+    props, cursor = attributes(body, 2) if body[1] else ({}, 2)
+    count = struct.unpack_from("<I", body, cursor)[0]
+    if not 1 <= count <= 1024 or len(body) != cursor+92+11*count:
+        raise ValueError("Unsupported native proxy list layout")
+    return [reference(body, cursor+4+11*i) for i in range(count)], props
+
+
 def resolve_native_selection(data, records, selection_id, known_entities):
     candidates = []
     for proxy in records:
@@ -78,8 +91,11 @@ def resolve_native_selection(data, records, selection_id, known_entities):
             continue
         body = data[proxy.body:proxy.end]
         try:
-            if len(body) == 105 and body[:6] == b"\0\0\x01\0\0\0":
-                descriptor_id = reference(body, 6)
+            if proxy.class_guid == "2CA5A1CD-C99B-4C9B-91AF-57989148E841":
+                descriptors, _ = native_proxy_references(data, proxy)
+                if len(descriptors) != 1:
+                    continue
+                descriptor_id = descriptors[0]
             elif (len(body) == 202 and body[:6] == b"\0\0\x08\0\0\0"
                   and struct.unpack_from("<I", body, 99)[0] == 1):
                 descriptor_id = reference(body, 103)
@@ -124,7 +140,7 @@ def resolve_native_selection(data, records, selection_id, known_entities):
     return candidates[0] if len(candidates) == 1 else None
 
 
-def decode_selections(data, records, features):
+def known_construction_entities(data, records, features):
     known = native_origin_entities(data, records)
     for feature in features:
         if feature["kind"] == "ConstructionPlane" and "plane_object_id" in feature:
@@ -145,6 +161,11 @@ def decode_selections(data, records, features):
                 "object_id": feature["point_object_id"], "feature_object_id": feature["object_id"],
                 "position_cm": feature["position_cm"],
             }
+    return known
+
+
+def decode_selections(data, records, features):
+    known = known_construction_entities(data, records, features)
     resolved, unresolved = [], []
     for feature in features:
         if feature["kind"] == "Extrude":

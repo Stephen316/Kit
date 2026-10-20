@@ -4,19 +4,20 @@ import math
 import struct
 
 from decode_placement import rigid_matrix
-from decode_selection import native_origin_entities, resolve_native_selection
+from decode_selection import known_construction_entities, resolve_native_selection
 from decode_sketch import numbers, reference
 from decode_holes import decode_hole
 from decode_body_tools import decode_body_tool
 from decode_patterns import decode_rectangular_pattern
 from decode_edge_tools import decode_edge_tool
+from decode_split import decode_split
 
 
 def decode_tools(data, records, features):
     supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken", "Hole",
-                 "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer"}
+                 "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer", "SplitBody"}
     decoded, unresolved = [], []
-    axes = native_origin_entities(data, records)
+    axes = known_construction_entities(data, records, features)
     for feature in features:
         kind = feature["kind"]
         if kind not in supported:
@@ -35,7 +36,9 @@ def decode_tools(data, records, features):
 
         try:
             settings = {}
-            if kind in ("Fillet", "Chamfer"):
+            if kind == "SplitBody":
+                settings = decode_split(data, records, body, feature, axes)
+            elif kind in ("Fillet", "Chamfer"):
                 settings = decode_edge_tool(data, records, body, feature)
             elif kind == "RectangularPattern":
                 settings = decode_rectangular_pattern(data, records, body, feature, axes)
