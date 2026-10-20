@@ -86,7 +86,9 @@ def decode_sketches(data, records, features):
             continue
         try:
             props, cursor = attributes(body, 2)
-            if props.get("EntityGenesis") not in (0, 2, 64, 128, 130, 256, 258, 512):
+            detached_line = (record.class_guid == "DCA267ED-D615-4934-B64F-AD805E8003E2"
+                             and props.get("EntityGenesis") in (64, 2048) and len(body)-cursor == 171)
+            if props.get("EntityGenesis") not in (0, 2, 64, 128, 130, 256, 258, 512) and not detached_line:
                 continue
             owner = reference(body, len(body) - 11)
             if owner not in sketches:
@@ -97,7 +99,8 @@ def decode_sketches(data, records, features):
                 item.update({"kind": "Point", "entity_tag": props["pt_tag"],
                              "position_cm": numbers(body, cursor + 19, 3)})
                 entities[record.object_id] = item
-            elif "crv_primary_id" in props and props.get("EntityGenesis") in (0, 2, 128, 130, 256, 258, 512):
+            elif "crv_primary_id" in props and (props.get("EntityGenesis") in (0, 2, 128, 130, 256, 258, 512)
+                                               or detached_line):
                 curves.append((record, body, props, cursor, item))
         except (ValueError, UnicodeError, struct.error):
             continue

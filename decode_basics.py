@@ -16,6 +16,7 @@ import struct
 from decode_parameters import decode_stream, read_string
 from decode_parameter_tables import decode_parameter_tables
 from decode_sketch import decode_sketches
+from decode_sketch_coverage import decode_sketch_coverage
 from decode_sketch_projections import decode_sketch_projections
 from decode_sketch_pattern_details import decode_sketch_pattern_details
 from decode_dimension_controls import decode_dimension_controls
@@ -207,6 +208,7 @@ def decode_basics(path, zstd_library=None):
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
+        sketch_coverage_summary = decode_sketch_coverage(data, records, features, record_index, sketch_summary)
         sketch_pattern_summary = decode_sketch_pattern_details(data, records, features)
         dimension_control_summary = decode_dimension_controls(data, records, features)
         dimension_mode_summary = decode_dimension_control_modes(data, records, features, dimension_control_summary)
@@ -297,6 +299,7 @@ def decode_basics(path, zstd_library=None):
             "record_index": record_index,
             "feature_discovery": discovery_summary,
             "sketch_decoding": sketch_summary,
+            "sketch_record_coverage": sketch_coverage_summary,
             "sketch_projections": projection_summary,
             "sketch_pattern_details": sketch_pattern_summary,
             "dimension_controls": dimension_control_summary,

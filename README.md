@@ -201,6 +201,8 @@ The feature `stored_index` is an internal native field. It is **not a global tim
 
 Use `timeline_decoding.sequences` for observed history order. `feature_order` excludes group markers; `visible_entries` reflects decoded group expansion. Marker position is derived from rollback flags and group projection. Multiple history owners remain separate. Missing or unrecognized records are reported rather than assigned a guessed order.
 
+`sketch-record-coverage-decoding.json` fixes two silently omitted line caches in the detached projection controls. Their observed `EntityGenesis` values 64/2048 are admitted only for the bounded native line representation; endpoint and fixed-state values match the saved API geometry. No reference state or history is inferred. The main reader now exposes `sketch_record_coverage`, accounting for specialized metadata class families and explicit sketch ownership. Across the 358-file corpus it accounts for 3,490 sketch-owned geometry records, 57 constraint/relationship records and 26 dimension records, including validated tool-support records. These are record counts, not API entity counts or a percentage of complete decoding. Three altered geometry/constraint/dimension cases appear explicitly as unhandled. Unknown class families and unreadable geometry ownership remain outside the audit; an empty unhandled list does not establish completeness.
+
 ## Evidence and navigation
 
 - `fusion-class-catalog.json` catalogs opaque class GUIDs, namespaces, base classes, and meanings observed across the local corpus. Type numbers vary between files; they are not universal feature IDs.
