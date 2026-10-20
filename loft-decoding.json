@@ -1,0 +1,1614 @@
+{
+  "scope": "Observed NewBody loft captures (all open according to API; native closure encoding unresolved) with explicit ordered single sketch-profile sections, Free/Direction endpoint controls, solid/surface and tangent-edge merge flags, and absent guide or single straight sketch centerline. No procedural topology regeneration.",
+  "fusion_version": "2705.1.30",
+  "generators": [
+    "GenerateLoftModes.py",
+    "GenerateLoftHoldouts.py"
+  ],
+  "capture_folders": [
+    "lofts-838ea6e83e97",
+    "lofts-03b4a6f1ce2f"
+  ],
+  "summary": {
+    "captured_archives": 8,
+    "all_api_comparisons_passed": true,
+    "api_comparisons": 124,
+    "legacy_archives_checked": 2,
+    "malformed_checks": 3,
+    "initial_capture_errors": 2,
+    "corrected_retry_successes": 2
+  },
+  "layout": {
+    "feature_class_guid": "B6678572-C095-4DD1-9348-614677DD0B4A",
+    "section_class_guid": "2F3200BA-FDFB-48C6-97D4-71A4A0D86190",
+    "header": "Optional observed attribute table; following offsets relative to cursor after table. Three fixed observed flags, merge flag at+3, native NewBody operation4 at+4, optional centerline proxy at+8.",
+    "end_condition": "End block precedes solid/rail/controller and ordered section list; Start block follows section list. Each block stores fixed observed int-1/double0, optional angle binding, condition code, optional weight binding, stored edge field0.",
+    "condition_codes": {
+      "0": "Free",
+      "3": "Direction"
+    },
+    "condition_byte_lengths": {
+      "Free": 22,
+      "Direction": 42
+    },
+    "parameter_roles": [
+      "Start Weight",
+      "Start TakeOff Angle",
+      "End Weight",
+      "End TakeOff Angle"
+    ],
+    "sections": "36-byte typed records, ten zero prefix bytes, feature owner reference at10, sketch-profile proxy reference at21, stored code2 at32. Order comes from explicit parent reference list.",
+    "centerline": "Explicit owned sketch-curve selection proxy; observed straight Line only. Native rail count remains0 for this centerline, while API total guide count is1."
+  },
+  "notes": [
+    "Initial SDK endCondition getter threw for an intermediate section although its stub suggests null; corrected generator queries endpoints only.",
+    "Initial centerline sketch used local coordinates whose direction did not cross all profile planes; corrected generator maps explicit worldZ points into sketch space and extends through both planes. Both initial errors are retained with original evidence.",
+    "All captured API lofts are open. The native closure field is unresolved; production is_closed is null and closure_status makes this explicit. Existing fixed flags are guarded without claiming they prove open-only semantics.",
+    "Both API edge alignments are FreeEdges in all captures. Stored edge fields0 are retained without assigning a verified enum mapping; alternate alignments remain unsupported.",
+    "Section profile membership is resolved through shared typed native references. No inference from nearby geometry or cache order."
+  ],
+  "limitations": [
+    "Closed lofts, rails, curved/composite centerlines, point/face/path/multi-profile sections unverified.",
+    "Only Free and Direction endpoint controls, with stored edge fields0; tangent/smooth/point controls and alternate edge alignments unsupported.",
+    "Cut, Join, Intersect and NewComponent loft operations unverified.",
+    "No exact loft-surface reconstruction, persistent topology mapping, kernel regeneration or native writer."
+  ],
+  "capture_errors": [
+    {
+      "capture_folder": "lofts-838ea6e83e97",
+      "case": "solid_three",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateLoftModes.py\", line 68, in run\n    entity, condition = section.entity, section.endCondition\n                                        ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 46233, in _get_endCondition\n    return _fusion.LoftSection__get_endCondition(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Only first/last section has end condition.\n"
+    },
+    {
+      "capture_folder": "lofts-838ea6e83e97",
+      "case": "centerline",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateLoftModes.py\", line 55, in run\n    feature = root.features.loftFeatures.add(inputs)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 46115, in add\n    return _fusion.LoftFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : ASM_CENTERLINE_SECTION_DOESNT_CUT_PATH -   The centerline does not intersect all profile planes.\n    Try extending the centerline, or adjusting the profiles so that they all intersect the centerline. Also check that the centerline was selected as intended.\nLOFT_TOOLBODY_CREATE_FAIL - Cannot create tool body for loft.\n"
+    }
+  ],
+  "samples": [
+    {
+      "file": "lofts-838ea6e83e97/solid_two.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": null,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          288,
+          296
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 288,
+            "profile": {
+              "selection_record_object_id": 289,
+              "descriptor_object_id": 292,
+              "loop_definition_object_id": 295,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 296,
+            "profile": {
+              "selection_record_object_id": 297,
+              "descriptor_object_id": 300,
+              "loop_definition_object_id": 303,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 283,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "result_control_record_object_id": 304,
+        "result_body_anchor_object_ids": [
+          327
+        ],
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "guide_status": "Observed absent guide or single straight sketch centerline; rails and composite centerlines unsupported",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved",
+        "closure_status": "Captured API examples are open; native closure encoding unresolved"
+      },
+      "comparisons": {
+        "operation": true,
+        "is_solid": true,
+        "is_tangent_edges_merged": true,
+        "section_count": true,
+        "guide_count": true,
+        "is_centerline": true,
+        "section_0_index": true,
+        "section_0_sketch_name": true,
+        "section_0_loop_count": true,
+        "section_0_condition": true,
+        "section_1_index": true,
+        "section_1_sketch_name": true,
+        "section_1_loop_count": true,
+        "section_1_condition": true
+      },
+      "api_closure_observation": {
+        "is_closed": false,
+        "decoded_closure_status": "unresolved"
+      }
+    },
+    {
+      "file": "lofts-838ea6e83e97/surface_two.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          false
+        ],
+        "operation": 3,
+        "is_solid": false,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": false,
+        "is_closed": null,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          288,
+          296
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 288,
+            "profile": {
+              "selection_record_object_id": 289,
+              "descriptor_object_id": 292,
+              "loop_definition_object_id": 295,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 296,
+            "profile": {
+              "selection_record_object_id": 297,
+              "descriptor_object_id": 300,
+              "loop_definition_object_id": 303,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 283,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "result_control_record_object_id": 304,
+        "result_body_anchor_object_ids": [
+          333
+        ],
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "guide_status": "Observed absent guide or single straight sketch centerline; rails and composite centerlines unsupported",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved",
+        "closure_status": "Captured API examples are open; native closure encoding unresolved"
+      },
+      "comparisons": {
+        "operation": true,
+        "is_solid": true,
+        "is_tangent_edges_merged": true,
+        "section_count": true,
+        "guide_count": true,
+        "is_centerline": true,
+        "section_0_index": true,
+        "section_0_sketch_name": true,
+        "section_0_loop_count": true,
+        "section_0_condition": true,
+        "section_1_index": true,
+        "section_1_sketch_name": true,
+        "section_1_loop_count": true,
+        "section_1_condition": true
+      },
+      "api_closure_observation": {
+        "is_closed": false,
+        "decoded_closure_status": "unresolved"
+      }
+    },
+    {
+      "file": "lofts-838ea6e83e97/start_direction.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftDirectionEndCondition",
+            "angle_radians": 0.17453292519943295,
+            "weight": 1.5
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": null,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          294,
+          302
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 294,
+            "profile": {
+              "selection_record_object_id": 295,
+              "descriptor_object_id": 298,
+              "loop_definition_object_id": 301,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Direction",
+              "stored_condition_code": 3,
+              "stored_edge_field": 0,
+              "byte_length": 42,
+              "angle_radians": 0.17453292519943295,
+              "weight": 1.5,
+              "angle_binding_object_id": 292,
+              "weight_binding_object_id": 289
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 302,
+            "profile": {
+              "selection_record_object_id": 303,
+              "descriptor_object_id": 306,
+              "loop_definition_object_id": 309,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 283,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Direction",
+          "stored_condition_code": 3,
+          "stored_edge_field": 0,
+          "byte_length": 42,
+          "angle_radians": 0.17453292519943295,
+          "weight": 1.5,
+          "angle_binding_object_id": 292,
+          "weight_binding_object_id": 289
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "result_control_record_object_id": 310,
+        "result_body_anchor_object_ids": [
+          333
+        ],
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "guide_status": "Observed absent guide or single straight sketch centerline; rails and composite centerlines unsupported",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved",
+        "closure_status": "Captured API examples are open; native closure encoding unresolved"
+      },
+      "comparisons": {
+        "operation": true,
+        "is_solid": true,
+        "is_tangent_edges_merged": true,
+        "section_count": true,
+        "guide_count": true,
+        "is_centerline": true,
+        "section_0_index": true,
+        "section_0_sketch_name": true,
+        "section_0_loop_count": true,
+        "section_0_condition": true,
+        "section_0_angle": true,
+        "section_0_weight": true,
+        "section_1_index": true,
+        "section_1_sketch_name": true,
+        "section_1_loop_count": true,
+        "section_1_condition": true
+      },
+      "api_closure_observation": {
+        "is_closed": false,
+        "decoded_closure_status": "unresolved"
+      }
+    },
+    {
+      "file": "lofts-838ea6e83e97/end_direction.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftDirectionEndCondition",
+            "angle_radians": -0.08726646259971647,
+            "weight": 1.2
+          }
+        ]
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": null,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          294,
+          302
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 294,
+            "profile": {
+              "selection_record_object_id": 295,
+              "descriptor_object_id": 298,
+              "loop_definition_object_id": 301,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 302,
+            "profile": {
+              "selection_record_object_id": 303,
+              "descriptor_object_id": 306,
+              "loop_definition_object_id": 309,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 283,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Direction",
+              "stored_condition_code": 3,
+              "stored_edge_field": 0,
+              "byte_length": 42,
+              "angle_radians": -0.08726646259971647,
+              "weight": 1.2,
+              "angle_binding_object_id": 292,
+              "weight_binding_object_id": 289
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "end_condition": {
+          "type": "Direction",
+          "stored_condition_code": 3,
+          "stored_edge_field": 0,
+          "byte_length": 42,
+          "angle_radians": -0.08726646259971647,
+          "weight": 1.2,
+          "angle_binding_object_id": 292,
+          "weight_binding_object_id": 289
+        },
+        "result_control_record_object_id": 310,
+        "result_body_anchor_object_ids": [
+          333
+        ],
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "guide_status": "Observed absent guide or single straight sketch centerline; rails and composite centerlines unsupported",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved",
+        "closure_status": "Captured API examples are open; native closure encoding unresolved"
+      },
+      "comparisons": {
+        "operation": true,
+        "is_solid": true,
+        "is_tangent_edges_merged": true,
+        "section_count": true,
+        "guide_count": true,
+        "is_centerline": true,
+        "section_0_index": true,
+        "section_0_sketch_name": true,
+        "section_0_loop_count": true,
+        "section_0_condition": true,
+        "section_1_index": true,
+        "section_1_sketch_name": true,
+        "section_1_loop_count": true,
+        "section_1_condition": true,
+        "section_1_angle": true,
+        "section_1_weight": true
+      },
+      "api_closure_observation": {
+        "is_closed": false,
+        "decoded_closure_status": "unresolved"
+      }
+    },
+    {
+      "file": "lofts-838ea6e83e97/both_direction.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftDirectionEndCondition",
+            "angle_radians": 0.17453292519943295,
+            "weight": 1.5
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftDirectionEndCondition",
+            "angle_radians": -0.08726646259971647,
+            "weight": 1.2
+          }
+        ]
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": null,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          300,
+          308
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 300,
+            "profile": {
+              "selection_record_object_id": 301,
+              "descriptor_object_id": 304,
+              "loop_definition_object_id": 307,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Direction",
+              "stored_condition_code": 3,
+              "stored_edge_field": 0,
+              "byte_length": 42,
+              "angle_radians": 0.17453292519943295,
+              "weight": 1.5,
+              "angle_binding_object_id": 292,
+              "weight_binding_object_id": 289
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 308,
+            "profile": {
+              "selection_record_object_id": 309,
+              "descriptor_object_id": 312,
+              "loop_definition_object_id": 315,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 283,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Direction",
+              "stored_condition_code": 3,
+              "stored_edge_field": 0,
+              "byte_length": 42,
+              "angle_radians": -0.08726646259971647,
+              "weight": 1.2,
+              "angle_binding_object_id": 298,
+              "weight_binding_object_id": 295
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Direction",
+          "stored_condition_code": 3,
+          "stored_edge_field": 0,
+          "byte_length": 42,
+          "angle_radians": 0.17453292519943295,
+          "weight": 1.5,
+          "angle_binding_object_id": 292,
+          "weight_binding_object_id": 289
+        },
+        "end_condition": {
+          "type": "Direction",
+          "stored_condition_code": 3,
+          "stored_edge_field": 0,
+          "byte_length": 42,
+          "angle_radians": -0.08726646259971647,
+          "weight": 1.2,
+          "angle_binding_object_id": 298,
+          "weight_binding_object_id": 295
+        },
+        "result_control_record_object_id": 316,
+        "result_body_anchor_object_ids": [
+          339
+        ],
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "guide_status": "Observed absent guide or single straight sketch centerline; rails and composite centerlines unsupported",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved",
+        "closure_status": "Captured API examples are open; native closure encoding unresolved"
+      },
+      "comparisons": {
+        "operation": true,
+        "is_solid": true,
+        "is_tangent_edges_merged": true,
+        "section_count": true,
+        "guide_count": true,
+        "is_centerline": true,
+        "section_0_index": true,
+        "section_0_sketch_name": true,
+        "section_0_loop_count": true,
+        "section_0_condition": true,
+        "section_0_angle": true,
+        "section_0_weight": true,
+        "section_1_index": true,
+        "section_1_sketch_name": true,
+        "section_1_loop_count": true,
+        "section_1_condition": true,
+        "section_1_angle": true,
+        "section_1_weight": true
+      },
+      "api_closure_observation": {
+        "is_closed": false,
+        "decoded_closure_status": "unresolved"
+      }
+    },
+    {
+      "file": "lofts-838ea6e83e97/unmerged.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": false,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": null,
+        "is_tangent_edges_merged": false,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          288,
+          296
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 288,
+            "profile": {
+              "selection_record_object_id": 289,
+              "descriptor_object_id": 292,
+              "loop_definition_object_id": 295,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 296,
+            "profile": {
+              "selection_record_object_id": 297,
+              "descriptor_object_id": 300,
+              "loop_definition_object_id": 303,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 283,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "result_control_record_object_id": 304,
+        "result_body_anchor_object_ids": [
+          327
+        ],
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "guide_status": "Observed absent guide or single straight sketch centerline; rails and composite centerlines unsupported",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved",
+        "closure_status": "Captured API examples are open; native closure encoding unresolved"
+      },
+      "comparisons": {
+        "operation": true,
+        "is_solid": true,
+        "is_tangent_edges_merged": true,
+        "section_count": true,
+        "guide_count": true,
+        "is_centerline": true,
+        "section_0_index": true,
+        "section_0_sketch_name": true,
+        "section_0_loop_count": true,
+        "section_0_condition": true,
+        "section_1_index": true,
+        "section_1_sketch_name": true,
+        "section_1_loop_count": true,
+        "section_1_condition": true
+      },
+      "api_closure_observation": {
+        "is_closed": false,
+        "decoded_closure_status": "unresolved"
+      }
+    },
+    {
+      "file": "lofts-03b4a6f1ce2f/solid_three.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 3,
+        "guide_count": 0,
+        "is_centerline": false,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": null
+          },
+          {
+            "index": 2,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection3",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": null,
+        "is_tangent_edges_merged": true,
+        "section_count": 3,
+        "section_input_record_object_ids": [
+          341,
+          349,
+          357
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 341,
+            "profile": {
+              "selection_record_object_id": 342,
+              "descriptor_object_id": 345,
+              "loop_definition_object_id": 348,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 349,
+            "profile": {
+              "selection_record_object_id": 350,
+              "descriptor_object_id": 353,
+              "loop_definition_object_id": 356,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 283,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": null
+          },
+          {
+            "index": 2,
+            "section_record_object_id": 357,
+            "profile": {
+              "selection_record_object_id": 358,
+              "descriptor_object_id": 361,
+              "loop_definition_object_id": 364,
+              "sketch_object_id": 309,
+              "sketch_name": "LoftSection3",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 336,
+                      "entity_kind": "Circle",
+                      "entity_tag": 108,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "result_control_record_object_id": 365,
+        "result_body_anchor_object_ids": [
+          392
+        ],
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "guide_status": "Observed absent guide or single straight sketch centerline; rails and composite centerlines unsupported",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved",
+        "closure_status": "Captured API examples are open; native closure encoding unresolved"
+      },
+      "comparisons": {
+        "operation": true,
+        "is_solid": true,
+        "is_tangent_edges_merged": true,
+        "section_count": true,
+        "guide_count": true,
+        "is_centerline": true,
+        "section_0_index": true,
+        "section_0_sketch_name": true,
+        "section_0_loop_count": true,
+        "section_0_condition": true,
+        "section_1_index": true,
+        "section_1_sketch_name": true,
+        "section_1_loop_count": true,
+        "section_1_condition": true,
+        "section_2_index": true,
+        "section_2_sketch_name": true,
+        "section_2_loop_count": true,
+        "section_2_condition": true
+      },
+      "api_closure_observation": {
+        "is_closed": false,
+        "decoded_closure_status": "unresolved"
+      }
+    },
+    {
+      "file": "lofts-03b4a6f1ce2f/centerline.f3d",
+      "api_settings": {
+        "result_body_count": 1,
+        "result_is_solid": [
+          true
+        ],
+        "operation": 3,
+        "is_solid": true,
+        "is_closed": false,
+        "is_tangent_edges_merged": true,
+        "start_edge_alignment": 0,
+        "end_edge_alignment": 0,
+        "section_count": 2,
+        "guide_count": 1,
+        "is_centerline": true,
+        "sections": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection1",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          },
+          {
+            "index": 1,
+            "entity_type": "adsk::fusion::Profile",
+            "sketch_name": "LoftSection2",
+            "profile_loop_count": 1,
+            "end_condition_type": "adsk::fusion::LoftFreeEndCondition"
+          }
+        ]
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": null,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          321,
+          329
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 321,
+            "profile": {
+              "selection_record_object_id": 322,
+              "descriptor_object_id": 325,
+              "loop_definition_object_id": 328,
+              "sketch_object_id": 202,
+              "sketch_name": "LoftSection1",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 329,
+            "profile": {
+              "selection_record_object_id": 330,
+              "descriptor_object_id": 333,
+              "loop_definition_object_id": 336,
+              "sketch_object_id": 256,
+              "sketch_name": "LoftSection2",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 283,
+                      "entity_kind": "Circle",
+                      "entity_tag": 105,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_edge_field": 0,
+              "byte_length": 22
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_edge_field": 0,
+          "byte_length": 22
+        },
+        "result_control_record_object_id": 344,
+        "result_body_anchor_object_ids": [
+          375
+        ],
+        "guide_count": 1,
+        "is_centerline": true,
+        "centerline": {
+          "selection_record_object_id": 337,
+          "descriptor_object_id": 340,
+          "terminal_object_id": 343,
+          "sketch_object_id": 287,
+          "curve_object_id": 316,
+          "curve_entity_tag": 109,
+          "kind": "Line",
+          "is_closed": false
+        },
+        "stored_rail_count": 0,
+        "guide_status": "Observed absent guide or single straight sketch centerline; rails and composite centerlines unsupported",
+        "section_selection_status": "Explicit ordered section list with sketch profile membership; contour traversal and general trim reconstruction unresolved",
+        "closure_status": "Captured API examples are open; native closure encoding unresolved"
+      },
+      "comparisons": {
+        "operation": true,
+        "is_solid": true,
+        "is_tangent_edges_merged": true,
+        "section_count": true,
+        "guide_count": true,
+        "is_centerline": true,
+        "section_0_index": true,
+        "section_0_sketch_name": true,
+        "section_0_loop_count": true,
+        "section_0_condition": true,
+        "section_1_index": true,
+        "section_1_sketch_name": true,
+        "section_1_loop_count": true,
+        "section_1_condition": true
+      },
+      "api_closure_observation": {
+        "is_closed": false,
+        "decoded_closure_status": "unresolved"
+      }
+    }
+  ],
+  "legacy_samples": [
+    {
+      "file": "moretools-88a2cd6cad0b/Loft.f3d",
+      "previous_controls_preserved": true,
+      "sections": [
+        {
+          "index": 0,
+          "section_record_object_id": 288,
+          "profile": {
+            "selection_record_object_id": 289,
+            "descriptor_object_id": 292,
+            "loop_definition_object_id": 295,
+            "sketch_object_id": 202,
+            "sketch_name": "LoftSectionOne",
+            "loops": [
+              {
+                "is_outer": true,
+                "curve_references": [
+                  {
+                    "entity_id": 230,
+                    "entity_kind": "Circle",
+                    "entity_tag": 102,
+                    "secondary_tag": 0,
+                    "stored_direction_flag": 0
+                  }
+                ],
+                "order_status": "Stored membership order; traversal ordering not decoded"
+              }
+            ],
+            "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+          },
+          "end_condition": {
+            "type": "Free",
+            "stored_condition_code": 0,
+            "stored_edge_field": 0,
+            "byte_length": 22
+          }
+        },
+        {
+          "index": 1,
+          "section_record_object_id": 296,
+          "profile": {
+            "selection_record_object_id": 297,
+            "descriptor_object_id": 300,
+            "loop_definition_object_id": 303,
+            "sketch_object_id": 256,
+            "sketch_name": "LoftSectionTwo",
+            "loops": [
+              {
+                "is_outer": true,
+                "curve_references": [
+                  {
+                    "entity_id": 283,
+                    "entity_kind": "Circle",
+                    "entity_tag": 105,
+                    "secondary_tag": 0,
+                    "stored_direction_flag": 0
+                  }
+                ],
+                "order_status": "Stored membership order; traversal ordering not decoded"
+              }
+            ],
+            "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+          },
+          "end_condition": {
+            "type": "Free",
+            "stored_condition_code": 0,
+            "stored_edge_field": 0,
+            "byte_length": 22
+          }
+        }
+      ]
+    },
+    {
+      "file": "moretools-380212ab6368/LoftThreeSections.f3d",
+      "previous_controls_preserved": true,
+      "sections": [
+        {
+          "index": 0,
+          "section_record_object_id": 341,
+          "profile": {
+            "selection_record_object_id": 342,
+            "descriptor_object_id": 345,
+            "loop_definition_object_id": 348,
+            "sketch_object_id": 202,
+            "sketch_name": "LoftSectionOne",
+            "loops": [
+              {
+                "is_outer": true,
+                "curve_references": [
+                  {
+                    "entity_id": 230,
+                    "entity_kind": "Circle",
+                    "entity_tag": 102,
+                    "secondary_tag": 0,
+                    "stored_direction_flag": 0
+                  }
+                ],
+                "order_status": "Stored membership order; traversal ordering not decoded"
+              }
+            ],
+            "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+          },
+          "end_condition": {
+            "type": "Free",
+            "stored_condition_code": 0,
+            "stored_edge_field": 0,
+            "byte_length": 22
+          }
+        },
+        {
+          "index": 1,
+          "section_record_object_id": 349,
+          "profile": {
+            "selection_record_object_id": 350,
+            "descriptor_object_id": 353,
+            "loop_definition_object_id": 356,
+            "sketch_object_id": 256,
+            "sketch_name": "LoftSectionTwo",
+            "loops": [
+              {
+                "is_outer": true,
+                "curve_references": [
+                  {
+                    "entity_id": 283,
+                    "entity_kind": "Circle",
+                    "entity_tag": 105,
+                    "secondary_tag": 0,
+                    "stored_direction_flag": 0
+                  }
+                ],
+                "order_status": "Stored membership order; traversal ordering not decoded"
+              }
+            ],
+            "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+          },
+          "end_condition": null
+        },
+        {
+          "index": 2,
+          "section_record_object_id": 357,
+          "profile": {
+            "selection_record_object_id": 358,
+            "descriptor_object_id": 361,
+            "loop_definition_object_id": 364,
+            "sketch_object_id": 309,
+            "sketch_name": "LoftSectionThree",
+            "loops": [
+              {
+                "is_outer": true,
+                "curve_references": [
+                  {
+                    "entity_id": 336,
+                    "entity_kind": "Circle",
+                    "entity_tag": 108,
+                    "secondary_tag": 0,
+                    "stored_direction_flag": 0
+                  }
+                ],
+                "order_status": "Stored membership order; traversal ordering not decoded"
+              }
+            ],
+            "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+          },
+          "end_condition": {
+            "type": "Free",
+            "stored_condition_code": 0,
+            "stored_edge_field": 0,
+            "byte_length": 22
+          }
+        }
+      ]
+    }
+  ],
+  "malformed_checks": [
+    {
+      "case": "nonboolean_merge_flag",
+      "rejected": true,
+      "reason": "Unsupported observed Loft control prefix"
+    },
+    {
+      "case": "unsupported_rail_count",
+      "rejected": true,
+      "reason": "Loft rail variants remain unsupported"
+    },
+    {
+      "case": "section_owner_mismatch",
+      "rejected": true,
+      "reason": "Unsupported Loft profile section layout/owner"
+    }
+  ]
+}

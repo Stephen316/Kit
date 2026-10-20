@@ -1,10 +1,9 @@
-"""Observed extra modeling-tool settings; input bodies/topology remain unresolved."""
+"""Observed modeling-tool controls and typed inputs; geometry remains partial."""
 
-import math
 import struct
 
 from decode_placement import rigid_matrix
-from decode_selection import known_construction_entities, resolve_native_selection
+from decode_selection import known_construction_entities
 from decode_sketch import numbers, reference
 from decode_holes import decode_hole
 from decode_body_tools import decode_body_tool
@@ -22,6 +21,7 @@ from decode_thicken import decode_thicken
 from decode_emboss import decode_emboss
 from decode_draft import decode_draft
 from decode_circular_patterns import decode_circular_pattern
+from decode_loft import decode_loft
 from decode_boundary_fill import decode_boundary_fill
 
 
@@ -39,16 +39,6 @@ def decode_tools(data, records, features):
             continue
         record = next(r for r in records if r.start == feature["record_offset"])
         body = data[record.body:record.end]
-        roles = {}
-        for parameter in feature["parameters"]:
-            roles.setdefault(parameter["role"], []).append(parameter)
-
-        def parameter(role):
-            choices = roles.get(role, [])
-            if len(choices) != 1:
-                raise ValueError("Missing or ambiguous tool parameter: "+role)
-            return choices[0]
-
         try:
             settings = {}
             if kind == "Emboss":
@@ -104,16 +94,7 @@ def decode_tools(data, records, features):
             elif kind == "Sweep":
                 settings = decode_sweep(data, records, body, feature, features)
             elif kind == "Loft":
-                if body[:10] != b"\0\x01\0\0\0\0\x01\x01\x01\x01":
-                    raise ValueError("Unrecognized basic loft prefix")
-                count = struct.unpack_from("<I", body, 54)[0]
-                if not 2 <= count <= 1024:
-                    raise ValueError("Unsupported loft section count")
-                sections = [reference(body, 58+i*11) for i in range(count)]
-                code = struct.unpack_from("<I", body, 10)[0]
-                settings = {"section_count": count, "section_input_record_object_ids": sections,
-                            "operation": "NewBody" if code == 4 else "Unknown", "stored_operation_code": code,
-                            "section_selection_status": "Exact profile contours unresolved"}
+                settings = decode_loft(data, records, body, feature, features)
             elif kind == "Draft":
                 settings = decode_draft(data, records, body, feature, axes)
             elif kind == "Thicken":

@@ -1,8 +1,9 @@
 """Experimental named-feature and parameter-reference decoding for Fusion.
 
 Layouts are inferred from Fusion 2705.1.30 samples, not a complete schema.
-Unknown fields remain unknown; only basic sketch geometry is interpreted, with
-no body topology or file writing provided.
+Unknown fields remain unknown. Explicit feature controls, selections and ownership
+links accompany partial cached ASM topology; general regeneration, persistent
+topology mapping and native file writing remain unavailable.
 """
 
 import argparse

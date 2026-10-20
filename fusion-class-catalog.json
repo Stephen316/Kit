@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 248,
+  "file_count": 278,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -249,10 +249,40 @@
     "thickenmodes-552efbb83fca/symmetric.f3d",
     "thickenmodes-17612e4ff890/cut.f3d",
     "thickenmodes-17612e4ff890/intersect.f3d",
-    "thickenmodes-17612e4ff890/join.f3d"
+    "thickenmodes-17612e4ff890/join.f3d",
+    "embossmodes-e40cc931d978/engraved.f3d",
+    "embossmodes-e40cc931d978/multiple_profiles.f3d",
+    "embossmodes-e40cc931d978/no_chain.f3d",
+    "embossmodes-e40cc931d978/raised.f3d",
+    "embossmodes-e40cc931d978/rotated.f3d",
+    "embossmodes-e40cc931d978/shifted.f3d",
+    "draftmodes-9b1a30f74aed/flipped.f3d",
+    "draftmodes-9b1a30f74aed/multiple_faces.f3d",
+    "draftmodes-9b1a30f74aed/negative.f3d",
+    "draftmodes-9b1a30f74aed/planar_face.f3d",
+    "draftmodes-9b1a30f74aed/single.f3d",
+    "draftmodes-9b1a30f74aed/symmetric.f3d",
+    "draftmodes-9b1a30f74aed/tangent_chain.f3d",
+    "draftmodes-9b1a30f74aed/two_angles.f3d",
+    "circularmodes-45f859c1f1b6/body_full.f3d",
+    "circularmodes-45f859c1f1b6/body_negative.f3d",
+    "circularmodes-45f859c1f1b6/body_suppressed.f3d",
+    "circularmodes-45f859c1f1b6/body_symmetric.f3d",
+    "circularmodes-45f859c1f1b6/feature_adjust.f3d",
+    "circularmodes-45f859c1f1b6/feature_identical.f3d",
+    "circularmodes-45f859c1f1b6/feature_optimized.f3d",
+    "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
+    "lofts-838ea6e83e97/both_direction.f3d",
+    "lofts-838ea6e83e97/end_direction.f3d",
+    "lofts-838ea6e83e97/solid_two.f3d",
+    "lofts-838ea6e83e97/start_direction.f3d",
+    "lofts-838ea6e83e97/surface_two.f3d",
+    "lofts-838ea6e83e97/unmerged.f3d",
+    "lofts-03b4a6f1ce2f/centerline.f3d",
+    "lofts-03b4a6f1ce2f/solid_three.f3d"
   ],
-  "class_count": 309,
-  "classes_with_observed_semantics": 49,
+  "class_count": 311,
+  "classes_with_observed_semantics": 50,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -1114,6 +1144,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "lofts-838ea6e83e97/both_direction.f3d",
         "moretools-380212ab6368/LoftThreeSections.f3d",
         "moretools-88a2cd6cad0b/Loft.f3d"
       ]
@@ -2751,6 +2782,7 @@
         "Named feature: ConstructionAxis"
       ],
       "example_files": [
+        "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
         "discovery-08660c033d4d/discovery.f3d"
       ]
     },
@@ -3254,6 +3286,24 @@
       "example_files": []
     },
     {
+      "class_guid": "9B5B035F-5B40-4B8B-946C-34A536CC1CA0",
+      "base_class_guids": [
+        "60F291CB-499B-4AB1-B0E5-340368671724"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "embossmodes-e40cc931d978/engraved.f3d",
+        "embossmodes-e40cc931d978/multiple_profiles.f3d",
+        "embossmodes-e40cc931d978/no_chain.f3d"
+      ]
+    },
+    {
       "class_guid": "9F412B74-4FC8-400B-B922-29E7DB86DD33",
       "base_class_guids": [
         "735FD678-4ADD-4F4B-A8B1-88CAA010394E"
@@ -3652,6 +3702,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "lofts-838ea6e83e97/both_direction.f3d",
         "moretools-380212ab6368/LoftThreeSections.f3d",
         "moretools-88a2cd6cad0b/Loft.f3d"
       ]
@@ -3877,6 +3928,7 @@
         "Named feature: Loft"
       ],
       "example_files": [
+        "lofts-838ea6e83e97/both_direction.f3d",
         "moretools-380212ab6368/LoftThreeSections.f3d",
         "moretools-88a2cd6cad0b/Loft.f3d"
       ]
@@ -4110,6 +4162,26 @@
       ]
     },
     {
+      "class_guid": "C3A9ECCE-7D25-4432-A645-3A0D9687F22A",
+      "base_class_guids": [
+        "3FED63D9-CDC5-4334-A5C5-6C10271320D5"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Named feature: Emboss"
+      ],
+      "example_files": [
+        "embossmodes-e40cc931d978/engraved.f3d",
+        "embossmodes-e40cc931d978/multiple_profiles.f3d",
+        "embossmodes-e40cc931d978/no_chain.f3d"
+      ]
+    },
+    {
       "class_guid": "C444E6AD-33DC-4877-B037-A3A5518856B1",
       "base_class_guids": [
         "3EF91258-FE47-45A5-957D-1295C3679496"
@@ -4158,6 +4230,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "lofts-838ea6e83e97/both_direction.f3d",
         "moretools-380212ab6368/LoftThreeSections.f3d",
         "moretools-88a2cd6cad0b/Loft.f3d"
       ]
@@ -5168,6 +5241,8 @@
         "Named feature: Draft"
       ],
       "example_files": [
+        "draftmodes-9b1a30f74aed/flipped.f3d",
+        "draftmodes-9b1a30f74aed/multiple_faces.f3d",
         "moretools-88a2cd6cad0b/Draft.f3d"
       ]
     },
