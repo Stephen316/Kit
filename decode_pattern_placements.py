@@ -2,7 +2,8 @@
 
 These matrices are calculated from decoded controls, not read as native matrices.
 They have no proven correspondence to native element records, API element IDs,
-result body anchors or ASM topology. Circular and symmetric cases stay unresolved.
+result body anchors or ASM topology. Circular cases stay unresolved; symmetry
+is limited to independently captured explicit-axis body patterns.
 """
 
 import argparse
@@ -13,6 +14,7 @@ from pathlib import Path
 import struct
 
 from decode_sketch import reference, same
+from decode_rectangular_symmetry import rectangular_symmetry_translation_set
 
 
 ELEMENT = "AD719C1A-11AF-4537-BB41-030A9091D36B"
@@ -105,7 +107,9 @@ def decode_pattern_placements(data, records, features):
                         "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."}
             if kind == "CircularPattern":
                 raise ValueError("Circular API getter matrix sets disagree with ordinary equally spaced rotation sets in captured full/partial/symmetric fixtures; transform semantics unresolved")
-            placements = rectangular_translation_set(settings)
+            placements = (rectangular_symmetry_translation_set(settings)
+                          if settings.get("symmetric_one") or settings.get("symmetric_two")
+                          else rectangular_translation_set(settings))
             if len(placements) != len(ids):
                 raise ValueError("Computed rectangular placement count disagrees with native element count")
             decoded.append({"feature_object_id": feature["object_id"], "kind": kind,
@@ -120,7 +124,7 @@ def decode_pattern_placements(data, records, features):
             unresolved.append({"feature_object_id": feature["object_id"], "kind": kind,
                                "reason": str(error), "native_evidence": evidence})
     return {"decoded": decoded, "unresolved": unresolved,
-            "scope": "Observed nonsymmetric unsuppressed rectangular translation sets; no instance/body identity association, cache modification, joint solving or geometry regeneration"}
+            "scope": "Observed unsuppressed rectangular translation sets, including captured single-body positive-spacing X/Y symmetry; no instance/body identity association, cache modification, joint solving or geometry regeneration"}
 
 
 def _same_matrix_set(one, two):
