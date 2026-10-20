@@ -22,12 +22,14 @@ from decode_sketch_surface_constraints import decode_sketch_surface_constraints
 from decode_sketch_mixed_patterns import decode_sketch_mixed_patterns
 from decode_emboss_texts import decode_consumed_sketch_texts
 from decode_pipe_edge_controls import inspect_pipe_edge_controls
+from decode_pipe_vertex_contexts import inspect_pipe_auxiliary_vertex_context
 from decode_sketch_text_controls import decode_sketch_text_controls
 from decode_sketch_text_paths import decode_sketch_text_paths
 from decode_sketch_coverage import decode_sketch_coverage
 from decode_offset_details import decode_offset_details
 from decode_sketch_projections import decode_sketch_projections
 from decode_sketch_projection_families import decode_sketch_projection_families
+from decode_face_boundary_projections import decode_face_boundary_projections
 from decode_sketch_pattern_details import decode_sketch_pattern_details
 from decode_dimension_controls import decode_dimension_controls
 from decode_dimension_control_modes import decode_dimension_control_modes
@@ -55,6 +57,7 @@ from decode_assembly import decode_assembly
 from decode_dependencies import decode_dependencies
 from asm_records import inspect_asm_members
 from decode_body_bindings import decode_body_bindings
+from decode_body_asm_identifiers import decode_body_asm_identifiers
 from decode_body_properties import decode_body_properties
 from decode_body_selections import decode_body_selections
 from decode_body_tool_selections import decode_body_tool_selections
@@ -327,18 +330,19 @@ def decode_basics(path, zstd_library=None):
                                                       position_scope=mode["annotation_position_evidence"])
         projection_summary = decode_sketch_projections(data, records, features)
         projection_families = decode_sketch_projection_families(data, records, features)
+        face_boundary_summary = decode_face_boundary_projections(data, records, features)
         # One controller can explicitly name multiple outputs, such as two
         # circle/plane intersections. Preserve each output relationship.
         projection_keys = {(r["controller_object_id"], r["output_cache"]["object_id"])
                            for r in projection_summary["relationships"]}
-        for relationship in projection_families["relationships"]:
+        for relationship in projection_families["relationships"]+face_boundary_summary["relationships"]:
             key = relationship["controller_object_id"], relationship["output_cache"]["object_id"]
             if key not in projection_keys:
                 projection_summary["relationships"].append(relationship)
                 projection_keys.add(key)
         resolved_projection_ids = {key[0] for key in projection_keys}
         projection_unresolved = {}
-        for item in projection_summary["unresolved"]+projection_families["unresolved"]:
+        for item in projection_summary["unresolved"]+projection_families["unresolved"]+face_boundary_summary["unresolved"]:
             if item["object_id"] in resolved_projection_ids:
                 continue
             if item["object_id"] not in projection_unresolved:
@@ -347,12 +351,14 @@ def decode_basics(path, zstd_library=None):
                 projection_unresolved[item["object_id"]]["additional_reason"] = item["reason"]
         projection_summary["unresolved"] = list(projection_unresolved.values())
         projection_summary["scope"] += "; "+projection_families["scope"]
+        if face_boundary_summary["relationships"]:
+            projection_summary["scope"] += "; "+face_boundary_summary["scope"]
         for relationship in projection_summary["relationships"]:
             target = next(f for f in features if f["object_id"] == relationship["target_feature_object_id"])
             output = next((g for g in target["geometry"] if g["object_id"] == relationship["output_cache"]["object_id"]), None)
             if output is not None:
                 output["projection_reference"] = {"controller_object_id": relationship["controller_object_id"],
-                                                  "method": relationship["method"], "is_linked": True,
+                                                  "method": relationship["method"], "is_linked": relationship["is_linked"],
                                                   "scope": "Explicit native projection relationship; source details in sketch_projections"}
         profile_summary = decode_profiles(data, records, features)
         modeling_summary = decode_modeling(data, records, features)
@@ -425,6 +431,8 @@ def decode_basics(path, zstd_library=None):
         tool_summary = decode_tools(data, records, features)
         pipe_provenance_summary = {"partial": [], "unresolved": [],
                                    "scope": "Separate source provenance and observed edge Pipe controls without full decoded settings; closure and geometry stay unresolved"}
+        pipe_vertex_summary = {"decoded": [], "unresolved": [],
+                               "scope": "Typed auxiliary vertex contexts only; Pipe closure, geometry and full settings unresolved"}
         for pipe in features:
             if pipe["kind"] != "Pipe" or "tool_settings" in pipe:
                 continue
@@ -434,6 +442,14 @@ def decode_basics(path, zstd_library=None):
                     source = inspect_pipe_edge_controls(data, records, data[pipe_record.body:pipe_record.end], pipe, features)
                 except (ValueError, KeyError, IndexError, struct.error):
                     source = inspect_pipe_edge_path(data, records, data[pipe_record.body:pipe_record.end], pipe, features)
+                if source.get("native_has_auxiliary_point_selector"):
+                    try:
+                        vertex_context = inspect_pipe_auxiliary_vertex_context(
+                            data, records, data[pipe_record.body:pipe_record.end], pipe, features, source_evidence=source)
+                        source["auxiliary_point_selection"]["vertex_context_evidence"] = vertex_context
+                        pipe_vertex_summary["decoded"].append(vertex_context)
+                    except (ValueError, KeyError, IndexError, struct.error) as error:
+                        pipe_vertex_summary["unresolved"].append({"feature_object_id": pipe["object_id"], "reason": str(error)})
                 pipe_provenance_summary["partial"].append(source)
             except (ValueError, KeyError, IndexError, struct.error) as error:
                 pipe_provenance_summary["unresolved"].append({"feature_object_id": pipe["object_id"], "reason": str(error)})
@@ -656,6 +672,22 @@ def decode_basics(path, zstd_library=None):
                                                  if item["mapping_record_object_id"] not in existing_mapping_ids)
         recovered_mapping_ids = {item["mapping_record_object_id"] for item in body_mapping_variant_summary["decoded"]}
         body_binding_summary["unresolved"] = [item for item in body_binding_summary["unresolved"] if item["object_id"] not in recovered_mapping_ids]
+        body_identifier_summary = decode_body_asm_identifiers(data, records, name, members, body_binding_summary)
+        invalidated_mapping_ids = set(body_identifier_summary["invalidate_ordinal_candidates_for_mapping_ids"])
+        keyed_mappings = {item["mapping_record_object_id"]: item for item in body_identifier_summary["decoded"]}
+        for mapping in body_binding_summary["decoded"]:
+            mapping_id = mapping["mapping_record_object_id"]
+            if mapping_id not in invalidated_mapping_ids:
+                continue
+            patches = {entry["native_body_object_id"]: entry for entry in keyed_mappings.get(mapping_id, {}).get("bindings", [])}
+            for entry in mapping["bindings"]:
+                entry.pop("candidate_asm_body_index", None)
+                entry["association_status"] = "ASM body identifier association unresolved; ordinal candidate withdrawn"
+                if entry["native_body_object_id"] in patches:
+                    entry.update(patches[entry["native_body_object_id"]])
+                    entry["handle_scope"] = entry["identifier_scope"]
+            mapping["scope"] = "Explicit native body/blob mapping; only validated same-blob typed BODY identifier joins supply ASM roots"
+        body_binding_summary["scope"] = "Native body/blob mapping and observed typed per-blob BODY identifiers; final-body lifecycle unresolved"
         body_placement_summary = decode_body_placement(body_binding_summary, assembly_summary, asm_summary)
         if any(r.is_primary and r.class_guid == NATIVE_JOINT_GUID for r in records):
             label_joint_cache_placements(assembly_summary, body_placement_summary, features)
@@ -687,6 +719,7 @@ def decode_basics(path, zstd_library=None):
             "sketch_record_coverage": sketch_coverage_summary,
             "offset_details": offset_detail_summary,
             "sketch_projections": projection_summary,
+            "face_boundary_projections": face_boundary_summary,
             "sketch_texts": sketch_text_summary,
             "sketch_pattern_details": sketch_pattern_summary,
             "sketch_curved_patterns": curved_pattern_summary,
@@ -705,6 +738,7 @@ def decode_basics(path, zstd_library=None):
             "revolve_axes": revolve_axis_summary,
             "tool_decoding": tool_summary,
             "pipe_path_provenance": pipe_provenance_summary,
+            "pipe_vertex_contexts": pipe_vertex_summary,
             "pattern_placements": pattern_placement_summary,
             "timeline_decoding": timeline_summary,
             "assembly_decoding": assembly_summary,
@@ -714,6 +748,7 @@ def decode_basics(path, zstd_library=None):
             "joint_decoding": joint_summary,
             "dependency_decoding": dependency_summary,
             "body_blob_bindings": body_binding_summary,
+            "body_asm_identifiers": body_identifier_summary,
             "body_properties": body_property_summary,
             "body_selections": body_selection_summary,
             "selection_context_recipes": selection_context_summary,

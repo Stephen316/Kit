@@ -1,4 +1,4 @@
-"""Observed component/world vertices for identity-normalized native body caches."""
+"""Stored body-cache vertices through explicit identifier joins and placements."""
 
 from decode_placement import transform_point
 
@@ -12,9 +12,9 @@ def decode_body_placement(bindings, assembly, asm_summary):
         graphs = {g["body_index"]: g for g in stream.get("topology", {}).get("body_graphs", [])}
         for entry in mapping["bindings"]:
             try:
-                body = graphs.get(entry.get("candidate_asm_body_index"))
+                body = graphs.get(entry.get("asm_body_index"))
                 if body is None or "component_object_id" not in entry:
-                    raise ValueError("Body root candidate or explicit component owner unresolved")
+                    raise ValueError("Typed ASM BODY identifier association or explicit component owner unresolved")
                 if not body.get("body_transform_is_identity"):
                     raise ValueError("Non-identity or unknown body transform is not validated")
                 owner = entry["component_object_id"]
@@ -26,8 +26,10 @@ def decode_body_placement(bindings, assembly, asm_summary):
                 points = body["raw_vertex_positions"]
                 bodies.append({"native_body_object_id": entry["native_body_object_id"], "name": entry.get("name"),
                                "component_object_id": owner, "component_name": entry.get("component_name"),
-                               "history_blob_member": mapping["history_blob_member"], "candidate_asm_body_index": body["body_index"],
+                               "history_blob_member": mapping["history_blob_member"], "asm_body_index": body["body_index"],
+                               "asm_stored_entity_id": entry["asm_stored_entity_id"],
                                "association_status": entry["association_status"],
+                               "lifecycle_status": entry["lifecycle_status"],
                                "component_vertex_positions_cm": points,
                                "placements": [{"path": p["path"], "component_to_world_matrix": p["world_transform"],
                                                "world_vertex_positions_cm": [transform_point(p["world_transform"], v) for v in points]}
@@ -37,7 +39,7 @@ def decode_body_placement(bindings, assembly, asm_summary):
             except (ValueError, KeyError, IndexError) as error:
                 unresolved.append({"native_body_object_id": entry["native_body_object_id"], "reason": str(error)})
     return {"bodies": bodies, "unresolved": unresolved,
-            "scope": "Conditional body-root candidates composed through decoded local occurrence paths"}
+            "scope": "Typed same-blob BODY identifier joins composed through stored occurrence caches; current body lifecycle unresolved"}
 
 
 def label_joint_cache_placements(assembly, body_placement, features):
@@ -66,7 +68,7 @@ def label_joint_cache_placements(assembly, body_placement, features):
         if feature['kind'] == 'Sketch' and 'placement' in feature:
             feature['placement']['scope'] = 'Native parent component; occurrence caches do not include joint solving'
     body_placement['joint_kinematics_status'] = status
-    body_placement['scope'] = 'Conditional body-root candidates composed through stored occurrence caches; no joint-solved world placement'
+    body_placement['scope'] = 'Typed same-blob BODY identifier joins through stored occurrence caches; no solved joint placement or final-body lifecycle'
     for body in body_placement['bodies']:
         for placement in body['placements']:
             placement['component_to_stored_occurrence_cache_matrix'] = placement.pop('component_to_world_matrix')

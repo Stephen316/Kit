@@ -15,7 +15,7 @@ POINT_SOURCE_GUID = "D95DBAC0-238B-4429-A0AD-4AE5BEE79ADF"
 NAME_GUIDS = ("CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C", "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE")
 
 
-def decode_sketch_projections(data, records, features):
+def decode_sketch_projections(data, records, features, *, controller_family_decoder=None):
     sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
     by_feature = {f["object_id"]: f for f in sketches.values()}
     decoded, unresolved = [], []
@@ -120,6 +120,10 @@ def decode_sketch_projections(data, records, features):
             if len(chunk) != 105 or chunk[:5] != bytes.fromhex("0000010000") or chunk[5] not in (0, 1):
                 raise ValueError("Unsupported projection controller layout")
             if struct.unpack_from("<I", chunk, 26)[0] != 3:
+                if controller_family_decoder is not None:
+                    decoded.extend(controller_family_decoder(
+                        data, records, features, controller, chunk, primary, naming_leaf, cached_output))
+                    continue
                 raise ValueError("Projection controller family is not observed Project/Include; intersection requires family reader")
             owner = reference(chunk, 94)
             target_sketch = by_feature.get(owner)
