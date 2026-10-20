@@ -134,16 +134,22 @@ def inspect_asm_members(members, include_records=False):
             continue
         try:
             result = inspect_asm(data)
+            from decode_brep import decode_topology
+            topology = decode_topology(result)
+            if not include_records:
+                topology.pop("nodes", None)
+            topology["nodes_included"] = include_records
             counts = dict(sorted(Counter(r["name"] for r in result["records"]).items()))
             summary = {key: value for key, value in result.items() if key != "records"}
             summary.update(member=member, record_count=len(result["records"]), record_type_counts=counts,
-                           blob_role="history" if member.endswith(".smbh") else "body data")
+                           blob_role="history" if member.endswith(".smbh") else "body data", topology=topology)
+            summary["scope"] = "Typed token framing with separately reported partial topology; final visible-body identity unresolved"
             if include_records:
                 summary["records"] = result["records"]
             streams.append(summary)
         except (ValueError, UnicodeError, struct.error) as error:
             streams.append({"member": member, "complete_token_stream": False, "unresolved_reason": str(error)})
-    return {"streams": streams, "scope": "Observed ASM token grammar; final body identity and topology unresolved"}
+    return {"streams": streams, "scope": "Observed ASM tokens and reciprocal topology; final visible-body identity unresolved"}
 
 
 if __name__ == "__main__":
