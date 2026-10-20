@@ -37,21 +37,21 @@
   },
   "needed_contrasts": [
     {
-      "priority": 7,
+      "priority": 9,
       "cases": [
-        "Nested occurrence Mirror with explicit source/derived ownership"
+        "Deeper or repeated-instance occurrence Mirror routes"
       ],
-      "purpose": "Distinguish currently captured root-frame provenance from other assembly contexts"
+      "purpose": "Extend the observed two-level source and one-level parent route bounds"
     },
     {
-      "priority": 8,
+      "priority": 10,
       "cases": [
-        "Construction-plane Mirror with another input orientation/offset and independently available result geometry"
+        "Other datum types and nontrivial source orientation contexts"
       ],
-      "purpose": "Interpret output datum controls without relying on unavailable mirrorPlane/isCombine getters"
+      "purpose": "Extend source/output plane associations without inferring a general reflection operation from caches"
     }
   ],
-  "status": "Previously named follow-up inputs captured; three settings cases and two partial provenance cases decoded. General feature combinations, missing controls and topology/regeneration remain unresolved.",
+  "status": "Root and nested occurrence provenance plus observed plane output caches decoded; general operation controls, reflection, lifecycle and topology/regeneration remain unresolved.",
   "sdk_source": "Local adsk/fusion.py MirrorFeatureInput/ScaleFeatureInput/ShellFeatureInput documentation",
   "completed_followup_contrasts": {
     "mirror_capture": "mirrorfeatures-1ffa1b15c612",
@@ -83,5 +83,17 @@
       "Persistent selected/result face topology",
       "Unavailable API getter semantics"
     ]
+  },
+  "completed_nested_and_datum_outputs": {
+    "captures": [
+      "mirrorassemblydatum-65c867cc41d9",
+      "mirrorassemblydatum-700af16e9fc6"
+    ],
+    "completed": [
+      "Two-level nested occurrence source routes and reciprocal parent/source/derived ownership, including rotated parent",
+      "XY/XZ construction-plane source/output association and independent oriented plane cache contrasts"
+    ],
+    "initial_failures": "Two nested attempts failed before feature creation on an optional native occurrence token getter; corrected retry succeeded. Initial errors remain intact.",
+    "scope": "Stored route ownership and plane/occurrence caches; resultFeatures getter returned null, general reflection and replay remain unavailable."
   }
 }

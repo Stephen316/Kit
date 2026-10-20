@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 539,
+  "file_count": 559,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -187,6 +187,10 @@
     "lofts-838ea6e83e97/start_direction.f3d",
     "lofts-838ea6e83e97/surface_two.f3d",
     "lofts-838ea6e83e97/unmerged.f3d",
+    "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
+    "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
+    "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+    "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
     "mirrorfeatures-1ffa1b15c612/body_brep_face_plane.f3d",
     "mirrorfeatures-1ffa1b15c612/feature_adjust.f3d",
     "mirrorfeatures-1ffa1b15c612/feature_identical.f3d",
@@ -347,6 +351,9 @@
     "scaleshellinputs-97ef1cfd19e4/scale_vertex.f3d",
     "scaleshellinputs-97ef1cfd19e4/shell_body_and_other_face.f3d",
     "scaleshellinputs-97ef1cfd19e4/shell_two_bodies.f3d",
+    "silhouettedirections-805c2eaa2411/faces_brep_edge_x.f3d",
+    "silhouettedirections-805c2eaa2411/faces_brep_face_yz.f3d",
+    "silhouettedirections-805c2eaa2411/faces_custom_axis_x.f3d",
     "silhouettesplits-7d78a686cdbb/faces_axis_x.f3d",
     "silhouettesplits-7d78a686cdbb/faces_axis_y.f3d",
     "silhouettesplits-7d78a686cdbb/faces_plane_yz.f3d",
@@ -387,6 +394,10 @@
     "sketchprojections-67c0c4531b8f/linked_point.f3d",
     "sketchprojections-8fedd685854a/broken_line.f3d",
     "sketchprojections-8fedd685854a/unlinked_line.f3d",
+    "sketchsurfaceconstraints-5a2cd669cd19/coincident_to_plane.f3d",
+    "sketchsurfaceconstraints-5a2cd669cd19/line_on_face.f3d",
+    "sketchsurfaceconstraints-5a2cd669cd19/line_parallel_to_plane.f3d",
+    "sketchsurfaceconstraints-5a2cd669cd19/perpendicular_to_plane.f3d",
     "sketchsymmetricindices-2ba1d336c9cf/circular_even_high.f3d",
     "sketchsymmetricindices-2ba1d336c9cf/circular_odd_low.f3d",
     "sketchsymmetricindices-2ba1d336c9cf/rectangular_first_even.f3d",
@@ -422,6 +433,15 @@
     "solidsweeps-7d2677669e3d/solid_perpendicular.f3d",
     "solidsweeps-7d2677669e3d/solid_rigid.f3d",
     "solidsweeps-7d2677669e3d/solid_twist.f3d",
+    "specialfillets-a279c7bccbd1/full_explicit_swapped.f3d",
+    "specialfillets-a279c7bccbd1/rule_between_faces_swapped.f3d",
+    "specialfillets-d50f7a4f04e0/full_automatic.f3d",
+    "specialfillets-d50f7a4f04e0/full_explicit.f3d",
+    "specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+    "specialfillets-d50f7a4f04e0/rule_all_fillets.f3d",
+    "specialfillets-d50f7a4f04e0/rule_all_rounds.f3d",
+    "specialfillets-d50f7a4f04e0/rule_asymmetric.f3d",
+    "specialfillets-d50f7a4f04e0/rule_between_faces.f3d",
     "splinepatches-900d152c2380/splinepatches.f3d",
     "splinepatches-ac5e846e59c0/splinepatches.f3d",
     "splines-9a18bae21127/splines.f3d",
@@ -542,7 +562,7 @@
     "userparameters-e9c6959ff5fd/text.f3d",
     "userparameters-e9c6959ff5fd/unitless.f3d"
   ],
-  "class_count": 359,
+  "class_count": 369,
   "classes_with_observed_semantics": 59,
   "classes": [
     {
@@ -558,9 +578,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
-        "sketchtextcontrols-9318aff8ae89/center.f3d",
-        "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d"
+        "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+        "embosstext-cd769aa41cdf/text_deboss.f3d",
+        "embosstext-cd769aa41cdf/text_emboss.f3d"
       ]
     },
     {
@@ -888,6 +908,24 @@
       ]
     },
     {
+      "class_guid": "128CC0A6-678F-4785-88C1-58D60802EFCE",
+      "base_class_guids": [
+        "70F5E801-1E8E-436E-8A09-36487F8A2859"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "specialfillets-a279c7bccbd1/full_explicit_swapped.f3d",
+        "specialfillets-d50f7a4f04e0/full_automatic.f3d",
+        "specialfillets-d50f7a4f04e0/full_explicit.f3d"
+      ]
+    },
+    {
       "class_guid": "12D00AC0-B828-48C8-9740-80C4D992DB65",
       "base_class_guids": [
         "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
@@ -999,9 +1037,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
-        "sketchtextcontrols-9318aff8ae89/center.f3d",
-        "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d"
+        "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+        "embosstext-cd769aa41cdf/text_deboss.f3d",
+        "embosstext-cd769aa41cdf/text_emboss.f3d"
       ]
     },
     {
@@ -1634,6 +1672,24 @@
       ]
     },
     {
+      "class_guid": "312A88A1-FAFE-40E8-9778-962FC7DC0ACC",
+      "base_class_guids": [
+        "E8BDB9D4-2E39-405C-B05E-E2206AD3F125"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchsurfaceconstraints-5a2cd669cd19/coincident_to_plane.f3d",
+        "sketchsurfaceconstraints-5a2cd669cd19/line_on_face.f3d",
+        "sketchsurfaceconstraints-5a2cd669cd19/line_parallel_to_plane.f3d"
+      ]
+    },
+    {
       "class_guid": "3185B924-6C84-4804-BE77-9105B09209DA",
       "base_class_guids": [
         "130A0711-4E92-4FCD-AADE-B9C82238BB27"
@@ -1822,7 +1878,7 @@
       "example_files": [
         "moretools-380212ab6368/SweepPartial.f3d",
         "moretools-88a2cd6cad0b/Sweep.f3d",
-        "pipemodes-87cfa7d8d82b/circular.f3d"
+        "pipeedgecontrasts-5bd287323ae7/circle_full.f3d"
       ]
     },
     {
@@ -2168,8 +2224,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "splinepatches-900d152c2380/splinepatches.f3d",
-        "splinepatches-ac5e846e59c0/splinepatches.f3d",
+        "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+        "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
         "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d"
       ]
     },
@@ -2275,6 +2331,24 @@
         "analytic-86a12b291d0a/analytic.f3d",
         "assembly-acc48a9dc05d/assembly.f3d",
         "bodymodes-405fbd002680/mirror_xy.f3d"
+      ]
+    },
+    {
+      "class_guid": "4C687846-AC85-4C6F-BA18-0CF629FEA74C",
+      "base_class_guids": [
+        "70F5E801-1E8E-436E-8A09-36487F8A2859"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "specialfillets-a279c7bccbd1/full_explicit_swapped.f3d",
+        "specialfillets-d50f7a4f04e0/full_automatic.f3d",
+        "specialfillets-d50f7a4f04e0/full_explicit.f3d"
       ]
     },
     {
@@ -2508,8 +2582,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "splinepatches-900d152c2380/splinepatches.f3d",
-        "splinepatches-ac5e846e59c0/splinepatches.f3d",
+        "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+        "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
         "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d"
       ]
     },
@@ -2630,6 +2704,24 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "5E1EC0D0-0361-40E8-8883-063DDFEC3226",
+      "base_class_guids": [
+        "70F5E801-1E8E-436E-8A09-36487F8A2859"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "specialfillets-a279c7bccbd1/rule_between_faces_swapped.f3d",
+        "specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+        "specialfillets-d50f7a4f04e0/rule_all_fillets.f3d"
+      ]
     },
     {
       "class_guid": "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D",
@@ -2916,6 +3008,8 @@
         "Unsupported feature with stored label: DerivedInstance"
       ],
       "example_files": [
+        "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+        "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
         "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d"
       ]
     },
@@ -3010,6 +3104,24 @@
       ]
     },
     {
+      "class_guid": "6F542DE3-39A5-47D6-A55B-4AD354B879F1",
+      "base_class_guids": [
+        "EE7AE727-682A-41A9-8780-C407B6D722DC"
+      ],
+      "namespaces": [
+        "Geometry"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "sketchsurfaceconstraints-5a2cd669cd19/coincident_to_plane.f3d",
+        "sketchsurfaceconstraints-5a2cd669cd19/line_on_face.f3d",
+        "sketchsurfaceconstraints-5a2cd669cd19/line_parallel_to_plane.f3d"
+      ]
+    },
+    {
       "class_guid": "702b9cd2-537c-429e-8cc4-22beeeb98c37",
       "base_class_guids": [
         "eb7847af-e60d-4ab0-a736-4ac00c1f1d21"
@@ -3057,10 +3169,11 @@
         0
       ],
       "observed_semantics": [
-        "Unsupported feature with stored label: MirrorComponent",
-        "Observed occurrence Mirror source/derived provenance; controls and regeneration unsupported"
+        "Unsupported feature with stored label: MirrorComponent"
       ],
       "example_files": [
+        "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+        "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
         "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d"
       ]
     },
@@ -3107,9 +3220,9 @@
         "Named feature: Pipe"
       ],
       "example_files": [
-        "pipemodes-87cfa7d8d82b/circular.f3d",
-        "pipemodes-87cfa7d8d82b/hollow.f3d",
-        "pipemodes-87cfa7d8d82b/partial_closed.f3d"
+        "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+        "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+        "pipeedgecontrasts-5bd287323ae7/line_full.f3d"
       ]
     },
     {
@@ -3450,7 +3563,7 @@
       "example_files": [
         "sketchcurvedpatterns-185c2406ef52/circular_arc.f3d",
         "sketchcurvedpatterns-185c2406ef52/circular_ellipse.f3d",
-        "sketchpatternmodes-5b83cb71a99d/circular_line.f3d"
+        "sketchmixedpatterns-fcb7610f3c95/circular_arc_circle.f3d"
       ]
     },
     {
@@ -3487,6 +3600,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "analytic-86a12b291d0a/analytic.f3d",
         "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
+      "class_guid": "84845197-E802-48EA-AB39-FC7B0E6F4102",
+      "base_class_guids": [
+        "AFBA8F70-E8A6-42C7-AF3D-691B5DBBBAF0"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "specialfillets-a279c7bccbd1/rule_between_faces_swapped.f3d",
+        "specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+        "specialfillets-d50f7a4f04e0/rule_all_fillets.f3d"
       ]
     },
     {
@@ -3624,9 +3755,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
-        "sketchtextcontrols-9318aff8ae89/center.f3d",
-        "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d"
+        "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+        "embosstext-cd769aa41cdf/text_deboss.f3d",
+        "embosstext-cd769aa41cdf/text_emboss.f3d"
       ]
     },
     {
@@ -3928,9 +4059,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "pipemodes-87cfa7d8d82b/circular.f3d",
-        "pipemodes-87cfa7d8d82b/hollow.f3d",
-        "pipemodes-87cfa7d8d82b/partial_closed.f3d"
+        "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+        "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+        "pipeedgecontrasts-5bd287323ae7/line_full.f3d"
       ]
     },
     {
@@ -4220,9 +4351,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "splitfacemodes-4fc4adf2a868/along_vector.f3d",
-        "splitfacemodes-4fc4adf2a868/closest_point.f3d",
-        "splitfacemodes-4fc4adf2a868/line.f3d"
+        "silhouettesplits-7d78a686cdbb/solid_axis_x.f3d",
+        "silhouettesplits-f21b83e21695/shelled_hollow_axis_x.f3d",
+        "splitfacemodes-4fc4adf2a868/along_vector.f3d"
       ]
     },
     {
@@ -4304,6 +4435,8 @@
         "Named feature: Mirror"
       ],
       "example_files": [
+        "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
+        "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
         "remainingbodyinputs-7b3357274e85/mirror_construction_plane.f3d"
       ]
     },
@@ -4341,6 +4474,24 @@
         "timeline-5867579925b5/grouped.f3d",
         "timeline-5867579925b5/rolled_back.f3d",
         "timeline-expanded-2396e32f2574/expanded.f3d"
+      ]
+    },
+    {
+      "class_guid": "A9D2884D-E7D1-4E8F-8961-B7D90BAC64F1",
+      "base_class_guids": [
+        "6144EA59-3ACA-4172-9F14-A6531E94D69B"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "specialfillets-a279c7bccbd1/full_explicit_swapped.f3d",
+        "specialfillets-d50f7a4f04e0/full_automatic.f3d",
+        "specialfillets-d50f7a4f04e0/full_explicit.f3d"
       ]
     },
     {
@@ -4531,6 +4682,20 @@
       "example_files": []
     },
     {
+      "class_guid": "AFBA8F70-E8A6-42C7-AF3D-691B5DBBBAF0",
+      "base_class_guids": [
+        "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "B0387387-0FAA-4928-B189-FEB34071D524",
       "base_class_guids": [
         "60F291CB-499B-4AB1-B0E5-340368671724"
@@ -4637,6 +4802,8 @@
         "Unsupported feature with stored label: Derived Base Feature"
       ],
       "example_files": [
+        "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+        "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
         "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d"
       ]
     },
@@ -4945,7 +5112,7 @@
       "example_files": [
         "projectionfamilies-d987c50c2d73/surface_closest_line.f3d",
         "projectionfamilies-d987c50c2d73/surface_vector_line.f3d",
-        "surfacebounds-8804bbf80755/extend_no_chain.f3d"
+        "sketchsurfaceconstraints-5a2cd669cd19/line_on_face.f3d"
       ]
     },
     {
@@ -5435,9 +5602,9 @@
         "Named feature: SilhouetteSplit"
       ],
       "example_files": [
-        "silhouettesplits-7d78a686cdbb/faces_axis_x.f3d",
-        "silhouettesplits-7d78a686cdbb/faces_axis_y.f3d",
-        "silhouettesplits-7d78a686cdbb/faces_plane_yz.f3d"
+        "silhouettedirections-805c2eaa2411/faces_brep_edge_x.f3d",
+        "silhouettedirections-805c2eaa2411/faces_brep_face_yz.f3d",
+        "silhouettedirections-805c2eaa2411/faces_custom_axis_x.f3d"
       ]
     },
     {
@@ -5672,9 +5839,9 @@
         "Named feature: ConstructionPlane"
       ],
       "example_files": [
+        "bodyselections-62e42366c722/mirror_two_bodies_plane.f3d",
         "boundaryfills-a0953038318b/plane_first.f3d",
-        "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
-        "constructionmodes-e355ad6031c0/point_edge_plane.f3d"
+        "circularmodes-45f859c1f1b6/multiple_customaxis.f3d"
       ]
     },
     {
@@ -5708,9 +5875,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "bodyselections-62e42366c722/scale_two_bodies_point.f3d",
         "constructionmodes-e355ad6031c0/axis_edge.f3d",
-        "constructionmodes-e355ad6031c0/axis_normal_to_face.f3d",
-        "constructionmodes-e355ad6031c0/axis_two_points.f3d"
+        "constructionmodes-e355ad6031c0/axis_normal_to_face.f3d"
       ]
     },
     {
@@ -5769,6 +5936,24 @@
       ]
     },
     {
+      "class_guid": "DFE2F969-631C-4978-9345-B58392AD6B9A",
+      "base_class_guids": [
+        "6144EA59-3ACA-4172-9F14-A6531E94D69B"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "specialfillets-a279c7bccbd1/rule_between_faces_swapped.f3d",
+        "specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+        "specialfillets-d50f7a4f04e0/rule_all_fillets.f3d"
+      ]
+    },
+    {
       "class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
       "base_class_guids": [
         "42054630-20A0-40E1-B969-CFE9E742F5C9"
@@ -5799,9 +5984,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
-        "sketchtextcontrols-9318aff8ae89/center.f3d",
-        "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d"
+        "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+        "embosstext-cd769aa41cdf/text_deboss.f3d",
+        "embosstext-cd769aa41cdf/text_emboss.f3d"
       ]
     },
     {
@@ -5819,7 +6004,7 @@
       "example_files": [
         "projectionfamilies-d987c50c2d73/surface_closest_line.f3d",
         "projectionfamilies-d987c50c2d73/surface_vector_line.f3d",
-        "surfacebounds-8804bbf80755/extend_no_chain.f3d"
+        "sketchsurfaceconstraints-5a2cd669cd19/line_on_face.f3d"
       ]
     },
     {
@@ -6035,6 +6220,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
+        "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
         "remainingbodyinputs-7b3357274e85/mirror_construction_plane.f3d"
       ]
     },
@@ -6143,6 +6330,20 @@
         "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
         "pathpatterncomposites-b6b4cf615504/spline_along.f3d"
       ]
+    },
+    {
+      "class_guid": "EE7AE727-682A-41A9-8780-C407B6D722DC",
+      "base_class_guids": [
+        "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B"
+      ],
+      "namespaces": [
+        "Geometry"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
     },
     {
       "class_guid": "F0130424-8B7E-4092-93C9-1CA807482534",
@@ -6633,9 +6834,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
-        "sketchtextcontrols-9318aff8ae89/center.f3d",
-        "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d"
+        "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+        "embosstext-cd769aa41cdf/text_deboss.f3d",
+        "embosstext-cd769aa41cdf/text_emboss.f3d"
       ]
     },
     {

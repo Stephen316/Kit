@@ -12,7 +12,7 @@ DIRECTION = 'F2A7590D-6654-4674-B393-A2AEF4FEC48A'
 OPERATIONS = {0: 'FacesOnly', 1: 'ShelledBody', 2: 'SolidBody'}
 
 
-def decode_silhouette_splits(data, records, features, body_selections=None):
+def decode_silhouette_splits(data, records, features, body_selections=None, *, direction_resolver=None):
     groups = {}
     for record in records:
         if record.is_primary:
@@ -66,16 +66,19 @@ def decode_silhouette_splits(data, records, features, body_selections=None):
                     or struct.unpack_from('<I', direction, 99)[0] != 1
                     or reference(direction, 191) != owner or reference(direction, 103) != refs[1]):
                 raise ValueError('SilhouetteSplit direction count/owner correspondence changed')
-            descriptor = typed(refs[1], '5A1BF548-241F-46FD-9FB5-E4B05126EB9D')
-            if (len(descriptor) != 263 or descriptor[:2] != bytes(2)
-                    or struct.unpack_from('<I', descriptor, 13)[0] != 1 or reference(descriptor, 252) != owner):
-                raise ValueError('SilhouetteSplit direction descriptor count/owner changed')
-            source = resolve_native_selection(data, records, direction_id, known)
             method = struct.unpack_from('<I', direction, 70)[0]
-            if (source is None or (method, source['entity']['kind']) not in
-                    ((7, 'ConstructionAxis'), (14, 'ConstructionPlane'))):
-                raise ValueError('Only observed explicit construction direction sources supported')
-            typed(source['terminal_object_id'], '90055C05-546C-4EE7-B3C9-3DD922AD0C9C')
+            if direction_resolver is None:
+                descriptor = typed(refs[1], '5A1BF548-241F-46FD-9FB5-E4B05126EB9D')
+                if (len(descriptor) != 263 or descriptor[:2] != bytes(2)
+                        or struct.unpack_from('<I', descriptor, 13)[0] != 1 or reference(descriptor, 252) != owner):
+                    raise ValueError('SilhouetteSplit direction descriptor count/owner changed')
+                source = resolve_native_selection(data, records, direction_id, known)
+                if (source is None or (method, source['entity']['kind']) not in
+                        ((7, 'ConstructionAxis'), (14, 'ConstructionPlane'))):
+                    raise ValueError('Only observed explicit construction direction sources supported')
+                typed(source['terminal_object_id'], '90055C05-546C-4EE7-B3C9-3DD922AD0C9C')
+            else:
+                source = direction_resolver(data, records, features, direction_id, refs[1], owner, bodies, known)
             proxy = typed(target_proxy_id, '2CA5A1CD-C99B-4C9B-91AF-57989148E841')
             target = proxies.get(target_proxy_id)
             if (target is None or target['owner_object_id'] != owner

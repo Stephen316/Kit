@@ -18,6 +18,7 @@ from decode_parameters import decode_stream, read_string
 from decode_parameter_tables import decode_parameter_tables
 from decode_expression_dependencies import derive_expression_dependencies
 from decode_sketch import decode_sketches
+from decode_sketch_surface_constraints import decode_sketch_surface_constraints
 from decode_sketch_mixed_patterns import decode_sketch_mixed_patterns
 from decode_emboss_texts import decode_consumed_sketch_texts
 from decode_pipe_edge_controls import inspect_pipe_edge_controls
@@ -63,7 +64,11 @@ from decode_scale_inputs import decode_scale_vertex_points
 from decode_direct_body_features import decode_direct_body_features
 from decode_copy_paste_occurrences import decode_copy_paste_occurrences
 from decode_silhouette_splits import decode_silhouette_splits
+from decode_silhouette_directions import decode_silhouette_directions
 from decode_remaining_body_inputs import decode_remaining_body_input, MIRROR_COMPONENT, MIRROR_DATUM
+from decode_mirror_datum_outputs import decode_mirror_datum_outputs
+from decode_mirror_nested_occurrences import decode_mirror_nested_occurrences
+from decode_special_fillets import decode_special_fillets
 from decode_brep_recipes import decode_recipes
 from decode_component_body_proxies import decode_component_body_proxies
 from decode_combine import attach_combine_bodies
@@ -238,6 +243,20 @@ def decode_basics(path, zstd_library=None):
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
+        surface_constraint_summary = decode_sketch_surface_constraints(data, records, features)
+        surface_sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
+        recovered_surface_ids = set()
+        for key, items in (("geometry", surface_constraint_summary["additional_geometry"]),
+                           ("constraints", surface_constraint_summary["constraints"])):
+            for item in items:
+                sketch = surface_sketches[item["sketch_object_id"]]
+                if not any(existing["object_id"] == item["object_id"] for existing in sketch[key]):
+                    sketch[key].append(copy.deepcopy(item))
+                recovered_surface_ids.add(item["object_id"])
+        for key in ("unsupported_curves", "unknown_constraint_codes"):
+            sketch_summary[key] = [item for item in sketch_summary[key] if item["object_id"] not in recovered_surface_ids]
+        sketch_summary["tool_constraints"]["unresolved"] = [item for item in sketch_summary["tool_constraints"]["unresolved"]
+                                                           if item["object_id"] not in recovered_surface_ids]
         curved_pattern_summary = decode_sketch_mixed_patterns(data, records, features)
         pattern_coverage_summary = decode_sketch_symmetric_indices(data, records, features)
         curved_sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
@@ -435,9 +454,33 @@ def decode_basics(path, zstd_library=None):
                                                 or item["object_id"] not in resolved_component_proxies]
         body_selection_summary["unresolved"].extend(component_body_summary["unresolved"])
         body_selection_summary["component_context_scope"] = component_body_summary["scope"]
+        special_fillet_summary = decode_special_fillets(data, records, features, body_selection_summary)
+        original_tool_ids = {item["object_id"] for item in tool_summary["decoded"]}
+        special_fillet_summary["unresolved"] = [item for item in special_fillet_summary["unresolved"]
+                                                  if item["feature_object_id"] not in original_tool_ids]
+        special_fillet_ids = set()
+        for fillet in special_fillet_summary["decoded"]:
+            feature = feature_by_id[fillet["feature_object_id"]]
+            feature.update(tool_settings={k: v for k, v in fillet.items() if k not in ("feature_object_id", "kind")},
+                           decode_level="Observed full-round/rule fillet controls and source roles; exact topology and regeneration unsupported")
+            special_fillet_ids.add(feature["object_id"])
+            if feature["object_id"] not in original_tool_ids:
+                tool_summary["decoded"].append({"object_id": feature["object_id"], "kind": "Fillet"})
+        tool_summary["unresolved"] = [item for item in tool_summary["unresolved"] if item["object_id"] not in special_fillet_ids]
         selection_context_summary = decode_selection_context_recipes(data, records, body_selection_summary)
         direct_body_summary = decode_direct_body_features(data, records, body_selection_summary)
         silhouette_summary = decode_silhouette_splits(data, records, features, body_selection_summary)
+        silhouette_direction_summary = decode_silhouette_directions(data, records, features, body_selection_summary)
+        original_silhouette_ids = {item["feature_object_id"] for item in silhouette_summary["decoded"]}
+        extended_silhouette_ids = {item["feature_object_id"] for item in silhouette_direction_summary["decoded"]}
+        silhouette_summary["decoded"].extend(item for item in silhouette_direction_summary["decoded"]
+                                              if item["feature_object_id"] not in original_silhouette_ids)
+        silhouette_summary["unresolved"] = [item for item in silhouette_summary["unresolved"]
+                                               if item["feature_object_id"] not in extended_silhouette_ids]
+        silhouette_direction_summary["unresolved"] = [item for item in silhouette_direction_summary["unresolved"]
+                                                         if item["feature_object_id"] not in original_silhouette_ids]
+        if extended_silhouette_ids:
+            silhouette_summary["scope"] += "; "+silhouette_direction_summary["scope"]
         direct_body_ids = set()
         for direct_body in direct_body_summary["decoded"]:
             feature = feature_by_id.get(direct_body["feature_object_id"])
@@ -461,6 +504,8 @@ def decode_basics(path, zstd_library=None):
         remaining_input_summary = {"decoded_settings": [], "partial": [], "unresolved": [],
                                    "scope": "Observed additional feature/face/Sketch inputs and separate occurrence/datum provenance; unavailable controls and regeneration remain unresolved"}
         known_input_entities = known_construction_entities(data, records, features)
+        mirror_datum_summary = {"decoded": [], "scope": "Observed explicit datum Mirror output ownership and oriented plane caches; regeneration unavailable"}
+        mirror_nested_summary = {"decoded": [], "scope": "Observed two-level occurrence Mirror routes and parent ownership; stored caches, no assembly solving or replay"}
         resolved_input_ids = set()
         for feature in features:
             settings = feature.get("tool_settings", {})
@@ -471,8 +516,21 @@ def decode_basics(path, zstd_library=None):
                 continue
             source_record = next(r for r in records if r.start == feature["record_offset"])
             try:
-                inputs = decode_remaining_body_input(data, records, data[source_record.body:source_record.end],
-                                                     feature, known_input_entities, features, assembly_summary)
+                try:
+                    inputs = decode_remaining_body_input(data, records, data[source_record.body:source_record.end],
+                                                         feature, known_input_entities, features, assembly_summary)
+                except (ValueError, KeyError, IndexError, UnicodeError, struct.error):
+                    if feature["class_guid"] == MIRROR_DATUM:
+                        provenance = decode_mirror_datum_outputs(data, records, data[source_record.body:source_record.end],
+                                                                feature, known_input_entities)
+                        mirror_datum_summary["decoded"].append(provenance)
+                    elif feature["class_guid"] == MIRROR_COMPONENT:
+                        provenance = decode_mirror_nested_occurrences(data, records, data[source_record.body:source_record.end],
+                                                                      feature, known_input_entities, assembly_summary)
+                        mirror_nested_summary["decoded"].append(provenance)
+                    else:
+                        raise
+                    inputs = {"status": "PartialProvenance", "provenance": provenance}
                 if inputs["status"] == "DecodedSettings":
                     feature.update(tool_settings=inputs["settings"],
                                    decode_level="Observed additional input identities and available controls; topology and regeneration unsupported")
@@ -554,7 +612,12 @@ def decode_basics(path, zstd_library=None):
             "selection_context_recipes": selection_context_summary,
             "direct_body_features": direct_body_summary,
             "silhouette_splits": silhouette_summary,
+            "silhouette_direction_sources": silhouette_direction_summary,
+            "sketch_surface_constraints": surface_constraint_summary,
+            "special_fillets": special_fillet_summary,
             "remaining_body_inputs": remaining_input_summary,
+            "mirror_datum_outputs": mirror_datum_summary,
+            "mirror_nested_occurrences": mirror_nested_summary,
             "scale_vertex_points": scale_vertex_summary,
             "body_tool_selections": body_tool_selection_summary,
             "tool_body_inputs": tool_body_summary,
