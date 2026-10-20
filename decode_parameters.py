@@ -17,7 +17,7 @@ from fusion_records import record_fragments
 from fusion_metadata import design_records
 
 
-def read_string(data, position):
+def read_string(data, position, *, allow_text_controls=False):
     if position < 0 or position + 4 > len(data):
         raise ValueError("Truncated string length")
     length = struct.unpack_from("<I", data, position)[0]
@@ -25,7 +25,7 @@ def read_string(data, position):
     if length > 1024 or end > len(data):
         raise ValueError("Invalid string extent")
     text = data[position + 4:end].decode("utf-16le")
-    if not all(c.isprintable() for c in text):
+    if not all(c.isprintable() or (allow_text_controls and c in "\r\n\t") for c in text):
         raise ValueError("Non-printable string")
     return text, end
 
@@ -40,7 +40,7 @@ def decode_stream(data, records=None):
         try:
             if body[11] != 0:
                 raise ValueError("Unsupported parameter comment prefix")
-            comment, cursor = read_string(body, 12)
+            comment, cursor = read_string(body, 12, allow_text_controls=True)
             stored_index = struct.unpack_from("<I", body, cursor)[0]
             cursor += 4
             if body[cursor] == 1 and body[cursor+9:cursor+11] == b"\0\0":
@@ -50,17 +50,19 @@ def decode_stream(data, records=None):
                 binding_id, text_start = None, cursor+1
             else:
                 raise ValueError("Unsupported binding-reference prefix")
-            expression, cursor = read_string(body, text_start)
+            expression, cursor = read_string(body, text_start, allow_text_controls=True)
             metadata = body[cursor:cursor + 10]
             if len(metadata) != 10:
                 raise ValueError("Truncated parameter expression metadata")
             value_kind = struct.unpack_from("<I", metadata)[0]
             if value_kind not in (0, 1):
                 raise ValueError("Unobserved parameter value type")
+            if value_kind == 0 and any(c in expression for c in "\r\n\t"):
+                raise ValueError("Unverified controls in numeric parameter expression")
             cursor += 10
             role_offset = cursor
             role, cursor = read_string(body, cursor)
-            reserved_text, cursor = read_string(body, cursor)
+            reserved_text, cursor = read_string(body, cursor, allow_text_controls=True)
             units, cursor = read_string(body, cursor)
             name, cursor = read_string(body, cursor)
             if (not role or (value_kind == 0 and reserved_text)
@@ -85,6 +87,9 @@ def decode_stream(data, records=None):
                 "class_guid": record.class_guid,
                 "declared_binding_object_id": binding_id,
                 "expression_metadata_hex": metadata.hex(),
+                "comment": comment,
+                "is_favorite": bool(metadata[7]) if metadata[7] in (0, 1) else None,
+                "favorite_status": "Observed native favorite flag" if metadata[7] in (0, 1) else "Unverified native favorite flag",
                 "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
             }
             if binding_id is None:

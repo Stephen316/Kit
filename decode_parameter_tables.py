@@ -105,4 +105,4 @@ def decode_parameter_tables(data, records, parameters):
     return {"decoded": decoded, "user_parameters": users, "unresolved": unresolved,
             "scope": "Observed parameter collection membership, names and reciprocal ownership; numeric/Text user variants",
             "limitations": ["Expression evaluation and explicit expression dependency edges are unresolved",
-                            "Other parameter types, multiline comments, name variants and model-parameter favorite flags are unverified"]}
+                            "Other parameter types, name variants, other control characters and unobserved favorite flags are unverified"]}
