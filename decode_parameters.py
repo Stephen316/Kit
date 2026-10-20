@@ -1,6 +1,6 @@
 """Experimental Fusion parameter reader, not a general feature-tree decoder.
 
-Reads observed numeric-parameter record layouts rather than known values or
+Reads observed numeric/text parameter record layouts rather than known values or
 fixed file offsets. Geometry and feature interpretation live in other modules.
 """
 
@@ -31,33 +31,46 @@ def read_string(data, position):
 
 
 def decode_stream(data, records=None):
-    """Decode observed numeric model and unbound user-parameter records."""
+    """Decode observed numeric model parameters and numeric/text user records."""
     parameters, rejected = [], []
     for record in record_fragments(data) if records is None else records:
         body = data[record.body:record.end]
         if len(body) < 31 or body[:7] != b"\0" * 7 or body[7:11] != b"\x06\0\0\0":
             continue
         try:
-            if body[20] == 1 and body[29:31] == b"\0\0":
-                binding_id = struct.unpack_from("<Q", body, 21)[0]
-                text_start = 31
-            elif body[20] == 0:
-                binding_id, text_start = None, 21
+            if body[11] != 0:
+                raise ValueError("Unsupported parameter comment prefix")
+            comment, cursor = read_string(body, 12)
+            stored_index = struct.unpack_from("<I", body, cursor)[0]
+            cursor += 4
+            if body[cursor] == 1 and body[cursor+9:cursor+11] == b"\0\0":
+                binding_id = struct.unpack_from("<Q", body, cursor+1)[0]
+                text_start = cursor+11
+            elif body[cursor] == 0:
+                binding_id, text_start = None, cursor+1
             else:
                 raise ValueError("Unsupported binding-reference prefix")
             expression, cursor = read_string(body, text_start)
             metadata = body[cursor:cursor + 10]
+            if len(metadata) != 10:
+                raise ValueError("Truncated parameter expression metadata")
+            value_kind = struct.unpack_from("<I", metadata)[0]
+            if value_kind not in (0, 1):
+                raise ValueError("Unobserved parameter value type")
             cursor += 10
             role_offset = cursor
             role, cursor = read_string(body, cursor)
             reserved_text, cursor = read_string(body, cursor)
             units, cursor = read_string(body, cursor)
             name, cursor = read_string(body, cursor)
-            if not role or reserved_text or not re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]*", name):
+            if (not role or (value_kind == 0 and reserved_text)
+                    or not re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]*", name)):
                 raise ValueError("Unrecognized parameter text fields")
             if binding_id is None and (record.class_guid != "7A6A3D31-BE74-4E19-9115-20642944C2E4"
                                        or role != "User Parameter"):
                 raise ValueError("Unobserved unbound parameter variant")
+            if value_kind == 1 and (binding_id is not None or units != "Text"):
+                raise ValueError("Only observed unbound Text user parameters are decoded")
             if cursor + 20 != len(body):
                 raise ValueError("Unrecognized numeric parameter suffix length")
             value = struct.unpack_from("<d", body, cursor)[0]
@@ -75,9 +88,20 @@ def decode_stream(data, records=None):
                 "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
             }
             if binding_id is None:
+                if metadata[7] not in (0, 1):
+                    raise ValueError("Unobserved user-parameter favorite flag")
                 item.update(parameter_kind="UserParameter",
-                            layout="observed numeric user parameter with absent feature-binding reference")
-            if units in ("deg", "rad"):
+                            comment=comment, is_favorite=bool(metadata[7]),
+                            value_type="Text" if value_kind else "Numeric",
+                            stored_parameter_index=stored_index,
+                            layout="observed user parameter with absent feature-binding reference")
+            if value_kind == 1:
+                if body[cursor:cursor+8] != bytes(8):
+                    raise ValueError("Unobserved text parameter numeric placeholder")
+                item.pop("raw_float64")
+                item.update(text_value=reserved_text, internal_units="Text",
+                            layout="observed Text user parameter with stored expression and text value")
+            elif units in ("deg", "rad"):
                 item.update(internal_units="rad", hypothesized_value_degrees=math.degrees(value))
             elif units in ("mm", "cm", "m", "in", "ft"):
                 item.update(internal_units="cm", hypothesized_value_mm=value * 10)
@@ -104,7 +128,7 @@ def decode_file(path, zstd_library=None):
                             "record_index": index, "parameter_tables": tables})
     return {
         "file": str(path), "sha256": hashlib.sha256(Path(path).read_bytes()).hexdigest(),
-        "scope": "Observed numeric parameters and reciprocal name tables; no expression evaluation or feature regeneration",
+        "scope": "Observed numeric model and numeric/text user parameters with reciprocal name tables; no expression evaluation or feature regeneration",
         "streams": records,
     }
 

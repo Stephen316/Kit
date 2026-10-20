@@ -1,0 +1,173 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "length_mm.f3d",
+      "user_parameters": [
+        {
+          "name": "probeWidth",
+          "object_type": "adsk::fusion::UserParameter",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 0.73
+        }
+      ]
+    },
+    {
+      "file": "length_in.f3d",
+      "user_parameters": [
+        {
+          "name": "probeInches",
+          "object_type": "adsk::fusion::UserParameter",
+          "unit": "in",
+          "expression": "1.125 in",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 2.8575
+        }
+      ]
+    },
+    {
+      "file": "angle.f3d",
+      "user_parameters": [
+        {
+          "name": "probeAngle",
+          "object_type": "adsk::fusion::UserParameter",
+          "unit": "deg",
+          "expression": "31 deg",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 0.5410520681182421
+        }
+      ]
+    },
+    {
+      "file": "unitless.f3d",
+      "user_parameters": [
+        {
+          "name": "probeCount",
+          "object_type": "adsk::fusion::UserParameter",
+          "unit": "",
+          "expression": "7",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 7.0
+        }
+      ]
+    },
+    {
+      "file": "comment.f3d",
+      "user_parameters": [
+        {
+          "name": "probeWidth",
+          "object_type": "adsk::fusion::UserParameter",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "comment": "Width \u00d8 support",
+          "is_favorite": false,
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 0.73
+        }
+      ]
+    },
+    {
+      "file": "favorite.f3d",
+      "user_parameters": [
+        {
+          "name": "probeWidth",
+          "object_type": "adsk::fusion::UserParameter",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "comment": "",
+          "is_favorite": true,
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "value": 0.73
+        }
+      ]
+    },
+    {
+      "file": "dependency_chain.f3d",
+      "user_parameters": [
+        {
+          "name": "probeWidth",
+          "object_type": "adsk::fusion::UserParameter",
+          "unit": "mm",
+          "expression": "7.3 mm",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 0.73
+        },
+        {
+          "name": "probeScale",
+          "object_type": "adsk::fusion::UserParameter",
+          "unit": "",
+          "expression": "2.5",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": 0,
+          "dependency_names": [],
+          "dependent_names": [
+            "probeResult"
+          ],
+          "value": 2.5
+        },
+        {
+          "name": "probeResult",
+          "object_type": "adsk::fusion::UserParameter",
+          "unit": "mm",
+          "expression": "probeWidth * probeScale + 1 mm",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": 0,
+          "dependency_names": [
+            "probeWidth",
+            "probeScale"
+          ],
+          "dependent_names": [],
+          "value": 1.925
+        }
+      ]
+    },
+    {
+      "file": "text.f3d",
+      "user_parameters": [
+        {
+          "name": "probeLabel",
+          "object_type": "adsk::fusion::UserParameter",
+          "unit": "Text",
+          "expression": "'Steel \u00d8'",
+          "comment": "Material label",
+          "is_favorite": false,
+          "value_type": 1,
+          "dependency_names": [],
+          "dependent_names": [],
+          "text_value": "Steel \u00d8"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

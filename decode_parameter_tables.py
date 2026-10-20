@@ -80,10 +80,10 @@ def decode_parameter_tables(data, records, parameters):
                 _, raw = typed(identity, NUMERIC)
                 choices = by_id.get(identity, [])
                 if len(choices) != 1 or choices[0]["parameter_name"] != name:
-                    raise ValueError("Parameter table name does not match its decoded numeric record")
+                    raise ValueError("Parameter table name does not match its decoded parameter record")
                 parameter = choices[0]
                 if raw[-12] != 0 or reference(raw, len(raw)-11) != record.object_id:
-                    raise ValueError("Numeric parameter does not reciprocate collection ownership")
+                    raise ValueError("Parameter does not reciprocate collection ownership")
                 kind = parameter.get("parameter_kind", "ModelParameter")
                 members.append({"parameter_name": name, "parameter_object_id": identity,
                                 "parameter_kind": kind,
@@ -92,7 +92,7 @@ def decode_parameter_tables(data, records, parameters):
                     local_users.append({**parameter, "collection_object_id": record.object_id,
                                         "collection_owner_object_id": owner_id,
                                         "name_registry_object_id": registry_id,
-                                        "expression_status": "Stored expression and cached numeric value; not evaluated"})
+                                        "expression_status": "Stored expression and cached value; not evaluated"})
             # Registry order differs from collection order; retain both explicitly.
             decoded.append({"collection_object_id": record.object_id,
                             "collection_owner_object_id": owner_id,
@@ -103,6 +103,6 @@ def decode_parameter_tables(data, records, parameters):
         except (ValueError, UnicodeError, IndexError, struct.error) as error:
             unresolved.append({"object_id": record.object_id, "reason": str(error)})
     return {"decoded": decoded, "user_parameters": users, "unresolved": unresolved,
-            "scope": "Observed numeric collection membership, names and reciprocal ownership; one user-parameter variant",
+            "scope": "Observed parameter collection membership, names and reciprocal ownership; numeric/Text user variants",
             "limitations": ["Expression evaluation and explicit expression dependency edges are unresolved",
-                            "Other parameter types, comments and favorite flags are unverified"]}
+                            "Other parameter types, multiline comments, name variants and model-parameter favorite flags are unverified"]}

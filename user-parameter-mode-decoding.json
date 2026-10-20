@@ -1,0 +1,515 @@
+{
+  "status": "pass",
+  "scope": "Numeric/Text user parameters, stored comments and favorite flag from actual API getters; stored expressions retained without evaluation",
+  "fixtures": "userparameters-e9c6959ff5fd",
+  "api_cases": 8,
+  "api_parameters": 10,
+  "api_comparisons": 71,
+  "samples": [
+    {
+      "file": "userparameters-e9c6959ff5fd/length_mm.f3d",
+      "comparisons": [
+        {
+          "name": "probeWidth",
+          "checks": {
+            "name": true,
+            "unit": true,
+            "expression": true,
+            "comment": true,
+            "is_favorite": true,
+            "value_type": true,
+            "value": true
+          }
+        }
+      ],
+      "main_reader_matches": true,
+      "decoded": [
+        {
+          "role": "User Parameter",
+          "parameter_name": "probeWidth",
+          "display_units": "mm",
+          "raw_float64": 0.73,
+          "role_offset": 22291,
+          "value_offset": 22359,
+          "expression_candidates": [
+            "7.3 mm"
+          ],
+          "parameter_object_id": 202,
+          "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "declared_binding_object_id": null,
+          "expression_metadata_hex": "00000000000000000001",
+          "layout": "observed user parameter with absent feature-binding reference",
+          "parameter_kind": "UserParameter",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": "Numeric",
+          "stored_parameter_index": 1,
+          "internal_units": "cm",
+          "hypothesized_value_mm": 7.3,
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "expression_status": "Stored expression and cached value; not evaluated"
+        }
+      ]
+    },
+    {
+      "file": "userparameters-e9c6959ff5fd/length_in.f3d",
+      "comparisons": [
+        {
+          "name": "probeInches",
+          "checks": {
+            "name": true,
+            "unit": true,
+            "expression": true,
+            "comment": true,
+            "is_favorite": true,
+            "value_type": true,
+            "value": true
+          }
+        }
+      ],
+      "main_reader_matches": true,
+      "decoded": [
+        {
+          "role": "User Parameter",
+          "parameter_name": "probeInches",
+          "display_units": "in",
+          "raw_float64": 2.8575,
+          "role_offset": 22297,
+          "value_offset": 22367,
+          "expression_candidates": [
+            "1.125 in"
+          ],
+          "parameter_object_id": 202,
+          "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "declared_binding_object_id": null,
+          "expression_metadata_hex": "00000000000000000001",
+          "layout": "observed user parameter with absent feature-binding reference",
+          "parameter_kind": "UserParameter",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": "Numeric",
+          "stored_parameter_index": 1,
+          "internal_units": "cm",
+          "hypothesized_value_mm": 28.575,
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "expression_status": "Stored expression and cached value; not evaluated"
+        }
+      ]
+    },
+    {
+      "file": "userparameters-e9c6959ff5fd/angle.f3d",
+      "comparisons": [
+        {
+          "name": "probeAngle",
+          "checks": {
+            "name": true,
+            "unit": true,
+            "expression": true,
+            "comment": true,
+            "is_favorite": true,
+            "value_type": true,
+            "value": true
+          }
+        }
+      ],
+      "main_reader_matches": true,
+      "decoded": [
+        {
+          "role": "User Parameter",
+          "parameter_name": "probeAngle",
+          "display_units": "deg",
+          "raw_float64": 0.5410520681182421,
+          "role_offset": 22291,
+          "value_offset": 22361,
+          "expression_candidates": [
+            "31 deg"
+          ],
+          "parameter_object_id": 202,
+          "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "declared_binding_object_id": null,
+          "expression_metadata_hex": "00000000000000000001",
+          "layout": "observed user parameter with absent feature-binding reference",
+          "parameter_kind": "UserParameter",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": "Numeric",
+          "stored_parameter_index": 1,
+          "internal_units": "rad",
+          "hypothesized_value_degrees": 31.0,
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "expression_status": "Stored expression and cached value; not evaluated"
+        }
+      ]
+    },
+    {
+      "file": "userparameters-e9c6959ff5fd/unitless.f3d",
+      "comparisons": [
+        {
+          "name": "probeCount",
+          "checks": {
+            "name": true,
+            "unit": true,
+            "expression": true,
+            "comment": true,
+            "is_favorite": true,
+            "value_type": true,
+            "value": true
+          }
+        }
+      ],
+      "main_reader_matches": true,
+      "decoded": [
+        {
+          "role": "User Parameter",
+          "parameter_name": "probeCount",
+          "display_units": "",
+          "raw_float64": 7.0,
+          "role_offset": 22281,
+          "value_offset": 22345,
+          "expression_candidates": [
+            "7"
+          ],
+          "parameter_object_id": 202,
+          "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "declared_binding_object_id": null,
+          "expression_metadata_hex": "00000000000000000001",
+          "layout": "observed user parameter with absent feature-binding reference",
+          "parameter_kind": "UserParameter",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": "Numeric",
+          "stored_parameter_index": 1,
+          "internal_units": "unitless",
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "expression_status": "Stored expression and cached value; not evaluated"
+        }
+      ]
+    },
+    {
+      "file": "userparameters-e9c6959ff5fd/comment.f3d",
+      "comparisons": [
+        {
+          "name": "probeWidth",
+          "checks": {
+            "name": true,
+            "unit": true,
+            "expression": true,
+            "comment": true,
+            "is_favorite": true,
+            "value_type": true,
+            "value": true
+          }
+        }
+      ],
+      "main_reader_matches": true,
+      "decoded": [
+        {
+          "role": "User Parameter",
+          "parameter_name": "probeWidth",
+          "display_units": "mm",
+          "raw_float64": 0.73,
+          "role_offset": 22321,
+          "value_offset": 22389,
+          "expression_candidates": [
+            "7.3 mm"
+          ],
+          "parameter_object_id": 202,
+          "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "declared_binding_object_id": null,
+          "expression_metadata_hex": "00000000000000000001",
+          "layout": "observed user parameter with absent feature-binding reference",
+          "parameter_kind": "UserParameter",
+          "comment": "Width \u00d8 support",
+          "is_favorite": false,
+          "value_type": "Numeric",
+          "stored_parameter_index": 1,
+          "internal_units": "cm",
+          "hypothesized_value_mm": 7.3,
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "expression_status": "Stored expression and cached value; not evaluated"
+        }
+      ]
+    },
+    {
+      "file": "userparameters-e9c6959ff5fd/favorite.f3d",
+      "comparisons": [
+        {
+          "name": "probeWidth",
+          "checks": {
+            "name": true,
+            "unit": true,
+            "expression": true,
+            "comment": true,
+            "is_favorite": true,
+            "value_type": true,
+            "value": true
+          }
+        }
+      ],
+      "main_reader_matches": true,
+      "decoded": [
+        {
+          "role": "User Parameter",
+          "parameter_name": "probeWidth",
+          "display_units": "mm",
+          "raw_float64": 0.73,
+          "role_offset": 22291,
+          "value_offset": 22359,
+          "expression_candidates": [
+            "7.3 mm"
+          ],
+          "parameter_object_id": 202,
+          "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "declared_binding_object_id": null,
+          "expression_metadata_hex": "00000000000000010001",
+          "layout": "observed user parameter with absent feature-binding reference",
+          "parameter_kind": "UserParameter",
+          "comment": "",
+          "is_favorite": true,
+          "value_type": "Numeric",
+          "stored_parameter_index": 1,
+          "internal_units": "cm",
+          "hypothesized_value_mm": 7.3,
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "expression_status": "Stored expression and cached value; not evaluated"
+        }
+      ]
+    },
+    {
+      "file": "userparameters-e9c6959ff5fd/dependency_chain.f3d",
+      "comparisons": [
+        {
+          "name": "probeWidth",
+          "checks": {
+            "name": true,
+            "unit": true,
+            "expression": true,
+            "comment": true,
+            "is_favorite": true,
+            "value_type": true,
+            "value": true
+          }
+        },
+        {
+          "name": "probeScale",
+          "checks": {
+            "name": true,
+            "unit": true,
+            "expression": true,
+            "comment": true,
+            "is_favorite": true,
+            "value_type": true,
+            "value": true
+          }
+        },
+        {
+          "name": "probeResult",
+          "checks": {
+            "name": true,
+            "unit": true,
+            "expression": true,
+            "comment": true,
+            "is_favorite": true,
+            "value_type": true,
+            "value": true
+          }
+        }
+      ],
+      "main_reader_matches": true,
+      "decoded": [
+        {
+          "role": "User Parameter",
+          "parameter_name": "probeResult",
+          "display_units": "mm",
+          "raw_float64": 1.925,
+          "role_offset": 22761,
+          "value_offset": 22831,
+          "expression_candidates": [
+            "probeWidth * probeScale + 1 mm"
+          ],
+          "parameter_object_id": 204,
+          "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "declared_binding_object_id": null,
+          "expression_metadata_hex": "00000000000000000001",
+          "layout": "observed user parameter with absent feature-binding reference",
+          "parameter_kind": "UserParameter",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": "Numeric",
+          "stored_parameter_index": 3,
+          "internal_units": "cm",
+          "hypothesized_value_mm": 19.25,
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "expression_status": "Stored expression and cached value; not evaluated"
+        },
+        {
+          "role": "User Parameter",
+          "parameter_name": "probeScale",
+          "display_units": "",
+          "raw_float64": 2.5,
+          "role_offset": 22563,
+          "value_offset": 22627,
+          "expression_candidates": [
+            "2.5"
+          ],
+          "parameter_object_id": 203,
+          "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "declared_binding_object_id": null,
+          "expression_metadata_hex": "00000000000000000001",
+          "layout": "observed user parameter with absent feature-binding reference",
+          "parameter_kind": "UserParameter",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": "Numeric",
+          "stored_parameter_index": 2,
+          "internal_units": "unitless",
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "expression_status": "Stored expression and cached value; not evaluated"
+        },
+        {
+          "role": "User Parameter",
+          "parameter_name": "probeWidth",
+          "display_units": "mm",
+          "raw_float64": 0.73,
+          "role_offset": 22415,
+          "value_offset": 22483,
+          "expression_candidates": [
+            "7.3 mm"
+          ],
+          "parameter_object_id": 202,
+          "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "declared_binding_object_id": null,
+          "expression_metadata_hex": "00000000000000000001",
+          "layout": "observed user parameter with absent feature-binding reference",
+          "parameter_kind": "UserParameter",
+          "comment": "",
+          "is_favorite": false,
+          "value_type": "Numeric",
+          "stored_parameter_index": 1,
+          "internal_units": "cm",
+          "hypothesized_value_mm": 7.3,
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "expression_status": "Stored expression and cached value; not evaluated"
+        }
+      ]
+    },
+    {
+      "file": "userparameters-e9c6959ff5fd/text.f3d",
+      "comparisons": [
+        {
+          "name": "probeLabel",
+          "checks": {
+            "name": true,
+            "unit": true,
+            "expression": true,
+            "comment": true,
+            "is_favorite": true,
+            "value_type": true,
+            "text_value": true,
+            "no_numeric_value": true
+          }
+        }
+      ],
+      "main_reader_matches": true,
+      "decoded": [
+        {
+          "role": "User Parameter",
+          "parameter_name": "probeLabel",
+          "display_units": "Text",
+          "role_offset": 22325,
+          "value_offset": 22411,
+          "expression_candidates": [
+            "'Steel \u00d8'"
+          ],
+          "parameter_object_id": 202,
+          "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "declared_binding_object_id": null,
+          "expression_metadata_hex": "01000000000000000001",
+          "layout": "observed Text user parameter with stored expression and text value",
+          "parameter_kind": "UserParameter",
+          "comment": "Material label",
+          "is_favorite": false,
+          "value_type": "Text",
+          "stored_parameter_index": 1,
+          "text_value": "Steel \u00d8",
+          "internal_units": "Text",
+          "collection_object_id": 16,
+          "collection_owner_object_id": 3,
+          "name_registry_object_id": 17,
+          "expression_status": "Stored expression and cached value; not evaluated"
+        }
+      ]
+    }
+  ],
+  "malformed_cases": [
+    {
+      "file": "length_mm.f3d",
+      "case": "value_type",
+      "rejected": true,
+      "reason": "Unobserved parameter value type"
+    },
+    {
+      "file": "length_mm.f3d",
+      "case": "favorite_flag",
+      "rejected": true,
+      "reason": "Unobserved user-parameter favorite flag"
+    },
+    {
+      "file": "length_mm.f3d",
+      "case": "comment_length",
+      "rejected": true,
+      "reason": "Invalid string extent"
+    },
+    {
+      "file": "text.f3d",
+      "case": "value_type",
+      "rejected": true,
+      "reason": "Unobserved parameter value type"
+    },
+    {
+      "file": "text.f3d",
+      "case": "favorite_flag",
+      "rejected": true,
+      "reason": "Unobserved user-parameter favorite flag"
+    },
+    {
+      "file": "text.f3d",
+      "case": "text_numeric_placeholder",
+      "rejected": true,
+      "reason": "Unobserved text parameter numeric placeholder"
+    }
+  ],
+  "parser_and_collection_compatibility": {
+    "archives": 344,
+    "parameter_records": 1248,
+    "collections": 370
+  },
+  "native_fields": {
+    "comment": "Bounded UTF16 string at body12; subsequent parameter index, optional binding and expression move with its length",
+    "value_type": "First uint32 of ten-byte expression metadata:0 numeric,1 Text",
+    "favorite": "Byte7 of expression metadata, verified by otherwise identical user-parameter contrast",
+    "text_value": "Bounded UTF16 field after role stores actual API textValue; following numeric placeholder is zero and is never reported as a value"
+  },
+  "limitations": [
+    "No expression evaluation or native expression dependency graph is implemented. Captured API dependency/dependent names remain reference evidence only.",
+    "Model-parameter favorite flags, multiline comments, non-ASCII parameter names and other value types remain unverified."
+  ]
+}
