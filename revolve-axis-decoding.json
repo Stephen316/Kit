@@ -1,0 +1,105 @@
+{
+  "scope": "One additional API-backed custom construction-axis Revolve selection holdout; no new general axis reader claimed",
+  "samples": [
+    {
+      "file": "revolveaxes-36bd04ac77e1/custom_two_points.f3d",
+      "sha256": "db516e24d877f32d8a96c84f14d1d971d7f009758474bf9bde4de850c7f1789d",
+      "checks": {
+        "axis_type": true,
+        "axis_name": true,
+        "axis_origin": true,
+        "axis_direction": true,
+        "operation": true,
+        "solid": true,
+        "project_axis": true,
+        "angle": true
+      },
+      "decoded_axis": {
+        "entity": {
+          "kind": "ConstructionAxis",
+          "name": "ProbeCustomAxis",
+          "object_id": 238,
+          "feature_object_id": 239,
+          "origin_cm": [
+            1.0,
+            -1.0,
+            0.0
+          ],
+          "direction": [
+            0.4472135954999579,
+            0.894427190999916,
+            0.0
+          ]
+        },
+        "selection_object_id": 334,
+        "descriptor_object_id": 337,
+        "terminal_object_id": 340,
+        "namespace_text": "d5bfc158-8761-4057-a1e9-f5133412317d",
+        "entity_guid_text": "16bb0edb-a37a-4629-94f7-ef5bae11958a",
+        "association": "Explicit selection -> descriptor -> native object reference chain"
+      },
+      "actual_api_capture": {
+        "file": "custom_two_points.f3d",
+        "getter_errors": [],
+        "actual_axis": {
+          "entity_type": "adsk::fusion::ConstructionAxis",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtX9ByPaEx3CF778KmwiZFgLVGGkYGwGlEpKMkhNSdJNNDZP1DUxM7LUtTRJM9dNTTNNSkw1NLQ0tUgEqwWawYAGwPYZKICtA1lvZGwBAMuJUnaIAAAA",
+          "name": "ProbeCustomAxis",
+          "origin_cm": [
+            1.0,
+            -1.0,
+            0.0
+          ],
+          "direction": [
+            0.447213595499958,
+            0.8944271909999161,
+            0.0
+          ]
+        },
+        "settings": {
+          "operation": 3,
+          "is_solid": true,
+          "is_project_axis": false,
+          "angle_radians": 1.2740903539558606,
+          "result_body_count": 1
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongAngle",
+            "value": 1.2740903539558606,
+            "unit": "deg"
+          }
+        ]
+      }
+    }
+  ],
+  "capture_status": {
+    "original_attempt": "revolveaxes-976a431b7076: four getter failures, zero archives; generator corrected to component modelParameters",
+    "retry_folder": "revolveaxes-36bd04ac77e1",
+    "retry_terminal": false,
+    "successful_exports": 1,
+    "remaining_cases": [
+      "sketch_line",
+      "sketch_line_reversed",
+      "brep_edge"
+    ],
+    "observed_native_stack": [
+      "TextCmdPythonRunScript::execute",
+      "_wrap_Documents_add",
+      "Ns::DocumentMgrImpl::create",
+      "Ns::AssetEventSource::fireAssetCreated",
+      "_sigtramp",
+      "libcer.dylib",
+      "read"
+    ],
+    "fusion_pid_at_observation": 57366,
+    "accessible_window_count": 0,
+    "interpretation": "Fusion is inside a native signal/crash handler during next document creation; process remains live. No restart or additional script dispatch performed."
+  },
+  "limitations": [
+    "Only the completed custom-axis archive has independent native/API evidence.",
+    "Other requested axis kinds are pending successful capture.",
+    "Persistent topology, geometry regeneration and native file writing remain unresolved."
+  ]
+}
