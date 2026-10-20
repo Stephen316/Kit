@@ -7,6 +7,7 @@ Local Fusion samples establish the accepted token signatures and extra fields.
 
 from collections import Counter
 import math
+from decode_analytic import decode_analytic_surface
 
 
 LINKS = {
@@ -61,7 +62,8 @@ def decode_topology(parsed):
             raise ValueError("Unsupported primitive interval trailer")
         return bounds
 
-    geometry = {"point", "straight-curve", "ellipse-curve", "plane-surface"}
+    geometry = {"point", "straight-curve", "ellipse-curve", "plane-surface",
+                "cone-surface", "sphere-surface", "torus-surface"}
     sizes = {"body": (6,), "lump": (6,), "shell": (8,), "face": (10, 11), "loop": (6,),
              "coedge": (11,), "edge": (11,), "vertex": (6,), "point": (4,), "straight-curve": (7, 8, 9),
              "ellipse-curve": (9, 10, 11)}
@@ -94,6 +96,8 @@ def decode_topology(parsed):
                             stored_trailing_text=token(record, 10, ("string",)))
             elif name == "vertex":
                 node["uninterpreted_field_4"] = token(record, 4, ("integer",))
+            elif name in ("cone-surface", "sphere-surface", "torus-surface"):
+                node["analytic_surface"] = decode_analytic_surface(record)
             elif name in geometry:
                 node["raw_origin"] = token(record, 3, ("position_vector",))
                 if name != "point":
@@ -118,6 +122,11 @@ def decode_topology(parsed):
                         node["is_v_reversed"] = token(record, 6, ("boolean_token",))
                         bounds = intervals(record, 7, 4)
                         node.update(u_interval=bounds[:2], v_interval=bounds[2:])
+                        node["analytic_surface"] = {"kind": "Plane", "raw_origin": node["raw_origin"],
+                                                    "normal": node["normal"], "stored_reference_axis": axis,
+                                                    "is_v_reversed": node["is_v_reversed"],
+                                                    "u_interval": bounds[:2], "v_interval": bounds[2:],
+                                                    "coordinate_scope": "Raw ASM coordinates; body transform/context not applied"}
                 elif name == "straight-curve":
                     node["parameter_interval"] = intervals(record, 5, 2)
             nodes[record["index"]] = node
@@ -207,6 +216,13 @@ def decode_topology(parsed):
                            "coedge_indices": coedges, "edge_indices": sorted(edges), "vertex_indices": sorted(vertices),
                            "raw_vertex_positions": raw_positions, "transform_index": root["transform_index"],
                            "surface_record_types": dict(Counter(records[nodes[f]["surface_index"]]["name"] for f in faces)),
+                           "analytic_surfaces": [
+                               {"face_index": f, "surface_index": nodes[f]["surface_index"],
+                                "face_is_reversed": nodes[f]["is_reversed"],
+                                "geometry": nodes.get(nodes[f]["surface_index"], {}).get("analytic_surface"),
+                                "geometry_status": "Observed analytic fields decoded" if nodes.get(nodes[f]["surface_index"], {}).get("analytic_surface")
+                                                   else "Surface geometry schema unresolved"}
+                               for f in faces],
                            "all_coedges_have_partners": bool(coedges) and all(nodes[c]["partner_index"] is not None for c in coedges),
                            "identity_status": "Stored body graph; final visible body mapping unresolved",
                            "coordinate_scope": "Raw ASM points; body transform and units/context not applied"})

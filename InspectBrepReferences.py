@@ -3,6 +3,7 @@
 from collections import Counter
 import json
 from pathlib import Path
+import runpy
 import traceback
 import uuid
 
@@ -13,6 +14,7 @@ import adsk.fusion
 def run(context):
     app = adsk.core.Application.get()
     base = Path(__file__).resolve().parent
+    surface_evidence = runpy.run_path(str(base/"CaptureSurfaceEvidence.py"))["surface_evidence"]
     output = base/("breptruth-"+uuid.uuid4().hex[:12])
     output.mkdir()
     truth = {"fusion_version": app.version, "samples": [], "errors": []}
@@ -32,6 +34,7 @@ def run(context):
                     "bounding_box_cm": [body.boundingBox.minPoint.asArray(), body.boundingBox.maxPoint.asArray()],
                     "vertex_positions_cm": [v.geometry.asArray() for v in body.vertices],
                     "surface_types": dict(Counter(f.geometry.objectType.split("::")[-1] for f in body.faces)),
+                    "surfaces": [surface_evidence(f.geometry) for f in body.faces],
                     "faces": [{"temp_id": f.tempId, "surface_type": f.geometry.objectType.split("::")[-1],
                                "edge_count": f.edges.count, "loop_count": f.loops.count} for f in body.faces],
                 })
