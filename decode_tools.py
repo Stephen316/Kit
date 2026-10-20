@@ -9,11 +9,12 @@ from decode_sketch import numbers, reference
 from decode_holes import decode_hole
 from decode_body_tools import decode_body_tool
 from decode_patterns import decode_rectangular_pattern
+from decode_edge_tools import decode_edge_tool
 
 
 def decode_tools(data, records, features):
     supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken", "Hole",
-                 "Scale", "Mirror", "Shell", "RectangularPattern"}
+                 "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer"}
     decoded, unresolved = [], []
     axes = native_origin_entities(data, records)
     for feature in features:
@@ -34,7 +35,9 @@ def decode_tools(data, records, features):
 
         try:
             settings = {}
-            if kind == "RectangularPattern":
+            if kind in ("Fillet", "Chamfer"):
+                settings = decode_edge_tool(data, records, body, feature)
+            elif kind == "RectangularPattern":
                 settings = decode_rectangular_pattern(data, records, body, feature, axes)
             elif kind in ("Scale", "Mirror", "Shell"):
                 settings = decode_body_tool(data, records, body, feature, axes)

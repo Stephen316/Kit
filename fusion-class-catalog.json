@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 110,
+  "file_count": 125,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -111,7 +111,22 @@
     "patterns-35e49809a812/symmetric_one.f3d",
     "patterns-35e49809a812/symmetric_two.f3d",
     "patterns-35e49809a812/two_extent.f3d",
-    "patterns-35e49809a812/two_spacing.f3d"
+    "patterns-35e49809a812/two_spacing.f3d",
+    "edgemodes-52695761f185/chamfer_multiple.f3d",
+    "edgemodes-52695761f185/fillet_curvature.f3d",
+    "edgemodes-87edbf67527b/chamfer_angle.f3d",
+    "edgemodes-87edbf67527b/chamfer_angle_flipped.f3d",
+    "edgemodes-87edbf67527b/chamfer_equal.f3d",
+    "edgemodes-87edbf67527b/chamfer_tangent.f3d",
+    "edgemodes-87edbf67527b/chamfer_two.f3d",
+    "edgemodes-87edbf67527b/chamfer_two_flipped.f3d",
+    "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
+    "edgemodes-87edbf67527b/fillet_chord.f3d",
+    "edgemodes-87edbf67527b/fillet_constant.f3d",
+    "edgemodes-87edbf67527b/fillet_multiple.f3d",
+    "edgemodes-87edbf67527b/fillet_setback.f3d",
+    "edgemodes-87edbf67527b/fillet_tangent.f3d",
+    "edgemodes-87edbf67527b/fillet_variable.f3d"
   ],
   "class_count": 264,
   "classes_with_observed_semantics": 25,
@@ -229,6 +244,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "edgemodes-52695761f185/chamfer_multiple.f3d",
+        "edgemodes-87edbf67527b/chamfer_angle.f3d",
         "tools-fda3948848f4/Chamfer.f3d"
       ]
     },
@@ -1285,6 +1302,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "edgemodes-52695761f185/fillet_curvature.f3d",
+        "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
         "tools-fda3948848f4/Fillet.f3d"
       ]
     },
@@ -2695,6 +2714,8 @@
         "Named feature: Fillet"
       ],
       "example_files": [
+        "edgemodes-52695761f185/fillet_curvature.f3d",
+        "edgemodes-87edbf67527b/fillet_asymmetric.f3d",
         "tools-fda3948848f4/Fillet.f3d"
       ]
     },
@@ -4297,6 +4318,8 @@
         "Named feature: Chamfer"
       ],
       "example_files": [
+        "edgemodes-52695761f185/chamfer_multiple.f3d",
+        "edgemodes-87edbf67527b/chamfer_angle.f3d",
         "tools-fda3948848f4/Chamfer.f3d"
       ]
     },
