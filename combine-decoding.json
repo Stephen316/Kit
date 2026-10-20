@@ -1,0 +1,673 @@
+{
+  "scope": "Observed Combine target/tool selection roles and controls; historical inputs retained without Boolean regeneration",
+  "samples": [
+    {
+      "file": "combinemodes-dcb4956eca6b/join_keep.f3d",
+      "api": {
+        "file": "join_keep.f3d",
+        "requested_new_component": false,
+        "is_new_component": false,
+        "output_body_names": [
+          "TargetA",
+          "ToolA"
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 0,
+        "keep_tool_bodies": true,
+        "target_name": "TargetA",
+        "tool_names": [
+          "ToolA"
+        ]
+      },
+      "settings": {
+        "operation": "Join",
+        "stored_operation_code": 0,
+        "keep_tool_bodies": true,
+        "is_new_component": false,
+        "target_body_selection_object_id": 367,
+        "tool_body_selection_object_ids": [
+          360
+        ],
+        "input_selections": [
+          {
+            "selection_record_object_id": 360,
+            "descriptor_object_id": 363,
+            "role": "ToolBody",
+            "native_body_object_id": 354,
+            "body_properties": {
+              "name": "ToolA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_354",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          },
+          {
+            "selection_record_object_id": 367,
+            "descriptor_object_id": 370,
+            "role": "TargetBody",
+            "native_body_object_id": 275,
+            "body_properties": {
+              "name": "TargetA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_275",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          }
+        ],
+        "frame_record_object_id": 377,
+        "uninterpreted_stored_handle": 306,
+        "handle_scope": "Opaque stored value; not treated as a native object ID or ASM entity index",
+        "auxiliary_body_anchor_lists": [
+          [],
+          [],
+          []
+        ],
+        "auxiliary_scope": "Typed anchor lists retained without assigning deleted/result/current-body lifecycle semantics",
+        "input_definition_end_offset": 77,
+        "geometry_status": "Observed controls and selection roles; Boolean reconstruction and general topology remain unresolved"
+      },
+      "feature_body_input_roles": [
+        "ToolBody",
+        "TargetBody"
+      ],
+      "checks": {
+        "operation": true,
+        "keep_tools": true,
+        "new_component": true,
+        "target_name": true,
+        "ordered_tool_names": true,
+        "body_input_roles": true
+      }
+    },
+    {
+      "file": "combinemodes-dcb4956eca6b/join_consume.f3d",
+      "api": {
+        "file": "join_consume.f3d",
+        "requested_new_component": false,
+        "is_new_component": false,
+        "output_body_names": [
+          "TargetA"
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 0,
+        "keep_tool_bodies": false,
+        "target_name": "TargetA",
+        "tool_names": [
+          "ToolA"
+        ]
+      },
+      "settings": {
+        "operation": "Join",
+        "stored_operation_code": 0,
+        "keep_tool_bodies": false,
+        "is_new_component": false,
+        "target_body_selection_object_id": 367,
+        "tool_body_selection_object_ids": [
+          360
+        ],
+        "input_selections": [
+          {
+            "selection_record_object_id": 360,
+            "descriptor_object_id": 363,
+            "role": "ToolBody",
+            "native_body_object_id": 354,
+            "body_properties": {
+              "name": "ToolA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_354"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          },
+          {
+            "selection_record_object_id": 367,
+            "descriptor_object_id": 370,
+            "role": "TargetBody",
+            "native_body_object_id": 275,
+            "body_properties": {
+              "name": "TargetA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_275",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          }
+        ],
+        "frame_record_object_id": 377,
+        "uninterpreted_stored_handle": 306,
+        "handle_scope": "Opaque stored value; not treated as a native object ID or ASM entity index",
+        "auxiliary_body_anchor_lists": [
+          [],
+          [],
+          [
+            358
+          ]
+        ],
+        "auxiliary_scope": "Typed anchor lists retained without assigning deleted/result/current-body lifecycle semantics",
+        "input_definition_end_offset": 88,
+        "geometry_status": "Observed controls and selection roles; Boolean reconstruction and general topology remain unresolved"
+      },
+      "feature_body_input_roles": [
+        "ToolBody",
+        "TargetBody"
+      ],
+      "checks": {
+        "operation": true,
+        "keep_tools": true,
+        "new_component": true,
+        "target_name": true,
+        "ordered_tool_names": true,
+        "body_input_roles": true
+      }
+    },
+    {
+      "file": "combinemodes-dcb4956eca6b/cut_keep.f3d",
+      "api": {
+        "file": "cut_keep.f3d",
+        "requested_new_component": false,
+        "is_new_component": false,
+        "output_body_names": [
+          "TargetA",
+          "ToolA"
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 1,
+        "keep_tool_bodies": true,
+        "target_name": "TargetA",
+        "tool_names": [
+          "ToolA"
+        ]
+      },
+      "settings": {
+        "operation": "Cut",
+        "stored_operation_code": 1,
+        "keep_tool_bodies": true,
+        "is_new_component": false,
+        "target_body_selection_object_id": 367,
+        "tool_body_selection_object_ids": [
+          360
+        ],
+        "input_selections": [
+          {
+            "selection_record_object_id": 360,
+            "descriptor_object_id": 363,
+            "role": "ToolBody",
+            "native_body_object_id": 354,
+            "body_properties": {
+              "name": "ToolA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_354",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          },
+          {
+            "selection_record_object_id": 367,
+            "descriptor_object_id": 370,
+            "role": "TargetBody",
+            "native_body_object_id": 275,
+            "body_properties": {
+              "name": "TargetA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_275",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          }
+        ],
+        "frame_record_object_id": 377,
+        "uninterpreted_stored_handle": 306,
+        "handle_scope": "Opaque stored value; not treated as a native object ID or ASM entity index",
+        "auxiliary_body_anchor_lists": [
+          [],
+          [],
+          []
+        ],
+        "auxiliary_scope": "Typed anchor lists retained without assigning deleted/result/current-body lifecycle semantics",
+        "input_definition_end_offset": 77,
+        "geometry_status": "Observed controls and selection roles; Boolean reconstruction and general topology remain unresolved"
+      },
+      "feature_body_input_roles": [
+        "ToolBody",
+        "TargetBody"
+      ],
+      "checks": {
+        "operation": true,
+        "keep_tools": true,
+        "new_component": true,
+        "target_name": true,
+        "ordered_tool_names": true,
+        "body_input_roles": true
+      }
+    },
+    {
+      "file": "combinemodes-dcb4956eca6b/intersect_keep.f3d",
+      "api": {
+        "file": "intersect_keep.f3d",
+        "requested_new_component": false,
+        "is_new_component": false,
+        "output_body_names": [
+          "TargetA",
+          "ToolA"
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 2,
+        "keep_tool_bodies": true,
+        "target_name": "TargetA",
+        "tool_names": [
+          "ToolA"
+        ]
+      },
+      "settings": {
+        "operation": "Intersect",
+        "stored_operation_code": 2,
+        "keep_tool_bodies": true,
+        "is_new_component": false,
+        "target_body_selection_object_id": 367,
+        "tool_body_selection_object_ids": [
+          360
+        ],
+        "input_selections": [
+          {
+            "selection_record_object_id": 360,
+            "descriptor_object_id": 363,
+            "role": "ToolBody",
+            "native_body_object_id": 354,
+            "body_properties": {
+              "name": "ToolA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_354",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          },
+          {
+            "selection_record_object_id": 367,
+            "descriptor_object_id": 370,
+            "role": "TargetBody",
+            "native_body_object_id": 275,
+            "body_properties": {
+              "name": "TargetA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_275",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          }
+        ],
+        "frame_record_object_id": 377,
+        "uninterpreted_stored_handle": 306,
+        "handle_scope": "Opaque stored value; not treated as a native object ID or ASM entity index",
+        "auxiliary_body_anchor_lists": [
+          [],
+          [],
+          []
+        ],
+        "auxiliary_scope": "Typed anchor lists retained without assigning deleted/result/current-body lifecycle semantics",
+        "input_definition_end_offset": 77,
+        "geometry_status": "Observed controls and selection roles; Boolean reconstruction and general topology remain unresolved"
+      },
+      "feature_body_input_roles": [
+        "ToolBody",
+        "TargetBody"
+      ],
+      "checks": {
+        "operation": true,
+        "keep_tools": true,
+        "new_component": true,
+        "target_name": true,
+        "ordered_tool_names": true,
+        "body_input_roles": true
+      }
+    },
+    {
+      "file": "combinemodes-dcb4956eca6b/cut_multiple.f3d",
+      "api": {
+        "file": "cut_multiple.f3d",
+        "requested_new_component": false,
+        "is_new_component": false,
+        "output_body_names": [
+          "TargetA",
+          "TargetA (1)",
+          "TargetA (2)",
+          "ToolA",
+          "ToolB"
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 1,
+        "keep_tool_bodies": true,
+        "target_name": "TargetA",
+        "tool_names": [
+          "ToolA",
+          "ToolB"
+        ]
+      },
+      "settings": {
+        "operation": "Cut",
+        "stored_operation_code": 1,
+        "keep_tool_bodies": true,
+        "is_new_component": false,
+        "target_body_selection_object_id": 451,
+        "tool_body_selection_object_ids": [
+          437,
+          444
+        ],
+        "input_selections": [
+          {
+            "selection_record_object_id": 437,
+            "descriptor_object_id": 440,
+            "role": "ToolBody",
+            "native_body_object_id": 354,
+            "body_properties": {
+              "name": "ToolA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_354",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          },
+          {
+            "selection_record_object_id": 444,
+            "descriptor_object_id": 447,
+            "role": "ToolBody",
+            "native_body_object_id": 431,
+            "body_properties": {
+              "name": "ToolB",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_431",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          },
+          {
+            "selection_record_object_id": 451,
+            "descriptor_object_id": 454,
+            "role": "TargetBody",
+            "native_body_object_id": 275,
+            "body_properties": {
+              "name": "TargetA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_275",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          }
+        ],
+        "frame_record_object_id": 461,
+        "uninterpreted_stored_handle": 309,
+        "handle_scope": "Opaque stored value; not treated as a native object ID or ASM entity index",
+        "auxiliary_body_anchor_lists": [
+          [],
+          [
+            478,
+            483
+          ],
+          []
+        ],
+        "auxiliary_scope": "Typed anchor lists retained without assigning deleted/result/current-body lifecycle semantics",
+        "input_definition_end_offset": 114,
+        "geometry_status": "Observed controls and selection roles; Boolean reconstruction and general topology remain unresolved"
+      },
+      "feature_body_input_roles": [
+        "ToolBody",
+        "ToolBody",
+        "TargetBody"
+      ],
+      "checks": {
+        "operation": true,
+        "keep_tools": true,
+        "new_component": true,
+        "target_name": true,
+        "ordered_tool_names": true,
+        "body_input_roles": true
+      }
+    },
+    {
+      "file": "combinemodes-dcb4956eca6b/cut_swapped.f3d",
+      "api": {
+        "file": "cut_swapped.f3d",
+        "requested_new_component": false,
+        "is_new_component": false,
+        "output_body_names": [
+          "ToolA",
+          "TargetA"
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 1,
+        "keep_tool_bodies": true,
+        "target_name": "ToolA",
+        "tool_names": [
+          "TargetA"
+        ]
+      },
+      "settings": {
+        "operation": "Cut",
+        "stored_operation_code": 1,
+        "keep_tool_bodies": true,
+        "is_new_component": false,
+        "target_body_selection_object_id": 367,
+        "tool_body_selection_object_ids": [
+          360
+        ],
+        "input_selections": [
+          {
+            "selection_record_object_id": 360,
+            "descriptor_object_id": 363,
+            "role": "ToolBody",
+            "native_body_object_id": 275,
+            "body_properties": {
+              "name": "TargetA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_275",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          },
+          {
+            "selection_record_object_id": 367,
+            "descriptor_object_id": 370,
+            "role": "TargetBody",
+            "native_body_object_id": 354,
+            "body_properties": {
+              "name": "ToolA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_354",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          }
+        ],
+        "frame_record_object_id": 377,
+        "uninterpreted_stored_handle": 306,
+        "handle_scope": "Opaque stored value; not treated as a native object ID or ASM entity index",
+        "auxiliary_body_anchor_lists": [
+          [],
+          [],
+          []
+        ],
+        "auxiliary_scope": "Typed anchor lists retained without assigning deleted/result/current-body lifecycle semantics",
+        "input_definition_end_offset": 77,
+        "geometry_status": "Observed controls and selection roles; Boolean reconstruction and general topology remain unresolved"
+      },
+      "feature_body_input_roles": [
+        "ToolBody",
+        "TargetBody"
+      ],
+      "checks": {
+        "operation": true,
+        "keep_tools": true,
+        "new_component": true,
+        "target_name": true,
+        "ordered_tool_names": true,
+        "body_input_roles": true
+      }
+    },
+    {
+      "file": "combinemodes-dcb4956eca6b/join_component.f3d",
+      "api": {
+        "file": "join_component.f3d",
+        "requested_new_component": true,
+        "is_new_component": true,
+        "output_body_names": [
+          "TargetA",
+          "TargetA",
+          "ToolA"
+        ],
+        "health_state": 0,
+        "warning": "",
+        "operation": 0,
+        "keep_tool_bodies": true,
+        "target_name": "TargetA",
+        "tool_names": [
+          "ToolA"
+        ]
+      },
+      "settings": {
+        "operation": "Join",
+        "stored_operation_code": 0,
+        "keep_tool_bodies": true,
+        "is_new_component": true,
+        "target_body_selection_object_id": 436,
+        "tool_body_selection_object_ids": [
+          423
+        ],
+        "input_selections": [
+          {
+            "selection_record_object_id": 423,
+            "descriptor_object_id": 432,
+            "role": "ToolBody",
+            "native_body_object_id": 354,
+            "body_properties": {
+              "name": "ToolA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_354",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          },
+          {
+            "selection_record_object_id": 436,
+            "descriptor_object_id": 445,
+            "role": "TargetBody",
+            "native_body_object_id": 275,
+            "body_properties": {
+              "name": "TargetA",
+              "name_status": "Stored custom name recovered",
+              "stored_body_tag": "0_275",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Repeated collection membership plus reciprocal native body/collection references"
+            },
+            "body_identity_status": "Explicit owned proxy/descriptor and typed native body anchor agree"
+          }
+        ],
+        "frame_record_object_id": 452,
+        "uninterpreted_stored_handle": 308,
+        "handle_scope": "Opaque stored value; not treated as a native object ID or ASM entity index",
+        "auxiliary_body_anchor_lists": [
+          [],
+          [
+            467
+          ],
+          []
+        ],
+        "auxiliary_scope": "Typed anchor lists retained without assigning deleted/result/current-body lifecycle semantics",
+        "input_definition_end_offset": 92,
+        "geometry_status": "Observed controls and selection roles; Boolean reconstruction and general topology remain unresolved"
+      },
+      "feature_body_input_roles": [
+        "ToolBody",
+        "TargetBody"
+      ],
+      "checks": {
+        "operation": true,
+        "keep_tools": true,
+        "new_component": true,
+        "target_name": true,
+        "ordered_tool_names": true,
+        "body_input_roles": true
+      }
+    }
+  ],
+  "guard_rejections": [
+    {
+      "case": "operation domain",
+      "reason": "Unsupported Combine controls"
+    },
+    {
+      "case": "keep bool domain",
+      "reason": "Unsupported Combine controls"
+    },
+    {
+      "case": "component bool domain",
+      "reason": "Unsupported Combine controls"
+    },
+    {
+      "case": "tool count bound",
+      "reason": "Unsupported Combine reference count"
+    },
+    {
+      "case": "tool used as target too",
+      "reason": "Unsupported Combine target list"
+    }
+  ],
+  "prior_control_checks": [
+    "moretools-88a2cd6cad0b/CombineJoin.f3d",
+    "moretools-88a2cd6cad0b/CombineCut.f3d",
+    "moretools-88a2cd6cad0b/CombineIntersect.f3d",
+    "moretools-380212ab6368/CombineCutNoKeep.f3d"
+  ],
+  "limitations": [
+    "Auxiliary typed body-anchor lists have unresolved lifecycle meanings.",
+    "Selected native historical body IDs are distinct from resulting body identities and ASM record indices.",
+    "Only observed single-target body selections and Combine frame layouts are decoded.",
+    "Boolean body reconstruction and general assembly contexts are not implemented."
+  ]
+}

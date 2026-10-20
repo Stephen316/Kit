@@ -33,6 +33,8 @@ from decode_body_properties import decode_body_properties
 from decode_body_selections import decode_body_selections
 from decode_brep_recipes import decode_recipes
 from decode_component_body_proxies import decode_component_body_proxies
+from decode_combine import attach_combine_bodies
+from decode_tool_body_inputs import decode_tool_body_inputs
 from decode_body_placement import decode_body_placement
 
 
@@ -214,6 +216,11 @@ def decode_basics(path, zstd_library=None):
                                                 or item["object_id"] not in resolved_component_proxies]
         body_selection_summary["unresolved"].extend(component_body_summary["unresolved"])
         body_selection_summary["component_context_scope"] = component_body_summary["scope"]
+        attach_combine_bodies(features, body_selection_summary)
+        tool_body_summary = decode_tool_body_inputs(data, records, features, body_selection_summary)
+        for item in tool_body_summary["decoded"]:
+            feature = next(f for f in features if f["object_id"] == item["feature_object_id"])
+            feature["body_input_associations"] = item["body_selection_groups"]
         recipe_summary = decode_recipes(data, records)
         body_binding_summary = decode_body_bindings(data, records, name, asm_summary, body_property_summary)
         body_placement_summary = decode_body_placement(body_binding_summary, assembly_summary, asm_summary)
@@ -241,6 +248,7 @@ def decode_basics(path, zstd_library=None):
             "body_blob_bindings": body_binding_summary,
             "body_properties": body_property_summary,
             "body_selections": body_selection_summary,
+            "tool_body_inputs": tool_body_summary,
             "recipe_decoding": recipe_summary,
             "body_placement": body_placement_summary,
         })

@@ -16,6 +16,7 @@ from decode_surface_tools import decode_surface_tool
 from decode_pipe import decode_pipe
 from decode_threads import decode_thread
 from decode_path_patterns import decode_path_pattern
+from decode_combine import decode_combine
 from decode_boundary_fill import decode_boundary_fill
 
 
@@ -90,13 +91,7 @@ def decode_tools(data, records, features):
                             "matrix_order": "row-major; column-vector multiplication", "translation_units": "cm",
                             "transform_record_object_id": backend_id}
             elif kind == "Combine":
-                if body[:2] != b"\0\0" or body[10] not in (0, 1):
-                    raise ValueError("Unrecognized combine prefix")
-                code = struct.unpack_from("<I", body, 2)[0]
-                if code not in (0, 1, 2):
-                    raise ValueError("Unrecognized combine operation")
-                settings = {"operation": {0: "Join", 1: "Cut", 2: "Intersect"}[code],
-                            "stored_operation_code": code, "keep_tool_bodies": bool(body[10])}
+                settings = decode_combine(data, records, body, feature)
             elif kind == "CircularPattern":
                 quantity, angle = parameter("countU"), parameter("TotalAngle")
                 if quantity["raw_float64"] < 2 or not quantity["raw_float64"].is_integer():
