@@ -1,0 +1,784 @@
+{
+  "fixture_directory": "dimcontrols-2a0d0bdbc8a6",
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "dimcontrols-2a0d0bdbc8a6/radius_driving.f3d",
+      "checks": {
+        "driving_getter_matches_native_flag": true,
+        "text_position_getter_after_setter_matches_native_tail": true,
+        "getter_reports_requested_updated_position": true,
+        "value_expression_text_matches_api_parameter_getter": true
+      },
+      "api_dimension_getters": {
+        "object_type": "adsk::fusion::SketchRadialDimension",
+        "is_driving": true,
+        "value": 1.3999999999999997,
+        "requested_creation_text_position_cm": [
+          4.1,
+          5.2,
+          0
+        ],
+        "creation_text_position_getter_cm": [
+          4.1,
+          5.2,
+          0.0
+        ],
+        "requested_updated_text_position_cm": [
+          4.6,
+          5.7,
+          0
+        ],
+        "updated_text_position_getter_cm": [
+          4.6,
+          5.7,
+          0.0
+        ],
+        "parameter_name": "d1",
+        "parameter_value": 1.4000000000000001,
+        "parameter_expression": "14.00 mm",
+        "parameter_role": "Radial Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 234,
+            "class_guid": "8EDAC24D-35D4-4591-B8E7-B3EA081C9DF0",
+            "kind": "Radius",
+            "sketch_object_id": 202,
+            "binding_object_id": 236,
+            "is_driving": true,
+            "stored_reference_flag": 0,
+            "reference_flag_offset": 25562,
+            "driving_status": "Matched same-class driving/reference API getter pair; stored reference flag 0 drives and 1 references",
+            "stored_style_components": [
+              0.5099999904632568,
+              0.7799999713897705,
+              0.25,
+              1.0
+            ],
+            "style_scope": "Four native float32 components retained; their UI/color semantics are not inferred",
+            "annotation_position_cm": [
+              4.6,
+              5.7,
+              0.0
+            ],
+            "annotation_position_offset": 25679,
+            "annotation_position_evidence": "Observed bounded native field matches actual API textPosition getter after the documented setter in paired fixtures",
+            "stored_value_expression_text": "14.00 mm",
+            "value_text_scope": "Parameter expression cache; final rendered label and formatting remain outside this decoding"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed radial/diameter/angular/tangent-distance driving-reference flags and getter-verified annotation position layouts; tangent choices and styling remain partial"
+      }
+    },
+    {
+      "archive": "dimcontrols-2a0d0bdbc8a6/radius_reference.f3d",
+      "checks": {
+        "driving_getter_matches_native_flag": true,
+        "text_position_getter_after_setter_matches_native_tail": true,
+        "getter_reports_requested_updated_position": true,
+        "value_expression_text_matches_api_parameter_getter": true
+      },
+      "api_dimension_getters": {
+        "object_type": "adsk::fusion::SketchRadialDimension",
+        "is_driving": false,
+        "value": 1.3999999999999997,
+        "requested_creation_text_position_cm": [
+          4.1,
+          5.2,
+          0
+        ],
+        "creation_text_position_getter_cm": [
+          4.1,
+          5.2,
+          0.0
+        ],
+        "requested_updated_text_position_cm": [
+          4.6,
+          5.7,
+          0
+        ],
+        "updated_text_position_getter_cm": [
+          4.6,
+          5.7,
+          0.0
+        ],
+        "parameter_name": "d1",
+        "parameter_value": 1.4000000000000001,
+        "parameter_expression": "14.00 mm",
+        "parameter_role": "Radial Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 234,
+            "class_guid": "8EDAC24D-35D4-4591-B8E7-B3EA081C9DF0",
+            "kind": "Radius",
+            "sketch_object_id": 202,
+            "binding_object_id": 236,
+            "is_driving": false,
+            "stored_reference_flag": 1,
+            "reference_flag_offset": 25562,
+            "driving_status": "Matched same-class driving/reference API getter pair; stored reference flag 0 drives and 1 references",
+            "stored_style_components": [
+              0.5799999833106995,
+              0.5799999833106995,
+              0.5699999928474426,
+              1.0
+            ],
+            "style_scope": "Four native float32 components retained; their UI/color semantics are not inferred",
+            "annotation_position_cm": [
+              4.6,
+              5.7,
+              0.0
+            ],
+            "annotation_position_offset": 25679,
+            "annotation_position_evidence": "Observed bounded native field matches actual API textPosition getter after the documented setter in paired fixtures",
+            "stored_value_expression_text": "14.00 mm",
+            "value_text_scope": "Parameter expression cache; final rendered label and formatting remain outside this decoding"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed radial/diameter/angular/tangent-distance driving-reference flags and getter-verified annotation position layouts; tangent choices and styling remain partial"
+      }
+    },
+    {
+      "archive": "dimcontrols-2a0d0bdbc8a6/diameter_driving.f3d",
+      "checks": {
+        "driving_getter_matches_native_flag": true,
+        "text_position_getter_after_setter_matches_native_tail": true,
+        "getter_reports_requested_updated_position": true,
+        "value_expression_text_matches_api_parameter_getter": true
+      },
+      "api_dimension_getters": {
+        "object_type": "adsk::fusion::SketchDiameterDimension",
+        "is_driving": true,
+        "value": 1.7,
+        "requested_creation_text_position_cm": [
+          3.7,
+          5.3,
+          0
+        ],
+        "creation_text_position_getter_cm": [
+          3.7,
+          5.3,
+          0.0
+        ],
+        "requested_updated_text_position_cm": [
+          4.3,
+          5.9,
+          0
+        ],
+        "updated_text_position_getter_cm": [
+          4.3,
+          5.9,
+          0.0
+        ],
+        "parameter_name": "d1",
+        "parameter_value": 1.7000000000000002,
+        "parameter_expression": "17.00 mm",
+        "parameter_role": "Diameter Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 234,
+            "class_guid": "664AD49F-207F-4CD5-8555-DD269E9F09EA",
+            "kind": "Diameter",
+            "sketch_object_id": 202,
+            "binding_object_id": 236,
+            "is_driving": true,
+            "stored_reference_flag": 0,
+            "reference_flag_offset": 25562,
+            "driving_status": "Matched same-class driving/reference API getter pair; stored reference flag 0 drives and 1 references",
+            "stored_style_components": [
+              0.5099999904632568,
+              0.7799999713897705,
+              0.25,
+              1.0
+            ],
+            "style_scope": "Four native float32 components retained; their UI/color semantics are not inferred",
+            "annotation_position_cm": [
+              4.3,
+              5.9,
+              0.0
+            ],
+            "annotation_position_offset": 25679,
+            "annotation_position_evidence": "Observed bounded native field matches actual API textPosition getter after the documented setter in paired fixtures",
+            "stored_value_expression_text": "17.00 mm",
+            "value_text_scope": "Parameter expression cache; final rendered label and formatting remain outside this decoding"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed radial/diameter/angular/tangent-distance driving-reference flags and getter-verified annotation position layouts; tangent choices and styling remain partial"
+      }
+    },
+    {
+      "archive": "dimcontrols-2a0d0bdbc8a6/diameter_reference.f3d",
+      "checks": {
+        "driving_getter_matches_native_flag": true,
+        "text_position_getter_after_setter_matches_native_tail": true,
+        "getter_reports_requested_updated_position": true,
+        "value_expression_text_matches_api_parameter_getter": true
+      },
+      "api_dimension_getters": {
+        "object_type": "adsk::fusion::SketchDiameterDimension",
+        "is_driving": false,
+        "value": 1.7,
+        "requested_creation_text_position_cm": [
+          3.7,
+          5.3,
+          0
+        ],
+        "creation_text_position_getter_cm": [
+          3.7,
+          5.3,
+          0.0
+        ],
+        "requested_updated_text_position_cm": [
+          4.3,
+          5.9,
+          0
+        ],
+        "updated_text_position_getter_cm": [
+          4.3,
+          5.9,
+          0.0
+        ],
+        "parameter_name": "d1",
+        "parameter_value": 1.7000000000000002,
+        "parameter_expression": "17.00 mm",
+        "parameter_role": "Diameter Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 234,
+            "class_guid": "664AD49F-207F-4CD5-8555-DD269E9F09EA",
+            "kind": "Diameter",
+            "sketch_object_id": 202,
+            "binding_object_id": 236,
+            "is_driving": false,
+            "stored_reference_flag": 1,
+            "reference_flag_offset": 25562,
+            "driving_status": "Matched same-class driving/reference API getter pair; stored reference flag 0 drives and 1 references",
+            "stored_style_components": [
+              0.5799999833106995,
+              0.5799999833106995,
+              0.5699999928474426,
+              1.0
+            ],
+            "style_scope": "Four native float32 components retained; their UI/color semantics are not inferred",
+            "annotation_position_cm": [
+              4.3,
+              5.9,
+              0.0
+            ],
+            "annotation_position_offset": 25679,
+            "annotation_position_evidence": "Observed bounded native field matches actual API textPosition getter after the documented setter in paired fixtures",
+            "stored_value_expression_text": "17.00 mm",
+            "value_text_scope": "Parameter expression cache; final rendered label and formatting remain outside this decoding"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed radial/diameter/angular/tangent-distance driving-reference flags and getter-verified annotation position layouts; tangent choices and styling remain partial"
+      }
+    },
+    {
+      "archive": "dimcontrols-2a0d0bdbc8a6/angle_driving.f3d",
+      "checks": {
+        "driving_getter_matches_native_flag": true,
+        "text_position_getter_after_setter_matches_native_tail": true,
+        "getter_reports_requested_updated_position": true,
+        "value_expression_text_matches_api_parameter_getter": true
+      },
+      "api_dimension_getters": {
+        "object_type": "adsk::fusion::SketchAngularDimension",
+        "is_driving": true,
+        "value": 0.982793723247329,
+        "requested_creation_text_position_cm": [
+          2.5,
+          1.8,
+          0
+        ],
+        "creation_text_position_getter_cm": [
+          2.5,
+          1.8,
+          0.0
+        ],
+        "requested_updated_text_position_cm": [
+          2.8,
+          2.2,
+          0
+        ],
+        "updated_text_position_getter_cm": [
+          2.8,
+          2.2,
+          0.0
+        ],
+        "parameter_name": "d1",
+        "parameter_value": 0.9827937232469762,
+        "parameter_expression": "56.309932474 deg",
+        "parameter_role": "Angular Dimension-2",
+        "parameter_unit": "deg",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 244,
+            "class_guid": "6EEAFDE5-59C4-424D-8EBE-77CDBC562017",
+            "kind": "Angle",
+            "sketch_object_id": 202,
+            "binding_object_id": 246,
+            "is_driving": true,
+            "stored_reference_flag": 0,
+            "reference_flag_offset": 26680,
+            "driving_status": "Matched same-class driving/reference API getter pair; stored reference flag 0 drives and 1 references",
+            "stored_style_components": [
+              0.5099999904632568,
+              0.7799999713897705,
+              0.25,
+              1.0
+            ],
+            "style_scope": "Four native float32 components retained; their UI/color semantics are not inferred",
+            "annotation_position_cm": [
+              2.8,
+              2.2,
+              0.0
+            ],
+            "annotation_position_offset": 26811,
+            "annotation_position_evidence": "Observed bounded native field matches actual API textPosition getter after the documented setter in paired fixtures",
+            "stored_value_expression_text": "56.309932474 deg",
+            "value_text_scope": "Parameter expression cache; final rendered label and formatting remain outside this decoding"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed radial/diameter/angular/tangent-distance driving-reference flags and getter-verified annotation position layouts; tangent choices and styling remain partial"
+      }
+    },
+    {
+      "archive": "dimcontrols-2a0d0bdbc8a6/angle_reference.f3d",
+      "checks": {
+        "driving_getter_matches_native_flag": true,
+        "text_position_getter_after_setter_matches_native_tail": true,
+        "getter_reports_requested_updated_position": true,
+        "value_expression_text_matches_api_parameter_getter": true
+      },
+      "api_dimension_getters": {
+        "object_type": "adsk::fusion::SketchAngularDimension",
+        "is_driving": false,
+        "value": 0.982793723247329,
+        "requested_creation_text_position_cm": [
+          2.5,
+          1.8,
+          0
+        ],
+        "creation_text_position_getter_cm": [
+          2.5,
+          1.8,
+          0.0
+        ],
+        "requested_updated_text_position_cm": [
+          2.8,
+          2.2,
+          0
+        ],
+        "updated_text_position_getter_cm": [
+          2.8,
+          2.2,
+          0.0
+        ],
+        "parameter_name": "d1",
+        "parameter_value": 0.9827937232469762,
+        "parameter_expression": "56.309932474 deg",
+        "parameter_role": "Angular Dimension-2",
+        "parameter_unit": "deg",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 244,
+            "class_guid": "6EEAFDE5-59C4-424D-8EBE-77CDBC562017",
+            "kind": "Angle",
+            "sketch_object_id": 202,
+            "binding_object_id": 246,
+            "is_driving": false,
+            "stored_reference_flag": 1,
+            "reference_flag_offset": 26680,
+            "driving_status": "Matched same-class driving/reference API getter pair; stored reference flag 0 drives and 1 references",
+            "stored_style_components": [
+              0.5799999833106995,
+              0.5799999833106995,
+              0.5699999928474426,
+              1.0
+            ],
+            "style_scope": "Four native float32 components retained; their UI/color semantics are not inferred",
+            "annotation_position_cm": [
+              2.8,
+              2.2,
+              0.0
+            ],
+            "annotation_position_offset": 26811,
+            "annotation_position_evidence": "Observed bounded native field matches actual API textPosition getter after the documented setter in paired fixtures",
+            "stored_value_expression_text": "56.309932474 deg",
+            "value_text_scope": "Parameter expression cache; final rendered label and formatting remain outside this decoding"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed radial/diameter/angular/tangent-distance driving-reference flags and getter-verified annotation position layouts; tangent choices and styling remain partial"
+      }
+    },
+    {
+      "archive": "dimcontrols-2a0d0bdbc8a6/tangent_driving.f3d",
+      "checks": {
+        "driving_getter_matches_native_flag": true,
+        "text_position_getter_after_setter_matches_native_tail": true,
+        "getter_reports_requested_updated_position": true,
+        "value_expression_text_matches_api_parameter_getter": true
+      },
+      "api_dimension_getters": {
+        "object_type": "adsk::fusion::SketchTangentDistanceDimension",
+        "is_driving": true,
+        "value": 5.9,
+        "requested_creation_text_position_cm": [
+          3.1,
+          4.3,
+          0
+        ],
+        "creation_text_position_getter_cm": [
+          3.1,
+          4.3,
+          0.0
+        ],
+        "requested_updated_text_position_cm": [
+          3.4,
+          4.8,
+          0
+        ],
+        "updated_text_position_getter_cm": [
+          3.4,
+          4.8,
+          0.0
+        ],
+        "parameter_name": "d1",
+        "parameter_value": 5.9,
+        "parameter_expression": "59.00 mm",
+        "parameter_role": "Tangent Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 240,
+            "class_guid": "A9E23439-6F4F-4ED3-A610-319F0AFABEED",
+            "kind": "TangentDistance",
+            "sketch_object_id": 202,
+            "binding_object_id": 242,
+            "is_driving": true,
+            "stored_reference_flag": 0,
+            "reference_flag_offset": 26409,
+            "driving_status": "Matched same-class driving/reference API getter pair; stored reference flag 0 drives and 1 references",
+            "stored_style_components": [
+              0.5099999904632568,
+              0.7799999713897705,
+              0.25,
+              1.0
+            ],
+            "style_scope": "Four native float32 components retained; their UI/color semantics are not inferred",
+            "annotation_position_cm": [
+              3.4,
+              4.8,
+              0.0
+            ],
+            "annotation_position_offset": 26524,
+            "annotation_position_evidence": "Observed bounded native field matches actual API textPosition getter after the documented setter in paired fixtures",
+            "stored_value_expression_text": "59.00 mm",
+            "value_text_scope": "Parameter expression cache; final rendered label and formatting remain outside this decoding",
+            "tangent_side_status": "No independent tangent-side contrast or per-side SDK getters; choices remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed radial/diameter/angular/tangent-distance driving-reference flags and getter-verified annotation position layouts; tangent choices and styling remain partial"
+      }
+    },
+    {
+      "archive": "dimcontrols-2a0d0bdbc8a6/tangent_reference.f3d",
+      "checks": {
+        "driving_getter_matches_native_flag": true,
+        "text_position_getter_after_setter_matches_native_tail": true,
+        "getter_reports_requested_updated_position": true,
+        "value_expression_text_matches_api_parameter_getter": true
+      },
+      "api_dimension_getters": {
+        "object_type": "adsk::fusion::SketchTangentDistanceDimension",
+        "is_driving": false,
+        "value": 5.9,
+        "requested_creation_text_position_cm": [
+          3.1,
+          4.3,
+          0
+        ],
+        "creation_text_position_getter_cm": [
+          3.1,
+          4.3,
+          0.0
+        ],
+        "requested_updated_text_position_cm": [
+          3.4,
+          4.8,
+          0
+        ],
+        "updated_text_position_getter_cm": [
+          3.4,
+          4.8,
+          0.0
+        ],
+        "parameter_name": "d1",
+        "parameter_value": 5.9,
+        "parameter_expression": "59.00 mm",
+        "parameter_role": "Tangent Dimension-2",
+        "parameter_unit": "mm",
+        "parameter_object_type": "adsk::fusion::ModelParameter"
+      },
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 240,
+            "class_guid": "A9E23439-6F4F-4ED3-A610-319F0AFABEED",
+            "kind": "TangentDistance",
+            "sketch_object_id": 202,
+            "binding_object_id": 242,
+            "is_driving": false,
+            "stored_reference_flag": 1,
+            "reference_flag_offset": 26409,
+            "driving_status": "Matched same-class driving/reference API getter pair; stored reference flag 0 drives and 1 references",
+            "stored_style_components": [
+              0.5799999833106995,
+              0.5799999833106995,
+              0.5699999928474426,
+              1.0
+            ],
+            "style_scope": "Four native float32 components retained; their UI/color semantics are not inferred",
+            "annotation_position_cm": [
+              3.4,
+              4.8,
+              0.0
+            ],
+            "annotation_position_offset": 26524,
+            "annotation_position_evidence": "Observed bounded native field matches actual API textPosition getter after the documented setter in paired fixtures",
+            "stored_value_expression_text": "59.00 mm",
+            "value_text_scope": "Parameter expression cache; final rendered label and formatting remain outside this decoding",
+            "tangent_side_status": "No independent tangent-side contrast or per-side SDK getters; choices remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed radial/diameter/angular/tangent-distance driving-reference flags and getter-verified annotation position layouts; tangent choices and styling remain partial"
+      }
+    }
+  ],
+  "paired_contrasts": [
+    {
+      "kind": "radius",
+      "class_guid": "8EDAC24D-35D4-4591-B8E7-B3EA081C9DF0",
+      "reference_flag_offset_after_attributes": 153,
+      "driving_and_reference_flag_values": [
+        0,
+        1
+      ],
+      "changed_relative_payload_bytes": [
+        153,
+        154,
+        155,
+        156,
+        158,
+        159,
+        160,
+        162,
+        163,
+        164,
+        165
+      ],
+      "all_changes_confined_to_reference_flag_and_adjacent_style": true,
+      "api_value_and_annotation_position_unchanged": true,
+      "native_geometry_control_bytes_elsewhere_identical": true
+    },
+    {
+      "kind": "diameter",
+      "class_guid": "664AD49F-207F-4CD5-8555-DD269E9F09EA",
+      "reference_flag_offset_after_attributes": 153,
+      "driving_and_reference_flag_values": [
+        0,
+        1
+      ],
+      "changed_relative_payload_bytes": [
+        153,
+        154,
+        155,
+        156,
+        158,
+        159,
+        160,
+        162,
+        163,
+        164,
+        165
+      ],
+      "all_changes_confined_to_reference_flag_and_adjacent_style": true,
+      "api_value_and_annotation_position_unchanged": true,
+      "native_geometry_control_bytes_elsewhere_identical": true
+    },
+    {
+      "kind": "angle",
+      "class_guid": "6EEAFDE5-59C4-424D-8EBE-77CDBC562017",
+      "reference_flag_offset_after_attributes": 146,
+      "driving_and_reference_flag_values": [
+        0,
+        1
+      ],
+      "changed_relative_payload_bytes": [
+        146,
+        147,
+        148,
+        149,
+        151,
+        152,
+        153,
+        155,
+        156,
+        157,
+        158
+      ],
+      "all_changes_confined_to_reference_flag_and_adjacent_style": true,
+      "api_value_and_annotation_position_unchanged": true,
+      "native_geometry_control_bytes_elsewhere_identical": true
+    },
+    {
+      "kind": "tangent",
+      "class_guid": "A9E23439-6F4F-4ED3-A610-319F0AFABEED",
+      "reference_flag_offset_after_attributes": 347,
+      "driving_and_reference_flag_values": [
+        0,
+        1
+      ],
+      "changed_relative_payload_bytes": [
+        347,
+        348,
+        349,
+        350,
+        352,
+        353,
+        354,
+        356,
+        357,
+        358,
+        359
+      ],
+      "all_changes_confined_to_reference_flag_and_adjacent_style": true,
+      "api_value_and_annotation_position_unchanged": true,
+      "native_geometry_control_bytes_elsewhere_identical": true
+    }
+  ],
+  "existing_holdouts": [
+    {
+      "archive": "dimensions-f83a2edd2f72/dimensions.f3d",
+      "decoded_count": 1,
+      "unresolved": [],
+      "scope": "Existing matching native layouts remain readable; original captures did not contain all driving/textPosition getters."
+    },
+    {
+      "archive": "advanced-627f7fe095f4/advanced.f3d",
+      "decoded_count": 2,
+      "unresolved": [],
+      "scope": "Existing matching native layouts remain readable; original captures did not contain all driving/textPosition getters."
+    },
+    {
+      "archive": "sketches-0ccea2ac0f9c/radius.f3d",
+      "decoded_count": 1,
+      "unresolved": [],
+      "scope": "Existing matching native layouts remain readable; original captures did not contain all driving/textPosition getters."
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Unobserved reference flag rejected",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 234,
+          "kind": "DimensionControlModes",
+          "reason": "Unsupported dimension reference/style marker layout"
+        }
+      ]
+    },
+    {
+      "check": "Non-finite style component rejected",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 234,
+          "kind": "DimensionControlModes",
+          "reason": "Unsupported native dimension style component values"
+        }
+      ]
+    },
+    {
+      "check": "Corrupted post-style marker rejected",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 234,
+          "kind": "DimensionControlModes",
+          "reason": "Unsupported dimension reference/style marker layout"
+        }
+      ]
+    },
+    {
+      "check": "Unobserved arc target variant remains explicitly unsupported",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 234,
+          "kind": "DimensionControlModes",
+          "reason": "Unobserved geometric input variant for this dimension reference flag layout"
+        }
+      ]
+    },
+    {
+      "check": "Contradictory earlier driving interpretation rejected",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 234,
+          "kind": "DimensionControlModes",
+          "reason": "Dimension driving state disagrees with an earlier verified decoder"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Only observed circle radius/diameter, two-line angle, and circle-circle tangent input layouts receive the new flags.",
+    "Tangent side choices have neither independent contrasts nor per-side SDK getters/setters in these probes and remain unresolved.",
+    "Annotation value text is a parameter expression cache; final rendered text/formatting remains unverified.",
+    "The adjacent four float32 style components are preserved without assigning UI/color semantics."
+  ],
+  "main_reader_integration": {
+    "status": "pass",
+    "archives": 8,
+    "decoded_modes_matching_report": 8,
+    "dimension_and_annotation_flags_agree": true,
+    "stream_key": "dimension_control_modes"
+  }
+}

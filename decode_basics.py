@@ -19,6 +19,7 @@ from decode_sketch import decode_sketches
 from decode_sketch_projections import decode_sketch_projections
 from decode_sketch_pattern_details import decode_sketch_pattern_details
 from decode_dimension_controls import decode_dimension_controls
+from decode_dimension_control_modes import decode_dimension_control_modes
 from decode_modeling import decode_modeling
 from decode_placement import decode_placement
 from decode_selection import decode_selections
@@ -207,6 +208,15 @@ def decode_basics(path, zstd_library=None):
         sketch_summary = decode_sketches(data, records, features)
         sketch_pattern_summary = decode_sketch_pattern_details(data, records, features)
         dimension_control_summary = decode_dimension_controls(data, records, features)
+        dimension_mode_summary = decode_dimension_control_modes(data, records, features, dimension_control_summary)
+        dimensions_by_id = {d["object_id"]: d for f in features if f["kind"] == "Sketch" for d in f["dimensions"]}
+        annotations_by_id = {a["object_id"]: a for a in dimension_control_summary["decoded"]}
+        for mode in dimension_mode_summary["decoded"]:
+            dimensions_by_id[mode["object_id"]].update(is_driving=mode["is_driving"], driving_status=mode["driving_status"])
+            annotations_by_id[mode["object_id"]].update(is_driving=mode["is_driving"],
+                                                      stored_reference_flag=mode["stored_reference_flag"],
+                                                      driving_status=mode["driving_status"],
+                                                      position_scope=mode["annotation_position_evidence"])
         projection_summary = decode_sketch_projections(data, records, features)
         for relationship in projection_summary["relationships"]:
             target = next(f for f in features if f["object_id"] == relationship["target_feature_object_id"])
@@ -279,6 +289,7 @@ def decode_basics(path, zstd_library=None):
             "sketch_projections": projection_summary,
             "sketch_pattern_details": sketch_pattern_summary,
             "dimension_controls": dimension_control_summary,
+            "dimension_control_modes": dimension_mode_summary,
             "profile_decoding": profile_summary,
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,
