@@ -1,0 +1,364 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "axis_two_points.f3d",
+      "requested_method": "setByTwoPoints",
+      "name": "ProbeAxis",
+      "definition_type": "ConstructionAxisTwoPointDefinition",
+      "support_inputs": [
+        {
+          "role": "pointEntityOne",
+          "entity": {
+            "kind": "SketchPoint",
+            "world_position_cm": [
+              1.0,
+              2.0,
+              0.0
+            ],
+            "sketch_name": "SupportSketch"
+          }
+        },
+        {
+          "role": "pointEntityTwo",
+          "entity": {
+            "kind": "SketchPoint",
+            "world_position_cm": [
+              4.0,
+              6.0,
+              0.0
+            ],
+            "sketch_name": "SupportSketch"
+          }
+        }
+      ],
+      "geometry": {
+        "origin_cm": [
+          1.0,
+          2.0,
+          0.0
+        ],
+        "direction": [
+          0.6000000000000001,
+          0.8,
+          0.0
+        ]
+      },
+      "parameters": []
+    },
+    {
+      "file": "axis_normal_to_face.f3d",
+      "requested_method": "setByNormalToFaceAtPoint",
+      "name": "ProbeAxis",
+      "definition_type": "ConstructionAxisNormalToFaceAtPointDefinition",
+      "support_inputs": [
+        {
+          "role": "face",
+          "entity": {
+            "kind": "BRepFace",
+            "body_name": "SupportBody",
+            "geometry_type": "Plane",
+            "point_on_face_cm": [
+              1.5,
+              1.0,
+              2.0
+            ],
+            "area_cm2": 6.0,
+            "origin_cm": [
+              1.5,
+              1.0,
+              2.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        },
+        {
+          "role": "pointEntity",
+          "entity": {
+            "kind": "SketchPoint",
+            "world_position_cm": [
+              0.5,
+              0.7,
+              0.0
+            ],
+            "sketch_name": "AxisPoint"
+          }
+        }
+      ],
+      "geometry": {
+        "origin_cm": [
+          0.5,
+          0.7,
+          0.0
+        ],
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "axis_circular_face.f3d",
+      "requested_method": "setByCircularFace",
+      "name": "ProbeAxis",
+      "definition_type": "ConstructionAxisCircularFaceDefinition",
+      "support_inputs": [
+        {
+          "role": "circularFace",
+          "entity": {
+            "kind": "BRepFace",
+            "body_name": "SupportBody",
+            "geometry_type": "Cylinder",
+            "point_on_face_cm": [
+              6.123233995736766e-17,
+              1.0,
+              1.0
+            ],
+            "area_cm2": 12.566370614359172,
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "radius_cm": 1.0
+          }
+        }
+      ],
+      "geometry": {
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ]
+    },
+    {
+      "file": "axis_edge.f3d",
+      "requested_method": "setByEdge",
+      "name": "ProbeAxis",
+      "definition_type": "ConstructionAxisEdgeDefinition",
+      "support_inputs": [
+        {
+          "role": "edgeEntity",
+          "entity": {
+            "kind": "SketchLine",
+            "sketch_name": "SupportSketch",
+            "start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_cm": [
+              3.0,
+              4.0,
+              0.0
+            ]
+          }
+        }
+      ],
+      "geometry": {
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction": [
+          0.6000000000000001,
+          0.8,
+          0.0
+        ]
+      },
+      "parameters": []
+    },
+    {
+      "file": "point_edge_plane.f3d",
+      "requested_method": "setByEdgePlane",
+      "name": "ProbePoint",
+      "definition_type": "ConstructionPointEdgePlaneDefinition",
+      "support_inputs": [
+        {
+          "role": "edge",
+          "entity": {
+            "kind": "ConstructionAxis",
+            "name": "Z",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "direction": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        },
+        {
+          "role": "plane",
+          "entity": {
+            "kind": "ConstructionPlane",
+            "name": "PointSupportPlane",
+            "origin_cm": [
+              0.0,
+              0.0,
+              1.3
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        }
+      ],
+      "geometry": {
+        "position_cm": [
+          0.0,
+          0.0,
+          1.3
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.3,
+          "unit": "mm",
+          "created_by": "PointSupportPlane"
+        }
+      ]
+    },
+    {
+      "file": "point_two_edges.f3d",
+      "requested_method": "setByTwoEdges",
+      "name": "ProbePoint",
+      "definition_type": "ConstructionPointTwoEdgesDefinition",
+      "support_inputs": [
+        {
+          "role": "edgeOne",
+          "entity": {
+            "kind": "SketchLine",
+            "sketch_name": "SupportSketch",
+            "start_cm": [
+              0.0,
+              2.0,
+              0.0
+            ],
+            "end_cm": [
+              3.0,
+              2.0,
+              0.0
+            ]
+          }
+        },
+        {
+          "role": "edgeTwo",
+          "entity": {
+            "kind": "SketchLine",
+            "sketch_name": "SupportSketch",
+            "start_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "end_cm": [
+              1.0,
+              4.0,
+              0.0
+            ]
+          }
+        }
+      ],
+      "geometry": {
+        "position_cm": [
+          1.0,
+          2.0,
+          0.0
+        ]
+      },
+      "parameters": []
+    },
+    {
+      "file": "point_center.f3d",
+      "requested_method": "setByCenter",
+      "name": "ProbePoint",
+      "definition_type": "ConstructionPointCenterDefinition",
+      "support_inputs": [
+        {
+          "role": "circularEntity",
+          "entity": {
+            "kind": "SketchCircle",
+            "sketch_name": "SupportSketch",
+            "center_cm": [
+              1.2,
+              -0.5,
+              0.0
+            ],
+            "radius_cm": 0.8
+          }
+        }
+      ],
+      "geometry": {
+        "position_cm": [
+          1.2,
+          -0.5,
+          0.0
+        ]
+      },
+      "parameters": []
+    }
+  ],
+  "errors": [
+    {
+      "case": "axis_perpendicular_at_point",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateConstructionModes.py\", line 135, in run\n    \"support_inputs\": [{\"role\": role, \"entity\": entity_truth(getattr(definition, role))}\n                                                ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateConstructionModes.py\", line 59, in entity_truth\n    raise RuntimeError(\"Unobserved construction support entity: \"+kind)\nRuntimeError: Unobserved construction support entity: Point3D\n"
+    }
+  ]
+}
