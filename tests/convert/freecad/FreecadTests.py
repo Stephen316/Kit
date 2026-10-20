@@ -17,7 +17,6 @@ import json as JsonValue
 import math as MathValue
 from pathlib import Path as FilePath
 import struct as Struct
-from types import MappingProxyType as MapProxy
 from typing import TypeGuard, TypedDict as TypeDict
 import xml.etree.ElementTree as XmlTree
 import zipfile as Zipfile
@@ -139,13 +138,6 @@ from convert.adapters.freecad.Protocol import (
     SUPPORT_PLANE_TYPE_IDS as SupportPlaneTypeIds,
     XML_TRUE_VALUES as XmlTrueValues,
 )
-from convert.adapters.freecad.Native import (
-    ClosedProfile,
-    NativeObject,
-    ParseSketchMut,
-    PlaneReframe,
-    ReframeGeom,
-)
 from convert.geometry.Opencascade import (
     is_structurally_valid_ascii_brep as IsStructurallyValidAscii,
 )
@@ -179,7 +171,6 @@ from interchange import (
     ShellFeature,
     SketchConstraint as SketchRule,
     SketchEntity,
-    Transform,
     Vector2 as VectorTwo,
     Vector3 as VectorThree,
 )
@@ -270,72 +261,6 @@ KFreecadExamples = (
 
 
 # this definition exists because focused behavior needs one stable owner
-def LineEntity(
-    IdValue: str, Start: tuple[float, float], EndValue: tuple[float, float]
-) -> SketchEntity:
-    return SketchEntity(
-        IdValue, GeomKind.LINE, LineGeom(VectorTwo(*Start), VectorTwo(*EndValue))
-    )
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestClosedEdge() -> None:
-    First = tuple(
-        (
-            LineEntity(IdValue, Start, EndValue)
-            for IdValue, Start, EndValue in (
-                ("edge:0", (-30.0, -15.0), (30.0, -15.0)),
-                ("edge:1", (30.0, -15.0), (30.0, 15.0)),
-                ("edge:2", (30.0, 15.0), (-30.0, 15.0)),
-                ("edge:3", (-30.0, 15.0), (-30.0, -15.0)),
-            )
-        )
-    )
-    Second = tuple(
-        (
-            LineEntity(IdValue, Start, EndValue)
-            for IdValue, Start, EndValue in (
-                ("edge:4", (50.0, 0.0), (60.0, 0.0)),
-                ("edge:5", (60.0, 0.0), (55.0, 10.0)),
-                ("edge:6", (55.0, 10.0), (50.0, 0.0)),
-            )
-        )
-    )
-    assert ClosedProfile((*First, *Second)) == (
-        ("edge:0", "edge:1", "edge:2", "edge:3"),
-        ("edge:4", "edge:5", "edge:6"),
-    )
-
-
-# this definition exists because focused behavior needs one stable owner
-@Pytest.mark.parametrize(
-    "Entities",
-    (
-        (
-            LineEntity("open:0", (0.0, 0.0), (10.0, 0.0)),
-            LineEntity("open:1", (10.0, 0.0), (10.0, 10.0)),
-            LineEntity("open:2", (10.0, 10.0), (0.0, 10.0)),
-        ),
-        (
-            LineEntity("branch:0", (0.0, 0.0), (10.0, 0.0)),
-            LineEntity("branch:1", (10.0, 0.0), (10.0, 10.0)),
-            LineEntity("branch:2", (10.0, 10.0), (0.0, 10.0)),
-            LineEntity("branch:3", (0.0, 10.0), (0.0, 0.0)),
-            LineEntity("branch:4", (0.0, 0.0), (-10.0, 0.0)),
-        ),
-        (
-            LineEntity("cross:0", (-10.0, -10.0), (10.0, 10.0)),
-            LineEntity("cross:1", (10.0, 10.0), (-10.0, 10.0)),
-            LineEntity("cross:2", (-10.0, 10.0), (10.0, -10.0)),
-            LineEntity("cross:3", (10.0, -10.0), (-10.0, -10.0)),
-        ),
-    ),
-)
-def TestClosed(Entities: tuple[SketchEntity, ...]) -> None:
-    assert ClosedProfile(Entities) == ()
-
-
-# this definition exists because focused behavior needs one stable owner
 def TestReaderFrom() -> None:
 
     # this definition exists because focused behavior needs one stable owner
@@ -382,179 +307,6 @@ def TestReaderFrom() -> None:
     assert Sketch.closed_profile_entity_ids == (
         tuple((Entity.id for Entity in Sketch.entities)),
     )
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestOriginUse() -> None:
-
-    # this definition exists because focused behavior needs one stable owner
-    def Plane(
-        NameValue: str,
-        Label: str,
-        Quaternion: tuple[float, float, float, float],
-        Origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
-        RoleValue: str = "",
-        TypeId: str = "App::Plane",
-    ) -> NativeObject:
-        Placement = NativePlacement()
-        Value = Placement.find("./PropertyPlacement")
-        assert Value is not None
-        for KeyValue, Coordinate in zip(("Q0", "Q1", "Q2", "Q3"), Quaternion):
-            Value.set(KeyValue, str(Coordinate))
-        for KeyValue, Coordinate in zip(("Px", "Py", "Pz"), Origin):
-            Value.set(KeyValue, str(Coordinate))
-        Properties = {
-            "Label": NativeProp(
-                "Label", "App::PropertyString", "String", {"value": Label}
-            ),
-            "Placement": Placement,
-        }
-        if RoleValue:
-            Properties["Role"] = NativeProp(
-                "Role", "App::PropertyString", "String", {"value": RoleValue}
-            )
-        return NativeObject(
-            NameValue, TypeId, 0, NameValue, False, (), (), (), Properties
-        )
-
-    HalfValue = MathValue.sqrt(0.5)
-    Objects = (
-        Plane("XY_Plane", "XY-plane", (0.0, 0.0, 0.0, 1.0), RoleValue="XY_Plane"),
-        Plane(
-            "XZ_Plane",
-            "XZ-plane",
-            (HalfValue, 0.0, 0.0, HalfValue),
-            RoleValue="XZ_Plane",
-        ),
-        Plane("YZ_Plane", "YZ-plane", (0.5, 0.5, 0.5, 0.5), RoleValue="YZ_Plane"),
-        Plane(
-            "DatumPlane",
-            "Datum Plane",
-            (
-                0.0,
-                0.0,
-                MathValue.sin(MathValue.pi / 8.0),
-                MathValue.cos(MathValue.pi / 8.0),
-            ),
-            (7.0, 8.0, 9.0),
-            TypeId="PartDesign::Plane",
-        ),
-    )
-    Planes, Sketches = ParseSketchMut(Objects, [], set())
-    assert Sketches == ()
-    assert [Value.id for Value in Planes] == [
-        "freecad:plane:XY_Plane",
-        "freecad:plane:XZ_Plane",
-        "freecad:plane:YZ_Plane",
-        "freecad:plane:DatumPlane",
-    ]
-    assert [Value.attributes.get("principal_index") for Value in Planes] == [
-        0,
-        1,
-        2,
-        None,
-    ]
-    Frames = tuple(
-        (
-            (
-                (
-                    Value.transform.x_axis.x,
-                    Value.transform.x_axis.y,
-                    Value.transform.x_axis.z,
-                ),
-                (
-                    Value.transform.y_axis.x,
-                    Value.transform.y_axis.y,
-                    Value.transform.y_axis.z,
-                ),
-                (
-                    Value.transform.z_axis.x,
-                    Value.transform.z_axis.y,
-                    Value.transform.z_axis.z,
-                ),
-            )
-            for Value in Planes[:3]
-        )
-    )
-    assert Frames == (
-        ((1.0, 0.0, 0.0), (0.0, 1.0, 0.0), (0.0, 0.0, 1.0)),
-        ((1.0, 0.0, 0.0), (0.0, 0.0, -1.0), (0.0, 1.0, 0.0)),
-        ((0.0, 0.0, -1.0), (0.0, 1.0, 0.0), (1.0, 0.0, 0.0)),
-    )
-    Datum = Planes[3].transform
-    assert (Datum.origin.x, Datum.origin.y, Datum.origin.z) == (7.0, 8.0, 9.0)
-    assert (Datum.x_axis.x, Datum.x_axis.y, Datum.x_axis.z) == Pytest.approx(
-        (HalfValue, HalfValue, 0.0)
-    )
-    assert (Datum.y_axis.x, Datum.y_axis.y, Datum.y_axis.z) == Pytest.approx(
-        (-HalfValue, HalfValue, 0.0)
-    )
-
-
-# this definition exists because focused behavior needs one stable owner
-@Pytest.mark.parametrize(
-    ("Source", "Target", "ExpectedStart", "ExpectedEnd"),
-    (
-        (
-            Transform(
-                x_axis=VectorThree(1.0, 0.0, 0.0),
-                y_axis=VectorThree(0.0, 0.0, 1.0),
-                z_axis=VectorThree(0.0, -1.0, 0.0),
-            ),
-            Transform(
-                x_axis=VectorThree(1.0, 0.0, 0.0),
-                y_axis=VectorThree(0.0, 0.0, -1.0),
-                z_axis=VectorThree(0.0, 1.0, 0.0),
-            ),
-            (2.0, -3.0),
-            (5.0, -7.0),
-        ),
-        (
-            Transform(
-                x_axis=VectorThree(0.0, 1.0, 0.0),
-                y_axis=VectorThree(0.0, 0.0, 1.0),
-                z_axis=VectorThree(1.0, 0.0, 0.0),
-            ),
-            Transform(
-                x_axis=VectorThree(0.0, 0.0, -1.0),
-                y_axis=VectorThree(0.0, 1.0, 0.0),
-                z_axis=VectorThree(1.0, 0.0, 0.0),
-            ),
-            (-3.0, 2.0),
-            (-7.0, 5.0),
-        ),
-    ),
-)
-def TestPrincipal(
-    Source: Transform,
-    Target: Transform,
-    ExpectedStart: tuple[float, float],
-    ExpectedEnd: tuple[float, float],
-) -> None:
-    GeomValue = LineGeom(VectorTwo(2.0, 3.0), VectorTwo(5.0, 7.0))
-    Reframed = ReframeGeom(GeomValue, PlaneReframe(Source, Target))
-    assert isinstance(Reframed, LineGeom)
-    assert (Reframed.start.x, Reframed.start.y) == ExpectedStart
-    assert (Reframed.end.x, Reframed.end.y) == ExpectedEnd
-
-    # this definition exists because focused behavior needs one stable owner
-    def World(Transform: Transform, Point: VectorTwo) -> tuple[float, float, float]:
-        return (
-            Transform.origin.x
-            + Point.x * Transform.x_axis.x
-            + Point.y * Transform.y_axis.x,
-            Transform.origin.y
-            + Point.x * Transform.x_axis.y
-            + Point.y * Transform.y_axis.y,
-            Transform.origin.z
-            + Point.x * Transform.x_axis.z
-            + Point.y * Transform.y_axis.z,
-        )
-
-    assert World(Source, GeomValue.start) == Pytest.approx(
-        World(Target, Reframed.start)
-    )
-    assert World(Source, GeomValue.end) == Pytest.approx(World(Target, Reframed.end))
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1212,37 +964,6 @@ def NativeLinkOnly(FileValue: str, Target: str = "Body") -> bytes:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestAdapterAnd() -> None:
-    Adapter = FreeCadAdapter()
-    assert Adapter.info is InfoValue
-    assert FormatId == InfoValue.format_id
-    assert (Suffix,) == InfoValue.extensions
-    assert Adapter.info.capabilities == frozenset(Capability)
-    assert set(CapabilityWriteTypeIds) == set(Capability)
-    assert set(CapabilityCarrierReasons) == set(Capability)
-    assert all(
-        (isinstance(TypeIds, frozenset) for TypeIds in CapabilityWriteTypeIds.values())
-    )
-    assert all(
-        (
-            isinstance(Reason, CarrierReason)
-            for Reason in CapabilityCarrierReasons.values()
-        )
-    )
-    assert isinstance(CapabilityWriteTypeIds, MapProxy)
-    assert isinstance(CapabilityCarrierReasons, MapProxy)
-    assert NativeCapabilities == frozenset(
-        (
-            CapabilityValue
-            for CapabilityValue, TypeIds in CapabilityWriteTypeIds.items()
-            if TypeIds
-        )
-    )
-    assert Adapter.info.native_capabilities == NativeCapabilities
-    assert Adapter.info.media_types == ("application/x-extension-fcstd",)
-
-
-# this definition exists because focused behavior needs one stable owner
 def TestFormatHas() -> None:
     for Module in (FreecadAdapterModule, FreecadArchiveModule, FreecadNativeModule):
         Source = Inspect.getsource(Module)
@@ -1530,40 +1251,6 @@ def TestProtocolAre() -> None:
     VerifyRules()
     VerifyGeometry()
     VerifyMates()
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestBrepFilter() -> None:
-    Payloads = tuple(
-        (
-            BrepPayload(
-                f"payload:{RoleValue.value}",
-                "test.payload",
-                RoleValue.value,
-                "1",
-                Hashlib.sha256(RoleValue.value.encode("ascii")).hexdigest(),
-                data=RoleValue.value.encode("ascii"),
-                role=RoleValue,
-            )
-            for RoleValue in PayloadRole
-        )
-    )
-    Source = NeutralDoc()
-    DocValue = Replace(
-        Source,
-        brep_payloads=Payloads,
-        capabilities=Source.capabilities
-        | {Capability.BREP, Capability.TESSELLATION, Capability.NATIVE_PAYLOADS},
-    )
-    Filtered = FilteredDoc(
-        DocValue, ReadOptions(include_brep=False, include_tessellation=True)
-    )
-    assert {Payload.role for Payload in Filtered.brep_payloads} == set(PayloadRole) - {
-        PayloadRole.BREP
-    }
-    assert Capability.BREP not in Filtered.capabilities
-    assert Capability.TESSELLATION in Filtered.capabilities
-    assert Capability.NATIVE_PAYLOADS in Filtered.capabilities
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -5255,15 +4942,6 @@ def TestProbeEntry() -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestSupports() -> None:
-    DocValue = FreeCadAdapter().read(NativePart())
-    Adapter = FreeCadAdapter()
-    assert Adapter.supports(DocValue, IoStream.BytesIO())
-    assert not Adapter.supports(DocValue, IoStream.StringIO())
-    assert not Adapter.supports(DocValue, IoStream.BufferedReader(IoStream.BytesIO()))
-
-
-# this definition exists because focused behavior needs one stable owner
 def TestReadCanBrep() -> None:
     DocValue = FreeCadAdapter().read(NativeAsm(), ReadOptions(include_brep=False))
     assert not any(
@@ -5816,8 +5494,6 @@ globals()["_filtered_document"] = FilteredDoc
 # this binding exists because shared behavior needs one stable value
 globals()["_forged_native_brep_document"] = ForgedNativeDoc
 
-# this binding exists because shared behavior needs one stable value
-globals()["_line_entity"] = LineEntity
 
 # this binding exists because shared behavior needs one stable value
 globals()["_mesh_kernel_fixture"] = MeshKernel

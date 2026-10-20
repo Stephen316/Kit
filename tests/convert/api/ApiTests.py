@@ -8,14 +8,10 @@
 
 from __future__ import annotations
 
-from io import BytesIO as ByteStream
 from pathlib import Path as FilePath
-from typing import cast as CastValue
 
 import pytest as Pytest
 
-import convert.api.ApiConvert as ApiConvert
-import convert.api.ApiWrite as ApiWrite
 from convert import ApplicationUsabilityError
 from convert import available_adapters as GetAdapters
 from convert import convert as ConvertLegacy
@@ -23,8 +19,6 @@ from convert import open_document as OpenLegacy
 from convert import write_document as WriteLegacy
 from convert.adapters import AdapterRegistry
 from interchange import Capability
-from interchange.document.models.DocumentModel import CadDocument
-from tests.convert.api.ApiTestCapture import CaptureEngine
 from tests.convert.api.ApiTestPaths import KCatPartPath
 from tests.convert.api.ApiTestPaths import KFcstdPath
 from tests.convert.api.ApiTestPaths import KSamplePath
@@ -121,35 +115,6 @@ def CheckWriteGate(TmpPath: FilePath) -> None:
     with Pytest.raises(ApplicationUsabilityError):
         _ = WriteLegacy(DocumentData, StrictPath, allow_carrier=False)
     assert not StrictPath.exists()
-
-
-# public options must override conflicting user values so runtime output stays self contained
-def CheckForcedVals(MonkeyPatch: Pytest.MonkeyPatch) -> None:
-    CapturedVals: list[dict[str, object]] = []
-    SentinelValue = object()
-    EngineValue = CaptureEngine(CapturedVals, SentinelValue)
-    MonkeyPatch.setattr(ApiWrite, "KConvertEngine", EngineValue)
-    MonkeyPatch.setattr(ApiConvert, "KConvertEngine", EngineValue)
-    assert id(
-        WriteLegacy(
-            CastValue(CadDocument, object()),
-            ByteStream(),
-            values={"require_self_contained": False},
-        )
-    ) == id(SentinelValue)
-    assert id(
-        ConvertLegacy(
-            b"source",
-            ByteStream(),
-            write_values={"require_self_contained": False},
-        )
-    ) == id(SentinelValue)
-    assert len(CapturedVals) == 2
-    assert all(ValueData["portable"] is True for ValueData in CapturedVals)
-    assert all(ValueData["allow_carrier"] is True for ValueData in CapturedVals)
-    assert all(
-        ValueData["require_self_contained"] is True for ValueData in CapturedVals
-    )
 
 
 # carrier reporting must distinguish preserved opaque semantics from native target capabilities

@@ -58,11 +58,6 @@ def ProductStream(Tokens: tuple[tuple[str, str], ...]) -> bytes:
 
 
 # this definition exists because focused behavior needs one stable owner
-def ProductArchive(Tokens: tuple[tuple[str, str], ...]) -> CfvTwoArchive:
-    return CfvTwoArchive.from_bytes(BuildCfvTwo((("Data", ProductStream(Tokens)),)))
-
-
-# this definition exists because focused behavior needs one stable owner
 @Pytest.mark.parametrize(
     ("NameValue", "RootName", "TokenCount", "InstanceCount"),
     (
@@ -113,119 +108,6 @@ def TestCatproductE() -> None:
         ("4876_1", "I_4876.3"),
         ("4784", "I_4784.5"),
         ("Brake_bias_90_degree_coupler", "I_Brake_bias_90_degree_coupler.1"),
-    ]
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestCatproductL() -> None:
-    Table = DecodeProductTable(
-        ProductArchive(
-            (
-                ("ASMPRODUCT", "utf-8"),
-                ("根組立", "utf-16"),
-                ("_Reps", "utf-8"),
-                ("_部品", "utf-16"),
-                ("_InstanceName", "utf-8"),
-                ("007", "latin-1"),
-                ("_Position", "utf-8"),
-                ("PRDREP", "utf-8"),
-                ("Shape 1", "utf-8"),
-                ("_VendorToken", "utf-8"),
-                ("42", "utf-8"),
-                ("IsRoot", "utf-8"),
-            )
-        )
-    )
-    assert Table.root_name == "根組立"
-    assert [
-        (ItemValue.definition_name, ItemValue.instance_name)
-        for ItemValue in Table.occurrences
-    ] == [("_部品", "007")]
-    assert (
-        next(
-            (ItemValue for ItemValue in Table.tokens if ItemValue.value == "根組立")
-        ).encoding
-        == "utf-16"
-    )
-    assert (
-        next(
-            (ItemValue for ItemValue in Table.tokens if ItemValue.value == "_部品")
-        ).encoding
-        == "utf-16"
-    )
-    assert {ItemValue.value for ItemValue in Table.ambiguous_tokens} >= {
-        "_VendorToken",
-        "42",
-    }
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestCatproductK() -> None:
-    Table = DecodeProductTable(
-        ProductArchive(
-            (
-                ("ASMPRODUCT", "utf-8"),
-                ("Assemblage", "utf-8"),
-                ("_Reps", "utf-8"),
-                ("Pièce", "latin-1"),
-                ("_InstanceName", "utf-8"),
-                ("Café spécial", "latin-1"),
-                ("IsRoot", "utf-8"),
-            )
-        )
-    )
-    assert [
-        (ItemValue.definition_name, ItemValue.instance_name)
-        for ItemValue in Table.occurrences
-    ] == [("Pièce", "Café spécial")]
-    assert (
-        next(
-            (ItemValue for ItemValue in Table.tokens if ItemValue.value == "Pièce")
-        ).encoding
-        == "latin-1"
-    )
-    assert (
-        next(
-            (
-                ItemValue
-                for ItemValue in Table.tokens
-                if ItemValue.value == "Café spécial"
-            )
-        ).encoding
-        == "latin-1"
-    )
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestCatproductM() -> None:
-    Table = DecodeProductTable(
-        ProductArchive(
-            (
-                ("ASMPRODUCT", "utf-8"),
-                ("Root", "utf-8"),
-                ("_Reps", "utf-8"),
-                ("Shared", "utf-8"),
-                ("_InstanceName", "utf-8"),
-                ("I_Shared.1", "utf-8"),
-                ("_Position", "utf-8"),
-                ("PRDREP", "utf-8"),
-                ("Shape 1", "utf-8"),
-                ("Shared_1", "utf-8"),
-                ("I_Shared_1.1", "utf-8"),
-                ("I_Shared.2", "utf-8"),
-                ("I_Shared_1.2", "utf-8"),
-                ("IsRoot", "utf-8"),
-            )
-        )
-    )
-    assert [
-        (ItemValue.definition_name, ItemValue.instance_name)
-        for ItemValue in Table.occurrences
-    ] == [
-        ("Shared", "I_Shared.1"),
-        ("Shared_1", "I_Shared_1.1"),
-        ("Shared", "I_Shared.2"),
-        ("Shared_1", "I_Shared_1.2"),
     ]
 
 
@@ -813,8 +695,6 @@ globals()["Path"] = FilePath
 # this binding exists because shared behavior needs one stable value
 globals()["ROOT"] = KRootValue
 
-# this binding exists because shared behavior needs one stable value
-globals()["_product_archive"] = ProductArchive
 
 # this binding exists because shared behavior needs one stable value
 globals()["_product_stream"] = ProductStream

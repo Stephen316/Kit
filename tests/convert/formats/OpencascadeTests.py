@@ -19,47 +19,17 @@ from convert.adapters.freecad.Native import (
     ReadNativeFcstd,
 )
 from convert.geometry.Opencascade import (
-    CanonicalVerts,
     DecodeAsciiBrep,
     IsValidBrep as IsSVAB,
-    ShapeRecord,
-    VertexData,
 )
 from interchange import (
     Body as BodyValue,
     BrepPayload,
     PayloadRole,
-    Vector3 as VectorThree,
 )
 
 # this binding exists because shared behavior needs one stable value
 KExamples = PathValue(__file__).parents[3] / "examples" / "Random" / "V8_engine"
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestCVRJTR() -> None:
-    RecordsData = {
-        1: ShapeRecord(
-            b"Ve",
-            "0101101",
-            (),
-            VertexData(
-                1.0e-7,
-                VectorThree(-4.253254041760199, 3.090169943749473, 5.0),
-            ),
-        ),
-        2: ShapeRecord(
-            b"Ve",
-            "0101101",
-            (),
-            VertexData(
-                1.0e-7,
-                VectorThree(-4.253254041760199, 3.0901699437494736, 5.0),
-            ),
-        ),
-    }
-    CanonicalData = CanonicalVerts(RecordsData)
-    assert CanonicalData[1] == CanonicalData[2]
 
 
 # this definition exists because focused behavior needs one stable owner

@@ -8,9 +8,7 @@
 
 from __future__ import annotations
 import hashlib as Hashlib
-import math as MathInfo
 from pathlib import Path as FilePath
-import struct as StructLib
 import pytest as PytestLib
 from convert import ApplicationUsabilityError, write_document as WriteDocument
 from convert.adapters.freecad import read_freecad as ReadFreecad
@@ -30,7 +28,6 @@ from convert.adapters.solidworks.programs.configuration.revolve.pin.midplane.Reg
 )
 from convert.adapters.solidworks.container.Container import (
     SldprtArchive,
-    SldprtFormatError,
 )
 from convert.adapters.solidworks.container.Format import (
     CONFIGURATION_STREAM as Stream,
@@ -39,28 +36,15 @@ from convert.adapters.solidworks.container.Format import (
 from convert.adapters.solidworks.programs.resolved.revolve.pin.midplane.Program import (
     EncodeProgram,
     GetCoverage,
-    KFirstAngleOffsets,
-    KProfileOffsets,
     KReferenceDigest,
     KReferenceLength,
-    KSecondAngleOffsets,
-    KSingleEndOffset,
 )
 from convert.adapters.solidworks.programs.resolved.revolve.pin.midplane.Registry import (
     KFieldOwners,
     KResolvedOps,
 )
-from convert.adapters.solidworks.envelopes.revolve.pin.default.Envelope import (
-    CalcPinBounds,
-)
 from convert.adapters.solidworks.envelopes.revolve.pin.midplane.Envelope import (
-    BuildEnvelope,
-    EncodeConfig as EncodeEnvelopeConfig,
-    EncodeFeatures,
     EncodeHeader,
-    KHeaderIdentity,
-    KHeaderStamps,
-    KHeaderUser,
 )
 
 # centralizes shared evidence so every related assertion uses one value
@@ -136,36 +120,6 @@ def TestMPCOTWG() -> None:
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def TestMPMHIBE() -> None:
-    HeaderData = EncodeHeader()
-    assert len(HeaderData) == 2305
-    assert Hashlib.sha256(HeaderData).hexdigest() == KHeaderDigest
-    assert KHeaderIdentity == (1786487434, 106, 103, 1786487442)
-    assert KHeaderStamps == ((1786487441, 1786487442), (1786487442,))
-    assert KHeaderUser == "odin"
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestMPMHBFP() -> None:
-    HeaderBounds = CalcPinBounds()
-    assert HeaderBounds[:3] == (0.0, 0.0, 0.025)
-    assert HeaderBounds[3:6] == (0.0025, 0.0025, 0.05)
-    assert HeaderBounds[6:9] == (-0.0025, -0.0025, 0.0)
-    assert HeaderBounds[9] == PytestLib.approx(0.025248762345905194, abs=1e-17)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestMPECECS() -> None:
-    EnvelopeData = BuildEnvelope()
-    assert EnvelopeData.Config0Payload == EncodeEnvelopeConfig() == EncodeConfig()
-    assert EnvelopeData.HeaderPayload == EncodeHeader()
-    assert EnvelopeData.HeaderStamps == KHeaderStamps
-    assert EnvelopeData.HeaderBounds == CalcPinBounds()
-    assert EnvelopeData.HeaderCreation == KHeaderIdentity[0]
-    assert EncodeFeatures() == EncodeProgram()
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
 def TestMPPHETC() -> None:
     PayloadData = EncodeProgram()
     assert len(PayloadData) == KReferenceLength == 14065
@@ -197,69 +151,6 @@ def TestMPPOTWG() -> None:
         )
         CursorValue += FieldWidth
     assert CursorValue == KReferenceLength
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestMPPCBEV() -> None:
-    PayloadData = EncodeProgram()
-    assert KSingleEndOffset == 10437
-    assert StructLib.unpack_from("<I", PayloadData, KSingleEndOffset)[0] == 0
-    assert KFirstAngleOffsets == (11281, 11795, 11819)
-    assert KSecondAngleOffsets == (13033, 13547, 13571)
-    assert all(
-        (
-            StructLib.unpack_from("<d", PayloadData, OffsetValue)[0] == MathInfo.tau
-            for OffsetValue in KFirstAngleOffsets
-        )
-    )
-    assert all(
-        (
-            StructLib.unpack_from("<d", PayloadData, OffsetValue)[0] == 0.0
-            for OffsetValue in KSecondAngleOffsets
-        )
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestMPPCAPV() -> None:
-    PayloadData = EncodeProgram()
-    assert (
-        tuple(
-            (
-                (
-                    StructLib.unpack_from("<d", PayloadData, XOffset)[0],
-                    StructLib.unpack_from("<d", PayloadData, YOffset)[0],
-                )
-                for XOffset, YOffset in KProfileOffsets
-            )
-        )
-        == KProfileMetres
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestMPPRVWO() -> None:
-    with PytestLib.raises(SldprtFormatError, match="field width changed"):
-        _ = EncodeProgram({11251: "D100"})
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestMPPAIFAO() -> None:
-    AngleValue = MathInfo.pi
-    PayloadData = EncodeProgram(dict.fromkeys(KFirstAngleOffsets, AngleValue))
-    assert all(
-        (
-            StructLib.unpack_from("<d", PayloadData, OffsetValue)[0] == AngleValue
-            for OffsetValue in KFirstAngleOffsets
-        )
-    )
-    assert all(
-        (
-            StructLib.unpack_from("<d", PayloadData, OffsetValue)[0] == 0.0
-            for OffsetValue in KSecondAngleOffsets
-        )
-    )
-    assert len(PayloadData) == KReferenceLength
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible

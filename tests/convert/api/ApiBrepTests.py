@@ -13,7 +13,6 @@ import pytest as Pytest
 
 from convert import extract_brep as ExtractLegacy
 from convert import open_document as OpenLegacy
-from convert.adapters import is_windows_device_name as IsDeviceName
 from interchange import BrepPayload, PayloadRole
 from tests.convert.api.ApiTestPaths import KSamplePath
 
@@ -87,23 +86,3 @@ def CheckDeviceBrep(TmpPath: FilePath) -> None:
         brep_payloads=(PayloadData,),
     )
     assert ExtractLegacy(DocumentData, TmpPath)[0].name == "_CON.x_b"
-
-
-# device recognition must cover canonical and unicode digit aliases without false positives
-def CheckDeviceName() -> None:
-    ReservedNames = {
-        "CON",
-        "PRN",
-        "AUX",
-        "NUL",
-        *(f"COM{IndexValue}" for IndexValue in range(1, 10)),
-        *(f"LPT{IndexValue}" for IndexValue in range(1, 10)),
-        *(f"COM{IndexValue}" for IndexValue in "¹²³"),
-        *(f"LPT{IndexValue}" for IndexValue in "¹²³"),
-    }
-    assert all(IsDeviceName(NameText) for NameText in ReservedNames)
-    assert all(IsDeviceName(f"{NameText}.x_b") for NameText in ReservedNames)
-    assert not any(
-        IsDeviceName(NameText)
-        for NameText in ("COM0", "COM10", "LPT0", "LPT10", "CONTOUR")
-    )

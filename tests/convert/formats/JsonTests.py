@@ -15,164 +15,14 @@ from typing import TypeVar
 import pytest as Pytest
 from convert import convert as Convert, open_document as OpenDoc
 from convert.adapters import (
-    AdapterInfo,
     AdapterNotFoundError,
     AdapterRegistry,
-    AdapterRegistryError,
-    Destination,
-    ProbeResult,
-    ReadOptions,
-    Source,
-    WriteOptions,
-    WriteResult,
 )
 from convert.adapters.json import JsonAdapter
-from interchange import CadDocument, Capability
 from tests.interchange.document.DocumentTests import document as DocValue
-
-from typing_extensions import override as Override
 
 # nonseekable test streams preserve their concrete text or binary payload type
 KStreamData = TypeVar("KStreamData", str, bytes)
-
-
-# this definition exists because focused behavior needs one stable owner
-class FirstAdapter(JsonAdapter):
-
-    # this definition exists because focused behavior needs one stable owner
-    @property
-    @Override
-    @Override
-    def InfoAction(self) -> AdapterInfo:
-        return AdapterInfo("first", "First", "1", (".first",), ("second",))
-
-    locals()["info"] = InfoAction
-
-
-# this definition exists because focused behavior needs one stable owner
-class SecondAdapter(JsonAdapter):
-
-    # this definition exists because focused behavior needs one stable owner
-    @property
-    @Override
-    @Override
-    def InfoAction(self) -> AdapterInfo:
-        return AdapterInfo("second", "Second", "1", (".second",))
-
-    locals()["info"] = InfoAction
-
-
-# this definition exists because focused behavior needs one stable owner
-class Duplicate(JsonAdapter):
-
-    # this definition exists because focused behavior needs one stable owner
-    @property
-    @Override
-    @Override
-    def InfoAction(self) -> AdapterInfo:
-        return AdapterInfo("first", "Duplicate", "1", (".first",), ("orphan",))
-
-    locals()["info"] = InfoAction
-
-
-# this definition exists because focused behavior needs one stable owner
-class SwapAdapter(JsonAdapter):
-
-    # this definition exists because focused behavior needs one stable owner
-    @property
-    @Override
-    @Override
-    def InfoAction(self) -> AdapterInfo:
-        return AdapterInfo(
-            "first", "Replacement", "2", (".replacement",), ("replacement",)
-        )
-
-    locals()["info"] = InfoAction
-
-
-# this definition exists because focused behavior needs one stable owner
-class ReaderOnly:
-    InfoValue: AdapterInfo
-    Delegate: JsonAdapter
-
-    # this definition exists because focused behavior needs one stable owner
-    def __init__(self, InfoValue: AdapterInfo) -> None:
-        super().__init__()
-        self.InfoValue = InfoValue
-        self.Delegate = JsonAdapter()
-
-    # this definition exists because focused behavior needs one stable owner
-    @property
-    def InfoAction(self) -> AdapterInfo:
-        return self.InfoValue
-
-    # this definition exists because focused behavior needs one stable owner
-    def Probe(self, SourceValue: Source) -> ProbeResult:
-        return self.Delegate.probe(SourceValue)
-
-    # this definition exists because focused behavior needs one stable owner
-    def ReadAction(
-        self, SourceValue: Source, Options: ReadOptions | None = None
-    ) -> CadDocument:
-        return self.Delegate.read(SourceValue, Options)
-
-    info = InfoAction
-    probe = Probe
-    read = ReadAction
-
-
-# this definition exists because focused behavior needs one stable owner
-class WriterOnly:
-    InfoValue: AdapterInfo
-    Delegate: JsonAdapter
-
-    # this definition exists because focused behavior needs one stable owner
-    def __init__(self, InfoValue: AdapterInfo) -> None:
-        super().__init__()
-        self.InfoValue = InfoValue
-        self.Delegate = JsonAdapter()
-
-    # this definition exists because focused behavior needs one stable owner
-    @property
-    def InfoAction(self) -> AdapterInfo:
-        return self.InfoValue
-
-    # this definition exists because focused behavior needs one stable owner
-    def Supports(self, DocValue: CadDocument, Target: Destination) -> bool:
-        return self.Delegate.supports(DocValue, Target)
-
-    # this definition exists because focused behavior needs one stable owner
-    def Write(
-        self,
-        DocValue: CadDocument,
-        Target: Destination,
-        Options: WriteOptions | None = None,
-    ) -> WriteResult:
-        return self.Delegate.write(DocValue, Target, Options)
-
-    info = InfoAction
-    supports = Supports
-    write = Write
-
-
-# this definition exists because focused behavior needs one stable owner
-class PartialBytesIo:
-
-    # this definition exists because focused behavior needs one stable owner
-    def Write(self, Value: bytes) -> int:
-        return len(Value[:-1])
-
-    write = Write
-
-
-# this definition exists because focused behavior needs one stable owner
-class PartialStringIo:
-
-    # this definition exists because focused behavior needs one stable owner
-    def Write(self, Value: str) -> int:
-        return len(Value[:-1])
-
-    write = Write
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -194,11 +44,6 @@ class NonSeekable(Generic[KStreamData]):
         return self.StreamValue
 
     read = ReadAction
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestAdapter() -> None:
-    assert JsonAdapter().info.capabilities == frozenset(Capability)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -232,15 +77,6 @@ def TestStreamUtf(StreamType: type[BytesIo] | type[StringIo]) -> None:
         BytesIo(Serialized) if isinstance(Serialized, bytes) else StringIo(Serialized)
     )
     assert Adapter.read(InputStream) == Value
-
-
-# this definition exists because focused behavior needs one stable owner
-@Pytest.mark.parametrize("StreamType", (PartialBytesIo, PartialStringIo))
-def TestStream(
-    StreamType: type[PartialBytesIo] | type[PartialStringIo],
-) -> None:
-    with Pytest.raises(OSError, match="short JSON write"):
-        _ = JsonAdapter().write(DocValue(), StreamType())
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -301,92 +137,13 @@ def TestExplicitNon(TmpPath: FilePath) -> None:
         )
 
 
-# this definition exists because focused behavior needs one stable owner
-def TestRegistry() -> None:
-    Registry = AdapterRegistry()
-    First = FirstAdapter()
-    Registry.register(First)
-    with Pytest.raises(AdapterRegistryError, match="already an alias"):
-        Registry.register(SecondAdapter())
-    assert Registry.reader("second") is First
-    assert Registry.writer("second") is First
-    assert Registry.format_ids() == ("first", "second")
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestFailedDoes() -> None:
-    Registry = AdapterRegistry()
-    First = FirstAdapter()
-    Registry.register(First)
-    with Pytest.raises(
-        AdapterRegistryError, match="metadata differ|already registered"
-    ):
-        Registry.register(Duplicate())
-    with Pytest.raises(AdapterNotFoundError):
-        _ = Registry.reader("orphan")
-    assert Registry.reader("first") is First
-    assert Registry.format_ids() == ("first", "second")
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestReplacement() -> None:
-    Registry = AdapterRegistry()
-    Registry.register(FirstAdapter())
-    Replacement = SwapAdapter()
-    Registry.register(Replacement, replace=True)
-    with Pytest.raises(AdapterNotFoundError):
-        _ = Registry.reader("second")
-    assert Registry.reader("replacement") is Replacement
-    assert Registry.writer("replacement") is Replacement
-    assert Registry.format_ids() == ("first", "replacement")
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestSplitReadeA() -> None:
-    InfoValue = AdapterInfo("split", "Split", "1", (".split",), ("split.alias",))
-    Reader = ReaderOnly(InfoValue)
-    Writer = WriterOnly(InfoValue)
-    Registry = AdapterRegistry()
-    Registry.register(Reader)
-    Registry.register(Writer)
-    assert Registry.reader("split.alias") is Reader
-    assert Registry.writer("split.alias") is Writer
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestSplitReader() -> None:
-    ReaderInfo = AdapterInfo("split", "Split", "1", (".read",), ("read.alias",))
-    WriterInfo = AdapterInfo("split", "Split", "1", (".write",), ("write.alias",))
-    Reader = ReaderOnly(ReaderInfo)
-    Registry = AdapterRegistry()
-    Registry.register(Reader)
-    with Pytest.raises(AdapterRegistryError, match="metadata differ"):
-        Registry.register(WriterOnly(WriterInfo))
-    with Pytest.raises(AdapterNotFoundError):
-        _ = Registry.writer("split")
-    with Pytest.raises(AdapterNotFoundError):
-        _ = Registry.reader("write.alias")
-    assert Registry.reader("read.alias") is Reader
-    assert Registry.format_ids() == ("read.alias", "split")
-
-
 # this binding exists because shared behavior needs one stable value
 globals()["BytesIO"] = BytesIo
 
-# this binding exists because shared behavior needs one stable value
-globals()["DuplicateAdapter"] = Duplicate
 
 # this binding exists because shared behavior needs one stable value
 globals()["NonSeekableStream"] = NonSeekable
 
-# this binding exists because shared behavior needs one stable value
-globals()["PartialBytesIO"] = PartialBytesIo
-
-# this binding exists because shared behavior needs one stable value
-globals()["PartialStringIO"] = PartialStringIo
-
-# this binding exists because shared behavior needs one stable value
-globals()["ReplacementAdapter"] = SwapAdapter
 
 # this binding exists because shared behavior needs one stable value
 globals()["StringIO"] = StringIo

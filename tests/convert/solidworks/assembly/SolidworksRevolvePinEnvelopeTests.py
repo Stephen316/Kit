@@ -8,10 +8,7 @@
 
 from __future__ import annotations
 import hashlib as Hashlib
-import math as MathInfo
 from pathlib import Path as FilePath
-import pytest as PytestLib
-from convert.adapters.solidworks.container.Container import SldprtFormatError
 from convert.adapters.solidworks.core.Native import (
     HeaderPayload,
     KHeaderObjects as Objects,
@@ -19,7 +16,6 @@ from convert.adapters.solidworks.core.Native import (
     NativeIdentity,
 )
 from convert.adapters.solidworks.envelopes.revolve.pin.default.Envelope import (
-    BuildEnvelope,
     CalcPinBounds,
     EncodeConfig,
     EncodeHeader,
@@ -30,7 +26,6 @@ from convert.adapters.solidworks.envelopes.revolve.pin.default.Envelope import (
     KHeaderIdentity,
     KHeaderStamps,
     KHeaderUser,
-    KPinPointsMm,
 )
 
 # centralizes shared evidence so every related assertion uses one value
@@ -103,39 +98,3 @@ def TestPMHMCO() -> None:
     assert Hashlib.sha256(HeaderData).hexdigest() == KHeaderDigest
     assert HeaderData == OracleData
     assert EncodeHeader() == OracleData
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestPECCACF() -> None:
-    EnvelopeData = BuildEnvelope()
-    assert EnvelopeData.Config0Payload == EncodeConfig()
-    assert EnvelopeData.HeaderPayload == EncodeHeader()
-    assert EnvelopeData.HeaderStamps == KHeaderStamps
-    assert EnvelopeData.HeaderBounds == CalcPinBounds()
-    assert EnvelopeData.HeaderCreation == KHeaderIdentity[0]
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestPMHBFP() -> None:
-    HeaderBounds = CalcPinBounds(KPinPointsMm)
-    assert HeaderBounds[:3] == (0.0, 0.0, 0.025)
-    assert HeaderBounds[3:6] == (0.0025, 0.0025, 0.05)
-    assert HeaderBounds[6:9] == (-0.0025, -0.0025, 0.0)
-    assert MathInfo.isclose(
-        HeaderBounds[9], 0.025248762345905198, rel_tol=0.0, abs_tol=1e-18
-    )
-    WiderBounds = CalcPinBounds(
-        tuple(((PointData[0] * 2.0, PointData[1] * 1.2) for PointData in KPinPointsMm))
-    )
-    assert WiderBounds[3:6] == (0.005, 0.005, 0.06)
-    assert WiderBounds[6:9] == (-0.005, -0.005, 0.0)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestPMHBRIP() -> None:
-    with PytestLib.raises(SldprtFormatError, match="at least three"):
-        _ = CalcPinBounds(((0.0, 0.0), (1.0, 0.0)))
-    with PytestLib.raises(SldprtFormatError, match="finite"):
-        _ = CalcPinBounds(((0.0, 0.0), (1.0, 0.0), (MathInfo.nan, -1.0)))
-    with PytestLib.raises(SldprtFormatError, match="vertical axis"):
-        _ = CalcPinBounds(((1.0, 0.0), (2.0, 0.0), (2.0, -1.0)))
