@@ -18,6 +18,7 @@ from decode_parameter_tables import decode_parameter_tables
 from decode_sketch import decode_sketches
 from decode_sketch_projections import decode_sketch_projections
 from decode_sketch_pattern_details import decode_sketch_pattern_details
+from decode_dimension_controls import decode_dimension_controls
 from decode_modeling import decode_modeling
 from decode_placement import decode_placement
 from decode_selection import decode_selections
@@ -204,6 +205,7 @@ def decode_basics(path, zstd_library=None):
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
         sketch_pattern_summary = decode_sketch_pattern_details(data, records, features)
+        dimension_control_summary = decode_dimension_controls(data, records, features)
         projection_summary = decode_sketch_projections(data, records, features)
         for relationship in projection_summary["relationships"]:
             target = next(f for f in features if f["object_id"] == relationship["target_feature_object_id"])
@@ -274,6 +276,7 @@ def decode_basics(path, zstd_library=None):
             "sketch_decoding": sketch_summary,
             "sketch_projections": projection_summary,
             "sketch_pattern_details": sketch_pattern_summary,
+            "dimension_controls": dimension_control_summary,
             "profile_decoding": profile_summary,
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,

@@ -1,0 +1,743 @@
+{
+  "scope": "Class-bounded annotation tails and an audit of existing driving-state evidence",
+  "samples": [
+    {
+      "archive": "dimensions-f83a2edd2f72/dimensions.f3d",
+      "creation_argument_source": "GenerateDimensionSamples.py",
+      "source_sha256": "5a3ff59d21b82d6061fa7317bbd0218091efad901a76908b6e0e534f011088f4",
+      "checks": [
+        {
+          "dimension_object_id": 236,
+          "sketch_name": "DimensionAligned",
+          "expected_creation_text_point_cm": [
+            2.0,
+            5.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            2.0,
+            5.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "captured_api_driving_state_matches": true
+        },
+        {
+          "dimension_object_id": 276,
+          "sketch_name": "DimensionHorizontal",
+          "expected_creation_text_point_cm": [
+            2.0,
+            5.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            2.0,
+            5.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "captured_api_driving_state_matches": true
+        },
+        {
+          "dimension_object_id": 316,
+          "sketch_name": "DimensionVertical",
+          "expected_creation_text_point_cm": [
+            2.0,
+            5.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            2.0,
+            5.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "captured_api_driving_state_matches": true
+        },
+        {
+          "dimension_object_id": 356,
+          "sketch_name": "DimensionDrivenAligned",
+          "expected_creation_text_point_cm": [
+            2.0,
+            5.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            2.0,
+            5.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "captured_api_driving_state_matches": true
+        },
+        {
+          "dimension_object_id": 404,
+          "sketch_name": "DimensionOffset",
+          "expected_creation_text_point_cm": [
+            5.0,
+            2.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            5.0,
+            2.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "captured_api_driving_state_matches": true
+        },
+        {
+          "dimension_object_id": 468,
+          "sketch_name": "DimensionEllipseMajor",
+          "expected_creation_text_point_cm": [
+            5.0,
+            4.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            5.0,
+            4.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "captured_api_driving_state_matches": true
+        },
+        {
+          "dimension_object_id": 532,
+          "sketch_name": "DimensionEllipseMinor",
+          "expected_creation_text_point_cm": [
+            5.0,
+            4.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            5.0,
+            4.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "captured_api_driving_state_matches": true
+        },
+        {
+          "dimension_object_id": 576,
+          "sketch_name": "DimensionConcentric",
+          "expected_creation_text_point_cm": [
+            3.0,
+            4.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            3.0,
+            4.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "captured_api_driving_state_matches": true
+        },
+        {
+          "dimension_object_id": 620,
+          "sketch_name": "DimensionTangentDistance",
+          "expected_creation_text_point_cm": [
+            3.0,
+            4.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            3.0,
+            4.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "driving_flag_deliberately_unassigned_without_contrast": true
+        },
+        {
+          "dimension_object_id": 668,
+          "sketch_name": "DimensionLinearDiameter",
+          "expected_creation_text_point_cm": [
+            4.0,
+            2.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            4.0,
+            2.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "captured_api_driving_state_matches": true
+        }
+      ],
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 236,
+            "kind": "Linear",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "sketch_object_id": 202,
+            "sketch_feature_object_id": 207,
+            "binding_object_id": 238,
+            "parameter_name": "d1",
+            "entity_ids": [
+              228,
+              230
+            ],
+            "stored_kind_code": 16384,
+            "annotation_position_cm": [
+              2.0,
+              5.0,
+              0.0
+            ],
+            "annotation_position_offset": 30095,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "43.0116263352 mm",
+            "value_expression_offset": 30059,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "020000000000000000000000000000000000f03f",
+            "driving_status": "Existing matched driving/driven API contrast for this shared linear dimension class",
+            "is_driving": true,
+            "stored_reference_flag": 0
+          },
+          {
+            "object_id": 276,
+            "kind": "Linear",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "sketch_object_id": 243,
+            "sketch_feature_object_id": 247,
+            "binding_object_id": 278,
+            "parameter_name": "d2",
+            "entity_ids": [
+              268,
+              270
+            ],
+            "stored_kind_code": 4194304,
+            "annotation_position_cm": [
+              2.0,
+              5.0,
+              0.0
+            ],
+            "annotation_position_offset": 34016,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "35.00 mm",
+            "value_expression_offset": 33996,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "020000000000000000000000000000000000f03f",
+            "driving_status": "Existing matched driving/driven API contrast for this shared linear dimension class",
+            "is_driving": true,
+            "stored_reference_flag": 0
+          },
+          {
+            "object_id": 316,
+            "kind": "Linear",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "sketch_object_id": 283,
+            "sketch_feature_object_id": 287,
+            "binding_object_id": 318,
+            "parameter_name": "d3",
+            "entity_ids": [
+              308,
+              310
+            ],
+            "stored_kind_code": 8388608,
+            "annotation_position_cm": [
+              2.0,
+              5.0,
+              0.0
+            ],
+            "annotation_position_offset": 37917,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "25.00 mm",
+            "value_expression_offset": 37897,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "020000000000000000000000000000000000f03f",
+            "driving_status": "Existing matched driving/driven API contrast for this shared linear dimension class",
+            "is_driving": true,
+            "stored_reference_flag": 0
+          },
+          {
+            "object_id": 356,
+            "kind": "Linear",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "sketch_object_id": 323,
+            "sketch_feature_object_id": 327,
+            "binding_object_id": 358,
+            "parameter_name": "d4",
+            "entity_ids": [
+              348,
+              350
+            ],
+            "stored_kind_code": 16384,
+            "annotation_position_cm": [
+              2.0,
+              5.0,
+              0.0
+            ],
+            "annotation_position_offset": 41844,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "43.0116263352 mm",
+            "value_expression_offset": 41808,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "020000000000000000000000000000000000f03f",
+            "driving_status": "Existing matched driving/driven API contrast for this shared linear dimension class",
+            "is_driving": false,
+            "stored_reference_flag": 1
+          },
+          {
+            "object_id": 404,
+            "kind": "Offset",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "sketch_object_id": 363,
+            "sketch_feature_object_id": 367,
+            "binding_object_id": 406,
+            "parameter_name": "d5",
+            "entity_ids": [
+              392,
+              400
+            ],
+            "stored_kind_code": 16384,
+            "annotation_position_cm": [
+              5.0,
+              2.0,
+              0.0
+            ],
+            "annotation_position_offset": 46684,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "20.00 mm",
+            "value_expression_offset": 46664,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "02000000000000000000f03f000000000000f03f",
+            "driving_status": "Existing matched driving/driven API contrast for this shared linear dimension class",
+            "is_driving": true,
+            "stored_reference_flag": 0
+          },
+          {
+            "object_id": 468,
+            "kind": "EllipseMajorRadius",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "sketch_object_id": 411,
+            "sketch_feature_object_id": 415,
+            "binding_object_id": 470,
+            "parameter_name": "d6",
+            "entity_ids": [
+              438
+            ],
+            "stored_kind_code": 16777216,
+            "annotation_position_cm": [
+              5.0,
+              4.0,
+              0.0
+            ],
+            "annotation_position_offset": 52867,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "30.00 mm",
+            "value_expression_offset": 52847,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "020000000000000000000000000000000000f03f",
+            "driving_status": "Existing matched driving/driven API contrast for this shared linear dimension class",
+            "is_driving": true,
+            "stored_reference_flag": 0
+          },
+          {
+            "object_id": 532,
+            "kind": "EllipseMinorRadius",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "sketch_object_id": 475,
+            "sketch_feature_object_id": 479,
+            "binding_object_id": 534,
+            "parameter_name": "d7",
+            "entity_ids": [
+              502
+            ],
+            "stored_kind_code": 33554432,
+            "annotation_position_cm": [
+              5.0,
+              4.0,
+              0.0
+            ],
+            "annotation_position_offset": 59039,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "15.00 mm",
+            "value_expression_offset": 59019,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "020000000000000000000000000000000000f03f",
+            "driving_status": "Existing matched driving/driven API contrast for this shared linear dimension class",
+            "is_driving": true,
+            "stored_reference_flag": 0
+          },
+          {
+            "object_id": 576,
+            "kind": "ConcentricCircle",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "sketch_object_id": 539,
+            "sketch_feature_object_id": 543,
+            "binding_object_id": 578,
+            "parameter_name": "d8",
+            "entity_ids": [
+              566,
+              572
+            ],
+            "stored_kind_code": 134217728,
+            "annotation_position_cm": [
+              3.0,
+              4.0,
+              0.0
+            ],
+            "annotation_position_offset": 63282,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "18.00 mm",
+            "value_expression_offset": 63262,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "020000000000000000000000000000000000f03f",
+            "driving_status": "Existing matched driving/driven API contrast for this shared linear dimension class",
+            "is_driving": true,
+            "stored_reference_flag": 0
+          },
+          {
+            "object_id": 620,
+            "kind": "TangentDistance",
+            "class_guid": "A9E23439-6F4F-4ED3-A610-319F0AFABEED",
+            "sketch_object_id": 583,
+            "sketch_feature_object_id": 587,
+            "binding_object_id": 622,
+            "parameter_name": "d9",
+            "entity_ids": [
+              610,
+              616
+            ],
+            "stored_kind_code": 274877906944,
+            "annotation_position_cm": [
+              3.0,
+              4.0,
+              0.0
+            ],
+            "annotation_position_offset": 67764,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "57.00 mm",
+            "value_expression_offset": 67744,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "",
+            "driving_status": "No driving/reference contrast captured for this dimension class",
+            "tangent_side_status": "No contrasting tangent-side API settings captured; side flags remain uninterpreted"
+          },
+          {
+            "object_id": 668,
+            "kind": "LinearDiameter",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "sketch_object_id": 627,
+            "sketch_feature_object_id": 631,
+            "binding_object_id": 670,
+            "parameter_name": "d10",
+            "entity_ids": [
+              656,
+              663
+            ],
+            "stored_kind_code": 8589934592,
+            "annotation_position_cm": [
+              4.0,
+              2.0,
+              0.0
+            ],
+            "annotation_position_offset": 71930,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "60.00 mm",
+            "value_expression_offset": 71910,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "020000000000000000000000000000000000f03f",
+            "driving_status": "Existing matched driving/driven API contrast for this shared linear dimension class",
+            "is_driving": true,
+            "stored_reference_flag": 0
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed annotation positions/value-expression caches and existing class-bounded driving state; formatting, unsupported driving flags and tangent choices remain partial"
+      }
+    },
+    {
+      "archive": "advanced-627f7fe095f4/advanced.f3d",
+      "creation_argument_source": "GenerateMoreSketches.py",
+      "source_sha256": "6fa350a028881cb5e1e66455dd6beff70342ef82a481cf1f2b4c9ed1f19dd18d",
+      "checks": [
+        {
+          "dimension_object_id": 1538,
+          "sketch_name": "LinearDimension",
+          "expected_creation_text_point_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "creation_argument_match": true
+        },
+        {
+          "dimension_object_id": 1706,
+          "sketch_name": "DiameterDimension",
+          "expected_creation_text_point_cm": [
+            7.0,
+            5.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            7.0,
+            5.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "driving_flag_deliberately_unassigned_without_contrast": true,
+          "bounded_utf16_symbol_matches_radius_or_diameter_kind": true
+        },
+        {
+          "dimension_object_id": 1894,
+          "sketch_name": "AngularDimension",
+          "expected_creation_text_point_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "driving_flag_deliberately_unassigned_without_contrast": true
+        }
+      ],
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 1538,
+            "kind": "Linear",
+            "class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+            "sketch_object_id": 1505,
+            "sketch_feature_object_id": 1509,
+            "binding_object_id": 1540,
+            "parameter_name": "d1",
+            "entity_ids": [
+              1530,
+              1532
+            ],
+            "stored_kind_code": 4194304,
+            "annotation_position_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "annotation_position_offset": 73842,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "30.00 mm",
+            "value_expression_offset": 73822,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "020000000000000000000000000000000000f03f",
+            "driving_status": "Existing matched driving/driven API contrast for this shared linear dimension class",
+            "is_driving": true,
+            "stored_reference_flag": 0
+          },
+          {
+            "object_id": 1706,
+            "kind": "Diameter",
+            "class_guid": "664AD49F-207F-4CD5-8555-DD269E9F09EA",
+            "sketch_object_id": 1675,
+            "sketch_feature_object_id": 1679,
+            "binding_object_id": 1708,
+            "parameter_name": "d2",
+            "entity_ids": [
+              1702
+            ],
+            "stored_kind_code": 65536,
+            "annotation_position_cm": [
+              7.0,
+              5.0,
+              0.0
+            ],
+            "annotation_position_offset": 77275,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "35.00 mm",
+            "value_expression_offset": 77255,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "",
+            "driving_status": "No driving/reference contrast captured for this dimension class",
+            "stored_annotation_prefix_text": "\u00d8",
+            "prefix_evidence": "Explicit length-prefixed UTF-16 symbol field precedes the value-expression text"
+          },
+          {
+            "object_id": 1894,
+            "kind": "Angle",
+            "class_guid": "6EEAFDE5-59C4-424D-8EBE-77CDBC562017",
+            "sketch_object_id": 1853,
+            "sketch_feature_object_id": 1857,
+            "binding_object_id": 1896,
+            "parameter_name": "d3",
+            "entity_ids": [
+              1882,
+              1890
+            ],
+            "stored_kind_code": 32768,
+            "annotation_position_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "annotation_position_offset": 81917,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "56.309932474 deg",
+            "value_expression_offset": 81881,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "",
+            "driving_status": "No driving/reference contrast captured for this dimension class"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed annotation positions/value-expression caches and existing class-bounded driving state; formatting, unsupported driving flags and tangent choices remain partial"
+      }
+    },
+    {
+      "archive": "sketches-0ccea2ac0f9c/radius.f3d",
+      "creation_argument_source": "GenerateSketchSamples.py",
+      "source_sha256": "6eab26f70b4cce546c0ef5c989344dea259917c107107a0471282c6cccc041d7",
+      "checks": [
+        {
+          "dimension_object_id": 296,
+          "sketch_name": "BasicSketch",
+          "expected_creation_text_point_cm": [
+            11.0,
+            5.0,
+            0.0
+          ],
+          "decoded_annotation_position_cm": [
+            11.0,
+            5.0,
+            0.0
+          ],
+          "creation_argument_match": true,
+          "driving_flag_deliberately_unassigned_without_contrast": true,
+          "bounded_utf16_symbol_matches_radius_or_diameter_kind": true
+        }
+      ],
+      "decoding": {
+        "decoded": [
+          {
+            "object_id": 296,
+            "kind": "Radius",
+            "class_guid": "8EDAC24D-35D4-4591-B8E7-B3EA081C9DF0",
+            "sketch_object_id": 202,
+            "sketch_feature_object_id": 207,
+            "binding_object_id": 298,
+            "parameter_name": "d1",
+            "entity_ids": [
+              246
+            ],
+            "stored_kind_code": 131072,
+            "annotation_position_cm": [
+              11.0,
+              5.0,
+              0.0
+            ],
+            "annotation_position_offset": 27979,
+            "position_scope": "Observed sketch-coordinate text-position field; compared with saved API creation arguments",
+            "stored_value_expression_text": "12.50 mm",
+            "value_expression_offset": 27959,
+            "value_text_evidence": "Bounded native text field agrees exactly with the explicitly bound numeric parameter expression",
+            "uninterpreted_annotation_tail_hex": "",
+            "driving_status": "No driving/reference contrast captured for this dimension class",
+            "stored_annotation_prefix_text": "R",
+            "prefix_evidence": "Explicit length-prefixed UTF-16 symbol field precedes the value-expression text"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed annotation positions/value-expression caches and existing class-bounded driving state; formatting, unsupported driving flags and tangent choices remain partial"
+      }
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Non-finite annotation position rejected",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 236,
+          "kind": "DimensionControls",
+          "reason": "Non-finite geometry"
+        }
+      ]
+    },
+    {
+      "check": "Cached value-expression text disagrees with parameter",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 236,
+          "kind": "DimensionControls",
+          "reason": "Unique bounded annotation value-expression field was not established"
+        }
+      ]
+    },
+    {
+      "check": "Parameter owner changed to an existing sketch object",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 236,
+          "kind": "DimensionControls",
+          "reason": "Dimension parameter owner/value association disagrees"
+        }
+      ]
+    },
+    {
+      "check": "Copied dimension target list changed to another existing target",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 236,
+          "kind": "DimensionControls",
+          "reason": "Dimension type/binding/target tail disagrees"
+        }
+      ]
+    },
+    {
+      "check": "Unobserved reference flag value rejected",
+      "passed": true,
+      "unresolved": [
+        {
+          "object_id": 236,
+          "kind": "DimensionControls",
+          "reason": "Unsupported shared linear-dimension reference flag"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Only linear class8C780195 has a captured true/false driving contrast; no driving flag is assigned to other classes.",
+    "Annotation position evidence uses committed API generator creation arguments; post-creation textPosition was not captured.",
+    "Stored value text agrees with numeric parameter expressions; final rendered formatting, text layout and UI placement are not established.",
+    "Tangent-side choices lack contrasting API settings and remain unresolved.",
+    "The remaining annotation tail is retained without assigning enum or bool semantics."
+  ],
+  "driving_contrast_audit": {
+    "matched_class_guid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+    "same_kind": "Linear/Aligned",
+    "stored_reference_flags": [
+      0,
+      1
+    ],
+    "api_is_driving": [
+      true,
+      false
+    ],
+    "interpretation": "This paired flag was already decoded; no new driving-state completion is claimed for other classes."
+  },
+  "focused_counts": {
+    "archives": 3,
+    "dimension_controls": 14,
+    "classes": 5,
+    "negative_checks": 5
+  },
+  "main_reader_integration": {
+    "status": "pass",
+    "archives": 3,
+    "dimension_controls_matching_stage_report": 14,
+    "stream_key": "dimension_controls"
+  }
+}
