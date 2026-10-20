@@ -124,7 +124,7 @@ def decode_pattern_placements(data, records, features):
             unresolved.append({"feature_object_id": feature["object_id"], "kind": kind,
                                "reason": str(error), "native_evidence": evidence})
     return {"decoded": decoded, "unresolved": unresolved,
-            "scope": "Observed unsuppressed rectangular translation sets, including captured single-body positive-spacing X/Y symmetry; no instance/body identity association, cache modification, joint solving or geometry regeneration"}
+            "scope": "Observed unsuppressed rectangular translation sets, including captured symmetric spacing/extent and input/direction variants; no instance/body identity association, cache modification, joint solving or geometry regeneration"}
 
 
 def _same_matrix_set(one, two):
