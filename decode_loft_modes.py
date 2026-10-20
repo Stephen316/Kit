@@ -1,4 +1,4 @@
-"""Observed Loft closure flag, ordered straight rails and existing section controls.
+"""Bounded Loft controls with optional observed section and guide readers.
 
 Independent reader; no import from decode_loft, so callers can delegate safely.
 """
@@ -16,7 +16,8 @@ SECTION_GUID = "2F3200BA-FDFB-48C6-97D4-71A4A0D86190"
 
 
 def decode_loft_modes(data, records, body, feature, features, *, allowed_operation_codes=(4,),
-                      profile_resolver=resolve_sketch_profiles):
+                      profile_resolver=resolve_sketch_profiles, allow_point_end_conditions=False,
+                      section_resolver=None, guide_resolver=None):
     if (feature["class_guid"] != LOFT_GUID or len(body) < 110
             or body[0] != 0 or body[1] not in (0, 1)):
         raise ValueError("Unsupported Loft class/prefix")
@@ -70,6 +71,16 @@ def decode_loft_modes(data, records, body, feature, features, *, allowed_operati
             result["stored_post_weight_field"] = stored_post_weight_field
         if code == 0 and angle_id is None and weight_id is None:
             return result, cursor
+        if allow_point_end_conditions and angle_id is None and code in (4, 5):
+            if code == 4 and weight_id is None:
+                result["type"] = "PointSharp"
+                return result, cursor
+            if code == 5 and weight_id is not None:
+                weight = parameter(weight_id, side+" Weight")
+                if weight <= 0:
+                    raise ValueError("Loft point tangent weight must be positive")
+                result.update(type="PointTangent", weight=weight, weight_binding_object_id=weight_id)
+                return result, cursor
         if code != 3 or angle_id is None or weight_id is None:
             raise ValueError("Unsupported Loft end-condition type/bindings")
         angle = parameter(angle_id, side+" TakeOff Angle")
@@ -80,9 +91,13 @@ def decode_loft_modes(data, records, body, feature, features, *, allowed_operati
                       angle_binding_object_id=angle_id, weight_binding_object_id=weight_id)
         return result, cursor
 
+    def guide(identity):
+        if guide_resolver is not None:
+            return guide_resolver(data, records, identity, feature["object_id"], features)
+        return resolve_single_sketch_curve(data, records, identity, feature["object_id"], features, ("Line",))
+
     centerline_id, cursor = optional_ref(base+8)
-    centerline = (resolve_single_sketch_curve(data, records, centerline_id, feature["object_id"], features, ("Line",))
-                  if centerline_id is not None else None)
+    centerline = guide(centerline_id) if centerline_id is not None else None
     end, cursor = end_condition(cursor, "End")
     rail_count = struct.unpack_from("<I", body, cursor)[0]
     if rail_count not in (0, 1, 2):
@@ -92,7 +107,7 @@ def decode_loft_modes(data, records, body, feature, features, *, allowed_operati
         raise ValueError("Duplicate or combined centerline/rail Loft selections")
     rails = []
     for index, identity in enumerate(rail_ids):
-        selected = resolve_single_sketch_curve(data, records, identity, feature["object_id"], features, ("Line",))
+        selected = guide(identity)
         source = next(f for f in features if f["kind"] == "Sketch" and f["sketch_object_id"] == selected["sketch_object_id"])
         selected["sketch_name"] = source["name"]
         rails.append({"index": index, "selection": selected})
@@ -125,16 +140,20 @@ def decode_loft_modes(data, records, body, feature, features, *, allowed_operati
     sections = []
     for index, section_id in enumerate(section_ids):
         _, section = primary(section_id, SECTION_GUID)
-        if (len(section) != 36 or section[:10] != b"\0"*10
-                or reference(section, 10) != feature["object_id"]
-                or struct.unpack_from("<I", section, 32)[0] != 2):
-            raise ValueError("Unsupported Loft profile section layout/owner")
-        profile_id = reference(section, 21)
-        profiles = profile_resolver(data, records, profile_id, feature["object_id"], features)
-        if len(profiles) != 1:
-            raise ValueError("Only observed single-profile Loft sections supported")
+        if section_resolver is not None:
+            selection = section_resolver(data, records, section_id, feature, features)
+        else:
+            if (len(section) != 36 or section[:10] != b"\0"*10
+                    or reference(section, 10) != feature["object_id"]
+                    or struct.unpack_from("<I", section, 32)[0] != 2):
+                raise ValueError("Unsupported Loft profile section layout/owner")
+            profile_id = reference(section, 21)
+            profiles = profile_resolver(data, records, profile_id, feature["object_id"], features)
+            if len(profiles) != 1:
+                raise ValueError("Only observed single-profile Loft sections supported")
+            selection = {"profile": profiles[0]}
         sections.append({"index": index, "section_record_object_id": section_id,
-                         "profile": profiles[0],
+                         **selection,
                          "end_condition": None if is_closed else start if index == 0 else end if index == count-1 else None})
     body_count = struct.unpack_from("<I", body, cursor)[0]
     if body_count != (1 if operation == 4 else 0):

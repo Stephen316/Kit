@@ -21,7 +21,7 @@ from decode_thicken import decode_thicken
 from decode_emboss import decode_emboss
 from decode_draft import decode_draft
 from decode_circular_patterns import decode_circular_pattern
-from decode_loft_operations import decode_loft_operations
+from decode_loft import decode_loft
 from decode_move import decode_move
 from decode_boundary_fill import decode_boundary_fill
 
@@ -81,7 +81,7 @@ def decode_tools(data, records, features):
                 except (ValueError, KeyError, IndexError, struct.error):
                     settings = decode_sweep_operations(data, records, body, feature, features)
             elif kind == "Loft":
-                settings = decode_loft_operations(data, records, body, feature, features)
+                settings = decode_loft(data, records, body, feature, features)
             elif kind == "Draft":
                 settings = decode_draft(data, records, body, feature, axes)
             elif kind == "Thicken":
