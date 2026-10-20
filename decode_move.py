@@ -41,7 +41,10 @@ def decode_move(data, records, body, feature, known, features):
     matrix_offset = cursor+9
     matrix = rigid_matrix(numbers(payload, matrix_offset, 16))
     cursor = matrix_offset+128
-    if payload[cursor:cursor+6] != b'\0\0\1\0\0\0':
+    matrix_suffix = payload[cursor:cursor+6]
+    if (len(matrix_suffix) != 6 or matrix_suffix[:2] != bytes(2)
+            or matrix_suffix[3:] != bytes(3) or matrix_suffix[2] not in (0, 1)
+            or (code != 6 and matrix_suffix[2] != 1)):
         raise ValueError('Unsupported Move matrix suffix')
     selected_point_id, cursor = optional_reference(payload, cursor+6)
     if reference(payload, cursor) != feature['object_id']:
@@ -146,12 +149,14 @@ def decode_move(data, records, body, feature, known, features):
             resolved.append(construction_point(point_id))
         result.update(definition='PointToPoint', origin_point=resolved[0], target_point=resolved[1])
     elif code == 6:
-        if header_slots[0] is None or any(identity is not None for identity in header_slots[1:]):
+        is_design_space = bool(matrix_suffix[2])
+        if (is_design_space != (header_slots[0] is not None)
+                or any(identity is not None for identity in header_slots[1:])):
             raise ValueError('Unobserved point-to-position context header')
         result.update(definition='PointToPosition', point=construction_point(selected_point_id),
                       x_distance_cm=parameter(slots[6], 'PositionX'), y_distance_cm=parameter(slots[7], 'PositionY'),
-                      z_distance_cm=parameter(slots[8], 'PositionZ'), is_design_space=None,
-                      coordinate_status='Native coordinate-space encoding unresolved; stored parameters and transform retained')
+                      z_distance_cm=parameter(slots[8], 'PositionZ'), is_design_space=is_design_space,
+                      coordinate_status='Observed point-to-position coordinate flag and optional frame presence agree with paired API controls')
         active_slots = {6, 7, 8}
     if any(identity is not None for index, identity in enumerate(slots) if index not in active_slots):
         raise ValueError('Unexpected active Move parameter/entity slots')
