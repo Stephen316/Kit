@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 423,
+  "file_count": 443,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -136,8 +136,16 @@
     "jointmodes-20d3aef2a07d/rigid.f3d",
     "jointmodes-20d3aef2a07d/rigid_flipped.f3d",
     "jointmodes-20d3aef2a07d/slider.f3d",
+    "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
+    "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
+    "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d",
+    "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
     "loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
     "loftcurvedguides-79a1266af54e/quarter_arc_centerline.f3d",
+    "loftfaces-055501f619c5/edge_path_smooth_weight1.f3d",
+    "loftfaces-055501f619c5/edge_path_tangent_weight1.f3d",
+    "loftfaces-055501f619c5/edge_path_tangent_weight2.f3d",
+    "loftfaces-055501f619c5/face_free.f3d",
     "loftguides-265bcb9af34a/closure_closed_four.f3d",
     "loftguides-265bcb9af34a/closure_closed_surface.f3d",
     "loftguides-265bcb9af34a/closure_open_four.f3d",
@@ -209,6 +217,12 @@
     "output-7230965e9265/depth07_return.f3d",
     "output-7230965e9265/depth13.f3d",
     "output-7230965e9265/depth29.f3d",
+    "parameterexpressions-3ddbef2b20bd/function_outside_subset.f3d",
+    "parameterexpressions-3ddbef2b20bd/parenthesized.f3d",
+    "parameterexpressions-3ddbef2b20bd/product_sum.f3d",
+    "parameterexpressions-3ddbef2b20bd/repeated_reference.f3d",
+    "parameterexpressions-3ddbef2b20bd/text_name_literal.f3d",
+    "parameterexpressions-3ddbef2b20bd/unary_reference.f3d",
     "parametertexts-d16f951482fc/model_favorite_false.f3d",
     "parametertexts-d16f951482fc/model_favorite_true.f3d",
     "parametertexts-d16f951482fc/model_multiline_comment.f3d",
@@ -248,6 +262,12 @@
     "profiles-66b0447c28ac/concentric_disk.f3d",
     "profiles-66b0447c28ac/disjoint_left.f3d",
     "profiles-66b0447c28ac/disjoint_right.f3d",
+    "projectionfamilies-d987c50c2d73/include_arc.f3d",
+    "projectionfamilies-d987c50c2d73/intersect_circle.f3d",
+    "projectionfamilies-d987c50c2d73/intersect_line.f3d",
+    "projectionfamilies-d987c50c2d73/intersect_plane.f3d",
+    "projectionfamilies-d987c50c2d73/surface_closest_line.f3d",
+    "projectionfamilies-d987c50c2d73/surface_vector_line.f3d",
     "rectmodes-a069f8f4b8a2/body_multiple_customaxis.f3d",
     "rectmodes-a069f8f4b8a2/body_negative.f3d",
     "rectmodes-a069f8f4b8a2/body_one.f3d",
@@ -426,7 +446,7 @@
     "userparameters-e9c6959ff5fd/text.f3d",
     "userparameters-e9c6959ff5fd/unitless.f3d"
   ],
-  "class_count": 340,
+  "class_count": 342,
   "classes_with_observed_semantics": 54,
   "classes": [
     {
@@ -1065,7 +1085,24 @@
       "observed_semantics": [],
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d",
+        "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
         "splines-9a18bae21127/splines.f3d"
+      ]
+    },
+    {
+      "class_guid": "2319971D-8E07-441A-8F16-11C8F6F862D4",
+      "base_class_guids": [
+        "518AD6D6-763A-472C-9F19-9CFF03E8DC45"
+      ],
+      "namespaces": [
+        "EntityTracking"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "loftcompositeguides-8ea2ef593872/spline_centerline.f3d"
       ]
     },
     {
@@ -1393,9 +1430,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
-        "loftcurvedguides-79a1266af54e/quarter_arc_centerline.f3d",
-        "loftguides-265bcb9af34a/closure_closed_four.f3d"
+        "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
+        "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
+        "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d"
       ]
     },
     {
@@ -1854,6 +1891,7 @@
       "observed_semantics": [],
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d",
+        "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },
@@ -4016,6 +4054,23 @@
       ]
     },
     {
+      "class_guid": "A9DB7E42-E095-4A66-BE81-7F36DA04028E",
+      "base_class_guids": [
+        "F1451EC8-11A4-4952-84ED-5AB7C13E2E83"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "projectionfamilies-d987c50c2d73/surface_closest_line.f3d",
+        "projectionfamilies-d987c50c2d73/surface_vector_line.f3d"
+      ]
+    },
+    {
       "class_guid": "A9E23439-6F4F-4ED3-A610-319F0AFABEED",
       "base_class_guids": [
         "0C3F3829-F0DB-4379-9479-CFEF71087971"
@@ -4198,9 +4253,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
-        "loftcurvedguides-79a1266af54e/quarter_arc_centerline.f3d",
-        "loftguides-265bcb9af34a/closure_closed_four.f3d"
+        "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
+        "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
+        "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d"
       ]
     },
     {
@@ -4256,7 +4311,7 @@
       "example_files": [
         "constructionmodes-e355ad6031c0/point_center.f3d",
         "holeplacements-04adf73afe93/center_edge.f3d",
-        "loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d"
+        "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d"
       ]
     },
     {
@@ -4424,9 +4479,9 @@
         "Named feature: Loft"
       ],
       "example_files": [
-        "loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
-        "loftcurvedguides-79a1266af54e/quarter_arc_centerline.f3d",
-        "loftguides-265bcb9af34a/closure_closed_four.f3d"
+        "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
+        "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
+        "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d"
       ]
     },
     {
@@ -4580,9 +4635,9 @@
         "Named feature: SurfacePatch"
       ],
       "example_files": [
-        "surfacebounds-8804bbf80755/extend_no_chain.f3d",
-        "surfacebounds-ac801bb00fae/extend_aligned.f3d",
-        "surfacebounds-ac801bb00fae/extend_natural.f3d"
+        "projectionfamilies-d987c50c2d73/surface_closest_line.f3d",
+        "projectionfamilies-d987c50c2d73/surface_vector_line.f3d",
+        "surfacebounds-8804bbf80755/extend_no_chain.f3d"
       ]
     },
     {
@@ -4754,9 +4809,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "loftcurvedguides-79a1266af54e/bowed_arc_rail.f3d",
-        "loftcurvedguides-79a1266af54e/quarter_arc_centerline.f3d",
-        "loftguides-265bcb9af34a/closure_closed_four.f3d"
+        "loftcompositeguides-8ea2ef593872/centerline_connected_chain.f3d",
+        "loftcompositeguides-8ea2ef593872/centerline_explicit_members.f3d",
+        "loftcompositeguides-8ea2ef593872/rail_line_arc.f3d"
       ]
     },
     {
@@ -5256,6 +5311,7 @@
       "observed_semantics": [],
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d",
+        "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },
@@ -5401,9 +5457,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "surfacebounds-8804bbf80755/extend_no_chain.f3d",
-        "surfacebounds-ac801bb00fae/extend_aligned.f3d",
-        "surfacebounds-ac801bb00fae/extend_natural.f3d"
+        "projectionfamilies-d987c50c2d73/surface_closest_line.f3d",
+        "projectionfamilies-d987c50c2d73/surface_vector_line.f3d",
+        "surfacebounds-8804bbf80755/extend_no_chain.f3d"
       ]
     },
     {
@@ -5708,6 +5764,7 @@
       "observed_semantics": [],
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d",
+        "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },
@@ -5902,6 +5959,7 @@
       "observed_semantics": [],
       "example_files": [
         "dimensions-f83a2edd2f72/dimensions.f3d",
+        "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
         "splines-9a18bae21127/splines.f3d"
       ]
     },

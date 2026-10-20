@@ -119,6 +119,8 @@ def decode_sketch_projections(data, records, features):
             chunk = data[controller.body:controller.end]
             if len(chunk) != 105 or chunk[:5] != bytes.fromhex("0000010000") or chunk[5] not in (0, 1):
                 raise ValueError("Unsupported projection controller layout")
+            if struct.unpack_from("<I", chunk, 26)[0] != 3:
+                raise ValueError("Projection controller family is not observed Project/Include; intersection requires family reader")
             owner = reference(chunk, 94)
             target_sketch = by_feature.get(owner)
             if target_sketch is None or reference(chunk, 30) != owner:

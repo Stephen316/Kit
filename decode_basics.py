@@ -20,6 +20,7 @@ from decode_sketch import decode_sketches
 from decode_sketch_coverage import decode_sketch_coverage
 from decode_offset_details import decode_offset_details
 from decode_sketch_projections import decode_sketch_projections
+from decode_sketch_projection_families import decode_sketch_projection_families
 from decode_sketch_pattern_details import decode_sketch_pattern_details
 from decode_dimension_controls import decode_dimension_controls
 from decode_dimension_control_modes import decode_dimension_control_modes
@@ -226,6 +227,27 @@ def decode_basics(path, zstd_library=None):
                                                       driving_status=mode["driving_status"],
                                                       position_scope=mode["annotation_position_evidence"])
         projection_summary = decode_sketch_projections(data, records, features)
+        projection_families = decode_sketch_projection_families(data, records, features)
+        # One controller can explicitly name multiple outputs, such as two
+        # circle/plane intersections. Preserve each output relationship.
+        projection_keys = {(r["controller_object_id"], r["output_cache"]["object_id"])
+                           for r in projection_summary["relationships"]}
+        for relationship in projection_families["relationships"]:
+            key = relationship["controller_object_id"], relationship["output_cache"]["object_id"]
+            if key not in projection_keys:
+                projection_summary["relationships"].append(relationship)
+                projection_keys.add(key)
+        resolved_projection_ids = {key[0] for key in projection_keys}
+        projection_unresolved = {}
+        for item in projection_summary["unresolved"]+projection_families["unresolved"]:
+            if item["object_id"] in resolved_projection_ids:
+                continue
+            if item["object_id"] not in projection_unresolved:
+                projection_unresolved[item["object_id"]] = dict(item)
+            elif item["reason"] != projection_unresolved[item["object_id"]]["reason"]:
+                projection_unresolved[item["object_id"]]["additional_reason"] = item["reason"]
+        projection_summary["unresolved"] = list(projection_unresolved.values())
+        projection_summary["scope"] += "; "+projection_families["scope"]
         for relationship in projection_summary["relationships"]:
             target = next(f for f in features if f["object_id"] == relationship["target_feature_object_id"])
             output = next((g for g in target["geometry"] if g["object_id"] == relationship["output_cache"]["object_id"]), None)
