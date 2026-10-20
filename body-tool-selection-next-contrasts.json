@@ -1,0 +1,91 @@
+{
+  "existing_evidence": {
+    "canonical_modes": "bodymodes-df9b7113539f",
+    "flag_value_holdouts": "bodymodes-d696a14d5f0b",
+    "explicit_selection_captures": "bodyselections-62e42366c722",
+    "decoded_cases": 16,
+    "observed_inputs": [
+      "Scale uniform/nonuniform body inputs; component-origin ConstructionPoint and explicit SketchPoint reference",
+      "Mirror single/two body inputs; principal XY/XZ/YZ and custom offset ConstructionPlane",
+      "Shell one body, one/two removed faces; inside/outside/both thickness, rounded, tangent-chain"
+    ],
+    "custom_mirror_plane_actual": {
+      "name": "SelectionMirrorPlane",
+      "origin_cm": [
+        0.5,
+        0,
+        0
+      ],
+      "normal": [
+        1,
+        0,
+        0
+      ]
+    },
+    "compute_getter": {
+      "archive": "bodyselections-62e42366c722/mirror_two_bodies_plane.f3d",
+      "actual_value": 2,
+      "input_kind": "BRepBody",
+      "limitation": "SDK says compute option applies only to feature inputs; body-input getter cannot establish active compute behavior"
+    },
+    "native_mirror_control": {
+      "class_guid": "C444E6AD-33DC-4877-B037-A3A5518856B1",
+      "body_length": 133,
+      "finding": "Multiple invariant uint32 values equal2; no captured compute contrast identifies an enum field"
+    },
+    "discovery_models_scope": "discovery-08660c033d4d has construction geometry only; models captures have Extrude/Revolve only; tools Mirror API truth lacks explicit input/compute getters"
+  },
+  "needed_contrasts": [
+    {
+      "priority": 1,
+      "cases": [
+        "Same feature input mirrored with OptimizedPatternCompute",
+        "Same feature input mirrored with IdenticalPatternCompute",
+        "Same feature input mirrored with AdjustPatternCompute"
+      ],
+      "actual_getters": [
+        "inputEntities entity kinds/order",
+        "patternComputeOption",
+        "mirrorPlane",
+        "isCombine",
+        "stitchTolerance"
+      ],
+      "purpose": "Identify active compute native field and explicit feature-input association without copying pattern ordinal meanings"
+    },
+    {
+      "priority": 2,
+      "cases": [
+        "Body mirrored across planar BRepFace"
+      ],
+      "purpose": "Contrast mirrorPlane BRepFace recipe with currently resolved ConstructionPlane references"
+    },
+    {
+      "priority": 3,
+      "cases": [
+        "Mirror one BRepFace",
+        "Mirror one Occurrence",
+        "Mirror one construction entity"
+      ],
+      "purpose": "Cover remaining documented input kinds separately and preserve context"
+    },
+    {
+      "priority": 4,
+      "cases": [
+        "Scale Sketch input uniformly",
+        "Scale body about BRepVertex",
+        "Scale body about non-origin parametric ConstructionPoint"
+      ],
+      "purpose": "Cover documented input/reference variants not represented by current origin CP and SketchPoint captures"
+    },
+    {
+      "priority": 5,
+      "cases": [
+        "Shell two bodies",
+        "Shell one body plus face from a different body"
+      ],
+      "purpose": "Cover multiple/mixed input descriptors; SDK forbids input face together with its own body"
+    }
+  ],
+  "status": "No additional semantic decoder justified by existing contrasts; no source module changes",
+  "sdk_source": "Local adsk/fusion.py MirrorFeatureInput/ScaleFeatureInput/ShellFeatureInput documentation"
+}

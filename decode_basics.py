@@ -55,6 +55,9 @@ from decode_body_bindings import decode_body_bindings
 from decode_body_properties import decode_body_properties
 from decode_body_selections import decode_body_selections
 from decode_body_tool_selections import decode_body_tool_selections
+from decode_component_creation import decode_component_creation
+from decode_pin_provenance import decode_pin_provenance
+from decode_selection_context_recipes import decode_selection_context_recipes
 from decode_brep_recipes import decode_recipes
 from decode_component_body_proxies import decode_component_body_proxies
 from decode_combine import attach_combine_bodies
@@ -385,6 +388,28 @@ def decode_basics(path, zstd_library=None):
         discovery_summary["class_decoded_joint_definition_count"] = len(resolved_joint_definitions)
         timeline_summary = decode_timeline(data, records, features)
         dependency_summary = decode_dependencies(data, records, features, assembly_summary)
+        component_creation_summary = decode_component_creation(data, records, features, assembly_summary)
+        pin_provenance_summary = decode_pin_provenance(data, records, assembly_summary, features)
+        decoded_assembly_feature_ids = set()
+        feature_by_id = {f["object_id"]: f for f in features}
+        for creation in component_creation_summary["decoded"]:
+            feature = feature_by_id[creation["feature_object_id"]]
+            feature.update(kind="CreateComponent", component_creation=creation,
+                           decode_level="Observed explicit component creation and historical occurrence placement; replay unsupported")
+            snapshot = feature_by_id.get(creation["snapshot_object_id"])
+            if snapshot is not None:
+                snapshot["component_creation_snapshot"] = creation
+            decoded_assembly_feature_ids.add(feature["object_id"])
+        for pin in pin_provenance_summary["decoded"]:
+            feature = feature_by_id[pin["feature_object_id"]]
+            feature.update(kind="Pin", pin_provenance=pin,
+                           decode_level="Observed explicit Pin occurrence provenance; current grounded state unresolved")
+            decoded_assembly_feature_ids.add(feature["object_id"])
+        discovery_summary["unsupported_features"] = [f for f in discovery_summary["unsupported_features"]
+                                                     if f["object_id"] not in decoded_assembly_feature_ids]
+        discovery_summary["unsupported_feature_count"] = len(discovery_summary["unsupported_features"])
+        discovery_summary["class_decoded_component_creation_count"] = len(component_creation_summary["decoded"])
+        discovery_summary["class_decoded_pin_provenance_count"] = len(pin_provenance_summary["decoded"])
         body_property_summary = decode_body_properties(data, records, assembly_summary)
         body_selection_summary = decode_body_selections(data, records, body_property_summary)
         component_body_summary = decode_component_body_proxies(data, records, body_selection_summary, assembly_summary)
@@ -395,6 +420,7 @@ def decode_basics(path, zstd_library=None):
                                                 or item["object_id"] not in resolved_component_proxies]
         body_selection_summary["unresolved"].extend(component_body_summary["unresolved"])
         body_selection_summary["component_context_scope"] = component_body_summary["scope"]
+        selection_context_summary = decode_selection_context_recipes(data, records, body_selection_summary)
         attach_combine_bodies(features, body_selection_summary)
         body_tool_selection_summary = decode_body_tool_selections(data, records, features, body_selection_summary)
         for selected_inputs in body_tool_selection_summary["decoded"]:
@@ -448,11 +474,14 @@ def decode_basics(path, zstd_library=None):
             "pattern_placements": pattern_placement_summary,
             "timeline_decoding": timeline_summary,
             "assembly_decoding": assembly_summary,
+            "component_creations": component_creation_summary,
+            "pin_provenance": pin_provenance_summary,
             "joint_decoding": joint_summary,
             "dependency_decoding": dependency_summary,
             "body_blob_bindings": body_binding_summary,
             "body_properties": body_property_summary,
             "body_selections": body_selection_summary,
+            "selection_context_recipes": selection_context_summary,
             "body_tool_selections": body_tool_selection_summary,
             "tool_body_inputs": tool_body_summary,
             "recipe_decoding": recipe_summary,
