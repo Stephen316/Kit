@@ -7,7 +7,6 @@ no body topology or file writing provided.
 
 import argparse
 from bisect import bisect_right
-from dataclasses import dataclass
 import json
 from pathlib import Path
 import re
@@ -17,42 +16,17 @@ from decode_parameters import decode_stream, read_string
 from decode_sketch import decode_sketches
 from decode_modeling import decode_modeling
 from fusion_archive import read_members
-
-
-@dataclass
-class Record:
-    start: int
-    body: int
-    end: int
-    type_code: str
-    object_id: int
-
-
-def record_fragments(data):
-    """Find observed headers; next-header bounds are provisional, not a grammar."""
-    records = []
-    for position in range(max(0, len(data) - 19)):
-        length = struct.unpack_from("<I", data, position)[0]
-        if not 1 <= length <= 4:
-            continue
-        code = data[position + 4:position + 4 + length]
-        body = position + 16 + length
-        if body > len(data) or not code.isdigit():
-            continue
-        identity = struct.unpack_from("<Q", data, position + 4 + length)[0]
-        if identity >= 2**32 or data[body - 4:body] != b"\0" * 4:
-            continue
-        records.append(Record(position, body, len(data), code.decode(), identity))
-    for current, following in zip(records, records[1:]):
-        current.end = following.start
-    return records
+from fusion_records import Record, record_fragments
 
 
 def named_features(data, records):
     features = []
     starts = [r.start for r in records]
-    for kind in ("Sketch", "Extrude", "Revolve"):
-        marker = struct.pack("<I", len(kind)) + kind.encode("utf-16le")
+    labels = {"Sketch": "Sketch", "Extrude": "Extrude", "Revolve": "Revolve",
+              "Fillet": "Fillet", "Chamfer": "Chamfer", "Shell": "Shell", "Hole": "Hole",
+              "R-Pattern": "RectangularPattern", "Mirror": "Mirror", "Scale": "Scale"}
+    for label, kind in labels.items():
+        marker = struct.pack("<I", len(label)) + label.encode("utf-16le")
         for match in re.finditer(re.escape(marker), data):
             index = bisect_right(starts, match.start()) - 1
             if index < 0:
@@ -66,6 +40,7 @@ def named_features(data, records):
                     continue
                 item = {
                     "kind": kind, "object_id": record.object_id,
+                    "native_kind_label": label,
                     "stored_index": stored_index, "record_offset": record.start,
                     "type_code": record.type_code, "parameters": [],
                 }
@@ -112,24 +87,32 @@ def attach_parameters(data, records, features, parameters):
     attached = set()
     for record in records:
         body = data[record.body:record.end]
-        if len(body) != 85 or body[:6] != b"\x01\x01\0\0\0\x01":
+        if len(body) not in (82, 85) or body[:6] != b"\x01\x01\0\0\0\x01":
             continue
         owner = struct.unpack_from("<Q", body, 6)[0]
-        if body[29] != 1 or body[-11] != 1 or body[-2:] != b"\0\0":
+        parameter_offset = 30 if len(body) == 85 else 27
+        if body[parameter_offset - 1] != 1 or body[-11] != 1 or body[-2:] != b"\0\0":
             continue
         if struct.unpack_from("<Q", body, len(body) - 10)[0] != owner:
             continue
-        parameter_id = struct.unpack_from("<Q", body, 30)[0]
+        parameter_id = struct.unpack_from("<Q", body, parameter_offset)[0]
         choices = pending.get(parameter_id, [])
         if owner not in by_id or len(choices) != 1:
             continue
         parameter = choices[0]
+        if parameter.get("declared_binding_object_id", record.object_id) != record.object_id:
+            continue
         raw_value = data[parameter["value_offset"]:parameter["value_offset"] + 8]
-        if body[21:29] != raw_value or parameter["role_offset"] in attached:
+        if len(body) == 85:
+            matches_value = body[21:29] == raw_value
+        else:
+            matches_value = body[21] == 1 and struct.unpack_from("<I", body, 22)[0] == parameter["raw_float64"]
+        if not matches_value or parameter["role_offset"] in attached:
             continue
         by_id[owner]["parameters"].append({
             **parameter, "parameter_object_id": parameter_id,
             "binding_object_id": record.object_id, "binding_offset": record.start,
+            "binding_value_representation": "float64" if len(body) == 85 else "tagged_uint32",
             "association": "explicit owner and parameter references with matching numeric payload",
         })
         attached.add(parameter["role_offset"])

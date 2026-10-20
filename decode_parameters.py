@@ -1,7 +1,7 @@
 """Experimental Fusion parameter reader, not a general feature-tree decoder.
 
-Finds observed role-labelled records rather than known numeric values or fixed
-file offsets. Object references, extrusion ownership and geometry are not decoded.
+Reads observed numeric-parameter record layouts rather than known values or
+fixed file offsets. Geometry and feature interpretation live in other modules.
 """
 
 import argparse
@@ -13,13 +13,7 @@ import re
 import struct
 
 from fusion_archive import read_members
-
-
-ROLES = {"AlongDistance": {"mm", "cm", "m", "in", "ft"}, "TaperAngle": {"deg", "rad"}}
-ROLES["AgainstDistance"] = ROLES["AlongDistance"]
-ROLES["Side2TaperAngle"] = ROLES["TaperAngle"]
-ROLES["AlongAngle"] = ROLES["TaperAngle"]
-ROLES["AgainstAngle"] = ROLES["TaperAngle"]
+from fusion_records import record_fragments
 
 
 def read_string(data, position):
@@ -36,57 +30,52 @@ def read_string(data, position):
 
 
 def decode_stream(data):
+    """Decode observed numeric model-parameter records, regardless of role name."""
     parameters, rejected = [], []
-    roles = dict(ROLES)
-    for dimension in ("Radial", "Diameter", "Linear", "Angular"):
-        pattern = re.escape((dimension + " Dimension-").encode("utf-16le")) + rb"(?:[0-9]\x00)+"
-        for match in re.finditer(pattern, data):
-            try:
-                role, _ = read_string(data, match.start() - 4)
-            except (ValueError, UnicodeError, struct.error):
-                continue
-            if re.fullmatch(dimension + r" Dimension-[0-9]+", role):
-                roles[role] = ROLES["TaperAngle" if dimension == "Angular" else "AlongDistance"]
-    for role, units in roles.items():
-        marker = struct.pack("<I", len(role)) + role.encode("utf-16le")
-        for match in re.finditer(re.escape(marker), data):
-            start = match.start()
-            try:
-                actual_role, cursor = read_string(data, start)
-                unknown_text, cursor = read_string(data, cursor)
-                display_units, cursor = read_string(data, cursor)
-                name, cursor = read_string(data, cursor)
-                if actual_role != role or unknown_text or display_units not in units:
-                    raise ValueError("Unsupported parameter layout or units")
-                if not re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]*", name):
-                    raise ValueError("Unexpected parameter name")
-                value = struct.unpack_from("<d", data, cursor)[0]
-                if not math.isfinite(value):
-                    raise ValueError("Non-finite parameter")
-                # Observed separator has ten bytes; its complete semantics are unknown.
-                expressions = []
-                for position in range(max(0, start - 1024), start - 13):
-                    try:
-                        expression, end = read_string(data, position)
-                    except (ValueError, UnicodeError, struct.error):
-                        continue
-                    if expression and end == start - 10:
-                        expressions.append(expression)
-                item = {
-                    "role": role, "parameter_name": name,
-                    "display_units": display_units, "raw_float64": value,
-                    "role_offset": start, "value_offset": cursor,
-                    "expression_candidates": expressions,
-                    "layout": "u32-length UTF16LE strings followed by LE float64",
-                }
-                # Internal units are research hypotheses checked against API truth.
-                if role in ("TaperAngle", "Side2TaperAngle", "AlongAngle", "AgainstAngle") or role.startswith("Angular Dimension-"):
-                    item["hypothesized_value_degrees"] = math.degrees(value)
-                else:
-                    item["hypothesized_value_mm"] = value * 10
-                parameters.append(item)
-            except (ValueError, UnicodeError, struct.error) as error:
-                rejected.append({"role": role, "offset": start, "reason": str(error)})
+    for record in record_fragments(data):
+        body = data[record.body:record.end]
+        if len(body) < 31 or body[:7] != b"\0" * 7 or body[7:11] != b"\x06\0\0\0":
+            continue
+        try:
+            if body[20] != 1 or body[29:31] != b"\0\0":
+                raise ValueError("Unsupported binding-reference prefix")
+            binding_id = struct.unpack_from("<Q", body, 21)[0]
+            expression, cursor = read_string(body, 31)
+            metadata = body[cursor:cursor + 10]
+            cursor += 10
+            role_offset = cursor
+            role, cursor = read_string(body, cursor)
+            reserved_text, cursor = read_string(body, cursor)
+            units, cursor = read_string(body, cursor)
+            name, cursor = read_string(body, cursor)
+            if not role or reserved_text or not re.fullmatch(r"[A-Za-z_][A-Za-z_0-9]*", name):
+                raise ValueError("Unrecognized parameter text fields")
+            if cursor + 20 != len(body):
+                raise ValueError("Unrecognized numeric parameter suffix length")
+            value = struct.unpack_from("<d", body, cursor)[0]
+            if not math.isfinite(value):
+                raise ValueError("Non-finite parameter")
+            item = {
+                "role": role, "parameter_name": name, "display_units": units,
+                "raw_float64": value, "role_offset": record.body + role_offset,
+                "value_offset": record.body + cursor,
+                "expression_candidates": [expression] if expression else [],
+                "parameter_object_id": record.object_id,
+                "declared_binding_object_id": binding_id,
+                "expression_metadata_hex": metadata.hex(),
+                "layout": "observed numeric-parameter record, UTF16LE text and LE float64",
+            }
+            if units in ("deg", "rad"):
+                item.update(internal_units="rad", hypothesized_value_degrees=math.degrees(value))
+            elif units in ("mm", "cm", "m", "in", "ft"):
+                item.update(internal_units="cm", hypothesized_value_mm=value * 10)
+            elif not units or units == "unitless":
+                item["internal_units"] = "unitless"
+            else:
+                item["internal_units"] = "Unclassified"
+            parameters.append(item)
+        except (ValueError, UnicodeError, IndexError, struct.error) as error:
+            rejected.append({"object_id": record.object_id, "offset": record.start, "reason": str(error)})
     return sorted(parameters, key=lambda p: p["role_offset"]), rejected
 
 
