@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 344,
+  "file_count": 358,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -221,6 +221,13 @@
     "profiles-66b0447c28ac/concentric_disk.f3d",
     "profiles-66b0447c28ac/disjoint_left.f3d",
     "profiles-66b0447c28ac/disjoint_right.f3d",
+    "rectmodes-a069f8f4b8a2/body_multiple_customaxis.f3d",
+    "rectmodes-a069f8f4b8a2/body_negative.f3d",
+    "rectmodes-a069f8f4b8a2/body_one.f3d",
+    "rectmodes-a069f8f4b8a2/body_sketchlines.f3d",
+    "rectmodes-a069f8f4b8a2/feature_adjust.f3d",
+    "rectmodes-a069f8f4b8a2/feature_identical.f3d",
+    "rectmodes-a069f8f4b8a2/feature_optimized.f3d",
     "revolvemodes-8eb734486235/axis_x.f3d",
     "revolvemodes-8eb734486235/cut.f3d",
     "revolvemodes-8eb734486235/intersect.f3d",
@@ -259,6 +266,13 @@
     "splinepatches-900d152c2380/splinepatches.f3d",
     "splinepatches-ac5e846e59c0/splinepatches.f3d",
     "splines-9a18bae21127/splines.f3d",
+    "splitfacemodes-4fc4adf2a868/along_vector.f3d",
+    "splitfacemodes-4fc4adf2a868/closest_point.f3d",
+    "splitfacemodes-4fc4adf2a868/line.f3d",
+    "splitfacemodes-4fc4adf2a868/line_extended.f3d",
+    "splitfacemodes-4fc4adf2a868/multiple_faces.f3d",
+    "splitfacemodes-4fc4adf2a868/plane.f3d",
+    "splitfacemodes-4fc4adf2a868/plane_extended.f3d",
     "splits-efce4ef164c9/multiple_bodies.f3d",
     "splits-efce4ef164c9/offset_plane.f3d",
     "splits-efce4ef164c9/xz_extend.f3d",
@@ -347,8 +361,8 @@
     "userparameters-e9c6959ff5fd/text.f3d",
     "userparameters-e9c6959ff5fd/unitless.f3d"
   ],
-  "class_count": 338,
-  "classes_with_observed_semantics": 53,
+  "class_count": 339,
+  "classes_with_observed_semantics": 54,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -3037,6 +3051,26 @@
       ]
     },
     {
+      "class_guid": "7C5886AE-A774-4848-A89C-C3A578A9763A",
+      "base_class_guids": [
+        "A561CA2A-E017-48D0-951F-DE677BA2CFE8"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [
+        "Named feature: SplitFace"
+      ],
+      "example_files": [
+        "splitfacemodes-4fc4adf2a868/along_vector.f3d",
+        "splitfacemodes-4fc4adf2a868/closest_point.f3d",
+        "splitfacemodes-4fc4adf2a868/line.f3d"
+      ]
+    },
+    {
       "class_guid": "7E84430B-74C7-4B67-92D0-4131A0B79109",
       "base_class_guids": [
         "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081"
@@ -3811,9 +3845,9 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "surfacebounds-ac801bb00fae/ruled_direction.f3d",
-        "surfacebounds-ac801bb00fae/ruled_mitered.f3d",
-        "surfacebounds-ac801bb00fae/ruled_normal.f3d"
+        "splitfacemodes-4fc4adf2a868/along_vector.f3d",
+        "splitfacemodes-4fc4adf2a868/closest_point.f3d",
+        "splitfacemodes-4fc4adf2a868/line.f3d"
       ]
     },
     {

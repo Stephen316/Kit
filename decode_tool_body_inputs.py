@@ -72,7 +72,7 @@ def decode_tool_body_inputs(data, records, features, body_selections):
     def explicit_role(feature, selected):
         settings = feature.get("tool_settings", {})
         ids = selected["descriptor_object_ids"]
-        if feature["kind"] in ("PathPattern", "CircularPattern"):
+        if feature["kind"] in ("PathPattern", "CircularPattern", "RectangularPattern"):
             expected = [item["descriptor_object_id"] for item in settings.get("input_descriptors", [])]
             if expected and ids == expected and settings.get("input_body_count") == len(ids):
                 return "PatternInputBody", "Decoded explicit pattern input-descriptor collection agrees with the body proxy list"

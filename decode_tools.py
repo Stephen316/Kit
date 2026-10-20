@@ -5,7 +5,7 @@ import struct
 from decode_selection import known_construction_entities
 from decode_holes import decode_hole
 from decode_body_tools import decode_body_tool
-from decode_patterns import decode_rectangular_pattern
+from decode_rectangular_pattern_modes import decode_rectangular_pattern_modes
 from decode_edge_tools import decode_edge_tool
 from decode_split import decode_split
 from decode_split_face import decode_split_face
@@ -63,7 +63,7 @@ def decode_tools(data, records, features):
             elif kind in ("Fillet", "Chamfer"):
                 settings = decode_edge_tool(data, records, body, feature)
             elif kind == "RectangularPattern":
-                settings = decode_rectangular_pattern(data, records, body, feature, axes)
+                settings = decode_rectangular_pattern_modes(data, records, body, feature, axes, features)
             elif kind in ("Scale", "Mirror", "Shell"):
                 settings = decode_body_tool(data, records, body, feature, axes)
             elif kind == "Hole":
