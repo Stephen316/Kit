@@ -20,6 +20,7 @@ from decode_combine import decode_combine
 from decode_sweep import decode_sweep
 from decode_thicken import decode_thicken
 from decode_emboss import decode_emboss
+from decode_draft import decode_draft
 from decode_boundary_fill import decode_boundary_fill
 
 
@@ -139,9 +140,7 @@ def decode_tools(data, records, features):
                             "operation": "NewBody" if code == 4 else "Unknown", "stored_operation_code": code,
                             "section_selection_status": "Exact profile contours unresolved"}
             elif kind == "Draft":
-                settings = {"angle_one_radians": parameter("Angle1")["raw_float64"],
-                            "angle_two_radians": parameter("Angle2")["raw_float64"],
-                            "definition_status": "Draft mode and face selection unresolved"}
+                settings = decode_draft(data, records, body, feature, axes)
             elif kind == "Thicken":
                 settings = decode_thicken(data, records, body, feature)
             feature["tool_settings"] = settings
