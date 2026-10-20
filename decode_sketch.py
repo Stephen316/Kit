@@ -28,9 +28,11 @@ def attributes(data, position):
     for _ in range(count):
         key, position = ascii_string(data, position)
         kind, position = ascii_string(data, position)
-        if kind != "IntrinsicMetaTypeuint64" or key in result:
+        if kind not in ("IntrinsicMetaTypeuint64", "IntrinsicMetaTypedouble") or key in result:
             raise ValueError("Unsupported attribute layout")
-        result[key] = struct.unpack_from("<Q", data, position)[0]
+        result[key] = struct.unpack_from("<Q" if kind == "IntrinsicMetaTypeuint64" else "<d", data, position)[0]
+        if kind == "IntrinsicMetaTypedouble" and not math.isfinite(result[key]):
+            raise ValueError("Non-finite numeric attribute")
         position += 8
     return result, position
 

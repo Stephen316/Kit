@@ -6,10 +6,11 @@ import struct
 from decode_placement import rigid_matrix
 from decode_selection import native_origin_axes, resolve_native_selection
 from decode_sketch import numbers, reference
+from decode_holes import decode_hole
 
 
 def decode_tools(data, records, features):
-    supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken"}
+    supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken", "Hole"}
     decoded, unresolved = [], []
     axes = native_origin_axes(data, records)
     for feature in features:
@@ -30,7 +31,9 @@ def decode_tools(data, records, features):
 
         try:
             settings = {}
-            if kind == "Move":
+            if kind == "Hole":
+                settings = decode_hole(data, records, body, feature)
+            elif kind == "Move":
                 if body[:2] != b"\0\0":
                     raise ValueError("Unrecognized move prefix")
                 backend_id = reference(body, 2)

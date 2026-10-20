@@ -220,8 +220,8 @@ def decode_basics(path, zstd_library=None):
             "Type codes are local to the document and not treated as universal feature identifiers.",
             "Sketch support covers observed points, lines, circular/elliptical arcs, ellipses, NURBS, basic constraints and dimensions.",
             "Profile membership is partial; no general trimmed-contour reconstruction, topology, sketch solver or native writer.",
-            "Only observed extrusion operation/extent fields and basic revolve parameters are decoded.",
-            "No general feature history, suppression, all end conditions, arbitrary axis selection, or body reconstruction.",
+            "Modeling tools expose observed settings; input topology and unobserved modes remain partial.",
+            "Timeline/state layouts and local rigid assemblies are partial; no complete history regeneration or body reconstruction.",
         ],
         "streams": streams,
     }
