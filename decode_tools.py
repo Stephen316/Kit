@@ -17,6 +17,7 @@ from decode_pipe import decode_pipe
 from decode_threads import decode_thread
 from decode_path_patterns import decode_path_pattern
 from decode_combine import decode_combine
+from decode_sweep import decode_sweep
 from decode_boundary_fill import decode_boundary_fill
 
 
@@ -121,15 +122,7 @@ def decode_tools(data, records, features):
                     raise ValueError("Pattern control record unresolved or ambiguous")
                 settings = choices[0]
             elif kind == "Sweep":
-                fraction = parameter("AlongDistance")
-                if fraction["display_units"] != "" or not 0 <= fraction["raw_float64"] <= 1:
-                    raise ValueError("Unsupported sweep path fraction")
-                settings = {"path_fraction": fraction["raw_float64"],
-                            "twist_angle_radians": parameter("TwistAngle")["raw_float64"],
-                            "taper_angle_radians": parameter("TaperAngle")["raw_float64"]}
-                code = struct.unpack_from("<I", body, 6)[0]
-                settings["operation"] = "NewBody" if code == 4 else "Unknown"
-                settings["stored_operation_code"] = code
+                settings = decode_sweep(data, records, body, feature, features)
             elif kind == "Loft":
                 if body[:10] != b"\0\x01\0\0\0\0\x01\x01\x01\x01":
                     raise ValueError("Unrecognized basic loft prefix")
