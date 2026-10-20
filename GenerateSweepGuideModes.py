@@ -101,27 +101,54 @@ def run(context):
                       "health_state": feature.healthState, "warning": feature.errorOrWarningMessage,
                       "result_bodies": [{"name": b.name, "is_solid": b.isSolid} for b in feature.bodies]}
             feature.timelineObject.rollTo(True)
-            rail, surfaces = feature.guideRail, list(feature.guideSurfaces or [])
-            profile = feature.profile
-            if not adsk.fusion.Profile.cast(profile):
-                raise RuntimeError("Sweep normalized profile outside observed sketch-profile input")
-            sample["settings"] = {"operation": feature.operation, "orientation": feature.orientation,
-                                  "is_solid": feature.isSolid,
-                                  "distance_one": feature.distanceOne.value if feature.distanceOne else None,
-                                  "distance_two": feature.distanceTwo.value if feature.distanceTwo else None,
-                                  "taper_angle_radians": feature.taperAngle.value if feature.taperAngle else None,
-                                  "twist_angle_radians": feature.twistAngle.value if feature.twistAngle else None,
-                                  "path": path_truth(feature.path), "guide_rail": path_truth(rail),
-                                  "guide_surfaces": [face_truth(face) for face in surfaces],
-                                  "profile_scaling": feature.profileScaling if rail else None,
-                                  "extent": feature.extent if rail else None,
-                                  "is_direction_flipped": feature.isDirectionFlipped if rail else None,
-                                  "is_chain_selection": feature.isChainSelection if surfaces else None,
-                                  "profile": {"sketch_name": profile.parentSketch.name,
-                                              "loop_count": profile.profileLoops.count,
-                                              "loops": [{"is_outer": profile.profileLoops.item(i).isOuter,
-                                                         "curve_count": profile.profileLoops.item(i).profileCurves.count}
-                                                        for i in range(profile.profileLoops.count)]}}
+            # An inactive getter can throw even though add succeeded. Evidence
+            # collection must retain that error without preventing local export.
+            sample["getter_errors"] = []
+
+            def getter(name, read):
+                try:
+                    return read()
+                except Exception:
+                    sample["getter_errors"].append({"getter": name, "error": traceback.format_exc()})
+                    return None
+
+            def parameter_value(name):
+                parameter = getattr(feature, name)
+                return parameter.value if parameter else None
+
+            def profile_truth():
+                profile = feature.profile
+                if not adsk.fusion.Profile.cast(profile):
+                    raise RuntimeError("Sweep normalized profile outside observed sketch-profile input")
+                return {"sketch_name": profile.parentSketch.name,
+                        "loop_count": profile.profileLoops.count,
+                        "loops": [{"is_outer": profile.profileLoops.item(i).isOuter,
+                                   "curve_count": profile.profileLoops.item(i).profileCurves.count}
+                                  for i in range(profile.profileLoops.count)]}
+
+            has_rail, has_surface = case.startswith("rail_"), case.startswith("guide_surface")
+            sample["settings"] = {
+                "operation": getter("operation", lambda: feature.operation),
+                "orientation": getter("orientation", lambda: feature.orientation),
+                "is_solid": getter("isSolid", lambda: feature.isSolid),
+                "distance_one": getter("distanceOne", lambda: parameter_value("distanceOne")),
+                "distance_two": getter("distanceTwo", lambda: parameter_value("distanceTwo")),
+                "taper_angle_radians": getter("taperAngle", lambda: parameter_value("taperAngle")),
+                "twist_angle_radians": getter("twistAngle", lambda: parameter_value("twistAngle")),
+                "path": getter("path", lambda: path_truth(feature.path)),
+                "guide_rail": getter("guideRail", lambda: path_truth(feature.guideRail)),
+                "guide_surfaces": getter("guideSurfaces", lambda: [face_truth(face) for face in (feature.guideSurfaces or [])]),
+                "profile_scaling": getter("profileScaling", lambda: feature.profileScaling) if has_rail else None,
+                "extent": getter("extent", lambda: feature.extent) if has_rail else None,
+                "is_direction_flipped": getter("isDirectionFlipped", lambda: feature.isDirectionFlipped) if has_rail else None,
+                "is_chain_selection": getter("isChainSelection", lambda: feature.isChainSelection) if has_surface else None,
+                "profile": getter("profile", profile_truth)}
+            sample["control_activity"] = {
+                "orientation": "Guide modes do not expose the single-path orientation getter" if has_rail or has_surface else "Single-path orientation",
+                "taper_and_twist": "Ignored by SDK when a rail or surface is specified" if has_rail or has_surface else "Single-path controls",
+                "profile_scaling_and_extent": "Active with guide rail" if has_rail else "Inactive without guide rail",
+                "direction_flip": "SDK applies only when a rail path extends both sides of the profile; these cases are one-sided",
+                "surface_chain_selection": "Active with guide surfaces" if has_surface else "Inactive without guide surfaces"}
             design.timeline.moveToEnd()
             sample["parameters"] = [{"name": p.name, "role": p.role, "value": p.value, "unit": p.unit,
                                       "created_by": getattr(p.createdBy, "name", None)} for p in root.modelParameters]
