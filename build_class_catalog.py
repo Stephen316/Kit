@@ -30,7 +30,12 @@ def build_catalog(paths, zstd_library=None):
             for feature in stream["features"]:
                 if feature.get("class_guid"):
                     entry = classes[feature["class_guid"]]
-                    entry["observed_semantics"].add("Named feature: "+feature["kind"])
+                    if feature["kind"] == "UnsupportedFeature":
+                        label = feature.get("native_kind_label")
+                        entry["observed_semantics"].add("Unsupported feature with stored label: "+label if label
+                                                        else "Observed feature ancestry; schema unsupported")
+                    else:
+                        entry["observed_semantics"].add("Named feature: "+feature["kind"])
                     if len(entry["example_files"]) < 3:
                         entry["example_files"].add(str(path))
             parameters = [p for f in stream["features"] for p in f["parameters"]]+stream["unbound_parameters"]

@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 78,
+  "file_count": 79,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -62,6 +62,17 @@
     "sketches-0ccea2ac0f9c/radius.f3d",
     "sketches-0ccea2ac0f9c/vertical.f3d",
     "splines-9a18bae21127/splines.f3d",
+    "timeline-5867579925b5/baseline.f3d",
+    "timeline-5867579925b5/grouped.f3d",
+    "timeline-5867579925b5/reordered_b.f3d",
+    "timeline-5867579925b5/rolled_back.f3d",
+    "timeline-5867579925b5/suppressed_b.f3d",
+    "timeline-72406b67a839/baseline.f3d",
+    "timeline-72406b67a839/reordered_b.f3d",
+    "timeline-72406b67a839/suppressed_b.f3d",
+    "timeline-expanded-2396e32f2574/expanded.f3d",
+    "timeline-fee448f6a592/baseline.f3d",
+    "timeline-fee448f6a592/suppressed_b.f3d",
     "tools-fda3948848f4/Chamfer.f3d",
     "tools-fda3948848f4/Fillet.f3d",
     "tools-fda3948848f4/Hole.f3d",
@@ -69,20 +80,10 @@
     "tools-fda3948848f4/RectangularPattern.f3d",
     "tools-fda3948848f4/Scale.f3d",
     "tools-fda3948848f4/Shell.f3d",
-    "timeline-5867579925b5/baseline.f3d",
-    "timeline-5867579925b5/grouped.f3d",
-    "timeline-5867579925b5/reordered_b.f3d",
-    "timeline-5867579925b5/rolled_back.f3d",
-    "timeline-5867579925b5/suppressed_b.f3d",
-    "timeline-fee448f6a592/baseline.f3d",
-    "timeline-fee448f6a592/suppressed_b.f3d",
-    "timeline-72406b67a839/baseline.f3d",
-    "timeline-72406b67a839/reordered_b.f3d",
-    "timeline-72406b67a839/suppressed_b.f3d",
-    "timeline-expanded-2396e32f2574/expanded.f3d"
+    "assembly-acc48a9dc05d/assembly.f3d"
   ],
-  "class_count": 256,
-  "classes_with_observed_semantics": 22,
+  "class_count": 264,
+  "classes_with_observed_semantics": 25,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -697,6 +698,22 @@
         "extents-f0f33a9a605f/distance_negative.f3d",
         "extents-f0f33a9a605f/distance_positive.f3d",
         "extents-f0f33a9a605f/from_plane.f3d"
+      ]
+    },
+    {
+      "class_guid": "2D6E13A1-BBEF-4FB3-9277-00D99F634136",
+      "base_class_guids": [
+        "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "assembly-acc48a9dc05d/assembly.f3d"
       ]
     },
     {
@@ -1383,6 +1400,24 @@
       ]
     },
     {
+      "class_guid": "54F9ACE8-B5B8-4A6E-B582-64F629511DE4",
+      "base_class_guids": [
+        "BADF6309-013D-48F0-9AB0-0C05FB086CF4"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Observed feature ancestry; schema unsupported"
+      ],
+      "example_files": [
+        "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
       "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
       "base_class_guids": [
         "6144EA59-3ACA-4172-9F14-A6531E94D69B"
@@ -1534,6 +1569,20 @@
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "discovery-08660c033d4d/discovery.f3d"
       ]
+    },
+    {
+      "class_guid": "5DEDBE0F-4082-4D58-A2C9-2204D7E73FCA",
+      "base_class_guids": [
+        ""
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
     },
     {
       "class_guid": "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D",
@@ -2021,6 +2070,24 @@
       ]
     },
     {
+      "class_guid": "78B9DEFC-DA1C-4ED0-A395-40890BDAE590",
+      "base_class_guids": [
+        "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Unsupported feature with stored label: CreateComponent"
+      ],
+      "example_files": [
+        "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
       "class_guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
       "base_class_guids": [
         "63D6AD42-466A-40B7-9CCD-EB21BC500EF6"
@@ -2452,6 +2519,22 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "discovery-08660c033d4d/discovery.f3d"
+      ]
+    },
+    {
+      "class_guid": "96CBEA21-17E0-4BCB-BA77-04EA87B47934",
+      "base_class_guids": [
+        "70F5E801-1E8E-436E-8A09-36487F8A2859"
+      ],
+      "namespaces": [
+        "EntityTracking"
+      ],
+      "stored_versions_or_flags": [
+        4
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "assembly-acc48a9dc05d/assembly.f3d"
       ]
     },
     {
@@ -3130,6 +3213,20 @@
       ]
     },
     {
+      "class_guid": "BADF6309-013D-48F0-9AB0-0C05FB086CF4",
+      "base_class_guids": [
+        "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "BC84911E-A581-4E51-ABE4-B0F681CFED06",
       "base_class_guids": [
         "5EAF2F0F-4AEE-4f20-B569-119A7BD1F36D"
@@ -3632,6 +3729,24 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "discovery-08660c033d4d/discovery.f3d"
+      ]
+    },
+    {
+      "class_guid": "D57B1A22-9D5A-4D7D-A909-E08C579612CA",
+      "base_class_guids": [
+        "54F9ACE8-B5B8-4A6E-B582-64F629511DE4"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [
+        "Unsupported feature with stored label: CopyPaste"
+      ],
+      "example_files": [
+        "assembly-acc48a9dc05d/assembly.f3d"
       ]
     },
     {
@@ -4298,6 +4413,22 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "splines-9a18bae21127/splines.f3d"
+      ]
+    },
+    {
+      "class_guid": "FF415D89-A1DB-44AC-B824-E9A772B86ED4",
+      "base_class_guids": [
+        "70F5E801-1E8E-436E-8A09-36487F8A2859"
+      ],
+      "namespaces": [
+        "EntityTracking"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "assembly-acc48a9dc05d/assembly.f3d"
       ]
     },
     {
