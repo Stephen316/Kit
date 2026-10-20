@@ -31,7 +31,7 @@ def decode_sketch_coverage(data, records, features, record_index, sketch_summary
                 if key == "texts":
                     definition = item["definition"]
                     represented[definition["controller_object_id"]] = {
-                        "sketch_object_id": owner, "representation": "ExplicitTextRectangleSupport"}
+                        "sketch_object_id": owner, "representation": "ExplicitTextDefinitionSupport"}
                 if item.get("kind") == "OffsetCurves":
                     for field in ("dimension_object_id", "relationship_object_id"):
                         represented[item[field]] = {"sketch_object_id": owner, "representation": "ExplicitOffsetSupport"}

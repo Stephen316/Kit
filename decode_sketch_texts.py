@@ -57,7 +57,7 @@ def _observed_text_controls(prefix, flags, tail):
     }
 
 
-def decode_sketch_texts(data, records, features, *, controls_decoder=None):
+def decode_sketch_texts(data, records, features, *, controls_decoder=None, definition_decoder=None):
     """Return texts/unresolved; caller may attach each text by sketch_object_id.
 
     This does not mutate features or require already decoded primitive geometry.
@@ -174,7 +174,8 @@ def decode_sketch_texts(data, records, features, *, controls_decoder=None):
                 raise ValueError("Unsupported SketchText source attributes")
             prefix = body[cursor:cursor+25]
             font, cursor = read_string(body, cursor+25)
-            if not font or body[cursor] != 0:
+            layout_marker = body[cursor]
+            if not font or (layout_marker != 0 and (definition_decoder is None or layout_marker != 1)):
                 raise ValueError("Unsupported SketchText font/height marker")
             height = numbers(body, cursor+1, 1)[0]
             if height <= 0:
@@ -187,43 +188,55 @@ def decode_sketch_texts(data, records, features, *, controls_decoder=None):
             cursor += 11
             tail = body[cursor:]
             controls = (controls_decoder or _observed_text_controls)(prefix, flags, tail)
-            owner = reference(tail, 172)
+            owner_offset = 172 if definition_decoder is None else len(tail)-11
+            owner = reference(tail, owner_offset)
             feature = sketches.get(owner)
             if feature is None:
                 raise ValueError("SketchText owning sketch reference unresolved")
-            controllers = []
-            for candidate in records:
-                if candidate.class_guid != RECTANGLE or not candidate.is_primary:
-                    continue
-                candidate_body = data[candidate.body:candidate.end]
-                inputs, controller_props, position = constraint_prefix(candidate_body)
-                if inputs and inputs[0] == record.object_id:
-                    controllers.append((candidate, candidate_body, inputs, controller_props, position))
-            if len(controllers) != 1:
-                raise ValueError("Missing/ambiguous explicit SketchText rectangle controller")
-            controller, rectangle, inputs, controller_props, position = controllers[0]
-            if (len(inputs) != 5 or len(set(inputs)) != 5 or controller_props != {"EntityGenesis": 2}
-                    or len(rectangle) != position+80 or rectangle[position] != 0
-                    or reference(rectangle, position+1) != record.object_id
-                    or reference(rectangle, position+12) != owner
-                    or rectangle[position+23:position+31] != b"\0\0\0\0\0\x01\0\0"
-                    or struct.unpack_from("<I", rectangle, position+31)[0] != 4
-                    or rectangle[-1] != 0):
-                raise ValueError("Unsupported SketchText rectangle controller")
-            line_ids = [reference(rectangle, position+35+11*i) for i in range(4)]
-            if line_ids != inputs[1:]:
-                raise ValueError("Rectangle controller line lists disagree")
-            lines = [rectangle_line(identity, owner) for identity in line_ids]
-            for i, line in enumerate(lines):
-                if line["end_point_id"] != lines[(i+1) % 4]["start_point_id"]:
-                    raise ValueError("Rectangle line incidence is not a closed ordered cycle")
-            # A concrete source rectangle is required, rather than inferred glyph bounds.
-            edges = [[b-a for a,b in zip(line["start_cm"],line["end_cm"])] for line in lines]
-            if (any(sum(x*x for x in edge) <= 1e-20 for edge in edges)
-                    or not same([sum(a*b for a,b in zip(edges[0],edges[1]))], [0])
-                    or not same(edges[0], [-x for x in edges[2]])
-                    or not same(edges[1], [-x for x in edges[3]])):
-                raise ValueError("Explicit SketchText support lines do not form a rectangle")
+            if definition_decoder is None:
+                controllers = []
+                for candidate in records:
+                    if candidate.class_guid != RECTANGLE or not candidate.is_primary:
+                        continue
+                    candidate_body = data[candidate.body:candidate.end]
+                    inputs, controller_props, position = constraint_prefix(candidate_body)
+                    if inputs and inputs[0] == record.object_id:
+                        controllers.append((candidate, candidate_body, inputs, controller_props, position))
+                if len(controllers) != 1:
+                    raise ValueError("Missing/ambiguous explicit SketchText rectangle controller")
+                controller, rectangle, inputs, controller_props, position = controllers[0]
+                if (len(inputs) != 5 or len(set(inputs)) != 5 or controller_props != {"EntityGenesis": 2}
+                        or len(rectangle) != position+80 or rectangle[position] != 0
+                        or reference(rectangle, position+1) != record.object_id
+                        or reference(rectangle, position+12) != owner
+                        or rectangle[position+23:position+31] != b"\0\0\0\0\0\x01\0\0"
+                        or struct.unpack_from("<I", rectangle, position+31)[0] != 4
+                        or rectangle[-1] != 0):
+                    raise ValueError("Unsupported SketchText rectangle controller")
+                line_ids = [reference(rectangle, position+35+11*i) for i in range(4)]
+                if line_ids != inputs[1:]:
+                    raise ValueError("Rectangle controller line lists disagree")
+                lines = [rectangle_line(identity, owner) for identity in line_ids]
+                for i, line in enumerate(lines):
+                    if line["end_point_id"] != lines[(i+1) % 4]["start_point_id"]:
+                        raise ValueError("Rectangle line incidence is not a closed ordered cycle")
+                # A concrete source rectangle is required, rather than inferred glyph bounds.
+                edges = [[b-a for a,b in zip(line["start_cm"],line["end_cm"])] for line in lines]
+                if (any(sum(x*x for x in edge) <= 1e-20 for edge in edges)
+                        or not same([sum(a*b for a,b in zip(edges[0],edges[1]))], [0])
+                        or not same(edges[0], [-x for x in edges[2]])
+                        or not same(edges[1], [-x for x in edges[3]])):
+                    raise ValueError("Explicit SketchText support lines do not form a rectangle")
+                definition = {"kind": "MultiLineTextDefinition", "controller_object_id": controller.object_id,
+                              "rectangle_lines": lines, **controls["definition_properties"],
+                              "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"}
+            else:
+                decoded_definition = definition_decoder(data, records, features, record, feature, layout_marker)
+                if not isinstance(decoded_definition, dict):
+                    raise ValueError("SketchText definition callback must return definition fields")
+                # Only the nested definition receives callback fields. Core text,
+                # sketch ownership and reciprocal bindings stay in this reader.
+                definition = {**controls["definition_properties"], **decoded_definition}
             height_id, height_index, _ = binding(height_binding_id, HEIGHT_BINDING, feature["object_id"], height)
             text_id, text_index, _ = binding(text_binding_id, TEXT_BINDING, feature["object_id"], content)
             height_parameter = numeric[height_id]
@@ -250,11 +263,9 @@ def decode_sketch_texts(data, records, features, *, controls_decoder=None):
                                      "parameter_name": height_parameter["parameter_name"], "role": height_parameter["role"],
                                      "value_cm": height, "expression_candidates": height_parameter["expression_candidates"],
                                      "stored_parameter_index": height_index},
-                "definition": {"kind": "MultiLineTextDefinition", "controller_object_id": controller.object_id,
-                               "rectangle_lines": lines, **controls["definition_properties"],
-                               "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"},
+                "definition": definition,
                 "uninterpreted": {"prefix_hex": prefix.hex(), "style_flags_hex": flags.hex(),
-                                  "layout_suffix_without_weight_or_owner_hex": (tail[:5]+tail[9:172]).hex()},
+                                  "layout_suffix_without_weight_or_owner_hex": (tail[:5]+tail[9:owner_offset]).hex()},
                 "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration",
             })
         except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:

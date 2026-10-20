@@ -18,6 +18,7 @@ from decode_parameter_tables import decode_parameter_tables
 from decode_expression_dependencies import derive_expression_dependencies
 from decode_sketch import decode_sketches
 from decode_sketch_text_controls import decode_sketch_text_controls
+from decode_sketch_text_paths import decode_sketch_text_paths
 from decode_sketch_coverage import decode_sketch_coverage
 from decode_offset_details import decode_offset_details
 from decode_sketch_projections import decode_sketch_projections
@@ -223,6 +224,21 @@ def decode_basics(path, zstd_library=None):
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
         sketch_text_summary = decode_sketch_text_controls(data, records, features)
+        path_text_summary = decode_sketch_text_paths(data, records, features)
+        text_by_id = {t["object_id"]: t for t in sketch_text_summary["texts"]}
+        for text in path_text_summary["texts"]:
+            text_by_id.setdefault(text["object_id"], text)
+        sketch_text_summary["texts"] = sorted(text_by_id.values(), key=lambda t: t["record_offset"])
+        text_unresolved = {}
+        for item in sketch_text_summary["unresolved"]+path_text_summary["unresolved"]:
+            if item["object_id"] in text_by_id:
+                continue
+            if item["object_id"] not in text_unresolved:
+                text_unresolved[item["object_id"]] = dict(item)
+            elif item["reason"] != text_unresolved[item["object_id"]]["reason"]:
+                text_unresolved[item["object_id"]]["additional_reason"] = item["reason"]
+        sketch_text_summary["unresolved"] = list(text_unresolved.values())
+        sketch_text_summary["scope"] += "; "+path_text_summary["scope"]
         text_sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
         for text in sketch_text_summary["texts"]:
             text_sketches[text["sketch_object_id"]].setdefault("texts", []).append(text)
