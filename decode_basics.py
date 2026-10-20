@@ -45,7 +45,8 @@ def named_features(data, records):
               "WorkAxis": "ConstructionAxis", "WorkPoint": "ConstructionPoint",
               "OffsetFaces": "OffsetFaces", "ReplaceFace": "ReplaceFace", "DeleteFace": "DeleteFace",
               "SurfacePatch": "SurfacePatch", "SurfaceOffset": "SurfaceOffset", "SurfaceStitch": "SurfaceStitch",
-              "UnStitch": "Unstitch", "Reverse Normal": "ReverseNormal", "SurfaceDeleteFace": "SurfaceDeleteFace"}
+              "UnStitch": "Unstitch", "Reverse Normal": "ReverseNormal", "SurfaceDeleteFace": "SurfaceDeleteFace",
+              "Pipe": "Pipe"}
     for label, kind in labels.items():
         marker = struct.pack("<I", len(label)) + label.encode("utf-16le")
         for match in re.finditer(re.escape(marker), data):

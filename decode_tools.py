@@ -13,13 +13,14 @@ from decode_edge_tools import decode_edge_tool
 from decode_split import decode_split
 from decode_face_tools import decode_face_tool
 from decode_surface_tools import decode_surface_tool
+from decode_pipe import decode_pipe
 
 
 def decode_tools(data, records, features):
     supported = {"Sweep", "Loft", "CircularPattern", "Combine", "Draft", "Move", "Thicken", "Hole",
                  "Scale", "Mirror", "Shell", "RectangularPattern", "Fillet", "Chamfer", "SplitBody",
                  "OffsetFaces", "ReplaceFace", "DeleteFace", "SurfacePatch", "SurfaceOffset", "SurfaceStitch",
-                 "Unstitch", "ReverseNormal", "SurfaceDeleteFace"}
+                 "Unstitch", "ReverseNormal", "SurfaceDeleteFace", "Pipe"}
     decoded, unresolved = [], []
     axes = known_construction_entities(data, records, features)
     for feature in features:
@@ -40,7 +41,9 @@ def decode_tools(data, records, features):
 
         try:
             settings = {}
-            if kind in ("SurfacePatch", "SurfaceOffset", "SurfaceStitch", "Unstitch", "ReverseNormal", "SurfaceDeleteFace"):
+            if kind == "Pipe":
+                settings = decode_pipe(data, records, body, feature, features)
+            elif kind in ("SurfacePatch", "SurfaceOffset", "SurfaceStitch", "Unstitch", "ReverseNormal", "SurfaceDeleteFace"):
                 settings = decode_surface_tool(data, records, body, feature)
             elif kind in ("OffsetFaces", "ReplaceFace", "DeleteFace"):
                 settings = decode_face_tool(data, records, body, feature, axes)

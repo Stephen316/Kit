@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 172,
+  "file_count": 178,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -173,10 +173,16 @@
     "surfacetools-856ca50cf4c7/stitch_loose.f3d",
     "surfacetools-856ca50cf4c7/stitch_tight.f3d",
     "surfacetools-856ca50cf4c7/unstitch_chain.f3d",
-    "surfacetools-856ca50cf4c7/unstitch_face.f3d"
+    "surfacetools-856ca50cf4c7/unstitch_face.f3d",
+    "pipemodes-87cfa7d8d82b/circular.f3d",
+    "pipemodes-87cfa7d8d82b/hollow.f3d",
+    "pipemodes-87cfa7d8d82b/partial_closed.f3d",
+    "pipemodes-87cfa7d8d82b/partial_open.f3d",
+    "pipemodes-87cfa7d8d82b/square.f3d",
+    "pipemodes-87cfa7d8d82b/triangular.f3d"
   ],
-  "class_count": 292,
-  "classes_with_observed_semantics": 40,
+  "class_count": 294,
+  "classes_with_observed_semantics": 41,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -1261,7 +1267,8 @@
       "observed_semantics": [],
       "example_files": [
         "moretools-380212ab6368/SweepPartial.f3d",
-        "moretools-88a2cd6cad0b/Sweep.f3d"
+        "moretools-88a2cd6cad0b/Sweep.f3d",
+        "pipemodes-87cfa7d8d82b/circular.f3d"
       ]
     },
     {
@@ -2265,6 +2272,26 @@
       "example_files": []
     },
     {
+      "class_guid": "73615646-8752-4EE6-AD02-0B90804B7CD7",
+      "base_class_guids": [
+        "3FED63D9-CDC5-4334-A5C5-6C10271320D5"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Named feature: Pipe"
+      ],
+      "example_files": [
+        "pipemodes-87cfa7d8d82b/circular.f3d",
+        "pipemodes-87cfa7d8d82b/hollow.f3d",
+        "pipemodes-87cfa7d8d82b/partial_closed.f3d"
+      ]
+    },
+    {
       "class_guid": "736DEAAF-2425-405E-B871-003AAB726295",
       "base_class_guids": [
         "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
@@ -2910,6 +2937,24 @@
       ]
     },
     {
+      "class_guid": "9414C87F-8EA3-465D-9F78-FF2FF5E9881F",
+      "base_class_guids": [
+        "60F291CB-499B-4AB1-B0E5-340368671724"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "pipemodes-87cfa7d8d82b/circular.f3d",
+        "pipemodes-87cfa7d8d82b/hollow.f3d",
+        "pipemodes-87cfa7d8d82b/partial_closed.f3d"
+      ]
+    },
+    {
       "class_guid": "96CBEA21-17E0-4BCB-BA77-04EA87B47934",
       "base_class_guids": [
         "70F5E801-1E8E-436E-8A09-36487F8A2859"
@@ -3419,7 +3464,8 @@
       ],
       "observed_semantics": [],
       "example_files": [
-        "holeplacements-04adf73afe93/center_edge.f3d"
+        "holeplacements-04adf73afe93/center_edge.f3d",
+        "pipemodes-87cfa7d8d82b/partial_closed.f3d"
       ]
     },
     {
@@ -4454,7 +4500,8 @@
       "observed_semantics": [],
       "example_files": [
         "moretools-380212ab6368/SweepPartial.f3d",
-        "moretools-88a2cd6cad0b/Sweep.f3d"
+        "moretools-88a2cd6cad0b/Sweep.f3d",
+        "pipemodes-87cfa7d8d82b/circular.f3d"
       ]
     },
     {
