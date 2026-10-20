@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 145,
+  "file_count": 150,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -146,9 +146,14 @@
     "revolvemodes-b9796d532f94/project_axis.f3d",
     "revolveto-b1d196f65c46/negative_plane.f3d",
     "revolveto-b1d196f65c46/positive_plane.f3d",
-    "revolveto-b1d196f65c46/two_planes.f3d"
+    "revolveto-b1d196f65c46/two_planes.f3d",
+    "holeplacements-04adf73afe93/center_edge.f3d",
+    "holeplacements-04adf73afe93/reversed_all.f3d",
+    "holeplacements-04adf73afe93/reversed_distance.f3d",
+    "holeplacements-04adf73afe93/sketch_point.f3d",
+    "holeplacements-04adf73afe93/sketch_points.f3d"
   ],
-  "class_count": 273,
+  "class_count": 276,
   "classes_with_observed_semantics": 28,
   "classes": [
     {
@@ -3181,6 +3186,22 @@
       ]
     },
     {
+      "class_guid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+      "base_class_guids": [
+        "518AD6D6-763A-472C-9F19-9CFF03E8DC45"
+      ],
+      "namespaces": [
+        "EntityTracking"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "holeplacements-04adf73afe93/center_edge.f3d"
+      ]
+    },
+    {
       "class_guid": "B13113CC-031E-4F93-8240-C4C10728869F",
       "base_class_guids": [
         "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
@@ -3616,6 +3637,23 @@
       "example_files": []
     },
     {
+      "class_guid": "CA72DD8E-2861-4DDD-9721-03039B5FB113",
+      "base_class_guids": [
+        "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "holeplacements-04adf73afe93/sketch_point.f3d",
+        "holeplacements-04adf73afe93/sketch_points.f3d"
+      ]
+    },
+    {
       "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
       "base_class_guids": [
         "5C069ACB-169F-4555-9792-815B4671DDA0"
@@ -4007,6 +4045,7 @@
       ],
       "observed_semantics": [],
       "example_files": [
+        "holeplacements-04adf73afe93/sketch_point.f3d",
         "moretools-380212ab6368/SweepPartial.f3d",
         "moretools-88a2cd6cad0b/Sweep.f3d"
       ]
@@ -4339,6 +4378,23 @@
       "observed_semantics": [],
       "example_files": [
         "sketchtools-85066e723410/sketchtools.f3d"
+      ]
+    },
+    {
+      "class_guid": "F1451EC8-11A4-4952-84ED-5AB7C13E2E83",
+      "base_class_guids": [
+        "E8BDB9D4-2E39-405C-B05E-E2206AD3F125"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        4
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "holeplacements-04adf73afe93/sketch_point.f3d",
+        "holeplacements-04adf73afe93/sketch_points.f3d"
       ]
     },
     {

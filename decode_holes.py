@@ -1,4 +1,4 @@
-"""Observed single-position, default-direction Fusion hole records."""
+"""Observed hole types, point placements, direction flags and extents."""
 
 import math
 import struct
@@ -18,23 +18,37 @@ def decode_hole(data, records, body, feature):
         extent, base = "ToEntity", 8
     else:
         raise ValueError("Unsupported hole extent/direction prefix")
-    if head[base:base+20] != b"\x01"+b"\0"*19 or head[base+24:base+33] != b"\0"*9:
+    if head[base:base+20] != b"\x01"+b"\0"*19 or head[base+24] not in (0, 1):
         raise ValueError("Unsupported hole positioning header")
     kind_code = struct.unpack_from("<I", head, base+20)[0]
     kinds = {0: "Simple", 1: "Counterbore", 2: "Countersink"}
     if kind_code not in kinds:
         raise ValueError("Unsupported hole type")
-    cursor, refs = base+33, {}
+    reversed_direction = bool(head[base+24])
+    position_mode = struct.unpack_from("<I", head, base+25)[0]
+    association_count = struct.unpack_from("<I", head, base+29)[0]
+    if position_mode not in (0, 1) or not 0 <= association_count <= 1024:
+        raise ValueError("Unsupported hole position mode or association count")
+    associations = [{"record_object_id": reference(head, base+33+19*i),
+                     "stored_point_tag": struct.unpack_from("<Q", head, base+44+19*i)[0]}
+                    for i in range(association_count)]
+    cursor, refs = base+33+19*association_count, {}
     for label in ("CBDepth", "CBDiameter", "CSAngle", "CSDiameter"):
         refs[label], cursor = optional_reference(head, cursor)
-    if struct.unpack_from("<I", head, cursor)[0] != 1:
-        raise ValueError("Only observed single-position holes are supported")
+    count = struct.unpack_from("<I", head, cursor)[0]
+    if not 1 <= count <= 1024 or (association_count and association_count != count):
+        raise ValueError("Unsupported hole position count or association mismatch")
     cursor += 4
-    for label in ("position", "axis", "HoleDepth", "HoleDiameter", "opaque_core_input"):
+    positions = [reference(head, cursor+11*i) for i in range(count)]
+    cursor += 11*count
+    for label in ("axis", "HoleDepth", "HoleDiameter", "opaque_core_input", "center"):
         refs[label], cursor = optional_reference(head, cursor)
-    if head[cursor:cursor+6] != b"\0"*6:
+    if head[cursor:cursor+5] != b"\0"*5:
         raise ValueError("Unsupported hole tip separator")
-    refs["TipAngle"] = reference(head, cursor+6)
+    refs["TipAngle"] = reference(head, cursor+5)
+    refs["positions"] = positions
+    if count == 1:
+        refs["position"] = positions[0]
     bindings = {p["binding_object_id"]: p for p in feature["parameters"]}
 
     def value(role, required):
@@ -48,7 +62,7 @@ def decode_hole(data, records, body, feature):
 
     settings = {"hole_type": kinds[kind_code], "stored_hole_type": kind_code,
                 "diameter_parameter_cm": value("HoleDiameter", True),
-                "tip_angle_radians": value("TipAngle", True), "is_default_direction": True,
+                "tip_angle_radians": value("TipAngle", True), "is_default_direction": not reversed_direction,
                 "extent": {"condition": extent}, "input_record_object_ids": refs,
                 "thread_status": "Thread definitions unresolved; diameter is the stored model parameter",
                 "support_selection_status": "Supporting face and topology unresolved"}
@@ -72,27 +86,44 @@ def decode_hole(data, records, body, feature):
         elif result is not None:
             raise ValueError("Unexpected inactive hole-type binding: "+role)
 
-    def geometry(label, guid, length, position_offset):
+    def geometry(identity, guid, length, position_offset):
         choices = []
         for record in records:
-            if record.object_id != refs[label] or record.class_guid != guid:
+            if record.object_id != identity or record.class_guid != guid:
                 continue
             chunk = data[record.body:record.end]
             if len(chunk) != length or reference(chunk, length-11) != feature["object_id"]:
                 continue
             choices.append((numbers(chunk, position_offset, 3), chunk))
         if len(choices) != 1:
-            raise ValueError("Hole geometry reference unresolved: "+label)
+            raise ValueError("Hole geometry reference unresolved: "+str(identity))
         return choices[0]
 
-    position, _ = geometry("position", "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44", 178, 23)
-    axis_position, axis = geometry("axis", "F2A7590D-6654-4674-B393-A2AEF4FEC48A", 202, 6)
+    coordinates = [geometry(identity, "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44", 178, 23)[0] for identity in positions]
+    axis_position, axis = geometry(refs["axis"], "F2A7590D-6654-4674-B393-A2AEF4FEC48A", 202, 6)
     normal = numbers(axis, 30, 3)
-    if axis[:6] != bytes.fromhex("000008000000") or not same(position, axis_position):
-        raise ValueError("Hole position/axis disagree")
+    if axis[:6] != bytes.fromhex("000008000000"):
+        raise ValueError("Unsupported hole axis representation")
     if not math.isclose(sum(v*v for v in normal), 1., abs_tol=1e-9):
         raise ValueError("Hole supporting normal is not unit length")
-    settings.update(position_cm=position, direction=[-v for v in normal],
+    if position_mode == 1:
+        if count != 1 or association_count or refs["center"] is None:
+            raise ValueError("Unsupported center-edge hole placement combination")
+        center, _ = geometry(refs["center"], "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44", 178, 23)
+        if not same(center, coordinates[0]):
+            raise ValueError("Hole edge-center position copies disagree")
+        definition = "AtCenter"
+    else:
+        if refs["center"] is not None:
+            raise ValueError("Unexpected hole center-edge descriptor")
+        definition = ("SketchPoint" if count == 1 else "SketchPoints") if association_count else "Point"
+    if count == 1:
+        settings["position_cm"] = coordinates[0]
+    settings.update(positions_cm=coordinates, position_count=count, position_definition=definition,
+                    point_association_records=associations,
+                    association_status="Stored placement references/tags retained; sketch-point and edge topology associations remain partial",
+                    stored_axis_proxy_origin=axis_position,
+                    direction=[v if reversed_direction else -v for v in normal],
                     coordinate_scope="Observed parent-component coordinates; assembly context unverified",
                     has_flat_tip=math.isclose(settings["tip_angle_radians"], math.pi, abs_tol=1e-9))
     return settings
