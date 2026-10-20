@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 507,
+  "file_count": 521,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -187,6 +187,10 @@
     "lofts-838ea6e83e97/start_direction.f3d",
     "lofts-838ea6e83e97/surface_two.f3d",
     "lofts-838ea6e83e97/unmerged.f3d",
+    "mirrorfeatures-1ffa1b15c612/body_brep_face_plane.f3d",
+    "mirrorfeatures-1ffa1b15c612/feature_adjust.f3d",
+    "mirrorfeatures-1ffa1b15c612/feature_identical.f3d",
+    "mirrorfeatures-1ffa1b15c612/feature_optimized.f3d",
     "models-97a5e41e2ba7/revolve_full.f3d",
     "models-97a5e41e2ba7/revolve_partial.f3d",
     "models-b8a640dbddc6/cut.f3d",
@@ -333,6 +337,11 @@
     "revolveto-b1d196f65c46/negative_plane.f3d",
     "revolveto-b1d196f65c46/positive_plane.f3d",
     "revolveto-b1d196f65c46/two_planes.f3d",
+    "scaleshellinputs-97ef1cfd19e4/scale_construction_point.f3d",
+    "scaleshellinputs-97ef1cfd19e4/scale_sketch.f3d",
+    "scaleshellinputs-97ef1cfd19e4/scale_vertex.f3d",
+    "scaleshellinputs-97ef1cfd19e4/shell_body_and_other_face.f3d",
+    "scaleshellinputs-97ef1cfd19e4/shell_two_bodies.f3d",
     "sketchcurvedpatterns-185c2406ef52/circular_arc.f3d",
     "sketchcurvedpatterns-185c2406ef52/circular_ellipse.f3d",
     "sketchcurvedpatterns-185c2406ef52/rectangular_arc.f3d",
@@ -348,6 +357,11 @@
     "sketchmixedpatterns-fcb7610f3c95/circular_fitted_spline.f3d",
     "sketchmixedpatterns-fcb7610f3c95/rectangular_ellipse_line.f3d",
     "sketchmixedpatterns-fcb7610f3c95/rectangular_fitted_spline_arc.f3d",
+    "sketchpatterngaps-330282788fce/circular_point.f3d",
+    "sketchpatterngaps-330282788fce/circular_symmetric_suppressed.f3d",
+    "sketchpatterngaps-330282788fce/rectangular_direction_one.f3d",
+    "sketchpatterngaps-330282788fce/rectangular_point.f3d",
+    "sketchpatterngaps-330282788fce/rectangular_symmetric_suppressed.f3d",
     "sketchpatternmodes-5b83cb71a99d/circular_line.f3d",
     "sketchpatternmodes-5b83cb71a99d/circular_line_circle.f3d",
     "sketchpatternmodes-5b83cb71a99d/circular_suppressed.f3d",
@@ -2174,7 +2188,7 @@
         0
       ],
       "observed_semantics": [
-        "Unsupported feature with stored label: RemoveBody"
+        "Named feature: RemoveBody"
       ],
       "example_files": [
         "boundaryfills-a0953038318b/new_middle_remove.f3d"
@@ -5462,7 +5476,7 @@
         4
       ],
       "observed_semantics": [
-        "Unsupported feature with stored label: Base Feature"
+        "Named feature: BaseFeature"
       ],
       "example_files": [
         "splinepatches-900d152c2380/splinepatches.f3d",

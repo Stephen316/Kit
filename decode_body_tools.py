@@ -7,7 +7,7 @@ from decode_selection import resolve_native_selection
 from decode_sketch import attributes, numbers, reference
 
 
-def decode_body_tool(data, records, body, feature, known):
+def decode_body_tool(data, records, body, feature, known, *, allowed_uniform_scale_prefixes=None):
     bindings = {p["binding_object_id"]: p for p in feature["parameters"]}
 
     def value(identity, role):
@@ -25,7 +25,8 @@ def decode_body_tool(data, records, body, feature, known):
         factor_id, cursor = optional_reference(body, 21)
         if factor_id is not None:
             factor = value(factor_id, "ScaleFactor")
-            if body[cursor:cursor+13] != bytes.fromhex("01000000000100000001000000"):
+            prefixes = (bytes.fromhex("01000000000100000001000000"),) if allowed_uniform_scale_prefixes is None else allowed_uniform_scale_prefixes
+            if not any(body[cursor:cursor+len(prefix)] == prefix for prefix in prefixes):
                 raise ValueError("Unsupported uniform scale layout")
             if not math.isclose(cached, factor, abs_tol=1e-9):
                 raise ValueError("Cached scale factor disagrees with parameter")

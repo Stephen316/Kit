@@ -1,0 +1,818 @@
+{
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "scaleshellinputs-97ef1cfd19e4/scale_sketch.f3d",
+      "checks": {
+        "actual_source_types_names_and_order_match": true,
+        "input_count_matches_actual": true,
+        "body_count_matches_actual": true,
+        "face_count_matches_actual": true,
+        "is_uniform_matches_actual": true,
+        "factor_matches_actual": true,
+        "point_kind_matches_actual": true,
+        "point_name_matches_actual": true,
+        "point_position_cache_matches_actual": true,
+        "direct_sketch_pass_matches_integrated": true
+      },
+      "decoded_settings": {
+        "is_uniform": true,
+        "factor": 1.3,
+        "point_selection_record_object_id": 267,
+        "point": {
+          "entity": {
+            "kind": "ConstructionPoint",
+            "name": "O",
+            "position_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "object_id": 38,
+            "origin_container_object_id": 37,
+            "scope": "Native component origin entity; occurrence context unresolved"
+          },
+          "selection_object_id": 267,
+          "descriptor_object_id": 263,
+          "terminal_object_id": 266,
+          "namespace_text": "11873d4b-373f-4c3d-b84d-79bb892d0c54",
+          "entity_guid_text": "2a964f38-6347-439a-9d13-f05e20e72944",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "input_selection_status": "Observed single root-context Sketch input; scale-history replay unsupported",
+        "input_kind": "Sketch",
+        "input_count": 1,
+        "input_body_count": 0,
+        "input_face_count": 0,
+        "input_selections": [
+          {
+            "kind": "Sketch",
+            "descriptor_object_id": 259,
+            "terminal_object_id": 262,
+            "sketch_object_id": 202,
+            "sketch_feature_object_id": 207,
+            "sketch_name": "ScaleInputSketch",
+            "namespace_text": "11873d4b-373f-4c3d-b84d-79bb892d0c54",
+            "entity_guid_text": "2a964f38-6347-439a-9d13-f05e20e72944",
+            "association": "Owned typed descriptor and native Sketch-ID leaf; no geometry-based matching"
+          }
+        ]
+      },
+      "actual_input_identities": [
+        [
+          "adsk::fusion::Sketch",
+          "ScaleInputSketch"
+        ]
+      ],
+      "requested_input_identities": [
+        [
+          "adsk::fusion::Sketch",
+          "ScaleInputSketch"
+        ]
+      ],
+      "api_normalized_input_order": false,
+      "actual_point": {
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgmC7rbe5vY/tDt/K3Z26PCFAFUYKxmYKRomWZiZpxha6ZsYm5romxpaJupYphsa6aQamqUYGqeZGliYmYLVAMxjQANg+AwWwdSDrjS0AkkVBnYcAAAA=",
+        "name": "O",
+        "position_cm": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "actual_settings": {
+        "is_uniform": true,
+        "factor": 1.3
+      }
+    },
+    {
+      "archive": "scaleshellinputs-97ef1cfd19e4/scale_vertex.f3d",
+      "checks": {
+        "actual_source_types_names_and_order_match": true,
+        "input_count_matches_actual": true,
+        "body_count_matches_actual": true,
+        "face_count_matches_actual": true,
+        "is_uniform_matches_actual": true,
+        "factor_matches_actual": true,
+        "actual_source_is_vertex_recipe_kind": true,
+        "vertex_historical_body_name_matches_actual": true,
+        "typed_context_and_backend_caches_agree": true,
+        "vertex_identity_scope_remains_explicit": true,
+        "direct_vertex_pass_redecodes_same_point": true,
+        "point_position_cache_matches_actual": true
+      },
+      "decoded_settings": {
+        "is_uniform": true,
+        "factor": 1.3,
+        "point_selection_record_object_id": 310,
+        "point": {
+          "entity": {
+            "kind": "BRepVertexRecipe",
+            "native_body_object_id": 275,
+            "recipe": {
+              "object_id": 308,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 35795,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "1",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                        "record_offset": 34750,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                        "record_offset": 34750,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 301,
+                      "matching_primary_record": {
+                        "object_id": 301,
+                        "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                        "record_offset": 34750,
+                        "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "vertex_recipe_data",
+              "payload_relative_offset": 115,
+              "payload_length": 40,
+              "payload_hex": "ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+            }
+          },
+          "selection_object_id": 310,
+          "descriptor_object_id": 305,
+          "context_object_id": 333,
+          "context_raw_hex": "00000000000000001040000000000000104000000000000000000100",
+          "context_cached_position_cm": [
+            4.0,
+            4.0,
+            0.0
+          ],
+          "context_status": "Observed typed coordinate cache agrees with backend; persistent vertex identity unresolved",
+          "body_anchor_object_id": 281,
+          "source_owner_object_id": 243,
+          "cached_position_cm": [
+            4.0,
+            4.0,
+            0.0
+          ],
+          "association": "Owned backend/descriptor selects vertex recipe and historical body; persistent ASM vertex identity unresolved",
+          "coordinate_scope": "Saved backend cache in parent component; source-vertex evaluation and occurrence transforms unsupported"
+        },
+        "input_selection_status": "Explicit input field/counts and owned body descriptors or face recipes; persistent topology unresolved",
+        "point_selection_status": "Observed explicit vertex recipe; coordinate cache and persistent topology kept distinct",
+        "input_selections": [
+          {
+            "kind": "Body",
+            "descriptor_object_id": 301,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281,
+            "source_owner_object_id": 243,
+            "identity_scope": "Explicit historical native body; result lifecycle and ASM topology remain separate"
+          }
+        ],
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_face_count": 0,
+        "native_input_body_object_ids": [
+          275
+        ],
+        "input_selection_record_object_ids": [
+          298
+        ],
+        "input_entity_collection_object_id": null
+      },
+      "actual_input_identities": [
+        [
+          "adsk::fusion::BRepBody",
+          "InputBody1"
+        ]
+      ],
+      "requested_input_identities": [
+        [
+          "adsk::fusion::BRepBody",
+          "InputBody1"
+        ]
+      ],
+      "api_normalized_input_order": false,
+      "actual_point": {
+        "entity_type": "adsk::fusion::BRepVertex",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12PPWoDMRCF0+Uar3M1MPpZadWkdJXapNvMarWQLixL8IXcG1IbXPgYvkByiowUAmGFYD6e3ryHGBYGLiDFKRkeDdkkjrwYR0mykMTRzTLHMEcGq7f6G9leycBXJeBynZ++ds+P59P3/fX2+aIO23J76yYjHeXQJfJcPGk2U4mmiI85j71tXs142JzWx2h1Hg5GPToU0Krrs+PfqTdshe6fwPgoy1qOw1Ly23sZJlkFB/QgdWCP+hnFCvYPuIKu/gBYEEa5JQEAAA==",
+        "body_name": "InputBody1",
+        "position_cm": [
+          4.0,
+          4.0,
+          0.0
+        ]
+      },
+      "actual_settings": {
+        "is_uniform": true,
+        "factor": 1.3
+      }
+    },
+    {
+      "archive": "scaleshellinputs-97ef1cfd19e4/scale_construction_point.f3d",
+      "checks": {
+        "actual_source_types_names_and_order_match": true,
+        "input_count_matches_actual": true,
+        "body_count_matches_actual": true,
+        "face_count_matches_actual": true,
+        "is_uniform_matches_actual": true,
+        "factor_matches_actual": true,
+        "point_kind_matches_actual": true,
+        "point_name_matches_actual": true,
+        "point_position_cache_matches_actual": true
+      },
+      "decoded_settings": {
+        "is_uniform": true,
+        "factor": 1.3,
+        "point_selection_record_object_id": 355,
+        "point": {
+          "entity": {
+            "kind": "ConstructionPoint",
+            "name": "ScaleReferencePoint",
+            "object_id": 312,
+            "feature_object_id": 313,
+            "position_cm": [
+              2.0,
+              -1.0,
+              0.0
+            ]
+          },
+          "selection_object_id": 355,
+          "descriptor_object_id": 351,
+          "terminal_object_id": 354,
+          "namespace_text": "829aa48e-85b2-443f-8734-cd70b4874186",
+          "entity_guid_text": "430e914e-47bc-4767-a2ed-31dd931dab63",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "input_selection_status": "Explicit input field/counts and owned body descriptors or face recipes; persistent topology unresolved",
+        "input_selections": [
+          {
+            "kind": "Body",
+            "descriptor_object_id": 347,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281,
+            "source_owner_object_id": 243,
+            "identity_scope": "Explicit historical native body; result lifecycle and ASM topology remain separate"
+          }
+        ],
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_face_count": 0,
+        "native_input_body_object_ids": [
+          275
+        ],
+        "input_selection_record_object_ids": [
+          344
+        ],
+        "input_entity_collection_object_id": null
+      },
+      "actual_input_identities": [
+        [
+          "adsk::fusion::BRepBody",
+          "InputBody1"
+        ]
+      ],
+      "requested_input_identities": [
+        [
+          "adsk::fusion::BRepBody",
+          "InputBody1"
+        ]
+      ],
+      "api_normalized_input_order": false,
+      "actual_point": {
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtOsJX2tm1zs203OFmxpd2wDqjBSMDZTMDE2SLU0NEnVNTFPSgYSZua6iUapKbrGhikplkAiMcnMGKwWaAYDGgDbZ6AAtg5kvbGhEQB/gZQOiAAAAA==",
+        "name": "ScaleReferencePoint",
+        "position_cm": [
+          2.0,
+          -1.0,
+          0.0
+        ]
+      },
+      "actual_settings": {
+        "is_uniform": true,
+        "factor": 1.3
+      }
+    },
+    {
+      "archive": "scaleshellinputs-97ef1cfd19e4/shell_two_bodies.f3d",
+      "checks": {
+        "actual_source_types_names_and_order_match": true,
+        "input_count_matches_actual": true,
+        "body_count_matches_actual": true,
+        "face_count_matches_actual": true,
+        "tangent_chain_matches_actual": true,
+        "shell_type_matches_actual": true,
+        "inside_thickness_matches_actual": true,
+        "outside_thickness_matches_actual": true,
+        "actual_order_is_normalized_from_request": true,
+        "native_order_follows_actual_not_request": true,
+        "direct_body_selection_pass_matches_integrated": true
+      },
+      "decoded_settings": {
+        "is_tangent_chain": false,
+        "stored_shell_type": 0,
+        "shell_type": "SharpOffset",
+        "inside_thickness_cm": 0.1,
+        "outside_thickness_cm": null,
+        "input_selection_status": "Explicit input field/counts and owned body descriptors or face recipes; persistent topology unresolved",
+        "input_selections": [
+          {
+            "kind": "Body",
+            "descriptor_object_id": 375,
+            "native_body_object_id": 354,
+            "body_anchor_object_id": 358,
+            "source_owner_object_id": 322,
+            "identity_scope": "Explicit historical native body; result lifecycle and ASM topology remain separate"
+          },
+          {
+            "kind": "Body",
+            "descriptor_object_id": 379,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281,
+            "source_owner_object_id": 243,
+            "identity_scope": "Explicit historical native body; result lifecycle and ASM topology remain separate"
+          }
+        ],
+        "input_count": 2,
+        "input_body_count": 2,
+        "input_face_count": 0,
+        "native_input_body_object_ids": [
+          354,
+          275
+        ],
+        "input_selection_record_object_ids": [
+          372
+        ],
+        "input_entity_collection_object_id": null
+      },
+      "actual_input_identities": [
+        [
+          "adsk::fusion::BRepBody",
+          "InputBody2"
+        ],
+        [
+          "adsk::fusion::BRepBody",
+          "InputBody1"
+        ]
+      ],
+      "requested_input_identities": [
+        [
+          "adsk::fusion::BRepBody",
+          "InputBody1"
+        ],
+        [
+          "adsk::fusion::BRepBody",
+          "InputBody2"
+        ]
+      ],
+      "api_normalized_input_order": true,
+      "actual_point": null,
+      "actual_settings": {
+        "is_tangent_chain": false,
+        "shell_type": 0,
+        "inside_thickness_cm": 0.1,
+        "outside_thickness_cm": null
+      }
+    },
+    {
+      "archive": "scaleshellinputs-97ef1cfd19e4/shell_body_and_other_face.f3d",
+      "checks": {
+        "actual_source_types_names_and_order_match": true,
+        "input_count_matches_actual": true,
+        "body_count_matches_actual": true,
+        "face_count_matches_actual": true,
+        "tangent_chain_matches_actual": true,
+        "shell_type_matches_actual": true,
+        "inside_thickness_matches_actual": true,
+        "outside_thickness_matches_actual": true,
+        "actual_order_is_normalized_from_request": true,
+        "native_order_follows_actual_not_request": true,
+        "direct_body_selection_pass_matches_integrated": true,
+        "mixed_face_and_body_have_distinct_source_bodies": true,
+        "mixed_face_has_bounded_recipe": true
+      },
+      "decoded_settings": {
+        "is_tangent_chain": false,
+        "stored_shell_type": 0,
+        "shell_type": "SharpOffset",
+        "inside_thickness_cm": 0.1,
+        "outside_thickness_cm": null,
+        "input_selection_status": "Explicit input field/counts and owned body descriptors or face recipes; persistent topology unresolved",
+        "input_selections": [
+          {
+            "kind": "Face",
+            "descriptor_object_id": 375,
+            "body_anchor_object_id": 358,
+            "native_body_object_id": 354,
+            "source_owner_object_id": 322,
+            "namespace_text": "ef424607-56ab-4606-9e68-f46713086ef5",
+            "entity_guid_text": "ea64313d-6b3f-4849-99ac-f3b7119685c5",
+            "context_record_object_ids": [
+              423
+            ],
+            "recipe": {
+              "object_id": 378,
+              "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+              "record_offset": 45676,
+              "stored_header_fields": [
+                1,
+                3
+              ],
+              "name_table": [
+                {
+                  "table_index": 0,
+                  "terms": [
+                    {
+                      "name": "2",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 304
+                    }
+                  ]
+                },
+                {
+                  "table_index": 1,
+                  "terms": [
+                    {
+                      "name": "3",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 304
+                    }
+                  ]
+                },
+                {
+                  "table_index": 2,
+                  "terms": [
+                    {
+                      "name": "6",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 304
+                    }
+                  ]
+                },
+                {
+                  "table_index": 3,
+                  "terms": [
+                    {
+                      "name": "4",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 304
+                    }
+                  ]
+                },
+                {
+                  "table_index": 4,
+                  "terms": [
+                    {
+                      "name": "5",
+                      "stored_index": 0,
+                      "stored_reference_tag": 1,
+                      "stored_reference_value": 304
+                    }
+                  ]
+                }
+              ],
+              "payload_kind": "bounded_face_recipe_data",
+              "payload_relative_offset": 171,
+              "payload_length": 476,
+              "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+              "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+              "uninterpreted_payload_int32": [
+                0,
+                -1,
+                4,
+                -1,
+                -1,
+                2,
+                1,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                3,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                3,
+                -1,
+                0,
+                -1,
+                1,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                4,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                4,
+                -1,
+                0,
+                -1,
+                3,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                -1,
+                -1,
+                2,
+                2,
+                -1,
+                0,
+                -1,
+                2,
+                -1,
+                3,
+                2,
+                -1,
+                0,
+                -1,
+                4,
+                -1,
+                0,
+                0,
+                -1,
+                3,
+                2,
+                -1,
+                1,
+                -1,
+                0,
+                -1,
+                0,
+                0,
+                -1
+              ]
+            },
+            "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+            "context_scope": "Context identities retained; no occurrence transform inferred"
+          },
+          {
+            "kind": "Body",
+            "descriptor_object_id": 382,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281,
+            "source_owner_object_id": 243,
+            "identity_scope": "Explicit historical native body; result lifecycle and ASM topology remain separate"
+          }
+        ],
+        "input_count": 2,
+        "input_body_count": 1,
+        "input_face_count": 1,
+        "native_input_body_object_ids": [
+          354,
+          275
+        ],
+        "input_selection_record_object_ids": [
+          372,
+          379
+        ],
+        "input_entity_collection_object_id": null
+      },
+      "actual_input_identities": [
+        [
+          "adsk::fusion::BRepFace",
+          "InputBody2"
+        ],
+        [
+          "adsk::fusion::BRepBody",
+          "InputBody1"
+        ]
+      ],
+      "requested_input_identities": [
+        [
+          "adsk::fusion::BRepBody",
+          "InputBody1"
+        ],
+        [
+          "adsk::fusion::BRepFace",
+          "InputBody2"
+        ]
+      ],
+      "api_normalized_input_order": true,
+      "actual_point": null,
+      "actual_settings": {
+        "is_tangent_chain": false,
+        "shell_type": 0,
+        "inside_thickness_cm": 0.1,
+        "outside_thickness_cm": null
+      }
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Sketch descriptor owner mismatch",
+      "passed": true,
+      "reason": "Unsupported Scale Sketch descriptor count/owner"
+    },
+    {
+      "check": "Sketch leaf ID absent from native source sketches",
+      "passed": true,
+      "reason": "Explicit Scale Sketch ID unresolved or ambiguous"
+    },
+    {
+      "check": "Vertex backend owner mismatch",
+      "passed": true,
+      "reason": "Unsupported Scale vertex backend count/owner",
+      "scope": "Existing input bodies retained; no valid point emitted or fabricated"
+    },
+    {
+      "check": "Typed vertex coordinate cache disagrees with backend",
+      "passed": true,
+      "reason": "Scale vertex backend and typed context coordinate caches disagree",
+      "scope": "Existing input bodies retained; no valid point emitted or fabricated"
+    }
+  ],
+  "typed_vertex_cache_controls": [
+    {
+      "archive": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "backend_object_id": 346,
+      "descriptor_object_id": 341,
+      "context_object_id": 370,
+      "context_class_guid": "994C518A-A831-400A-B7C7-16DAC55F4F1C",
+      "context_cached_position_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actual_source_start_vertex_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "checks": {
+        "context_class_is_same_typed_vertex_cache": true,
+        "context_framing_matches_Scale": true,
+        "cache_matches_backend_and_actual_start_vertex": true,
+        "backend_and_descriptor_are_owned_by_pipe": true
+      },
+      "scope": "Independent coordinate-cache evidence only; exact Pipe selection role/persistent vertex identity not inferred"
+    },
+    {
+      "archive": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "backend_object_id": 346,
+      "descriptor_object_id": 341,
+      "context_object_id": 370,
+      "context_class_guid": "994C518A-A831-400A-B7C7-16DAC55F4F1C",
+      "context_cached_position_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actual_source_start_vertex_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "checks": {
+        "context_class_is_same_typed_vertex_cache": true,
+        "context_framing_matches_Scale": true,
+        "cache_matches_backend_and_actual_start_vertex": true,
+        "backend_and_descriptor_are_owned_by_pipe": true
+      },
+      "scope": "Independent coordinate-cache evidence only; exact Pipe selection role/persistent vertex identity not inferred"
+    },
+    {
+      "archive": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "backend_object_id": 346,
+      "descriptor_object_id": 341,
+      "context_object_id": 370,
+      "context_class_guid": "994C518A-A831-400A-B7C7-16DAC55F4F1C",
+      "context_cached_position_cm": [
+        2.0,
+        -1.0,
+        0.0
+      ],
+      "actual_source_start_vertex_cm": [
+        2.0,
+        -1.0,
+        0.0
+      ],
+      "checks": {
+        "context_class_is_same_typed_vertex_cache": true,
+        "context_framing_matches_Scale": true,
+        "cache_matches_backend_and_actual_start_vertex": true,
+        "backend_and_descriptor_are_owned_by_pipe": true
+      },
+      "scope": "Independent coordinate-cache evidence only; exact Pipe selection role/persistent vertex identity not inferred"
+    }
+  ],
+  "decoder_sha256": {
+    "decode_scale_inputs.py": "844d6ae839fad8478eebdf0b8e03f1e4f7f59c1c4d487e2b966780b5c6ce4d1e",
+    "decode_body_tool_selections.py": "32f5e6ead0bdc150929b01734561e60dd89a23777dc690c4a45330c64b9833b1"
+  },
+  "validation_command": "python3 validate_scale_shell_inputs.py --validate --zstd-library <local libzstd path>",
+  "scope": "Five integrated main outputs and direct Scale Sketch/vertex plus Shell body-selection passes compared to actual API getters; requested ordering retained separately",
+  "coverage": {
+    "Scale_Shell_captures": 5,
+    "malformed_guards": 4,
+    "independent_Pipe_coordinate_cache_controls": 3
+  },
+  "limitations": [
+    "Scale vertex recipe and corroborated backend/context coordinates do not establish persistent ASM vertex identity or source-vertex evaluation.",
+    "Requested Shell order is reversed/normalized in actual getters; native ordered selections agree with actual getters, not request order.",
+    "Sketch scaling history replay and modified result geometry are not implemented; source identity/factor/point controls are validated.",
+    "Mixed Shell face recipes establish historical source-body provenance; persistent ASM face mapping remains unresolved.",
+    "Root-component coordinate-cache contrasts do not prove arbitrary occurrence transforms or assembly joint solving."
+  ]
+}

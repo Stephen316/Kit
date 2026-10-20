@@ -18,7 +18,8 @@ RECTANGULAR = "40800FB9-C2BE-494E-A047-7D76E82B9F6C"
 
 
 def decode_sketch_pattern(data, record, sketches, entities, *,
-                          member_kinds=("Line", "Circle"), dependency_extras=None):
+                          member_kinds=("Line", "Circle"), dependency_extras=None,
+                          allow_single_direction=False, symmetric_suppression_mapper=None):
     """Return (constraint, owner_sketch_id) for one observed pattern record."""
     if not record.is_primary or record.class_guid not in (CIRCULAR, RECTANGULAR):
         raise ValueError("Unsupported sketch pattern class")
@@ -81,7 +82,7 @@ def decode_sketch_pattern(data, record, sketches, entities, *,
         if any(v not in (0, 1) for v in head[:3]):
             raise ValueError("Unsupported sketch rectangular flags")
         direction_count = u32(3)
-        if direction_count not in (0, 2):
+        if direction_count not in ((0, 1, 2) if allow_single_direction else (0, 2)):
             raise ValueError("Only observed default axes or two explicit sketch directions supported")
         direction_ids = [reference(head, 7+11*i) for i in range(direction_count)]
         if len(set(direction_ids)) != direction_count:
@@ -108,7 +109,7 @@ def decode_sketch_pattern(data, record, sketches, entities, *,
         if not 2 <= total <= 1024:
             raise ValueError("Unsupported rectangular sketch total instance count")
         for index, side in enumerate(("one", "two")):
-            if direction_ids:
+            if index < len(direction_ids):
                 line = scoped(direction_ids[index], owner, ("Line",))
                 vector = [b-a for a, b in zip(line["start_cm"], line["end_cm"])]
                 magnitude = math.sqrt(sum(v*v for v in vector))
@@ -116,14 +117,25 @@ def decode_sketch_pattern(data, record, sketches, entities, *,
                     raise ValueError("Rectangular sketch selected direction and stored vector disagree")
                 direction_selections.append({"direction": side, "entity_object_id": line["object_id"],
                                              "entity_tag": line["entity_tag"], "kind": "Line"})
+            elif len(direction_ids) == 1 and index == 1:
+                first = result["direction_one"]
+                if not same([first[2]], [0]) or not same(result["direction_two"], [-first[1], first[0], 0]):
+                    raise ValueError("Single selected sketch direction has an unverified implicit perpendicular")
+                result["implicit_direction_two_status"] = "Stored planar perpendicular vector verified; no second entity selection is encoded"
             elif not same(result["direction_"+side], [1, 0, 0] if index == 0 else [0, 1, 0]):
                 raise ValueError("Unobserved rectangular sketch implicit direction")
         code_offset, list_offset = cursor+127, cursor+139
         expected_code = 0x20000000
         seed_genesis, created_genesis = 130, 128
         result["direction_selections"] = direction_selections
+    native_suppressed, normalized_symmetric = list(suppressed), False
     if suppressed and (result.get("is_symmetric") or result.get("symmetric_one") or result.get("symmetric_two")):
-        raise ValueError("Symmetric sketch pattern suppression ordinal mapping remains unverified")
+        if symmetric_suppression_mapper is None:
+            raise ValueError("Symmetric sketch pattern suppression ordinal mapping remains unverified")
+        suppressed = list(symmetric_suppression_mapper(native_suppressed, result, total))
+        if len(suppressed) != len(native_suppressed) or len(set(suppressed)) != len(suppressed):
+            raise ValueError("Symmetric suppression mapper changed the suppressed member count")
+        normalized_symmetric = True
     if any(not 1 <= ordinal < total for ordinal in suppressed):
         raise ValueError("Sketch pattern suppression ordinal outside non-seed domain")
     if struct.unpack_from("<Q", head, code_offset)[0] != expected_code:
@@ -181,4 +193,8 @@ def decode_sketch_pattern(data, record, sketches, entities, *,
     if dependency_extras is not None:
         result["native_dependency_slots"] = [{"entity_object_id": identity, "stored_extra_u32": extra}
                                               for identity, extra in zip(dependencies, extras)]
+    if normalized_symmetric:
+        result.update(native_suppressed_indices=native_suppressed,
+                      suppression_status="Native symmetric indices normalized only for captured quantity/symmetry/index combinations; raw indices retained",
+                      suppression_mapping_status="Explicit API-mask normalization from controlled symmetric suppression captures; no general seed-position formula")
     return result, owner

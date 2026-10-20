@@ -37,29 +37,6 @@
   },
   "needed_contrasts": [
     {
-      "priority": 1,
-      "cases": [
-        "Same feature input mirrored with OptimizedPatternCompute",
-        "Same feature input mirrored with IdenticalPatternCompute",
-        "Same feature input mirrored with AdjustPatternCompute"
-      ],
-      "actual_getters": [
-        "inputEntities entity kinds/order",
-        "patternComputeOption",
-        "mirrorPlane",
-        "isCombine",
-        "stitchTolerance"
-      ],
-      "purpose": "Identify active compute native field and explicit feature-input association without copying pattern ordinal meanings"
-    },
-    {
-      "priority": 2,
-      "cases": [
-        "Body mirrored across planar BRepFace"
-      ],
-      "purpose": "Contrast mirrorPlane BRepFace recipe with currently resolved ConstructionPlane references"
-    },
-    {
       "priority": 3,
       "cases": [
         "Mirror one BRepFace",
@@ -69,23 +46,27 @@
       "purpose": "Cover remaining documented input kinds separately and preserve context"
     },
     {
-      "priority": 4,
+      "priority": 6,
       "cases": [
-        "Scale Sketch input uniformly",
-        "Scale body about BRepVertex",
-        "Scale body about non-origin parametric ConstructionPoint"
+        "Mirror multiple feature inputs",
+        "Scale multiple Sketch inputs"
       ],
-      "purpose": "Cover documented input/reference variants not represented by current origin CP and SketchPoint captures"
-    },
-    {
-      "priority": 5,
-      "cases": [
-        "Shell two bodies",
-        "Shell one body plus face from a different body"
-      ],
-      "purpose": "Cover multiple/mixed input descriptors; SDK forbids input face together with its own body"
+      "purpose": "Cover counted input collections beyond the observed single Sketch or single Extrude feature"
     }
   ],
-  "status": "No additional semantic decoder justified by existing contrasts; no source module changes",
-  "sdk_source": "Local adsk/fusion.py MirrorFeatureInput/ScaleFeatureInput/ShellFeatureInput documentation"
+  "status": "Follow-up capture branches implemented; remaining named input combinations and exact topology/equations remain unsupported",
+  "sdk_source": "Local adsk/fusion.py MirrorFeatureInput/ScaleFeatureInput/ShellFeatureInput documentation",
+  "completed_followup_contrasts": {
+    "mirror_capture": "mirrorfeatures-1ffa1b15c612",
+    "scale_shell_capture": "scaleshellinputs-97ef1cfd19e4",
+    "completed": [
+      "Three active same-Extrude Mirror compute options",
+      "Body Mirror using BRepFace plane recipe/body provenance; equation unresolved",
+      "Uniform Sketch Scale",
+      "Scale BRepVertex reference recipe and paired coordinate caches; persistent vertex unresolved",
+      "Scale non-origin ConstructionPoint",
+      "Shell two bodies",
+      "Shell mixed body and face from a different body"
+    ]
+  }
 }

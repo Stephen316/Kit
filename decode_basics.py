@@ -58,6 +58,9 @@ from decode_body_tool_selections import decode_body_tool_selections
 from decode_component_creation import decode_component_creation
 from decode_pin_provenance import decode_pin_provenance
 from decode_selection_context_recipes import decode_selection_context_recipes
+from decode_sketch_pattern_coverage import decode_sketch_pattern_coverage
+from decode_scale_inputs import decode_scale_vertex_points
+from decode_direct_body_features import decode_direct_body_features
 from decode_brep_recipes import decode_recipes
 from decode_component_body_proxies import decode_component_body_proxies
 from decode_combine import attach_combine_bodies
@@ -233,6 +236,7 @@ def decode_basics(path, zstd_library=None):
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
         curved_pattern_summary = decode_sketch_mixed_patterns(data, records, features)
+        pattern_coverage_summary = decode_sketch_pattern_coverage(data, records, features)
         curved_sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
         recovered_curve_ids = set()
         for geometry in curved_pattern_summary["additional_geometry"]:
@@ -241,7 +245,7 @@ def decode_basics(path, zstd_library=None):
                 sketch["geometry"].append(copy.deepcopy(geometry))
                 recovered_curve_ids.add(geometry["object_id"])
         recovered_pattern_ids = set()
-        for pattern in curved_pattern_summary["patterns"]:
+        for pattern in curved_pattern_summary["patterns"]+pattern_coverage_summary["patterns"]:
             sketch = curved_sketches[pattern["sketch_object_id"]]
             if not any(c["object_id"] == pattern["object_id"] for c in sketch["constraints"]):
                 sketch["constraints"].append(copy.deepcopy(pattern))
@@ -254,6 +258,7 @@ def decode_basics(path, zstd_library=None):
         sketch_summary["unsupported_curves"] = [u for u in sketch_summary["unsupported_curves"]
                                                 if u["object_id"] not in recovered_curve_ids]
         sketch_summary["tool_constraints"]["scope"] += "; "+curved_pattern_summary["scope"]
+        sketch_summary["tool_constraints"]["scope"] += "; "+pattern_coverage_summary["scope"]
         sketch_text_summary = decode_sketch_text_controls(data, records, features)
         path_text_summary = decode_sketch_text_paths(data, records, features)
         consumed_text_summary = decode_consumed_sketch_texts(data, records, features)
@@ -421,7 +426,23 @@ def decode_basics(path, zstd_library=None):
         body_selection_summary["unresolved"].extend(component_body_summary["unresolved"])
         body_selection_summary["component_context_scope"] = component_body_summary["scope"]
         selection_context_summary = decode_selection_context_recipes(data, records, body_selection_summary)
+        direct_body_summary = decode_direct_body_features(data, records, body_selection_summary)
+        direct_body_ids = set()
+        for direct_body in direct_body_summary["decoded"]:
+            feature = feature_by_id.get(direct_body["feature_object_id"])
+            if feature is not None:
+                feature.update(kind=direct_body["kind"], direct_body_feature=direct_body,
+                               decode_level="Observed explicit body provenance; general direct editing, lifecycle and regeneration unsupported")
+                direct_body_ids.add(feature["object_id"])
+        discovery_summary["unsupported_features"] = [f for f in discovery_summary["unsupported_features"]
+                                                     if f["object_id"] not in direct_body_ids]
+        discovery_summary["unsupported_feature_count"] = len(discovery_summary["unsupported_features"])
+        discovery_summary["class_decoded_direct_body_feature_count"] = len(direct_body_ids)
         attach_combine_bodies(features, body_selection_summary)
+        scale_vertex_summary = decode_scale_vertex_points(data, records, features, body_selection_summary)
+        for selected_point in scale_vertex_summary["decoded"]:
+            feature_by_id[selected_point["feature_object_id"]]["tool_settings"].update(
+                point=selected_point["point"], point_selection_status=selected_point["point_selection_status"])
         body_tool_selection_summary = decode_body_tool_selections(data, records, features, body_selection_summary)
         for selected_inputs in body_tool_selection_summary["decoded"]:
             feature = next(f for f in features if f["object_id"] == selected_inputs["feature_object_id"])
@@ -457,6 +478,7 @@ def decode_basics(path, zstd_library=None):
             "sketch_texts": sketch_text_summary,
             "sketch_pattern_details": sketch_pattern_summary,
             "sketch_curved_patterns": curved_pattern_summary,
+            "sketch_pattern_coverage": pattern_coverage_summary,
             "dimension_controls": dimension_control_summary,
             "dimension_control_modes": dimension_mode_summary,
             "profile_decoding": profile_summary,
@@ -482,6 +504,8 @@ def decode_basics(path, zstd_library=None):
             "body_properties": body_property_summary,
             "body_selections": body_selection_summary,
             "selection_context_recipes": selection_context_summary,
+            "direct_body_features": direct_body_summary,
+            "scale_vertex_points": scale_vertex_summary,
             "body_tool_selections": body_tool_selection_summary,
             "tool_body_inputs": tool_body_summary,
             "recipe_decoding": recipe_summary,

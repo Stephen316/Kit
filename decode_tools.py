@@ -5,6 +5,8 @@ import struct
 from decode_selection import known_construction_entities
 from decode_holes import decode_hole
 from decode_body_tools import decode_body_tool
+from decode_scale_inputs import decode_scale_sketch
+from decode_mirror_modes import decode_mirror_modes
 from decode_rectangular_pattern_modes import decode_rectangular_pattern_modes
 from decode_edge_tools import decode_edge_tool
 from decode_split import decode_split
@@ -89,7 +91,18 @@ def decode_tools(data, records, features):
             elif kind == "RectangularPattern":
                 settings = decode_rectangular_pattern_modes(data, records, body, feature, axes, features)
             elif kind in ("Scale", "Mirror", "Shell"):
-                settings = decode_body_tool(data, records, body, feature, axes)
+                try:
+                    if kind == "Mirror":
+                        settings = decode_mirror_modes(data, records, body, feature, axes, features)
+                    else:
+                        settings = decode_body_tool(data, records, body, feature, axes)
+                except (ValueError, KeyError, IndexError, struct.error):
+                    if kind == "Mirror":
+                        settings = decode_body_tool(data, records, body, feature, axes)
+                    elif kind == "Scale":
+                        settings = decode_scale_sketch(data, records, body, feature, axes, features)
+                    else:
+                        raise
             elif kind == "Hole":
                 settings = decode_hole(data, records, body, feature)
             elif kind == "Move":
