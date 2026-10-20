@@ -25,6 +25,7 @@ from fusion_records import Record, record_fragments
 from fusion_metadata import design_records
 from discover_features import discover_features
 from decode_construction import decode_construction
+from decode_plane_definitions import decode_plane_definitions
 from decode_profiles import decode_profiles
 from decode_timeline import decode_timeline
 from decode_assembly import decode_assembly
@@ -211,6 +212,10 @@ def decode_basics(path, zstd_library=None):
         modeling_summary = decode_modeling(data, records, features)
         placement_summary = decode_placement(data, records, features)
         construction_summary = decode_construction(data, records, features)
+        plane_definition_summary = decode_plane_definitions(data, records, features)
+        placement_summary["decoded_construction_planes"] = sum(
+            f["kind"] == "ConstructionPlane" and "plane_to_component_matrix" in f for f in features)
+        placement_summary["scope"] = "Observed rigid sketch transforms and native construction-plane caches; explicit definitions reported separately"
         selection_summary = decode_selections(data, records, features)
         tool_summary = decode_tools(data, records, features)
         timeline_summary = decode_timeline(data, records, features)
@@ -251,6 +256,7 @@ def decode_basics(path, zstd_library=None):
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,
             "construction_decoding": construction_summary,
+            "plane_definitions": plane_definition_summary,
             "selection_decoding": selection_summary,
             "tool_decoding": tool_summary,
             "timeline_decoding": timeline_summary,
