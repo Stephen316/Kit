@@ -18,6 +18,7 @@ from decode_threads import decode_thread
 from decode_path_patterns import decode_path_pattern
 from decode_combine import decode_combine
 from decode_sweep import decode_sweep
+from decode_thicken import decode_thicken
 from decode_boundary_fill import decode_boundary_fill
 
 
@@ -139,10 +140,7 @@ def decode_tools(data, records, features):
                             "angle_two_radians": parameter("Angle2")["raw_float64"],
                             "definition_status": "Draft mode and face selection unresolved"}
             elif kind == "Thicken":
-                code = struct.unpack_from("<I", body, 7)[0]
-                settings = {"thickness_cm": parameter("Thickness")["raw_float64"],
-                            "operation": "NewBody" if code == 4 else "Unknown", "stored_operation_code": code,
-                            "definition_status": "Face selection and sidedness unresolved"}
+                settings = decode_thicken(data, records, body, feature)
             feature["tool_settings"] = settings
             feature["decode_level"] = "Observed tool settings and numeric parameters; geometric inputs remain partial"
             decoded.append({"object_id": feature["object_id"], "kind": kind})
