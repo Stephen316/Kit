@@ -15,6 +15,7 @@ import struct
 
 from decode_parameters import decode_stream, read_string
 from decode_sketch import decode_sketches
+from decode_sketch_projections import decode_sketch_projections
 from decode_modeling import decode_modeling
 from decode_placement import decode_placement
 from decode_selection import decode_selections
@@ -198,6 +199,14 @@ def decode_basics(path, zstd_library=None):
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
+        projection_summary = decode_sketch_projections(data, records, features)
+        for relationship in projection_summary["relationships"]:
+            target = next(f for f in features if f["object_id"] == relationship["target_feature_object_id"])
+            output = next((g for g in target["geometry"] if g["object_id"] == relationship["output_cache"]["object_id"]), None)
+            if output is not None:
+                output["projection_reference"] = {"controller_object_id": relationship["controller_object_id"],
+                                                  "method": relationship["method"], "is_linked": True,
+                                                  "scope": "Explicit native projection relationship; source details in sketch_projections"}
         profile_summary = decode_profiles(data, records, features)
         modeling_summary = decode_modeling(data, records, features)
         placement_summary = decode_placement(data, records, features)
@@ -237,6 +246,7 @@ def decode_basics(path, zstd_library=None):
             "record_index": record_index,
             "feature_discovery": discovery_summary,
             "sketch_decoding": sketch_summary,
+            "sketch_projections": projection_summary,
             "profile_decoding": profile_summary,
             "modeling_decoding": modeling_summary,
             "placement_decoding": placement_summary,

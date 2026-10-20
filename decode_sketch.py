@@ -97,7 +97,7 @@ def decode_sketches(data, records, features):
                 item.update({"kind": "Point", "entity_tag": props["pt_tag"],
                              "position_cm": numbers(body, cursor + 19, 3)})
                 entities[record.object_id] = item
-            elif "crv_primary_id" in props and props.get("EntityGenesis") in (2, 128, 130, 256, 258, 512):
+            elif "crv_primary_id" in props and props.get("EntityGenesis") in (0, 2, 128, 130, 256, 258, 512):
                 curves.append((record, body, props, cursor, item))
         except (ValueError, UnicodeError, struct.error):
             continue
