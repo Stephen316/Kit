@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 480,
+  "file_count": 490,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -302,7 +302,11 @@
     "rectsymmetry-f09c57dcfd51/symmetric_both_odd.f3d",
     "rectsymmetry-f09c57dcfd51/symmetric_one.f3d",
     "rectsymmetry-f09c57dcfd51/symmetric_two.f3d",
+    "revolveaxes-14700158dba9/brep_edge_offset_x.f3d",
     "revolveaxes-36bd04ac77e1/custom_two_points.f3d",
+    "revolveaxes-a83b542c4a07/brep_edge.f3d",
+    "revolveaxes-a83b542c4a07/sketch_line.f3d",
+    "revolveaxes-a83b542c4a07/sketch_line_reversed.f3d",
     "revolvemodes-8eb734486235/axis_x.f3d",
     "revolvemodes-8eb734486235/cut.f3d",
     "revolvemodes-8eb734486235/intersect.f3d",
@@ -316,6 +320,12 @@
     "revolveto-b1d196f65c46/negative_plane.f3d",
     "revolveto-b1d196f65c46/positive_plane.f3d",
     "revolveto-b1d196f65c46/two_planes.f3d",
+    "sketchcurvedpatterns-185c2406ef52/circular_arc.f3d",
+    "sketchcurvedpatterns-185c2406ef52/circular_ellipse.f3d",
+    "sketchcurvedpatterns-185c2406ef52/rectangular_arc.f3d",
+    "sketchcurvedpatterns-185c2406ef52/rectangular_ellipse.f3d",
+    "sketchcurvedpatterns-185c2406ef52/rectangular_fitted_spline.f3d",
+    "sketchcurvedpatterns-512a788b850e/rectangular_fitted_spline.f3d",
     "sketches-0ccea2ac0f9c/baseline.f3d",
     "sketches-0ccea2ac0f9c/coincident.f3d",
     "sketches-0ccea2ac0f9c/horizontal.f3d",
@@ -1891,9 +1901,9 @@
         "Observed sketch relationship: SketchRectangularPattern"
       ],
       "example_files": [
-        "sketchpatternmodes-5b83cb71a99d/rectangular_direction.f3d",
-        "sketchpatternmodes-5b83cb71a99d/rectangular_line_circle.f3d",
-        "sketchpatternmodes-5b83cb71a99d/rectangular_suppressed.f3d"
+        "sketchcurvedpatterns-185c2406ef52/rectangular_arc.f3d",
+        "sketchcurvedpatterns-185c2406ef52/rectangular_ellipse.f3d",
+        "sketchcurvedpatterns-185c2406ef52/rectangular_fitted_spline.f3d"
       ]
     },
     {
@@ -2399,7 +2409,8 @@
       "observed_semantics": [],
       "example_files": [
         "advanced-627f7fe095f4/advanced.f3d",
-        "dimensions-f83a2edd2f72/dimensions.f3d"
+        "dimensions-f83a2edd2f72/dimensions.f3d",
+        "sketchcurvedpatterns-185c2406ef52/circular_ellipse.f3d"
       ]
     },
     {
@@ -2622,7 +2633,7 @@
       "example_files": [
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
-        "sketches-0ccea2ac0f9c/coincident.f3d"
+        "sketchcurvedpatterns-185c2406ef52/circular_ellipse.f3d"
       ]
     },
     {
@@ -3334,9 +3345,9 @@
         "Observed sketch relationship: SketchCircularPattern"
       ],
       "example_files": [
-        "sketchpatternmodes-5b83cb71a99d/circular_line.f3d",
-        "sketchpatternmodes-5b83cb71a99d/circular_line_circle.f3d",
-        "sketchpatternmodes-5b83cb71a99d/circular_suppressed.f3d"
+        "sketchcurvedpatterns-185c2406ef52/circular_arc.f3d",
+        "sketchcurvedpatterns-185c2406ef52/circular_ellipse.f3d",
+        "sketchpatternmodes-5b83cb71a99d/circular_line.f3d"
       ]
     },
     {
@@ -6271,7 +6282,7 @@
       "example_files": [
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
-        "splines-9a18bae21127/splines.f3d"
+        "sketchcurvedpatterns-185c2406ef52/circular_ellipse.f3d"
       ]
     },
     {

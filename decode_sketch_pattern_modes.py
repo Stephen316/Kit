@@ -17,7 +17,8 @@ CIRCULAR = "8269E861-0BB7-47E0-9911-5AE3EC475058"
 RECTANGULAR = "40800FB9-C2BE-494E-A047-7D76E82B9F6C"
 
 
-def decode_sketch_pattern(data, record, sketches, entities):
+def decode_sketch_pattern(data, record, sketches, entities, *,
+                          member_kinds=("Line", "Circle"), dependency_extras=None):
     """Return (constraint, owner_sketch_id) for one observed pattern record."""
     if not record.is_primary or record.class_guid not in (CIRCULAR, RECTANGULAR):
         raise ValueError("Unsupported sketch pattern class")
@@ -25,7 +26,9 @@ def decode_sketch_pattern(data, record, sketches, entities):
     dependencies, props, offset = constraint_prefix(body)
     if props != {"EntityGenesis": 2}:
         raise ValueError("Unsupported sketch pattern attributes")
-    if any(struct.unpack_from("<I", body, 16+15*i)[0] != 0 for i in range(len(dependencies))):
+    expected_extras = dependency_extras or {}
+    extras = [struct.unpack_from("<I", body, 16+15*i)[0] for i in range(len(dependencies))]
+    if any(extra != expected_extras.get(identity, 0) for identity, extra in zip(dependencies, extras)):
         raise ValueError("Unobserved sketch pattern dependency extra field")
     head = body[offset:]
 
@@ -143,11 +146,11 @@ def decode_sketch_pattern(data, record, sketches, entities):
         raise ValueError("Sketch pattern member count does not divide active instances")
     seed_count = len(copied)//active_instances
     seeds, created = copied[:seed_count], copied[seed_count:]
-    seed_geometry = [scoped(identity, owner, ("Line", "Circle")) for identity in seeds]
+    seed_geometry = [scoped(identity, owner, member_kinds) for identity in seeds]
     if any(g.get("entity_genesis") != seed_genesis for g in seed_geometry):
         raise ValueError("Sketch pattern seed-prefix genesis flags disagree")
     for identity in created:
-        if scoped(identity, owner, ("Line", "Circle")).get("entity_genesis") != created_genesis:
+        if scoped(identity, owner, member_kinds).get("entity_genesis") != created_genesis:
             raise ValueError("Sketch pattern created-member genesis flags disagree")
     groups, position = [], 0
     suppressed_set = set(suppressed)
@@ -158,7 +161,7 @@ def decode_sketch_pattern(data, record, sketches, entities):
             position += seed_count
         associations = []
         for column, identity in enumerate(identities):
-            geometry = scoped(identity, owner, ("Line", "Circle"))
+            geometry = scoped(identity, owner, member_kinds)
             source = seed_geometry[column]
             if geometry["kind"] != source["kind"]:
                 raise ValueError("Sketch pattern grouped member kind disagrees with seed")
@@ -175,4 +178,7 @@ def decode_sketch_pattern(data, record, sketches, entities):
                   suppression_status="Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
                   membership_status="Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
                   record_offset=record.start, class_guid=record.class_guid)
+    if dependency_extras is not None:
+        result["native_dependency_slots"] = [{"entity_object_id": identity, "stored_extra_u32": extra}
+                                              for identity, extra in zip(dependencies, extras)]
     return result, owner

@@ -7,6 +7,7 @@ topology mapping and native file writing remain unavailable.
 """
 
 import argparse
+import copy
 from bisect import bisect_right
 import json
 from pathlib import Path
@@ -17,6 +18,7 @@ from decode_parameters import decode_stream, read_string
 from decode_parameter_tables import decode_parameter_tables
 from decode_expression_dependencies import derive_expression_dependencies
 from decode_sketch import decode_sketches
+from decode_sketch_curved_patterns import decode_sketch_curved_patterns
 from decode_sketch_text_controls import decode_sketch_text_controls
 from decode_sketch_text_paths import decode_sketch_text_paths
 from decode_sketch_coverage import decode_sketch_coverage
@@ -224,6 +226,28 @@ def decode_basics(path, zstd_library=None):
         unbound = attach_parameters(data, records, features, parameters)
         sketch_references(data, records, features)
         sketch_summary = decode_sketches(data, records, features)
+        curved_pattern_summary = decode_sketch_curved_patterns(data, records, features)
+        curved_sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
+        recovered_curve_ids = set()
+        for geometry in curved_pattern_summary["additional_geometry"]:
+            sketch = curved_sketches[geometry["sketch_object_id"]]
+            if not any(g["object_id"] == geometry["object_id"] for g in sketch["geometry"]):
+                sketch["geometry"].append(copy.deepcopy(geometry))
+                recovered_curve_ids.add(geometry["object_id"])
+        recovered_pattern_ids = set()
+        for pattern in curved_pattern_summary["patterns"]:
+            sketch = curved_sketches[pattern["sketch_object_id"]]
+            if not any(c["object_id"] == pattern["object_id"] for c in sketch["constraints"]):
+                sketch["constraints"].append(copy.deepcopy(pattern))
+                sketch_summary["tool_constraints"]["decoded"].append({
+                    "object_id": pattern["object_id"], "kind": pattern["kind"],
+                    "sketch_object_id": pattern["sketch_object_id"]})
+            recovered_pattern_ids.add(pattern["object_id"])
+        sketch_summary["tool_constraints"]["unresolved"] = [u for u in sketch_summary["tool_constraints"]["unresolved"]
+                                                           if u["object_id"] not in recovered_pattern_ids]
+        sketch_summary["unsupported_curves"] = [u for u in sketch_summary["unsupported_curves"]
+                                                if u["object_id"] not in recovered_curve_ids]
+        sketch_summary["tool_constraints"]["scope"] += "; "+curved_pattern_summary["scope"]
         sketch_text_summary = decode_sketch_text_controls(data, records, features)
         path_text_summary = decode_sketch_text_paths(data, records, features)
         text_by_id = {t["object_id"]: t for t in sketch_text_summary["texts"]}
@@ -392,6 +416,7 @@ def decode_basics(path, zstd_library=None):
             "sketch_projections": projection_summary,
             "sketch_texts": sketch_text_summary,
             "sketch_pattern_details": sketch_pattern_summary,
+            "sketch_curved_patterns": curved_pattern_summary,
             "dimension_controls": dimension_control_summary,
             "dimension_control_modes": dimension_mode_summary,
             "profile_decoding": profile_summary,
