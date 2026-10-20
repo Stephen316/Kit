@@ -21,6 +21,7 @@ from decode_sweep import decode_sweep
 from decode_thicken import decode_thicken
 from decode_emboss import decode_emboss
 from decode_draft import decode_draft
+from decode_circular_patterns import decode_circular_pattern
 from decode_boundary_fill import decode_boundary_fill
 
 
@@ -99,33 +100,7 @@ def decode_tools(data, records, features):
             elif kind == "Combine":
                 settings = decode_combine(data, records, body, feature)
             elif kind == "CircularPattern":
-                quantity, angle = parameter("countU"), parameter("TotalAngle")
-                if quantity["raw_float64"] < 2 or not quantity["raw_float64"].is_integer():
-                    raise ValueError("Unsupported pattern quantity")
-                control_id = reference(body, 6)
-                choices = []
-                for control in records:
-                    if control.object_id != control_id:
-                        continue
-                    chunk = data[control.body:control.end]
-                    if len(chunk) < 150 or chunk[:2] != b"\0\0" or chunk[2] not in (0, 1):
-                        continue
-                    if reference(chunk, 3) != angle["binding_object_id"]:
-                        continue
-                    if reference(chunk, len(chunk)-37) != quantity["binding_object_id"]:
-                        continue
-                    if reference(chunk, len(chunk)-26) != feature["object_id"]:
-                        continue
-                    axis_id = reference(chunk, 14)
-                    selection = resolve_native_selection(data, records, axis_id, axes)
-                    choices.append({"quantity": int(quantity["raw_float64"]),
-                                    "total_angle_radians": angle["raw_float64"],
-                                    "total_angle_degrees": math.degrees(angle["raw_float64"]),
-                                    "is_symmetric": bool(chunk[2]), "axis_selection_record_object_id": axis_id,
-                                    "axis": selection, "control_record_object_id": control_id})
-                if len(choices) != 1:
-                    raise ValueError("Pattern control record unresolved or ambiguous")
-                settings = choices[0]
+                settings = decode_circular_pattern(data, records, body, feature, axes, features)
             elif kind == "Sweep":
                 settings = decode_sweep(data, records, body, feature, features)
             elif kind == "Loft":
