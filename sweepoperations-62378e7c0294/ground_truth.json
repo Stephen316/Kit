@@ -1,0 +1,1031 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "join.f3d",
+      "requested": {
+        "operation": 0,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends to x=5",
+        "two_sided_path": false
+      },
+      "seed_before_sweep": {
+        "name": "StudySweepTarget",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZArexy+uIY35TZjvffv1/7u9koAojBWMzhSTLVLO01JQkXeMUi2Rdk1QLI11LM/NU3eQk45SkpCSTZMOUNLBaoBkMaABsn4EC2DqQ9UbmpgBxpHKFiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 12.0,
+        "bounding_box_min_cm": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "bounding_box_max_cm": [
+          2.0,
+          1.0,
+          1.0
+        ]
+      },
+      "getter_errors": [],
+      "result_bodies": [
+        {
+          "name": "StudySweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZArexy+uIY35TZjvffv1/7u9koAojBWMzhSTLVLO01JQkXeMUi2Rdk1QLI11LM/NU3eQk45SkpCSTZMOUNLBaoBkMaABsn4EC2DqQ9UbmpgBxpHKFiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 12.72,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            5.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "operation": 0,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surface_count": 0,
+        "profile_scaling": null,
+        "extent": null,
+        "is_direction_flipped": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": null
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "StudySweepTargetExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "StudySweepTargetExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweepOperation"
+        },
+        {
+          "name": "d7",
+          "role": "TwistAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeSweepOperation"
+        },
+        {
+          "name": "d8",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeSweepOperation"
+        }
+      ]
+    },
+    {
+      "file": "intersect.f3d",
+      "requested": {
+        "operation": 2,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends to x=5",
+        "two_sided_path": false,
+        "participant_bodies": [
+          {
+            "name": "StudySweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrXvhlg2La9rG83XaIlIbHIEqjBSMDZTSDG2NDY1TrPUTTU3StU1MTA11E1MNDPTNUxLSUlNTUtNNUtKBKsFmsGABsD2GSiArQNZb2RuCgBdv7RDiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 12.0,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              2.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "seed_before_sweep": {
+        "name": "StudySweepTarget",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrXvhlg2La9rG83XaIlIbHIEqjBSMDZTSDG2NDY1TrPUTTU3StU1MTA11E1MNDPTNUxLSUlNTUtNNUtKBKsFmsGABsD2GSiArQNZb2RuCgBdv7RDiAAAAA==",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 12.0,
+        "bounding_box_min_cm": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "bounding_box_max_cm": [
+          2.0,
+          1.0,
+          1.0
+        ]
+      },
+      "getter_errors": [],
+      "result_bodies": [
+        {
+          "name": "StudySweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrXvhlg2La9rG83XaIlIbHIEqjBSMDZTSDG2NDY1TrPUTTU3StU1MTA11E1MNDPTNUxLSUlNTUtNNUtKBKsFmsGABsD2GSiArQNZb2RuCgBdv7RDiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.48,
+          "bounding_box_min_cm": [
+            0.0,
+            -0.2,
+            -0.3
+          ],
+          "bounding_box_max_cm": [
+            2.0,
+            0.2,
+            0.3
+          ]
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "operation": 2,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surface_count": 0,
+        "profile_scaling": null,
+        "extent": null,
+        "is_direction_flipped": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": [
+          {
+            "name": "StudySweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrXvhlg2La9rG83XaIlIbHIEqjBSMDZTSDG2NDY1TrPUTTU3StU1MTA11E1MNDPTNUxLSUlNTUtNNUtKBKsFmsGABsD2GSiArQNZb2RuCgBdv7RDiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 12.0,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              2.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "StudySweepTargetExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "StudySweepTargetExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweepOperation"
+        },
+        {
+          "name": "d7",
+          "role": "TwistAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeSweepOperation"
+        },
+        {
+          "name": "d8",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeSweepOperation"
+        }
+      ]
+    },
+    {
+      "file": "two_sided.f3d",
+      "requested": {
+        "operation": 3,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends from x=-3 to x=5",
+        "two_sided_path": true,
+        "distance_one": 0.6,
+        "distance_two": 0.4
+      },
+      "seed_before_sweep": null,
+      "getter_errors": [],
+      "result_bodies": [
+        {
+          "name": "Body1",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvykKuGXs308FvpW/7WKXjITqMJIwdhMwTwlySA1ydJY19TCMFHXJCk5SdfSMiVN1yDF2DjV1MzMzMTMEqwWaAYDGgDbZ6AAtg5kvbGZOQBoCAyViAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 1.008,
+          "bounding_box_min_cm": [
+            -1.2000000000000002,
+            -0.2,
+            -0.3
+          ],
+          "bounding_box_max_cm": [
+            3.0,
+            0.2,
+            0.3
+          ]
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 0.6,
+        "distance_two": 0.4,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surface_count": 0,
+        "profile_scaling": null,
+        "extent": null,
+        "is_direction_flipped": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": null
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 0.6,
+          "unit": "",
+          "created_by": "ProbeSweepOperation"
+        },
+        {
+          "name": "d2",
+          "role": "AgainstDistance",
+          "value": 0.4,
+          "unit": "",
+          "created_by": "ProbeSweepOperation"
+        },
+        {
+          "name": "d5",
+          "role": "TwistAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeSweepOperation"
+        },
+        {
+          "name": "d6",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "ProbeSweepOperation"
+        }
+      ]
+    },
+    {
+      "file": "rail_flip_false.f3d",
+      "requested": {
+        "operation": 3,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends from x=-3 to x=5",
+        "two_sided_path": true,
+        "distance_one": 0.6,
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.15,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.55,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": false
+      },
+      "seed_before_sweep": null,
+      "getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 119, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 144, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "result_bodies": [
+        {
+          "name": "Body1",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtT0ecy56z3vt6+ZJa7brPcVqMJIwdhMwSQxNSU1JcVQ18DA0lLXJC3JUDfRMsVE18TYwDAtKSnJ0tLUHKwWaAYDGgDbZ6AAtg5kvbGlKQBvZDBaiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.31536,
+          "bounding_box_min_cm": [
+            -1.7999999999999996,
+            -0.2,
+            -0.3
+          ],
+          "bounding_box_max_cm": [
+            0.0,
+            0.2,
+            0.3
+          ]
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "operation": 3,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 0.6,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.15,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.55,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_surface_count": 0,
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": false,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": null
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 0.0,
+          "unit": "",
+          "created_by": "ProbeSweepOperation"
+        },
+        {
+          "name": "d2",
+          "role": "AgainstDistance",
+          "value": 0.6,
+          "unit": "",
+          "created_by": "ProbeSweepOperation"
+        }
+      ]
+    },
+    {
+      "file": "rail_flip_true.f3d",
+      "requested": {
+        "operation": 3,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends from x=-3 to x=5",
+        "two_sided_path": true,
+        "distance_one": 0.6,
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.15,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.55,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": true
+      },
+      "seed_before_sweep": null,
+      "getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 119, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 144, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "result_bodies": [
+        {
+          "name": "Body1",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrXCfXdC9T1dt8eLPrnlwVUEVGGkYGymkJiUlJKUmJKim5KSkqhrYplmqGthbGmsm2ZgamphYZCUmppsBlYLNIMBDYDtM1AAWwey3tjSFADc6lPIiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 1.1400000000000001,
+          "bounding_box_min_cm": [
+            0.0,
+            -0.30000000000000004,
+            -0.45
+          ],
+          "bounding_box_max_cm": [
+            3.0000000000000004,
+            0.30000000000000004,
+            0.45
+          ]
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "operation": 3,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 0.6,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.15,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.55,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_surface_count": 0,
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": true,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": null
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 0.6,
+          "unit": "",
+          "created_by": "ProbeSweepOperation"
+        },
+        {
+          "name": "d2",
+          "role": "AgainstDistance",
+          "value": 0.0,
+          "unit": "",
+          "created_by": "ProbeSweepOperation"
+        }
+      ]
+    },
+    {
+      "file": "guided_cut.f3d",
+      "requested": {
+        "operation": 1,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends to x=5",
+        "two_sided_path": false,
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.3,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.6,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_scaling": 0,
+        "extent": 0,
+        "participant_bodies": [
+          {
+            "name": "StudySweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQt2Jj2JcX/1DZ78/tSZoxtZ6oAojBWMzBUNzS1OLtGQjXQvTJANdk8RUSyDLOEXX2MAy1dzSIi0x0dQUrBZoBgMaANtnoAC2DmS9kbkpANnpvfqIAAAA",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 28.0,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "seed_before_sweep": {
+        "name": "StudySweepTarget",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQt2Jj2JcX/1DZ78/tSZoxtZ6oAojBWMzBUNzS1OLtGQjXQvTJANdk8RUSyDLOEXX2MAy1dzSIi0x0dQUrBZoBgMaANtnoAC2DmS9kbkpANnpvfqIAAAA",
+        "component_name": "(Unsaved)",
+        "is_solid": true,
+        "volume_cm3": 28.0,
+        "bounding_box_min_cm": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "bounding_box_max_cm": [
+          6.0,
+          1.0,
+          1.0
+        ]
+      },
+      "getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 119, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 144, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "result_bodies": [
+        {
+          "name": "StudySweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQt2Jj2JcX/1DZ78/tSZoxtZ6oAojBWMzBUNzS1OLtGQjXQvTJANdk8RUSyDLOEXX2MAy1dzSIi0x0dQUrBZoBgMaANtnoAC2DmS9kbkpANnpvfqIAAAA",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 25.2,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            6.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "settings": {
+        "operation": 1,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.3,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.6,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_surface_count": 0,
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": true,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": [
+          {
+            "name": "StudySweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQt2Jj2JcX/1DZ78/tSZoxtZ6oAojBWMzBUNzS1OLtGQjXQvTJANdk8RUSyDLOEXX2MAy1dzSIi0x0dQUrBZoBgMaANtnoAC2DmS9kbkpANnpvfqIAAAA",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 28.0,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "StudySweepTargetExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "StudySweepTargetExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "",
+          "created_by": "ProbeSweepOperation"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "sdk_rules": [
+    "distanceTwo ignored for guide rails and one-sided paths",
+    "isDirectionFlipped applies to guide-rail paths extending both sides of profile",
+    "orientation/taper/twist inactive with guides"
+  ],
+  "token_scope": "Opaque API entity tokens; no native object ID interpretation assigned"
+}

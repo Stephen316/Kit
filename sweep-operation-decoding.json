@@ -1,0 +1,2072 @@
+{
+  "status": "Observed Sweep operations, straight two-sided branches and active rail direction evidence; no native writer or sweep solver",
+  "integration": {
+    "module": "decode_sweep_operations.py",
+    "call": "decode_sweep_operations(data, records, body, feature, features)",
+    "order": "After placement; fallback from original decode_sweep, before generic decode_sweep_modes so rail_flip_true is annotated",
+    "reuse": "decode_sweep_modes allowed_operation_codes=(1,2,3,4), allow_two_sided=True; default strict outputs unchanged",
+    "mode_reader_internal_metadata": "result_anchor_list_end_relative_offset is returned only when optional operation/branch extension is enabled"
+  },
+  "capture": {
+    "folder": "sweepoperations-62378e7c0294",
+    "generator": "GenerateSweepOperationModes.py",
+    "fusion_version": "2705.1.30",
+    "terminal_exports": 6,
+    "case_errors": 0,
+    "getter_errors": "Only inactive orientation on three rail cases; retained independently",
+    "sdk_rules": [
+      "distanceTwo ignored for guide rails and one-sided paths",
+      "isDirectionFlipped applies to guide-rail paths extending both sides of profile",
+      "orientation/taper/twist inactive with guides"
+    ]
+  },
+  "native_structure": {
+    "operation_relative_offset": 0,
+    "codes": {
+      "1": "Join",
+      "2": "Cut",
+      "3": "Intersect",
+      "4": "NewBody"
+    },
+    "result_anchor_count": "0 in observed Boolean operations; 1 in NewBody",
+    "post_anchor_inputs": "u32 reserved zero, u32 input proxy count (one Boolean/zero NewBody), 11-byte owned proxy references, then u32=36 UUID framing",
+    "historical_input_body": {
+      "native_body_object_id": 275,
+      "anchor_object_id": 281,
+      "source_extrude_feature_object_id": 243,
+      "source_feature_name": "StudySweepTargetExtrude"
+    },
+    "component_context": "Sketch inherited 37AD519C base-fragment tail points to 5275CBA4 collection; counted reciprocal membership and typed 42054630 component fragment prove source/profile same native component; rigid sketch transforms establish profile plane and signed Line endpoint distances"
+  },
+  "direction_flip_evidence": {
+    "dedicated_native_flag_identified": false,
+    "feature_definition_and_result_control_flag_bytes": "No differing dedicated flip flag in controlled false/true contrast; parameters carry activation",
+    "native_false": {
+      "AlongDistance": 0.0,
+      "AgainstDistance": 0.6
+    },
+    "native_true": {
+      "AlongDistance": 0.6,
+      "AgainstDistance": 0.0
+    },
+    "actual_api_both": {
+      "distance_one": 0.6,
+      "distance_two": null
+    },
+    "path_endpoint_signed_plane_distances_cm": [
+      -3.0,
+      5.0
+    ],
+    "rail_endpoint_signed_plane_distances_cm": [
+      -3.0,
+      5.0
+    ],
+    "false_result_x_bounds_cm": [
+      -1.7999999999999996,
+      0.0
+    ],
+    "true_result_x_bounds_cm": [
+      0.0,
+      3.0000000000000004
+    ],
+    "derivation_scope": "Observed exclusive along/against activation only when normal-oriented straight path AND rail cross profile plane in same native component",
+    "one_sided_scope": "One-sided rails retain is_direction_flipped=None despite actual API default true; no active direction semantics inferred"
+  },
+  "validation": {
+    "actual_samples": 6,
+    "all_active_api_controls_and_context_comparisons_passed": true,
+    "raw_line_context_endpoints_match_actual_api_world_points": "True for owned root-component documents",
+    "boolean_inputs": "Counted owned proxy -> descriptor -> historical anchor/body; source feature name matches study seed",
+    "two_sided_single_path": "AlongDistance=.6 / AgainstDistance=.4 match actual distanceOne=.6 / distanceTwo=.4; result x[-1.2,3], volume1.008 cm3",
+    "strict_previous_sample_outputs_unchanged": 8,
+    "malformed_guards": [
+      {
+        "case": "foreign participant proxy owner",
+        "reason": "Sweep input-body proxy/owner unresolved"
+      },
+      {
+        "case": "simultaneously active rail branches",
+        "reason": "Unobserved two-sided rail active distance branches"
+      },
+      {
+        "case": "path missing profile plane",
+        "reason": "Sweep source Line misses profile plane"
+      },
+      {
+        "case": "unsupported operation option",
+        "reason": "Unsupported Sweep reader operation/branch options"
+      }
+    ]
+  },
+  "limits": [
+    "Direction-flip evidence is an active distance-branch encoding, not a discovered boolean flag",
+    "Two-sided support bounded to observed normal-oriented straight Line path; rail case additionally requires straight rail crossing same profile plane and one exclusively active distance branch",
+    "Closed Circle/composite cases retain earlier reader scope; general two-sided arcs, reverse source directions, full-extent two-sided rails and multiple simultaneously active guide branches remain unresolved",
+    "Plane intersection does not reconstruct trimmed profile interiors; no exact swept geometry computed",
+    "Only one historical body input observed per Boolean feature; general participants, exact result lifecycle, occurrence transforms and face/edge persistence remain unresolved",
+    "NewComponent and solid-body Sweep modes remain unsupported",
+    "API result bounds and volumes are retained as independent contrast evidence; no native swept-volume reconstruction claimed"
+  ],
+  "samples": [
+    {
+      "file": "sweepoperations-62378e7c0294/join.f3d",
+      "feature_object_id": 361,
+      "requested": {
+        "operation": 0,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends to x=5",
+        "two_sided_path": false
+      },
+      "api_settings": {
+        "operation": 0,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surface_count": 0,
+        "profile_scaling": null,
+        "extent": null,
+        "is_direction_flipped": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": null
+      },
+      "api_getter_errors": [],
+      "api_result_bodies": [
+        {
+          "name": "StudySweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZArexy+uIY35TZjvffv1/7u9koAojBWMzhSTLVLO01JQkXeMUi2Rdk1QLI11LM/NU3eQk45SkpCSTZMOUNLBaoBkMaABsn4EC2DqQ9UbmpgBxpHKFiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 12.72,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            5.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "decoded": {
+        "operation": "Join",
+        "stored_operation_code": 1,
+        "is_solid": true,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 1.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 387,
+          "AgainstRailDistance": 393,
+          "AlongDistance": 384,
+          "AlongRailDistance": 390,
+          "TaperAngle": 399,
+          "TwistAngle": 396
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 376,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 379,
+              "terminal_object_id": 382,
+              "sketch_object_id": 328,
+              "sketch_name": "SweepPath",
+              "curve_object_id": 357,
+              "curve_entity_tag": 121,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "selection_record_object_id": 369,
+          "descriptor_object_id": 372,
+          "loop_definition_object_id": 375,
+          "sketch_object_id": 288,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 324,
+                  "entity_kind": "Line",
+                  "entity_tag": 117,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 321,
+                  "entity_kind": "Line",
+                  "entity_tag": 114,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 323,
+                  "entity_kind": "Line",
+                  "entity_tag": 116,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 322,
+                  "entity_kind": "Line",
+                  "entity_tag": 115,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 401,
+        "uninterpreted_result_control_prefix_hex": "000000000100",
+        "result_body_anchors": [],
+        "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved",
+        "result_anchor_list_end_relative_offset": 157,
+        "input_body_selection_record_object_ids": [
+          362
+        ],
+        "input_bodies": [
+          {
+            "selection_record_object_id": 362,
+            "descriptor_object_id": 365,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281,
+            "source_owner_object_id": 243,
+            "association": "Counted Sweep input proxy with matching owner, descriptor and typed native body anchor"
+          }
+        ],
+        "input_body_status": "Observed one historical input body for Join/Cut/Intersect; exact result lifecycle and general participant lists unresolved",
+        "path_profile_context": {
+          "component_object_id": 3,
+          "profile_sketch_object_id": 288,
+          "profile_origin_component_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "profile_normal_component": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "path": {
+            "sketch_object_id": 328,
+            "curve_object_id": 357,
+            "start_component_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_component_cm": [
+              5.0,
+              0.0,
+              0.0
+            ],
+            "signed_endpoint_distances_to_profile_plane_cm": [
+              0.0,
+              5.0
+            ],
+            "profile_plane_intersection_line_fraction": -0.0,
+            "extends_both_sides_of_profile_plane": false,
+            "source_direction_matches_observed_branch_order": false,
+            "context_scope": "Same native component through reciprocal sketch collection; plane crossing does not reconstruct profile interiors"
+          }
+        },
+        "distance_branch_status": "Captured one-sided normal-oriented straight path"
+      }
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/intersect.f3d",
+      "feature_object_id": 361,
+      "requested": {
+        "operation": 2,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends to x=5",
+        "two_sided_path": false,
+        "participant_bodies": [
+          {
+            "name": "StudySweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrXvhlg2La9rG83XaIlIbHIEqjBSMDZTSDG2NDY1TrPUTTU3StU1MTA11E1MNDPTNUxLSUlNTUtNNUtKBKsFmsGABsD2GSiArQNZb2RuCgBdv7RDiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 12.0,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              2.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "api_settings": {
+        "operation": 2,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surface_count": 0,
+        "profile_scaling": null,
+        "extent": null,
+        "is_direction_flipped": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": [
+          {
+            "name": "StudySweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrXvhlg2La9rG83XaIlIbHIEqjBSMDZTSDG2NDY1TrPUTTU3StU1MTA11E1MNDPTNUxLSUlNTUtNNUtKBKsFmsGABsD2GSiArQNZb2RuCgBdv7RDiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 12.0,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              2.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "api_getter_errors": [],
+      "api_result_bodies": [
+        {
+          "name": "StudySweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrXvhlg2La9rG83XaIlIbHIEqjBSMDZTSDG2NDY1TrPUTTU3StU1MTA11E1MNDPTNUxLSUlNTUtNNUtKBKsFmsGABsD2GSiArQNZb2RuCgBdv7RDiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.48,
+          "bounding_box_min_cm": [
+            0.0,
+            -0.2,
+            -0.3
+          ],
+          "bounding_box_max_cm": [
+            2.0,
+            0.2,
+            0.3
+          ]
+        }
+      ],
+      "decoded": {
+        "operation": "Intersect",
+        "stored_operation_code": 3,
+        "is_solid": true,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 1.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 387,
+          "AgainstRailDistance": 393,
+          "AlongDistance": 384,
+          "AlongRailDistance": 390,
+          "TaperAngle": 399,
+          "TwistAngle": 396
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 376,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 379,
+              "terminal_object_id": 382,
+              "sketch_object_id": 328,
+              "sketch_name": "SweepPath",
+              "curve_object_id": 357,
+              "curve_entity_tag": 121,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "selection_record_object_id": 369,
+          "descriptor_object_id": 372,
+          "loop_definition_object_id": 375,
+          "sketch_object_id": 288,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 324,
+                  "entity_kind": "Line",
+                  "entity_tag": 117,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 321,
+                  "entity_kind": "Line",
+                  "entity_tag": 114,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 323,
+                  "entity_kind": "Line",
+                  "entity_tag": 116,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 322,
+                  "entity_kind": "Line",
+                  "entity_tag": 115,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 401,
+        "uninterpreted_result_control_prefix_hex": "000000000100",
+        "result_body_anchors": [],
+        "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved",
+        "result_anchor_list_end_relative_offset": 157,
+        "input_body_selection_record_object_ids": [
+          362
+        ],
+        "input_bodies": [
+          {
+            "selection_record_object_id": 362,
+            "descriptor_object_id": 365,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281,
+            "source_owner_object_id": 243,
+            "association": "Counted Sweep input proxy with matching owner, descriptor and typed native body anchor"
+          }
+        ],
+        "input_body_status": "Observed one historical input body for Join/Cut/Intersect; exact result lifecycle and general participant lists unresolved",
+        "path_profile_context": {
+          "component_object_id": 3,
+          "profile_sketch_object_id": 288,
+          "profile_origin_component_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "profile_normal_component": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "path": {
+            "sketch_object_id": 328,
+            "curve_object_id": 357,
+            "start_component_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_component_cm": [
+              5.0,
+              0.0,
+              0.0
+            ],
+            "signed_endpoint_distances_to_profile_plane_cm": [
+              0.0,
+              5.0
+            ],
+            "profile_plane_intersection_line_fraction": -0.0,
+            "extends_both_sides_of_profile_plane": false,
+            "source_direction_matches_observed_branch_order": false,
+            "context_scope": "Same native component through reciprocal sketch collection; plane crossing does not reconstruct profile interiors"
+          }
+        },
+        "distance_branch_status": "Captured one-sided normal-oriented straight path"
+      }
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/two_sided.f3d",
+      "feature_object_id": 276,
+      "requested": {
+        "operation": 3,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends from x=-3 to x=5",
+        "two_sided_path": true,
+        "distance_one": 0.6,
+        "distance_two": 0.4
+      },
+      "api_settings": {
+        "operation": 3,
+        "orientation": 1,
+        "is_solid": true,
+        "distance_one": 0.6,
+        "distance_two": 0.4,
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": null,
+        "guide_surface_count": 0,
+        "profile_scaling": null,
+        "extent": null,
+        "is_direction_flipped": null,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": null
+      },
+      "api_getter_errors": [],
+      "api_result_bodies": [
+        {
+          "name": "Body1",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvykKuGXs308FvpW/7WKXjITqMJIwdhMwTwlySA1ydJY19TCMFHXJCk5SdfSMiVN1yDF2DjV1MzMzMTMEqwWaAYDGgDbZ6AAtg5kvbGZOQBoCAyViAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 1.008,
+          "bounding_box_min_cm": [
+            -1.2000000000000002,
+            -0.2,
+            -0.3
+          ],
+          "bounding_box_max_cm": [
+            3.0,
+            0.2,
+            0.3
+          ]
+        }
+      ],
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "sweep_mode": "SinglePathPerpendicular",
+        "stored_mode_code": 2,
+        "orientation": "Perpendicular",
+        "orientation_status": "Observed single-path enum",
+        "path_fraction": 0.6,
+        "stored_against_path_fraction": 0.4,
+        "distance_two_fraction": 0.4,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.4,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 0.6,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 295,
+          "AgainstRailDistance": 301,
+          "AlongDistance": 292,
+          "AlongRailDistance": 298,
+          "TaperAngle": 307,
+          "TwistAngle": 304
+        },
+        "taper_angle_radians": 0.0,
+        "twist_angle_radians": 0.0,
+        "angle_control_status": "Single-path orientation controls activity",
+        "path": {
+          "selection_record_object_id": 284,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 287,
+              "terminal_object_id": 290,
+              "sketch_object_id": 243,
+              "sketch_name": "SweepPath",
+              "curve_object_id": 272,
+              "curve_entity_tag": 112,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "selection_record_object_id": 277,
+          "descriptor_object_id": 280,
+          "loop_definition_object_id": 283,
+          "sketch_object_id": 202,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 239,
+                  "entity_kind": "Line",
+                  "entity_tag": 108,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 237,
+                  "entity_kind": "Line",
+                  "entity_tag": 106,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 236,
+                  "entity_kind": "Line",
+                  "entity_tag": 105,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 238,
+                  "entity_kind": "Line",
+                  "entity_tag": 107,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "profile_scaling": null,
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": null,
+        "guide_rail": null,
+        "stored_guide_rail": null,
+        "guide_rail_status": "No rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 309,
+        "uninterpreted_result_control_prefix_hex": "000001000100",
+        "result_body_anchors": [
+          {
+            "object_id": 373,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 367,
+            "source_owner_object_id": 276,
+            "native_uuid_text": "8df5a5c2-0391-43f8-9b81-522e4109bbd1",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 41223,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved",
+        "result_anchor_list_end_relative_offset": 172,
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "input_body_status": "Observed one historical input body for Join/Cut/Intersect; exact result lifecycle and general participant lists unresolved",
+        "path_profile_context": {
+          "component_object_id": 3,
+          "profile_sketch_object_id": 202,
+          "profile_origin_component_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "profile_normal_component": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "path": {
+            "sketch_object_id": 243,
+            "curve_object_id": 272,
+            "start_component_cm": [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            "end_component_cm": [
+              5.0,
+              0.0,
+              0.0
+            ],
+            "signed_endpoint_distances_to_profile_plane_cm": [
+              -3.0,
+              5.0
+            ],
+            "profile_plane_intersection_line_fraction": 0.375,
+            "extends_both_sides_of_profile_plane": true,
+            "source_direction_matches_observed_branch_order": true,
+            "context_scope": "Same native component through reciprocal sketch collection; plane crossing does not reconstruct profile interiors"
+          }
+        },
+        "distance_branch_status": "AlongDistance and AgainstDistance match API distanceOne/Two on captured normal-oriented straight two-sided path"
+      }
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/rail_flip_false.f3d",
+      "feature_object_id": 309,
+      "requested": {
+        "operation": 3,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends from x=-3 to x=5",
+        "two_sided_path": true,
+        "distance_one": 0.6,
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.15,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.55,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": false
+      },
+      "api_settings": {
+        "operation": 3,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 0.6,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.15,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.55,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_surface_count": 0,
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": false,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": null
+      },
+      "api_getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 119, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 144, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "api_result_bodies": [
+        {
+          "name": "Body1",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtT0ecy56z3vt6+ZJa7brPcVqMJIwdhMwSQxNSU1JcVQ18DA0lLXJC3JUDfRMsVE18TYwDAtKSnJ0tLUHKwWaAYDGgDbZ6AAtg5kvbGlKQBvZDBaiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 0.31536,
+          "bounding_box_min_cm": [
+            -1.7999999999999996,
+            -0.2,
+            -0.3
+          ],
+          "bounding_box_max_cm": [
+            0.0,
+            0.2,
+            0.3
+          ]
+        }
+      ],
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "sweep_mode": "GuideRailPerpendicularExtent",
+        "stored_mode_code": 3,
+        "orientation": null,
+        "orientation_status": "Inactive guide mode; actual API getter raises InternalValidationError",
+        "path_fraction": 0.6,
+        "stored_against_path_fraction": 0.6,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.6,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 0.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 335,
+          "AgainstRailDistance": 341,
+          "AlongDistance": 332,
+          "AlongRailDistance": 338,
+          "TaperAngle": 347,
+          "TwistAngle": 344
+        },
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "angle_control_status": "SDK ignores taper/twist in guide modes; native bindings retained",
+        "path": {
+          "selection_record_object_id": 317,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 320,
+              "terminal_object_id": 323,
+              "sketch_object_id": 243,
+              "sketch_name": "SweepPath",
+              "curve_object_id": 272,
+              "curve_entity_tag": 112,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "selection_record_object_id": 310,
+          "descriptor_object_id": 313,
+          "loop_definition_object_id": 316,
+          "sketch_object_id": 202,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 239,
+                  "entity_kind": "Line",
+                  "entity_tag": 108,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 236,
+                  "entity_kind": "Line",
+                  "entity_tag": 105,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 238,
+                  "entity_kind": "Line",
+                  "entity_tag": 107,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 237,
+                  "entity_kind": "Line",
+                  "entity_tag": 106,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "profile_scaling": "Scale",
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": "PerpendicularToPath",
+        "guide_rail": {
+          "selection_record_object_id": 324,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 327,
+              "terminal_object_id": 330,
+              "sketch_object_id": 276,
+              "sketch_name": "SweepRail",
+              "curve_object_id": 305,
+              "curve_entity_tag": 116,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "stored_guide_rail": {
+          "selection_record_object_id": 324,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 327,
+              "terminal_object_id": 330,
+              "sketch_object_id": 276,
+              "sketch_name": "SweepRail",
+              "curve_object_id": 305,
+              "curve_entity_tag": 116,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "guide_rail_status": "Explicit native rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": false,
+        "direction_flip_status": "Observed API false/true contrast encoded by exclusive AgainstDistance/AlongDistance activation; no dedicated native flag claimed",
+        "result_control_record_object_id": 349,
+        "uninterpreted_result_control_prefix_hex": "000001010101",
+        "result_body_anchors": [
+          {
+            "object_id": 401,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 395,
+            "source_owner_object_id": 309,
+            "native_uuid_text": "1fbee61c-dd2d-48f1-8f8f-10f39e80fa8b",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 46137,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved",
+        "result_anchor_list_end_relative_offset": 182,
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "input_body_status": "Observed one historical input body for Join/Cut/Intersect; exact result lifecycle and general participant lists unresolved",
+        "path_profile_context": {
+          "component_object_id": 3,
+          "profile_sketch_object_id": 202,
+          "profile_origin_component_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "profile_normal_component": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "path": {
+            "sketch_object_id": 243,
+            "curve_object_id": 272,
+            "start_component_cm": [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            "end_component_cm": [
+              5.0,
+              0.0,
+              0.0
+            ],
+            "signed_endpoint_distances_to_profile_plane_cm": [
+              -3.0,
+              5.0
+            ],
+            "profile_plane_intersection_line_fraction": 0.375,
+            "extends_both_sides_of_profile_plane": true,
+            "source_direction_matches_observed_branch_order": true,
+            "context_scope": "Same native component through reciprocal sketch collection; plane crossing does not reconstruct profile interiors"
+          },
+          "rail": {
+            "sketch_object_id": 276,
+            "curve_object_id": 305,
+            "start_component_cm": [
+              -3.0,
+              0.15,
+              0.0
+            ],
+            "end_component_cm": [
+              5.0,
+              0.55,
+              0.0
+            ],
+            "signed_endpoint_distances_to_profile_plane_cm": [
+              -3.0,
+              5.0
+            ],
+            "profile_plane_intersection_line_fraction": 0.375,
+            "extends_both_sides_of_profile_plane": true,
+            "source_direction_matches_observed_branch_order": true,
+            "context_scope": "Same native component through reciprocal sketch collection; plane crossing does not reconstruct profile interiors"
+          }
+        },
+        "direction_branch": {
+          "active_parameter_role": "AgainstDistance",
+          "stored_along_fraction": 0.0,
+          "stored_against_fraction": 0.6,
+          "activity_scope": "Observed normal-oriented straight path and rail both cross profile plane in one native component"
+        }
+      }
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/rail_flip_true.f3d",
+      "feature_object_id": 309,
+      "requested": {
+        "operation": 3,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends from x=-3 to x=5",
+        "two_sided_path": true,
+        "distance_one": 0.6,
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.15,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.55,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": true
+      },
+      "api_settings": {
+        "operation": 3,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 0.6,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                -3.0,
+                0.15,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.55,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_surface_count": 0,
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": true,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": null
+      },
+      "api_getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 119, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 144, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "api_result_bodies": [
+        {
+          "name": "Body1",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwrXCfXdC9T1dt8eLPrnlwVUEVGGkYGymkJiUlJKUmJKim5KSkqhrYplmqGthbGmsm2ZgamphYZCUmppsBlYLNIMBDYDtM1AAWwey3tjSFADc6lPIiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 1.1400000000000001,
+          "bounding_box_min_cm": [
+            0.0,
+            -0.30000000000000004,
+            -0.45
+          ],
+          "bounding_box_max_cm": [
+            3.0000000000000004,
+            0.30000000000000004,
+            0.45
+          ]
+        }
+      ],
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "sweep_mode": "GuideRailPerpendicularExtent",
+        "stored_mode_code": 3,
+        "orientation": null,
+        "orientation_status": "Inactive guide mode; actual API getter raises InternalValidationError",
+        "path_fraction": 0.6,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 0.6,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 335,
+          "AgainstRailDistance": 341,
+          "AlongDistance": 332,
+          "AlongRailDistance": 338,
+          "TaperAngle": 347,
+          "TwistAngle": 344
+        },
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "angle_control_status": "SDK ignores taper/twist in guide modes; native bindings retained",
+        "path": {
+          "selection_record_object_id": 317,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 320,
+              "terminal_object_id": 323,
+              "sketch_object_id": 243,
+              "sketch_name": "SweepPath",
+              "curve_object_id": 272,
+              "curve_entity_tag": 112,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "selection_record_object_id": 310,
+          "descriptor_object_id": 313,
+          "loop_definition_object_id": 316,
+          "sketch_object_id": 202,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 236,
+                  "entity_kind": "Line",
+                  "entity_tag": 105,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 237,
+                  "entity_kind": "Line",
+                  "entity_tag": 106,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 239,
+                  "entity_kind": "Line",
+                  "entity_tag": 108,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 238,
+                  "entity_kind": "Line",
+                  "entity_tag": 107,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "profile_scaling": "Scale",
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": "PerpendicularToPath",
+        "guide_rail": {
+          "selection_record_object_id": 324,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 327,
+              "terminal_object_id": 330,
+              "sketch_object_id": 276,
+              "sketch_name": "SweepRail",
+              "curve_object_id": 305,
+              "curve_entity_tag": 116,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "stored_guide_rail": {
+          "selection_record_object_id": 324,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 327,
+              "terminal_object_id": 330,
+              "sketch_object_id": 276,
+              "sketch_name": "SweepRail",
+              "curve_object_id": 305,
+              "curve_entity_tag": 116,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "guide_rail_status": "Explicit native rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": true,
+        "direction_flip_status": "Observed API false/true contrast encoded by exclusive AgainstDistance/AlongDistance activation; no dedicated native flag claimed",
+        "result_control_record_object_id": 349,
+        "uninterpreted_result_control_prefix_hex": "000001010101",
+        "result_body_anchors": [
+          {
+            "object_id": 401,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 395,
+            "source_owner_object_id": 309,
+            "native_uuid_text": "a4afbf40-c292-45f3-87f4-f7ea49d11ca6",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 46137,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved",
+        "result_anchor_list_end_relative_offset": 182,
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "input_body_status": "Observed one historical input body for Join/Cut/Intersect; exact result lifecycle and general participant lists unresolved",
+        "path_profile_context": {
+          "component_object_id": 3,
+          "profile_sketch_object_id": 202,
+          "profile_origin_component_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "profile_normal_component": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "path": {
+            "sketch_object_id": 243,
+            "curve_object_id": 272,
+            "start_component_cm": [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            "end_component_cm": [
+              5.0,
+              0.0,
+              0.0
+            ],
+            "signed_endpoint_distances_to_profile_plane_cm": [
+              -3.0,
+              5.0
+            ],
+            "profile_plane_intersection_line_fraction": 0.375,
+            "extends_both_sides_of_profile_plane": true,
+            "source_direction_matches_observed_branch_order": true,
+            "context_scope": "Same native component through reciprocal sketch collection; plane crossing does not reconstruct profile interiors"
+          },
+          "rail": {
+            "sketch_object_id": 276,
+            "curve_object_id": 305,
+            "start_component_cm": [
+              -3.0,
+              0.15,
+              0.0
+            ],
+            "end_component_cm": [
+              5.0,
+              0.55,
+              0.0
+            ],
+            "signed_endpoint_distances_to_profile_plane_cm": [
+              -3.0,
+              5.0
+            ],
+            "profile_plane_intersection_line_fraction": 0.375,
+            "extends_both_sides_of_profile_plane": true,
+            "source_direction_matches_observed_branch_order": true,
+            "context_scope": "Same native component through reciprocal sketch collection; plane crossing does not reconstruct profile interiors"
+          }
+        },
+        "direction_branch": {
+          "active_parameter_role": "AlongDistance",
+          "stored_along_fraction": 0.6,
+          "stored_against_fraction": 0.0,
+          "activity_scope": "Observed normal-oriented straight path and rail both cross profile plane in one native component"
+        }
+      }
+    },
+    {
+      "file": "sweepoperations-62378e7c0294/guided_cut.f3d",
+      "feature_object_id": 394,
+      "requested": {
+        "operation": 1,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_plane": "YZ at x=0; path extends to x=5",
+        "two_sided_path": false,
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.3,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.6,
+                0.0
+              ]
+            }
+          ]
+        },
+        "profile_scaling": 0,
+        "extent": 0,
+        "participant_bodies": [
+          {
+            "name": "StudySweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQt2Jj2JcX/1DZ78/tSZoxtZ6oAojBWMzBUNzS1OLtGQjXQvTJANdk8RUSyDLOEXX2MAy1dzSIi0x0dQUrBZoBgMaANtnoAC2DmS9kbkpANnpvfqIAAAA",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 28.0,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "api_settings": {
+        "operation": 1,
+        "orientation": null,
+        "is_solid": true,
+        "distance_one": 1.0,
+        "distance_two": null,
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "path": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepPath",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_rail": {
+          "count": 1,
+          "is_closed": false,
+          "entities": [
+            {
+              "source_kind": "SketchLine",
+              "source_sketch_name": "SweepRail",
+              "is_opposed_to_entity": false,
+              "source_line_start_world_cm": [
+                0.0,
+                0.3,
+                0.0
+              ],
+              "source_line_end_world_cm": [
+                5.0,
+                0.6,
+                0.0
+              ]
+            }
+          ]
+        },
+        "guide_surface_count": 0,
+        "profile_scaling": 0,
+        "extent": 0,
+        "is_direction_flipped": true,
+        "profile": {
+          "sketch_name": "SweepSection",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_count": 4
+            }
+          ]
+        },
+        "participant_bodies": [
+          {
+            "name": "StudySweepTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQt2Jj2JcX/1DZ78/tSZoxtZ6oAojBWMzBUNzS1OLtGQjXQvTJANdk8RUSyDLOEXX2MAy1dzSIi0x0dQUrBZoBgMaANtnoAC2DmS9kbkpANnpvfqIAAAA",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 28.0,
+            "bounding_box_min_cm": [
+              -1.0,
+              -1.0,
+              -1.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "api_getter_errors": [
+        {
+          "getter": "orientation",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 119, in getter\n    return read()\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepOperationModes.py\", line 144, in <lambda>\n    \"orientation\": getter(\"orientation\", lambda: feature.orientation),\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 134716, in _get_orientation\n    return _fusion.SweepFeature__get_orientation(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : false\n"
+        }
+      ],
+      "api_result_bodies": [
+        {
+          "name": "StudySweepTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQt2Jj2JcX/1DZ78/tSZoxtZ6oAojBWMzBUNzS1OLtGQjXQvTJANdk8RUSyDLOEXX2MAy1dzSIi0x0dQUrBZoBgMaANtnoAC2DmS9kbkpANnpvfqIAAAA",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 25.2,
+          "bounding_box_min_cm": [
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "bounding_box_max_cm": [
+            6.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "decoded": {
+        "operation": "Cut",
+        "stored_operation_code": 2,
+        "is_solid": true,
+        "sweep_mode": "GuideRailPerpendicularExtent",
+        "stored_mode_code": 3,
+        "orientation": null,
+        "orientation_status": "Inactive guide mode; actual API getter raises InternalValidationError",
+        "path_fraction": 1.0,
+        "stored_against_path_fraction": 0.0,
+        "distance_two_fraction": null,
+        "stored_parameter_values": {
+          "AgainstDistance": 0.0,
+          "AgainstRailDistance": 1.0,
+          "AlongDistance": 1.0,
+          "AlongRailDistance": 1.0,
+          "TaperAngle": 0.0,
+          "TwistAngle": 0.0
+        },
+        "parameter_bindings": {
+          "AgainstDistance": 427,
+          "AgainstRailDistance": 433,
+          "AlongDistance": 424,
+          "AlongRailDistance": 430,
+          "TaperAngle": 439,
+          "TwistAngle": 436
+        },
+        "taper_angle_radians": null,
+        "twist_angle_radians": null,
+        "angle_control_status": "SDK ignores taper/twist in guide modes; native bindings retained",
+        "path": {
+          "selection_record_object_id": 409,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 412,
+              "terminal_object_id": 415,
+              "sketch_object_id": 328,
+              "sketch_name": "SweepPath",
+              "curve_object_id": 357,
+              "curve_entity_tag": 121,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "profile": {
+          "selection_record_object_id": 402,
+          "descriptor_object_id": 405,
+          "loop_definition_object_id": 408,
+          "sketch_object_id": 288,
+          "sketch_name": "SweepSection",
+          "loops": [
+            {
+              "is_outer": true,
+              "curve_references": [
+                {
+                  "entity_id": 322,
+                  "entity_kind": "Line",
+                  "entity_tag": 115,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 323,
+                  "entity_kind": "Line",
+                  "entity_tag": 116,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 321,
+                  "entity_kind": "Line",
+                  "entity_tag": 114,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                },
+                {
+                  "entity_id": 324,
+                  "entity_kind": "Line",
+                  "entity_tag": 117,
+                  "secondary_tag": 0,
+                  "stored_direction_flag": 0
+                }
+              ],
+              "order_status": "Stored membership order; traversal ordering not decoded"
+            }
+          ],
+          "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+        },
+        "profile_scaling": "Scale",
+        "stored_scaling_bits": [
+          1,
+          1
+        ],
+        "extent": "PerpendicularToPath",
+        "guide_rail": {
+          "selection_record_object_id": 416,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 419,
+              "terminal_object_id": 422,
+              "sketch_object_id": 361,
+              "sketch_name": "SweepRail",
+              "curve_object_id": 390,
+              "curve_entity_tag": 125,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "stored_guide_rail": {
+          "selection_record_object_id": 416,
+          "count": 1,
+          "segments": [
+            {
+              "index": 0,
+              "descriptor_object_id": 419,
+              "terminal_object_id": 422,
+              "sketch_object_id": 361,
+              "sketch_name": "SweepRail",
+              "curve_object_id": 390,
+              "curve_entity_tag": 125,
+              "kind": "Line"
+            }
+          ],
+          "is_closed": false,
+          "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
+          "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"
+        },
+        "guide_rail_status": "Explicit native rail selection",
+        "guide_surfaces": [],
+        "is_chain_selection": null,
+        "stored_chain_selection_flag": 1,
+        "is_direction_flipped": null,
+        "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+        "result_control_record_object_id": 441,
+        "uninterpreted_result_control_prefix_hex": "000000000101",
+        "result_body_anchors": [],
+        "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved",
+        "result_anchor_list_end_relative_offset": 167,
+        "input_body_selection_record_object_ids": [
+          395
+        ],
+        "input_bodies": [
+          {
+            "selection_record_object_id": 395,
+            "descriptor_object_id": 398,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281,
+            "source_owner_object_id": 243,
+            "association": "Counted Sweep input proxy with matching owner, descriptor and typed native body anchor"
+          }
+        ],
+        "input_body_status": "Observed one historical input body for Join/Cut/Intersect; exact result lifecycle and general participant lists unresolved",
+        "path_profile_context": {
+          "component_object_id": 3,
+          "profile_sketch_object_id": 288,
+          "profile_origin_component_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "profile_normal_component": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "path": {
+            "sketch_object_id": 328,
+            "curve_object_id": 357,
+            "start_component_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "end_component_cm": [
+              5.0,
+              0.0,
+              0.0
+            ],
+            "signed_endpoint_distances_to_profile_plane_cm": [
+              0.0,
+              5.0
+            ],
+            "profile_plane_intersection_line_fraction": -0.0,
+            "extends_both_sides_of_profile_plane": false,
+            "source_direction_matches_observed_branch_order": false,
+            "context_scope": "Same native component through reciprocal sketch collection; plane crossing does not reconstruct profile interiors"
+          }
+        }
+      }
+    }
+  ]
+}

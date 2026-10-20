@@ -18,14 +18,19 @@ CURVE_DESCRIPTOR = "5A1BF548-241F-46FD-9FB5-E4B05126EB9D"
 CURVE_LEAF = "E2CEFD18-D755-4E09-8E7F-953A2F6D43F8"
 
 
-def decode_sweep_modes(data, records, body, feature, features):
-    """Five-argument feature reader; use after the existing single-path reader."""
+def decode_sweep_modes(data, records, body, feature, features, *, allowed_operation_codes=(4,), allow_two_sided=False):
+    """Strict defaults; optional observed operations/branches serve the wrapper."""
+    allowed_operation_codes = tuple(allowed_operation_codes)
+    if (not allowed_operation_codes or len(set(allowed_operation_codes)) != len(allowed_operation_codes)
+            or any(code not in (1, 2, 3, 4) for code in allowed_operation_codes)
+            or type(allow_two_sided) is not bool):
+        raise ValueError("Unsupported Sweep reader operation/branch options")
     if (feature["class_guid"] != SWEEP or len(body) < 170
             or body[0] != 0 or body[1] not in (0, 1)):
         raise ValueError("Unsupported Sweep mode class/prefix")
     props, base = attributes(body, 2) if body[1] else ({}, 2)
     operation = struct.unpack_from("<I", body, base)[0]
-    if (props or operation != 4 or body[base+4] not in (0, 1)
+    if (props or operation not in allowed_operation_codes or body[base+4] not in (0, 1)
             or body[base+5:base+11] != struct.pack("<I", 3)+b"\0\0"
             or body[base+11] not in (0, 1)
             or body[base+14:base+38] != struct.pack("<ddd", 1., 0., 0.)):
@@ -85,11 +90,12 @@ def decode_sweep_modes(data, records, body, feature, features):
     if len(profiles) != 1:
         raise ValueError("Only observed single sketch-profile Sweep modes supported")
     after_profile = cursor+41
-    if body[after_profile:after_profile+4] != b"\0"*4 or struct.unpack_from("<I", body, after_profile+4)[0] != 1:
+    anchor_count = struct.unpack_from("<I", body, after_profile+4)[0]
+    if body[after_profile:after_profile+4] != b"\0"*4 or anchor_count != (1 if operation == 4 else 0):
         raise ValueError("Unsupported Sweep mode result-anchor list")
-    anchor_id = reference(body, after_profile+8)
+    anchor_ids = [reference(body, after_profile+8+11*i) for i in range(anchor_count)]
     anchor_map = {a["object_id"]: a for a in decode_body_selections(data, records)["body_anchors"]}
-    if anchor_id not in anchor_map or anchor_map[anchor_id]["source_owner_object_id"] != owner:
+    if any(i not in anchor_map or anchor_map[i]["source_owner_object_id"] != owner for i in anchor_ids):
         raise ValueError("Sweep result native body anchor unresolved or owner disagrees")
 
     def path(identity):
@@ -138,7 +144,8 @@ def decode_sweep_modes(data, records, body, feature, features):
             or (mode in (1, 2) and (rail_id is not None or surface_id is not None))):
         raise ValueError("Sweep mode disagrees with explicit guide selections")
     if (any(not 0 <= values[r] <= 1 for r in ("AlongDistance", "AgainstDistance", "AlongRailDistance", "AgainstRailDistance"))
-            or (values["AgainstDistance"] != 0 and not (source_path["is_closed"] and values["AgainstDistance"] == 1))):
+            or (not allow_two_sided and values["AgainstDistance"] != 0
+                and not (source_path["is_closed"] and values["AgainstDistance"] == 1))):
         raise ValueError("Unobserved Sweep mode distance fractions")
     stored_rail = path(rail_id) if rail_id is not None else None
     scaling_bits = tuple(body[base+12:base+14])
@@ -189,7 +196,8 @@ def decode_sweep_modes(data, records, body, feature, features):
                              "namespace_text": namespace, "entity_uuid_text": entity_uuid,
                              "face_identity_scope": "Explicit historical native body and persistent face recipe; exact ASM face identity unresolved"})
     guided = is_rail or is_surface
-    return {"operation": "NewBody", "stored_operation_code": operation, "is_solid": bool(body[base+11]),
+    result = {"operation": {1: "Join", 2: "Cut", 3: "Intersect", 4: "NewBody"}[operation],
+            "stored_operation_code": operation, "is_solid": bool(body[base+11]),
             "sweep_mode": {1: "SinglePathParallel", 2: "SinglePathPerpendicular", 3: "GuideRailPerpendicularExtent", 4: "GuideRailFullExtents", 5: "GuideSurface"}[mode],
             "stored_mode_code": mode,
             "orientation": None if guided else {1: "Parallel", 2: "Perpendicular"}[mode],
@@ -210,5 +218,8 @@ def decode_sweep_modes(data, records, body, feature, features):
             "is_direction_flipped": None,
             "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
             "result_control_record_object_id": control_id, "uninterpreted_result_control_prefix_hex": control[:6].hex(),
-            "result_body_anchors": [anchor_map[anchor_id]],
+            "result_body_anchors": [anchor_map[i] for i in anchor_ids],
             "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved"}
+    if allowed_operation_codes != (4,) or allow_two_sided:
+        result["result_anchor_list_end_relative_offset"] = after_profile+8+11*anchor_count
+    return result

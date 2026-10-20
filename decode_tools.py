@@ -16,7 +16,7 @@ from decode_threads import decode_thread
 from decode_path_patterns import decode_path_pattern
 from decode_combine import decode_combine
 from decode_sweep import decode_sweep
-from decode_sweep_modes import decode_sweep_modes
+from decode_sweep_operations import decode_sweep_operations
 from decode_thicken import decode_thicken
 from decode_emboss import decode_emboss
 from decode_draft import decode_draft
@@ -79,7 +79,7 @@ def decode_tools(data, records, features):
                 try:
                     settings = decode_sweep(data, records, body, feature, features)
                 except (ValueError, KeyError, IndexError, struct.error):
-                    settings = decode_sweep_modes(data, records, body, feature, features)
+                    settings = decode_sweep_operations(data, records, body, feature, features)
             elif kind == "Loft":
                 settings = decode_loft_operations(data, records, body, feature, features)
             elif kind == "Draft":
