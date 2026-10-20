@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 161,
+  "file_count": 172,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -162,10 +162,21 @@
     "faceedits-3f120cbee8d9/offset_positive.f3d",
     "faceedits-3f120cbee8d9/offset_two_faces.f3d",
     "faceedits-3f120cbee8d9/replace_plane.f3d",
-    "faceedits-3f120cbee8d9/replace_plane_tangent.f3d"
+    "faceedits-3f120cbee8d9/replace_plane_tangent.f3d",
+    "surfacetools-856ca50cf4c7/delete_opening.f3d",
+    "surfacetools-856ca50cf4c7/offset_negative.f3d",
+    "surfacetools-856ca50cf4c7/offset_positive.f3d",
+    "surfacetools-856ca50cf4c7/offset_rounded.f3d",
+    "surfacetools-856ca50cf4c7/patch_circle.f3d",
+    "surfacetools-856ca50cf4c7/patch_rectangle.f3d",
+    "surfacetools-856ca50cf4c7/reverse_normal.f3d",
+    "surfacetools-856ca50cf4c7/stitch_loose.f3d",
+    "surfacetools-856ca50cf4c7/stitch_tight.f3d",
+    "surfacetools-856ca50cf4c7/unstitch_chain.f3d",
+    "surfacetools-856ca50cf4c7/unstitch_face.f3d"
   ],
-  "class_count": 283,
-  "classes_with_observed_semantics": 34,
+  "class_count": 292,
+  "classes_with_observed_semantics": 40,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -472,6 +483,26 @@
       "example_files": []
     },
     {
+      "class_guid": "1589BC73-D484-4A6E-8E69-2A1531E845F5",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [
+        "Named feature: SurfaceOffset"
+      ],
+      "example_files": [
+        "surfacetools-856ca50cf4c7/offset_negative.f3d",
+        "surfacetools-856ca50cf4c7/offset_positive.f3d",
+        "surfacetools-856ca50cf4c7/offset_rounded.f3d"
+      ]
+    },
+    {
       "class_guid": "162D3DA8-6A30-4BFE-BC78-698FA32D28DC",
       "base_class_guids": [
         ""
@@ -498,6 +529,25 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "16722593-7399-4963-9EB3-656FE1949577",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: SurfaceStitch"
+      ],
+      "example_files": [
+        "surfacetools-856ca50cf4c7/stitch_loose.f3d",
+        "surfacetools-856ca50cf4c7/stitch_tight.f3d"
+      ]
     },
     {
       "class_guid": "1787C882-91E2-4363-9C18-80C98EBE4C77",
@@ -562,6 +612,23 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "1B3B4C67-F231-4A9C-9B10-9F6017617A54",
+      "base_class_guids": [
+        "60F291CB-499B-4AB1-B0E5-340368671724"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "surfacetools-856ca50cf4c7/stitch_loose.f3d",
+        "surfacetools-856ca50cf4c7/stitch_tight.f3d"
+      ]
     },
     {
       "class_guid": "1C037A07-4A15-43F6-ABFC-BBF61B9038D4",
@@ -798,6 +865,24 @@
         "moretools-380212ab6368/CombineCutNoKeep.f3d",
         "moretools-88a2cd6cad0b/CombineCut.f3d",
         "moretools-88a2cd6cad0b/CombineIntersect.f3d"
+      ]
+    },
+    {
+      "class_guid": "2C122D9F-4F8A-6383-D14C-E00CE77B2226",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: SurfaceDeleteFace"
+      ],
+      "example_files": [
+        "surfacetools-856ca50cf4c7/delete_opening.f3d"
       ]
     },
     {
@@ -2060,6 +2145,24 @@
       "example_files": []
     },
     {
+      "class_guid": "693D6578-4BCE-44F8-B15A-2CE5162A23EE",
+      "base_class_guids": [
+        "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: ReverseNormal"
+      ],
+      "example_files": [
+        "surfacetools-856ca50cf4c7/reverse_normal.f3d"
+      ]
+    },
+    {
       "class_guid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44",
       "base_class_guids": [
         "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
@@ -2631,6 +2734,25 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "discovery-08660c033d4d/discovery.f3d"
+      ]
+    },
+    {
+      "class_guid": "8DA2F4A9-C420-419B-AD5D-9CC901DF0B78",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: Unstitch"
+      ],
+      "example_files": [
+        "surfacetools-856ca50cf4c7/unstitch_chain.f3d",
+        "surfacetools-856ca50cf4c7/unstitch_face.f3d"
       ]
     },
     {
@@ -3551,6 +3673,26 @@
       ]
     },
     {
+      "class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        7
+      ],
+      "observed_semantics": [
+        "Named feature: SurfacePatch"
+      ],
+      "example_files": [
+        "surfacetools-856ca50cf4c7/offset_negative.f3d",
+        "surfacetools-856ca50cf4c7/offset_positive.f3d",
+        "surfacetools-856ca50cf4c7/offset_rounded.f3d"
+      ]
+    },
+    {
       "class_guid": "BF7A6B8B-6E56-4C84-8882-1E8A1C1FE487",
       "base_class_guids": [
         "834C9DEF-4C39-4587-A08D-A5BD1267B7B4"
@@ -4249,6 +4391,24 @@
       ]
     },
     {
+      "class_guid": "E17B013D-E8F7-45B2-9DFA-D31CD2ECFB2D",
+      "base_class_guids": [
+        "60F291CB-499B-4AB1-B0E5-340368671724"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "surfacetools-856ca50cf4c7/offset_negative.f3d",
+        "surfacetools-856ca50cf4c7/offset_positive.f3d",
+        "surfacetools-856ca50cf4c7/offset_rounded.f3d"
+      ]
+    },
+    {
       "class_guid": "E2670B5A-C8DE-4ABA-94AA-11DA5127A65E",
       "base_class_guids": [
         "C2C193F2-E833-4842-8C93-A5B903F3A345"
@@ -4362,6 +4522,24 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "E7A6B3F8-3C46-4FA7-A54E-BEB0C93D2DEA",
+      "base_class_guids": [
+        "5C069ACB-169F-4555-9792-815B4671DDA0"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "surfacetools-856ca50cf4c7/offset_negative.f3d",
+        "surfacetools-856ca50cf4c7/offset_positive.f3d",
+        "surfacetools-856ca50cf4c7/offset_rounded.f3d"
+      ]
     },
     {
       "class_guid": "E8063467-BC05-4688-8196-AECB90F0EFEE",

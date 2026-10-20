@@ -58,7 +58,7 @@ def decode_profiles(data, records, features):
     by_offset = {r.start: r for r in records}
     decoded, unresolved = [], []
     for feature in features:
-        if feature["kind"] not in ("Extrude", "Revolve"):
+        if feature["kind"] not in ("Extrude", "Revolve", "SurfacePatch"):
             continue
         sources = feature.get("sketch_reference_candidates", [])
         if not sources:

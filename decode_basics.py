@@ -43,7 +43,9 @@ def named_features(data, records):
               "C-Pattern": "CircularPattern", "Combine": "Combine", "Draft": "Draft",
               "Split": "SplitBody", "Move": "Move", "Thicken": "Thicken",
               "WorkAxis": "ConstructionAxis", "WorkPoint": "ConstructionPoint",
-              "OffsetFaces": "OffsetFaces", "ReplaceFace": "ReplaceFace", "DeleteFace": "DeleteFace"}
+              "OffsetFaces": "OffsetFaces", "ReplaceFace": "ReplaceFace", "DeleteFace": "DeleteFace",
+              "SurfacePatch": "SurfacePatch", "SurfaceOffset": "SurfaceOffset", "SurfaceStitch": "SurfaceStitch",
+              "UnStitch": "Unstitch", "Reverse Normal": "ReverseNormal", "SurfaceDeleteFace": "SurfaceDeleteFace"}
     for label, kind in labels.items():
         marker = struct.pack("<I", len(label)) + label.encode("utf-16le")
         for match in re.finditer(re.escape(marker), data):
@@ -140,7 +142,7 @@ def attach_parameters(data, records, features, parameters):
 
 
 def sketch_references(data, records, features):
-    by_feature = {f["object_id"]: f for f in features if f["kind"] in ("Extrude", "Revolve")}
+    by_feature = {f["object_id"]: f for f in features if f["kind"] in ("Extrude", "Revolve", "SurfacePatch")}
     by_sketch = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
     for record in records:
         body = data[record.body:record.end]
