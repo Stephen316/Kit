@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 152,
+  "file_count": 153,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "dimensions-f83a2edd2f72/dimensions.f3d",
@@ -153,10 +153,11 @@
     "holeplacements-04adf73afe93/sketch_point.f3d",
     "holeplacements-04adf73afe93/sketch_points.f3d",
     "namedbodies-3c7c11fc2924/namedbodies.f3d",
-    "analytic-86a12b291d0a/analytic.f3d"
+    "analytic-86a12b291d0a/analytic.f3d",
+    "splinepatches-ac5e846e59c0/splinepatches.f3d"
   ],
-  "class_count": 276,
-  "classes_with_observed_semantics": 30,
+  "class_count": 280,
+  "classes_with_observed_semantics": 31,
   "classes": [
     {
       "class_guid": "016D8C93-144B-4352-9299-98FA738BD4FF",
@@ -930,6 +931,20 @@
       ]
     },
     {
+      "class_guid": "2FCB0587-233E-449B-9724-9AAE5AA23647",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "30DCFC57-8E13-405B-9295-5CF74AC1FB39",
       "base_class_guids": [
         "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081"
@@ -1366,6 +1381,22 @@
       ]
     },
     {
+      "class_guid": "493A89BA-E146-498D-9033-2783FE727AF4",
+      "base_class_guids": [
+        "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        3
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "splinepatches-ac5e846e59c0/splinepatches.f3d"
+      ]
+    },
+    {
       "class_guid": "49B2AA69-7655-4C36-A14E-9582CCF1283C",
       "base_class_guids": [
         "130A0711-4E92-4FCD-AADE-B9C82238BB27"
@@ -1631,6 +1662,22 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "discovery-08660c033d4d/discovery.f3d"
+      ]
+    },
+    {
+      "class_guid": "5988EB6C-011B-4012-B500-089A713F57BF",
+      "base_class_guids": [
+        "5C069ACB-169F-4555-9792-815B4671DDA0"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "splinepatches-ac5e846e59c0/splinepatches.f3d"
       ]
     },
     {
@@ -3984,6 +4031,24 @@
       ],
       "example_files": [
         "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
+      "class_guid": "D7015B81-AB4D-4C89-BED7-AA4411E1964A",
+      "base_class_guids": [
+        "2FCB0587-233E-449B-9724-9AAE5AA23647"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        4
+      ],
+      "observed_semantics": [
+        "Unsupported feature with stored label: Base Feature"
+      ],
+      "example_files": [
+        "splinepatches-ac5e846e59c0/splinepatches.f3d"
       ]
     },
     {

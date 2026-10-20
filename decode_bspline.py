@@ -1,4 +1,6 @@
-"""Observed non-rational ASM spline caches; procedural definitions stay opaque."""
+"""Observed ASM spline control grids; procedural definitions stay opaque."""
+
+import math
 
 
 def read_token(tokens, index, kind):
@@ -59,36 +61,63 @@ def decode_bspline(record):
                 "parameter_domain": [knots[degree], knots[-degree-1]], "stored_form_code": form,
                 "stored_cache_trailer": tokens[cursor:],
                 "representation": "Observed non-rational exact_int_cur NUBS cache; support/trailer semantics remain partial"}
-    if name != "spline-surface" or procedural != "loft_spl_sur":
+    if name == "spline-surface" and procedural == "exact_spl_sur":
+        if read_token(tokens, 7, "enum") != 0:
+            raise ValueError("Unsupported exact surface wrapper")
+        start = 8
+    elif name == "spline-surface" and procedural == "loft_spl_sur":
+        starts = [i for i,t in enumerate(tokens) if t["kind"] == "entity_name" and t["value"] == "nubs"]
+        if len(starts) != 1:
+            raise ValueError("Spline surface cache marker missing or ambiguous")
+        start = starts[0]
+    else:
         raise ValueError("Unsupported procedural spline subtype")
-    starts = [i for i,t in enumerate(tokens) if t["kind"] == "entity_name" and t["value"] == "nubs"]
-    if len(starts) != 1:
-        raise ValueError("Spline surface cache marker missing or ambiguous")
-    start = starts[0]
+    rational = read_token(tokens, start, "entity_name") == "nurbs"
+    if tokens[start]["value"] not in ("nubs", "nurbs"):
+        raise ValueError("Unsupported spline surface grid representation")
     du, dv = read_token(tokens, start+1, "integer"), read_token(tokens, start+2, "integer")
-    flags = [read_token(tokens, start+i, "enum") for i in range(3, 7)]
-    if flags != [2, 0, 0, 0]:
-        raise ValueError("Only observed loft surface cache flags supported")
-    unique_u, unique_v = read_token(tokens, start+7, "integer"), read_token(tokens, start+8, "integer")
-    ku, compact_u, nu, cursor = knot_vector(tokens, start+9, unique_u, du)
+    header = start+3
+    if rational:
+        if procedural != "exact_spl_sur" or read_token(tokens, header, "entity_name") != "both":
+            raise ValueError("Unsupported rational surface axis layout")
+        header += 1
+    flags = [read_token(tokens, header+i, "enum") for i in range(4)]
+    expected_flags = [0, 0, 0, 0] if procedural == "exact_spl_sur" else [2, 0, 0, 0]
+    if flags != expected_flags:
+        raise ValueError("Unsupported observed surface axis flags")
+    unique_u, unique_v = read_token(tokens, header+4, "integer"), read_token(tokens, header+5, "integer")
+    ku, compact_u, nu, cursor = knot_vector(tokens, header+6, unique_u, du)
     kv, compact_v, nv, cursor = knot_vector(tokens, cursor, unique_v, dv)
     if nu*nv > 100000:
         raise ValueError("Surface control grid exceeds supported limit")
-    flat = [read_token(tokens, cursor+i, "double") for i in range(3*nu*nv)]
-    cursor += 3*nu*nv
-    if len(tokens) != cursor+13 or tokens[cursor+8]["kind"] != "subtype_end":
+    stride = 4 if rational else 3
+    flat = [read_token(tokens, cursor+i, "double") for i in range(stride*nu*nv)]
+    cursor += stride*nu*nv
+    if procedural == "exact_spl_sur":
+        expected = (["double"]+["integer"]*6+["boolean_token"]+
+                    ["boolean_token", "double"]*4+["enum", "subtype_end"]+["boolean_token"]*4)
+        if [t["kind"] for t in tokens[cursor:]] != expected:
+            raise ValueError("Unsupported exact surface trailer")
+    elif len(tokens) != cursor+13 or tokens[cursor+8]["kind"] != "subtype_end":
         raise ValueError("Unsupported loft surface cache trailer")
-    controls = [flat[i:i+3] for i in range(0, len(flat), 3)]
+    controls = [flat[i:i+3] for i in range(0, len(flat), stride)]
     normalized = [controls[v*nu+u] for u in range(nu) for v in range(nv)]
+    weights = flat[3::4] if rational else []
+    if any(not math.isfinite(w) or w <= 0 for w in weights):
+        raise ValueError("Unsupported nonpositive/nonfinite rational weights")
+    normalized_weights = [weights[v*nu+u] for u in range(nu) for v in range(nv)] if rational else []
     return {"degree_u": du, "degree_v": dv, "control_count_u": nu, "control_count_v": nv,
-            "raw_control_points": normalized, "weights": [], "knots_u": ku, "knots_v": kv,
+            "raw_control_points": normalized, "weights": normalized_weights, "is_rational": rational,
+            "knots_u": ku, "knots_v": kv,
             "stored_compact_knots_u": compact_u, "stored_compact_knots_v": compact_v,
             "stored_control_grid_order": "u-fast", "normalized_control_grid_order": "v-fast",
             "parameter_domain_u": [ku[du], ku[-du-1]], "parameter_domain_v": [kv[dv], kv[-dv-1]],
             "stored_axis_flags": flags, "periodicity_status": "Native axis flags preserved; general form semantics unverified",
             "stored_cache_trailer_scalar": read_token(tokens, cursor, "double"),
             "stored_cache_trailer": tokens[cursor:], "procedural_subtype": procedural,
-            "representation": "Stored non-rational loft NUBS approximation; original procedural loft is not reconstructed",
+            "representation": ("Stored exact spline grid; observed clamped open polynomial/rational surface layout"
+                               if procedural == "exact_spl_sur" else
+                               "Stored non-rational loft NUBS approximation; original procedural loft is not reconstructed"),
             "coordinate_scope": "Raw ASM control coordinates; body transforms and units/context not applied"}
 
 
@@ -101,13 +130,16 @@ def evaluate_curve(cache, parameter):
 
 
 def evaluate_surface(cache, u, v):
-    """Evaluate the recovered non-rational grid; returns raw coordinate values."""
+    """Evaluate a tensor grid in homogeneous coordinates; returns raw values."""
     intermediate = []
     nu, nv = cache["control_count_u"], cache["control_count_v"]
+    weights = cache["weights"] or [1.]*len(cache["raw_control_points"])
+    homogeneous = [[v*w for v in point]+[w] for point, w in zip(cache["raw_control_points"], weights)]
     for row in range(nv):
         curve = {"degree": cache["degree_u"], "knots": cache["knots_u"], "weights": [],
-                 "raw_control_points": [cache["raw_control_points"][col*nv+row] for col in range(nu)],
+                 "raw_control_points": [homogeneous[col*nv+row] for col in range(nu)],
                  "parameter_domain": cache["parameter_domain_u"]}
         intermediate.append(evaluate_curve(curve, u))
-    return evaluate_curve({"degree": cache["degree_v"], "knots": cache["knots_v"], "weights": [],
-                           "raw_control_points": intermediate, "parameter_domain": cache["parameter_domain_v"]}, v)
+    result = evaluate_curve({"degree": cache["degree_v"], "knots": cache["knots_v"], "weights": [],
+                             "raw_control_points": intermediate, "parameter_domain": cache["parameter_domain_v"]}, v)
+    return [value/result[3] for value in result[:3]]

@@ -56,7 +56,7 @@ def evaluate_nurbs(geometry, parameter):
             denominator = knots[index+degree-level+1]-knots[index]
             alpha = (parameter-knots[index])/denominator if denominator else 0.
             values[j] = [(1-alpha)*a+alpha*b for a, b in zip(values[j-1], values[j])]
-    return [v/values[degree][3] for v in values[degree][:3]]
+    return [v/values[degree][-1] for v in values[degree][:-1]]
 
 
 def point_in_sketch(entities, identity, owner):
