@@ -8,7 +8,7 @@ import struct
 from decode_mesh_contents import _backward_differences, _require
 
 DESCRIPTOR = '82a15401a16401'
-OBSERVED_DIMENSIONS = {(4,3),(4,4),(6,8),(8,8),(9,14),(16,28),(26,48),(41,78),(66,128),
+OBSERVED_DIMENSIONS = {(4,3),(4,4),(6,8),(8,8),(9,14),(11,18),(12,20),(16,28),(26,48),(41,78),(66,128),
                        (1556,3103),(2745,5481),(2745,5482)}
 SCOPE = ('Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, '
          'yielding one temporary group label per stored triangle in qualified current native mesh/asset '

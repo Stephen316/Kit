@@ -1,0 +1,640 @@
+class MeshRepairTypes(object):
+    r"""
+    ** This enum is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Specify the main repair type for the mesh. If RebuildMeshRepairType is chosen, other parameters can be set.
+
+    Attributes:
+        CloseHolesMeshRepairType: Simplest and fastest type of repair, only close holes and fix flipped triangles are used to fix the part.
+        StitchAndRemoveMeshRepairType: Makes the same changes as CloseHolesMeshRepairType, and also stitches triangles, removes double
+            triangles, removes degenerated faces, and removes tiny shells.
+        WrapMeshRepairType: Uses in addition to the methods in StitchAndRemoveMeshRepairType also the wrapped method.
+            This methods takes time and removes internal structure.
+        RebuildMeshRepairType: Reconstructs the mesh body using one of 4 MeshRepairRebuildTypes. All inner structures are destroyed.
+        OneTouchFixMeshRepairType: Using various repair types to repair the mesh in one try.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    CloseHolesMeshRepairType = _fusion.MeshRepairTypes_CloseHolesMeshRepairType
+    StitchAndRemoveMeshRepairType = _fusion.MeshRepairTypes_StitchAndRemoveMeshRepairType
+    WrapMeshRepairType = _fusion.MeshRepairTypes_WrapMeshRepairType
+    RebuildMeshRepairType = _fusion.MeshRepairTypes_RebuildMeshRepairType
+    OneTouchFixMeshRepairType = _fusion.MeshRepairTypes_OneTouchFixMeshRepairType
+
+    def __init__(self):
+        _fusion.MeshRepairTypes_swiginit(self, _fusion.new_MeshRepairTypes())
+    __swig_destroy__ = _fusion.delete_MeshRepairTypes
+
+# Register MeshRepairTypes in _fusion:
+_fusion.MeshRepairTypes_swigregister(MeshRepairTypes)
+
+
+class MeshRepairRebuildTypes(object):
+    r"""
+    ** This enum is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Specify the method for the rebuild type of mesh repair. If AccurateMeshRepairRebuildType is chosen,
+    an offset can be set.
+
+    Attributes:
+        FastMeshRepairRebuildType: Rebuilds mesh body quickly, but not accurately.
+        PreserveSharpEdgesMeshRepairRebuildType: Rebuilds mesh body quickly, while preserving sharp edges.
+        AccurateMeshRepairRebuildType: Rebuilds mesh body as accurately as possible.
+        BlockyMeshRepairRebuildType: The mesh will be rebuilt in a blocky style.
+        AdaptiveMeshRepairRebuildType: The mesh will be rebuilt in an adaptive style.
+        AdaptivePreserveSharpEdgesMeshRepairRebuildType: The mesh will be rebuilt in an adaptive style, while preserving sharp edges.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    FastMeshRepairRebuildType = _fusion.MeshRepairRebuildTypes_FastMeshRepairRebuildType
+    PreserveSharpEdgesMeshRepairRebuildType = _fusion.MeshRepairRebuildTypes_PreserveSharpEdgesMeshRepairRebuildType
+    AccurateMeshRepairRebuildType = _fusion.MeshRepairRebuildTypes_AccurateMeshRepairRebuildType
+    BlockyMeshRepairRebuildType = _fusion.MeshRepairRebuildTypes_BlockyMeshRepairRebuildType
+    AdaptiveMeshRepairRebuildType = _fusion.MeshRepairRebuildTypes_AdaptiveMeshRepairRebuildType
+    AdaptivePreserveSharpEdgesMeshRepairRebuildType = _fusion.MeshRepairRebuildTypes_AdaptivePreserveSharpEdgesMeshRepairRebuildType
+
+    def __init__(self):
+        _fusion.MeshRepairRebuildTypes_swiginit(self, _fusion.new_MeshRepairRebuildTypes())
+    __swig_destroy__ = _fusion.delete_MeshRepairRebuildTypes
+
+# Register MeshRepairRebuildTypes in _fusion:
+_fusion.MeshRepairRebuildTypes_swigregister(MeshRepairRebuildTypes)
+
+
+class MeshRepairFeatureInput(Base):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    This class defines the methods and properties that pertain to the definition of a mesh repair
+    feature.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshRepairFeatureInput *":
+        return _fusion.MeshRepairFeatureInput___deref__(self)
+
+    def __eq__(self, rhs: "MeshRepairFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshRepairFeatureInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshRepairFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshRepairFeatureInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshRepairFeatureInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshRepairFeatureInput_classType()
+    __swig_destroy__ = _fusion.delete_MeshRepairFeatureInput
+
+    def _get_mesh(self) -> "adsk.core.Base":
+        r"""Gets and sets the input mesh body."""
+        return _fusion.MeshRepairFeatureInput__get_mesh(self)
+
+    def _set_mesh(self, value: "Base") -> "bool":
+        r"""Gets and sets the input mesh body."""
+        return _fusion.MeshRepairFeatureInput__set_mesh(self, value)
+
+    def _get_meshRepairType(self) -> "adsk.fusion.MeshRepairTypes":
+        r"""Gets and sets the type of mesh repair, default value is StitchAndRemoveMeshRepairType."""
+        return _fusion.MeshRepairFeatureInput__get_meshRepairType(self)
+
+    def _set_meshRepairType(self, value: "MeshRepairTypes") -> "bool":
+        r"""Gets and sets the type of mesh repair, default value is StitchAndRemoveMeshRepairType."""
+        return _fusion.MeshRepairFeatureInput__set_meshRepairType(self, value)
+
+    def _get_meshRepairRebuildType(self) -> "adsk.fusion.MeshRepairRebuildTypes":
+        r"""
+        Gets and sets the type of mesh repair rebuild mode, default value is FastMeshRepairRebuildType.
+        Only valid if meshRepairType is RebuildMeshRepairType.
+        """
+        return _fusion.MeshRepairFeatureInput__get_meshRepairRebuildType(self)
+
+    def _set_meshRepairRebuildType(self, value: "MeshRepairRebuildTypes") -> "bool":
+        r"""
+        Gets and sets the type of mesh repair rebuild mode, default value is FastMeshRepairRebuildType.
+        Only valid if meshRepairType is RebuildMeshRepairType.
+        """
+        return _fusion.MeshRepairFeatureInput__set_meshRepairRebuildType(self, value)
+
+    def _get_density(self) -> "adsk.core.ValueInput":
+        r"""
+        Controls the density of the newly created triangles in RebuildMeshRepairType, default value is 128.
+        The values can range between 8 and 256.
+        Only valid if meshRepairType is RebuildMeshRepairType.
+        """
+        return _fusion.MeshRepairFeatureInput__get_density(self)
+
+    def _set_density(self, value: "ValueInput") -> "bool":
+        r"""
+        Controls the density of the newly created triangles in RebuildMeshRepairType, default value is 128.
+        The values can range between 8 and 256.
+        Only valid if meshRepairType is RebuildMeshRepairType.
+        """
+        return _fusion.MeshRepairFeatureInput__set_density(self, value)
+
+    def _get_offset(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets and sets the offset from the original mesh to the newly created mesh, default value is zero.
+        Only valid if meshRepairType is RebuildMeshRepairType and meshRepairRebuildType is AccurateMeshRepairRebuildType.
+        """
+        return _fusion.MeshRepairFeatureInput__get_offset(self)
+
+    def _set_offset(self, value: "ValueInput") -> "bool":
+        r"""
+        Gets and sets the offset from the original mesh to the newly created mesh, default value is zero.
+        Only valid if meshRepairType is RebuildMeshRepairType and meshRepairRebuildType is AccurateMeshRepairRebuildType.
+        """
+        return _fusion.MeshRepairFeatureInput__set_offset(self, value)
+
+    def _get_targetBaseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.MeshRepairFeatureInput__get_targetBaseFeature(self)
+
+    def _set_targetBaseFeature(self, value: "BaseFeature") -> "bool":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.MeshRepairFeatureInput__set_targetBaseFeature(self, value)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshRepairFeatureInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshRepairFeatureInput__get_isValid(self)
+
+# Register MeshRepairFeatureInput in _fusion:
+_fusion.MeshRepairFeatureInput_swigregister(MeshRepairFeatureInput)
+
+def MeshRepairFeatureInput_classType() -> "str":
+    return _fusion.MeshRepairFeatureInput_classType()
+
+
+MeshRepairFeatureInput.mesh = property(MeshRepairFeatureInput._get_mesh, MeshRepairFeatureInput._set_mesh, doc="Gets and sets the input mesh body.")
+
+
+MeshRepairFeatureInput.meshRepairType = property(MeshRepairFeatureInput._get_meshRepairType, MeshRepairFeatureInput._set_meshRepairType, doc="Gets and sets the type of mesh repair, default value is StitchAndRemoveMeshRepairType.")
+
+
+MeshRepairFeatureInput.meshRepairRebuildType = property(MeshRepairFeatureInput._get_meshRepairRebuildType, MeshRepairFeatureInput._set_meshRepairRebuildType, doc="Gets and sets the type of mesh repair rebuild mode, default value is FastMeshRepairRebuildType.\nOnly valid if meshRepairType is RebuildMeshRepairType.")
+
+
+MeshRepairFeatureInput.density = property(MeshRepairFeatureInput._get_density, MeshRepairFeatureInput._set_density, doc="Controls the density of the newly created triangles in RebuildMeshRepairType, default value is 128.\nThe values can range between 8 and 256.\nOnly valid if meshRepairType is RebuildMeshRepairType.")
+
+
+MeshRepairFeatureInput.offset = property(MeshRepairFeatureInput._get_offset, MeshRepairFeatureInput._set_offset, doc="Gets and sets the offset from the original mesh to the newly created mesh, default value is zero.\nOnly valid if meshRepairType is RebuildMeshRepairType and meshRepairRebuildType is AccurateMeshRepairRebuildType.")
+
+
+MeshRepairFeatureInput.targetBaseFeature = property(MeshRepairFeatureInput._get_targetBaseFeature, MeshRepairFeatureInput._set_targetBaseFeature, doc="When creating a feature that is owned by a base feature, set this property to the\nbase feature you want to associate the new feature with. By default, this is null,\nmeaning it will not be associated with a base feature.\nBecause of a current limitation, if you want to create a feature associated with a base\nfeature, you must set this property AND call the startEdit method of the base feature,\ncreate the feature, and then call the finishEdit method of the base feature. The base\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+MeshRepairFeatureInput.cast = lambda arg: arg if isinstance(arg, MeshRepairFeatureInput) else None
+
+
+class MeshRepairFeatures(Base):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Collection that provides access to all of the existing mesh repair features in a component
+    and supports the ability to create new mesh repair features.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshRepairFeatures *":
+        return _fusion.MeshRepairFeatures___deref__(self)
+
+    def __eq__(self, rhs: "MeshRepairFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshRepairFeatures___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshRepairFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshRepairFeatures___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshRepairFeatures'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.MeshRepairFeatures___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.MeshRepairFeature":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.MeshRepairFeatures___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshRepairFeatures_classType()
+    __swig_destroy__ = _fusion.delete_MeshRepairFeatures
+
+    def item(self, index: "int") -> "adsk.fusion.MeshRepairFeature":
+        r"""
+        Function that returns the specified mesh repair feature using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.MeshRepairFeatures_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of mesh repair features in the collection."""
+        return _fusion.MeshRepairFeatures__get_count(self)
+
+    def createInput(self, mesh: "Base") -> "adsk.fusion.MeshRepairFeatureInput":
+        r"""
+        Creates a MeshRepairFeatureInput object. Use properties and methods on this object
+        to define the mesh repair you want to create and then use the add method, passing in
+        the MeshRepairFeatureInput object.
+        mesh : A MeshBody in either a parametric or direct modeling design.
+        Returns the newly created MeshRepairFeatureInput object or null if the creation failed.
+        """
+        return _fusion.MeshRepairFeatures_createInput(self, mesh)
+
+    def add(self, input: "MeshRepairFeatureInput") -> "adsk.fusion.MeshRepairFeature":
+        r"""
+        Creates a mesh repair feature.
+        input : A MeshRepairFeatureInput object that defines the desired repair feature. Use the createInput
+        method to create a new MeshRepairFeatureInput object and then use methods on it
+        (the MeshRepairFeatureInput object) to define the repair.
+        Returns the newly created MeshRepairFeature object or null if the creation failed.
+        Returns nothing in the case where the feature is non-parametric.
+        """
+        return _fusion.MeshRepairFeatures_add(self, input)
+
+    def itemByName(self, name: "str") -> "adsk.fusion.MeshRepairFeature":
+        r"""
+        Function that returns the specified MeshRepair feature using the name of the feature.
+        name : The name of the feature within the collection to return. This is the name seen in the timeline.
+        Returns the specified item or null if the specified name was not found.
+        """
+        return _fusion.MeshRepairFeatures_itemByName(self, name)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshRepairFeatures__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshRepairFeatures__get_isValid(self)
+
+# Register MeshRepairFeatures in _fusion:
+_fusion.MeshRepairFeatures_swigregister(MeshRepairFeatures)
+
+def MeshRepairFeatures_classType() -> "str":
+    return _fusion.MeshRepairFeatures_classType()
+
+
+MeshRepairFeatures.count = property(MeshRepairFeatures._get_count, doc="The number of mesh repair features in the collection.")
+
+
+MeshRepairFeatures.cast = lambda arg: arg if isinstance(arg, MeshRepairFeatures) else None
+
+
+class MeshRepairFeature(MeshFeature):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Object that represents an existing mesh repair feature in a design.
+    To change the properties of this feature, you need to position the timeline marker to immediately before this feature.
+    This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshRepairFeature *":
+        return _fusion.MeshRepairFeature___deref__(self)
+
+    def __eq__(self, rhs: "MeshRepairFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshRepairFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshRepairFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshRepairFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshRepairFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshRepairFeature_classType()
+    __swig_destroy__ = _fusion.delete_MeshRepairFeature
+
+    def _get_mesh(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the input mesh body.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.MeshRepairFeature__get_mesh(self)
+
+    def _set_mesh(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the input mesh body.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.MeshRepairFeature__set_mesh(self, value)
+
+    def _get_meshRepairType(self) -> "adsk.fusion.MeshRepairTypes":
+        r"""Gets and sets the type of mesh repair."""
+        return _fusion.MeshRepairFeature__get_meshRepairType(self)
+
+    def _set_meshRepairType(self, value: "MeshRepairTypes") -> "bool":
+        r"""Gets and sets the type of mesh repair."""
+        return _fusion.MeshRepairFeature__set_meshRepairType(self, value)
+
+    def _get_meshRepairRebuildType(self) -> "adsk.fusion.MeshRepairRebuildTypes":
+        r"""
+        Gets and sets the type of mesh repair rebuild mode.
+        Only valid if meshRepairType is RebuildMeshRepairType.
+        """
+        return _fusion.MeshRepairFeature__get_meshRepairRebuildType(self)
+
+    def _set_meshRepairRebuildType(self, value: "MeshRepairRebuildTypes") -> "bool":
+        r"""
+        Gets and sets the type of mesh repair rebuild mode.
+        Only valid if meshRepairType is RebuildMeshRepairType.
+        """
+        return _fusion.MeshRepairFeature__set_meshRepairRebuildType(self, value)
+
+    def _get_density(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Controls the density of the newly created triangles in RebuildMeshRepairType.
+        The values can range between 8 and 256.
+        Only valid if meshRepairType is RebuildMeshRepairType.
+        """
+        return _fusion.MeshRepairFeature__get_density(self)
+
+    def _get_offset(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets and sets the offset from the original mesh to newly created mesh.
+        Only valid if meshRepairType is RebuildMeshRepairType and meshRepairRebuildType
+        is AccurateMeshRepairRebuildType.
+        """
+        return _fusion.MeshRepairFeature__get_offset(self)
+
+    def _get_nativeObject(self) -> "adsk.fusion.MeshRepairFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.MeshRepairFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.MeshRepairFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.MeshRepairFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.MeshRepairFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.MeshRepairFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.MeshRepairFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.MeshRepairFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.MeshRepairFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.MeshRepairFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.MeshRepairFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.MeshRepairFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.MeshRepairFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.MeshRepairFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.MeshRepairFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.MeshRepairFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.MeshRepairFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.MeshRepairFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.MeshRepairFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.MeshRepairFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.MeshRepairFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.MeshRepairFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshRepairFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshRepairFeature__get_isValid(self)
+
+# Register MeshRepairFeature in _fusion:
+_fusion.MeshRepairFeature_swigregister(MeshRepairFeature)
+
+def MeshRepairFeature_classType() -> "str":
+    return _fusion.MeshRepairFeature_classType()
+
+
+MeshRepairFeature.mesh = property(MeshRepairFeature._get_mesh, MeshRepairFeature._set_mesh, doc="Gets and sets the input mesh body.\nTo use this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+MeshRepairFeature.meshRepairType = property(MeshRepairFeature._get_meshRepairType, MeshRepairFeature._set_meshRepairType, doc="Gets and sets the type of mesh repair.")
+
+
+MeshRepairFeature.meshRepairRebuildType = property(MeshRepairFeature._get_meshRepairRebuildType, MeshRepairFeature._set_meshRepairRebuildType, doc="Gets and sets the type of mesh repair rebuild mode.\nOnly valid if meshRepairType is RebuildMeshRepairType.")
+
+
+MeshRepairFeature.density = property(MeshRepairFeature._get_density, doc="Controls the density of the newly created triangles in RebuildMeshRepairType.\nThe values can range between 8 and 256.\nOnly valid if meshRepairType is RebuildMeshRepairType.")
+
+
+MeshRepairFeature.offset = property(MeshRepairFeature._get_offset, doc="Gets and sets the offset from the original mesh to newly created mesh.\nOnly valid if meshRepairType is RebuildMeshRepairType and meshRepairRebuildType\nis AccurateMeshRepairRebuildType.")
+
+
+MeshRepairFeature.nativeObject = property(MeshRepairFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+MeshRepairFeature.cast = lambda arg: arg if isinstance(arg, MeshRepairFeature) else None

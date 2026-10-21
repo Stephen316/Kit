@@ -24,9 +24,11 @@ CUT_SHAPE = (312, 576, 744, 268, 208, 192)
 SHELL_OPEN_SHAPES = {(32940, 65772, 22056, 48, 184, 21924), (18672, 37236, 12536, 44, 168, 12412)}
 SHELL_CLOSED_SHAPES = {(32940, 65784, 22080, 60, 208, 21928)}
 SHELL_SHAPES = SHELL_OPEN_SHAPES | SHELL_CLOSED_SHAPES
+REBUILD_SHAPES = {(132, 216, 368, 140, 120, 72), (108, 168, 288, 108, 120, 56),
+                  (144, 240, 376, 140, 136, 80)}
 SEPARATE_COMPOUND_SHAPE = (96, 96, 192, 64, 96, 32)
 ZERO_SUFFIX_SHAPES = {CUT_SHAPE, SEPARATE_COMPOUND_SHAPE}
-OPERATION_SHAPES = REMESH_SHAPES | COMBINE_SHAPES | ZERO_SUFFIX_SHAPES | SHELL_SHAPES
+OPERATION_SHAPES = REMESH_SHAPES | COMBINE_SHAPES | ZERO_SUFFIX_SHAPES | SHELL_SHAPES | REBUILD_SHAPES
 OPERATION_SCOPE = ('Observed size-delimited UDPMESH v2 triangle layouts including9/14,16/28,66/128 and41/78 nodes/faces; '
                 'typed native mesh/component/asset routes and positive uniform matrices. Counts derive from exact '
                 'coordinate/index buffer extents. Normal/auxiliary buffers, arbitrary layouts, lifecycle and regeneration remain unresolved.')
@@ -39,6 +41,10 @@ SHELL_SCOPE = ('Observed Shell cache layouts with2745 nodes/5481-or5482 triangle
 SEPARATE_SCOPE = ('Observed Separate direct output-list ownership and typed current component/mesh/asset routes, '
                   'including two disjoint tetrahedra in one8-node/8-triangle asset with separately retained zero index suffix. '
                   'Stored source retention, auxiliary bytes, arbitrary partitions and regeneration remain unqualified.')
+REBUILD_SCOPE = ('Observed Rebuild cache layouts with11/18,9/14 and12/20 nodes/triangles, strict complete '
+                 'six-buffer framing, typed current mesh/component/asset routes and positive uniform matrices. '
+                 'Coordinate/index extents and closed oriented incidence are checked; auxiliary semantics, '
+                 'persistent selections, additional asset lifecycle and procedural regeneration unresolved.')
 
 
 def triangle_properties(points, indices):
@@ -180,7 +186,8 @@ def decode_mesh_contents_variants(data, records, member, members):
         geometry_decoder=decode_geometry_layout, native_layout_decoder=native_layout, allow_index_zero_suffix=True,
         max_uncompressed_buffer_size=65784)
     shapes = [tuple(b['uncompressed_size'] for b in row['geometry']['buffers']) for row in result['decoded']]
-    result['scope'] = (SHELL_SCOPE if any(shape in SHELL_SHAPES for shape in shapes) else
+    result['scope'] = (REBUILD_SCOPE if any(shape in REBUILD_SHAPES for shape in shapes) else
+                      SHELL_SCOPE if any(shape in SHELL_SHAPES for shape in shapes) else
                       SEPARATE_SCOPE if any('native_feature_owner_output_membership' in row for row in result['decoded']) else
                       CUT_SCOPE if CUT_SHAPE in shapes else OPERATION_SCOPE if any(shape in OPERATION_SHAPES
                                         for shape in shapes) else SCOPE)

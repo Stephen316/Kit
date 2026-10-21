@@ -41,7 +41,8 @@ def decode_mesh_normal_pool(mesh):
     nodes, triangles = len(geometry['stored_node_coordinates_float32']), len(geometry['triangle_node_indices'])//3
     _require((nodes, triangles, count) in ((4, 3, 9), (4, 4, 12), (6, 8, 22), (6, 8, 24),
                                          (9, 14, 31), (16, 28, 54), (66, 128, 180), (41, 78, 124), (26, 48, 93),
-                                         (2745, 5481, 2757), (1556, 3103, 1567), (2745, 5482, 2760), (8, 8, 24)),
+                                         (2745, 5481, 2757), (1556, 3103, 1567), (2745, 5482, 2760), (8, 8, 24),
+                                         (11, 18, 46), (9, 14, 36), (12, 20, 47)),
              'Normal pool count outside captured mesh layouts')
     pairs = [list(struct.unpack_from('<2f', raw, i)) for i in range(0, len(raw), 8)]
     _require(b''.join(struct.pack('<2f', *pair) for pair in pairs) == raw, 'Stored Float32-pair replay failed')
