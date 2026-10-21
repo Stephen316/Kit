@@ -153,6 +153,8 @@ def _circle_cache(graph,nodes,model):
         _near([radius],[minor],'circular major/minor radii')
         _near([_dot(normal,normal),_dot(u,u),_dot(normal,u)],[1.,1.,0.],'circle orthonormal frame')
         _near([abs(_dot(normal,axis))],[1.],'complete circular normal coefficients up to sign')
+        normal_sign=1 if _dot(normal,axis)>=0 else -1
+        _near(normal,[normal_sign*n for n in axis],'complete circular normal vector coefficients up to sign')
         _near([abs(edge['end_parameter']-edge['start_parameter'])],[2*math.pi],'complete closed-circle finite EDGE domain')
         uses=[nodes[c] for c in graph['coedge_indices'] if nodes[c]['edge_index']==edge_id]
         incident={nodes[c['loop_index']]['face_index'] for c in uses}
@@ -162,6 +164,8 @@ def _circle_cache(graph,nodes,model):
         cap=caps[0];plane=nodes[cap['surface_index']]
         _finite(plane['raw_origin']+plane['normal']+plane['stored_reference_axis'],'cap Plane')
         _near([_dot(plane['normal'],plane['normal']),abs(_dot(plane['normal'],normal))],[1.,1.],'complete cap Plane normal coefficients')
+        plane_sign=1 if _dot(plane['normal'],normal)>=0 else -1
+        _near(plane['normal'],[plane_sign*n for n in normal],'complete cap Plane normal vector coefficients up to sign')
         cap_residual=_near([_dot(plane['normal'],[x-o for x,o in zip(origin,plane['raw_origin'])])],[0.],'cap Plane contains whole circular boundary')
         cap_loops=[l for l in loops if l['face_index']==cap['index']]
         if len(cap_loops)!=1 or cap_loops[0]['edge_indices']!=[edge_id]:
@@ -185,6 +189,8 @@ def _circle_cache(graph,nodes,model):
     _finite(origin+a+[radius],'lateral analytic coefficients')
     _near([_dot(a,a)],[1.],'lateral unit axis')
     orientation=_dot(a,axis);_near([abs(orientation)],[1.],'complete lateral axis linear coefficients up to sign')
+    axis_sign=1 if orientation>=0 else -1
+    _near(a,[axis_sign*n for n in axis],'complete lateral axis vector coefficients up to sign')
     delta=[x-y for x,y in zip(origin,center)];height=_dot(delta,axis)
     radial=[x-height*n for x,n in zip(delta,axis)];axis_error=_near(radial,[0.,0.,0.],'complete lateral axis line')
     native_slope=math.tan(analytic.get('stored_signed_half_angle_radians',0.))

@@ -35,7 +35,7 @@ SCOPE = ('Observed solid NewBody Extrude, complete Circle or four-Line profile, 
 
 
 def qualify_extrusion_source_operands(data, records, features, member, members,
-                                     body_blob_bindings, feature):
+                                     body_blob_bindings, feature, *, allow_plane_limits=False):
     """Return a fresh creator/source row, None outside Extrude, or ValueError."""
     if feature.get('class_guid') != EXTRUDE:
         return None
@@ -83,13 +83,17 @@ def qualify_extrusion_source_operands(data, records, features, member, members,
         raise ValueError('Extrusion source supplied parameters disagree with fresh reciprocal bindings')
     settings,reasons = decode_extrude(body,fresh,allow_surface=True)
     extent,start = settings['extent'],settings['start']
-    if (reasons or settings['operation']['kind'] != 'NewBody' or settings['is_solid'] is not True
+    plane_limit_provenance = None
+    if allow_plane_limits and (start['kind'] == 'FromEntity' or extent['side_one']['condition'] == 'ToEntity'):
+        from decode_extrusion_plane_limits import qualify_extrusion_plane_limits
+        plane_limit_provenance = qualify_extrusion_plane_limits(data,records,private,fresh,settings)
+    if ((reasons and plane_limit_provenance is None) or settings['operation']['kind'] != 'NewBody' or settings['is_solid'] is not True
             or extent['mode'] not in ('OneSided','TwoSided','Symmetric')
-            or start['kind'] not in ('ProfilePlane','Offset')):
+            or start['kind'] not in ('ProfilePlane','Offset') and plane_limit_provenance is None):
         raise ValueError('Extrusion reconstruction requires solid NewBody Distance with ProfilePlane/Offset start')
     sides = [extent['side_one']] + ([extent['side_two']] if extent['mode'] == 'TwoSided' else [])
-    if (any(s['condition'] != 'Distance' or s['uninterpreted_flags'] != 0
-            or not math.isfinite(s['distance_cm']) or s['distance_cm'] == 0
+    if (any((s['condition'] != 'Distance' or s['uninterpreted_flags'] != 0) and plane_limit_provenance is None
+            or 'distance_cm' in s and (not math.isfinite(s['distance_cm']) or s['distance_cm'] == 0)
             or not math.isfinite(s.get('taper_angle_radians',0.)) for s in sides)
             or start['kind'] == 'Offset' and not math.isfinite(start['offset_cm'])
             or settings['stored_second_extent_enabled'] != (0 if extent['mode'] == 'OneSided' else 1)
@@ -253,8 +257,13 @@ def qualify_extrusion_source_operands(data, records, features, member, members,
         direction_scope='Stored Extrude vector and independent native Sketch-to-component frame; consumer must qualify their relation',
         profile_cache_correspondence=profile_cache,profile_cache_diagnostics=diagnostics,
         source_native_records=[raw(receiver),raw(anchor_id),raw(native)])
-    return dict(feature_object_id=receiver,settings=settings,source_groups=[group],source_group_count=1,
+    result = dict(feature_object_id=receiver,settings=settings,source_groups=[group],source_group_count=1,
         component_provenance=dict(component_object_id=component,body_ownership=[dict(native_body_object_id=native,
             body_properties=prop,collection=collections[0])],dependency_scopes=dependencies,assembly_scope=assembly['scope']),
         feature_native_record=raw(receiver),API_handle_identity=None,persistent_identity=None,qualified_historical_state=None,
         cache_lifecycle_scope='Creator-owned native BODY and initial stored-ID association only; later mutations or literal-view slots are not assigned chronological state',scope=SCOPE)
+    if plane_limit_provenance is not None:
+        group['plane_limit_provenance'] = plane_limit_provenance
+        result['plane_limit_provenance'] = plane_limit_provenance
+        result['scope'] = SCOPE+' '+plane_limit_provenance['scope']
+    return result
