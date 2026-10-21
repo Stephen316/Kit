@@ -56,6 +56,8 @@ from decode_thread_multi_faces import decode_thread_multi_faces
 from decode_thread_families import decode_thread_families
 from decode_replace_face_targets import decode_replace_face_targets
 from decode_split_body_sheet_tools import decode_split_body_sheet_tools
+from decode_split_body_multi_sheet_tools import decode_split_body_multi_sheet_tools
+from decode_split_body_multi_sheet_routes import qualify_split_body_multi_sheet_routes, SCOPE as SPLIT_BODY_MULTI_SHEET_SCOPE
 from decode_split_body_sheet_routes import qualify_split_body_sheet_routes, SCOPE as SPLIT_BODY_SHEET_SCOPE
 from decode_replace_face_body_routes import qualify_replace_face_body_routes, SCOPE as REPLACE_FACE_BODY_SCOPE
 from decode_thread_family_body_routes import qualify_thread_family_body_routes, SCOPE as THREAD_FAMILY_BODY_SCOPE
@@ -632,8 +634,23 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         tool_summary['unresolved'] = [row for row in tool_summary['unresolved']
             if row['object_id'] not in replace_face_ids or row['reason'] != 'Unsupported face-edit selection descriptor class']
         split_sheet_summary = decode_split_body_sheet_tools(data, records, features)
+        singleton_sheet_rows = list(split_sheet_summary['decoded'])
+        split_multi_summary = decode_split_body_multi_sheet_tools(data, records, features)
+        if split_multi_summary['decoded']:
+            recovered_multi_ids = {row['feature_object_id'] for row in split_multi_summary['decoded']}
+            eligible_multi_ids = {row['feature_object_id'] for row in split_sheet_summary['unresolved']
+                if row['reason'] == 'Split sheet common tool/per-target prefix differs'}
+            if not recovered_multi_ids <= eligible_multi_ids:
+                raise ValueError('Qualified multi-target SplitBody does not match the prior singleton-sheet frontier')
+            split_sheet_summary['decoded'].extend(split_multi_summary['decoded'])
+            split_sheet_summary['unresolved'] = [row for row in split_sheet_summary['unresolved']
+                if row['feature_object_id'] not in recovered_multi_ids
+                or row['reason'] != 'Split sheet common tool/per-target prefix differs']
+            split_sheet_summary['multi_target_scope'] = split_multi_summary['scope']
+        if split_multi_summary['unresolved']:
+            split_sheet_summary['multi_target_variants'] = split_multi_summary
         split_sheet_route_summary = dict(decoded=[], unresolved=[], scope=SPLIT_BODY_SHEET_SCOPE)
-        for split in split_sheet_summary['decoded']:
+        for split in singleton_sheet_rows:
             feature = next(f for f in features if f['object_id'] == split['feature_object_id'])
             prior_settings = feature.get('tool_settings', {})
             if (feature['kind'] != 'SplitBody' or prior_settings.get('tool') is not None
@@ -648,6 +665,22 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 split_sheet_route_summary['decoded'].append(routes)
             except (ValueError, KeyError, IndexError, TypeError, struct.error) as error:
                 split_sheet_route_summary['unresolved'].append(dict(feature_object_id=feature['object_id'], reason=str(error)))
+        split_multi_route_summary = dict(decoded=[], unresolved=[], scope=SPLIT_BODY_MULTI_SHEET_SCOPE)
+        for split in split_multi_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == split['feature_object_id'])
+            prior_settings = feature.get('tool_settings', {})
+            if (feature['kind'] != 'SplitBody' or prior_settings.get('tool') is not None
+                    or prior_settings.get('tool_selection_status') != 'Split tool reference unresolved'
+                    or dict(object_id=feature['object_id'], kind='SplitBody') not in tool_summary['decoded']):
+                raise ValueError('Qualified multi-target SplitBody does not match the prior unresolved-tool settings frontier')
+            feature.update(tool_settings=split['settings'],
+                decode_level='Observed multi-target SplitBody sheet tool, extension controls and grouped source/new-body routes; persistent topology and regeneration unresolved')
+            try:
+                routes = qualify_split_body_multi_sheet_routes(data, records, name, members, split['settings']['tool']['native_evidence'])
+                feature['split_body_multi_sheet_routes'] = routes
+                split_multi_route_summary['decoded'].append(routes)
+            except (ValueError, KeyError, IndexError, TypeError, struct.error) as error:
+                split_multi_route_summary['unresolved'].append(dict(feature_object_id=feature['object_id'], reason=str(error)))
         parting_draft_summary = decode_parting_line_drafts(data, records, features)
         parting_draft_ids = set()
         for draft in parting_draft_summary['decoded']:
@@ -1517,6 +1550,7 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         })
         for key, summary in (('mirror_datum_reflections', datum_reflection_summary),
                              ('datum_mirror_supports', datum_support_summary),
+                             ('split_body_multi_sheet_routes', split_multi_route_summary),
                              ('split_body_sheet_tools', split_sheet_summary),
                              ('split_body_sheet_routes', split_sheet_route_summary),
                              ('replace_face_targets', replace_face_summary),
