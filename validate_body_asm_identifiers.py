@@ -390,6 +390,7 @@ def validate_auxiliary(zstd_library, classification):
     assert not classification['errors']
     report = {'scope': 'Typed mapped nonnegative BODY IDs, bounded unassociated BODY-1/FACE roots and explicitly closed initial geometry prefixes',
               'classification': classification, 'target_results': [], 'API_controls': [], 'guards': [],
+              'synthetic_history_fallback_controls': [],
               'integration': {
                   'function': 'decode_body_asm_identifiers(data, records, member, members, body_blob_bindings)',
                   'native_joins': 'Unchanged asm_body_index/asm_stored_entity_id patches; exact keys cover all and only nonnegative initial BODY stored IDs',
@@ -402,7 +403,7 @@ def validate_auxiliary(zstd_library, classification):
                   'Auxiliary BODYs require decoded reciprocal initial body graphs; only the observed shell-owned single-line wire layout is additionally supported.',
                   'Detached FACE support is bounded to a planar face, one reciprocal loop/self-coedge/closed ellipse edge and endpoint vertex/point chain.',
                   'API plane/curve/cylinder comparisons corroborate cached geometry only; they do not assign ownership to auxiliary entities.',
-                  'A validated complete initial section does not make later history complete; raw tag23 failure remains untouched and public.',
+                  'Complete real streams need no prefix annotation. A deliberately unsupported later suffix exercises prefix fallback while retaining its whole-stream error.',
                   'Current visibility/final lifecycle, persistent topology naming, solving and regeneration are not inferred.',
               ]}
     contexts = {}
@@ -417,7 +418,9 @@ def validate_auxiliary(zstd_library, classification):
         parsed = inspect_asm(members[mapping['history_blob_member']])
         assert [r['name'] for r in parsed['records'][:parsed['header']['stored_entity_count']]] == target['declared_root_kinds']
         result = decode_body_asm_identifiers(data, records, member, members, {'decoded': [mapping]})
-        report['target_results'].append({'file': target['file'], 'decoded': result['decoded'], 'unresolved': result['unresolved']})
+        report['target_results'].append({'file': target['file'], 'decoded': result['decoded'], 'unresolved': result['unresolved'],
+                                        'current_complete_token_stream': parsed['complete_token_stream'],
+                                        'current_token_error': parsed['unresolved_reason']})
         contexts[target['file']] = data, records, member, members, mapping, parsed, result
     # Bounded shell-owned single-line wire topology now accounts for the two
     # former SplitFace auxiliary graphs; all classified native joins validate.
@@ -538,11 +541,11 @@ def validate_auxiliary(zstd_library, classification):
             actual_bounds = actual['output_bodies'][0]['geometry']
             assert near(bounds[0], actual_bounds['min_cm']) and near(bounds[1], actual_bounds['max_cm'])
             original_stream = next(s for s in model['asm_decoding']['streams'] if s['member'] == mapping['history_blob_member'])
-            assert not original_stream['complete_token_stream'] and original_stream['unresolved_reason']
-            assert prefix is not None and not prefix['whole_token_stream_complete']
+            assert original_stream['complete_token_stream'] and original_stream['unresolved_reason'] is None
+            assert prefix is None and 'initial_geometry_validation' not in decoded['decoded'][0]
             checked.update(explicit_boundary_fill_result_bounds_match_actual_API=True, result_bounds_cm=bounds,
-                           whole_ASM_token_stream_still_incomplete=True,
-                           unsupported_later_history_reason=original_stream['unresolved_reason'])
+                           whole_ASM_token_stream_complete=True,
+                           no_initial_geometry_fallback_annotation=True)
         report['API_controls'].append(checked)
 
     data, records, member, members, mapping, parsed, _ = contexts['planedefinitions-6cd0820a832e/tangent.f3d']
@@ -571,16 +574,53 @@ def validate_auxiliary(zstd_library, classification):
     changed = bytearray(plane[3][plane[4]['history_blob_member']])
     struct.pack_into('<q', changed, parsed['records'][3]['tokens'][5]['offset'] + 1, 2)
     rejected('Detached planar FACE loop cannot claim a BODY as its owning face', plane, changed)
-    incomplete = contexts['boundaryfills-a0953038318b/plane_first.f3d']
-    raw = incomplete[3][incomplete[4]['history_blob_member']]
-    parsed = incomplete[5]
+    actual_plane = contexts['boundaryfills-a0953038318b/plane_first.f3d']
+    raw = actual_plane[3][actual_plane[4]['history_blob_member']]
+    parsed = actual_plane[5]
+    assert parsed['complete_token_stream'] and parsed['unresolved_reason'] is None
     marker = next(r for r in parsed['records'] if r['record_kind'] == 'marker')
+    first_history_record = next(r for r in parsed['records'] if r['section'] == 'history' and r['record_kind'] == 'entity')
+    assert first_history_record['end_offset'] > marker['end_offset']
+    unsupported_offset = first_history_record['end_offset']
     changed = bytearray(raw)
+    changed[unsupported_offset] = 255  # Unsupported token exactly after one complete history record.
+    unsupported_raw = bytes(changed)
+    synthetic_parsed = inspect_asm(unsupported_raw)
+    assert not synthetic_parsed['complete_token_stream']
+    assert synthetic_parsed['unresolved_reason'] == 'Unsupported ASM token 0xff at ' + str(unsupported_offset)
+    assert synthetic_parsed['last_complete_offset'] == unsupported_offset > marker['end_offset']
+    data, records, member, members, mapping, _, actual_decoded = actual_plane
+    fallback = decode_body_asm_identifiers(data, records, member,
+        {**members, mapping['history_blob_member']: unsupported_raw}, {'decoded': [mapping]})
+    assert not fallback['unresolved'] and len(fallback['decoded']) == 1
+    recovered = fallback['decoded'][0]
+    assert recovered['bindings'] == actual_decoded['decoded'][0]['bindings']
+    assert recovered['auxiliary_declared_roots'] == actual_decoded['decoded'][0]['auxiliary_declared_roots']
+    evidence = recovered['initial_geometry_validation']
+    assert evidence['initial_geometry_complete'] and not evidence['whole_token_stream_complete']
+    assert evidence['initial_geometry_end_offset'] == marker['offset']
+    assert evidence['last_complete_later_record_end_offset'] == unsupported_offset
+    assert evidence['unsupported_later_history_reason'] == synthetic_parsed['unresolved_reason']
+    assert [g['body_index'] for g in evidence['validated_initial_geometry_body_graphs']] == [1, 2, 3]
+    report['synthetic_history_fallback_controls'].append({
+        'source_file': 'boundaryfills-a0953038318b/plane_first.f3d',
+        'mutation': 'Replace the token immediately after the first complete history record with unsupported tag0xff',
+        'unsupported_token_offset': unsupported_offset,
+        'real_stream_complete': True, 'real_mapping_has_no_prefix_annotation': True,
+        'synthetic_whole_stream_complete': False,
+        'synthetic_token_error': synthetic_parsed['unresolved_reason'],
+        'native_body_binding_patches_equal_real_complete_case': True,
+        'auxiliary_roots_equal_real_complete_case': True,
+        'initial_geometry_validation': evidence,
+    })
+    incomplete = (data, records, member, {**members, mapping['history_blob_member']: unsupported_raw},
+                  mapping, synthetic_parsed, fallback)
+    changed = bytearray(unsupported_raw)
     changed[marker['offset'] + 2:marker['offset'] + 7] = b'Other'
     rejected('Incomplete stream requires the exact first Begin-of-ASM-History-Data boundary', incomplete, changed)
-    rejected('A truncated stream ending at the history marker does not prove a later failure location', incomplete, raw[:marker['end_offset']])
+    rejected('A truncated stream ending at the history marker does not prove a later failure location', incomplete, unsupported_raw[:marker['end_offset']])
     numeric = next(t for r in parsed['records'][:marker['index']] for t in r['tokens'] if t['kind'] == 'double')
-    changed = bytearray(raw)
+    changed = bytearray(unsupported_raw)
     struct.pack_into('<d', changed, numeric['offset'] + 1, float('nan'))
     rejected('Numeric failure inside initial geometry cannot be relabelled as unsupported later history', incomplete, changed)
     previous = validate_mixed(zstd_library)
@@ -601,6 +641,7 @@ def validate_auxiliary(zstd_library, classification):
         'retained_auxiliary_FACE_roots': sum(a['kind'] == 'face' for t in report['target_results'] for m in t['decoded'] for a in m.get('auxiliary_declared_roots', [])),
         'retained_unresolved_auxiliary_wire_mappings': len(expected_remaining),
         'initial_prefix_only_recoveries': sum('initial_geometry_validation' in m for t in report['target_results'] for m in t['decoded']),
+        'synthetic_history_fallback_controls': len(report['synthetic_history_fallback_controls']),
         'focused_API_controls': len(report['API_controls']), 'malformed_guards': len(report['guards']),
     }
     return report

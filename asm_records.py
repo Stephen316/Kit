@@ -3,6 +3,8 @@
 Tag meanings referenced from ezdxf's MIT-licensed ACIS tag documentation:
 https://github.com/mozman/ezdxf/blob/master/src/ezdxf/acis/const.py
 The 64-bit integer/header interpretation is observed in local Fusion samples.
+Tag 23 is a signed integer only inside the validated int64 attribute schema;
+other contexts retain the earlier uninterpreted finite-double representation.
 This is a token reader, not a geometry kernel or complete entity schema.
 """
 
@@ -12,6 +14,21 @@ import json
 import math
 from pathlib import Path
 import struct
+
+
+INT64_ATTRIBUTE = "int64_attrib-name_attrib-gen-attrib"
+
+
+def _int64_attribute_prefix(tokens):
+    """Recognize the observed typed header before assigning tag-23 semantics."""
+    if ([t["kind"] for t in tokens] !=
+            ["pointer", "integer", "pointer", "pointer", "pointer",
+             "enum", "enum", "enum", "enum", "string"]
+            or tokens[0]["value"] != -1 or tokens[1]["value"] != -1
+            or any(t["value"] < -1 for t in tokens[2:5])
+            or [t["value"] for t in tokens[5:9]] != [2, 1, 1, 2]
+            or not tokens[9]["value"]):
+        raise ValueError("Unsupported ASM int64 attribute prefix schema")
 
 
 class AsmReader:
@@ -33,10 +50,12 @@ class AsmReader:
             raise ValueError("ASM string exceeds the supported limit")
         return self.take(size).decode("utf-8")
 
-    def token(self):
+    def token(self, *, int64_attribute_value=False):
         start, tag = self.cursor, self.number("B")
         if tag in (4, 12, 21):
             kind, value = {4: "integer", 12: "pointer", 21: "enum"}[tag], self.number("q")
+        elif tag == 23 and int64_attribute_value:
+            kind, value = "integer64", self.number("q")
         elif tag in (6, 23):
             kind, value = ("double" if tag == 6 else "uninterpreted_double"), self.number("d")
             if not math.isfinite(value):
@@ -80,7 +99,15 @@ def inspect_asm(data):
     failure = None
     while reader.cursor < len(data):
         try:
-            token = reader.token()
+            int64_value = (current is not None and current["name"] == INT64_ATTRIBUTE
+                           and reader.data[reader.cursor] == 23)
+            if int64_value:
+                if depth:
+                    raise ValueError("ASM int64 attribute value inside unsupported subtype")
+                _int64_attribute_prefix(current["tokens"])
+            token = reader.token(int64_attribute_value=int64_value)
+            if int64_value and (reader.cursor >= len(data) or data[reader.cursor] != 17):
+                raise ValueError("ASM int64 attribute value lacks exact record terminator")
             token_count += 1
             if token_count > 1000000 or len(records) > 100000:
                 raise ValueError("ASM inspection exceeds supported record/token limits")
@@ -116,6 +143,10 @@ def inspect_asm(data):
             elif token["tag"] == 17:
                 if depth:
                     raise ValueError("ASM record ends inside a subtype")
+                if current["name"] == INT64_ATTRIBUTE:
+                    if len(current["tokens"]) != 11 or current["tokens"][-1]["kind"] != "integer64":
+                        raise ValueError("Unsupported ASM int64 attribute value schema")
+                    _int64_attribute_prefix(current["tokens"][:-1])
                 current["end_offset"] = reader.cursor
                 records.append(current)
                 current, last_complete = None, reader.cursor
@@ -150,6 +181,17 @@ def inspect_asm_members(members, include_records=False):
             summary = {key: value for key, value in result.items() if key != "records"}
             summary.update(member=member, record_count=len(result["records"]), record_type_counts=counts,
                            blob_role="history" if member.endswith(".smbh") else "body data", topology=topology)
+            if any(r["name"] == INT64_ATTRIBUTE for r in result["records"]):
+                from decode_sculpt_tool_attributes import decode_sculpt_tool_attributes
+                try:
+                    summary["sculpt_tool_attributes"] = decode_sculpt_tool_attributes(data, parsed=result)
+                except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
+                    # Unsupported history provenance cannot invalidate separately
+                    # parsed token framing or replace initial topology output.
+                    summary["sculpt_tool_attributes"] = {
+                        "attributes": [], "journal_states": [],
+                        "unresolved": [{"reason": str(error)}],
+                        "scope": "Typed sculpt face provenance unresolved; initial topology and token completeness reported separately"}
             declared = result["header"]["stored_entity_count"]
             summary["declared_root_records"] = [
                 {"index": r["index"], "kind": r["name"]} for r in result["records"][:declared]

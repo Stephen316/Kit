@@ -66,6 +66,7 @@ from decode_body_bindings import decode_body_bindings
 from decode_body_asm_identifiers import decode_body_asm_identifiers
 from decode_asm_recipe_tags import inspect_pipe_recipe_tags
 from decode_pipe_recipe_incidence import inspect_pipe_recipe_incidence
+from decode_pipe_edge_limits import inspect_pipe_edge_limits
 from decode_body_properties import decode_body_properties
 from decode_body_selections import decode_body_selections
 from decode_body_tool_selections import decode_body_tool_selections
@@ -759,6 +760,8 @@ def decode_basics(path, zstd_library=None):
                             "scope": "Explicit same-asset native recipe/ASM naming candidates; duplicate owners and whole-recipe semantics stay unresolved"}
         pipe_incidence_summary = {"decoded": [], "unresolved": [],
                                   "scope": "Observed named-face recipe operands and reciprocal topology identify cached source edges; complete Pipe operation and path direction remain unresolved"}
+        pipe_limit_summary = {"decoded": [], "unresolved": [],
+                              "scope": "Observed single-edge Pipe active fractions and named source-start vertex; path direction and resulting partial geometry remain unresolved"}
         for source in pipe_provenance_summary["partial"]:
             pipe = feature_by_id[source["feature_object_id"]]
             pipe_record = next(r for r in records if r.start == pipe["record_offset"])
@@ -779,6 +782,21 @@ def decode_basics(path, zstd_library=None):
                 pipe["pipe_cached_source_edge"] = incidence
             except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
                 pipe_incidence_summary["unresolved"].append({"feature_object_id": pipe["object_id"], "reason": str(error)})
+                continue
+            try:
+                limits = inspect_pipe_edge_limits(
+                    data, records, data[pipe_record.body:pipe_record.end], pipe, features,
+                    name, members, body_identifier_summary, source_evidence=source, incidence_evidence=incidence)
+                pipe_limit_summary["decoded"].append(limits)
+                pipe["pipe_edge_limits"] = limits
+                source["edge_limit_evidence"] = limits
+                source.update(distance_two_fraction=limits["distance_two_fraction"],
+                              distance_two_available=limits["distance_two_available"],
+                              distance_two_status="Observed availability and active fraction from independently resolved single source-edge closure; resulting partial geometry unresolved")
+                if limits["auxiliary_source_vertex"] is not None:
+                    source["auxiliary_point_selection"]["source_vertex_association"] = limits["auxiliary_source_vertex"]
+            except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
+                pipe_limit_summary["unresolved"].append({"feature_object_id": pipe["object_id"], "reason": str(error)})
         body_placement_summary = decode_body_placement(body_binding_summary, assembly_summary, asm_summary)
         if any(r.is_primary and r.class_guid == NATIVE_JOINT_GUID for r in records):
             label_joint_cache_placements(assembly_summary, body_placement_summary, features)
@@ -837,6 +855,7 @@ def decode_basics(path, zstd_library=None):
             "pipe_vertex_contexts": pipe_vertex_summary,
             "pipe_asm_recipe_tags": pipe_tag_summary,
             "pipe_recipe_incidence": pipe_incidence_summary,
+            "pipe_edge_limits": pipe_limit_summary,
             "pattern_placements": pattern_placement_summary,
             "timeline_decoding": timeline_summary,
             "assembly_decoding": assembly_summary,

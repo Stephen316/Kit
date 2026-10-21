@@ -1,0 +1,1191 @@
+{
+  "scope": "Observed single-BRep-edge Pipe distanceOne/distanceTwo availability from explicitly resolved cached source topology; auxiliary vertex recipe names source start identity; Path opposition and resulting partial geometry unresolved",
+  "interface": "inspect_pipe_edge_limits(data,records,body,feature,features,member,members,body_identifier_summary,*,source_evidence=None,incidence_evidence=None)",
+  "validator": "validate_fixtures(root,zstd_library=None)",
+  "integration": "Separate partial Pipe limit evidence. Reuse source and incidence from identical inputs; expose distanceOne/Two availability and explicit auxiliary source-start vertex provenance only. Never clear full Pipe tool failures or populate Path opposition/partial curve.",
+  "expected_outputs": "samples[].expected_summary is complete inspector result for exact main equality checks",
+  "SDK_evidence": {
+    "local_definition": "/Users/stephenh/Library/Application Support/Autodesk/Autodesk Fusion 360/API/Python/defs/adsk/fusion.py",
+    "PipeFeature.distanceTwo": "The installed getter contract returns null for an open path and a reverse-path distance for a closed path. Availability follows independently resolved single-edge closure, not optional selector presence.",
+    "PipeFeatureInput.distanceOne_distanceTwo": "Input distances are fractions in[0,1]. Closed-path distanceOne+distanceTwo may not exceed1; open-path distanceTwo setting is ignored.",
+    "PipeFeature.path": "Starting point is the starting point of the first path curve. This documents an API role but does not decode stored Path opposition from the current all-unopposed captures."
+  },
+  "grammar": {
+    "distance_roles": "Existing owned typed native bindings AgainstDistance@13 and AlongDistance@24 retain their model-parameter roles. AgainstDistance matches API distanceOne across contrasted full/partial open/closed cases. AlongDistance is active API distanceTwo only on the independently resolved closed single source edge, otherwise an inactive duplicate of AgainstDistance.",
+    "auxiliary_vertex": "Observed40-byte vertex_recipe_data: int32 -1,uint32 count3,three (name index,int32 -1) pairs,two int32zeros. All three complete name tuples map uniquely into the source edge recipe, in exactly the same operand order as its start-vertex subrecipe. The already validated reciprocal incidence supplies the vertex identity.",
+    "context_copy": "Explicit owned context edge recipe repeats full source name table and every payload byte except final int32: source0,context-1. This invariant is retained without direction/limit semantics."
+  },
+  "limitations": [
+    "All six saved PathEntity.isOpposedToEntity getters are false; the corpus has no native true/false contrast. Stored auxiliary source-start identity does not establish a universal Path opposition flag.",
+    "Descriptor flag1 occurs for both open negative Line and closed Circle while all API opposition flags stay false. No closedness or Path opposition is assigned to that byte.",
+    "Circular92-byte recipe tail remains opaque. Its primary/context last-field0/-1 distinction is invariant across full/partial cases and cannot encode those active limits by itself.",
+    "Actual PathEntity.curve is the full input geometry even when Pipe distanceOne/Two are partial. Its full length/domain is not the resulting Pipe path extent.",
+    "Only independently resolved captured single source Line/Circle, solid circular NewBody, root-component identity-transform cases are admitted. Multi-edge paths, opposed cases, arcs, non-circular curves, occurrence transforms and full Pipe tool regeneration remain unresolved."
+  ],
+  "samples": [
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+      "expected_summary": {
+        "feature_object_id": 330,
+        "source_recipe_object_id": 337,
+        "source_descriptor_object_id": 334,
+        "native_source_body_object_id": 275,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6e54ac-a55e-4352-9610-0e846d97cc10.smbh",
+        "source_edge_record_index": 115,
+        "cached_source_edge_is_closed": false,
+        "cached_source_geometry_kind": "Line",
+        "distance_one_fraction": 1.0,
+        "distance_one_binding_object_id": 353,
+        "distance_two_available": false,
+        "distance_two_fraction": null,
+        "stored_along_distance_fraction": 1.0,
+        "along_distance_binding_object_id": 350,
+        "stored_along_distance_role": "InactiveCopyOfDistanceOne",
+        "availability_basis": "Single source-edge closure proved by explicit named-face incidence and typed source topology, plus documented Pipe distanceTwo behavior and contrasted saved getters. Selector presence and descriptor flag are not closure inputs.",
+        "auxiliary_source_vertex": {
+          "selection_object_id": 346,
+          "descriptor_object_id": 341,
+          "context_object_id": 370,
+          "vertex_recipe_object_id": 344,
+          "vertex_operand": {
+            "recipe_object_id": 344,
+            "stored_direct_vertex_name_index": -1,
+            "face_name_references": [
+              {
+                "name_table_index": 1,
+                "stored_secondary_index": -1
+              },
+              {
+                "name_table_index": 2,
+                "stored_secondary_index": -1
+              },
+              {
+                "name_table_index": 0,
+                "stored_secondary_index": -1
+              }
+            ],
+            "stored_tail_fields_int32": [
+              0,
+              0
+            ],
+            "payload_hex": "ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000"
+          },
+          "exact_name_tuple_remap": [
+            {
+              "auxiliary_name_table_index": 1,
+              "edge_name_table_index": 1
+            },
+            {
+              "auxiliary_name_table_index": 2,
+              "edge_name_table_index": 0
+            },
+            {
+              "auxiliary_name_table_index": 0,
+              "edge_name_table_index": 2
+            }
+          ],
+          "source_vertex_operand_ordinal": 0,
+          "source_vertex_record_index": 117,
+          "source_face_operands": [
+            {
+              "name_table_index": 1,
+              "attribute_record_index": 38,
+              "face_record_index": 28
+            },
+            {
+              "name_table_index": 0,
+              "attribute_record_index": 54,
+              "face_record_index": 39
+            },
+            {
+              "name_table_index": 2,
+              "attribute_record_index": 109,
+              "face_record_index": 80
+            }
+          ],
+          "association": "Auxiliary three-face recipe equals stored edge start-vertex subrecipe after exact full-name tuple remapping; source vertex identity follows reciprocal incidence, not coordinates",
+          "path_direction_status": "This names the stored source-edge start vertex; its general role in Path direction remains unresolved without an opposed-Path contrast"
+        },
+        "context_recipe_copy": {
+          "source_recipe_object_id": 337,
+          "context_recipe_object_id": 368,
+          "payload_length": 116,
+          "source_final_int32": 0,
+          "context_final_int32": -1,
+          "shared_prefix_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff0000000000000000",
+          "field_status": "Stored0/-1 difference is invariant across all observed open/closed/full/partial and negative-line captures; no Path opposition or limit meaning assigned"
+        },
+        "path_is_opposed_to_entity": null,
+        "partial_path_parameter_domain": null,
+        "partial_geometry_status": "distanceOne/Two are active Pipe fractions. Stored source domain and API PathEntity.curve describe the full input edge; resulting partial Pipe parameter limits and path opposition remain unresolved.",
+        "tool_settings_status": "Unresolved; bounded active fractions and source vertex provenance only, full Pipe tool decoding not claimed",
+        "scope": "Observed single-BRep-edge Pipe distanceOne/distanceTwo availability from explicitly resolved cached source topology; auxiliary vertex recipe names source start identity; Path opposition and resulting partial geometry unresolved"
+      },
+      "API_observation": {
+        "distance_one": 1.0,
+        "distance_two": null,
+        "source_is_closed": false,
+        "source_geometry_type": "adsk::core::Line3D",
+        "is_opposed_to_entity": false,
+        "descriptor_flag_byte3": 0,
+        "source_edge_length_cm": 3.0,
+        "actual_full_input_PathEntity_curve_length_cm": 3.0000000000000004,
+        "source_trimmed_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "actual_full_input_PathEntity_parameter_domain": [
+          0.0,
+          3.0
+        ]
+      },
+      "API_evidence_status": "Saved getter comparisons only after native closure/name/owner joins; no API values passed into decoder"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "expected_summary": {
+        "feature_object_id": 330,
+        "source_recipe_object_id": 337,
+        "source_descriptor_object_id": 334,
+        "native_source_body_object_id": 275,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6be85fa6-4695-4089-a1a1-409537f8835f.smbh",
+        "source_edge_record_index": 115,
+        "cached_source_edge_is_closed": false,
+        "cached_source_geometry_kind": "Line",
+        "distance_one_fraction": 0.4,
+        "distance_one_binding_object_id": 353,
+        "distance_two_available": false,
+        "distance_two_fraction": null,
+        "stored_along_distance_fraction": 0.4,
+        "along_distance_binding_object_id": 350,
+        "stored_along_distance_role": "InactiveCopyOfDistanceOne",
+        "availability_basis": "Single source-edge closure proved by explicit named-face incidence and typed source topology, plus documented Pipe distanceTwo behavior and contrasted saved getters. Selector presence and descriptor flag are not closure inputs.",
+        "auxiliary_source_vertex": {
+          "selection_object_id": 346,
+          "descriptor_object_id": 341,
+          "context_object_id": 370,
+          "vertex_recipe_object_id": 344,
+          "vertex_operand": {
+            "recipe_object_id": 344,
+            "stored_direct_vertex_name_index": -1,
+            "face_name_references": [
+              {
+                "name_table_index": 1,
+                "stored_secondary_index": -1
+              },
+              {
+                "name_table_index": 2,
+                "stored_secondary_index": -1
+              },
+              {
+                "name_table_index": 0,
+                "stored_secondary_index": -1
+              }
+            ],
+            "stored_tail_fields_int32": [
+              0,
+              0
+            ],
+            "payload_hex": "ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000"
+          },
+          "exact_name_tuple_remap": [
+            {
+              "auxiliary_name_table_index": 1,
+              "edge_name_table_index": 1
+            },
+            {
+              "auxiliary_name_table_index": 2,
+              "edge_name_table_index": 0
+            },
+            {
+              "auxiliary_name_table_index": 0,
+              "edge_name_table_index": 2
+            }
+          ],
+          "source_vertex_operand_ordinal": 0,
+          "source_vertex_record_index": 117,
+          "source_face_operands": [
+            {
+              "name_table_index": 1,
+              "attribute_record_index": 38,
+              "face_record_index": 28
+            },
+            {
+              "name_table_index": 0,
+              "attribute_record_index": 54,
+              "face_record_index": 39
+            },
+            {
+              "name_table_index": 2,
+              "attribute_record_index": 109,
+              "face_record_index": 80
+            }
+          ],
+          "association": "Auxiliary three-face recipe equals stored edge start-vertex subrecipe after exact full-name tuple remapping; source vertex identity follows reciprocal incidence, not coordinates",
+          "path_direction_status": "This names the stored source-edge start vertex; its general role in Path direction remains unresolved without an opposed-Path contrast"
+        },
+        "context_recipe_copy": {
+          "source_recipe_object_id": 337,
+          "context_recipe_object_id": 368,
+          "payload_length": 116,
+          "source_final_int32": 0,
+          "context_final_int32": -1,
+          "shared_prefix_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff0000000000000000",
+          "field_status": "Stored0/-1 difference is invariant across all observed open/closed/full/partial and negative-line captures; no Path opposition or limit meaning assigned"
+        },
+        "path_is_opposed_to_entity": null,
+        "partial_path_parameter_domain": null,
+        "partial_geometry_status": "distanceOne/Two are active Pipe fractions. Stored source domain and API PathEntity.curve describe the full input edge; resulting partial Pipe parameter limits and path opposition remain unresolved.",
+        "tool_settings_status": "Unresolved; bounded active fractions and source vertex provenance only, full Pipe tool decoding not claimed",
+        "scope": "Observed single-BRep-edge Pipe distanceOne/distanceTwo availability from explicitly resolved cached source topology; auxiliary vertex recipe names source start identity; Path opposition and resulting partial geometry unresolved"
+      },
+      "API_observation": {
+        "distance_one": 0.4,
+        "distance_two": null,
+        "source_is_closed": false,
+        "source_geometry_type": "adsk::core::Line3D",
+        "is_opposed_to_entity": false,
+        "descriptor_flag_byte3": 0,
+        "source_edge_length_cm": 3.0,
+        "actual_full_input_PathEntity_curve_length_cm": 3.0000000000000004,
+        "source_trimmed_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "actual_full_input_PathEntity_parameter_domain": [
+          0.0,
+          3.0
+        ]
+      },
+      "API_evidence_status": "Saved getter comparisons only after native closure/name/owner joins; no API values passed into decoder"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "expected_summary": {
+        "feature_object_id": 330,
+        "source_recipe_object_id": 337,
+        "source_descriptor_object_id": 334,
+        "native_source_body_object_id": 275,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.450ca4e7-360a-45c1-aa4c-a78ed6be53c3.smbh",
+        "source_edge_record_index": 66,
+        "cached_source_edge_is_closed": false,
+        "cached_source_geometry_kind": "Line",
+        "distance_one_fraction": 0.4,
+        "distance_one_binding_object_id": 353,
+        "distance_two_available": false,
+        "distance_two_fraction": null,
+        "stored_along_distance_fraction": 0.4,
+        "along_distance_binding_object_id": 350,
+        "stored_along_distance_role": "InactiveCopyOfDistanceOne",
+        "availability_basis": "Single source-edge closure proved by explicit named-face incidence and typed source topology, plus documented Pipe distanceTwo behavior and contrasted saved getters. Selector presence and descriptor flag are not closure inputs.",
+        "auxiliary_source_vertex": {
+          "selection_object_id": 346,
+          "descriptor_object_id": 341,
+          "context_object_id": 370,
+          "vertex_recipe_object_id": 344,
+          "vertex_operand": {
+            "recipe_object_id": 344,
+            "stored_direct_vertex_name_index": -1,
+            "face_name_references": [
+              {
+                "name_table_index": 1,
+                "stored_secondary_index": -1
+              },
+              {
+                "name_table_index": 2,
+                "stored_secondary_index": -1
+              },
+              {
+                "name_table_index": 0,
+                "stored_secondary_index": -1
+              }
+            ],
+            "stored_tail_fields_int32": [
+              0,
+              0
+            ],
+            "payload_hex": "ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000"
+          },
+          "exact_name_tuple_remap": [
+            {
+              "auxiliary_name_table_index": 1,
+              "edge_name_table_index": 1
+            },
+            {
+              "auxiliary_name_table_index": 2,
+              "edge_name_table_index": 2
+            },
+            {
+              "auxiliary_name_table_index": 0,
+              "edge_name_table_index": 0
+            }
+          ],
+          "source_vertex_operand_ordinal": 0,
+          "source_vertex_record_index": 71,
+          "source_face_operands": [
+            {
+              "name_table_index": 1,
+              "attribute_record_index": 19,
+              "face_record_index": 17
+            },
+            {
+              "name_table_index": 2,
+              "attribute_record_index": 79,
+              "face_record_index": 55
+            },
+            {
+              "name_table_index": 0,
+              "attribute_record_index": 54,
+              "face_record_index": 39
+            }
+          ],
+          "association": "Auxiliary three-face recipe equals stored edge start-vertex subrecipe after exact full-name tuple remapping; source vertex identity follows reciprocal incidence, not coordinates",
+          "path_direction_status": "This names the stored source-edge start vertex; its general role in Path direction remains unresolved without an opposed-Path contrast"
+        },
+        "context_recipe_copy": {
+          "source_recipe_object_id": 337,
+          "context_recipe_object_id": 368,
+          "payload_length": 116,
+          "source_final_int32": 0,
+          "context_final_int32": -1,
+          "shared_prefix_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000ffffffff0300000001000000ffffffff00000000ffffffff03000000ffffffff0000000000000000",
+          "field_status": "Stored0/-1 difference is invariant across all observed open/closed/full/partial and negative-line captures; no Path opposition or limit meaning assigned"
+        },
+        "path_is_opposed_to_entity": null,
+        "partial_path_parameter_domain": null,
+        "partial_geometry_status": "distanceOne/Two are active Pipe fractions. Stored source domain and API PathEntity.curve describe the full input edge; resulting partial Pipe parameter limits and path opposition remain unresolved.",
+        "tool_settings_status": "Unresolved; bounded active fractions and source vertex provenance only, full Pipe tool decoding not claimed",
+        "scope": "Observed single-BRep-edge Pipe distanceOne/distanceTwo availability from explicitly resolved cached source topology; auxiliary vertex recipe names source start identity; Path opposition and resulting partial geometry unresolved"
+      },
+      "API_observation": {
+        "distance_one": 0.4,
+        "distance_two": null,
+        "source_is_closed": false,
+        "source_geometry_type": "adsk::core::Line3D",
+        "is_opposed_to_entity": false,
+        "descriptor_flag_byte3": 1,
+        "source_edge_length_cm": 3.0,
+        "actual_full_input_PathEntity_curve_length_cm": 3.0000000000000004,
+        "source_trimmed_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "actual_full_input_PathEntity_parameter_domain": [
+          0.0,
+          3.0
+        ]
+      },
+      "API_evidence_status": "Saved getter comparisons only after native closure/name/owner joins; no API values passed into decoder"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+      "expected_summary": {
+        "feature_object_id": 315,
+        "source_recipe_object_id": 322,
+        "source_descriptor_object_id": 319,
+        "native_source_body_object_id": 260,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.856aa8d9-7957-4dd5-9d61-52a7356f2696.smbh",
+        "source_edge_record_index": 35,
+        "cached_source_edge_is_closed": true,
+        "cached_source_geometry_kind": "Circle",
+        "distance_one_fraction": 1.0,
+        "distance_one_binding_object_id": 330,
+        "distance_two_available": true,
+        "distance_two_fraction": 0.0,
+        "stored_along_distance_fraction": 0.0,
+        "along_distance_binding_object_id": 327,
+        "stored_along_distance_role": "ActiveDistanceTwo",
+        "availability_basis": "Single source-edge closure proved by explicit named-face incidence and typed source topology, plus documented Pipe distanceTwo behavior and contrasted saved getters. Selector presence and descriptor flag are not closure inputs.",
+        "auxiliary_source_vertex": null,
+        "context_recipe_copy": {
+          "source_recipe_object_id": 322,
+          "context_recipe_object_id": 345,
+          "payload_length": 120,
+          "source_final_int32": 0,
+          "context_final_int32": -1,
+          "shared_prefix_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000",
+          "field_status": "Stored0/-1 difference is invariant across all observed open/closed/full/partial and negative-line captures; no Path opposition or limit meaning assigned"
+        },
+        "path_is_opposed_to_entity": null,
+        "partial_path_parameter_domain": null,
+        "partial_geometry_status": "distanceOne/Two are active Pipe fractions. Stored source domain and API PathEntity.curve describe the full input edge; resulting partial Pipe parameter limits and path opposition remain unresolved.",
+        "tool_settings_status": "Unresolved; bounded active fractions and source vertex provenance only, full Pipe tool decoding not claimed",
+        "scope": "Observed single-BRep-edge Pipe distanceOne/distanceTwo availability from explicitly resolved cached source topology; auxiliary vertex recipe names source start identity; Path opposition and resulting partial geometry unresolved"
+      },
+      "API_observation": {
+        "distance_one": 1.0,
+        "distance_two": 0.0,
+        "source_is_closed": true,
+        "source_geometry_type": "adsk::core::Circle3D",
+        "is_opposed_to_entity": false,
+        "descriptor_flag_byte3": 1,
+        "source_edge_length_cm": 12.566370614359172,
+        "actual_full_input_PathEntity_curve_length_cm": 12.566370614486463,
+        "source_trimmed_parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "actual_full_input_PathEntity_parameter_domain": [
+          0.0,
+          6.283185307179586
+        ]
+      },
+      "API_evidence_status": "Saved getter comparisons only after native closure/name/owner joins; no API values passed into decoder"
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "expected_summary": {
+        "feature_object_id": 315,
+        "source_recipe_object_id": 322,
+        "source_descriptor_object_id": 319,
+        "native_source_body_object_id": 260,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9567852f-6f54-4a8f-a8d8-88009da4deb9.smbh",
+        "source_edge_record_index": 42,
+        "cached_source_edge_is_closed": true,
+        "cached_source_geometry_kind": "Circle",
+        "distance_one_fraction": 0.35,
+        "distance_one_binding_object_id": 330,
+        "distance_two_available": true,
+        "distance_two_fraction": 0.2,
+        "stored_along_distance_fraction": 0.2,
+        "along_distance_binding_object_id": 327,
+        "stored_along_distance_role": "ActiveDistanceTwo",
+        "availability_basis": "Single source-edge closure proved by explicit named-face incidence and typed source topology, plus documented Pipe distanceTwo behavior and contrasted saved getters. Selector presence and descriptor flag are not closure inputs.",
+        "auxiliary_source_vertex": null,
+        "context_recipe_copy": {
+          "source_recipe_object_id": 322,
+          "context_recipe_object_id": 345,
+          "payload_length": 120,
+          "source_final_int32": 0,
+          "context_final_int32": -1,
+          "shared_prefix_hex": "00000000ffffffff0200000001000000ffffffff02000000ffffffff01000000ffffffff0200000001000000ffffffff02000000ffffffff0100000000000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000",
+          "field_status": "Stored0/-1 difference is invariant across all observed open/closed/full/partial and negative-line captures; no Path opposition or limit meaning assigned"
+        },
+        "path_is_opposed_to_entity": null,
+        "partial_path_parameter_domain": null,
+        "partial_geometry_status": "distanceOne/Two are active Pipe fractions. Stored source domain and API PathEntity.curve describe the full input edge; resulting partial Pipe parameter limits and path opposition remain unresolved.",
+        "tool_settings_status": "Unresolved; bounded active fractions and source vertex provenance only, full Pipe tool decoding not claimed",
+        "scope": "Observed single-BRep-edge Pipe distanceOne/distanceTwo availability from explicitly resolved cached source topology; auxiliary vertex recipe names source start identity; Path opposition and resulting partial geometry unresolved"
+      },
+      "API_observation": {
+        "distance_one": 0.35,
+        "distance_two": 0.2,
+        "source_is_closed": true,
+        "source_geometry_type": "adsk::core::Circle3D",
+        "is_opposed_to_entity": false,
+        "descriptor_flag_byte3": 1,
+        "source_edge_length_cm": 12.566370614359172,
+        "actual_full_input_PathEntity_curve_length_cm": 12.566370614486463,
+        "source_trimmed_parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "actual_full_input_PathEntity_parameter_domain": [
+          0.0,
+          6.283185307179586
+        ]
+      },
+      "API_evidence_status": "Saved getter comparisons only after native closure/name/owner joins; no API values passed into decoder"
+    },
+    {
+      "file": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+      "expected_summary": {
+        "feature_object_id": 306,
+        "source_recipe_object_id": 313,
+        "source_descriptor_object_id": 310,
+        "native_source_body_object_id": 275,
+        "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b6eb5dba-03d3-4fc1-8c9e-ff9446a6e261.smbh",
+        "source_edge_record_index": 115,
+        "cached_source_edge_is_closed": false,
+        "cached_source_geometry_kind": "Line",
+        "distance_one_fraction": 1.0,
+        "distance_one_binding_object_id": 329,
+        "distance_two_available": false,
+        "distance_two_fraction": null,
+        "stored_along_distance_fraction": 1.0,
+        "along_distance_binding_object_id": 326,
+        "stored_along_distance_role": "InactiveCopyOfDistanceOne",
+        "availability_basis": "Single source-edge closure proved by explicit named-face incidence and typed source topology, plus documented Pipe distanceTwo behavior and contrasted saved getters. Selector presence and descriptor flag are not closure inputs.",
+        "auxiliary_source_vertex": {
+          "selection_object_id": 322,
+          "descriptor_object_id": 317,
+          "context_object_id": 346,
+          "vertex_recipe_object_id": 320,
+          "vertex_operand": {
+            "recipe_object_id": 320,
+            "stored_direct_vertex_name_index": -1,
+            "face_name_references": [
+              {
+                "name_table_index": 1,
+                "stored_secondary_index": -1
+              },
+              {
+                "name_table_index": 2,
+                "stored_secondary_index": -1
+              },
+              {
+                "name_table_index": 0,
+                "stored_secondary_index": -1
+              }
+            ],
+            "stored_tail_fields_int32": [
+              0,
+              0
+            ],
+            "payload_hex": "ffffffff0300000001000000ffffffff02000000ffffffff00000000ffffffff0000000000000000"
+          },
+          "exact_name_tuple_remap": [
+            {
+              "auxiliary_name_table_index": 1,
+              "edge_name_table_index": 1
+            },
+            {
+              "auxiliary_name_table_index": 2,
+              "edge_name_table_index": 0
+            },
+            {
+              "auxiliary_name_table_index": 0,
+              "edge_name_table_index": 2
+            }
+          ],
+          "source_vertex_operand_ordinal": 0,
+          "source_vertex_record_index": 117,
+          "source_face_operands": [
+            {
+              "name_table_index": 1,
+              "attribute_record_index": 38,
+              "face_record_index": 28
+            },
+            {
+              "name_table_index": 0,
+              "attribute_record_index": 54,
+              "face_record_index": 39
+            },
+            {
+              "name_table_index": 2,
+              "attribute_record_index": 109,
+              "face_record_index": 80
+            }
+          ],
+          "association": "Auxiliary three-face recipe equals stored edge start-vertex subrecipe after exact full-name tuple remapping; source vertex identity follows reciprocal incidence, not coordinates",
+          "path_direction_status": "This names the stored source-edge start vertex; its general role in Path direction remains unresolved without an opposed-Path contrast"
+        },
+        "context_recipe_copy": {
+          "source_recipe_object_id": 313,
+          "context_recipe_object_id": 344,
+          "payload_length": 116,
+          "source_final_int32": 0,
+          "context_final_int32": -1,
+          "shared_prefix_hex": "ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000001000000ffffffff00000000ffffffff02000000ffffffff0000000000000000ffffffff0300000001000000ffffffff03000000ffffffff00000000ffffffff0000000000000000",
+          "field_status": "Stored0/-1 difference is invariant across all observed open/closed/full/partial and negative-line captures; no Path opposition or limit meaning assigned"
+        },
+        "path_is_opposed_to_entity": null,
+        "partial_path_parameter_domain": null,
+        "partial_geometry_status": "distanceOne/Two are active Pipe fractions. Stored source domain and API PathEntity.curve describe the full input edge; resulting partial Pipe parameter limits and path opposition remain unresolved.",
+        "tool_settings_status": "Unresolved; bounded active fractions and source vertex provenance only, full Pipe tool decoding not claimed",
+        "scope": "Observed single-BRep-edge Pipe distanceOne/distanceTwo availability from explicitly resolved cached source topology; auxiliary vertex recipe names source start identity; Path opposition and resulting partial geometry unresolved"
+      },
+      "API_observation": {
+        "distance_one": 1.0,
+        "distance_two": null,
+        "source_is_closed": false,
+        "source_geometry_type": "adsk::core::Line3D",
+        "is_opposed_to_entity": false,
+        "descriptor_flag_byte3": 0,
+        "source_edge_length_cm": 3.0,
+        "actual_full_input_PathEntity_curve_length_cm": 3.0000000000000004,
+        "source_trimmed_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "actual_full_input_PathEntity_parameter_domain": [
+          0.0,
+          3.0
+        ]
+      },
+      "API_evidence_status": "Saved getter comparisons only after native closure/name/owner joins; no API values passed into decoder"
+    }
+  ],
+  "comparisons": [
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d single input source",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d source closure agrees independent API",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d active distanceOne agrees actual getter",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d distanceTwo availability agrees actual getter presence",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d active distanceTwo agrees actual getter",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d Path opposition remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d partial Pipe parameter domain remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d source/context recipe final fields retain0/-1",
+      "actual": [
+        0,
+        -1
+      ],
+      "expected": [
+        0,
+        -1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d exact auxiliary name remap names first endpoint",
+      "actual": 117,
+      "expected": 117,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d inactive AlongDistance retains actual distanceOne copy",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_full.f3d actual PathEntity curve remains full source length",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d single input source",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d source closure agrees independent API",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d active distanceOne agrees actual getter",
+      "actual": 0.4,
+      "expected": 0.4,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d distanceTwo availability agrees actual getter presence",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d active distanceTwo agrees actual getter",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d Path opposition remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d partial Pipe parameter domain remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d source/context recipe final fields retain0/-1",
+      "actual": [
+        0,
+        -1
+      ],
+      "expected": [
+        0,
+        -1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d exact auxiliary name remap names first endpoint",
+      "actual": 117,
+      "expected": 117,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d inactive AlongDistance retains actual distanceOne copy",
+      "actual": 0.4,
+      "expected": 0.4,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d actual PathEntity curve remains full source length",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d single input source",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d source closure agrees independent API",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d active distanceOne agrees actual getter",
+      "actual": 0.4,
+      "expected": 0.4,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d distanceTwo availability agrees actual getter presence",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d active distanceTwo agrees actual getter",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d Path opposition remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d partial Pipe parameter domain remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d source/context recipe final fields retain0/-1",
+      "actual": [
+        0,
+        -1
+      ],
+      "expected": [
+        0,
+        -1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d exact auxiliary name remap names first endpoint",
+      "actual": 71,
+      "expected": 71,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d inactive AlongDistance retains actual distanceOne copy",
+      "actual": 0.4,
+      "expected": 0.4,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d actual PathEntity curve remains full source length",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d single input source",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d source closure agrees independent API",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d active distanceOne agrees actual getter",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d distanceTwo availability agrees actual getter presence",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d active distanceTwo agrees actual getter",
+      "actual": 0.0,
+      "expected": 0.0,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d Path opposition remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d partial Pipe parameter domain remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d source/context recipe final fields retain0/-1",
+      "actual": [
+        0,
+        -1
+      ],
+      "expected": [
+        0,
+        -1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d active AlongDistance retained",
+      "actual": "ActiveDistanceTwo",
+      "expected": "ActiveDistanceTwo",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d actual PathEntity curve remains full source length",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d single input source",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d source closure agrees independent API",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d active distanceOne agrees actual getter",
+      "actual": 0.35,
+      "expected": 0.35,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d distanceTwo availability agrees actual getter presence",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d active distanceTwo agrees actual getter",
+      "actual": 0.2,
+      "expected": 0.2,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d Path opposition remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d partial Pipe parameter domain remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d source/context recipe final fields retain0/-1",
+      "actual": [
+        0,
+        -1
+      ],
+      "expected": [
+        0,
+        -1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d active AlongDistance retained",
+      "actual": "ActiveDistanceTwo",
+      "expected": "ActiveDistanceTwo",
+      "passed": true
+    },
+    {
+      "label": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d actual PathEntity curve remains full source length",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d single input source",
+      "actual": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d source closure agrees independent API",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d active distanceOne agrees actual getter",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d distanceTwo availability agrees actual getter presence",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d active distanceTwo agrees actual getter",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d Path opposition remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d partial Pipe parameter domain remains unresolved",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d source/context recipe final fields retain0/-1",
+      "actual": [
+        0,
+        -1
+      ],
+      "expected": [
+        0,
+        -1
+      ],
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d exact auxiliary name remap names first endpoint",
+      "actual": 117,
+      "expected": 117,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d inactive AlongDistance retains actual distanceOne copy",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "label": "pipepaths-3d11bd427946/brep_edge_circular.f3d actual PathEntity curve remains full source length",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "label": "Negative Line does not infer reverse Path",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "label": "Descriptor flag varies while every actual opposition staysFalse",
+      "actual": [
+        [
+          0,
+          false
+        ],
+        [
+          1,
+          false
+        ]
+      ],
+      "expected": [
+        [
+          0,
+          false
+        ],
+        [
+          1,
+          false
+        ]
+      ],
+      "passed": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "label": "Auxiliary vertex wrong face count",
+      "rejected": true,
+      "reason": "Unobserved Pipe auxiliary vertex recipe framing"
+    },
+    {
+      "label": "Auxiliary vertex unknown face-name index",
+      "rejected": true,
+      "reason": "Pipe auxiliary vertex name index/sentinel disagrees"
+    },
+    {
+      "label": "Auxiliary vertex duplicate face operand",
+      "rejected": true,
+      "reason": "Pipe auxiliary vertex requires three distinct named faces"
+    },
+    {
+      "label": "Context recipe final field mismatch",
+      "rejected": true,
+      "reason": "Pipe limits requires captured source/context recipe copy with0/-1 final fields"
+    },
+    {
+      "label": "Cross-role incidence evidence descriptor",
+      "rejected": true,
+      "reason": "Pipe limits source/incidence ownership or role disagrees"
+    },
+    {
+      "label": "Open source AlongDistance copy disagreement",
+      "rejected": true,
+      "reason": "Observed populated-selector Pipe extent copies disagree"
+    }
+  ],
+  "counterexamples": [
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+      "observation": "Partial Pipe distance fractions coexist with a full-length PathEntity.curve getter; this getter must not populate partial Pipe limits",
+      "actual": {
+        "distance_one": 0.4,
+        "distance_two": null,
+        "source_is_closed": false,
+        "source_geometry_type": "adsk::core::Line3D",
+        "is_opposed_to_entity": false,
+        "descriptor_flag_byte3": 0,
+        "source_edge_length_cm": 3.0,
+        "actual_full_input_PathEntity_curve_length_cm": 3.0000000000000004,
+        "source_trimmed_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "actual_full_input_PathEntity_parameter_domain": [
+          0.0,
+          3.0
+        ]
+      }
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+      "observation": "Partial Pipe distance fractions coexist with a full-length PathEntity.curve getter; this getter must not populate partial Pipe limits",
+      "actual": {
+        "distance_one": 0.4,
+        "distance_two": null,
+        "source_is_closed": false,
+        "source_geometry_type": "adsk::core::Line3D",
+        "is_opposed_to_entity": false,
+        "descriptor_flag_byte3": 1,
+        "source_edge_length_cm": 3.0,
+        "actual_full_input_PathEntity_curve_length_cm": 3.0000000000000004,
+        "source_trimmed_parameter_domain": [
+          0.0,
+          3.0
+        ],
+        "actual_full_input_PathEntity_parameter_domain": [
+          0.0,
+          3.0
+        ]
+      }
+    },
+    {
+      "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+      "observation": "Partial Pipe distance fractions coexist with a full-length PathEntity.curve getter; this getter must not populate partial Pipe limits",
+      "actual": {
+        "distance_one": 0.35,
+        "distance_two": 0.2,
+        "source_is_closed": true,
+        "source_geometry_type": "adsk::core::Circle3D",
+        "is_opposed_to_entity": false,
+        "descriptor_flag_byte3": 1,
+        "source_edge_length_cm": 12.566370614359172,
+        "actual_full_input_PathEntity_curve_length_cm": 12.566370614486463,
+        "source_trimmed_parameter_domain": [
+          -3.141592653589793,
+          3.141592653589793
+        ],
+        "actual_full_input_PathEntity_parameter_domain": [
+          0.0,
+          6.283185307179586
+        ]
+      }
+    },
+    {
+      "observation": "Actual opposition staysFalse for both stored descriptor flags0/1 and both world-space Line directions; neither flag nor direction signs decode opposition",
+      "flag_and_API_opposition_pairs": [
+        [
+          0,
+          false
+        ],
+        [
+          1,
+          false
+        ]
+      ]
+    }
+  ],
+  "next_discriminating_capture": {
+    "case": "Same explicitly selected open BRepEdge represented by an API-supported Path that returns isOpposedToEntityTrue, contrasted with existingFalse; capture both full and partial distanceOne",
+    "must_capture": "Actual rolled-back Path ordered members, isOpposedToEntity, source tokens/start/end identities, source natural/trimmed evaluator, PathEntity.curve evaluator, distanceOne/Two, all native refs, and independent result-body geometry",
+    "purpose": "Separate native stored source-start selection and descriptor direction-like cache flags from actual Path member opposition. A reversed world-space line alone is insufficient."
+  },
+  "validation": {
+    "saved_files": 6,
+    "distanceTwo_available_closed": 2,
+    "distanceTwo_unavailable_open": 4,
+    "explicit_auxiliary_source_start_vertex_joins": 4,
+    "comparisons_passed": 66,
+    "malformed_guards_passed": 6,
+    "opposition_claims": 0,
+    "partial_geometry_claims": 0,
+    "full_Pipe_tool_failures_cleared": 0,
+    "new_API_calls": 0
+  }
+}

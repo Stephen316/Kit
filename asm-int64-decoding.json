@@ -1,0 +1,184 @@
+{
+  "scope": "Contextual signed int64 values in the observed typed attribute record; token completeness does not decode journal semantics",
+  "files": [
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.52975174-d8aa-45ef-bced-f4ace24fb701.smbh",
+      "contextual_integer_values_replayed": 34,
+      "record_count": 860,
+      "prior_complete_record_prefix_unchanged_except_int64_values": true,
+      "previous_stream_complete": true,
+      "whole_stream_now_complete": true,
+      "history_semantics_claimed": false
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0bf63823-b013-45da-b427-8c0f145f50eb.smbh",
+      "contextual_integer_values_replayed": 34,
+      "record_count": 925,
+      "prior_complete_record_prefix_unchanged_except_int64_values": true,
+      "previous_stream_complete": true,
+      "whole_stream_now_complete": true,
+      "history_semantics_claimed": false
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.86b17a11-cb7e-43b5-9373-18eb923c3ff5.smbh",
+      "contextual_integer_values_replayed": 34,
+      "record_count": 931,
+      "prior_complete_record_prefix_unchanged_except_int64_values": true,
+      "previous_stream_complete": true,
+      "whole_stream_now_complete": true,
+      "history_semantics_claimed": false
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6a868cc0-55bd-406e-bdda-8f3a9f28d491.smbh",
+      "contextual_integer_values_replayed": 34,
+      "record_count": 910,
+      "prior_complete_record_prefix_unchanged_except_int64_values": true,
+      "previous_stream_complete": true,
+      "whole_stream_now_complete": true,
+      "history_semantics_claimed": false
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7e25a941-97e9-42b9-95bd-ec31c2a89c08.smbh",
+      "contextual_integer_values_replayed": 34,
+      "record_count": 961,
+      "prior_complete_record_prefix_unchanged_except_int64_values": true,
+      "previous_stream_complete": true,
+      "whole_stream_now_complete": true,
+      "history_semantics_claimed": false
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.39be455c-397e-4258-8bf2-abbdf153b54b.smbh",
+      "contextual_integer_values_replayed": 34,
+      "record_count": 961,
+      "prior_complete_record_prefix_unchanged_except_int64_values": true,
+      "previous_stream_complete": true,
+      "whole_stream_now_complete": true,
+      "history_semantics_claimed": false
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c3ee864b-8ace-4c97-bd79-e59629edb9c5.smbh",
+      "contextual_integer_values_replayed": 34,
+      "record_count": 967,
+      "prior_complete_record_prefix_unchanged_except_int64_values": true,
+      "previous_stream_complete": true,
+      "whole_stream_now_complete": true,
+      "history_semantics_claimed": false
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8a3a41ea-e668-442c-aa57-28bc96e263f7.smbh",
+      "contextual_integer_values_replayed": 34,
+      "record_count": 965,
+      "prior_complete_record_prefix_unchanged_except_int64_values": true,
+      "previous_stream_complete": true,
+      "whole_stream_now_complete": true,
+      "history_semantics_claimed": false
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46c0576d-6f05-4738-a668-d5683314570b.smbh",
+      "contextual_integer_values_replayed": 25,
+      "record_count": 702,
+      "prior_complete_record_prefix_unchanged_except_int64_values": true,
+      "previous_stream_complete": false,
+      "whole_stream_now_complete": true,
+      "history_semantics_claimed": false
+    }
+  ],
+  "guards": [
+    {
+      "case": "Wrong enum schema cannot reinterpret the negative payload",
+      "rejected": true,
+      "reason": "Unsupported ASM int64 attribute prefix schema"
+    },
+    {
+      "case": "Integer attribute value requires an immediate record terminator",
+      "rejected": true,
+      "reason": "ASM int64 attribute value lacks exact record terminator"
+    },
+    {
+      "case": "Tag23 before its typed value field is rejected",
+      "rejected": true,
+      "reason": "Unsupported ASM int64 attribute prefix schema"
+    },
+    {
+      "case": "Real nonfinite tag6 double remains rejected",
+      "rejected": true,
+      "reason": "Non-finite ASM numeric token"
+    },
+    {
+      "case": "Truncated signed payload is rejected",
+      "rejected": true,
+      "reason": "Truncated ASM payload at 87429"
+    },
+    {
+      "case": "Unknown record context cannot reinterpret nonfinite tag23 bits as an integer",
+      "rejected": true,
+      "reason": "Non-finite ASM numeric token"
+    },
+    {
+      "case": "A genuine nonfinite initial-geometry double stays rejected",
+      "rejected": true,
+      "reason": "Non-finite ASM numeric token"
+    },
+    {
+      "case": "Finite double in the known integer schema is not silently accepted",
+      "rejected": true,
+      "reason": "Unsupported ASM int64 attribute value schema"
+    }
+  ],
+  "signed_boundary_controls": [
+    {
+      "value": -9223372036854775808,
+      "exact": true
+    },
+    {
+      "value": 9223372036854775807,
+      "exact": true
+    }
+  ],
+  "unknown_context_controls": [
+    {
+      "file": "analytic-86a12b291d0a/analytic.f3d",
+      "unchanged_complete_blob_outputs": 2
+    },
+    {
+      "file": "tools-fda3948848f4/RectangularPattern.f3d",
+      "unchanged_complete_blob_outputs": 2
+    },
+    {
+      "case": "Unknown finite tag23 record preserves previous output exactly",
+      "passed": true
+    }
+  ],
+  "prior_token_semantics": "Every prior complete record and token is unchanged except tag23 kind/value in the validated int64 attribute schema.",
+  "limitations": [
+    "Unknown tag23 contexts retain the previous uninterpreted finite-double representation.",
+    "SCULPT attribute values are not interpreted here as pointer indices, sides, global identities or current lifecycle.",
+    "History and trailing entities remain excluded from initial geometry graphs."
+  ],
+  "main_reader": {
+    "plane_first_history_token_complete": true,
+    "native_BODY_associations": [
+      275,
+      355
+    ],
+    "placed_bodies": 2,
+    "obsolete_initial_prefix_fallback_metadata_absent": true
+  },
+  "summary": {
+    "target_archives": 9,
+    "contextual_integer_values_replayed": 297,
+    "prior_complete_records_preserved_except_int64_semantics": 8034,
+    "recovered_whole_streams": 1,
+    "malformed_or_unsupported_guards": 8,
+    "signed_boundary_controls": 2
+  }
+}
