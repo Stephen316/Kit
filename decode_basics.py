@@ -98,6 +98,7 @@ from decode_mesh_smooth import decode_mesh_smooth
 from decode_mesh_reverse_normals import decode_mesh_reverse_normals
 from decode_mesh_shell import decode_mesh_shell
 from decode_mesh_face_groups import decode_mesh_face_groups
+from decode_historical_mesh_face_groups import decode_historical_mesh_face_groups
 from decode_mesh_separate import decode_mesh_separate
 from decode_mesh_remove import decode_mesh_remove
 from decode_mesh_combine_face_groups import decode_mesh_combine_face_groups
@@ -932,6 +933,20 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         mesh_separate_summary = decode_mesh_separate(data, records, features, name, members, mesh_summary)
         mesh_remove_summary = decode_mesh_remove(data, records, features, name, members, mesh_summary)
         mesh_combine_group_summary = decode_mesh_combine_face_groups(data, records, features, name, members, mesh_summary)
+        historical_mesh_face_group_summary = decode_historical_mesh_face_groups(data, records, features, name, members, mesh_summary)
+        historical_mesh_face_group_ids = {row['feature_object_id'] for row in historical_mesh_face_group_summary['decoded']}
+        eligible_historical_face_groups = {row['feature_object_id'] for row in mesh_face_group_summary['unresolved']
+            if row['reason'] == 'FaceGroups selected mesh current asset route unresolved'}
+        if not historical_mesh_face_group_ids <= eligible_historical_face_groups:
+            raise ValueError('Historical FaceGroups does not match the prior current-asset frontier')
+        if historical_mesh_face_group_ids:
+            mesh_face_group_summary['unresolved'] = [row for row in mesh_face_group_summary['unresolved']
+                if row['feature_object_id'] not in historical_mesh_face_group_ids
+                or row['reason'] != 'FaceGroups selected mesh current asset route unresolved']
+            discovery_summary.setdefault('class_decoded_mesh_face_group_count', len(mesh_face_group_summary['decoded']))
+        for historical in historical_mesh_face_group_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == historical['feature_object_id'])
+            feature['historical_mesh_face_group_route'] = historical['route']
         mesh_repair_summary = decode_mesh_repair(data, records, features, name, members, mesh_summary)
         for operation_summary, counter_key, level in (
                 (mesh_plane_cut_summary, 'class_decoded_mesh_plane_cut_count',
@@ -952,6 +967,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                  'Observed MeshShell thickness and owned parameter/mesh/asset routes; algorithm, lifecycle and regeneration unresolved'),
                 (mesh_face_group_summary, 'class_decoded_mesh_face_group_count',
                  'Observed MeshGenerateFaceGroups method, owned parameters and triangle group cache; general partitions and regeneration unresolved'),
+                (historical_mesh_face_group_summary, 'class_decoded_historical_mesh_face_group_count',
+                 'Observed historical MeshGenerateFaceGroups controls and stored feature cache before CombineFaceGroups; current asset ownership and general lifecycle remain separate'),
                 (mesh_separate_summary, 'class_decoded_mesh_separate_count',
                  'Observed MeshSeparate method and typed source/output membership; flag encodings, lifecycle and regeneration unresolved'),
                 (mesh_remove_summary, 'class_decoded_mesh_remove_count',
@@ -1659,6 +1676,7 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('mesh_reverse_normals', mesh_reverse_normal_summary),
                              ('mesh_shells', mesh_shell_summary),
                              ('mesh_face_groups', mesh_face_group_summary),
+                             ('historical_mesh_face_groups', historical_mesh_face_group_summary),
                              ('mesh_separations', mesh_separate_summary),
                              ('mesh_removals', mesh_remove_summary),
                              ('mesh_combined_face_groups', mesh_combine_group_summary),
@@ -1674,7 +1692,7 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('face_tracking_contexts', face_tracking_summary),
                              ('boundary_modifying_face_correspondences', boundary_modifying_summary),
                              ('profile_cache_correspondences', profile_cache_summary)):
-            if summary['decoded'] or summary['unresolved']:
+            if summary['decoded'] or summary['unresolved'] or (key == 'mesh_face_groups' and historical_mesh_face_group_ids):
                 streams[-1][key] = summary
         if base_empty_summary['partial'] or base_empty_summary['unresolved']:
             streams[-1]['base_feature_empty_lists'] = base_empty_summary

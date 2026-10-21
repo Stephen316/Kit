@@ -25,12 +25,20 @@ def _bounds(tokens, cursor, count):
     return values, flags, cursor
 
 
-def _surface_grid(tokens, start):
+def _surface_grid(tokens, start, *, allowed_axis_flags=None):
     _expect(tokens, start, 'entity_name', 'nurbs')
     du = _expect(tokens, start+1, 'integer', 3)
     dv = _expect(tokens, start+2, 'integer', 3)
     _expect(tokens, start+3, 'entity_name', 'both')
-    flags = [_expect(tokens, start+i, 'enum', 0) for i in range(4, 8)]
+    if allowed_axis_flags is None:
+        flags = [_expect(tokens, start+i, 'enum', 0) for i in range(4, 8)]
+    else:
+        allowed = tuple(tuple(row) for row in allowed_axis_flags)
+        if not allowed or any(row not in ((0, 0, 0, 0), (0, 0, 0, 1)) for row in allowed):
+            raise ValueError('Unobserved explicit Rule blend axis flag allowance')
+        flags = [_expect(tokens, start+i, 'enum') for i in range(4, 8)]
+        if tuple(flags) not in allowed:
+            raise ValueError('Unobserved explicit Rule blend axis flag tuple')
     ku, cu, nu, cursor = knot_vector(tokens, start+10, _expect(tokens, start+8, 'integer'), du)
     kv, cv, nv, cursor = knot_vector(tokens, cursor, _expect(tokens, start+9, 'integer'), dv)
     if nu*nv > 100000:

@@ -22,14 +22,18 @@ def _support_bounds(tokens, cursor):
     return flags, values, cursor
 
 
-def _grid(tokens, start, dimensions, allowed_degrees, rational_allowed):
+def _grid(tokens, start, dimensions, allowed_degrees, rational_allowed, *, allowed_forms=(0,)):
     representation = _expect(tokens, start, 'entity_name')
     if representation not in (('nubs', 'nurbs') if rational_allowed else ('nubs',)):
         raise ValueError('Unsupported parameter-curve grid representation')
     degree = _expect(tokens, start+1, 'integer')
     if degree not in allowed_degrees:
         raise ValueError('Unsupported parameter-curve grid degree')
-    _expect(tokens, start+2, 'enum', 0)
+    if allowed_forms not in ((0,), (0, 2)):
+        raise ValueError('Unsupported parameter-curve allowed form options')
+    form = _expect(tokens, start+2, 'enum')
+    if form not in allowed_forms:
+        raise ValueError('Unsupported procedural cache field '+str(start+2))
     knots, compact, count, cursor = knot_vector(tokens, start+4, _expect(tokens, start+3, 'integer'), degree)
     rational = representation == 'nurbs'
     stride = dimensions+int(rational)
@@ -40,15 +44,15 @@ def _grid(tokens, start, dimensions, allowed_degrees, rational_allowed):
         raise ValueError('Invalid parameter-curve rational weight')
     return {'degree': degree, 'knots': knots, 'stored_compact_knots': compact,
             'raw_control_points': [flat[i:i+dimensions] for i in range(0, len(flat), stride)],
-            'weights': weights, 'is_rational': rational, 'stored_form_code': 0,
+            'weights': weights, 'is_rational': rational, 'stored_form_code': form,
             'parameter_domain': [knots[degree], knots[-degree-1]]}, cursor
 
 
-def decode_parameter_curve_cache(record):
+def decode_parameter_curve_cache(record, *, allowed_grid_forms=(0,)):
     wrapper = _expect(record['tokens'], 3, 'boolean_token')
     tokens = _prefix(record, 'intcurve-curve', 'par_int_cur', wrapper)
     _expect(tokens, 7, 'enum', 0)
-    cache, cursor = _grid(tokens, 8, 3, (3,), True)
+    cache, cursor = _grid(tokens, 8, 3, (3,), True, allowed_forms=allowed_grid_forms)
     trailer_start = cursor
     scalar = _expect(tokens, cursor, 'double')
     cursor += 1
@@ -93,7 +97,7 @@ def decode_parameter_curve_cache(record):
         raise ValueError('Unsupported parameter-curve support kind')
     support['stored_definition'] = tokens[support_start:cursor]
     _expect(tokens, cursor, 'entity_name', 'null_surface')
-    uv, cursor = _grid(tokens, cursor+1, 2, (1, 3, 5), False)
+    uv, cursor = _grid(tokens, cursor+1, 2, (1, 3, 5), False, allowed_forms=allowed_grid_forms)
     _expect(tokens, cursor, 'entity_name', 'nullbs')
     _expect(tokens, cursor+1, 'boolean_token', False)
     _expect(tokens, cursor+2, 'boolean_token', False)

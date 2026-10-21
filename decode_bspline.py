@@ -66,7 +66,16 @@ def _decode_observed_bspline(record):
                 return decode_variable_blend_cache(record)
             except (ValueError, IndexError):
                 from decode_rule_blend_cache import decode_rule_blend_cache
-                return decode_rule_blend_cache(record)
+                try:
+                    return decode_rule_blend_cache(record)
+                except (ValueError, IndexError) as prior_error:
+                    if str(prior_error) != 'Rule blend fallback requires captured unbounded spine':
+                        raise
+                    from decode_interp_blend_cache import decode_interp_blend_cache
+                    try:
+                        return decode_interp_blend_cache(record)
+                    except (ValueError, IndexError):
+                        raise prior_error from None
         if name == "intcurve-curve" and tokens[5]["value"] == "spring_int_cur":
             from decode_spring_curve_cache import decode_spring_curve_cache
             try:
@@ -85,7 +94,16 @@ def _decode_observed_bspline(record):
             return decode_sum_surface_cache(record)
         if name == "intcurve-curve" and tokens[5]["value"] == "par_int_cur":
             from decode_parameter_curve_cache import decode_parameter_curve_cache
-            return decode_parameter_curve_cache(record)
+            try:
+                return decode_parameter_curve_cache(record)
+            except (ValueError, IndexError) as prior_error:
+                if str(prior_error) != 'Unsupported procedural cache field 10':
+                    raise
+                from decode_closed_parameter_curve_cache import decode_closed_parameter_curve_cache
+                try:
+                    return decode_closed_parameter_curve_cache(record)
+                except (ValueError, IndexError):
+                    raise prior_error from None
     if read_token(tokens, 3, "boolean_token") or tokens[4]["kind"] != "subtype_start":
         raise ValueError("Unsupported spline wrapper")
     procedural = read_token(tokens, 5, "entity_name")

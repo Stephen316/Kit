@@ -50,7 +50,7 @@ def _group_cache(mesh):
         identity_scope='Temporary group labels only; no persistent native face/group identity or lifecycle')
 
 
-def decode_mesh_face_groups(data, records, features, member, members, mesh_contents=None):
+def decode_mesh_face_groups(data, records, features, member, members, mesh_contents=None, *, allow_stored_feature_asset=False):
     """Return decoded/unresolved/scope; success rows feature_object_id/kind/name/settings."""
     records = list(records)
     result = dict(decoded=[], unresolved=[], scope=SCOPE)
@@ -129,12 +129,25 @@ def decode_mesh_face_groups(data, records, features, member, members, mesh_conte
                      and name == feature['name'] and len(body)-tail == 66,
                      'FaceGroups counted metadata/footer disagrees')
             matching = [m for m in meshes['decoded'] if m['mesh_object_id'] == selection['mesh_object_id']]
-            _require(len(matching) == 1 and matching[0]['asset_object_id'] == asset_id,
+            _require(len(matching) == 1 and (matching[0]['asset_object_id'] == asset_id
+                     or allow_stored_feature_asset is True),
                      'FaceGroups selected mesh current asset route unresolved')
             mesh = matching[0]
+            historical = mesh['asset_object_id'] != asset_id
             current = decode_mesh_asset(data,records,asset_id,member,members)
             additional = decode_mesh_asset(data,records,additional_id,member,members)
-            _require(current['asset_member'] == mesh['asset_member'], 'FaceGroups current same-asset filename disagrees')
+            if not historical:
+                _require(current['asset_member'] == mesh['asset_member'], 'FaceGroups current same-asset filename disagrees')
+                asset_fields = dict(current_mesh_asset=current, triangle_face_groups=_group_cache(mesh))
+            else:
+                selected_current = decode_mesh_asset(data,records,mesh['asset_object_id'],member,members)
+                _require(selected_current['asset_member'] == mesh['asset_member']
+                         and current['asset_member'] != selected_current['asset_member'],
+                         'Stored FaceGroups feature/current asset members disagree or alias')
+                asset_fields = dict(stored_feature_asset=current, selected_current_mesh_asset=selected_current,
+                    stored_feature_asset_is_current=False,
+                    triangle_face_groups=_group_cache(current),
+                    stored_feature_asset_scope='Explicit definition reference39 only; independently selected current mesh/asset kept separate')
             settings = dict(method={0:'Fast',1:'Accurate'}[method], stored_method_code=method,
                 scalar_bindings=scalars, angle_threshold_radians=values['Angle Threshold'] if method == 0 else None,
                 minimum_face_group_size=values['Minimum Face Group Size'] if method == 0 else None,
@@ -144,9 +157,10 @@ def decode_mesh_face_groups(data, records, features, member, members, mesh_conte
                 component_object_id=mesh['component_object_id'], current_mesh_native_feature_owner_object_id=mesh['feature_object_id'],
                 current_mesh_native_owner_class_guid=mesh['native_feature_class_guid'],
                 owner_scope='Typed selection/current asset agree; independent BaseMesh owner retained, not reassigned to GenerateFaceGroups',
-                current_mesh_asset=current, additional_stored_asset=additional, additional_asset_temporal_role=None,
-                asset_scope='Explicit assets39/50; first independently agrees with current native mesh. Additional slot has no general temporal role',
-                triangle_face_groups=_group_cache(mesh), repeated_dependency_object_ids=repeated,
+                **asset_fields, additional_stored_asset=additional, additional_asset_temporal_role=None,
+                asset_scope=('Explicit assets39/50; first independently agrees with current native mesh. Additional slot has no general temporal role'
+                    if not historical else 'Explicit assets39/50 retained separately from selected current native mesh/asset; general temporal roles unassigned'),
+                repeated_dependency_object_ids=repeated,
                 stored_shared_footer_hex=body[tail:].hex(),
                 regeneration_scope='Stored controls and cache only; grouping algorithm and regeneration unresolved')
             result['decoded'].append(dict(feature_object_id=owner,kind='MeshGenerateFaceGroups',name=name,settings=settings))
