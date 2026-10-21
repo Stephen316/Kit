@@ -1,0 +1,1188 @@
+{
+  "scope": "Three actual saved owned tetra mesh captures; no main corpus run or live Fusion calls",
+  "sample_count": 3,
+  "decoded_mesh_count": 3,
+  "typed_mesh_feature_count": 2,
+  "stored_node_count": 12,
+  "decoded_triangle_count": 12,
+  "lzma_buffer_count": 18,
+  "check_count": 89,
+  "malformed_guard_count": 6,
+  "capture": "meshcontrasts-10c2557c91a3",
+  "capture_generator_sha256": "09bf244b2431924a17fc743939cd5fd22ebb1de8ffde7976f20cdf4082dac4d4",
+  "current_generator_sha256": "d03e939e7f39024d63c60f6e05ba9abef60068295c6b20184b739263096c1db1",
+  "generator_followup": "Future iterable SWIG vector serialization and stale SDK/runtime PlaneCut status wording corrected; original capture snapshot/hash/truth remain unchanged and missing lists stay missing.",
+  "plane_cut_capability_correction": "Initially inspected API/Python/defs/adsk/fusion.py lacks MeshPlaneCut declarations, but actual running executable package exposes both MeshPlaneCutFeatures and Features.meshPlaneCutFeatures. Actual recorded booleans are true in all three captures; captured status prose is an incorrect inherited assumption. No PlaneCut call was made. Future work must inspect executable package docs.",
+  "new_native_classes": {
+    "mesh": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+    "mesh_asset": "A8338A26-5436-433C-8BAC-C3CF024AD595",
+    "mesh_asset_filename": "A1BAA3F6-4B67-4A0D-BACC-75F38A2230F3",
+    "mesh_collection": "443807AD-8025-41A3-8A50-5157579C3D78",
+    "base_mesh_feature": "99F6967E-ED35-4222-B906-5CCF0AC70B53"
+  },
+  "limitations": [
+    "Only observed six-buffer v2 four-node/four-triangle closed oriented assets accepted",
+    "Normals and four auxiliary buffers retained without semantic interpretation",
+    "API BaseFeature association null; original BaseFeature202 not classified as mesh owner",
+    "PlaneCut runtime capability is present despite stale inspected SDK defs; no PlaneCut feature generated or decoded",
+    "BRep conversion, general mesh regeneration, arbitrary transforms and lifecycle unresolved"
+  ],
+  "samples": [
+    {
+      "archive": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+      "api_name": "OwnedTetra_stl_centimeter",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "mesh_object_id": 219,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 23934,
+            "feature_object_id": 224,
+            "native_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+            "feature_owner_scope": "Explicit reciprocal native BaseMeshFeature membership",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 208,
+            "mesh_collection_record_offset": 23525,
+            "mesh_collection_base_record_offset": 23563,
+            "collection_mesh_object_ids": [
+              219
+            ],
+            "name": "OwnedTetra_stl_centimeter",
+            "name_helper_object_id": 222,
+            "name_property_object_id": 223,
+            "asset_object_id": 217,
+            "asset_record_offset": 23687,
+            "asset_filename_object_id": 218,
+            "asset_filename_record_offset": 23774,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.4d9c8bd6-2ad3-453e-85ad-1bd324575d45.paramesh",
+            "asset_fusion_uuid": "e96c2ade-c3d3-4e9b-82dc-e7693915462a",
+            "asset_reference_field_offset": 24475,
+            "stored_matrix_encodings": [
+              "ExplicitFloat64Matrix",
+              "ExplicitFloat64Matrix"
+            ],
+            "stored_matrix_copies": [
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380001e0000000000000000000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTetra",
+              "asset_size_bytes": 602,
+              "asset_sha256": "626917ee34d335771f81d1ec65b4259b6a3e1e931acd5e935a35e8bfd29eb0e0",
+              "fusion_uuid": "e96c2ade-c3d3-4e9b-82dc-e7693915462a",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2439323231393766652d346637352d343537352d383933362d3063626566616139623838392a0b0805120272301a037230692a322a0608071202723232280800122439376534663538372d666237332d343866372d626238652d3833393534663263386465643a042202723142330a0b667573696f6e5f757569641a2465393663326164652d633364332d346539622d383264632d6537363933393135343632614801622434303436396137372d656664612d346535642d613665342d363036613238633965663263aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2439323231393766652d346637352d343537352d383933362d3063626566616139623838392a0b0805120272301a037230692a322a0608071202723232280800122439376534663538372d666237332d343866372d626238652d3833393534663263386465643a042202723142330a0b667573696f6e5f757569641a2465393663326164652d633364332d346539622d383264632d6537363933393135343632614801622434303436396137372d656664612d346535642d613665342d363036613238633965663263aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 308,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006e04c805ffb4164acd525892ac000000",
+                  "uncompressed_payload_hex": "000000000000000000000000000000000000000000008040000000000000404000000000000000400000000000000000",
+                  "stored_frame_hex": "210000000000000004000000070082a14403a15403300000005d1400006e04c805ffb4164acd525892ac000000"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 353,
+                  "stored_length": 43,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0001003896e95f6e232ca533bc7dc1ded79e804282abbb5df89fc000",
+                  "uncompressed_payload_hex": "0200000001000000fdffffff03000000feffffffffffffff010000000100000001000000ffffffffffffffff01000000",
+                  "stored_frame_hex": "2b0000000000000004000000070082a15401a16401300000005d140001003896e95f6e232ca533bc7dc1ded79e804282abbb5df89fc000"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 408,
+                  "stored_length": 52,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00000015c74ce927a4d8a3e286c42d8c980dfa9a32c1c8e76a36648597a3b6b1fa00",
+                  "uncompressed_payload_hex": "000080bf00000000c54eec3ed9899d3ec54eec3ed9899d3ec54eec3ed9899d3e0000803f0000803f0000803f0000803f0000803f0000803f00000000000080bf00000000000080bf00000000000080bf000080bf00000000000080bf00000000",
+                  "stored_frame_hex": "3400000000000000040000000a0083a14403a15403a155c3600000005d1400000015c74ce927a4d8a3e286c42d8c980dfa9a32c1c8e76a36648597a3b6b1fa00"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 472,
+                  "stored_length": 29,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 32,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803cad8c6878a1208efd2c00",
+                  "uncompressed_payload_hex": "0100000001000000010000000100000001000000020000000100000008000000",
+                  "stored_frame_hex": "1d0000000000000004000000070082a15401a16401200000005d140000803cad8c6878a1208efd2c00"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 513,
+                  "stored_length": 43,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00018038bbd50f0132e5cfeed028b9ad2bde78fd80f9a92d200b86a0",
+                  "uncompressed_payload_hex": "03000000feffffff010000000000000001000000fdffffff02000000ffffffff02000000fdffffff0100000001000000",
+                  "stored_frame_hex": "2b0000000000000004000000070082a15401a16401300000005d1400018038bbd50f0132e5cfeed028b9ad2bde78fd80f9a92d200b86a0"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 568,
+                  "stored_length": 22,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 16,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006d3e4b0000",
+                  "uncompressed_payload_hex": "00000000000000000000000000000000",
+                  "stored_frame_hex": "160000000000000004000000070082a15401a16401100000005d1400006d3e4b0000"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  2.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "triangle_node_indices": [
+                0,
+                2,
+                3,
+                0,
+                3,
+                1,
+                0,
+                1,
+                2,
+                3,
+                2,
+                1
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; no normals decoding or semantics for auxiliary buffers",
+              "component_node_coordinates_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.000000059604645
+                ],
+                [
+                  0.0,
+                  3.0000000447034836,
+                  0.0
+                ],
+                [
+                  2.0000000298023224,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "triangle_count": 4,
+              "derived_area_cm2": 20.81025029610043,
+              "derived_signed_volume_cm3": 4.000000178813937,
+              "derived_absolute_volume_cm3": 4.000000178813937,
+              "derived_closed_oriented_edge_incidence": true,
+              "derived_undirected_edge_count": 6,
+              "derived_component_bounds_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  2.0000000298023224,
+                  3.0000000447034836,
+                  4.000000059604645
+                ]
+              }
+            },
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed UDPMESH v2 six-buffer closed four-node/four-triangle assets, typed native mesh/collection/component ownership and reciprocal asset UUID/filename links. Native mesh matrices recover component centimetres; triangle indices use stored signed forward differences and a final absolute anchor. Normals/auxiliary buffers, material semantics, BaseFeature ownership, Plane Cut, lifecycle, BRep conversion and regeneration remain unresolved."
+      },
+      "api_crosschecks": {
+        "coordinate_array_exact": true,
+        "triangle_index_array_exact": true,
+        "display_oriented_triangle_set_exact": true,
+        "volume_exact": true,
+        "measured_area_absolute_deviation_cm2": 6.201937772232213e-07,
+        "measured_bounds_max_deviation_cm": 5.960464477539063e-08,
+        "baseOrFormFeature": null,
+        "created_mesh_owner_is_base": false,
+        "missing_base_mesh_and_brep_source_lists": "Capture serializer error for iterable SWIG vectors; no counts/identity inferred"
+      },
+      "export_sha256": "af92be84cad999ab8b363e93aefb3b6c9be54138fcc321f843aff498dc387ac3"
+    },
+    {
+      "archive": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+      "api_name": "OwnedTetra_stl_millimeter",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "mesh_object_id": 219,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 23934,
+            "feature_object_id": 224,
+            "native_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+            "feature_owner_scope": "Explicit reciprocal native BaseMeshFeature membership",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 208,
+            "mesh_collection_record_offset": 23525,
+            "mesh_collection_base_record_offset": 23563,
+            "collection_mesh_object_ids": [
+              219
+            ],
+            "name": "OwnedTetra_stl_millimeter",
+            "name_helper_object_id": 222,
+            "name_property_object_id": 223,
+            "asset_object_id": 217,
+            "asset_record_offset": 23687,
+            "asset_filename_object_id": 218,
+            "asset_filename_record_offset": 23774,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.e048f78d-1f87-44c1-bf8f-94c4e66e25eb.paramesh",
+            "asset_fusion_uuid": "74e225d8-c708-4f7f-88e5-f3f1b4222505",
+            "asset_reference_field_offset": 24475,
+            "stored_matrix_encodings": [
+              "ExplicitFloat64Matrix",
+              "ExplicitFloat64Matrix"
+            ],
+            "stored_matrix_copies": [
+              [
+                0.10000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.10000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.10000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                0.10000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.10000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.10000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              0.10000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.10000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.10000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380001e0000000000000000000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTetra",
+              "asset_size_bytes": 600,
+              "asset_sha256": "f4361881f0f6d4f9610b0c8c29c59f8facee339ead8af8a282add48f897c203b",
+              "fusion_uuid": "74e225d8-c708-4f7f-88e5-f3f1b4222505",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2430343334656465392d326433382d346534372d616431652d6231613063613637383965652a0b0805120272301a037230692a322a0608071202723232280800122434373864343766622d353064312d343364382d623631322d3738383136353263326135633a042202723142330a0b667573696f6e5f757569641a2437346532323564382d633730382d346637662d383865352d6633663162343232323530354801622461663362303464382d373031372d343331662d396131612d346339393633363930366261aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2430343334656465392d326433382d346534372d616431652d6231613063613637383965652a0b0805120272301a037230692a322a0608071202723232280800122434373864343766622d353064312d343364382d623631322d3738383136353263326135633a042202723142330a0b667573696f6e5f757569641a2437346532323564382d633730382d346637662d383865352d6633663162343232323530354801622461663362303464382d373031372d343331662d396131612d346339393633363930366261aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 308,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006e04c805ffb4164acd525892ac000000",
+                  "uncompressed_payload_hex": "000000000000000000000000000000000000000000008040000000000000404000000000000000400000000000000000",
+                  "stored_frame_hex": "210000000000000004000000070082a14403a15403300000005d1400006e04c805ffb4164acd525892ac000000"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 353,
+                  "stored_length": 43,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0001003896e95f6e232ca533bc7dc1ded79e804282abbb5df89fc000",
+                  "uncompressed_payload_hex": "0200000001000000fdffffff03000000feffffffffffffff010000000100000001000000ffffffffffffffff01000000",
+                  "stored_frame_hex": "2b0000000000000004000000070082a15401a16401300000005d140001003896e95f6e232ca533bc7dc1ded79e804282abbb5df89fc000"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 408,
+                  "stored_length": 52,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00000015c74ce927a4d8a3e286c42d8c980dfa9a32c1c8e76a36648597a3b6b1fa00",
+                  "uncompressed_payload_hex": "000080bf00000000c54eec3ed9899d3ec54eec3ed9899d3ec54eec3ed9899d3e0000803f0000803f0000803f0000803f0000803f0000803f00000000000080bf00000000000080bf00000000000080bf000080bf00000000000080bf00000000",
+                  "stored_frame_hex": "3400000000000000040000000a0083a14403a15403a155c3600000005d1400000015c74ce927a4d8a3e286c42d8c980dfa9a32c1c8e76a36648597a3b6b1fa00"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 472,
+                  "stored_length": 29,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 32,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803cad8c6878a1208efd2c00",
+                  "uncompressed_payload_hex": "0100000001000000010000000100000001000000020000000100000008000000",
+                  "stored_frame_hex": "1d0000000000000004000000070082a15401a16401200000005d140000803cad8c6878a1208efd2c00"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 513,
+                  "stored_length": 41,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00018038bc0628d6de8e5c6f53cbf9e1616a4ef23770e07cc040",
+                  "uncompressed_payload_hex": "03000000ffffffff01000000fdffffff02000000feffffff010000000000000002000000feffffff0100000002000000",
+                  "stored_frame_hex": "290000000000000004000000070082a15401a16401300000005d1400018038bc0628d6de8e5c6f53cbf9e1616a4ef23770e07cc040"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 566,
+                  "stored_length": 22,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 16,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006d3e4b0000",
+                  "uncompressed_payload_hex": "00000000000000000000000000000000",
+                  "stored_frame_hex": "160000000000000004000000070082a15401a16401100000005d1400006d3e4b0000"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  2.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "triangle_node_indices": [
+                0,
+                2,
+                3,
+                0,
+                3,
+                1,
+                0,
+                1,
+                2,
+                3,
+                2,
+                1
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; no normals decoding or semantics for auxiliary buffers",
+              "component_node_coordinates_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  0.4000000059604645
+                ],
+                [
+                  0.0,
+                  0.30000000447034836,
+                  0.0
+                ],
+                [
+                  0.20000000298023224,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "triangle_count": 4,
+              "derived_area_cm2": 0.2081025029610043,
+              "derived_signed_volume_cm3": 0.004000000178813937,
+              "derived_absolute_volume_cm3": 0.004000000178813937,
+              "derived_closed_oriented_edge_incidence": true,
+              "derived_undirected_edge_count": 6,
+              "derived_component_bounds_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  0.20000000298023224,
+                  0.30000000447034836,
+                  0.4000000059604645
+                ]
+              }
+            },
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed UDPMESH v2 six-buffer closed four-node/four-triangle assets, typed native mesh/collection/component ownership and reciprocal asset UUID/filename links. Native mesh matrices recover component centimetres; triangle indices use stored signed forward differences and a final absolute anchor. Normals/auxiliary buffers, material semantics, BaseFeature ownership, Plane Cut, lifecycle, BRep conversion and regeneration remain unresolved."
+      },
+      "api_crosschecks": {
+        "coordinate_array_exact": true,
+        "triangle_index_array_exact": true,
+        "display_oriented_triangle_set_exact": true,
+        "volume_exact": true,
+        "measured_area_absolute_deviation_cm2": 3.666097869725604e-09,
+        "measured_bounds_max_deviation_cm": 7.450580596923828e-09,
+        "baseOrFormFeature": null,
+        "created_mesh_owner_is_base": false,
+        "missing_base_mesh_and_brep_source_lists": "Capture serializer error for iterable SWIG vectors; no counts/identity inferred"
+      },
+      "export_sha256": "e4576022f6b38dae4cb4aae1230d091f6ad6b21dc4d1223525e1870a656051d8"
+    },
+    {
+      "archive": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d",
+      "api_name": "OwnedTetra_triangle_data_centimeter",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "mesh_object_id": 219,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 23717,
+            "feature_object_id": null,
+            "native_feature_class_guid": null,
+            "feature_owner_scope": "Native feature slot null; API BaseFeature association not inferred",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 208,
+            "mesh_collection_record_offset": 23308,
+            "mesh_collection_base_record_offset": 23346,
+            "collection_mesh_object_ids": [
+              219
+            ],
+            "name": "OwnedTetra_triangle_data_centimeter",
+            "name_helper_object_id": 222,
+            "name_property_object_id": 223,
+            "asset_object_id": 217,
+            "asset_record_offset": 23470,
+            "asset_filename_object_id": 218,
+            "asset_filename_record_offset": 23557,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.01383437-2eea-4abc-8086-0d67f082d1ad.paramesh",
+            "asset_fusion_uuid": "dee4787f-e4e5-4c29-8362-96cfbafbc0de",
+            "asset_reference_field_offset": 23992,
+            "stored_matrix_encodings": [
+              "ImplicitIdentity",
+              "ImplicitIdentity"
+            ],
+            "stored_matrix_copies": [
+              [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTetra",
+              "asset_size_bytes": 593,
+              "asset_sha256": "a3dae20c16a41fa45f9aff02adf4c00914bd5611727fd29124bc4bff36dc24bf",
+              "fusion_uuid": "dee4787f-e4e5-4c29-8362-96cfbafbc0de",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2434623430306533302d663863322d346139372d616164612d6238356530613838306662322a0b0805120272301a037230692a322a0608071202723232280800122435646338383661332d343637392d346230622d393965342d3230326563653039353965313a042202723142330a0b667573696f6e5f757569641a2464656534373837662d653465352d346332392d383336322d3936636662616662633064654801622466396338313633662d323337322d343837352d393461612d666431646536343062663230aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2434623430306533302d663863322d346139372d616164612d6238356530613838306662322a0b0805120272301a037230692a322a0608071202723232280800122435646338383661332d343637392d346230622d393965342d3230326563653039353965313a042202723142330a0b667573696f6e5f757569641a2464656534373837662d653465352d346332392d383336322d3936636662616662633064654801622466396338313633662d323337322d343837352d393461612d666431646536343062663230aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 308,
+                  "stored_length": 29,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006d066127155d240a50400000",
+                  "uncompressed_payload_hex": "000000000000000000000000000000400000000000000000000000000000404000000000000000000000000000008040",
+                  "stored_frame_hex": "1d0000000000000004000000070082a14403a15403300000005d1400006d066127155d240a50400000"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 349,
+                  "stored_length": 40,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00010038bc06c2a36f0f3f0883d682062f74b550cc9dc00000",
+                  "uncompressed_payload_hex": "02000000ffffffffffffffff0100000002000000fdffffff03000000ffffffffffffffff010000000100000003000000",
+                  "stored_frame_hex": "280000000000000004000000070082a15401a16401300000005d1400010038bc06c2a36f0f3f0883d682062f74b550cc9dc00000"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 401,
+                  "stored_length": 52,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00000015c74ce927a4d8a3e286c42d8c980dfa9a32c1c8e76a36648597a3b6b1fa00",
+                  "uncompressed_payload_hex": "000080bf00000000c54eec3ed9899d3ec54eec3ed9899d3ec54eec3ed9899d3e0000803f0000803f0000803f0000803f0000803f0000803f00000000000080bf00000000000080bf00000000000080bf000080bf00000000000080bf00000000",
+                  "stored_frame_hex": "3400000000000000040000000a0083a14403a15403a155c3600000005d1400000015c74ce927a4d8a3e286c42d8c980dfa9a32c1c8e76a36648597a3b6b1fa00"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 465,
+                  "stored_length": 29,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 32,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803cad8c6878a1208efd2c00",
+                  "uncompressed_payload_hex": "0100000001000000010000000100000001000000020000000100000008000000",
+                  "stored_frame_hex": "1d0000000000000004000000070082a15401a16401200000005d140000803cad8c6878a1208efd2c00"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 506,
+                  "stored_length": 41,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803ca046f26dee43fc6c8b13f63143a64a043cb249a176bb",
+                  "uncompressed_payload_hex": "01000000ffffffff02000000fdffffff01000000ffffffff020000000000000001000000fdffffff0300000003000000",
+                  "stored_frame_hex": "290000000000000004000000070082a15401a16401300000005d140000803ca046f26dee43fc6c8b13f63143a64a043cb249a176bb"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 559,
+                  "stored_length": 22,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 16,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006d3e4b0000",
+                  "uncompressed_payload_hex": "00000000000000000000000000000000",
+                  "stored_frame_hex": "160000000000000004000000070082a15401a16401100000005d1400006d3e4b0000"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  2.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.0
+                ]
+              ],
+              "triangle_node_indices": [
+                0,
+                2,
+                1,
+                0,
+                1,
+                3,
+                0,
+                3,
+                2,
+                1,
+                2,
+                3
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; no normals decoding or semantics for auxiliary buffers",
+              "component_node_coordinates_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  2.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.0
+                ]
+              ],
+              "triangle_count": 4,
+              "derived_area_cm2": 20.810249675906654,
+              "derived_signed_volume_cm3": 4.0,
+              "derived_absolute_volume_cm3": 4.0,
+              "derived_closed_oriented_edge_incidence": true,
+              "derived_undirected_edge_count": 6,
+              "derived_component_bounds_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  4.0
+                ]
+              }
+            },
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed UDPMESH v2 six-buffer closed four-node/four-triangle assets, typed native mesh/collection/component ownership and reciprocal asset UUID/filename links. Native mesh matrices recover component centimetres; triangle indices use stored signed forward differences and a final absolute anchor. Normals/auxiliary buffers, material semantics, BaseFeature ownership, Plane Cut, lifecycle, BRep conversion and regeneration remain unresolved."
+      },
+      "api_crosschecks": {
+        "coordinate_array_exact": true,
+        "triangle_index_array_exact": true,
+        "display_oriented_triangle_set_exact": true,
+        "volume_exact": true,
+        "measured_area_absolute_deviation_cm2": 0.0,
+        "measured_bounds_max_deviation_cm": 0.0,
+        "baseOrFormFeature": null,
+        "created_mesh_owner_is_base": false,
+        "missing_base_mesh_and_brep_source_lists": "Capture serializer error for iterable SWIG vectors; no counts/identity inferred"
+      },
+      "export_sha256": "c15badb77434bc38e1940076ac22f2a3f43855198b550b4c8dd0ddec68f10efa"
+    }
+  ],
+  "checks": [
+    {
+      "check": "Capture terminal marker and zero case errors"
+    },
+    {
+      "check": "Executed generator snapshot hash equals original capture hash"
+    },
+    {
+      "check": "Owned ASCII STL snapshot hash equals capture source hash"
+    },
+    {
+      "check": "All three owned documents closed with actual true and saveFalse"
+    },
+    {
+      "check": "Journal batch_complete after three local exports"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d export SHA"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d one native mesh and no unresolved routes"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d custom native mesh name equals actual API name"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d raw triangle indices exactly equal actual API order"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d native transformed coordinates exactly equal actual API array"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d node and face counts equal actual API"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d typed native feature slot bounded to STL cases"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d API null ownership preserved independently"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d native component/mesh collection reciprocal ownership"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d all six LZMA blocks have exact framed literal replay"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d same asset UUID route proven"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d oriented reciprocal triangle edge incidence agrees with actual API"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d derived signed volume exactly equals actual API volume"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d measured area deviation bounded without exact equality claim",
+      "measured_absolute_deviation_cm2": 6.201937772232213e-07
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d API bounding-box precision difference retained",
+      "measured_max_deviation_cm": 5.960464477539063e-08
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d display triangles independently agree with oriented stored triangles"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d actual runtime PlaneCut present despite stale defs and no call attempted"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d before_edit two known SWIG serializer errors retained"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d before_edit BRep result collection is independently empty"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d during_edit two known SWIG serializer errors retained"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d during_edit BRep result collection is independently empty"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d after_edit two known SWIG serializer errors retained"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d after_edit BRep result collection is independently empty"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d absent polygon arrays retain actual getter errors"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d completed BaseFeature healthy and compute succeeded"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_centimeter.f3d source native bytes unchanged"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d export SHA"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d one native mesh and no unresolved routes"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d custom native mesh name equals actual API name"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d raw triangle indices exactly equal actual API order"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d native transformed coordinates exactly equal actual API array"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d node and face counts equal actual API"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d typed native feature slot bounded to STL cases"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d API null ownership preserved independently"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d native component/mesh collection reciprocal ownership"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d all six LZMA blocks have exact framed literal replay"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d same asset UUID route proven"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d oriented reciprocal triangle edge incidence agrees with actual API"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d derived signed volume exactly equals actual API volume"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d measured area deviation bounded without exact equality claim",
+      "measured_absolute_deviation_cm2": 3.666097869725604e-09
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d API bounding-box precision difference retained",
+      "measured_max_deviation_cm": 7.450580596923828e-09
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d display triangles independently agree with oriented stored triangles"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d actual runtime PlaneCut present despite stale defs and no call attempted"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d before_edit two known SWIG serializer errors retained"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d before_edit BRep result collection is independently empty"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d during_edit two known SWIG serializer errors retained"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d during_edit BRep result collection is independently empty"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d after_edit two known SWIG serializer errors retained"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d after_edit BRep result collection is independently empty"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d absent polygon arrays retain actual getter errors"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d completed BaseFeature healthy and compute succeeded"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/stl_millimeter.f3d source native bytes unchanged"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d export SHA"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d one native mesh and no unresolved routes"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d custom native mesh name equals actual API name"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d raw triangle indices exactly equal actual API order"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d native transformed coordinates exactly equal actual API array"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d node and face counts equal actual API"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d typed native feature slot bounded to STL cases"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d API null ownership preserved independently"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d native component/mesh collection reciprocal ownership"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d all six LZMA blocks have exact framed literal replay"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d same asset UUID route proven"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d oriented reciprocal triangle edge incidence agrees with actual API"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d derived signed volume exactly equals actual API volume"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d measured area deviation bounded without exact equality claim",
+      "measured_absolute_deviation_cm2": 0.0
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d API bounding-box precision difference retained",
+      "measured_max_deviation_cm": 0.0
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d display triangles independently agree with oriented stored triangles"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d actual runtime PlaneCut present despite stale defs and no call attempted"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d before_edit two known SWIG serializer errors retained"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d before_edit BRep result collection is independently empty"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d during_edit two known SWIG serializer errors retained"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d during_edit BRep result collection is independently empty"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d after_edit two known SWIG serializer errors retained"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d after_edit BRep result collection is independently empty"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d absent polygon arrays retain actual getter errors"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d completed BaseFeature healthy and compute succeeded"
+    },
+    {
+      "check": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d source native bytes unchanged"
+    },
+    {
+      "check": "Reject unequal native mesh matrix copies"
+    },
+    {
+      "check": "Reject UUID correspondence mismatch despite valid filename"
+    },
+    {
+      "check": "Reject collection member wrong native type"
+    },
+    {
+      "check": "Reject filename/asset backlink mismatch"
+    },
+    {
+      "check": "Reject unobserved buffer descriptor"
+    },
+    {
+      "check": "Reject trailing unframed mesh bytes"
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Reject unequal native mesh matrix copies",
+      "reason": "Only observed origin-preserving uniform native mesh matrices are supported"
+    },
+    {
+      "guard": "Reject UUID correspondence mismatch despite valid filename",
+      "reason": "Native mesh UUID disagrees with stored asset fusion_uuid"
+    },
+    {
+      "guard": "Reject collection member wrong native type",
+      "reason": "Mesh collection membership missing or repeated"
+    },
+    {
+      "guard": "Reject filename/asset backlink mismatch",
+      "reason": "Native mesh asset/filename backlink disagrees"
+    },
+    {
+      "guard": "Reject unobserved buffer descriptor",
+      "reason": "Unobserved mesh buffer descriptor"
+    },
+    {
+      "guard": "Reject trailing unframed mesh bytes",
+      "reason": "Unexpected trailing mesh asset bytes"
+    }
+  ]
+}

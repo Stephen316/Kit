@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 618,
+  "file_count": 627,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -204,6 +204,9 @@
     "lofts-838ea6e83e97/start_direction.f3d",
     "lofts-838ea6e83e97/surface_two.f3d",
     "lofts-838ea6e83e97/unmerged.f3d",
+    "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+    "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+    "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d",
     "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
     "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
     "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
@@ -279,6 +282,12 @@
     "parametertexts-d16f951482fc/model_multiline_comment.f3d",
     "parametertexts-d16f951482fc/text_multiline_value.f3d",
     "parametertexts-d16f951482fc/user_multiline_comment.f3d",
+    "partinglinedrafts-c4d07c76fcd5/fixed_seven.f3d",
+    "partinglinedrafts-c4d07c76fcd5/fixed_three.f3d",
+    "partinglinedrafts-c4d07c76fcd5/moving_both_three.f3d",
+    "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+    "patchcontinuity-b9b0be85a281/brep_free.f3d",
+    "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
     "pathpatterncomposites-b6b4cf615504/composite_along.f3d",
     "pathpatterncomposites-b6b4cf615504/composite_identical.f3d",
     "pathpatterncomposites-b6b4cf615504/composite_multiple.f3d",
@@ -621,8 +630,8 @@
     "variablefillets-a5080b076434/one_three_quarters.f3d",
     "variablefillets-a5080b076434/two_intermediates.f3d"
   ],
-  "class_count": 374,
-  "classes_with_observed_semantics": 62,
+  "class_count": 383,
+  "classes_with_observed_semantics": 63,
   "classes": [
     {
       "class_guid": "00D157C2-2332-4BD5-BB53-048C4081D1C3",
@@ -2190,6 +2199,24 @@
       "example_files": []
     },
     {
+      "class_guid": "443807AD-8025-41A3-8A50-5157579C3D78",
+      "base_class_guids": [
+        "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081"
+      ],
+      "namespaces": [
+        "ParaMesh"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+        "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+        "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d"
+      ]
+    },
+    {
       "class_guid": "44A64366-4BD3-4B24-881A-F94C206E8F2D",
       "base_class_guids": [
         "37AD519C-AFB3-4CE2-9E6D-E3269FC6CDB9"
@@ -3199,6 +3226,24 @@
       ]
     },
     {
+      "class_guid": "6FC173DC-C7E3-402C-A8C0-891A26DADF8D",
+      "base_class_guids": [
+        "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+      ],
+      "namespaces": [
+        "ParaMesh"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+        "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+        "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d"
+      ]
+    },
+    {
       "class_guid": "702b9cd2-537c-429e-8cc4-22beeeb98c37",
       "base_class_guids": [
         "eb7847af-e60d-4ab0-a736-4ac00c1f1d21"
@@ -3472,6 +3517,24 @@
         "assembly-acc48a9dc05d/assembly.f3d",
         "boundaryfills-a0953038318b/component_middle.f3d",
         "combinemodes-dcb4956eca6b/join_component.f3d"
+      ]
+    },
+    {
+      "class_guid": "7A1DDA31-F6C4-42F6-8282-8654B2085F40",
+      "base_class_guids": [
+        "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+        "patchcontinuity-b9b0be85a281/brep_free.f3d",
+        "patchcontinuity-b9b0be85a281/brep_tangent.f3d"
       ]
     },
     {
@@ -4238,6 +4301,25 @@
       ]
     },
     {
+      "class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+      "base_class_guids": [
+        "2FCB0587-233E-449B-9724-9AAE5AA23647"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: BaseMeshFeature"
+      ],
+      "example_files": [
+        "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+        "meshcontrasts-10c2557c91a3/stl_millimeter.f3d"
+      ]
+    },
+    {
       "class_guid": "9A171A9A-5599-4872-987C-9B5E8E2A6C9C",
       "base_class_guids": [
         "872045B4-F653-4691-9752-ABC7684834BF"
@@ -4416,6 +4498,24 @@
       ]
     },
     {
+      "class_guid": "A1BAA3F6-4B67-4A0D-BACC-75F38A2230F3",
+      "base_class_guids": [
+        "130A0711-4E92-4FCD-AADE-B9C82238BB27"
+      ],
+      "namespaces": [
+        "ParaMesh"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+        "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+        "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d"
+      ]
+    },
+    {
       "class_guid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
       "base_class_guids": [
         "E8BDB9D4-2E39-405C-B05E-E2206AD3F125"
@@ -4529,6 +4629,24 @@
         "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
         "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
         "remainingbodyinputs-7b3357274e85/mirror_construction_plane.f3d"
+      ]
+    },
+    {
+      "class_guid": "A8338A26-5436-433C-8BAC-C3CF024AD595",
+      "base_class_guids": [
+        "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+      ],
+      "namespaces": [
+        "ParaMesh"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+        "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+        "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d"
       ]
     },
     {
@@ -5930,7 +6048,8 @@
         4
       ],
       "observed_semantics": [
-        "Named feature: BaseFeature"
+        "Named feature: BaseFeature",
+        "Unsupported feature with stored label: Base Feature"
       ],
       "example_files": [
         "namedvertexprobe-8d81619f74e6/construction_polynomial_vertex0.f3d",
@@ -6260,6 +6379,24 @@
       ]
     },
     {
+      "class_guid": "E5B3F49A-D8D0-4EEF-BC2B-FCDDAEF9745E",
+      "base_class_guids": [
+        "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+      ],
+      "namespaces": [
+        "ParaMesh"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+        "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+        "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d"
+      ]
+    },
+    {
       "class_guid": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
       "base_class_guids": [
         ""
@@ -6416,6 +6553,24 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+      "base_class_guids": [
+        "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
+      ],
+      "namespaces": [
+        "ParaMesh"
+      ],
+      "stored_versions_or_flags": [
+        7
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+        "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+        "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d"
+      ]
     },
     {
       "class_guid": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
@@ -7016,6 +7171,24 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "f85f2e62-7627-4922-a16d-53e1275d2aac",
+      "base_class_guids": [
+        "d0edef7c-5879-45a4-9651-900659cc4fdd"
+      ],
+      "namespaces": [
+        "Scene"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
+        "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+        "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d"
+      ]
     },
     {
       "class_guid": "fb5325c6-2345-49f4-b584-f63b50a85390",

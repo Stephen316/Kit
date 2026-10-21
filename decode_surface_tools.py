@@ -6,7 +6,7 @@ from decode_selection import native_proxy_references, resolve_native_selection
 from decode_sketch import reference
 
 
-def decode_surface_tool(data, records, body, feature, known=None):
+def decode_surface_tool(data, records, body, feature, known=None, *, patch_boundary_resolver=None):
     classes = {"SurfacePatch": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
                "SurfaceOffset": "1589BC73-D484-4A6E-8E69-2A1531E845F5",
                "SurfaceStitch": "16722593-7399-4963-9EB3-656FE1949577",
@@ -59,17 +59,29 @@ def decode_surface_tool(data, records, body, feature, known=None):
 
     result = {"input_selection_status": "Explicit proxy/descriptor ownership; general persistent topology mapping unresolved"}
     if kind == "SurfacePatch":
-        if (body[:13] != bytes.fromhex("00010000000000000000000100")
-                or struct.unpack_from("<I", body, 13)[0] != 4 or body[17:21] != b"\0"*4):
-            raise ValueError("Unsupported basic sketch-profile patch layout")
-        proxies, _ = counted_refs(21, 1)
-        selected, _ = selection(proxies[0])
-        profiles = feature.get("profile_selection", [])
-        if len(profiles) != 1 or selected["descriptor_object_ids"] != [profiles[0]["descriptor_object_id"]]:
-            raise ValueError("Patch profile descriptor/curve membership unresolved")
-        result.update(operation="NewBody", boundary_selection=selected,
-                      boundary_curve_count=sum(len(loop["curve_references"]) for loop in profiles[0]["loops"]),
-                      continuity_status="Only default sketch-profile patch observed; continuity/group fields unverified")
+        if (patch_boundary_resolver is not None and len(body) >= 25
+                and struct.unpack_from("<I", body, 17)[0] == 1):
+            if (body[:11] != bytes.fromhex("0001000000000000000000")
+                    or body[11] not in (0, 1) or body[12] != 0
+                    or struct.unpack_from("<I", body, 13)[0] != 4):
+                raise ValueError("Unsupported observed BRep patch common prefix/operation")
+            definitions, _ = counted_refs(21, 1, "7A1DDA31-F6C4-42F6-8282-8654B2085F40")
+            extra = patch_boundary_resolver(data, records, body, feature, definitions, selection)
+            if set(extra) & {"operation", "input_selection_status"}:
+                raise ValueError("BRep patch callback cannot replace common operation/status")
+            result.update(operation="NewBody", **extra)
+        else:
+            if (body[:13] != bytes.fromhex("00010000000000000000000100")
+                    or struct.unpack_from("<I", body, 13)[0] != 4 or body[17:21] != b"\0"*4):
+                raise ValueError("Unsupported basic sketch-profile patch layout")
+            proxies, _ = counted_refs(21, 1)
+            selected, _ = selection(proxies[0])
+            profiles = feature.get("profile_selection", [])
+            if len(profiles) != 1 or selected["descriptor_object_ids"] != [profiles[0]["descriptor_object_id"]]:
+                raise ValueError("Patch profile descriptor/curve membership unresolved")
+            result.update(operation="NewBody", boundary_selection=selected,
+                          boundary_curve_count=sum(len(loop["curve_references"]) for loop in profiles[0]["loops"]),
+                          continuity_status="Only default sketch-profile patch observed; continuity/group fields unverified")
     elif kind == "SurfaceOffset":
         if body[:6] != bytes.fromhex("000100000000") or body[6] not in (0, 1) or body[7] not in (0, 1):
             raise ValueError("Unsupported surface offset prefix")

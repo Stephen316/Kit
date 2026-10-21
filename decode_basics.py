@@ -65,6 +65,9 @@ from decode_rigid_groups import decode_rigid_groups
 from decode_pipe_paths import inspect_pipe_edge_path
 from decode_pipe_operations import decode_pipe_operations
 from decode_path_pattern_inputs import decode_path_pattern_inputs
+from decode_parting_line_drafts import decode_parting_line_drafts
+from decode_patch_continuity import decode_patch_continuity
+from decode_mesh_contents import decode_mesh_contents
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
 from fusion_records import Record, record_fragments
@@ -511,6 +514,28 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         selection_summary["unresolved"] = [a for a in selection_summary["unresolved"]
                                              if (a["feature_object_id"], a["selection_object_id"]) not in resolved_axis_keys]
         tool_summary = decode_tools(data, records, features)
+        parting_draft_summary = decode_parting_line_drafts(data, records, features)
+        parting_draft_ids = set()
+        for draft in parting_draft_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == draft['feature_object_id'])
+            feature.update(tool_settings=draft['settings'],
+                decode_level='Observed parting-line Draft controls and typed face/edge roles; direction variants, persistent topology and regeneration unresolved')
+            parting_draft_ids.add(feature['object_id'])
+            if not any(item['object_id'] == feature['object_id'] for item in tool_summary['decoded']):
+                tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': 'Draft'})
+        tool_summary['unresolved'] = [item for item in tool_summary['unresolved']
+            if item['object_id'] not in parting_draft_ids or item['reason'] != 'Unsupported observed fixed-plane Draft class/header']
+        patch_continuity_summary = decode_patch_continuity(data, records, features)
+        patch_continuity_ids = set()
+        for patch in patch_continuity_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == patch['feature_object_id'])
+            feature.update(tool_settings=patch['settings'],
+                decode_level='Observed BRep Patch boundary continuity and owned source/result references; weights, flip semantics, persistent topology and regeneration unresolved')
+            patch_continuity_ids.add(feature['object_id'])
+            if not any(item['object_id'] == feature['object_id'] for item in tool_summary['decoded']):
+                tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': 'SurfacePatch'})
+        tool_summary['unresolved'] = [item for item in tool_summary['unresolved']
+            if item['object_id'] not in patch_continuity_ids or item['reason'] != 'Unsupported basic sketch-profile patch layout']
         pipe_operation_summary = decode_pipe_operations(data, records, features)
         pipe_operation_ids = set()
         for operation in pipe_operation_summary['decoded']:
@@ -601,6 +626,22 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             discovery_summary['class_decoded_as_built_joint_definition_count'] = len(resolved_asbuilt_definitions)
         if rigid_group_summary['decoded'] or rigid_group_summary['unresolved']:
             discovery_summary['class_decoded_rigid_group_definition_count'] = len(resolved_rigid_group_definitions)
+        mesh_summary = decode_mesh_contents(data, records, name, members)
+        mesh_feature_ids = set()
+        for mesh in mesh_summary['decoded']:
+            if mesh['feature_object_id'] is None:
+                continue
+            feature = next((f for f in features if f['object_id'] == mesh['feature_object_id']), None)
+            if feature is None:
+                continue
+            feature.update(kind='BaseMeshFeature', mesh_contents=mesh,
+                decode_level='Observed component mesh ownership, native asset links and captured geometry buffers; general mesh formats, lifecycle and regeneration unresolved')
+            mesh_feature_ids.add(feature['object_id'])
+        if mesh_feature_ids:
+            discovery_summary['unsupported_features'] = [item for item in discovery_summary['unsupported_features']
+                if item['object_id'] not in mesh_feature_ids]
+            discovery_summary['unsupported_feature_count'] = len(discovery_summary['unsupported_features'])
+            discovery_summary['class_decoded_mesh_base_feature_count'] = len(mesh_feature_ids)
         timeline_state_summary = decode_timeline_state_details(data, records, features)
         recovered_states = {item["object_id"]: item["state"] for item in timeline_state_summary["states"]}
         timeline_summary = decode_timeline(data, records, features, feature_state_overrides=recovered_states)
@@ -1258,6 +1299,9 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('remove_features', remove_summary),
                              ('pipe_operations', pipe_operation_summary),
                              ('path_pattern_inputs', path_pattern_input_summary),
+                             ('parting_line_drafts', parting_draft_summary),
+                             ('patch_continuity', patch_continuity_summary),
+                             ('mesh_contents', mesh_summary),
                              ('circular_placement_evidence', circular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),
