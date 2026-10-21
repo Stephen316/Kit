@@ -1,4 +1,4 @@
-"""Opt-in observed PlaneCut/Reduce mesh layouts; old successful outputs exact."""
+"""Opt-in observed mesh operation layouts; old successful outputs exact."""
 import math
 import re
 import struct
@@ -16,6 +16,12 @@ SCOPE = ('Observed size-delimited UDPMESH v2 six-buffer triangle layouts (4 node
          'buffers, arbitrary topology, procedural regeneration and lifecycle remain unresolved.')
 SHAPES = {(48, 36, 72, 20, 24, 12), (48, 48, 96, 32, 48, 16),
           (72, 96, 176, 64, 72, 32), (72, 96, 192, 72, 96, 32)}
+REMESH_SHAPES = {(108, 168, 248, 88, 88, 56), (192, 336, 432, 152, 120, 112)}
+COMBINE_SHAPES = {(792, 1536, 1440, 456, 400, 512), (492, 936, 992, 332, 232, 312)}
+OPERATION_SHAPES = REMESH_SHAPES | COMBINE_SHAPES
+OPERATION_SCOPE = ('Observed size-delimited UDPMESH v2 triangle layouts including9/14,16/28,66/128 and41/78 nodes/faces; '
+                'typed native mesh/component/asset routes and positive uniform matrices. Counts derive from exact '
+                'coordinate/index buffer extents. Normal/auxiliary buffers, arbitrary layouts, lifecycle and regeneration remain unresolved.')
 
 
 def triangle_properties(points, indices):
@@ -40,7 +46,7 @@ def triangle_properties(points, indices):
 
 def decode_geometry_layout(framing, raw_buffers):
     shape = tuple(map(len, raw_buffers))
-    _require(shape in SHAPES, 'Unobserved opt-in mesh buffer dimensions')
+    _require(shape in SHAPES | OPERATION_SHAPES, 'Unobserved opt-in mesh buffer dimensions')
     node_count, face_count = shape[0]//12, shape[1]//12
     coordinates = list(struct.unpack('<'+'f'*(node_count*3), raw_buffers[0]))
     _require(all(math.isfinite(v) for v in coordinates), 'Nonfinite stored mesh coordinates')
@@ -125,5 +131,6 @@ def decode_mesh_contents_variants(data, records, member, members):
         return strict
     result = decode_mesh_contents(data, records, member, members,
         geometry_decoder=decode_geometry_layout, native_layout_decoder=native_layout)
-    result['scope'] = SCOPE
+    result['scope'] = (OPERATION_SCOPE if any(tuple(b['uncompressed_size'] for b in row['geometry']['buffers']) in OPERATION_SHAPES
+                                        for row in result['decoded']) else SCOPE)
     return result

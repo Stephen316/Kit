@@ -71,6 +71,11 @@ from decode_mesh_contents import MESH_FEATURE as BASE_MESH_FEATURE_GUID
 from decode_mesh_geometry_variants import decode_mesh_contents_variants
 from decode_mesh_plane_cuts import decode_mesh_plane_cuts
 from decode_mesh_reduce import decode_mesh_reduce
+from decode_mesh_remesh import decode_mesh_remesh
+from decode_mesh_convert import decode_mesh_convert
+from decode_mesh_combine import decode_mesh_combine
+from decode_mesh_normals import decode_mesh_normal_pools
+from decode_base_feature_empty_lists import decode_base_feature_empty_lists
 from decode_split_face_metadata_variants import decode_split_face_metadata_variants
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -643,6 +648,11 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         if rigid_group_summary['decoded'] or rigid_group_summary['unresolved']:
             discovery_summary['class_decoded_rigid_group_definition_count'] = len(resolved_rigid_group_definitions)
         mesh_summary = decode_mesh_contents_variants(data, records, name, members)
+        mesh_normal_summary = decode_mesh_normal_pools(mesh_summary)
+        base_empty_summary = decode_base_feature_empty_lists(data, records, features)
+        for partial in base_empty_summary['partial']:
+            feature = next(f for f in features if f['object_id'] == partial['feature_object_id'])
+            feature['base_feature_empty_list_definition'] = partial
         mesh_feature_ids = set()
         for mesh in mesh_summary['decoded']:
             if mesh['feature_object_id'] is None:
@@ -660,11 +670,20 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             discovery_summary['class_decoded_mesh_base_feature_count'] = len(mesh_feature_ids)
         mesh_plane_cut_summary = decode_mesh_plane_cuts(data, records, features, name, members, mesh_summary)
         mesh_reduce_summary = decode_mesh_reduce(data, records, features, name, members, mesh_summary)
+        mesh_remesh_summary = decode_mesh_remesh(data, records, features, name, members, mesh_summary)
+        mesh_convert_summary = decode_mesh_convert(data, records, features, name, members)
+        mesh_combine_summary = decode_mesh_combine(data, records, features, name, members, mesh_summary)
         for operation_summary, counter_key, level in (
                 (mesh_plane_cut_summary, 'class_decoded_mesh_plane_cut_count',
                  'Observed MeshPlaneCut controls, selected plane and owned mesh/asset routes; flip encoding, historical lifecycle and regeneration unresolved'),
                 (mesh_reduce_summary, 'class_decoded_mesh_reduce_count',
-                 'Observed MeshReduce method/target controls and owned parameter/mesh/asset routes; target attainment, historical lifecycle and regeneration unresolved')):
+                 'Observed MeshReduce method/target controls and owned parameter/mesh/asset routes; target attainment, historical lifecycle and regeneration unresolved'),
+                (mesh_remesh_summary, 'class_decoded_mesh_remesh_count',
+                 'Observed MeshRemesh method/target and owned parameter/mesh/asset routes; preservation flags, historical lifecycle and regeneration unresolved'),
+                (mesh_convert_summary, 'class_decoded_mesh_convert_count',
+                 'Observed Faceted MeshConvert source and owned BRep result/history routes; alternative methods, lifecycle and regeneration unresolved'),
+                (mesh_combine_summary, 'class_decoded_mesh_combine_count',
+                 'Observed MeshCombine operation and selected target/tool asset routes; flags, historical lifecycle and regeneration unresolved')):
             operation_ids = set()
             for operation in operation_summary['decoded']:
                 feature = next(f for f in features if f['object_id'] == operation['feature_object_id'])
@@ -1341,6 +1360,10 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('split_face_metadata_variants', split_face_variant_summary),
                              ('mesh_plane_cuts', mesh_plane_cut_summary),
                              ('mesh_reductions', mesh_reduce_summary),
+                             ('mesh_remeshes', mesh_remesh_summary),
+                             ('mesh_conversions', mesh_convert_summary),
+                             ('mesh_combinations', mesh_combine_summary),
+                             ('mesh_normal_pools', mesh_normal_summary),
                              ('circular_placement_evidence', circular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),
@@ -1352,6 +1375,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('profile_cache_correspondences', profile_cache_summary)):
             if summary['decoded'] or summary['unresolved']:
                 streams[-1][key] = summary
+        if base_empty_summary['partial'] or base_empty_summary['unresolved']:
+            streams[-1]['base_feature_empty_lists'] = base_empty_summary
         if named_vertex_summary['associations'] or named_vertex_summary['unresolved']:
             streams[-1]['named_vertex_selections'] = named_vertex_summary
         if any(circular_symmetric_summary[key] for key in ('decoded', 'partial', 'unresolved')):

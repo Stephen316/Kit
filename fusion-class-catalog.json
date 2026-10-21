@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 634,
+  "file_count": 643,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -204,9 +204,15 @@
     "lofts-838ea6e83e97/start_direction.f3d",
     "lofts-838ea6e83e97/surface_two.f3d",
     "lofts-838ea6e83e97/unmerged.f3d",
+    "meshcombines-541ebb6cc93f/cut.f3d",
+    "meshcombines-541ebb6cc93f/intersect.f3d",
+    "meshcombines-541ebb6cc93f/join.f3d",
     "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
     "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
     "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d",
+    "meshconverts-4b42d39fb1d5/faceted_closed.f3d",
+    "meshconverts-4b42d39fb1d5/faceted_open.f3d",
+    "meshconverts-4b42d39fb1d5/prismatic_closed.f3d",
     "meshplanecuts-18f2683c83f5/split_body_minimal_fill.f3d",
     "meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
     "meshplanecuts-18f2683c83f5/trim_no_fill.f3d",
@@ -214,6 +220,9 @@
     "meshreduces-780954a23308/adaptive_proportion_fifty.f3d",
     "meshreduces-780954a23308/uniform_count_six.f3d",
     "meshreduces-8f01528f7f21/adaptive_proportion_fifty.f3d",
+    "meshremeshes-f07f97514069/adaptive_edge_one_point_five.f3d",
+    "meshremeshes-f07f97514069/adaptive_edge_two.f3d",
+    "meshremeshes-f07f97514069/uniform_edge_two.f3d",
     "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
     "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
     "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
@@ -637,8 +646,8 @@
     "variablefillets-a5080b076434/one_three_quarters.f3d",
     "variablefillets-a5080b076434/two_intermediates.f3d"
   ],
-  "class_count": 390,
-  "classes_with_observed_semantics": 65,
+  "class_count": 394,
+  "classes_with_observed_semantics": 68,
   "classes": [
     {
       "class_guid": "00D157C2-2332-4BD5-BB53-048C4081D1C3",
@@ -2987,6 +2996,25 @@
       "example_files": []
     },
     {
+      "class_guid": "62B85DC3-27B5-47BA-9F13-B2527B72EE49",
+      "base_class_guids": [
+        "2EDC2536-D95B-4469-8ACA-DC07124D9C43"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        4
+      ],
+      "observed_semantics": [
+        "Named feature: MeshConvert"
+      ],
+      "example_files": [
+        "meshconverts-4b42d39fb1d5/faceted_closed.f3d",
+        "meshconverts-4b42d39fb1d5/faceted_open.f3d"
+      ]
+    },
+    {
       "class_guid": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
       "base_class_guids": [
         "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74"
@@ -3750,6 +3778,26 @@
       ]
     },
     {
+      "class_guid": "828DDA62-2750-447D-8728-06C9B7C2B117",
+      "base_class_guids": [
+        "90B8D2C6-05BB-4D0F-89EF-83AAC46CA1FF"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Named feature: MeshRemesh"
+      ],
+      "example_files": [
+        "meshremeshes-f07f97514069/adaptive_edge_one_point_five.f3d",
+        "meshremeshes-f07f97514069/adaptive_edge_two.f3d",
+        "meshremeshes-f07f97514069/uniform_edge_two.f3d"
+      ]
+    },
+    {
       "class_guid": "830A2A2B-0AA9-4D6A-ACA1-F7A2B2A06573",
       "base_class_guids": [
         "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
@@ -4383,7 +4431,8 @@
         0
       ],
       "observed_semantics": [
-        "Named feature: BaseMeshFeature"
+        "Named feature: BaseMeshFeature",
+        "Unsupported feature with stored label: Base Mesh Feature"
       ],
       "example_files": [
         "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
@@ -6143,6 +6192,23 @@
       ]
     },
     {
+      "class_guid": "D6FB6F05-98CD-4BFF-BF90-594F77725DC1",
+      "base_class_guids": [
+        "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "meshconverts-4b42d39fb1d5/faceted_closed.f3d",
+        "meshconverts-4b42d39fb1d5/faceted_open.f3d"
+      ]
+    },
+    {
       "class_guid": "D7015B81-AB4D-4C89-BED7-AA4411E1964A",
       "base_class_guids": [
         "2FCB0587-233E-449B-9724-9AAE5AA23647"
@@ -6743,6 +6809,26 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "EE0E56E8-5894-4D65-BAF4-9DAAF811307F",
+      "base_class_guids": [
+        "90B8D2C6-05BB-4D0F-89EF-83AAC46CA1FF"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Named feature: MeshCombine"
+      ],
+      "example_files": [
+        "meshcombines-541ebb6cc93f/cut.f3d",
+        "meshcombines-541ebb6cc93f/intersect.f3d",
+        "meshcombines-541ebb6cc93f/join.f3d"
+      ]
     },
     {
       "class_guid": "EE518F9E-9CC3-4424-9CAB-2B92426E5312",

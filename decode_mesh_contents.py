@@ -100,8 +100,8 @@ def _triangle_properties(points, indices):
                                             'max': [max(p[j] for p in points) for j in range(3)]}}
 
 
-def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False):
-    """Common exact six-buffer container framing; no geometry shape assumptions."""
+def decode_paramesh_header(blob):
+    """Exact observed metadata/dictionary only; no compressed-buffer validity claim."""
     _require(len(blob) <= 1024*1024 and blob[:12] == SIGNATURE, 'Unsupported mesh asset signature/size')
     _require(blob[12:48] == struct.pack('<I', 2)+bytes(32), 'Unobserved mesh asset version/header')
     metadata_length, metadata_kind = struct.unpack_from('<QI', blob, 48)
@@ -118,6 +118,14 @@ def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False):
     dictionary_length, dictionary_kind = struct.unpack_from('<QI', blob, cursor)
     _require(dictionary_length == len(DICTIONARY) and dictionary_kind == 3 and blob[cursor+12:cursor+12+dictionary_length] == DICTIONARY, 'Unobserved mesh buffer dictionary')
     dictionary_end = cursor+12+dictionary_length
+    return ({'asset_size_bytes': len(blob), 'asset_sha256': hashlib.sha256(blob).hexdigest(),
+             'fusion_uuid': fusion_uuid, 'stored_header_metadata_dictionary_hex': blob[:dictionary_end].hex(),
+             'stored_metadata_hex': metadata.hex()}, dictionary_end)
+
+
+def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False):
+    """Common exact six-buffer container framing; no geometry shape assumptions."""
+    framing, dictionary_end = decode_paramesh_header(blob)
     cursor = dictionary_end
     blocks, raw_buffers = [], []
     for ordinal, descriptor in enumerate(DESCRIPTORS):
@@ -154,9 +162,7 @@ def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False):
                        'uncompressed_payload_hex': raw.hex(), 'stored_frame_hex': blob[cursor:end].hex(), **auxiliary_evidence})
         raw_buffers.append(raw); cursor = end
     _require(cursor == len(blob), 'Unexpected trailing mesh asset bytes')
-    framing = {'asset_size_bytes': len(blob), 'asset_sha256': hashlib.sha256(blob).hexdigest(),
-               'fusion_uuid': fusion_uuid, 'stored_header_metadata_dictionary_hex': blob[:dictionary_end].hex(),
-               'stored_metadata_hex': metadata.hex(), 'buffers': blocks}
+    framing['buffers'] = blocks
     return framing, raw_buffers
 
 
@@ -186,9 +192,13 @@ def replay_paramesh_geometry(asset):
     return bytes.fromhex(asset['stored_header_metadata_dictionary_hex'])+b''.join(bytes.fromhex(b['stored_frame_hex']) for b in asset['buffers'])
 
 
-def decode_mesh_contents(data, records, member, members, *, geometry_decoder=None, native_layout_decoder=None):
-    """Read native mesh rows without changing features, source bytes or records."""
-    result = {'decoded': [], 'unresolved': [], 'scope': SCOPE}
+def decode_mesh_contents(data, records, member, members, *, geometry_decoder=None, native_layout_decoder=None,
+                         metadata_only=False):
+    """Read native mesh rows; metadata-only mode never supplies geometry or suppresses a geometry failure."""
+    scope = ('Typed native mesh/collection/component and same-asset UUID/filename routes only; '
+             'embedded header metadata is checked, compressed-buffer validity and geometry are not examined'
+             if metadata_only else SCOPE)
+    result = {'decoded': [], 'unresolved': [], 'scope': scope}
     grouped = {}
     for record in records:
         if record.is_primary:
@@ -292,14 +302,22 @@ def decode_mesh_contents(data, records, member, members, *, geometry_decoder=Non
                         _require(body[asset_offset-23:asset_offset-22] == b'\0', 'Unobserved nullable native mesh feature slot')
                     asset_member = member.split('/FusionDesignSegmentType1/')[0]+'/ParaMeshGeometry.BlobParts/'+filename
                     _require(asset_member in members, 'Native mesh filename does not resolve in same asset')
-                    geometry = decode_paramesh_geometry(members[asset_member], geometry_decoder=geometry_decoder)
-                    _require(geometry['fusion_uuid'] == uuid, 'Native mesh UUID disagrees with stored asset fusion_uuid')
-                    component_points = [transform_point(matrices[0], p) for p in geometry['stored_node_coordinates_float32']]
-                    geometry['component_node_coordinates_cm'] = component_points
-                    if native_layout_decoder is None:
-                        geometry.update(_triangle_properties(component_points, geometry['triangle_node_indices']))
+                    route_extras = {}
+                    if metadata_only:
+                        header, _ = decode_paramesh_header(members[asset_member])
+                        _require(header['fusion_uuid'] == uuid, 'Native mesh UUID disagrees with stored asset fusion_uuid')
+                        geometry = None
+                        route_extras = {'asset_header': header,
+                            'geometry_status': 'Not decoded: explicit metadata-only route; compressed-buffer validity and geometry remain unqualified'}
                     else:
-                        geometry.update(native_layout_decoder('ComponentProperties', component_points, {'indices': geometry['triangle_node_indices']}))
+                        geometry = decode_paramesh_geometry(members[asset_member], geometry_decoder=geometry_decoder)
+                        _require(geometry['fusion_uuid'] == uuid, 'Native mesh UUID disagrees with stored asset fusion_uuid')
+                        component_points = [transform_point(matrices[0], p) for p in geometry['stored_node_coordinates_float32']]
+                        geometry['component_node_coordinates_cm'] = component_points
+                        if native_layout_decoder is None:
+                            geometry.update(_triangle_properties(component_points, geometry['triangle_node_indices']))
+                        else:
+                            geometry.update(native_layout_decoder('ComponentProperties', component_points, {'indices': geometry['triangle_node_indices']}))
                     candidates.append({'mesh_object_id': record.object_id, 'mesh_class_guid': MESH,
                         'mesh_record_offset': record.start, 'feature_object_id': owner_feature,
                         'native_feature_class_guid': grouped[owner_feature][0].class_guid if owner_feature is not None else None,
@@ -317,7 +335,7 @@ def decode_mesh_contents(data, records, member, members, *, geometry_decoder=Non
                         'matrix_scope': 'Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.',
                         'stored_native_prefix_material_hex': body[matrix_end:asset_offset-22].hex(),
                         'stored_native_material_tail_hex': body[name_end+18:].hex(),
-                        'geometry': geometry, **native_extras, **asset_extras,
+                        'geometry': geometry, **native_extras, **asset_extras, **route_extras,
                         'ownership_evidence': 'Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement',
                         'unresolved': ['Normal buffer semantics', 'Auxiliary buffers', 'Material/property fields', 'API baseOrFormFeature is not reconstructed', 'Timeline lifecycle and mesh regeneration']})
             _require(len(candidates) == 1, 'Native mesh asset/owner route missing or ambiguous')

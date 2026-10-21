@@ -70,8 +70,12 @@ def dispatch(path):
         for event in events:
             cg.CGEventSetFlags(event, 0)
         command = 'Python.RunScript "'+str(path)+'"'
-        prepared = subprocess.run(["/usr/bin/osascript", "-", command], input=PREPARE,
-                                  text=True, capture_output=True, check=True, timeout=20)
+        try:
+            prepared = subprocess.run(["/usr/bin/osascript", "-", command], input=PREPARE,
+                                      text=True, capture_output=True, check=True, timeout=20)
+        except subprocess.CalledProcessError as error:
+            raise RuntimeError('Fusion command-field preparation failed before Return was posted: '
+                               + error.stderr.strip()) from error
         foreground_pid, target_pid = map(int, prepared.stdout.strip().split("|"))
         if target_pid <= 0:
             raise RuntimeError("Invalid Fusion PID; no event posted")

@@ -1,0 +1,45 @@
+"""Read public command-definition metadata without executing any command."""
+import hashlib
+import json
+from pathlib import Path
+import re
+import traceback
+import uuid
+
+
+def run(context):
+    source=Path(__file__).resolve()
+    output=source.parent/('commandinventory-'+uuid.uuid4().hex[:12]);output.mkdir()
+    executed=source.read_bytes();(output/'executed-generator-source.txt').write_bytes(executed)
+    truth={'status':'entered_run','executed_generator_sha256':hashlib.sha256(executed).hexdigest(),
+        'matches':[],'errors':[],'commands_executed':0,'documents_created':0,
+        'filter':'Case-insensitive literal coil/rib/web/flange fragments in native command ID or display name; matches alone do not prove a creation API.',
+        'scope':'Read-only public UserInterface.commandDefinitions metadata; applicability/visibility are current-context observations only. No command, event handler, UI mutation or document save.'}
+    def save():(output/'ground_truth.json').write_text(json.dumps(truth,indent=2)+'\n')
+    save()
+    try:
+        import adsk.core
+        app=adsk.core.Application.get();commands=app.userInterface.commandDefinitions
+        truth.update(fusion_version=app.version,document_count=app.documents.count,
+            command_definition_count=commands.count,examined_count=min(commands.count,10000))
+        for index in range(truth['examined_count']):
+            command=commands.item(index)
+            if command is None:continue
+            if not re.search(r'coil|rib|web|flange',command.id+' '+command.name,re.IGNORECASE):continue
+            row={'id':command.id,'name':command.name,'getter_errors':[]}
+            for prop in ('isNative','isApplicable','isSubCommandDefinition','objectType'):
+                try:row[prop]=getattr(command,prop)
+                except Exception:row['getter_errors'].append({'field':prop,'error':traceback.format_exc()})
+            control=command.controlDefinition
+            row['control_definition']=None
+            if control is not None:
+                row['control_definition']={}
+                for prop in ('objectType','name','isEnabled','isVisible'):
+                    try:row['control_definition'][prop]=getattr(control,prop)
+                    except Exception:row['getter_errors'].append({'field':'controlDefinition.'+prop,'error':traceback.format_exc()})
+            truth['matches'].append(row)
+        truth['status']='complete'
+    except Exception:
+        truth['status']='error';truth['errors'].append(traceback.format_exc())
+    finally:
+        save();(output/'complete.txt').write_text('terminal read-only native command inventory; no commands executed\n')
