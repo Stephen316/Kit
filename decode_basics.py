@@ -67,7 +67,11 @@ from decode_pipe_operations import decode_pipe_operations
 from decode_path_pattern_inputs import decode_path_pattern_inputs
 from decode_parting_line_drafts import decode_parting_line_drafts
 from decode_patch_continuity import decode_patch_continuity
-from decode_mesh_contents import decode_mesh_contents
+from decode_mesh_contents import MESH_FEATURE as BASE_MESH_FEATURE_GUID
+from decode_mesh_geometry_variants import decode_mesh_contents_variants
+from decode_mesh_plane_cuts import decode_mesh_plane_cuts
+from decode_mesh_reduce import decode_mesh_reduce
+from decode_split_face_metadata_variants import decode_split_face_metadata_variants
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
 from fusion_records import Record, record_fragments
@@ -536,6 +540,18 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': 'SurfacePatch'})
         tool_summary['unresolved'] = [item for item in tool_summary['unresolved']
             if item['object_id'] not in patch_continuity_ids or item['reason'] != 'Unsupported basic sketch-profile patch layout']
+        split_face_variant_summary = decode_split_face_metadata_variants(data, records, features)
+        split_face_variant_ids = set()
+        for split in split_face_variant_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == split['feature_object_id'])
+            feature.update(tool_settings=split['settings'],
+                split_face_table_metadata={key: split[key] for key in ('stored_table_metadata', 'table_metadata_layout')},
+                decode_level='Observed SplitFace plane-intersection controls and owned target/tool references; table metadata meaning, exact faces and regeneration unresolved')
+            split_face_variant_ids.add(feature['object_id'])
+            if not any(item['object_id'] == feature['object_id'] for item in tool_summary['decoded']):
+                tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': 'SplitFace'})
+        tool_summary['unresolved'] = [item for item in tool_summary['unresolved']
+            if item['object_id'] not in split_face_variant_ids or item['reason'] != 'Unsupported SplitFace table metadata or kind label']
         pipe_operation_summary = decode_pipe_operations(data, records, features)
         pipe_operation_ids = set()
         for operation in pipe_operation_summary['decoded']:
@@ -626,13 +642,13 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             discovery_summary['class_decoded_as_built_joint_definition_count'] = len(resolved_asbuilt_definitions)
         if rigid_group_summary['decoded'] or rigid_group_summary['unresolved']:
             discovery_summary['class_decoded_rigid_group_definition_count'] = len(resolved_rigid_group_definitions)
-        mesh_summary = decode_mesh_contents(data, records, name, members)
+        mesh_summary = decode_mesh_contents_variants(data, records, name, members)
         mesh_feature_ids = set()
         for mesh in mesh_summary['decoded']:
             if mesh['feature_object_id'] is None:
                 continue
             feature = next((f for f in features if f['object_id'] == mesh['feature_object_id']), None)
-            if feature is None:
+            if feature is None or feature['class_guid'] != BASE_MESH_FEATURE_GUID:
                 continue
             feature.update(kind='BaseMeshFeature', mesh_contents=mesh,
                 decode_level='Observed component mesh ownership, native asset links and captured geometry buffers; general mesh formats, lifecycle and regeneration unresolved')
@@ -642,6 +658,26 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 if item['object_id'] not in mesh_feature_ids]
             discovery_summary['unsupported_feature_count'] = len(discovery_summary['unsupported_features'])
             discovery_summary['class_decoded_mesh_base_feature_count'] = len(mesh_feature_ids)
+        mesh_plane_cut_summary = decode_mesh_plane_cuts(data, records, features, name, members, mesh_summary)
+        mesh_reduce_summary = decode_mesh_reduce(data, records, features, name, members, mesh_summary)
+        for operation_summary, counter_key, level in (
+                (mesh_plane_cut_summary, 'class_decoded_mesh_plane_cut_count',
+                 'Observed MeshPlaneCut controls, selected plane and owned mesh/asset routes; flip encoding, historical lifecycle and regeneration unresolved'),
+                (mesh_reduce_summary, 'class_decoded_mesh_reduce_count',
+                 'Observed MeshReduce method/target controls and owned parameter/mesh/asset routes; target attainment, historical lifecycle and regeneration unresolved')):
+            operation_ids = set()
+            for operation in operation_summary['decoded']:
+                feature = next(f for f in features if f['object_id'] == operation['feature_object_id'])
+                feature.update(kind=operation['kind'], tool_settings=operation['settings'], decode_level=level)
+                operation_ids.add(feature['object_id'])
+                if not any(item['object_id'] == feature['object_id'] for item in tool_summary['decoded']):
+                    tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': feature['kind']})
+            if operation_summary['decoded'] or operation_summary['unresolved']:
+                discovery_summary[counter_key] = len(operation_ids)
+            if operation_ids:
+                discovery_summary['unsupported_features'] = [item for item in discovery_summary['unsupported_features']
+                    if item['object_id'] not in operation_ids]
+                discovery_summary['unsupported_feature_count'] = len(discovery_summary['unsupported_features'])
         timeline_state_summary = decode_timeline_state_details(data, records, features)
         recovered_states = {item["object_id"]: item["state"] for item in timeline_state_summary["states"]}
         timeline_summary = decode_timeline(data, records, features, feature_state_overrides=recovered_states)
@@ -1302,6 +1338,9 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('parting_line_drafts', parting_draft_summary),
                              ('patch_continuity', patch_continuity_summary),
                              ('mesh_contents', mesh_summary),
+                             ('split_face_metadata_variants', split_face_variant_summary),
+                             ('mesh_plane_cuts', mesh_plane_cut_summary),
+                             ('mesh_reductions', mesh_reduce_summary),
                              ('circular_placement_evidence', circular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),

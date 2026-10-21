@@ -13,7 +13,7 @@ FEATURE = "7C5886AE-A774-4848-A89C-C3A578A9763A"
 PROXY = "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
 
 
-def decode_split_face(data, records, body, feature, known, features):
+def decode_split_face(data, records, body, feature, known, features, *, allowed_table_metadata=(4,)):
     if feature["class_guid"] != FEATURE or body[:2] != bytes(2):
         raise ValueError("Unsupported SplitFace class/prefix")
     grouped = {}
@@ -118,7 +118,7 @@ def decode_split_face(data, records, body, feature, known, features):
         raise ValueError("SplitFace feature table does not repeat its ordered selections/descriptors")
     end += 7+11*count
     label, _ = read_string(body, end+4)
-    if struct.unpack_from("<I", body, end)[0] != 4 or label != "SplitFace":
+    if struct.unpack_from("<I", body, end)[0] not in allowed_table_metadata or label != "SplitFace":
         raise ValueError("Unsupported SplitFace table metadata or kind label")
     return {"split_type": split_type, "is_tool_extended": bool(extension) if split_type == "SurfaceIntersection" else None,
             "stored_extension_flag": extension, "stored_mode_fields": [family, projection],

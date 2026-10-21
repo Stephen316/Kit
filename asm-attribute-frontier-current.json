@@ -1,7 +1,7 @@
 {
   "scope": "Saved-corpus initial ASM custom attribute payload/owner-chain framing and exact counted generic naming audit. Raw trailing attribute counts are inventories only; no complete-format coverage percentage.",
   "provenance": {
-    "repository_HEAD_at_start": "593bc5e9da498a40c04c95993b8d28aa70da995e",
+    "repository_HEAD_at_start": "e3b3c24ce9e685f3212373b024867d23296698ad",
     "reader_source_sha256": {
       "audit_asm_attribute_frontier.py": "03ff46016d25c8dab20e6bc357cfe2e31268e1e8f14592c53724760705b1893b",
       "asm_records.py": "9f25caf199136979418a90e185401a0cec073aeb1eb50f09383c57de3a775dab",
@@ -14,7 +14,7 @@
     },
     "reader_sources_unchanged_during_run": true,
     "archive_discovery": "Sorted root.glob(\"*/*.f3d\") in the saved capture layout; no temporary discovery file is read.",
-    "archive_manifest_sha256": "3127906c45132ec932ce46d61864a595da256e62e2b364092cea6fd4ac6d61a6",
+    "archive_manifest_sha256": "eed43403d7ebe72db5d30e3a3464ce427187d9d20a9f42182ec5586203cac580",
     "archive_manifest": [
       {
         "file": "advanced-627f7fe095f4/advanced.f3d",
@@ -1040,6 +1040,41 @@
         "file": "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d",
         "byte_count": 56938,
         "sha256": "c15badb77434bc38e1940076ac22f2a3f43855198b550b4c8dd0ddec68f10efa"
+      },
+      {
+        "file": "meshplanecuts-18f2683c83f5/split_body_minimal_fill.f3d",
+        "byte_count": 68427,
+        "sha256": "fcbcc42bba9adc6ea682b10d69e0448330f817687fde7fedf32f25e0a6ee6241"
+      },
+      {
+        "file": "meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
+        "byte_count": 57342,
+        "sha256": "ddf4dcac983c748405f084dd19cab7b03b90371b84c0bede77b434a03dcabbfd"
+      },
+      {
+        "file": "meshplanecuts-18f2683c83f5/trim_no_fill.f3d",
+        "byte_count": 61812,
+        "sha256": "c13e3702935ab2bfccf8f0b4220aca75a9c32af942eac088eebe9e1497b2c458"
+      },
+      {
+        "file": "meshreduces-780954a23308/adaptive_count_six.f3d",
+        "byte_count": 54222,
+        "sha256": "19b5699bec19450695c61a35ba9ad570c15082e09db511e598f61be781e839d8"
+      },
+      {
+        "file": "meshreduces-780954a23308/adaptive_proportion_fifty.f3d",
+        "byte_count": 51387,
+        "sha256": "b15aace7abc656a340db988bda3afca2e13f77d6fb867332f156889d3551870d"
+      },
+      {
+        "file": "meshreduces-780954a23308/uniform_count_six.f3d",
+        "byte_count": 53476,
+        "sha256": "dc81e78cb2b47a1349fdd65132789c71bb10345bcf413f2e06d724a806f0a563"
+      },
+      {
+        "file": "meshreduces-8f01528f7f21/adaptive_proportion_fifty.f3d",
+        "byte_count": 54512,
+        "sha256": "1df535dcf37e9e639b4fe2cd821fac99452a0b6ce706ee8a8bc61803e1a4f960"
       },
       {
         "file": "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
@@ -3183,7 +3218,7 @@
       "archive_count": {
         "matches_prior_discovery": false,
         "prior": 559,
-        "current": 627
+        "current": 634
       },
       "blob_count": {
         "matches_prior_discovery": false,
@@ -3245,7 +3280,7 @@
       }
     }
   },
-  "archive_count": 627,
+  "archive_count": 634,
   "blob_count": 1091,
   "initial_custom_attribute_count": 33616,
   "initial_attribute_classification_counts": {
@@ -33947,7 +33982,7 @@
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     }
   ],
-  "elapsed_seconds": 6.619,
+  "elapsed_seconds": 12.133,
   "limits": [
     "A validated generic naming payload/owner chain is not a persistent topology ID or qualified selected source.",
     "FPM/FDM literals and opaque fields retain their existing reader scope; raw trailing attributes are not relabeled validated initial attributes.",

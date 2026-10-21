@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 627,
+  "file_count": 634,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -207,6 +207,13 @@
     "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
     "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
     "meshcontrasts-10c2557c91a3/triangle_data_centimeter.f3d",
+    "meshplanecuts-18f2683c83f5/split_body_minimal_fill.f3d",
+    "meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
+    "meshplanecuts-18f2683c83f5/trim_no_fill.f3d",
+    "meshreduces-780954a23308/adaptive_count_six.f3d",
+    "meshreduces-780954a23308/adaptive_proportion_fifty.f3d",
+    "meshreduces-780954a23308/uniform_count_six.f3d",
+    "meshreduces-8f01528f7f21/adaptive_proportion_fifty.f3d",
     "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
     "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
     "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
@@ -630,8 +637,8 @@
     "variablefillets-a5080b076434/one_three_quarters.f3d",
     "variablefillets-a5080b076434/two_intermediates.f3d"
   ],
-  "class_count": 383,
-  "classes_with_observed_semantics": 63,
+  "class_count": 390,
+  "classes_with_observed_semantics": 65,
   "classes": [
     {
       "class_guid": "00D157C2-2332-4BD5-BB53-048C4081D1C3",
@@ -1175,6 +1182,24 @@
       "example_files": []
     },
     {
+      "class_guid": "1AA9CC7B-5C34-45DA-AE14-0444E7F966F2",
+      "base_class_guids": [
+        "6144EA59-3ACA-4172-9F14-A6531E94D69B"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "meshplanecuts-18f2683c83f5/split_body_minimal_fill.f3d",
+        "meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
+        "meshplanecuts-18f2683c83f5/trim_no_fill.f3d"
+      ]
+    },
+    {
       "class_guid": "1B3B4C67-F231-4A9C-9B10-9F6017617A54",
       "base_class_guids": [
         "60F291CB-499B-4AB1-B0E5-340368671724"
@@ -1340,6 +1365,24 @@
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
         "pathpatterncomposites-b6b4cf615504/spline_along.f3d"
+      ]
+    },
+    {
+      "class_guid": "22975A91-16AD-4CC9-A5E4-B4F8B4C27881",
+      "base_class_guids": [
+        "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "meshplanecuts-18f2683c83f5/split_body_minimal_fill.f3d",
+        "meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
+        "meshplanecuts-18f2683c83f5/trim_no_fill.f3d"
       ]
     },
     {
@@ -4165,6 +4208,20 @@
       ]
     },
     {
+      "class_guid": "90B8D2C6-05BB-4D0F-89EF-83AAC46CA1FF",
+      "base_class_guids": [
+        "95644CD5-1338-40F2-8016-1FB68DB06296"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "91461D14-4F77-44B2-9E79-8B052566D9CE",
       "base_class_guids": [
         "B5B50E5B-EDC8-4309-82A3-C53B3E82033D"
@@ -4217,6 +4274,20 @@
         "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
         "pipeedgecontrasts-5bd287323ae7/line_full.f3d"
       ]
+    },
+    {
+      "class_guid": "95644CD5-1338-40F2-8016-1FB68DB06296",
+      "base_class_guids": [
+        "B19508E6-F52D-412B-BABB-A618ABFFFE79"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": []
     },
     {
       "class_guid": "96CBEA21-17E0-4BCB-BA77-04EA87B47934",
@@ -4316,7 +4387,8 @@
       ],
       "example_files": [
         "meshcontrasts-10c2557c91a3/stl_centimeter.f3d",
-        "meshcontrasts-10c2557c91a3/stl_millimeter.f3d"
+        "meshcontrasts-10c2557c91a3/stl_millimeter.f3d",
+        "meshplanecuts-18f2683c83f5/split_body_minimal_fill.f3d"
       ]
     },
     {
@@ -5018,6 +5090,20 @@
       ]
     },
     {
+      "class_guid": "B19508E6-F52D-412B-BABB-A618ABFFFE79",
+      "base_class_guids": [
+        "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [],
+      "example_files": []
+    },
+    {
       "class_guid": "B1E5B971-C007-48C9-8FF5-F4CCD91F87A4",
       "base_class_guids": [
         "D7015B81-AB4D-4C89-BED7-AA4411E1964A"
@@ -5309,6 +5395,26 @@
         "pathpatterncomposites-b6b4cf615504/composite_along.f3d",
         "pathpatterncomposites-b6b4cf615504/composite_identical.f3d",
         "pathpatterncomposites-b6b4cf615504/composite_multiple.f3d"
+      ]
+    },
+    {
+      "class_guid": "BE693D4C-741E-4794-A93E-5BFED71E9E13",
+      "base_class_guids": [
+        "90B8D2C6-05BB-4D0F-89EF-83AAC46CA1FF"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Named feature: MeshReduce"
+      ],
+      "example_files": [
+        "meshreduces-780954a23308/adaptive_count_six.f3d",
+        "meshreduces-780954a23308/uniform_count_six.f3d",
+        "meshreduces-8f01528f7f21/adaptive_proportion_fifty.f3d"
       ]
     },
     {
@@ -6326,6 +6432,26 @@
         "analytic-86a12b291d0a/analytic.f3d",
         "models-97a5e41e2ba7/revolve_full.f3d",
         "models-97a5e41e2ba7/revolve_partial.f3d"
+      ]
+    },
+    {
+      "class_guid": "E3EB3760-4362-48D6-ABF3-698B0C12C5A9",
+      "base_class_guids": [
+        "90B8D2C6-05BB-4D0F-89EF-83AAC46CA1FF"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [
+        "Named feature: MeshPlaneCut"
+      ],
+      "example_files": [
+        "meshplanecuts-18f2683c83f5/split_body_minimal_fill.f3d",
+        "meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
+        "meshplanecuts-18f2683c83f5/trim_no_fill.f3d"
       ]
     },
     {
