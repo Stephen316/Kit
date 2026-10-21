@@ -20,7 +20,13 @@ SCOPE=('Observed two separate owned Thread face proxies with singleton descripto
 
 
 def resolve_thread_multi_faces(data,records,body,feature,selection_cursor):
-    """Pure opt-in Thread selection callback; caller qualifies thread controls."""
+    """Pure opt-in plural Thread callback; exact two-source default remains strict."""
+    return _resolve_thread_sources(data,records,body,feature,selection_cursor,expected_count=2,scope=SCOPE)
+
+
+def _resolve_thread_sources(data,records,body,feature,selection_cursor,*,expected_count,scope):
+    """Shared strict source frame, with independently observed singleton/plural counts."""
+    _require(expected_count in (1,2),'Unobserved internal Thread source count')
     records=list(records);grouped={}
     for record in records:
         if record.is_primary:grouped.setdefault(record.object_id,[]).append(record)
@@ -31,7 +37,7 @@ def resolve_thread_multi_faces(data,records,body,feature,selection_cursor):
     identity=feature['object_id'];record,native=typed(identity,THREAD)
     _require(record.start==feature['record_offset'] and native==body,'Thread route feature/payload identity differs')
     count=struct.unpack_from('<I',body,selection_cursor)[0]
-    _require(count==2,'Only captured two-proxy Thread source layout supported')
+    _require(count==expected_count,('Only captured two-proxy Thread source layout supported' if expected_count==2 else 'Only captured singleton family Thread source layout supported'))
     ids=[reference(body,selection_cursor+4+11*i) for i in range(count)]
     _require(len(set(ids))==count,'Thread source proxy identities duplicate')
     end=selection_cursor+4+11*count
@@ -95,14 +101,19 @@ def resolve_thread_multi_faces(data,records,body,feature,selection_cursor):
             body_count=count,bindings=[dict(stored_handle=h,native_body_object_id=i) for h,i in entries]),
         layout=dict(collection_record_offset=collection_record.start,stored_collection_payload_hex=collection.hex(),
             mapping_record_offset=mapping_record.start,stored_mapping_payload_hex=payload.hex(),exact_selection_and_mapping_replay=True),
-        scope=SCOPE)
+        scope=scope)
 
 
 def qualify_thread_body_routes(data,records,member,members,evidence):
-    """Revalidate pure source evidence, then join literal native handles to ASM IDs."""
+    """Revalidate plural source evidence, then join literal handles to ASM IDs."""
+    return _qualify_thread_sources(data,records,member,members,evidence,resolver=resolve_thread_multi_faces,scope=SCOPE)
+
+
+def _qualify_thread_sources(data,records,member,members,evidence,*,resolver,scope):
+    """Shared late proof; caller-specific resolver reproduces all native evidence."""
     matches=[r for r in records if r.is_primary and r.object_id==evidence['feature_object_id'] and r.class_guid==THREAD]
     _require(len(matches)==1,'Thread late feature identity ambiguous');record=matches[0]
-    fresh=resolve_thread_multi_faces(data,records,data[record.body:record.end],
+    fresh=resolver(data,records,data[record.body:record.end],
         dict(object_id=record.object_id,record_offset=record.start),evidence['selection_start_offset'])
     _require(fresh==evidence,'Thread late evidence differs from native revalidation')
     mapping={**evidence['native_history_mapping'],
@@ -112,4 +123,4 @@ def qualify_thread_body_routes(data,records,member,members,evidence):
     _require(len(identifiers['decoded'])==1 and not identifiers['unresolved'],'Thread native handle/ASM stored BODY ID association unresolved')
     return dict(feature_object_id=record.object_id,native_selection_evidence=evidence,
         native_history_mapping=mapping,stored_asm_body_identifiers=identifiers,
-        selected_asm_face_object_ids=None,native_API_face_assignment=None,source_to_result_pairing=None,scope=SCOPE)
+        selected_asm_face_object_ids=None,native_API_face_assignment=None,source_to_result_pairing=None,scope=scope)

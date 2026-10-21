@@ -53,6 +53,8 @@ from decode_profile_cache_correspondence import decode_profile_cache_corresponde
 from decode_datum_mirror_supports import decode_datum_mirror_supports
 from decode_thin_extrudes import decode_thin_extrudes
 from decode_thread_multi_faces import decode_thread_multi_faces
+from decode_thread_families import decode_thread_families
+from decode_thread_family_body_routes import qualify_thread_family_body_routes, SCOPE as THREAD_FAMILY_BODY_SCOPE
 from decode_thread_body_routes import qualify_thread_body_routes, SCOPE as THREAD_BODY_ROUTE_SCOPE
 from decode_thin_extrude_operations import decode_thin_extrude_operations
 from decode_thin_extrude_body_routes import qualify_thin_extrude_body_routes, SCOPE as THIN_OPERATION_BODY_SCOPE
@@ -583,6 +585,27 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 thread_body_summary['unresolved'].append(dict(feature_object_id=feature['object_id'], reason=str(error)))
         tool_summary['unresolved'] = [row for row in tool_summary['unresolved']
             if row['object_id'] not in thread_multi_ids or row['reason'] != 'Unsupported thread length/offset/selection count']
+        thread_family_summary = decode_thread_families(data, records, features)
+        thread_family_ids = {row['feature_object_id'] for row in thread_family_summary['decoded']}
+        eligible_family_ids = {row['object_id'] for row in tool_summary['unresolved']
+            if row['kind'] == 'Thread' and row['reason'] == 'Only observed matching straight metric thread definitions supported'}
+        if not thread_family_ids <= eligible_family_ids:
+            raise ValueError('Qualified Thread family does not match the prior ISO-only frontier')
+        thread_family_body_summary = dict(decoded=[], unresolved=[], scope=THREAD_FAMILY_BODY_SCOPE)
+        for thread in thread_family_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == thread['feature_object_id'])
+            feature.update(tool_settings=thread['settings'],
+                decode_level='Observed straight Thread family controls and typed cylindrical source; persistent face identity and regeneration unresolved')
+            if not any(row['object_id'] == feature['object_id'] for row in tool_summary['decoded']):
+                tool_summary['decoded'].append(dict(object_id=feature['object_id'], kind='Thread'))
+            try:
+                routes = qualify_thread_family_body_routes(data, records, name, members, thread['settings']['selection_evidence'])
+                feature['thread_family_body_routes'] = routes
+                thread_family_body_summary['decoded'].append(routes)
+            except (ValueError, KeyError, IndexError, TypeError, struct.error) as error:
+                thread_family_body_summary['unresolved'].append(dict(feature_object_id=feature['object_id'], reason=str(error)))
+        tool_summary['unresolved'] = [row for row in tool_summary['unresolved']
+            if row['object_id'] not in thread_family_ids or row['reason'] != 'Only observed matching straight metric thread definitions supported']
         parting_draft_summary = decode_parting_line_drafts(data, records, features)
         parting_draft_ids = set()
         for draft in parting_draft_summary['decoded']:
@@ -1452,6 +1475,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         })
         for key, summary in (('mirror_datum_reflections', datum_reflection_summary),
                              ('datum_mirror_supports', datum_support_summary),
+                             ('thread_families', thread_family_summary),
+                             ('thread_family_body_routes', thread_family_body_summary),
                              ('thread_multi_faces', thread_multi_summary),
                              ('thread_body_routes', thread_body_summary),
                              ('thin_extrudes', thin_extrude_summary),

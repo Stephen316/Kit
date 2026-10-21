@@ -18,7 +18,7 @@ def thread_parent_hole(body):
     return optional_reference(body, cursor+38)[0]
 
 
-def decode_thread(data, records, body, feature, *, selection_resolver=None):
+def decode_thread(data, records, body, feature, *, selection_resolver=None, allowed_families=("ISO Metric profile",)):
     if feature["class_guid"] != "584D9526-EF22-4F6F-9FE1-5FCF1F3CE575" or body[:2] != b"\0\0" or body[10] not in (0, 1):
         raise ValueError("Unsupported thread prefix/class")
     table_count = struct.unpack_from("<I", body, 11)[0]
@@ -30,7 +30,7 @@ def decode_thread(data, records, body, feature, *, selection_resolver=None):
         text, cursor = read_string(body, cursor)
         strings.append(text)
     thread_class, designation, designation_copy, size, family = strings
-    if designation != designation_copy or family != "ISO Metric profile":
+    if designation != designation_copy or family not in allowed_families:
         raise ValueError("Only observed matching straight metric thread definitions supported")
     parent_hole, binding_cursor = optional_reference(body, cursor+38)
     hand_cursor = binding_cursor+22
@@ -94,7 +94,7 @@ def decode_thread(data, records, body, feature, *, selection_resolver=None):
         selection_ids = selection_evidence.get('selection_record_object_ids')
         descriptors = selection_evidence.get('descriptor_object_ids')
         selection_end = selection_evidence.get('selection_end_offset')
-        if (selection_count != 2 or not isinstance(selection_ids,list) or not isinstance(descriptors,list)
+        if (selection_count not in (1, 2) or not isinstance(selection_ids,list) or not isinstance(descriptors,list)
                 or len(selection_ids) != selection_count or len(descriptors) != selection_count
                 or any(type(i) is not int for i in selection_ids+descriptors)
                 or len(set(selection_ids)) != selection_count or len(set(descriptors)) != selection_count
