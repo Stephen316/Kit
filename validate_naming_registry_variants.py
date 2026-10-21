@@ -109,11 +109,13 @@ def validate(root,zstd):
                     'typed_container_payload_byte_count':container.end-container.body,
                     'scope':'Only the actual second table establishes stored key-to-typed-owner associations. No reverse-derived forward table or reciprocal ownership is fabricated.'})
                 totals['new_reverse_only_registries']+=1;totals['new_reverse_only_rows']+=n;shapes[n]+=1
+                totals['frozen_reverse_only_registries' if frozen else 'later_reverse_only_registries']+=1
+                totals['frozen_reverse_only_rows' if frozen else 'later_reverse_only_rows']+=n
                 if reverse_example is None:
                     reverse_example=data,records,row
-    check(totals['frozen_previous_registry_dictionaries_exact']==499 and totals['new_reverse_only_registries']==97,
+    check(totals['frozen_previous_registry_dictionaries_exact']==499 and totals['frozen_reverse_only_registries']==97,
           'observed registry counts: '+str(dict(totals))+'; saved archives: '+str(len(files)))
-    check(totals['new_reverse_only_rows']==179,'all 179 actual reverse-only owner rows remain explicit')
+    check(totals['frozen_reverse_only_rows']==179,'all 179 original reverse-only owner rows remain explicit')
 
     def rejects(label,example,offset,value,fmt='<Q'):
         data,records,row=example
@@ -141,7 +143,7 @@ def validate(root,zstd):
             'reverse_only_second_table_count_distribution':dict(sorted(shapes.items())),
             'reverse_only_typed_native_owner_class_counts':dict(sorted(classes.items())),
             'malformed_guards':guards,'new_API_calls':0,'full_main_decodes':0},
-        'findings':['All 97 remaining variants explicitly store owner_count0 followed by a nonempty counted second table and the unchanged 15-byte typed container footer. No partially mismatched nonempty-forward layout is admitted.',
+        'findings':['All 97 original variants explicitly store owner_count0 followed by a nonempty counted second table and the unchanged 15-byte typed container footer. Later captured reverse-only registries are counted separately; no partially mismatched nonempty-forward layout is admitted.',
             'Canonical key_to_owner contains the actual stored second-table rows, while owner_to_keys remains actually empty. ForwardTableAbsent is explicit, and no synthetic reverse-derived forward ownership is published.',
             'All 499 previously decoded dictionaries from the frozen 561-archive manifest remain exactly equal, including normal reciprocal and completely empty component registries; newly captured current old-schema controls are counted separately. Existing modifying BoundaryFill logic still requires actual reciprocal owner_to_keys rows.',
             'Every new second-table owner resolves to a unique actual typed primary record; all registry-container references/backlinks and complete original payload bytes validate.',

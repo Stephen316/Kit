@@ -25,7 +25,8 @@ CURVES = {'Line': 'DCA267ED-D615-4934-B64F-AD805E8003E2',
 SCOPE = 'Observed NewBody Extrude owned profile/native sketch curve tags and explicit source-owner BODY/blob route qualify multiple matching COEDGE sketch-attribute first-field correspondences; geometry, other fields and lifecycle not inferred'
 
 
-def decode_profile_cache_correspondence(data, records, features, member, members, body_identifier_summary):
+def decode_profile_cache_correspondence(data, records, features, member, members, body_identifier_summary,
+                                       *, profile_loops_reader=None, coedge_fields_validator=None):
     """Separate decoded/unresolved/scope; do not clear previous selection warnings."""
     grouped = {}
     for r in records:
@@ -69,7 +70,7 @@ def decode_profile_cache_correspondence(data, records, features, member, members
             if len(sketches) != 1: raise ValueError('Profile-cache native Sketch unresolved or ambiguous')
             sketch = sketches[0]
             definition_id = reference(body, 2); _, definition = typed(definition_id, PROFILE_LOOP_GUID)
-            loops = read_loops(definition, descriptor.object_id, sketch)
+            loops = (profile_loops_reader or read_loops)(definition, descriptor.object_id, sketch)
             references = [r for loop in loops for r in loop['curve_references']]
             sources = {}
             for ref in references:
@@ -102,7 +103,9 @@ def decode_profile_cache_correspondence(data, records, features, member, members
                     if item['definition_name']!='sketch_attrib_def' or item['owner_kind']!='coedge' or item['owner_record_index'] not in graph['coedge_indices']:continue
                     record=parsed['records'][item['attribute_record_index']]; payload=decode_sketch_attribute(record)
                     fields=payload['stored_decimal_text_fields']; possible=[tag for tag in sources if str(tag)==fields[0]]
-                    if fields[1:]!=['0','0','0','1','1'] or len(possible)!=1:
+                    fields_valid = (coedge_fields_validator(fields, sources) if coedge_fields_validator is not None
+                                    else fields[1:]==['0','0','0','1','1'])
+                    if not fields_valid or len(possible)!=1:
                         raise ValueError('Mapped BODY COEDGE sketch text outside complete owned-profile tag family')
                     tag=possible[0]; coedge=nodes[item['owner_record_index']]; edge=nodes[coedge['edge_index']]
                     loop=nodes[coedge['loop_index']]; face=nodes[loop['face_index']]

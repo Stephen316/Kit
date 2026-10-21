@@ -50,6 +50,9 @@ from decode_face_tracking_contexts import decode_face_tracking_contexts
 from decode_boundary_modifying_faces import decode_boundary_modifying_faces
 from decode_named_vertex_selections import decode_named_vertex_selections
 from decode_profile_cache_correspondence import decode_profile_cache_correspondence
+from decode_datum_mirror_supports import decode_datum_mirror_supports
+from decode_thin_extrudes import decode_thin_extrudes
+from decode_trimmed_profiles import decode_trimmed_profiles
 from decode_pipe_paths import inspect_pipe_edge_path
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -419,6 +422,22 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         profile_summary["unresolved"] = [item for item in profile_summary["unresolved"]
                                              if item["feature_object_id"] not in open_profile_ids
                                              or item["reason"] != "Profile source reference is unresolved"]
+        thin_extrude_summary = decode_thin_extrudes(data, records, features)
+        thin_open_ids = set()
+        for extrusion in thin_extrude_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == extrusion['feature_object_id'])
+            feature['is_thin_extrude'] = True
+            feature['thin_extrusion'] = extrusion['thin_metadata']
+            feature['thin_extrusion_source'] = {k: v for k, v in extrusion.items()
+                if k not in ('feature_object_id', 'is_thin_extrude', 'thin_metadata', 'common_extrusion_controls')}
+            feature['decode_level'] = 'Observed Thin Extrude common/wall controls and owned sketch source; wall geometry and regeneration unresolved'
+            if extrusion['profile'].get('profile_kind') == 'SketchOpenProfile':
+                feature['open_profile_selection'] = extrusion['profile']
+                thin_open_ids.add(feature['object_id'])
+                profile_summary['decoded'].append({'feature_object_id': feature['object_id'], 'kind': 'SketchOpenProfile',
+                    'descriptor_object_id': extrusion['profile']['descriptor_object_id'], 'curve_count': 1})
+        profile_summary['unresolved'] = [item for item in profile_summary['unresolved']
+            if item['feature_object_id'] not in thin_open_ids or item['reason'] != 'Profile source reference is unresolved']
         placement_summary = decode_placement(data, records, features)
         construction_summary = decode_construction(data, records, features)
         plane_definition_summary = decode_plane_definitions(data, records, features)
@@ -736,6 +755,9 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 remaining_input_summary["unresolved"].append({"feature_object_id": feature["object_id"], "reason": str(error)})
         tool_summary["unresolved"] = [item for item in tool_summary["unresolved"] if item["object_id"] not in resolved_input_ids]
         datum_reflection_summary = decode_mirror_datum_reflections(data, records, features, assembly_summary)
+        datum_support_summary = decode_datum_mirror_supports(data, records, features, assembly_summary)
+        for evidence in datum_support_summary['decoded']:
+            feature_by_id[evidence['feature_object_id']]['datum_mirror_support_reflection'] = evidence
         datum_reflections = {row['feature_object_id']: row for row in datum_reflection_summary['decoded']}
         for identity, reflection in datum_reflections.items():
             feature_by_id[identity].update(datum_reflection=reflection,
@@ -818,6 +840,28 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             target = feature_by_id.get(correspondence['source_feature_object_id'])
             if target is not None:
                 target.setdefault('profile_cache_correspondences', []).append(correspondence)
+        trimmed_profile_summary = decode_trimmed_profiles(
+            data, records, features, name, members, body_identifier_summary)
+        trimmed_ids = set()
+        for correspondence in trimmed_profile_summary['decoded']:
+            target = feature_by_id[correspondence['source_feature_object_id']]
+            target.setdefault('trimmed_profile_cache_correspondences', []).append(correspondence)
+            descriptor_id = correspondence['profile_descriptor_object_id']
+            if not any(p['descriptor_object_id'] == descriptor_id for p in target.get('profile_selection', [])):
+                target.setdefault('profile_selection', []).append({
+                    'sketch_object_id': correspondence['native_sketch_object_id'],
+                    'sketch_name': correspondence['native_sketch_name'],
+                    'descriptor_object_id': descriptor_id,
+                    'loop_definition_object_id': correspondence['profile_loop_definition_object_id'],
+                    'loops': correspondence['profile_loops'],
+                    'selection_level': 'Observed curve membership and literal trim selectors with qualified cached boundaries',
+                    'limitations': 'Selector-to-parameter semantics and general source trim construction remain unresolved'})
+                profile_summary['decoded'].append({'feature_object_id': target['object_id'],
+                    'descriptor_object_id': descriptor_id, 'loop_count': len(correspondence['profile_loops']),
+                    'reference_layout': 'ObservedTrimSelectors'})
+            trimmed_ids.add(target['object_id'])
+        profile_summary['unresolved'] = [item for item in profile_summary['unresolved']
+            if item['feature_object_id'] not in trimmed_ids or item['reason'] != 'Unsupported profile curve or trim-reference layout']
         historical_component_summary = decode_historical_body_components(
             data, records, body_binding_summary, assembly_summary)
         for patch in historical_component_summary["decoded"]:
@@ -1010,6 +1054,9 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             "body_placement": body_placement_summary,
         })
         for key, summary in (('mirror_datum_reflections', datum_reflection_summary),
+                             ('datum_mirror_supports', datum_support_summary),
+                             ('thin_extrudes', thin_extrude_summary),
+                             ('trimmed_profiles', trimmed_profile_summary),
                              ('circular_placement_evidence', circular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),

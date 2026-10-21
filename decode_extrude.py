@@ -12,7 +12,7 @@ def optional_reference(body, cursor):
     return reference(body, cursor), cursor+11
 
 
-def decode_extrude(body, feature, *, allow_surface=False):
+def decode_extrude(body, feature, *, allow_surface=False, layout_observer=None):
     if body[:6] != b"\0\x01\0\0\0\0":
         raise ValueError("Unsupported extrusion prefix")
     source, cursor = optional_reference(body, 6)
@@ -109,4 +109,7 @@ def decode_extrude(body, feature, *, allow_surface=False):
               "stored_second_extent_enabled": enabled_two}
     if allow_surface:
         result["is_solid"] = is_solid
+    if layout_observer is not None:
+        layout_observer({"common_controls_end_offset": cursor+(4 if mode == 3 else 0),
+                         "extent_mode_code": mode})
     return result, unresolved

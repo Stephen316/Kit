@@ -32,8 +32,15 @@ PRIOR561=dict(manifest_sha256='5f123da45456a1310292ff16004abd6a07509c931bd2ac761
 
 def audit(root=ROOT,zstd_library=None):
     root=Path(root).resolve();started=time.monotonic()
-    source_names=('audit_native_naming_registry.py','decode_native_naming_registry.py','fusion_metadata.py','fusion_archive.py','decode_sketch.py')
+    source_names=('audit_native_naming_registry.py','decode_native_naming_registry.py','fusion_metadata.py','fusion_archive.py','decode_sketch.py',
+                  'native-naming-registry-original561-manifest.json')
     source_hashes={name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in source_names}
+    frozen=json.loads((root/'native-naming-registry-original561-manifest.json').read_text())
+    frozen_rows=frozen['files'];frozen_paths={row['file'] for row in frozen_rows}
+    frozen_hash=hashlib.sha256(json.dumps(frozen_rows,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    if (len(frozen_rows)!=561 or len(frozen_paths)!=561 or frozen['file_count']!=561
+            or frozen_hash!=frozen['manifest_sha256'] or frozen_hash!=PRIOR561['manifest_sha256']):
+        raise ValueError('Frozen original561 manifest does not match its recorded historical evidence')
     files=sorted(root.glob('*/*.f3d'))
     manifest=[dict(file=str(p.relative_to(root)),sha256=hashlib.sha256(p.read_bytes()).hexdigest(),byte_count=p.stat().st_size) for p in files]
     manifest_bytes=json.dumps(manifest,sort_keys=True,separators=(',',':')).encode()
@@ -143,12 +150,13 @@ def audit(root=ROOT,zstd_library=None):
     report['Design_assets_without_registry']=no_registry
     report['actual_new_capture_files']=[dict(manifest_entry=next((m for m in manifest if m['file']==name),None),
         registry_census=next((f for f in report['files'] if f['file']==name),None)) for name in NEW_CAPTURES]
-    baseline_manifest=[m for m in manifest if m['file'] not in FOLLOWUP_CAPTURES]
+    baseline_manifest=[m for m in manifest if m['file'] in frozen_paths]
     baseline_hash=hashlib.sha256(json.dumps(baseline_manifest,sort_keys=True,separators=(',',':')).encode()).hexdigest()
-    original_counts=Counter();parameter_counts=Counter();color_counts=Counter()
+    original_counts=Counter();parameter_counts=Counter();color_counts=Counter();later_counts=Counter()
     for f in report['files']:
-        target=(parameter_counts if f['file'] in PARAMETER_CAPTURES else
-                color_counts if f['file'] in COLOR_CAPTURES else original_counts)
+        target=(original_counts if f['file'] in frozen_paths else
+                parameter_counts if f['file'] in PARAMETER_CAPTURES else
+                color_counts if f['file'] in COLOR_CAPTURES else later_counts)
         target['saved_archives']+=1
         for a in f['Design_assets']:
             target['Design_asset_occurrences']+=1;target['unresolved_registries']+=len(a['unresolved'])
@@ -158,8 +166,9 @@ def audit(root=ROOT,zstd_library=None):
     report['original561_corpus_comparison']=dict(historical_results=PRIOR561,
         current_reader_original_archive_subset=dict(original_counts),
         original_file_bytes_and_paths_unchanged=baseline_hash==PRIOR561['manifest_sha256'],
+        missing_original_archive_paths=sorted(frozen_paths-{row['file'] for row in manifest}),
         current_original_archive_subset_manifest_sha256=baseline_hash,
-        scope='Current parser results and original historical results remain separate; the97 formerly rejected records now have actual reverse-only rows. All five later exports (four parameter controls and one controlled component-color capture) are excluded from this original561 corpus comparison.')
+        scope='Current parser results and original historical results remain separate; the97 formerly rejected records now have actual reverse-only rows. Only paths from the frozen original561 manifest enter this comparison; every later capture stays outside it.')
     report['four_added_parameter_identity_controls']=dict(files=[dict(manifest_entry=next((m for m in manifest if m['file']==name),None),
         registry_census=next((f for f in report['files'] if f['file']==name),None)) for name in PARAMETER_CAPTURES],
         counts=dict(parameter_counts),
@@ -175,6 +184,10 @@ def audit(root=ROOT,zstd_library=None):
     report['five_added_followup_captures']=dict(files=list(FOLLOWUP_CAPTURES),
         counts={key:parameter_counts[key]+color_counts[key] for key in sorted(parameter_counts.keys()|color_counts.keys())},
         scope='Aggregate of the two explicitly separated later-capture groups; all five files are excluded from the frozen561-file manifest.')
+    report['captures_after_registry_variant_stage']=dict(
+        files=[row['file'] for row in manifest if row['file'] not in frozen_paths and row['file'] not in FOLLOWUP_CAPTURES],
+        counts=dict(later_counts),
+        scope='Later actual captures counted separately; they do not change the original561 manifest or the five parameter/color controls.')
     end_hashes={name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in source_names}
     report['provenance']['source_files_unchanged_during_run']=source_hashes==end_hashes
     report['provenance']['ending_source_sha256']=end_hashes

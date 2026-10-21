@@ -10,19 +10,23 @@
   },
   "interface": "Existing decode_native_naming_registry(data,records) and encode_native_naming_registry(registry); new layout retains actual empty owner_to_keys and actual populated key_to_owner.",
   "validation": {
-    "checks": 4022,
-    "saved_archives": 566,
-    "exact_payload_replays": 601,
-    "new_reverse_only_registries": 97,
-    "new_reverse_only_rows": 179,
-    "previous_registry_dictionaries_exact": 504,
+    "checks": 4100,
+    "saved_archives": 578,
+    "exact_payload_replays": 613,
+    "new_reverse_only_registries": 99,
+    "new_reverse_only_rows": 185,
+    "frozen_reverse_only_registries": 97,
+    "frozen_reverse_only_rows": 179,
+    "previous_registry_dictionaries_exact": 514,
     "frozen_previous_registry_dictionaries_exact": 499,
-    "additional_current_old_schema_controls_exact": 5,
-    "total_registry_records": 601,
+    "additional_current_old_schema_controls_exact": 15,
+    "later_reverse_only_registries": 2,
+    "later_reverse_only_rows": 6,
+    "total_registry_records": 613,
     "reverse_only_second_table_count_distribution": {
       "1": 70,
       "2": 13,
-      "3": 8,
+      "3": 10,
       "5": 1,
       "8": 1,
       "9": 1,
@@ -34,8 +38,8 @@
       "5F40832C-61AA-4A05-95B1-EFA0BA483138": 4,
       "803DEC43-AEA6-42CC-B8D0-F593B5124BDD": 3,
       "8DA771B7-52ED-42FC-94E2-2353FE141373": 146,
-      "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D": 3,
-      "D869265F-F339-4751-A066-91D30F81FF08": 23
+      "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D": 5,
+      "D869265F-F339-4751-A066-91D30F81FF08": 27
     },
     "malformed_guards": [
       {
@@ -73,7 +77,7 @@
     "full_main_decodes": 0
   },
   "findings": [
-    "All 97 remaining variants explicitly store owner_count0 followed by a nonempty counted second table and the unchanged 15-byte typed container footer. No partially mismatched nonempty-forward layout is admitted.",
+    "All 97 original variants explicitly store owner_count0 followed by a nonempty counted second table and the unchanged 15-byte typed container footer. Later captured reverse-only registries are counted separately; no partially mismatched nonempty-forward layout is admitted.",
     "Canonical key_to_owner contains the actual stored second-table rows, while owner_to_keys remains actually empty. ForwardTableAbsent is explicit, and no synthetic reverse-derived forward ownership is published.",
     "All 499 previously decoded dictionaries from the frozen 561-archive manifest remain exactly equal, including normal reciprocal and completely empty component registries; newly captured current old-schema controls are counted separately. Existing modifying BoundaryFill logic still requires actual reciprocal owner_to_keys rows.",
     "Every new second-table owner resolves to a unique actual typed primary record; all registry-container references/backlinks and complete original payload bytes validate.",
@@ -3838,6 +3842,62 @@
       "in_frozen_census_manifest": true
     },
     {
+      "file": "thinextrudes-c1632bcb5efe/closed_center.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "ee0cc8f7281172bcd02306d6d2daf09169adbb4a66033dd280aa6068866c2aa4",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "thinextrudes-c1632bcb5efe/closed_side1.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "ee0cc8f7281172bcd02306d6d2daf09169adbb4a66033dd280aa6068866c2aa4",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "thinextrudes-c1632bcb5efe/closed_side2.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "ee0cc8f7281172bcd02306d6d2daf09169adbb4a66033dd280aa6068866c2aa4",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "thinextrudes-c1632bcb5efe/closed_two_sides_center.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "2e7ab6c8d698f68809b31f8c1af0e6ac75091e8458c0ee4b2804ee8d38f03d49",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "thinextrudes-c1632bcb5efe/closed_two_sides_mixed.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "2e7ab6c8d698f68809b31f8c1af0e6ac75091e8458c0ee4b2804ee8d38f03d49",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "5b693279751045175bb50212947aa29263b2bd756dd9818fcec534764e655d2d",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "thinextrudes-f758eff14202/open_line_side1.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "3ed527f72e004759655c17379912fa91599f0f5daf3ccfb1b32dc6e9b96657cd",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
       "file": "threadmodes-6b6a0a9b4a69/partial_high.f3d",
       "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
       "object_id": 31,
@@ -4052,6 +4112,30 @@
       "canonical_dictionary_sha256": "dda193ac3670e5ed1b4b740c2cc815272fde6f19cd5d3b57007a9194ecf2440a",
       "exact_unchanged": true,
       "in_frozen_census_manifest": true
+    },
+    {
+      "file": "trimmedprofiles-a804f8da1496/circle_lens.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "d26e0933f9b82431e69e572b1c5ef0f55331b6035dbd80a84c9966b7ecacc269",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "trimmedprofiles-a804f8da1496/circle_right_complement.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "d26e0933f9b82431e69e572b1c5ef0f55331b6035dbd80a84c9966b7ecacc269",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "trimmedprofiles-a804f8da1496/rectangle_overlap.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "b7807a7914de294ad9bd62a9312c8938843d39b0fe0fd19c8f722798d12fae0e",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
     },
     {
       "file": "userparameters-e9c6959ff5fd/angle.f3d",
@@ -4503,6 +4587,116 @@
       "source_payload_sha256": "9007e89ccce1c550d372e3c38097de25cb3fb5b08331307c5040533a478363d1",
       "typed_registry_container_record_offset": 2940,
       "typed_container_payload_byte_count": 169,
+      "scope": "Only the actual second table establishes stored key-to-typed-owner associations. No reverse-derived forward table or reciprocal ownership is fabricated."
+    },
+    {
+      "file": "datummirrorsupport-3a854f334428/offset_selected_support.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "previous_diagnostic": {
+        "object_id": 31,
+        "reason": "Native naming reverse count or exact footer extent disagrees"
+      },
+      "expected_registry": {
+        "object_id": 31,
+        "class_guid": "5D89B935-3F04-4CAB-81F5-E7B309E7E13F",
+        "record_offset": 4924,
+        "owner_to_keys": [],
+        "key_to_owner": [
+          {
+            "naming_key": 300,
+            "native_owner_object_id": 203,
+            "native_owner_class_guid": "D869265F-F339-4751-A066-91D30F81FF08",
+            "stored_key_field_offset": 4953,
+            "stored_owner_field_offset": 4961
+          },
+          {
+            "naming_key": 301,
+            "native_owner_object_id": 225,
+            "native_owner_class_guid": "D869265F-F339-4751-A066-91D30F81FF08",
+            "stored_key_field_offset": 4969,
+            "stored_owner_field_offset": 4977
+          },
+          {
+            "naming_key": 302,
+            "native_owner_object_id": 290,
+            "native_owner_class_guid": "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D",
+            "stored_key_field_offset": 4985,
+            "stored_owner_field_offset": 4993
+          }
+        ],
+        "registry_is_empty": false,
+        "stored_reverse_count_offset": 4949,
+        "registry_container_object_id": 26,
+        "registry_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+        "container_reference_offset": 5005,
+        "container_backlink_offset": 3369,
+        "stored_footer_hex": "00000000011a000000000000000000",
+        "payload_offset": 4943,
+        "payload_byte_count": 73,
+        "payload_hex": "000000000000030000002c01000000000000cb000000000000002d01000000000000e1000000000000002e01000000000000220100000000000000000000011a000000000000000000",
+        "naming_key_namespace": "Opaque positive registry keys, independently distinct from typed native owner object IDs",
+        "scope": "Observed stored reverse-only naming-key/typed-native-owner table with an explicit empty forward table and exact registry-container footer/backlink. No missing forward rows are synthesized; bidirectional reciprocity, persistent topology identity and lifecycle remain unclaimed.",
+        "table_layout": "StoredReverseOnly",
+        "reciprocity_status": "ForwardTableAbsent"
+      },
+      "source_payload_sha256": "82678eab3ca3b5916514494710e0c277c0610dd90b30d6a69c88d7cbe50efe6f",
+      "typed_registry_container_record_offset": 3187,
+      "typed_container_payload_byte_count": 196,
+      "scope": "Only the actual second table establishes stored key-to-typed-owner associations. No reverse-derived forward table or reciprocal ownership is fabricated."
+    },
+    {
+      "file": "datummirrorsupport-3a854f334428/tilted_selected_support.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "previous_diagnostic": {
+        "object_id": 31,
+        "reason": "Native naming reverse count or exact footer extent disagrees"
+      },
+      "expected_registry": {
+        "object_id": 31,
+        "class_guid": "5D89B935-3F04-4CAB-81F5-E7B309E7E13F",
+        "record_offset": 4991,
+        "owner_to_keys": [],
+        "key_to_owner": [
+          {
+            "naming_key": 300,
+            "native_owner_object_id": 203,
+            "native_owner_class_guid": "D869265F-F339-4751-A066-91D30F81FF08",
+            "stored_key_field_offset": 5020,
+            "stored_owner_field_offset": 5028
+          },
+          {
+            "naming_key": 301,
+            "native_owner_object_id": 225,
+            "native_owner_class_guid": "D869265F-F339-4751-A066-91D30F81FF08",
+            "stored_key_field_offset": 5036,
+            "stored_owner_field_offset": 5044
+          },
+          {
+            "naming_key": 302,
+            "native_owner_object_id": 300,
+            "native_owner_class_guid": "A7B2C3D4-9E8F-4A5B-8C1D-6E7F0A1B2C3D",
+            "stored_key_field_offset": 5052,
+            "stored_owner_field_offset": 5060
+          }
+        ],
+        "registry_is_empty": false,
+        "stored_reverse_count_offset": 5016,
+        "registry_container_object_id": 26,
+        "registry_container_class_guid": "C3423E04-7E85-4B44-8E31-A5FA9C100052",
+        "container_reference_offset": 5072,
+        "container_backlink_offset": 3369,
+        "stored_footer_hex": "00000000011a000000000000000000",
+        "payload_offset": 5010,
+        "payload_byte_count": 73,
+        "payload_hex": "000000000000030000002c01000000000000cb000000000000002d01000000000000e1000000000000002e010000000000002c0100000000000000000000011a000000000000000000",
+        "naming_key_namespace": "Opaque positive registry keys, independently distinct from typed native owner object IDs",
+        "scope": "Observed stored reverse-only naming-key/typed-native-owner table with an explicit empty forward table and exact registry-container footer/backlink. No missing forward rows are synthesized; bidirectional reciprocity, persistent topology identity and lifecycle remain unclaimed.",
+        "table_layout": "StoredReverseOnly",
+        "reciprocity_status": "ForwardTableAbsent"
+      },
+      "source_payload_sha256": "ea2c88b4f7b49736c03e448098764943369de5fe46082d68abe8ec2fb55ef6ed",
+      "typed_registry_container_record_offset": 3187,
+      "typed_container_payload_byte_count": 196,
       "scope": "Only the actual second table establishes stored key-to-typed-owner associations. No reverse-derived forward table or reciprocal ownership is fabricated."
     },
     {

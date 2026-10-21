@@ -13,7 +13,7 @@ PROFILE_DESCRIPTOR_GUID = "4BD53E5A-0B3E-45E5-AE8B-02044306485A"
 PROFILE_LOOP_GUID = "0D57BD2F-D09B-43FC-AD57-1E89A118C453"
 
 
-def read_loops(body, descriptor_id, sketch):
+def read_loops(body, descriptor_id, sketch, *, curve_reference_details=None):
     if body[:2] != b"\0\0" or reference(body, 2) != descriptor_id:
         raise ValueError("Profile loop ownership does not match its descriptor")
     if struct.unpack_from("<I", body, 13)[0] != 1:
@@ -35,13 +35,20 @@ def read_loops(body, descriptor_id, sketch):
         for _ in range(size):
             code, tag, secondary, direction, flag_one, flag_two, opaque = struct.unpack_from("<IQQIIIQ", body, cursor)
             cursor += 40
-            if code != 3 or secondary or direction not in (0, 1) or (flag_one, flag_two, opaque) != (1, 1, 0):
+            if (code != 3 or secondary or direction not in (0, 1) or opaque
+                    or curve_reference_details is None and (flag_one, flag_two) != (1, 1)):
                 raise ValueError("Unsupported profile curve or trim-reference layout")
             candidates = by_tag.get(tag, [])
             if len(candidates) != 1:
                 raise ValueError("Profile curve tag is unresolved or ambiguous")
-            curves.append({"entity_id": candidates[0]["object_id"], "entity_kind": candidates[0]["kind"],
-                           "entity_tag": tag, "secondary_tag": secondary, "stored_direction_flag": direction})
+            curve = {"entity_id": candidates[0]["object_id"], "entity_kind": candidates[0]["kind"],
+                     "entity_tag": tag, "secondary_tag": secondary, "stored_direction_flag": direction}
+            if curve_reference_details is not None:
+                extra = curve_reference_details((code, tag, secondary, direction, flag_one, flag_two, opaque), candidates[0])
+                if not isinstance(extra, dict) or curve.keys() & extra.keys():
+                    raise ValueError('Profile curve detail callback would replace native identity fields')
+                curve.update(extra)
+            curves.append(curve)
         outer = body[cursor]
         cursor += 1
         if outer not in (0, 1):
