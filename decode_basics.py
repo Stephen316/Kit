@@ -168,6 +168,7 @@ from decode_remaining_body_inputs import decode_remaining_body_input, MIRROR_COM
 from decode_mirror_datum_outputs import decode_mirror_datum_outputs
 from decode_mirror_datum_reflections import decode_mirror_datum_reflections
 from decode_circular_feature_caches import decode_circular_cache_evidence
+from decode_rectangular_cache_evidence import decode_rectangular_cache_evidence
 from decode_fpm_partial_coverage import decode_fpm_partial_coverage
 from decode_mirror_nested_occurrences import decode_mirror_nested_occurrences
 from decode_special_fillets import decode_special_fillets
@@ -1573,6 +1574,10 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         circular_cache_summary = decode_circular_cache_evidence(data, records, features, name, members, body_binding_summary)
         for evidence in circular_cache_summary['decoded']:
             feature_by_id[evidence['feature_object_id']]['circular_placement_evidence'] = evidence
+        rectangular_cache_summary = decode_rectangular_cache_evidence(
+            data, records, features, name, members, body_binding_summary)
+        for evidence in rectangular_cache_summary['decoded']:
+            feature_by_id[evidence['feature_object_id']]['rectangular_cache_evidence'] = evidence
         fpm_context_cache_summary = decode_fpm_context_cache(data, records, fpm_selection_tracking_summary)
         boundary_sculpt_summary = decode_boundary_sculpt_provenance(
             data, records, name, members, features, body_binding_summary)
@@ -1774,6 +1779,7 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('mesh_normal_pools', mesh_normal_summary),
                              ('mesh_face_group_caches', mesh_face_group_cache_summary),
                              ('circular_placement_evidence', circular_cache_summary),
+                             ('rectangular_cache_evidence', rectangular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),
                              ('native_naming_registry', native_naming_summary),
