@@ -140,6 +140,7 @@ from decode_ruled_edge_sources import decode_ruled_edge_sources
 from decode_extend_edge_sources import decode_extend_edge_sources
 from decode_extend_cache_sources import decode_extend_cache_sources
 from decode_untrim_sources import decode_untrim_sources
+from decode_surface_offset_sources import decode_surface_offset_sources
 from decode_fpm_tracking import decode_fpm_selection_tracking
 from decode_fpm_context_cache import decode_fpm_context_cache
 from decode_asm_recipe_tags import inspect_pipe_recipe_tags
@@ -1533,6 +1534,12 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             target = feature_by_id.get(source['owner_object_id'])
             if target is not None:
                 target.setdefault('untrim_sources', []).append(source)
+        surface_offset_source_summary = decode_surface_offset_sources(
+            data, records, features, name, members, body_identifier_summary, body_selection_summary)
+        for source in surface_offset_source_summary['associations']:
+            target = feature_by_id.get(source['owner_object_id'])
+            if target is not None:
+                target.setdefault('surface_offset_sources', []).append(source)
         fpm_selection_tracking_summary = decode_fpm_selection_tracking(
             data, records, features, name, members, body_identifier_summary, body_selection_summary)
         fpm_body_tracking_summary = decode_fpm_partial_coverage(data, records, name, members, body_identifier_summary)
@@ -1789,6 +1796,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             streams[-1]['extend_cache_sources'] = extend_cache_summary
         if untrim_source_summary['associations'] or untrim_source_summary['unresolved']:
             streams[-1]['untrim_sources'] = untrim_source_summary
+        if surface_offset_source_summary['associations'] or surface_offset_source_summary['unresolved']:
+            streams[-1]['surface_offset_sources'] = surface_offset_source_summary
         if base_mesh_source_summary['partial'] or base_mesh_source_summary['unresolved']:
             streams[-1]['base_mesh_sources'] = base_mesh_source_summary
         if base_empty_summary['partial'] or base_empty_summary['unresolved']:

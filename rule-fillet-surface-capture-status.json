@@ -1,13 +1,13 @@
 {
-  "status": "Prepared; not executed",
+  "status": "Prepared with additive face witnesses; not executed",
   "observed_at_utc": "2026-10-21T18:08:14.180932+00:00",
   "generator": "GenerateRuleFilletSurfaceContrasts.py",
-  "generator_sha256": "bbb12b2016aea348867062f5f861cc9ceec9e139e48e005c10564c1eb0304cb4",
+  "generator_sha256": "6acfc86ee89a9d811959db7218509dadc295b5f28f944e38a0587460da5eb305",
   "planned_cases": [
     "offsets_one_two",
     "offsets_one_three"
   ],
-  "planned_capture": "Direct source surface metadata/NURBS data and trim-aware evaluator samples; one temporary ProceduralToNURBSConversion body per case; all API tempId split matches, independent converted UVs",
+  "planned_capture": "Direct source surface/NURBS and trim-aware samples, separate temporary API conversion, then separately exported singleton Offset face witnesses after the original archive",
   "dispatch_observation": {
     "return_code": 1,
     "return_posted": false,
@@ -15,7 +15,9 @@
     "reason": "Target Fusion command window absent from macOS accessibility; dispatcher stopped before targeted Return events",
     "fusion_pid": 5619,
     "same_process_verified_alive": true,
-    "accessible_fusion_window_count": 0
+    "accessible_fusion_window_count": 0,
+    "attempted_generator_sha256": "bbb12b2016aea348867062f5f861cc9ceec9e139e48e005c10564c1eb0304cb4",
+    "scope": "Historical command-field attempt before additive witness preparation; no later dispatch attempted"
   },
   "console_observation": {
     "CGSSessionScreenIsLocked": true,
@@ -37,12 +39,28 @@
   "latest_availability_observation": {
     "fusion_pid": 5619,
     "same_process_verified_alive": true,
-    "elapsed_process_time": "03:30:41",
+    "elapsed_process_time_at_process_check": "03:42:00",
     "accessible_fusion_window_count": 0,
+    "window_server_target_window_count": 34,
+    "window_server_target_onscreen_count": 2,
+    "CGSSessionScreenIsLocked": true,
+    "kCGSessionLoginDoneKey": true,
+    "session_state_diagnostic": {
+      "command": "/usr/bin/python3 dispatch_fusion_script.py --session-state",
+      "session_locked": true,
+      "no_ui_events": true,
+      "recorded_at_utc": "2026-10-21T19:43:27.514999+00:00",
+      "rechecked_after_generator_freeze": true
+    },
     "new_dispatch_attempted": false,
     "execution_started": false,
-    "desktop_lock_state": "Unconfirmed by current read-only query; earlier locked observation remains historical",
-    "scope": "Read-only process and accessibility window count; no activation, restart, keyboard event, API command or capture",
-    "recorded_at_utc": "2026-10-21T19:17:31.108444+00:00"
+    "scope": "Independent read-only process, accessibility and CoreGraphics metadata checks this turn; explicit lock Boolean only, no pixel capture, activation, restart, permission prompt, keyboard event or API capture",
+    "recorded_at_utc": "2026-10-21T19:37:41.640805+00:00"
+  },
+  "witness_plan": {
+    "file": "rule-fillet-surface-witness-plan.json",
+    "sha256": "98c7724b439214f5ea3a2218b1ef7005ccbfd4e84154350727e378e6e25c9b76",
+    "actual_execution_started": false,
+    "native_VBL_binding": null
   }
 }

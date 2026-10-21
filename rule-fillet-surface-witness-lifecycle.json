@@ -1,0 +1,646 @@
+{
+  "status": "Offline synthetic lifecycle checks passed; capture UNEXECUTED",
+  "source": "GenerateRuleFilletSurfaceContrasts.py",
+  "source_sha256": "6acfc86ee89a9d811959db7218509dadc295b5f28f944e38a0587460da5eb305",
+  "validator_sha256": "5415e6de05b164577ea90cee1501d0f03f994a581dbd550321da479619732c1d",
+  "scope": "Actual generator helper/orchestration AST executed against synthetic API handles and temporary fake archive bytes; no adsk import, Fusion API execution, offset acceptance, real native release behavior or native selection/VBL binding is proved",
+  "extracted_helpers": [
+    "quarantine_witness",
+    "same_api_entity",
+    "resolve_single",
+    "create_witness",
+    "read_rolled_witness",
+    "restore_after_witness",
+    "finalize"
+  ],
+  "scenarios": [
+    {
+      "scenario": "two_witness_success",
+      "passed": true,
+      "create_input_calls": 2,
+      "add_calls": 2,
+      "native_equality_calls": 7,
+      "restoration_calls": 2,
+      "close_calls": 1,
+      "actual_orchestration_errors": [],
+      "quarantine_phases": [],
+      "events": [
+        {
+          "event": "journal",
+          "phase": "creating_owned_document",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "wrappers_released_before_export",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "export",
+          "file": "synthetic_case.f3d",
+          "consumers": 0
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "pre_witness_export_complete",
+          "case": "synthetic_case",
+          "file": "synthetic_case.f3d",
+          "sha256": "e29c6691b11333f52e3b87759714b0d81fd4a0e355d13aaf04308edd0d84dfe5"
+        },
+        {
+          "event": "journal",
+          "phase": "creating_face_witness",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_create_wrappers_released",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "rollback",
+          "before": true
+        },
+        {
+          "event": "gc",
+          "before": true,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_rolled_wrappers_released_before_restore",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "restore",
+          "live_kinds": [
+            "Design",
+            "Timeline"
+          ]
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_restored",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "journal",
+          "phase": "creating_face_witness",
+          "case": "synthetic_case",
+          "witness_ordinal": 1
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_create_wrappers_released",
+          "case": "synthetic_case",
+          "witness_ordinal": 1
+        },
+        {
+          "event": "rollback",
+          "before": true
+        },
+        {
+          "event": "gc",
+          "before": true,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_rolled_wrappers_released_before_restore",
+          "case": "synthetic_case",
+          "witness_ordinal": 1
+        },
+        {
+          "event": "restore",
+          "live_kinds": [
+            "Design",
+            "Timeline"
+          ]
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_restored",
+          "case": "synthetic_case",
+          "witness_ordinal": 1
+        },
+        {
+          "event": "export",
+          "file": "synthetic_case_witnesses.f3d",
+          "consumers": 2
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_export_complete",
+          "case": "synthetic_case",
+          "file": "synthetic_case_witnesses.f3d",
+          "witness_count": 2
+        },
+        {
+          "event": "close",
+          "live_kinds": [],
+          "save": false
+        },
+        {
+          "event": "journal",
+          "phase": "owned_document_closed",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "journal",
+          "phase": "batch_complete",
+          "case": null
+        }
+      ]
+    },
+    {
+      "scenario": "ambiguous_token",
+      "passed": true,
+      "create_input_calls": 0,
+      "add_calls": 0,
+      "native_equality_calls": 0,
+      "restoration_calls": 0,
+      "close_calls": 0,
+      "actual_orchestration_errors": [
+        {
+          "case": "synthetic_case",
+          "error_type": "RuntimeError",
+          "error": "Same-document API token did not resolve to one valid Face",
+          "owned_document_retained": true,
+          "automatic_retry": false,
+          "pre_witness_archive_preserved": true,
+          "native_witness_handles_quarantined": true
+        }
+      ],
+      "quarantine_phases": [
+        "resolve_single",
+        "create_witness"
+      ],
+      "events": [
+        {
+          "event": "journal",
+          "phase": "creating_owned_document",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "wrappers_released_before_export",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "export",
+          "file": "synthetic_case.f3d",
+          "consumers": 0
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "pre_witness_export_complete",
+          "case": "synthetic_case",
+          "file": "synthetic_case.f3d",
+          "sha256": "e29c6691b11333f52e3b87759714b0d81fd4a0e355d13aaf04308edd0d84dfe5"
+        },
+        {
+          "event": "journal",
+          "phase": "creating_face_witness",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "journal",
+          "phase": "batch_halted",
+          "case": "synthetic_case"
+        }
+      ]
+    },
+    {
+      "scenario": "zero_offset_add_failure",
+      "passed": true,
+      "create_input_calls": 1,
+      "add_calls": 1,
+      "native_equality_calls": 1,
+      "restoration_calls": 0,
+      "close_calls": 0,
+      "actual_orchestration_errors": [
+        {
+          "case": "synthetic_case",
+          "error_type": "RuntimeError",
+          "error": "Synthetic zero-offset add rejected",
+          "owned_document_retained": true,
+          "automatic_retry": false,
+          "pre_witness_archive_preserved": true,
+          "native_witness_handles_quarantined": true
+        }
+      ],
+      "quarantine_phases": [
+        "create_witness"
+      ],
+      "events": [
+        {
+          "event": "journal",
+          "phase": "creating_owned_document",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "wrappers_released_before_export",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "export",
+          "file": "synthetic_case.f3d",
+          "consumers": 0
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "pre_witness_export_complete",
+          "case": "synthetic_case",
+          "file": "synthetic_case.f3d",
+          "sha256": "e29c6691b11333f52e3b87759714b0d81fd4a0e355d13aaf04308edd0d84dfe5"
+        },
+        {
+          "event": "journal",
+          "phase": "creating_face_witness",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "journal",
+          "phase": "batch_halted",
+          "case": "synthetic_case"
+        }
+      ]
+    },
+    {
+      "scenario": "rolled_entity_mismatch",
+      "passed": true,
+      "create_input_calls": 1,
+      "add_calls": 1,
+      "native_equality_calls": 3,
+      "restoration_calls": 0,
+      "close_calls": 0,
+      "actual_orchestration_errors": [
+        {
+          "case": "synthetic_case",
+          "error_type": "RuntimeError",
+          "error": "Rolled witness singleton entities do not equal the API-resolved source face",
+          "owned_document_retained": true,
+          "automatic_retry": false,
+          "pre_witness_archive_preserved": true,
+          "native_witness_handles_quarantined": true
+        }
+      ],
+      "quarantine_phases": [
+        "read_rolled_witness"
+      ],
+      "events": [
+        {
+          "event": "journal",
+          "phase": "creating_owned_document",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "wrappers_released_before_export",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "export",
+          "file": "synthetic_case.f3d",
+          "consumers": 0
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "pre_witness_export_complete",
+          "case": "synthetic_case",
+          "file": "synthetic_case.f3d",
+          "sha256": "e29c6691b11333f52e3b87759714b0d81fd4a0e355d13aaf04308edd0d84dfe5"
+        },
+        {
+          "event": "journal",
+          "phase": "creating_face_witness",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_create_wrappers_released",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "rollback",
+          "before": true
+        },
+        {
+          "event": "journal",
+          "phase": "batch_halted",
+          "case": "synthetic_case"
+        }
+      ]
+    },
+    {
+      "scenario": "rollback_failure",
+      "passed": true,
+      "create_input_calls": 1,
+      "add_calls": 1,
+      "native_equality_calls": 2,
+      "restoration_calls": 0,
+      "close_calls": 0,
+      "actual_orchestration_errors": [
+        {
+          "case": "synthetic_case",
+          "error_type": "RuntimeError",
+          "error": "Witness rollback before node returned false",
+          "owned_document_retained": true,
+          "automatic_retry": false,
+          "pre_witness_archive_preserved": true,
+          "native_witness_handles_quarantined": true
+        }
+      ],
+      "quarantine_phases": [
+        "read_rolled_witness"
+      ],
+      "events": [
+        {
+          "event": "journal",
+          "phase": "creating_owned_document",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "wrappers_released_before_export",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "export",
+          "file": "synthetic_case.f3d",
+          "consumers": 0
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "pre_witness_export_complete",
+          "case": "synthetic_case",
+          "file": "synthetic_case.f3d",
+          "sha256": "e29c6691b11333f52e3b87759714b0d81fd4a0e355d13aaf04308edd0d84dfe5"
+        },
+        {
+          "event": "journal",
+          "phase": "creating_face_witness",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_create_wrappers_released",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "rollback",
+          "before": true
+        },
+        {
+          "event": "journal",
+          "phase": "batch_halted",
+          "case": "synthetic_case"
+        }
+      ]
+    },
+    {
+      "scenario": "restoration_failure",
+      "passed": true,
+      "create_input_calls": 1,
+      "add_calls": 1,
+      "native_equality_calls": 3,
+      "restoration_calls": 1,
+      "close_calls": 0,
+      "actual_orchestration_errors": [
+        {
+          "case": "synthetic_case",
+          "error_type": "RuntimeError",
+          "error": "Witness timeline restoration/recompute failed",
+          "owned_document_retained": true,
+          "automatic_retry": false,
+          "pre_witness_archive_preserved": true,
+          "native_witness_handles_quarantined": true
+        }
+      ],
+      "quarantine_phases": [
+        "restore_after_witness"
+      ],
+      "events": [
+        {
+          "event": "journal",
+          "phase": "creating_owned_document",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "wrappers_released_before_export",
+          "case": "synthetic_case"
+        },
+        {
+          "event": "export",
+          "file": "synthetic_case.f3d",
+          "consumers": 0
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "pre_witness_export_complete",
+          "case": "synthetic_case",
+          "file": "synthetic_case.f3d",
+          "sha256": "e29c6691b11333f52e3b87759714b0d81fd4a0e355d13aaf04308edd0d84dfe5"
+        },
+        {
+          "event": "journal",
+          "phase": "creating_face_witness",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "gc",
+          "before": false,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_create_wrappers_released",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "rollback",
+          "before": true
+        },
+        {
+          "event": "gc",
+          "before": true,
+          "live_kinds": []
+        },
+        {
+          "event": "journal",
+          "phase": "witness_rolled_wrappers_released_before_restore",
+          "case": "synthetic_case",
+          "witness_ordinal": 0
+        },
+        {
+          "event": "restore",
+          "live_kinds": [
+            "Design",
+            "Timeline"
+          ]
+        },
+        {
+          "event": "journal",
+          "phase": "batch_halted",
+          "case": "synthetic_case"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "two_witness_success baseline exported before any consumers",
+    "two_witness_success native equality was called",
+    "two_witness_success two actual AST witnesses completed",
+    "two_witness_success each restoration saw no getter aliases",
+    "two_witness_success GC ran while before each restored node",
+    "two_witness_success separate witness export and baseline hash exact",
+    "two_witness_success close only after all aliases released",
+    "ambiguous_token baseline exported before any consumers",
+    "ambiguous_token native equality was called",
+    "ambiguous_token failure retained without next witness/close",
+    "ambiguous_token stable native/document quarantine populated",
+    "ambiguous_token no witness archive or completion on failure",
+    "ambiguous_token no automatic restore after rollback/getter failure",
+    "zero_offset_add_failure baseline exported before any consumers",
+    "zero_offset_add_failure native equality was called",
+    "zero_offset_add_failure failure retained without next witness/close",
+    "zero_offset_add_failure stable native/document quarantine populated",
+    "zero_offset_add_failure no witness archive or completion on failure",
+    "zero_offset_add_failure no automatic restore after rollback/getter failure",
+    "rolled_entity_mismatch baseline exported before any consumers",
+    "rolled_entity_mismatch native equality was called",
+    "rolled_entity_mismatch failure retained without next witness/close",
+    "rolled_entity_mismatch stable native/document quarantine populated",
+    "rolled_entity_mismatch no witness archive or completion on failure",
+    "rolled_entity_mismatch no automatic restore after rollback/getter failure",
+    "rollback_failure baseline exported before any consumers",
+    "rollback_failure native equality was called",
+    "rollback_failure failure retained without next witness/close",
+    "rollback_failure stable native/document quarantine populated",
+    "rollback_failure no witness archive or completion on failure",
+    "rollback_failure no automatic restore after rollback/getter failure",
+    "restoration_failure baseline exported before any consumers",
+    "restoration_failure native equality was called",
+    "restoration_failure failure retained without next witness/close",
+    "restoration_failure stable native/document quarantine populated",
+    "restoration_failure no witness archive or completion on failure",
+    "restoration_failure no automatic restore after rollback/getter failure"
+  ],
+  "validation": {
+    "scenarios": 6,
+    "focused_checks": 37,
+    "successful_witnesses": 2,
+    "failure_scenarios": 5,
+    "live_API_calls": 0,
+    "main_reader_calls": 0
+  }
+}

@@ -1,0 +1,275 @@
+{
+  "scope": "Actual dispatcher AST control flow under modeled session/native/UI boundaries; no native lock-state or live dispatch verification",
+  "summary": {
+    "behavioral_scenarios": 5,
+    "passed": 5,
+    "active_hold_pre_native_blocks": 1,
+    "locked_pre_event_UI_blocks": 1,
+    "unlocked_verified_target_fallthrough": 1,
+    "unknown_verified_target_fallthrough": 1,
+    "unknown_failed_field_blocks": 1,
+    "actual_native_library_loads": 0,
+    "actual_UI_calls": 0,
+    "actual_keyboard_events": 0,
+    "actual_process_commands": 0
+  },
+  "cases": [
+    {
+      "case": "Active hold blocks before native loading",
+      "modeled_session_lock_state": true,
+      "active_hold": true,
+      "modeled_field_valid": true,
+      "result": null,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Live Fusion captures are suspended after repeated native trim-cleanup crashes. Only an explicitly authorized validation with matching source hashes may run before the capture hold is cleared."
+      },
+      "boundary_trace": [],
+      "passed": true
+    },
+    {
+      "case": "Explicit locked session blocks before event permission/event/UI",
+      "modeled_session_lock_state": true,
+      "active_hold": false,
+      "modeled_field_valid": true,
+      "result": null,
+      "error": {
+        "type": "RuntimeError",
+        "message": "macOS session is locked; no Fusion command prepared or keyboard event created. Unlock the Mac and leave Fusion visible before resuming captures."
+      },
+      "boundary_trace": [
+        {
+          "action": "load_native_library",
+          "name": "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics"
+        },
+        {
+          "action": "load_native_library",
+          "name": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation"
+        },
+        {
+          "action": "read_session_lock_state",
+          "value": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "Unlocked session retains exact verified-target preparation",
+      "modeled_session_lock_state": false,
+      "active_hold": false,
+      "modeled_field_valid": true,
+      "result": {
+        "status": "Targeted command dispatched; execution unverified",
+        "generator": "GenerateOwnedProbe.py",
+        "target_pid": 4242,
+        "foreground_pid_during_preparation": 111,
+        "authorized_lifecycle_validation_only": false,
+        "global_keyboard_events": false,
+        "next_evidence": "Actual generator output and terminal complete/error records"
+      },
+      "error": null,
+      "boundary_trace": [
+        {
+          "action": "load_native_library",
+          "name": "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics"
+        },
+        {
+          "action": "load_native_library",
+          "name": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation"
+        },
+        {
+          "action": "read_session_lock_state",
+          "value": false
+        },
+        {
+          "action": "event_permission_preflight"
+        },
+        {
+          "action": "create_target_return_event",
+          "event": 101,
+          "down": true
+        },
+        {
+          "action": "create_target_return_event",
+          "event": 102,
+          "down": false
+        },
+        {
+          "action": "set_event_flags",
+          "event": 101
+        },
+        {
+          "action": "set_event_flags",
+          "event": 102
+        },
+        {
+          "action": "verified_target_field_prepare",
+          "accepted": true
+        },
+        {
+          "action": "post_to_pid",
+          "pid": 4242,
+          "event": 101
+        },
+        {
+          "action": "post_to_pid",
+          "pid": 4242,
+          "event": 102
+        },
+        {
+          "action": "release_event",
+          "event": 101
+        },
+        {
+          "action": "release_event",
+          "event": 102
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "Unknown session state retains verified-target preparation",
+      "modeled_session_lock_state": null,
+      "active_hold": false,
+      "modeled_field_valid": true,
+      "result": {
+        "status": "Targeted command dispatched; execution unverified",
+        "generator": "GenerateOwnedProbe.py",
+        "target_pid": 4242,
+        "foreground_pid_during_preparation": 111,
+        "authorized_lifecycle_validation_only": false,
+        "global_keyboard_events": false,
+        "next_evidence": "Actual generator output and terminal complete/error records"
+      },
+      "error": null,
+      "boundary_trace": [
+        {
+          "action": "load_native_library",
+          "name": "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics"
+        },
+        {
+          "action": "load_native_library",
+          "name": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation"
+        },
+        {
+          "action": "read_session_lock_state",
+          "value": null
+        },
+        {
+          "action": "event_permission_preflight"
+        },
+        {
+          "action": "create_target_return_event",
+          "event": 101,
+          "down": true
+        },
+        {
+          "action": "create_target_return_event",
+          "event": 102,
+          "down": false
+        },
+        {
+          "action": "set_event_flags",
+          "event": 101
+        },
+        {
+          "action": "set_event_flags",
+          "event": 102
+        },
+        {
+          "action": "verified_target_field_prepare",
+          "accepted": true
+        },
+        {
+          "action": "post_to_pid",
+          "pid": 4242,
+          "event": 101
+        },
+        {
+          "action": "post_to_pid",
+          "pid": 4242,
+          "event": 102
+        },
+        {
+          "action": "release_event",
+          "event": 101
+        },
+        {
+          "action": "release_event",
+          "event": 102
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "Unknown session state cannot bypass failed target-field verification",
+      "modeled_session_lock_state": null,
+      "active_hold": false,
+      "modeled_field_valid": false,
+      "result": null,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Fusion command-field preparation failed before Return was posted: Fusion text command field could not be verified; no event posted"
+      },
+      "boundary_trace": [
+        {
+          "action": "load_native_library",
+          "name": "/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics"
+        },
+        {
+          "action": "load_native_library",
+          "name": "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation"
+        },
+        {
+          "action": "read_session_lock_state",
+          "value": null
+        },
+        {
+          "action": "event_permission_preflight"
+        },
+        {
+          "action": "create_target_return_event",
+          "event": 101,
+          "down": true
+        },
+        {
+          "action": "create_target_return_event",
+          "event": 102,
+          "down": false
+        },
+        {
+          "action": "set_event_flags",
+          "event": 101
+        },
+        {
+          "action": "set_event_flags",
+          "event": 102
+        },
+        {
+          "action": "verified_target_field_prepare",
+          "accepted": false
+        },
+        {
+          "action": "release_event",
+          "event": 101
+        },
+        {
+          "action": "release_event",
+          "event": 102
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "source_sha256": {
+    "validate_fusion_capture_preflight.py": "ca2600bf1eaa6ec738a1564792ff277c599d309b486f1820234e92ef64d4e9d0",
+    "dispatch_fusion_script.py": "9eac5f9cf3946b521ef1081361eaa717d4d25fd2ecb92deb4006461a41e68369"
+  },
+  "limitations": [
+    "Session state is stubbed True/False/None; this does not test macOS session querying or prove a live native fix",
+    "Only the isolated actual dispatch function AST executes; imports, CLI and read_session_lock_state native implementation are not executed",
+    "Verified command-field AppleScript is checked structurally and passed unchanged to the in-memory boundary; no accessibility action runs",
+    "Unknown state is retained as unknown and never relabeled unlocked; existing verified-target preparation still controls posting",
+    "No Fusion capture, foreground/focus change, permission request, event posting, live API, main decoder or Git mutation"
+  ]
+}

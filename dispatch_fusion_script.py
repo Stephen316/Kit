@@ -15,6 +15,49 @@ from pathlib import Path
 import subprocess
 
 
+def read_session_lock_state(cg=None, cf=None):
+    """Read the explicit macOS lock Boolean, or None when unavailable.
+
+    Missing keys never imply an unlocked session. Only this Boolean is read;
+    no session identities, window contents, permission prompts or input events.
+    """
+    session = key = None
+    try:
+        cg = cg or ctypes.CDLL('/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics')
+        cf = cf or ctypes.CDLL('/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation')
+        cg.CGSessionCopyCurrentDictionary.argtypes = []
+        cg.CGSessionCopyCurrentDictionary.restype = ctypes.c_void_p
+        cf.CFStringCreateWithCString.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.c_uint]
+        cf.CFStringCreateWithCString.restype = ctypes.c_void_p
+        cf.CFDictionaryGetValue.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
+        cf.CFDictionaryGetValue.restype = ctypes.c_void_p
+        cf.CFGetTypeID.argtypes = [ctypes.c_void_p]
+        cf.CFGetTypeID.restype = ctypes.c_ulong
+        cf.CFBooleanGetTypeID.argtypes = []
+        cf.CFBooleanGetTypeID.restype = ctypes.c_ulong
+        cf.CFBooleanGetValue.argtypes = [ctypes.c_void_p]
+        cf.CFBooleanGetValue.restype = ctypes.c_bool
+        cf.CFRelease.argtypes = [ctypes.c_void_p]
+        cf.CFRelease.restype = None
+        session = cg.CGSessionCopyCurrentDictionary()
+        if not session:
+            return None
+        key = cf.CFStringCreateWithCString(None, b'CGSSessionScreenIsLocked', 0x08000100)
+        if not key:
+            return None
+        value = cf.CFDictionaryGetValue(session, key)
+        if not value or cf.CFGetTypeID(value) != cf.CFBooleanGetTypeID():
+            return None
+        return bool(cf.CFBooleanGetValue(value))
+    except (OSError, AttributeError):
+        return None
+    finally:
+        if key:
+            cf.CFRelease(key)
+        if session:
+            cf.CFRelease(session)
+
+
 PREPARE = r'''
 on run argv
  set commandText to item 1 of argv
@@ -70,6 +113,9 @@ def dispatch(path):
         raise ValueError("Unsupported generator path quoting")
     cg = ctypes.CDLL("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics")
     cf = ctypes.CDLL("/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation")
+    if read_session_lock_state(cg, cf) is True:
+        raise RuntimeError('macOS session is locked; no Fusion command prepared or keyboard event created. '
+                           'Unlock the Mac and leave Fusion visible before resuming captures.')
     cg.CGPreflightPostEventAccess.argtypes = []
     cg.CGPreflightPostEventAccess.restype = ctypes.c_bool
     if not cg.CGPreflightPostEventAccess():
@@ -113,6 +159,16 @@ def dispatch(path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("generator", type=Path)
+    parser.add_argument("generator", type=Path, nargs='?')
+    parser.add_argument('--session-state', action='store_true',
+                        help='Read only the explicit macOS lock flag; never prepare or dispatch a command')
     args = parser.parse_args()
-    print(json.dumps(dispatch(args.generator)))
+    if args.session_state:
+        if args.generator is not None:
+            parser.error('--session-state does not accept a generator')
+        print(json.dumps(dict(session_locked=read_session_lock_state(), no_ui_events=True,
+                              scope='Explicit lock Boolean only; null means unavailable, not unlocked')))
+    else:
+        if args.generator is None:
+            parser.error('a generator is required unless --session-state is used')
+        print(json.dumps(dispatch(args.generator)))
