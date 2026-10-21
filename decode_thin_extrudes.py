@@ -25,7 +25,8 @@ class ThinExtrudeError(ValueError):
     """A framed native True thin flag was seen; preserve its later failure."""
 
 
-def inspect_thin_extrude(data, records, body, feature, *, features=()):
+def inspect_thin_extrude(data, records, body, feature, *, features=(),
+                         allowed_operations=('NewBody',), body_list_resolver=None):
     """Decode framed block, including ordinaryFalse control; no feature mutation."""
     primary = {}
     for record in records:
@@ -63,7 +64,7 @@ def inspect_thin_extrude(data, records, body, feature, *, features=()):
                     'block_hex': body[start:block_end].hex(), 'common_extrusion_controls': common,
                     'scope': 'ObservedFalse flag and absent inactive bindings; ordinary runtime output stays with existing parser'}
         extent = common['extent']; has_two = extent['mode'] == 'TwoSided'
-        if (reasons or common['operation']['kind'] != 'NewBody' or common['start'] != {'stored_code': 0, 'kind': 'ProfilePlane'}
+        if (reasons or common['operation']['kind'] not in allowed_operations or common['start'] != {'stored_code': 0, 'kind': 'ProfilePlane'}
                 or extent['mode'] not in ('OneSided','TwoSided') or extent['side_one']['condition'] != 'Distance'
                 or not math.isfinite(extent['side_one']['distance_cm']) or extent['side_one']['distance_cm'] <= 0
                 or extent['side_one'].get('taper_angle_radians') != 0
@@ -105,9 +106,16 @@ def inspect_thin_extrude(data, records, body, feature, *, features=()):
         # the variable-length optional binding fields, rather than fixed positions.
         if struct.unpack_from('<I',body,cursor)[0] != 1: raise ValueError('Thin Extrude requires one captured profile selection')
         proxy_id = reference(body,cursor+4); cursor += 15
-        if body[cursor:cursor+4] != bytes(4) or struct.unpack_from('<I',body,cursor+4)[0] != 1:
-            raise ValueError('Thin Extrude output-anchor count/separator unsupported')
-        anchor_id = reference(body,cursor+8); _, _ = typed(anchor_id,ANCHOR)
+        body_evidence = None
+        if body_list_resolver is None:
+            if body[cursor:cursor+4] != bytes(4) or struct.unpack_from('<I',body,cursor+4)[0] != 1:
+                raise ValueError('Thin Extrude output-anchor count/separator unsupported')
+            anchor_id = reference(body,cursor+8); _, _ = typed(anchor_id,ANCHOR)
+        else:
+            body_evidence = body_list_resolver(data,records,body,feature,cursor)
+            if (not isinstance(body_evidence,dict) or type(body_evidence.get('body_list_end_offset')) is not int
+                    or not cursor < body_evidence['body_list_end_offset'] <= len(body)):
+                raise ValueError('Thin Extrude body-list resolver returned an invalid bounded extent')
         proxy_record, proxy = typed(proxy_id,PROXY)
         descriptors, properties = native_proxy_references(data,proxy_record)
         if properties or len(descriptors) != 1 or reference(proxy,len(proxy)-11) != feature['object_id']:
@@ -122,19 +130,26 @@ def inspect_thin_extrude(data, records, body, feature, *, features=()):
             profile = {'profile_kind':'SketchOpenProfile',**resolve_single_sketch_curve(data,records,proxy_id,feature['object_id'],
                 features=features,allowed_kinds=('Line',))}
         else: raise ValueError('Unobserved Thin Extrude profile kind')
-        anchors = [a for a in decode_body_selections(data,records)['body_anchors'] if a['object_id'] == anchor_id and a['source_owner_object_id'] == feature['object_id']]
-        if len(anchors) != 1: raise ValueError('Thin Extrude output anchor is not owned by feature')
-        return {'feature_object_id':feature['object_id'],'is_thin_extrude':True,
+        if body_evidence is None:
+            anchors = [a for a in decode_body_selections(data,records)['body_anchors'] if a['object_id'] == anchor_id and a['source_owner_object_id'] == feature['object_id']]
+            if len(anchors) != 1: raise ValueError('Thin Extrude output anchor is not owned by feature')
+        row = {'feature_object_id':feature['object_id'],'is_thin_extrude':True,
                 'thin_metadata':{'is_thin_extrude':True,'side_one':one,'side_two':two,
                     'wall_side_scope':'One/two extrusion extent sides, not asymmetric offsets about a single profile',
                     'stored_flag_offset':flag_offset,'block_start_offset':start,'block_end_offset':block_end,
                     'block_hex':body[start:block_end].hex(),
                     'offset_scope':'Thin block/location/binding-reference offsets are relative to the native Extrude feature body'},
                 'common_extrusion_controls':common,'profile':profile,'profile_proxy_object_id':proxy_id,
-                'result_anchor_object_id':anchor_id,'native_body_object_id':anchors[0]['native_body_object_id'],
                 'body_scope':'Explicit owned native BODY anchor; current/final lifecycle and exact topology unresolved',
                 'geometry_status':'Thin wall controls and source/profile provenance only; no wall geometry regeneration',
                 'scope':SCOPE}
+        if body_evidence is None:
+            row['result_anchor_object_id']=anchor_id
+            row['native_body_object_id']=anchors[0]['native_body_object_id']
+        else:
+            row['body_list_evidence']=body_evidence
+            row['body_scope']='Explicit typed target selections and separately owned new-body anchors; current membership facts do not infer general lifecycle or persistent topology'
+        return row
     except (ValueError, KeyError, IndexError, TypeError, UnicodeError, struct.error) as error:
         if is_thin: raise ThinExtrudeError(str(error)) from error
         raise

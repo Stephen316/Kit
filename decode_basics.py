@@ -52,6 +52,8 @@ from decode_named_vertex_selections import decode_named_vertex_selections
 from decode_profile_cache_correspondence import decode_profile_cache_correspondence
 from decode_datum_mirror_supports import decode_datum_mirror_supports
 from decode_thin_extrudes import decode_thin_extrudes
+from decode_thin_extrude_operations import decode_thin_extrude_operations
+from decode_thin_extrude_body_routes import qualify_thin_extrude_body_routes, SCOPE as THIN_OPERATION_BODY_SCOPE
 from decode_trimmed_profiles import decode_trimmed_profiles
 from decode_profile_circle_portions import decode_profile_circle_portions
 from decode_profile_line_portions import decode_profile_line_portions
@@ -459,6 +461,29 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                                              if item["feature_object_id"] not in open_profile_ids
                                              or item["reason"] != "Profile source reference is unresolved"]
         thin_extrude_summary = decode_thin_extrudes(data, records, features)
+        thin_operation_summary = decode_thin_extrude_operations(data, records, features)
+        if thin_operation_summary['decoded']:
+            recovered_thin_ids = {row['feature_object_id'] for row in thin_operation_summary['decoded']}
+            eligible_thin_ids = {row['feature_object_id'] for row in thin_extrude_summary['unresolved']
+                if row['reason'] == 'Only observed solid NewBody untapered distance Thin Extrude family supported'}
+            if not recovered_thin_ids <= eligible_thin_ids:
+                raise ValueError('Qualified Thin operation does not match the prior NewBody-family frontier')
+            thin_extrude_summary['decoded'].extend(thin_operation_summary['decoded'])
+            thin_extrude_summary['unresolved'] = [row for row in thin_extrude_summary['unresolved']
+                if row['feature_object_id'] not in recovered_thin_ids
+                or row['reason'] != 'Only observed solid NewBody untapered distance Thin Extrude family supported']
+            thin_extrude_summary['operation_variant_scope'] = thin_operation_summary['scope']
+        if thin_operation_summary['unresolved']:
+            thin_extrude_summary['operation_variants'] = thin_operation_summary
+        thin_body_summary = dict(decoded=[], unresolved=[], scope=THIN_OPERATION_BODY_SCOPE)
+        for extrusion in thin_operation_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == extrusion['feature_object_id'])
+            try:
+                routes = qualify_thin_extrude_body_routes(data, records, name, members, extrusion['body_list_evidence'])
+                feature['thin_extrusion_body_routes'] = routes
+                thin_body_summary['decoded'].append(routes)
+            except (ValueError, KeyError, IndexError, TypeError, struct.error) as error:
+                thin_body_summary['unresolved'].append(dict(feature_object_id=extrusion['feature_object_id'], reason=str(error)))
         thin_open_ids = set()
         for extrusion in thin_extrude_summary['decoded']:
             feature = next(f for f in features if f['object_id'] == extrusion['feature_object_id'])
@@ -1405,6 +1430,7 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         for key, summary in (('mirror_datum_reflections', datum_reflection_summary),
                              ('datum_mirror_supports', datum_support_summary),
                              ('thin_extrudes', thin_extrude_summary),
+                             ('thin_extrude_body_routes', thin_body_summary),
                              ('trimmed_profiles', trimmed_profile_summary),
                              ('profile_circle_portions', profile_circle_summary),
                              ('profile_line_portions', profile_line_summary),
