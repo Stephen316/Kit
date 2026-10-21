@@ -135,6 +135,7 @@ from decode_body_bindings import decode_body_bindings
 from decode_body_asm_identifiers import decode_body_asm_identifiers
 from decode_historical_body_components import decode_historical_body_components
 from decode_selection_recipe_incidence import decode_selection_recipe_incidence
+from decode_one_face_edge_sources import decode_one_face_edge_sources
 from decode_fpm_tracking import decode_fpm_selection_tracking
 from decode_fpm_context_cache import decode_fpm_context_cache
 from decode_asm_recipe_tags import inspect_pipe_recipe_tags
@@ -1498,6 +1499,12 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                           ("component_object_id", "component_name", "historical_component_context")})
         selection_recipe_incidence_summary = decode_selection_recipe_incidence(
             data, records, features, name, members, body_identifier_summary, body_selection_summary)
+        one_face_edge_summary = decode_one_face_edge_sources(
+            data, records, features, name, members, body_identifier_summary, body_selection_summary)
+        for source in one_face_edge_summary['associations']:
+            target = feature_by_id.get(source['owner_object_id'])
+            if target is not None:
+                target.setdefault('one_face_edge_sources', []).append(source)
         fpm_selection_tracking_summary = decode_fpm_selection_tracking(
             data, records, features, name, members, body_identifier_summary, body_selection_summary)
         fpm_body_tracking_summary = decode_fpm_partial_coverage(data, records, name, members, body_identifier_summary)
@@ -1744,6 +1751,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 streams[-1][key] = summary
         if base_mesh_definition_summary['partial'] or base_mesh_definition_summary['unresolved']:
             streams[-1]['base_mesh_feature_definitions'] = base_mesh_definition_summary
+        if one_face_edge_summary['associations'] or one_face_edge_summary['unresolved']:
+            streams[-1]['one_face_edge_sources'] = one_face_edge_summary
         if base_mesh_source_summary['partial'] or base_mesh_source_summary['unresolved']:
             streams[-1]['base_mesh_sources'] = base_mesh_source_summary
         if base_empty_summary['partial'] or base_empty_summary['unresolved']:
