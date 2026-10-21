@@ -54,7 +54,7 @@ def run(context):
         lifecycle_policy='Populate frame returns JSON only; garbage collect while owned document is open, short final recompute/export frame, collect, then close(False). On failure retain owned document and stop without another case.',
         conversion_scope='One ProceduralToNURBSConversion per result body; temporary result never added to design. API tempId matches retain every split; native file records are not assigned by face order or coordinates.',
         witness_scope='After unchanged source-only archive export, at most eight singleton zero-offset NewBody consumers across all bodies in each case. Same-document opaque tokens are resolved through the API; native recipe/VBL binding remains unproven until exported typed ownership and complete naming are inspected.',
-        witness_identity_method='adsk.core.Base.__eq__ on valid same-type BRepFace/OffsetFeature wrappers delegates to native equality; token strings, Python identity, coordinates, enumeration order and tempId are not identity tests',
+        witness_identity_method='Concrete SDK BRepFace/OffsetFeature __eq__ dispatch on valid same-type wrappers; require an actual bool and reject NotImplemented; token strings, Python identity, coordinates, enumeration order and tempId are not identity tests',
         witness_lifecycle_policy='Create frame returns JSON; GC while document open; rolled getter frame returns JSON; GC while still before node; fresh restoration frame; GC open; separate witness export/finalizer; GC then close(False). Any failure retains native aliases/document and halts without another face/case.',
         maximum_witnesses_per_case=MAX_WITNESSES_PER_CASE,
         point_tolerance_cm=float(app.pointTolerance))
@@ -245,11 +245,18 @@ def run(context):
         setattr(adsk.fusion, WITNESS_HALTED_ATTRIBUTE, retained)
 
     def same_api_entity(left, right):
-        # The installed SWIG Base equality delegates to _core.Base___eq__
-        # after a compatible Python type check. Do not compare opaque tokens.
-        if (type(left) is not type(right) or not left.isValid or not right.isValid):
+        # Fusion wrappers implement equality in their concrete _fusion binding;
+        # explicitly calling core.Base.__eq__ can return NotImplemented instead.
+        if (type(left) is not type(right)
+                or not isinstance(left, (adsk.fusion.BRepFace, adsk.fusion.OffsetFeature))
+                or not left.isValid or not right.isValid):
             return False
-        return bool(adsk.core.Base.__eq__(left, right))
+        comparison = type(left).__eq__(left, right)
+        if comparison is NotImplemented:
+            raise RuntimeError('Concrete SDK entity equality returned NotImplemented')
+        if type(comparison) is not bool:
+            raise RuntimeError('Concrete SDK entity equality did not return bool')
+        return comparison
 
     def resolve_single(design, token, expected_type, doc):
         matches = None
@@ -302,7 +309,7 @@ def run(context):
                 actual_input_chain_selection=bool(inputs.isChainSelection),
                 actual_input_operation=int(inputs.operation), actual_input_distance_cm=float(input_distance.realValue),
                 actual_input_offset_type=int(inputs.offsetType),
-                identity_scope='Native API Base equality and same-document token lookup only; no native ASM/tempId assignment')
+                identity_scope='Concrete SDK entity equality with actual bool result and same-document token lookup only; no native ASM/tempId assignment')
             feature = offsets.add(inputs)
             if feature is None:
                 raise RuntimeError('Zero-offset witness feature returned null; no fallback attempted')
@@ -348,7 +355,7 @@ def run(context):
                 raise RuntimeError('Rolled witness singleton entities do not equal the API-resolved source face')
             return dict(rolled_before_node=True, entities_count=int(selected.count),
                 entity_object_type=selected_face.objectType, entity_equals_resolved_source=equal,
-                identity_method='adsk.core.Base.__eq__; no token-string or tempId comparison',
+                identity_method='Concrete SDK BRepFace.__eq__ with actual bool result; no token-string or tempId comparison',
                 marker_position=int(design.timeline.markerPosition),
                 scope='Actual Offset input readback in the documented pre-node state only')
         except Exception:

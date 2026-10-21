@@ -14,7 +14,8 @@ SOURCE = 'GenerateRuleFilletSurfaceContrasts.py'
 HELPERS = ('quarantine_witness', 'same_api_entity', 'resolve_single', 'create_witness',
            'read_rolled_witness', 'restore_after_witness', 'finalize')
 SCENARIOS = ('two_witness_success', 'ambiguous_token', 'zero_offset_add_failure',
-             'rolled_entity_mismatch', 'rollback_failure', 'restoration_failure')
+             'rolled_entity_mismatch', 'rollback_failure', 'restoration_failure',
+             'equality_not_implemented', 'equality_non_boolean')
 
 
 def validate():
@@ -41,7 +42,8 @@ def validate():
     for scenario in SCENARIOS:
         live = weakref.WeakValueDictionary()
         state = dict(scenario=scenario, before=False, features={}, next_feature=1,
-            create_input_calls=0, add_calls=0, equality_calls=0, close_calls=0,
+            create_input_calls=0, add_calls=0, equality_calls=0, base_equality_calls=0,
+            equality_boolean_coercions=0, close_calls=0,
             restoration_calls=0, events=[], documents=[])
 
         class Native:
@@ -58,12 +60,31 @@ def validate():
                 return 'Synthetic::'+self.kind
 
             def __eq__(self, other):
-                state['equality_calls'] += 1
-                return type(self) is type(other) and self.kind == other.kind and self.identity == other.identity
+                # Model the cross-module Base binding that caused the live
+                # failure. A concrete Fusion comparison must bypass this.
+                state['base_equality_calls'] += 1
+                return NotImplemented
+
+        class NonBooleanEquality:
+            def __bool__(self):
+                state['equality_boolean_coercions'] += 1
+                raise AssertionError('Nonboolean SDK equality was coerced')
+
+        def concrete_equal(left, right):
+            state['equality_calls'] += 1
+            if scenario == 'equality_not_implemented':
+                return NotImplemented
+            if scenario == 'equality_non_boolean':
+                return NonBooleanEquality()
+            return (type(left) is type(right) and left.kind == right.kind
+                and left.identity == right.identity)
 
         class Face(Native):
             def __init__(self, identity):
                 super().__init__('BRepFace', identity)
+
+            def __eq__(self, other):
+                return concrete_equal(self, other)
 
             @staticmethod
             def cast(value):
@@ -148,6 +169,9 @@ def validate():
         class Feature(Native):
             def __init__(self, identity):
                 super().__init__('OffsetFeature', identity)
+
+            def __eq__(self, other):
+                return concrete_equal(self, other)
 
             @property
             def name(self):
@@ -346,6 +370,8 @@ def validate():
             check(scenario+' baseline exported before any consumers', baseline.is_file()
                 and baseline.read_bytes() == b'Synthetic archive; consumers=0')
             check(scenario+' native equality was called', state['equality_calls'] > 0 or scenario == 'ambiguous_token')
+            check(scenario+' concrete dispatch bypassed core Base equality', state['base_equality_calls'] == 0)
+            check(scenario+' equality result never coerced to bool', state['equality_boolean_coercions'] == 0)
             aliases = getattr(fusion, env['WITNESS_HALTED_ATTRIBUTE'], [])
             if scenario == 'two_witness_success':
                 check(scenario+' two actual AST witnesses completed', len(truth['samples'][0]['witnesses']) == 2
@@ -369,9 +395,18 @@ def validate():
                     and not (folder/'complete.txt').exists() and (folder/'halted.txt').is_file())
                 check(scenario+' no automatic restore after rollback/getter failure',
                     state['restoration_calls'] == (1 if scenario == 'restoration_failure' else 0))
+                if scenario in ('equality_not_implemented', 'equality_non_boolean'):
+                    expected = ('Concrete SDK entity equality returned NotImplemented'
+                        if scenario == 'equality_not_implemented'
+                        else 'Concrete SDK entity equality did not return bool')
+                    check(scenario+' explicit equality rejection before add without fallback',
+                        state['create_input_calls'] == 1 and state['add_calls'] == 0
+                        and truth['errors'][0]['error'] == expected)
             results.append(dict(scenario=scenario, passed=True,
                 create_input_calls=state['create_input_calls'], add_calls=state['add_calls'],
                 native_equality_calls=state['equality_calls'], restoration_calls=state['restoration_calls'],
+                base_equality_calls=state['base_equality_calls'],
+                equality_boolean_coercions=state['equality_boolean_coercions'],
                 close_calls=state['close_calls'], actual_orchestration_errors=truth['errors'],
                 quarantine_phases=[row['phase'] for row in aliases], events=state['events']))
         # These are synthetic objects only. Drop their test quarantine after the
@@ -379,13 +414,13 @@ def validate():
         aliases.clear()
         env.clear()
         gc.collect()
-    return dict(status='Offline synthetic lifecycle checks passed; capture UNEXECUTED',
+    return dict(status='Offline synthetic lifecycle checks passed; revised concrete-equality capture UNEXECUTED',
         source=SOURCE, source_sha256=hashlib.sha256((ROOT/SOURCE).read_bytes()).hexdigest(),
         validator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         scope='Actual generator helper/orchestration AST executed against synthetic API handles and temporary fake archive bytes; no adsk import, Fusion API execution, offset acceptance, real native release behavior or native selection/VBL binding is proved',
         extracted_helpers=list(HELPERS), scenarios=results, checks=checks,
         validation=dict(scenarios=len(results), focused_checks=len(checks),
-            successful_witnesses=2, failure_scenarios=5, live_API_calls=0, main_reader_calls=0))
+            successful_witnesses=2, failure_scenarios=len(SCENARIOS)-1, live_API_calls=0, main_reader_calls=0))
 
 
 def main():
