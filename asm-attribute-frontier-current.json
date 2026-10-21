@@ -1,7 +1,7 @@
 {
   "scope": "Saved-corpus initial ASM custom attribute payload/owner-chain framing and exact counted generic naming audit. Raw trailing attribute counts are inventories only; no complete-format coverage percentage.",
   "provenance": {
-    "repository_HEAD_at_start": "8c9e3a9127c29f302703f5dc602c1e27e347ae3e",
+    "repository_HEAD_at_start": "2e31d25752667256bc65db369afc1dbccfc2a8d9",
     "reader_source_sha256": {
       "audit_asm_attribute_frontier.py": "28ec43d69d6c6b535c79d370a6c62d085d8324f75f060ac581af60873d60aa8d",
       "asm_records.py": "9f25caf199136979418a90e185401a0cec073aeb1eb50f09383c57de3a775dab",
@@ -13,7 +13,7 @@
     },
     "reader_sources_unchanged_during_run": true,
     "archive_discovery": "Sorted root.glob(\"*/*.f3d\") in the saved capture layout; no temporary discovery file is read.",
-    "archive_manifest_sha256": "c02cf7dcb6fae33b3bae9d16534c2c8d5ae6866e702f12401cb69e1e47ecc168",
+    "archive_manifest_sha256": "ef100d84cb6e2ada558b3cb483c91f5183dbdc4e9e1816612d8b7d596bbac329",
     "archive_manifest": [
       {
         "file": "advanced-627f7fe095f4/advanced.f3d",
@@ -44,6 +44,21 @@
         "file": "assembly-acc48a9dc05d/assembly.f3d",
         "byte_count": 84102,
         "sha256": "6ffe10b64fcc97308f2d7084e18548d24bcde4f66b0b7e3261ba7f7743e4d057"
+      },
+      {
+        "file": "asymmetricfilletflips-b09b81df3c08/swapped_offsets_false.f3d",
+        "byte_count": 71691,
+        "sha256": "ebb87e7696db8782f5766adb6bec294b873615ef99da83f6a7e6a5aba4a2880c"
+      },
+      {
+        "file": "asymmetricfilletflips-b09b81df3c08/unequal_default_false.f3d",
+        "byte_count": 70448,
+        "sha256": "9aa19277cd4b68ec6b20483deb457f0a808015aa2a94d54b9b91c2d2a6767c0f"
+      },
+      {
+        "file": "asymmetricfilletflips-b09b81df3c08/unequal_flipped_true.f3d",
+        "byte_count": 71655,
+        "sha256": "81383885ebe42c879567abfb00ff7f3b96367da10736ee0a404da19875cd9207"
       },
       {
         "file": "bodymodes-405fbd002680/mirror_xy.f3d",
@@ -754,6 +769,16 @@
         "file": "jointmodes-20d3aef2a07d/slider.f3d",
         "byte_count": 82305,
         "sha256": "8f9734c61873fa3077402b866761d2339932f05c04eff70e44e94d972611fc11"
+      },
+      {
+        "file": "linetrimholdouts-456e1d19906d/reverse_rectangle_creation.f3d",
+        "byte_count": 61342,
+        "sha256": "58fbdb079666496e5a33aea1a1ababa98d35cf2b8d2511cda2c22c5e40378818"
+      },
+      {
+        "file": "linetrimholdouts-456e1d19906d/translated_unequal_rectangles.f3d",
+        "byte_count": 61238,
+        "sha256": "06e60a614749a5bbe0868a2d0e0bba5c4e2234f99297e1e8251de077f418301f"
       },
       {
         "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
@@ -1794,6 +1819,21 @@
         "file": "revolveto-b1d196f65c46/two_planes.f3d",
         "byte_count": 58421,
         "sha256": "241cae4afc972dca05add63dcce6f515ab3a9e7c6b31cbf9ce54dda03e40a492"
+      },
+      {
+        "file": "rigidgroups-0784a68632cd/nested_include_children.f3d",
+        "byte_count": 67185,
+        "sha256": "118cb79c36803106ebb2eea81e0092e6b310a95290c53d3ae032747b7b4ef8b0"
+      },
+      {
+        "file": "rigidgroups-0784a68632cd/root_active.f3d",
+        "byte_count": 66977,
+        "sha256": "acdafcd39d58f897c7bb860091e34c3990ac575c1c293a183e9caed0fa74b5a8"
+      },
+      {
+        "file": "rigidgroups-0784a68632cd/root_suppressed.f3d",
+        "byte_count": 67015,
+        "sha256": "2d17ccd91198c62b8d286062516c98b5816a4ba2ae1dca5e72385a70dc622c4a"
       },
       {
         "file": "scaleshellinputs-97ef1cfd19e4/scale_construction_point.f3d",
@@ -2992,12 +3032,12 @@
       "archive_count": {
         "matches_prior_discovery": false,
         "prior": 559,
-        "current": 589
+        "current": 597
       },
       "blob_count": {
         "matches_prior_discovery": false,
         "prior": 959,
-        "current": 1011
+        "current": 1033
       },
       "initial_custom_definition_counts": {
         "matches_prior_discovery": false,
@@ -3011,9 +3051,9 @@
         "current": {
           "FDM_feature_attrib_def": 19,
           "FPM_tracked_attrib_def": 84,
-          "Timestamp_attrib_def": 1085,
-          "generic_tag_attrib_def": 12011,
-          "sketch_attrib_def": 18075
+          "Timestamp_attrib_def": 1096,
+          "generic_tag_attrib_def": 12157,
+          "sketch_attrib_def": 18467
         }
       },
       "initial_generic_term_counts": {
@@ -3028,7 +3068,7 @@
           "8": 1
         },
         "current": {
-          "1": 11579,
+          "1": 11725,
           "2": 364,
           "3": 49,
           "4": 13,
@@ -3046,33 +3086,33 @@
           "3": 1954
         },
         "current": {
-          "0": 1133,
-          "1": 8525,
+          "0": 1144,
+          "1": 8660,
           "2": 929,
           "3": 1954
         }
       }
     }
   },
-  "archive_count": 589,
-  "blob_count": 1011,
-  "initial_custom_attribute_count": 31274,
+  "archive_count": 597,
+  "blob_count": 1033,
+  "initial_custom_attribute_count": 31823,
   "initial_attribute_classification_counts": {
-    "OwnedGenericName": 11921,
-    "ValidatedOtherDefinition": 19353
+    "OwnedGenericName": 12067,
+    "ValidatedOtherDefinition": 19756
   },
   "custom_definition_counts_by_section": {
     "geometry": {
       "FDM_feature_attrib_def": 19,
       "FPM_tracked_attrib_def": 84,
-      "Timestamp_attrib_def": 1085,
-      "generic_tag_attrib_def": 12011,
-      "sketch_attrib_def": 18075
+      "Timestamp_attrib_def": 1096,
+      "generic_tag_attrib_def": 12157,
+      "sketch_attrib_def": 18467
     },
     "trailing_states": {
-      "FPM_tracked_attrib_def": 72,
-      "Timestamp_attrib_def": 334,
-      "generic_tag_attrib_def": 1465,
+      "FPM_tracked_attrib_def": 75,
+      "Timestamp_attrib_def": 337,
+      "generic_tag_attrib_def": 1480,
       "sketch_attrib_def": 599
     }
   },
@@ -3097,7 +3137,7 @@
       "section": "geometry",
       "definition_name": "Timestamp_attrib_def",
       "owner_kind_counts": {
-        "body": 1085
+        "body": 1096
       }
     },
     {
@@ -3105,9 +3145,9 @@
       "definition_name": "generic_tag_attrib_def",
       "owner_kind_counts": {
         "ATTRIB_CUSTOM-attrib": 90,
-        "body": 1078,
+        "body": 1089,
         "edge": 1410,
-        "face": 9321,
+        "face": 9456,
         "vertex": 112
       }
     },
@@ -3115,8 +3155,8 @@
       "section": "geometry",
       "definition_name": "sketch_attrib_def",
       "owner_kind_counts": {
-        "coedge": 13840,
-        "edge": 4201,
+        "coedge": 14128,
+        "edge": 4305,
         "vertex": 34
       }
     },
@@ -3125,7 +3165,7 @@
       "definition_name": "FPM_tracked_attrib_def",
       "owner_kind_counts": {
         "body": 2,
-        "edge": 39,
+        "edge": 42,
         "face": 31
       }
     },
@@ -3133,16 +3173,16 @@
       "section": "trailing_states",
       "definition_name": "Timestamp_attrib_def",
       "owner_kind_counts": {
-        "body": 334
+        "body": 337
       }
     },
     {
       "section": "trailing_states",
       "definition_name": "generic_tag_attrib_def",
       "owner_kind_counts": {
-        "body": 262,
+        "body": 265,
         "edge": 124,
-        "face": 1079
+        "face": 1091
       }
     },
     {
@@ -3155,13 +3195,13 @@
   ],
   "attribute_entity_record_kind_counts_by_section": {
     "geometry": {
-      "ATTRIB_CUSTOM-attrib": 31274,
+      "ATTRIB_CUSTOM-attrib": 31823,
       "int64_attrib-name_attrib-gen-attrib": 1,
       "no_merge_attribute-st-attrib": 10,
       "vertedge-sys-attrib": 4
     },
     "trailing_states": {
-      "ATTRIB_CUSTOM-attrib": 2470,
+      "ATTRIB_CUSTOM-attrib": 2491,
       "int64_attrib-name_attrib-gen-attrib": 296,
       "name_attrib-gen-attrib": 40
     }
@@ -3174,19 +3214,19 @@
       "ValidatedOtherDefinition": 84
     },
     "Timestamp_attrib_def": {
-      "ValidatedOtherDefinition": 1085
+      "ValidatedOtherDefinition": 1096
     },
     "generic_tag_attrib_def": {
-      "OwnedGenericName": 11921,
+      "OwnedGenericName": 12067,
       "ValidatedOtherDefinition": 90
     },
     "sketch_attrib_def": {
-      "ValidatedOtherDefinition": 18075
+      "ValidatedOtherDefinition": 18467
     }
   },
   "raw_initial_generic_counted_extents": {
     "term_count_distribution": {
-      "1": 11579,
+      "1": 11725,
       "2": 364,
       "3": 49,
       "4": 13,
@@ -3195,8 +3235,8 @@
       "8": 1
     },
     "component_count_distribution_per_term": {
-      "0": 1133,
-      "1": 8525,
+      "0": 1144,
+      "1": 8660,
       "2": 929,
       "3": 1954
     },
@@ -3205,7 +3245,7 @@
   },
   "initial_generic_payload_framing": {
     "term_count_distribution": {
-      "1": 11489,
+      "1": 11635,
       "2": 364,
       "3": 49,
       "4": 13,
@@ -3214,12 +3254,12 @@
       "8": 1
     },
     "component_count_distribution_per_term": {
-      "0": 1133,
-      "1": 8435,
+      "0": 1144,
+      "1": 8570,
       "2": 929,
       "3": 1954
     },
-    "exact_source_payload_replays": 11921,
+    "exact_source_payload_replays": 12067,
     "scope": "Ordinary strict nonempty topology naming payloads only; separately qualified nested metadata is excluded from these counts."
   },
   "nested_metadata_payload_framing": {
@@ -3234,7 +3274,7 @@
   },
   "owned_initial_generic_names": {
     "term_count_distribution": {
-      "1": 11489,
+      "1": 11635,
       "2": 364,
       "3": 49,
       "4": 13,
@@ -3243,8 +3283,8 @@
       "8": 1
     },
     "component_count_distribution_per_term": {
-      "0": 1133,
-      "1": 8435,
+      "0": 1144,
+      "1": 8570,
       "2": 929,
       "3": 1954
     }
@@ -3332,7 +3372,7 @@
       "classification": "ValidatedOtherDefinition",
       "term_count": null,
       "component_counts_in_stored_order": [],
-      "count": 1085,
+      "count": 1096,
       "example": {
         "file": "analytic-86a12b291d0a/analytic.f3d",
         "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.66dea2e4-f2cf-4d43-8c2d-62117e12e1a6.smbh",
@@ -3374,7 +3414,7 @@
       "component_counts_in_stored_order": [
         0
       ],
-      "count": 1035,
+      "count": 1046,
       "example": {
         "file": "analytic-86a12b291d0a/analytic.f3d",
         "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.66dea2e4-f2cf-4d43-8c2d-62117e12e1a6.smbh",
@@ -3581,7 +3621,7 @@
       "component_counts_in_stored_order": [
         1
       ],
-      "count": 6163,
+      "count": 6298,
       "example": {
         "file": "analytic-86a12b291d0a/analytic.f3d",
         "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46dcc685-cf13-4602-b6c8-f57b2a7da8ed.smb",
@@ -3849,7 +3889,7 @@
       "classification": "ValidatedOtherDefinition",
       "term_count": null,
       "component_counts_in_stored_order": [],
-      "count": 13840,
+      "count": 14128,
       "example": {
         "file": "advanced-627f7fe095f4/advanced.f3d",
         "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2d8a0c2d-99da-478f-9ddf-525aa61dd3c9.smb",
@@ -3868,7 +3908,7 @@
       "classification": "ValidatedOtherDefinition",
       "term_count": null,
       "component_counts_in_stored_order": [],
-      "count": 4201,
+      "count": 4305,
       "example": {
         "file": "advanced-627f7fe095f4/advanced.f3d",
         "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2d8a0c2d-99da-478f-9ddf-525aa61dd3c9.smb",
@@ -4445,6 +4485,177 @@
       },
       "initial_generic_component_counts": {
         "1": 5
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "asymmetricfilletflips-b09b81df3c08/swapped_offsets_false.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.759b625f-8c57-428e-9b63-2860daba2f47.smbh",
+      "blob_sha256": "2b82d2b4cc4605b991f7d0a74548fd377e385e02e343a41659a179cc8038e0d0",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 173,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 8,
+          "sketch_attrib_def": 8
+        },
+        "trailing_states": {
+          "FPM_tracked_attrib_def": 1,
+          "generic_tag_attrib_def": 5,
+          "Timestamp_attrib_def": 1
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 8,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 8
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 7
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "asymmetricfilletflips-b09b81df3c08/swapped_offsets_false.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.d23b5f6e-f549-4ecc-988a-a2ecc909a128.smb",
+      "blob_sha256": "fed641953da3d3f64534de6cad6348fe9b32f908d938a5ef3c2b6a3c72c012c3",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 168,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 24
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 24
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "asymmetricfilletflips-b09b81df3c08/unequal_default_false.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.3df9badb-bec6-4976-9095-0a1443494468.smb",
+      "blob_sha256": "79b2a98982a58d53477fb8d1a4c26c657828ba562e5fdbbafeb3535c76c64bd1",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 168,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 24
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 24
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "asymmetricfilletflips-b09b81df3c08/unequal_default_false.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.a9d395cb-bea8-45b4-942c-c2af4bd35b1a.smbh",
+      "blob_sha256": "7acaaee2827aa957d9d31888ff5e6e136f797695e89700ff81180e9b0bcf2392",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 173,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 8,
+          "sketch_attrib_def": 8
+        },
+        "trailing_states": {
+          "FPM_tracked_attrib_def": 1,
+          "generic_tag_attrib_def": 5,
+          "Timestamp_attrib_def": 1
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 8,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 8
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 7
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "asymmetricfilletflips-b09b81df3c08/unequal_flipped_true.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.34495941-4e80-4a08-b65f-bcc33767f60b.smbh",
+      "blob_sha256": "164c7d47f7d7d1bb7b4307e76a3e08e7352975be85c2d3169b5dbfa35e33bf06",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 173,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 8,
+          "sketch_attrib_def": 8
+        },
+        "trailing_states": {
+          "FPM_tracked_attrib_def": 1,
+          "generic_tag_attrib_def": 5,
+          "Timestamp_attrib_def": 1
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 8,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 8
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 7
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "asymmetricfilletflips-b09b81df3c08/unequal_flipped_true.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.58ac5a02-c5ff-46f2-97d2-7d76ab62aee8.smb",
+      "blob_sha256": "79b2a98982a58d53477fb8d1a4c26c657828ba562e5fdbbafeb3535c76c64bd1",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 168,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 24
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 24
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
       },
       "unresolved_count": 0,
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
@@ -12227,6 +12438,110 @@
       "initial_attribute_classification_counts": {
         "OwnedGenericName": 6,
         "ValidatedOtherDefinition": 24
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "linetrimholdouts-456e1d19906d/reverse_rectangle_creation.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.1a1f2285-7ed9-4451-a032-755091e1e413.smb",
+      "blob_sha256": "8b9e73e94806b889deb3bf766ae91c7dbf1082cb3194638b7375aa21650a45ee",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 232,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 44
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 44
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "linetrimholdouts-456e1d19906d/reverse_rectangle_creation.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.fe15b099-ad63-4b21-812c-27fd4d825a8a.smbh",
+      "blob_sha256": "0fac95e9705486fbeb3314eb6a8ccee6c11399a68c27a266d0e4dfc1c34d0637",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 102,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 7,
+          "sketch_attrib_def": 8
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 7,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 7
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "linetrimholdouts-456e1d19906d/translated_unequal_rectangles.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7a17759b-955e-4bf4-b8a0-eade8faf5fc7.smbh",
+      "blob_sha256": "24ed10a83d6099e67ee79d8302ffcc7b920d97a8e4797f49ef665f4036ddb4a9",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 102,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 7,
+          "sketch_attrib_def": 8
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 7,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 7
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "linetrimholdouts-456e1d19906d/translated_unequal_rectangles.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.d1dd78a5-9647-4319-afef-ae515698b476.smb",
+      "blob_sha256": "bf60997ea8171725515fe30788aa52af06a26104919710a18d8cea900ae442c7",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 232,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 44
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 44
       },
       "initial_generic_term_counts": {
         "1": 6
@@ -22207,6 +22522,318 @@
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     },
     {
+      "file": "rigidgroups-0784a68632cd/nested_include_children.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.287baf07-f8b8-4395-a5c6-283e8ff457f1.smb",
+      "blob_sha256": "3fa56f7b5323307220e93b4f3433de2f4e6ccd5d24b80476f4d3bce3c1143474",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 168,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 24
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 24
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/nested_include_children.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c001eea-0ebf-431b-b571-96847833d04b.smbh",
+      "blob_sha256": "ea86a73149efbcdaa8d96bf130771ddc5e8c55cf380eaeec722ef6df5f042b66",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 102,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 7,
+          "sketch_attrib_def": 8
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 7,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 7
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/nested_include_children.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.3b9236c5-d1bc-490c-a25e-74f9ff00109c.smbh",
+      "blob_sha256": "7713bd3a7c8436e38da75ba081905ab8365d5a092f7cf0f2a55a2a9bc81330fe",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 102,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 7,
+          "sketch_attrib_def": 8
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 7,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 7
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/nested_include_children.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.591b052f-15ce-477c-b64d-6a857c78dfef.smb",
+      "blob_sha256": "d033adf0bfa2865add4c3018163646c18469d1bdaff5d6f21c751c142a84a728",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 168,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 24
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 24
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/root_active.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2b84ed90-11c1-45c7-bc86-28147a0cd276.smb",
+      "blob_sha256": "65f54e335ddb25da91cea9921b5a2ff4392670896d2cfc8d2dc7abe56fbca59f",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 168,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 24
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 24
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/root_active.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2d3205c5-be81-44de-ba1d-542824b6abda.smbh",
+      "blob_sha256": "6ee8f0ec43518434ece2bedf3a4b042634b5d0c5dbc1032172ca369cf287b323",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 102,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 7,
+          "sketch_attrib_def": 8
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 7,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 7
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/root_active.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4fc2da56-9d0c-4aee-bf29-f4f3f3e8aa55.smb",
+      "blob_sha256": "3fb135a8f4f79bd3ca8b30ee3e655a1c683fad8ce5a88e2f2d45f21e6f868781",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 168,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 24
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 24
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/root_active.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.bc3de2b5-1df0-4dc6-adb3-1c58f99545ad.smbh",
+      "blob_sha256": "6b3a4c7a59912d3a67ba0851a09d972fdb9a04f8e193ce9977ab997170fd514e",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 102,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 7,
+          "sketch_attrib_def": 8
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 7,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 7
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/root_suppressed.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0ebdbe0a-cb42-4917-9bdf-d4c661882c7b.smb",
+      "blob_sha256": "65f54e335ddb25da91cea9921b5a2ff4392670896d2cfc8d2dc7abe56fbca59f",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 168,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 24
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 24
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/root_suppressed.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2ea068b7-27d2-4436-83cd-f0b9e97efe73.smbh",
+      "blob_sha256": "79954c0000a9bd3d029a08121609bcced6cb2408611913da6f950231e682a476",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 102,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 7,
+          "sketch_attrib_def": 8
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 7,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 7
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/root_suppressed.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.3e3ac927-e041-472f-9c69-4614687eea33.smb",
+      "blob_sha256": "3fb135a8f4f79bd3ca8b30ee3e655a1c683fad8ce5a88e2f2d45f21e6f868781",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 168,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "generic_tag_attrib_def": 6,
+          "sketch_attrib_def": 24
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 6,
+        "ValidatedOtherDefinition": 24
+      },
+      "initial_generic_term_counts": {
+        "1": 6
+      },
+      "initial_generic_component_counts": {
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
+      "file": "rigidgroups-0784a68632cd/root_suppressed.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4df12e94-cedf-4e27-b88c-03b9dda8f68c.smbh",
+      "blob_sha256": "b11d738713abc8f6c32f6be51be2069b5b56123a5ab805dd1d4a3b088a579ea2",
+      "complete_token_stream": true,
+      "geometry_entity_ordinal_count": 102,
+      "custom_attribute_definition_counts_by_section": {
+        "geometry": {
+          "Timestamp_attrib_def": 1,
+          "generic_tag_attrib_def": 7,
+          "sketch_attrib_def": 8
+        }
+      },
+      "initial_attribute_classification_counts": {
+        "OwnedGenericName": 7,
+        "ValidatedOtherDefinition": 9
+      },
+      "initial_generic_term_counts": {
+        "1": 7
+      },
+      "initial_generic_component_counts": {
+        "0": 1,
+        "1": 6
+      },
+      "unresolved_count": 0,
+      "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
+    },
+    {
       "file": "scaleshellinputs-97ef1cfd19e4/scale_construction_point.f3d",
       "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.027b1e8a-fe24-4b6e-ad63-31074c46aa0c.smb",
       "blob_sha256": "b23d1adcf7c21ea5c752a62e1ca3fb156b57d862611370511cc23ee02a6f651b",
@@ -31551,7 +32178,7 @@
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     }
   ],
-  "elapsed_seconds": 6.126,
+  "elapsed_seconds": 5.956,
   "limits": [
     "A validated generic naming payload/owner chain is not a persistent topology ID or qualified selected source.",
     "FPM/FDM literals and opaque fields retain their existing reader scope; raw trailing attributes are not relabeled validated initial attributes.",

@@ -42,19 +42,14 @@ def _matrix_variant(payload,marker_offset):
             prefix_scope='Exact captured forty-byte prefix retained; no semantics assigned to embedded numeric coincidences'))
 
 
-def decode_asbuilt_joints(data,records,assembly,features):
+def make_asbuilt_context_readers(data,records,assembly,*,allow_nested=False):
+    """Shared typed readers; two-level occurrence routes require explicit opt-in."""
     records=list(records)
-    candidates=[r for r in records if r.is_primary and r.class_guid==ASBUILT]
-    output=dict(decoded=[],unresolved=[],scope=SCOPE,
-        placement_limitation='Native occurrence/context/geometry caches do not establish joint-solved placement; no kinematic solve applied')
-    if not candidates:return output
     grouped={}
     for record in records:
         if record.is_primary:grouped.setdefault(record.object_id,[]).append(record)
     primary={i:rs[0] for i,rs in grouped.items() if len(rs)==1}
-    feature_map={f['object_id']:f for f in features}
     occurrences=assembly['native_occurrences']
-    known=native_origin_entities(data,records)
     def typed(identity,guid):
         record=primary.get(identity)
         if record is None or record.class_guid!=guid:
@@ -94,11 +89,32 @@ def decode_asbuilt_joints(data,records,assembly,features):
         mode=struct.unpack_from('<I',route,2)[0]
         instance,cursor=text_uuid(route,6)
         context_namespace=context_entity=None
+        nested_path=None
         if mode==1 and len(route)==406:
             context_namespace,cursor=text_uuid(route,cursor);context_entity,cursor=text_uuid(route,cursor)
             if route[cursor:cursor+8]!=struct.pack('<Q',2):raise ValueError('Unsupported As-built populated route marker')
             cursor+=8
             matches=[o for o in occurrences if o['instance_guid_text']==instance]
+        elif mode==2 and len(route)==482 and allow_nested and footer_mode==2:
+            child_instance,cursor=text_uuid(route,cursor)
+            context_namespace,cursor=text_uuid(route,cursor);context_entity,cursor=text_uuid(route,cursor)
+            if route[cursor:cursor+8]!=struct.pack('<Q',2):
+                raise ValueError('Unsupported nested As-built route marker')
+            cursor+=8
+            parents=[o for o in occurrences if o['instance_guid_text']==instance]
+            matches=[o for o in occurrences if o['instance_guid_text']==child_instance]
+            if len(parents)!=1 or len(matches)!=1:
+                raise ValueError('Nested As-built occurrence UUID path is absent or ambiguous')
+            parent=native_occurrence(parents[0]['object_id']);child=native_occurrence(matches[0]['object_id'])
+            parent_collection_id=child['parent_collection_object_id']
+            listing_record,_=typed(parent_collection_id,'904F885E-D859-4755-A7EF-6EBED8732FAD')
+            listing=occurrence_collection(data[listing_record.body:listing_record.end],parent_collection_id)
+            if (listing['component_object_id']!=parent['component_object_id']
+                    or child['object_id'] not in listing['occurrence_object_ids']):
+                raise ValueError('Nested As-built child does not belong to explicitly routed parent component')
+            nested_path=dict(stored_occurrence_uuid_path=[instance,child_instance],
+                native_occurrence_object_id_path=[parent['object_id'],child['object_id']],
+                parent_occurrence_collection_object_id=parent_collection_id)
         elif mode==0 and len(route)==258:
             if instance!=str(uuid.UUID(int=0)) or route[cursor:cursor+12]!=struct.pack('<IQ',0,1):
                 raise ValueError('Unsupported As-built root route marker')
@@ -110,13 +126,32 @@ def decode_asbuilt_joints(data,records,assembly,features):
                 or len(matches)!=1):
             raise ValueError('As-built route namespace/occurrence/footer ambiguous')
         occurrence_row=native_occurrence(matches[0]['object_id'])
-        return dict(object_id=identity,frame_link_object_id=link_id,route_wrapper_object_id=wrapper_id,
+        result=dict(object_id=identity,frame_link_object_id=link_id,route_wrapper_object_id=wrapper_id,
             route_object_id=route_id,stored_route_mode=mode,stored_occurrence_uuid_text=instance,
             context_namespace_text=context_namespace,context_entity_guid_text=context_entity,
             terminal_namespace_text=namespace,terminal_entity_guid_text=endpoint,
             native_occurrence_object_id=occurrence_row['object_id'],component_object_id=occurrence_row['component_object_id'],
             stored_context_matrix=matrix,stored_footer_mode=footer_mode,
             association='Owned typed frame/route with unique native occurrence UUID (or explicit null root route) with internally repeated route namespace; other UUID fields retained literal')
+        if nested_path is not None:
+            result.update(nested_path)
+            result['association']='Owned typed two-level UUID route with independently framed parent/child occurrences and reciprocal child collection membership; other UUID fields remain literal'
+        return result
+
+    return dict(primary=primary,typed=typed,native_occurrence=native_occurrence,frame=frame,text_uuid=text_uuid)
+
+
+def decode_asbuilt_joints(data,records,assembly,features):
+    records=list(records)
+    candidates=[r for r in records if r.is_primary and r.class_guid==ASBUILT]
+    output=dict(decoded=[],unresolved=[],scope=SCOPE,
+        placement_limitation='Native occurrence/context/geometry caches do not establish joint-solved placement; no kinematic solve applied')
+    if not candidates:return output
+    readers=make_asbuilt_context_readers(data,records,assembly)
+    primary,typed=readers['primary'],readers['typed']
+    native_occurrence,frame,text_uuid=readers['native_occurrence'],readers['frame'],readers['text_uuid']
+    feature_map={f['object_id']:f for f in features}
+    known=native_origin_entities(data,records)
     for record in candidates:
         try:
             if primary.get(record.object_id) is not record:raise ValueError('As-built feature primary identity ambiguous')

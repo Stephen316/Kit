@@ -32,10 +32,15 @@ def strip_circle_additions(current, filename, zstd):
     """
     expected = {row['file']: row['expected_summary']
                 for row in read('profile-circle-portion-decoding.json')['samples']}
-    after = copy.deepcopy(current)
+    if any('profile_line_portions' in stream for stream in current['streams']):
+        from validate_direction_trim_group_integration import strip_line_additions
+        after, line_counts = strip_line_additions(current, filename, zstd)
+    else:
+        after, line_counts = copy.deepcopy(current), {}
     members = read_members(ROOT/filename, zstd)
     counts = dict(derived_circle_groups=0, derived_circle_portions=0,
                   corroborating_COEDGE_candidates=0, explicit_circle_diagnostics=0)
+    counts.update({'line_portion_followup_'+key: value for key, value in line_counts.items()})
     for stream in after['streams']:
         member = stream['member']; data = members[member]
         records, _ = design_records(data, members[member.replace('BulkStream.dat', 'MetaStream.dat')])

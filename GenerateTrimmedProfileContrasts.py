@@ -31,9 +31,17 @@ def run(context):
         for name,spec in specs.items():
             if not isinstance(name,str) or not name or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789_' for c in name):
                 raise ValueError('Unsupported trim-selector case name')
-            circles=spec['circles']
-            if (not 2<=len(circles)<=3 or any(len(circle)!=3 or not all(math.isfinite(v) for v in circle)
-                    or circle[2]<=0 for circle in circles) or spec['selection'] not in ('min_area','max_area','max_centroid_x')
+            if not isinstance(spec,dict) or ('circles' in spec)==('rectangles' in spec):
+                raise ValueError('Expected exactly one controlled source geometry family')
+            if 'circles' in spec:
+                circles=spec['circles']
+                invalid_geometry=(not 2<=len(circles)<=3 or any(len(circle)!=3 or not all(math.isfinite(v) for v in circle)
+                                  or circle[2]<=0 for circle in circles))
+            else:
+                rectangles=spec['rectangles']
+                invalid_geometry=(len(rectangles)!=2 or any(len(rectangle)!=4 or not all(math.isfinite(v) for v in rectangle)
+                                  or rectangle[0]>=rectangle[2] or rectangle[1]>=rectangle[3] for rectangle in rectangles))
+            if (invalid_geometry or spec['selection'] not in ('min_area','max_area','max_centroid_x')
                     or not 1<=spec['expected_profile_count']<=16):
                 raise ValueError('Unobserved or invalid controlled trim-selector input')
     output = Path(__file__).resolve().parent / (prefix + uuid.uuid4().hex[:12])
@@ -153,8 +161,10 @@ def run(context):
             point = adsk.core.Point3D.create
             if specs is not None:
                 spec=specs[case]
-                for cx,cy,radius in spec['circles']:
+                for cx,cy,radius in spec.get('circles',[]):
                     sketch.sketchCurves.sketchCircles.addByCenterRadius(point(cx,cy,0),radius)
+                for xmin,ymin,xmax,ymax in spec.get('rectangles',[]):
+                    sketch.sketchCurves.sketchLines.addTwoPointRectangle(point(xmin,ymin,0),point(xmax,ymax,0))
                 requested={'controlled_specification':spec}
             elif case.startswith('circle_'):
                 sketch.sketchCurves.sketchCircles.addByCenterRadius(point(-1, 0, 0), 2)

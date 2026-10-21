@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 589,
+  "file_count": 597,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -8,6 +8,9 @@
     "asbuiltjoints-790406c4498b/rigid.f3d",
     "asbuiltjoints-790406c4498b/slider.f3d",
     "assembly-acc48a9dc05d/assembly.f3d",
+    "asymmetricfilletflips-b09b81df3c08/swapped_offsets_false.f3d",
+    "asymmetricfilletflips-b09b81df3c08/unequal_default_false.f3d",
+    "asymmetricfilletflips-b09b81df3c08/unequal_flipped_true.f3d",
     "bodymodes-405fbd002680/mirror_xy.f3d",
     "bodymodes-405fbd002680/mirror_xz.f3d",
     "bodymodes-405fbd002680/mirror_yz.f3d",
@@ -150,6 +153,8 @@
     "jointmodes-20d3aef2a07d/rigid.f3d",
     "jointmodes-20d3aef2a07d/rigid_flipped.f3d",
     "jointmodes-20d3aef2a07d/slider.f3d",
+    "linetrimholdouts-456e1d19906d/reverse_rectangle_creation.f3d",
+    "linetrimholdouts-456e1d19906d/translated_unequal_rectangles.f3d",
     "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
     "loftbrepends-e07e3859ed20/edge_end_smooth_weight1_25.f3d",
     "loftbrepends-e07e3859ed20/edge_end_tangent_weight1_5.f3d",
@@ -358,6 +363,9 @@
     "revolveto-b1d196f65c46/negative_plane.f3d",
     "revolveto-b1d196f65c46/positive_plane.f3d",
     "revolveto-b1d196f65c46/two_planes.f3d",
+    "rigidgroups-0784a68632cd/nested_include_children.f3d",
+    "rigidgroups-0784a68632cd/root_active.f3d",
+    "rigidgroups-0784a68632cd/root_suppressed.f3d",
     "scaleshellinputs-97ef1cfd19e4/scale_construction_point.f3d",
     "scaleshellinputs-97ef1cfd19e4/scale_sketch.f3d",
     "scaleshellinputs-97ef1cfd19e4/scale_vertex.f3d",
@@ -4572,7 +4580,8 @@
         1
       ],
       "observed_semantics": [
-        "Named feature: AsBuiltJoint"
+        "Named feature: AsBuiltJoint",
+        "Named feature: RigidGroup"
       ],
       "example_files": [
         "asbuiltjoints-790406c4498b/revolute.f3d",

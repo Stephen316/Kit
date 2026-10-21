@@ -6,7 +6,7 @@ from decode_extrude import optional_reference
 from decode_sketch import reference
 
 
-def decode_edge_tool(data, records, body, feature, *, variable_radius_decoder=None):
+def decode_edge_tool(data, records, body, feature, *, variable_radius_decoder=None, asymmetric_radius_decoder=None):
     bindings = {p["binding_object_id"]: p for p in feature["parameters"]}
 
     def value(identity, role):
@@ -100,6 +100,11 @@ def decode_edge_tool(data, records, body, feature, *, variable_radius_decoder=No
                 raise ValueError("Unsupported chord fillet fields")
             item.update(kind="ChordLengthFilletEdgeSet", chordLength=value(reference(chunk, 9), "ChordLen"))
             selection_id, weight_offset = reference(chunk, 20), 63
+        elif len(chunk) == 88 and chunk[2:5] == bytes.fromhex("010000") and asymmetric_radius_decoder is not None:
+            extra, selection_id, weight_offset = asymmetric_radius_decoder(chunk, value)
+            if not isinstance(extra, dict) or item.keys() & extra.keys():
+                raise ValueError('Asymmetric fillet callback would replace shared definition identity/flags')
+            item.update(extra)
         elif mode == bytes.fromhex("01000000") and len(chunk) == 88:
             if chunk[9] or chunk[21] or chunk[44:69] != b"\0"*25:
                 raise ValueError("Unsupported asymmetric fillet fields")

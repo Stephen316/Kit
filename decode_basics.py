@@ -54,8 +54,11 @@ from decode_datum_mirror_supports import decode_datum_mirror_supports
 from decode_thin_extrudes import decode_thin_extrudes
 from decode_trimmed_profiles import decode_trimmed_profiles
 from decode_profile_circle_portions import decode_profile_circle_portions
+from decode_profile_line_portions import decode_profile_line_portions
 from decode_variable_fillets import decode_variable_fillets
+from decode_asymmetric_fillet_flips import decode_asymmetric_fillet_flips
 from decode_asbuilt_joints import ASBUILT, decode_asbuilt_joints
+from decode_rigid_groups import decode_rigid_groups
 from decode_pipe_paths import inspect_pipe_edge_path
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -556,12 +559,28 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 if not (item['object_id'] in asbuilt_joint_ids and item['kind'] == 'NativeJoint'
                     and item['reason'] == 'Native joint not resolved through a supported Assemble definition')]
             joint_summary['as_built_native_joint_object_ids'] = sorted(asbuilt_joint_ids)
+        rigid_group_summary = decode_rigid_groups(data, records, assembly_summary, features)
+        resolved_rigid_group_definitions = set()
+        for group in rigid_group_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == group['feature_object_id'])
+            feature.update(kind='RigidGroup', name=feature.get('name') or group['name'],
+                rigid_group_settings=group,
+                decode_level='Observed rigid-group occurrence membership and stored relative matrices; suppression and assembly solving unresolved')
+            resolved_rigid_group_definitions.add(feature['object_id'])
+        if rigid_group_summary['decoded']:
+            rigid_group_joint_ids = {group['object_id'] for group in rigid_group_summary['decoded']}
+            joint_summary['unresolved'] = [item for item in joint_summary['unresolved']
+                if not (item['object_id'] in rigid_group_joint_ids and item['kind'] == 'NativeJoint'
+                    and item['reason'] == 'Native joint not resolved through a supported Assemble definition')]
+            joint_summary['rigid_group_native_joint_object_ids'] = sorted(rigid_group_joint_ids)
         discovery_summary["unsupported_features"] = [f for f in discovery_summary["unsupported_features"]
-                                                     if f["object_id"] not in resolved_joint_definitions|resolved_asbuilt_definitions]
+                                                     if f["object_id"] not in resolved_joint_definitions|resolved_asbuilt_definitions|resolved_rigid_group_definitions]
         discovery_summary["unsupported_feature_count"] = len(discovery_summary["unsupported_features"])
         discovery_summary["class_decoded_joint_definition_count"] = len(resolved_joint_definitions)
         if asbuilt_summary['decoded'] or asbuilt_summary['unresolved']:
             discovery_summary['class_decoded_as_built_joint_definition_count'] = len(resolved_asbuilt_definitions)
+        if rigid_group_summary['decoded'] or rigid_group_summary['unresolved']:
+            discovery_summary['class_decoded_rigid_group_definition_count'] = len(resolved_rigid_group_definitions)
         timeline_state_summary = decode_timeline_state_details(data, records, features)
         recovered_states = {item["object_id"]: item["state"] for item in timeline_state_summary["states"]}
         timeline_summary = decode_timeline(data, records, features, feature_state_overrides=recovered_states)
@@ -688,6 +707,17 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': 'Fillet'})
         tool_summary['unresolved'] = [item for item in tool_summary['unresolved']
             if item['object_id'] not in variable_fillet_ids or item['reason'] != 'Unsupported fillet edge-set mode or layout']
+        asymmetric_flip_summary = decode_asymmetric_fillet_flips(data, records, features)
+        asymmetric_flip_ids = set()
+        for fillet in asymmetric_flip_summary['decoded']:
+            feature = feature_by_id[fillet['feature_object_id']]
+            feature.update(tool_settings=fillet['tool_settings'],
+                decode_level='Observed asymmetric-fillet offsets and native flip boolean; exact selected edge orientation and regeneration unresolved')
+            asymmetric_flip_ids.add(feature['object_id'])
+            if not any(item['object_id'] == feature['object_id'] for item in tool_summary['decoded']):
+                tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': 'Fillet'})
+        tool_summary['unresolved'] = [item for item in tool_summary['unresolved']
+            if item['object_id'] not in asymmetric_flip_ids or item['reason'] != 'Unsupported fillet edge-set mode or layout']
         selection_context_summary = decode_selection_context_recipes(data, records, body_selection_summary)
         selection_context_variant_summary = decode_selection_context_variants(data, records, body_selection_summary,
                                                                               selection_context_summary)
@@ -875,6 +905,11 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             data, records, features, name, members, body_identifier_summary)
         profile_circle_summary = decode_profile_circle_portions(
             data, records, features, name, members, body_identifier_summary)
+        profile_line_summary = decode_profile_line_portions(
+            data, records, features, name, members, body_identifier_summary)
+        for correspondence in profile_line_summary['decoded']:
+            feature_by_id[correspondence['source_feature_object_id']].setdefault(
+                'profile_line_portions', []).append(correspondence)
         trimmed_ids = set()
         for correspondence in trimmed_profile_summary['decoded']:
             target = feature_by_id[correspondence['source_feature_object_id']]
@@ -1108,8 +1143,11 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('thin_extrudes', thin_extrude_summary),
                              ('trimmed_profiles', trimmed_profile_summary),
                              ('profile_circle_portions', profile_circle_summary),
+                             ('profile_line_portions', profile_line_summary),
                              ('variable_fillets', variable_fillet_summary),
+                             ('asymmetric_fillet_flips', asymmetric_flip_summary),
                              ('as_built_joints', asbuilt_summary),
+                             ('rigid_groups', rigid_group_summary),
                              ('circular_placement_evidence', circular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),

@@ -1,0 +1,1030 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "unequal_default_false",
+      "file": "unequal_default_false.f3d",
+      "requested": {
+        "offset_one_cm": 0.12,
+        "offset_two_cm": 0.28,
+        "is_flipped": false,
+        "is_tangent_chain": false,
+        "rolling_ball_corner": true,
+        "source_selection": "First edge of seed endFaces.item(0); fixture construction only"
+      },
+      "status": "exported",
+      "getter_errors": [],
+      "selected_source_edge_before_fillet": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OwW3DMAxFu0MX4AIEKJKmpQHcCYpcA9mWi9yCIJMUyL1rNAsEuWWDnDJEb5XUJKgtCODX59MnCRgciEFMMkTzimJBUCd12PsYsPVtr8SNcSKgzBa+KvZZOdDiGHy/n08/1+7r2B0/b5fDaya45NrYhmBCOPnRozaBMTALTsn3iXiwRtvK5oyXxanzCOo4BQEmg1w0u2Xp2hZytdbNFoYtDf1nEKTxI613adhs03qM+wgdeEB3vwxv+UlFFnH3Vn+IVI8fzTlVsmeczNrPD5n7BWNZYFJ/AQAA",
+        "temporary_id": 1,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "AsymmetricFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws6Qk8d/3nddsMt116SnF6YKA1UYKRibKZilmFtamhkb6KZZpFjomphaGulaGhkZ66alWiSlGhglm5mamIPVAs1gQANg+wwUwNaBrDcyNwUAocOl3YgAAAA=",
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 24.0,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Line3D",
+        "is_param_reversed": false,
+        "start_vertex_cm": [
+          1.0,
+          4.0,
+          2.0
+        ],
+        "end_vertex_cm": [
+          1.0,
+          1.0,
+          2.0
+        ],
+        "incident_face_geometry_types": [
+          "adsk::core::Plane",
+          "adsk::core::Plane"
+        ],
+        "trimmed_evaluator_extent_returned": true,
+        "trimmed_parameter_extents": [
+          0.0,
+          3.0
+        ],
+        "trimmed_evaluator_samples": [
+          {
+            "parameter_fraction": 0.0,
+            "parameter": 0.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              4.0,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.25,
+            "parameter": 0.75,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              3.25,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.5,
+            "parameter": 1.5,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              2.5,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.75,
+            "parameter": 2.25,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.75,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 1.0,
+            "parameter": 3.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "input_default_is_flipped_before_set": false,
+      "actual_input": {
+        "edge_set_type": "adsk::fusion::AsymmetricFilletEdgeSetInput",
+        "offset_one_value_input_real": 0.12,
+        "offset_two_value_input_real": 0.28,
+        "is_flipped": false,
+        "continuity": 1,
+        "entity_count": 1,
+        "entity_types": [
+          "adsk::fusion::BRepEdge"
+        ]
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "AsymmetricFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws6Qk8d/3nddsMt116SnF6YKA1UYKRibKZilmFtamhkb6KZZpFjomphaGulaGhkZ66alWiSlGhglm5mamIPVAs1gQANg+wwUwNaBrDcyNwUAocOl3YgAAAA=",
+          "face_count": 7,
+          "edge_count": 15,
+          "vertex_count": 10,
+          "volume_cm3": 23.9783681348703,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "settings": {
+        "feature_type": "adsk::fusion::FilletFeature",
+        "feature_name": "ProbeAsymmetricFilletFlip",
+        "rolling_ball_corner": false,
+        "fillet_feature_type": 0,
+        "edge_sets": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::AsymmetricFilletEdgeSet",
+            "is_tangent_chain": false,
+            "continuity": 2,
+            "offset_one": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d4",
+              "role": "EdgeOffset1",
+              "raw_value": 0.12,
+              "unit": "mm",
+              "expression": "1.20 mm",
+              "created_by": "ProbeAsymmetricFilletFlip"
+            },
+            "offset_two": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d5",
+              "role": "EdgeOffset2",
+              "raw_value": 0.27999999999999997,
+              "unit": "mm",
+              "expression": "2.80 mm",
+              "created_by": "ProbeAsymmetricFilletFlip"
+            },
+            "is_flipped": false,
+            "tangency_weight": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d3",
+              "role": "TangencyWeight",
+              "raw_value": 1.0,
+              "unit": "",
+              "expression": "1",
+              "created_by": "ProbeAsymmetricFilletFlip"
+            },
+            "actual_source_edges": [
+              {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OwW3DMAxFu0MX4AIEKJKmpQHcCYpcA9mWi9yCIJMUyL1rNAsEuWWDnDJEb5XUJKgtCODX59MnCRgciEFMMkTzimJBUCd12PsYsPVtr8SNcSKgzBa+KvZZOdDiGHy/n08/1+7r2B0/b5fDaya45NrYhmBCOPnRozaBMTALTsn3iXiwRtvK5oyXxanzCOo4BQEmg1w0u2Xp2hZytdbNFoYtDf1nEKTxI613adhs03qM+wgdeEB3vwxv+UlFFnH3Vn+IVI8fzTlVsmeczNrPD5n7BWNZYFJ/AQAA",
+                "temporary_id": 5,
+                "body": {
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "AsymmetricFilletSeedBody",
+                  "is_solid": true,
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws6Qk8d/3nddsMt116SnF6YKA1UYKRibKZilmFtamhkb6KZZpFjomphaGulaGhkZ66alWiSlGhglm5mamIPVAs1gQANg+wwUwNaBrDcyNwUAocOl3YgAAAA=",
+                  "face_count": 6,
+                  "edge_count": 12,
+                  "vertex_count": 8,
+                  "volume_cm3": 24.0,
+                  "bounds_min_cm": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "bounds_max_cm": [
+                    5.0,
+                    4.0,
+                    2.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Line3D",
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  1.0,
+                  4.0,
+                  2.0
+                ],
+                "end_vertex_cm": [
+                  1.0,
+                  1.0,
+                  2.0
+                ],
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane",
+                  "adsk::core::Plane"
+                ],
+                "trimmed_evaluator_extent_returned": true,
+                "trimmed_parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "trimmed_evaluator_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      4.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      3.25,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      2.5,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.75,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "AsymmetricFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "AsymmetricFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TangencyWeight",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbeAsymmetricFilletFlip"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "EdgeOffset1",
+          "raw_value": 0.12,
+          "unit": "mm",
+          "expression": "1.20 mm",
+          "created_by": "ProbeAsymmetricFilletFlip"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "EdgeOffset2",
+          "raw_value": 0.27999999999999997,
+          "unit": "mm",
+          "expression": "2.80 mm",
+          "created_by": "ProbeAsymmetricFilletFlip"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "unequal_flipped_true",
+      "file": "unequal_flipped_true.f3d",
+      "requested": {
+        "offset_one_cm": 0.12,
+        "offset_two_cm": 0.28,
+        "is_flipped": true,
+        "is_tangent_chain": false,
+        "rolling_ball_corner": true,
+        "source_selection": "First edge of seed endFaces.item(0); fixture construction only"
+      },
+      "status": "exported",
+      "getter_errors": [],
+      "selected_source_edge_before_fillet": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OwW1CMQyGuwY3L2DJTpzwMgBIXDhyRcTOq3qrqi7AIkyAmIMDt946QqdoklLEe1Ek//n95bcJHDD4CIMLIWXzyJYMhUgwB2fos5GOMZgOBaiyjaem3FAVgzQnwvWmx+1itTl9fZ8vp59dJVzLNS7mIwdk0YKSbMRUJCNn1aSqSxlzZ2vGy+z0eQR9nIAHRxFqkeq2pXvbE/faN5sZcW7Ik0FQ7LXsP4q+vZe9HT4PsIIBkO/Xwbo+qckm7t7uD/Hdc//NKdWyJ5yftB8fKvcLymcpL38BAAA=",
+        "temporary_id": 1,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "AsymmetricFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwokzyY1+kq6e8y7fWrNu3qswoAojBWMzhRTD1BRjM0NTXUOT5FRdE8uUNF3LVJMkXcOk5GTL5ORkc5O0JLBaoBkMaABsn4EC2DqQ9UbmpgCOWMKOiAAAAA==",
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 24.0,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Line3D",
+        "is_param_reversed": false,
+        "start_vertex_cm": [
+          1.0,
+          4.0,
+          2.0
+        ],
+        "end_vertex_cm": [
+          1.0,
+          1.0,
+          2.0
+        ],
+        "incident_face_geometry_types": [
+          "adsk::core::Plane",
+          "adsk::core::Plane"
+        ],
+        "trimmed_evaluator_extent_returned": true,
+        "trimmed_parameter_extents": [
+          0.0,
+          3.0
+        ],
+        "trimmed_evaluator_samples": [
+          {
+            "parameter_fraction": 0.0,
+            "parameter": 0.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              4.0,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.25,
+            "parameter": 0.75,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              3.25,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.5,
+            "parameter": 1.5,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              2.5,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.75,
+            "parameter": 2.25,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.75,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 1.0,
+            "parameter": 3.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "input_default_is_flipped_before_set": false,
+      "actual_input": {
+        "edge_set_type": "adsk::fusion::AsymmetricFilletEdgeSetInput",
+        "offset_one_value_input_real": 0.12,
+        "offset_two_value_input_real": 0.28,
+        "is_flipped": true,
+        "continuity": 1,
+        "entity_count": 1,
+        "entity_types": [
+          "adsk::fusion::BRepEdge"
+        ]
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "AsymmetricFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwokzyY1+kq6e8y7fWrNu3qswoAojBWMzhRTD1BRjM0NTXUOT5FRdE8uUNF3LVJMkXcOk5GTL5ORkc5O0JLBaoBkMaABsn4EC2DqQ9UbmpgCOWMKOiAAAAA==",
+          "face_count": 7,
+          "edge_count": 15,
+          "vertex_count": 10,
+          "volume_cm3": 23.978368134870042,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "settings": {
+        "feature_type": "adsk::fusion::FilletFeature",
+        "feature_name": "ProbeAsymmetricFilletFlip",
+        "rolling_ball_corner": false,
+        "fillet_feature_type": 0,
+        "edge_sets": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::AsymmetricFilletEdgeSet",
+            "is_tangent_chain": false,
+            "continuity": 2,
+            "offset_one": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d4",
+              "role": "EdgeOffset1",
+              "raw_value": 0.12,
+              "unit": "mm",
+              "expression": "1.20 mm",
+              "created_by": "ProbeAsymmetricFilletFlip"
+            },
+            "offset_two": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d5",
+              "role": "EdgeOffset2",
+              "raw_value": 0.27999999999999997,
+              "unit": "mm",
+              "expression": "2.80 mm",
+              "created_by": "ProbeAsymmetricFilletFlip"
+            },
+            "is_flipped": true,
+            "tangency_weight": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d3",
+              "role": "TangencyWeight",
+              "raw_value": 1.0,
+              "unit": "",
+              "expression": "1",
+              "created_by": "ProbeAsymmetricFilletFlip"
+            },
+            "actual_source_edges": [
+              {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OwW1CMQyGuwY3L2DJTpzwMgBIXDhyRcTOq3qrqi7AIkyAmIMDt946QqdoklLEe1Ek//n95bcJHDD4CIMLIWXzyJYMhUgwB2fos5GOMZgOBaiyjaem3FAVgzQnwvWmx+1itTl9fZ8vp59dJVzLNS7mIwdk0YKSbMRUJCNn1aSqSxlzZ2vGy+z0eQR9nIAHRxFqkeq2pXvbE/faN5sZcW7Ik0FQ7LXsP4q+vZe9HT4PsIIBkO/Xwbo+qckm7t7uD/Hdc//NKdWyJ5yftB8fKvcLymcpL38BAAA=",
+                "temporary_id": 5,
+                "body": {
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "AsymmetricFilletSeedBody",
+                  "is_solid": true,
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwokzyY1+kq6e8y7fWrNu3qswoAojBWMzhRTD1BRjM0NTXUOT5FRdE8uUNF3LVJMkXcOk5GTL5ORkc5O0JLBaoBkMaABsn4EC2DqQ9UbmpgCOWMKOiAAAAA==",
+                  "face_count": 6,
+                  "edge_count": 12,
+                  "vertex_count": 8,
+                  "volume_cm3": 24.0,
+                  "bounds_min_cm": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "bounds_max_cm": [
+                    5.0,
+                    4.0,
+                    2.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Line3D",
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  1.0,
+                  4.0,
+                  2.0
+                ],
+                "end_vertex_cm": [
+                  1.0,
+                  1.0,
+                  2.0
+                ],
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane",
+                  "adsk::core::Plane"
+                ],
+                "trimmed_evaluator_extent_returned": true,
+                "trimmed_parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "trimmed_evaluator_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      4.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      3.25,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      2.5,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.75,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "AsymmetricFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "AsymmetricFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TangencyWeight",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbeAsymmetricFilletFlip"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "EdgeOffset1",
+          "raw_value": 0.12,
+          "unit": "mm",
+          "expression": "1.20 mm",
+          "created_by": "ProbeAsymmetricFilletFlip"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "EdgeOffset2",
+          "raw_value": 0.27999999999999997,
+          "unit": "mm",
+          "expression": "2.80 mm",
+          "created_by": "ProbeAsymmetricFilletFlip"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "swapped_offsets_false",
+      "file": "swapped_offsets_false.f3d",
+      "requested": {
+        "offset_one_cm": 0.28,
+        "offset_two_cm": 0.12,
+        "is_flipped": false,
+        "is_tangent_chain": false,
+        "rolling_ball_corner": true,
+        "source_selection": "First edge of seed endFaces.item(0); fixture construction only"
+      },
+      "status": "exported",
+      "getter_errors": [],
+      "selected_source_edge_before_fillet": {
+        "entity_type": "adsk::fusion::BRepEdge",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OTU4DMQyFuQasvOoukh07meQAFNEDdFvlbxCLSghxjl6gKxZcgB2H4g44aUHMRJH88vzl2QgWCNgDkeOa5mSSRDbiKpkYczFT4lhyS867CVDZzmNXNqgikO542J0fjtvPx9PX3futfGy+lbA9l8NU0E5k8iykubGY3Hw2LRRkyQ5DnQerGTerM+YhjHECDBY9aBF1+9KjzUijjs1Whl8b8s9AaPWpHV5beX5ph5reEtxDAEPXa2GrT+yyi6u3vyA8PPvbXFI9e8Hxov33QbkfbN/Kln8BAAA=",
+        "temporary_id": 1,
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "AsymmetricFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtds91y3TZ59O6UWSposVXsLVGGkYGymYGxhnmxgZG6om5RmYqhrYmqZrJuUapakm2qRbGBskmRqYJGSBlYLNIMBDYDtM1AAWwey3sjcFADcz+/YiAAAAA==",
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 24.0,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Line3D",
+        "is_param_reversed": false,
+        "start_vertex_cm": [
+          1.0,
+          4.0,
+          2.0
+        ],
+        "end_vertex_cm": [
+          1.0,
+          1.0,
+          2.0
+        ],
+        "incident_face_geometry_types": [
+          "adsk::core::Plane",
+          "adsk::core::Plane"
+        ],
+        "trimmed_evaluator_extent_returned": true,
+        "trimmed_parameter_extents": [
+          0.0,
+          3.0
+        ],
+        "trimmed_evaluator_samples": [
+          {
+            "parameter_fraction": 0.0,
+            "parameter": 0.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              4.0,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.25,
+            "parameter": 0.75,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              3.25,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.5,
+            "parameter": 1.5,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              2.5,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 0.75,
+            "parameter": 2.25,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.75,
+              2.0
+            ]
+          },
+          {
+            "parameter_fraction": 1.0,
+            "parameter": 3.0,
+            "returned": true,
+            "point_cm": [
+              1.0,
+              1.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "input_default_is_flipped_before_set": false,
+      "actual_input": {
+        "edge_set_type": "adsk::fusion::AsymmetricFilletEdgeSetInput",
+        "offset_one_value_input_real": 0.28,
+        "offset_two_value_input_real": 0.12,
+        "is_flipped": false,
+        "continuity": 1,
+        "entity_count": 1,
+        "entity_types": [
+          "adsk::fusion::BRepEdge"
+        ]
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "AsymmetricFilletSeedBody",
+          "is_solid": true,
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtds91y3TZ59O6UWSposVXsLVGGkYGymYGxhnmxgZG6om5RmYqhrYmqZrJuUapakm2qRbGBskmRqYJGSBlYLNIMBDYDtM1AAWwey3sjcFADcz+/YiAAAAA==",
+          "face_count": 7,
+          "edge_count": 15,
+          "vertex_count": 10,
+          "volume_cm3": 23.978368134870042,
+          "bounds_min_cm": [
+            1.0,
+            1.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            5.0,
+            4.0,
+            2.0
+          ]
+        }
+      ],
+      "root_body_count": 1,
+      "settings": {
+        "feature_type": "adsk::fusion::FilletFeature",
+        "feature_name": "ProbeAsymmetricFilletFlip",
+        "rolling_ball_corner": false,
+        "fillet_feature_type": 0,
+        "edge_sets": [
+          {
+            "index": 0,
+            "entity_type": "adsk::fusion::AsymmetricFilletEdgeSet",
+            "is_tangent_chain": false,
+            "continuity": 2,
+            "offset_one": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d4",
+              "role": "EdgeOffset1",
+              "raw_value": 0.27999999999999997,
+              "unit": "mm",
+              "expression": "2.80 mm",
+              "created_by": "ProbeAsymmetricFilletFlip"
+            },
+            "offset_two": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d5",
+              "role": "EdgeOffset2",
+              "raw_value": 0.12,
+              "unit": "mm",
+              "expression": "1.20 mm",
+              "created_by": "ProbeAsymmetricFilletFlip"
+            },
+            "is_flipped": false,
+            "tangency_weight": {
+              "entity_type": "adsk::fusion::ModelParameter",
+              "name": "d3",
+              "role": "TangencyWeight",
+              "raw_value": 1.0,
+              "unit": "",
+              "expression": "1",
+              "created_by": "ProbeAsymmetricFilletFlip"
+            },
+            "actual_source_edges": [
+              {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OTU4DMQyFuQasvOoukh07meQAFNEDdFvlbxCLSghxjl6gKxZcgB2H4g44aUHMRJH88vzl2QgWCNgDkeOa5mSSRDbiKpkYczFT4lhyS867CVDZzmNXNqgikO542J0fjtvPx9PX3futfGy+lbA9l8NU0E5k8iykubGY3Hw2LRRkyQ5DnQerGTerM+YhjHECDBY9aBF1+9KjzUijjs1Whl8b8s9AaPWpHV5beX5ph5reEtxDAEPXa2GrT+yyi6u3vyA8PPvbXFI9e8Hxov33QbkfbN/Kln8BAAA=",
+                "temporary_id": 5,
+                "body": {
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "name": "AsymmetricFilletSeedBody",
+                  "is_solid": true,
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtds91y3TZ59O6UWSposVXsLVGGkYGymYGxhnmxgZG6om5RmYqhrYmqZrJuUapakm2qRbGBskmRqYJGSBlYLNIMBDYDtM1AAWwey3sjcFADcz+/YiAAAAA==",
+                  "face_count": 6,
+                  "edge_count": 12,
+                  "vertex_count": 8,
+                  "volume_cm3": 24.0,
+                  "bounds_min_cm": [
+                    1.0,
+                    1.0,
+                    0.0
+                  ],
+                  "bounds_max_cm": [
+                    5.0,
+                    4.0,
+                    2.0
+                  ]
+                },
+                "geometry_type": "adsk::core::Line3D",
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  1.0,
+                  4.0,
+                  2.0
+                ],
+                "end_vertex_cm": [
+                  1.0,
+                  1.0,
+                  2.0
+                ],
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane",
+                  "adsk::core::Plane"
+                ],
+                "trimmed_evaluator_extent_returned": true,
+                "trimmed_parameter_extents": [
+                  0.0,
+                  3.0
+                ],
+                "trimmed_evaluator_samples": [
+                  {
+                    "parameter_fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      4.0,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.25,
+                    "parameter": 0.75,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      3.25,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.5,
+                    "parameter": 1.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      2.5,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 0.75,
+                    "parameter": 2.25,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.75,
+                      2.0
+                    ]
+                  },
+                  {
+                    "parameter_fraction": 1.0,
+                    "parameter": 3.0,
+                    "returned": true,
+                    "point_cm": [
+                      1.0,
+                      1.0,
+                      2.0
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "AsymmetricFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d2",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "AsymmetricFilletSeedExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "TangencyWeight",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbeAsymmetricFilletFlip"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "EdgeOffset1",
+          "raw_value": 0.27999999999999997,
+          "unit": "mm",
+          "expression": "2.80 mm",
+          "created_by": "ProbeAsymmetricFilletFlip"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "EdgeOffset2",
+          "raw_value": 0.12,
+          "unit": "mm",
+          "expression": "1.20 mm",
+          "created_by": "ProbeAsymmetricFilletFlip"
+        }
+      ],
+      "close_owned_document_result": true
+    }
+  ],
+  "errors": [],
+  "status": "complete",
+  "executed_generator_sha256": "70f04b5e428aaf7f2286f9ca5c49c5e4dac0f1c57003c230ab406af6de5f5088",
+  "SDK_scope": "AsymmetricFilletEdgeSetInput.isFlipped reverses offsetOne/offsetTwo directions; AsymmetricFilletEdgeSet.isFlipped requires timeline immediately before feature. Offsets are cm for real ValueInputs.",
+  "identity_scope": "Actual API source getters retained before fillet consumes the edge and after rollback; no serialized native/ASM identity or orientation assigned by this generator"
+}
