@@ -1,0 +1,2686 @@
+{
+  "interface": "Focused geometry corroboration consumes typed ReduceDeviation assets and existing common mesh/normal/group helpers; no shared source changes",
+  "sample_count": 3,
+  "current_mesh_count": 3,
+  "explicit_asset_comparison_count": 6,
+  "current_stored_normal_vector_count": 72,
+  "current_temporary_label_count": 24,
+  "check_count": 61,
+  "corroboration_guard_count": 3,
+  "samples": [
+    {
+      "archive": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d",
+      "expected_mesh_contents": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 24668,
+            "feature_object_id": 218,
+            "native_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+            "feature_owner_scope": "Explicit reciprocal native BaseMeshFeature membership",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 202,
+            "mesh_collection_record_offset": 23486,
+            "mesh_collection_base_record_offset": 23524,
+            "collection_mesh_object_ids": [
+              213
+            ],
+            "name": "OwnedOctahedronSource_adaptive_deviation_point_zero_five",
+            "name_helper_object_id": 216,
+            "name_property_object_id": 217,
+            "asset_object_id": 280,
+            "asset_record_offset": 29085,
+            "asset_filename_object_id": 281,
+            "asset_filename_record_offset": 29172,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.a932ec6e-6857-445b-a2b1-de5ae5321985.paramesh",
+            "asset_fusion_uuid": "199dd505-abc2-4dac-9d61-46aab3bc27df",
+            "asset_reference_field_offset": 25209,
+            "stored_matrix_encodings": [
+              "ExplicitFloat64Matrix",
+              "ExplicitFloat64Matrix"
+            ],
+            "stored_matrix_copies": [
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380001da000000000000000000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+              "asset_size_bytes": 642,
+              "asset_sha256": "5071f31ab3d14ebf08284be1de7aad3683d93000bf6bcd8565c1b2e07941acf1",
+              "fusion_uuid": "199dd505-abc2-4dac-9d61-46aab3bc27df",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2436343233646666392d653166622d343062352d383537382d3838666533353636626666622a0b0805120272301a037230692a322a0608071202723232280800122463353137353966332d643230362d343231342d613433392d3037366364613934303966333a042202723142330a0b667573696f6e5f757569641a2431393964643530352d616263322d346461632d396436312d3436616162336263323764664801622430663937636161382d626538312d343339382d393036652d633433386538323438313131aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2436343233646666392d653166622d343062352d383537382d3838666533353636626666622a0b0805120272301a037230692a322a0608071202723232280800122463353137353966332d643230362d343231342d613433392d3037366364613934303966333a042202723142330a0b667573696f6e5f757569641a2431393964643530352d616263322d346461632d396436312d3436616162336263323764664801622430663937636161382d626538312d343339382d393036652d633433386538323438313131aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 308,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006b9e59726b95bfc0fd077e3b8b191f00",
+                  "uncompressed_payload_hex": "00000000000000000000803f00000000000080bf00000000000080bf00000000000000000000803f0000000000000000000000000000803f000000000000000000000000000080bf",
+                  "stored_frame_hex": "210000000000000004000000070082a14403a15403480000005d1400006b9e59726b95bfc0fd077e3b8b191f00"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 353,
+                  "stored_length": 65,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "007f3ff000800ca0e5117401a7a79f5d0d21d6d3c76770b7ac45e4946cddb9a8f66abf97c90ed4d880519098422426634662",
+                  "uncompressed_payload_hex": "feffffff04000000fcffffff0100000003000000fdffffff0200000001000000ffffffffffffffff02000000fcffffff02000000fdffffff02000000ffffffffffffffff04000000fefffffffeffffff0300000001000000fcffffff00000000",
+                  "stored_frame_hex": "410000000000000004000000070082a15401a16401600000005d14007f3ff000800ca0e5117401a7a79f5d0d21d6d3c76770b7ac45e4946cddb9a8f66abf97c90ed4d880519098422426634662"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 430,
+                  "stored_length": 53,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 192,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0055aa9106b734624669c37b6cfb90f350d310d3f44cb1044f75f438a14a1308d84a00",
+                  "uncompressed_payload_hex": "abaaaa3eabaaaa3eabaaaabeabaaaabeabaaaabeabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3e",
+                  "stored_frame_hex": "3500000000000000040000000a0083a14403a15403a155c3c00000005d140055aa9106b734624669c37b6cfb90f350d310d3f44cb1044f75f438a14a1308d84a00"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 495,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                  "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                  "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 540,
+                  "stored_length": 56,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00020036e3805e0b43e28e29eed9897fc71c5913abfcf6e80254a3c1ea4807a512ef8dea87d93ca800",
+                  "uncompressed_payload_hex": "04000000ffffffff01000000feffffff01000000fcffffff01000000ffffffff04000000fdffffff02000000fdffffff030000000000000002000000fdffffff02000000fcffffff020000000000000003000000fcffffff0100000002000000",
+                  "stored_frame_hex": "380000000000000004000000070082a15401a16401600000005d1400020036e3805e0b43e28e29eed9897fc71c5913abfcf6e80254a3c1ea4807a512ef8dea87d93ca800"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 608,
+                  "stored_length": 22,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 32,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006e18479800",
+                  "uncompressed_payload_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+                  "stored_frame_hex": "160000000000000004000000070082a15401a16401200000005d1400006e18479800"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              ],
+              "triangle_node_indices": [
+                3,
+                1,
+                5,
+                1,
+                2,
+                5,
+                2,
+                4,
+                5,
+                4,
+                3,
+                5,
+                1,
+                3,
+                0,
+                2,
+                1,
+                0,
+                4,
+                2,
+                0,
+                3,
+                4,
+                0
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "node_count": 6,
+              "triangle_count": 8,
+              "count_evidence": {
+                "stored_coordinate_buffer_bytes": 72,
+                "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                "stored_triangle_buffer_bytes": 96,
+                "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+              },
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved",
+              "component_node_coordinates_cm": [
+                [
+                  0.0,
+                  0.0,
+                  1.0000000149011612
+                ],
+                [
+                  0.0,
+                  -1.0000000149011612,
+                  0.0
+                ],
+                [
+                  -1.0000000149011612,
+                  0.0,
+                  0.0
+                ],
+                [
+                  1.0000000149011612,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  1.0000000149011612,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0000000149011612
+                ]
+              ],
+              "derived_area_cm2": 6.928203436752057,
+              "derived_signed_volume_cm3": 1.333333392937979,
+              "derived_absolute_volume_cm3": 1.333333392937979,
+              "derived_closed_oriented_edge_incidence": true,
+              "derived_undirected_edge_count": 12,
+              "derived_component_bounds_cm": {
+                "min": [
+                  -1.0000000149011612,
+                  -1.0000000149011612,
+                  -1.0000000149011612
+                ],
+                "max": [
+                  1.0000000149011612,
+                  1.0000000149011612,
+                  1.0000000149011612
+                ]
+              },
+              "derived_boundary_edge_count": 0,
+              "volume_applicability": "Closed oriented stored triangular mesh; signed tetrahedral sum is a derived enclosed volume"
+            },
+            "stored_mesh_index": 1,
+            "stored_prefix_11_22_hex": "0101010000000000000000",
+            "prefix_scope": "Stored index1/2 observed; remaining packed prefix retained literally, never treated as coincident native object257 reference",
+            "stored_asset_header_scalar": 1.3333333333333333,
+            "stored_asset_header_flag": 1,
+            "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed size-delimited UDPMESH v2 six-buffer triangle layouts (4 nodes/3 or4 faces,6 nodes/8 faces), typed mesh collection/component ownership and same-asset UUID/filename links. Only observed uniform native matrices are applied. Open-mesh signed tetra sums are not enclosed volumes; normal/auxiliary buffers, arbitrary topology, procedural regeneration and lifecycle remain unresolved."
+      },
+      "expected_normal_pools": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 280,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.a932ec6e-6857-445b-a2b1-de5ae5321985.paramesh",
+            "asset_fusion_uuid": "199dd505-abc2-4dac-9d61-46aab3bc27df",
+            "asset_sha256": "5071f31ab3d14ebf08284be1de7aad3683d93000bf6bcd8565c1b2e07941acf1",
+            "buffer_ordinal": 2,
+            "buffer_asset_offset": 430,
+            "stored_descriptor_hex": "83a14403a15403a155c3",
+            "stored_payload_hex": "abaaaa3eabaaaa3eabaaaabeabaaaabeabaaaabeabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3e",
+            "stored_packed_pairs_float32": [
+              [
+                0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                0.3333333432674408
+              ]
+            ],
+            "stored_unit_vector_count": 24,
+            "derived_asset_unit_vectors": [
+              [
+                0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ]
+            ],
+            "derived_component_covectors": [
+              [
+                0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ]
+            ],
+            "native_uniform_scale": 1.0000000149011612,
+            "lower_hemisphere_pair_count": 12,
+            "encoding": "Octahedral unit vector: z=1-|x|-|y|; fold xy when z<0, retain z, normalize",
+            "association_status": "Serialized vector pool only; per-vertex/corner/display-node association unresolved",
+            "original_polygon_mesh_normals_status": "Not reconstructed by this stored display-direction pool",
+            "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+      },
+      "expected_face_group_caches": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 280,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.a932ec6e-6857-445b-a2b1-de5ae5321985.paramesh",
+            "asset_fusion_uuid": "199dd505-abc2-4dac-9d61-46aab3bc27df",
+            "asset_sha256": "5071f31ab3d14ebf08284be1de7aad3683d93000bf6bcd8565c1b2e07941acf1",
+            "buffer_ordinal": 5,
+            "buffer_asset_offset": 608,
+            "stored_descriptor_hex": "82a15401a16401",
+            "stored_payload_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+            "stored_int32_forward_differences": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "decoded_triangle_face_group_temporary_ids": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "triangle_label_count": 8,
+            "distinct_temporary_label_count": 1,
+            "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+            "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+            "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+            "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+            "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+      },
+      "current_asset_API_comparison": {
+        "asset_object_id": 280,
+        "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.a932ec6e-6857-445b-a2b1-de5ae5321985.paramesh",
+        "observed_buffer_sizes": [
+          72,
+          96,
+          192,
+          72,
+          96,
+          32
+        ],
+        "node_count": 6,
+        "triangle_count": 8,
+        "exact_ordered_coordinate_and_index_arrays": true,
+        "stored_normal_vector_count": 24,
+        "actual_API_display_vector_count": 24,
+        "maximum_normal_direction_set_component_discrepancy": 6.882551328857289e-08,
+        "exact_ordered_triangle_temporary_labels": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scope": "Only numerical corroboration after typed asset/selected-mesh proof. Current native uniform matrix applied for this comparison; no universal temporal slot role or persistent identity assigned."
+      },
+      "additional_asset_recorded_before_API_comparison": {
+        "asset_object_id": 211,
+        "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.99a626a1-ed94-4e3c-b441-9512b571bcf8.paramesh",
+        "observed_buffer_sizes": [
+          72,
+          96,
+          192,
+          72,
+          96,
+          32
+        ],
+        "node_count": 6,
+        "triangle_count": 8,
+        "exact_ordered_coordinate_and_index_arrays": true,
+        "stored_normal_vector_count": 24,
+        "actual_API_display_vector_count": 24,
+        "maximum_normal_direction_set_component_discrepancy": 6.882551328857289e-08,
+        "exact_ordered_triangle_temporary_labels": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scope": "Only numerical corroboration after typed asset/selected-mesh proof. Current native uniform matrix applied for this comparison; no universal temporal slot role or persistent identity assigned."
+      },
+      "additional_asset_temporal_role": null
+    },
+    {
+      "archive": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d",
+      "expected_mesh_contents": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 24656,
+            "feature_object_id": 218,
+            "native_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+            "feature_owner_scope": "Explicit reciprocal native BaseMeshFeature membership",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 202,
+            "mesh_collection_record_offset": 23486,
+            "mesh_collection_base_record_offset": 23524,
+            "collection_mesh_object_ids": [
+              213
+            ],
+            "name": "OwnedOctahedronSource_adaptive_deviation_point_one",
+            "name_helper_object_id": 216,
+            "name_property_object_id": 217,
+            "asset_object_id": 280,
+            "asset_record_offset": 29049,
+            "asset_filename_object_id": 281,
+            "asset_filename_record_offset": 29136,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.e7c11d8c-eaf4-4a26-8c0f-3d31db11b445.paramesh",
+            "asset_fusion_uuid": "d043941d-c031-472e-b734-dd457a3269af",
+            "asset_reference_field_offset": 25197,
+            "stored_matrix_encodings": [
+              "ExplicitFloat64Matrix",
+              "ExplicitFloat64Matrix"
+            ],
+            "stored_matrix_copies": [
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380001da000000000000000000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+              "asset_size_bytes": 646,
+              "asset_sha256": "128cad640deaa4df0f8f261793304912368c398debfdd3f1d4c7735b3831d543",
+              "fusion_uuid": "d043941d-c031-472e-b734-dd457a3269af",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2463393736323264372d353234302d346430622d396233652d3832313332363231383631352a0b0805120272301a037230692a322a0608071202723232280800122431386434646631382d633161372d343935362d386165362d6366643564633565393932623a042202723142330a0b667573696f6e5f757569641a2464303433393431642d633033312d343732652d623733342d6464343537613332363961664801622463636632653538652d373133352d346561362d383137332d346665633531316336396130aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2463393736323264372d353234302d346430622d396233652d3832313332363231383631352a0b0805120272301a037230692a322a0608071202723232280800122431386434646631382d633161372d343935362d386165362d6366643564633565393932623a042202723142330a0b667573696f6e5f757569641a2464303433393431642d633033312d343732652d623733342d6464343537613332363961664801622463636632653538652d373133352d346561362d383137332d346665633531316336396130aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 308,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006b9e59726b95bfc0fd077e3b8b191f00",
+                  "uncompressed_payload_hex": "00000000000000000000803f00000000000080bf00000000000080bf00000000000000000000803f0000000000000000000000000000803f000000000000000000000000000080bf",
+                  "stored_frame_hex": "210000000000000004000000070082a14403a15403480000005d1400006b9e59726b95bfc0fd077e3b8b191f00"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 353,
+                  "stored_length": 65,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "007f3ff000800ca0e5117401a7a79f5d0d21d6d3c76770b7ac45e4946cddb9a8f66abf97c90ed4d880519098422426634662",
+                  "uncompressed_payload_hex": "feffffff04000000fcffffff0100000003000000fdffffff0200000001000000ffffffffffffffff02000000fcffffff02000000fdffffff02000000ffffffffffffffff04000000fefffffffeffffff0300000001000000fcffffff00000000",
+                  "stored_frame_hex": "410000000000000004000000070082a15401a16401600000005d14007f3ff000800ca0e5117401a7a79f5d0d21d6d3c76770b7ac45e4946cddb9a8f66abf97c90ed4d880519098422426634662"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 430,
+                  "stored_length": 53,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 192,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0055aa9106b734624669c37b6cfb90f350d310d3f44cb1044f75f438a14a1308d84a00",
+                  "uncompressed_payload_hex": "abaaaa3eabaaaa3eabaaaabeabaaaabeabaaaabeabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3e",
+                  "stored_frame_hex": "3500000000000000040000000a0083a14403a15403a155c3c00000005d140055aa9106b734624669c37b6cfb90f350d310d3f44cb1044f75f438a14a1308d84a00"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 495,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                  "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                  "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 540,
+                  "stored_length": 60,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803c9fc76d657cdd0f39a4143a87f6823e75ab7263595985218bd60835b0413aed848e33dff3e4da000000",
+                  "uncompressed_payload_hex": "01000000fcffffff04000000feffffff01000000fcffffff01000000ffffffff04000000fdffffff02000000fdffffff030000000000000002000000fdffffff02000000feffffff03000000fbffffff02000000ffffffff0100000002000000",
+                  "stored_frame_hex": "3c0000000000000004000000070082a15401a16401600000005d140000803c9fc76d657cdd0f39a4143a87f6823e75ab7263595985218bd60835b0413aed848e33dff3e4da000000"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 612,
+                  "stored_length": 22,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 32,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006e18479800",
+                  "uncompressed_payload_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+                  "stored_frame_hex": "160000000000000004000000070082a15401a16401200000005d1400006e18479800"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              ],
+              "triangle_node_indices": [
+                3,
+                1,
+                5,
+                1,
+                2,
+                5,
+                2,
+                4,
+                5,
+                4,
+                3,
+                5,
+                1,
+                3,
+                0,
+                2,
+                1,
+                0,
+                4,
+                2,
+                0,
+                3,
+                4,
+                0
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "node_count": 6,
+              "triangle_count": 8,
+              "count_evidence": {
+                "stored_coordinate_buffer_bytes": 72,
+                "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                "stored_triangle_buffer_bytes": 96,
+                "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+              },
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved",
+              "component_node_coordinates_cm": [
+                [
+                  0.0,
+                  0.0,
+                  1.0000000149011612
+                ],
+                [
+                  0.0,
+                  -1.0000000149011612,
+                  0.0
+                ],
+                [
+                  -1.0000000149011612,
+                  0.0,
+                  0.0
+                ],
+                [
+                  1.0000000149011612,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  1.0000000149011612,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0000000149011612
+                ]
+              ],
+              "derived_area_cm2": 6.928203436752057,
+              "derived_signed_volume_cm3": 1.333333392937979,
+              "derived_absolute_volume_cm3": 1.333333392937979,
+              "derived_closed_oriented_edge_incidence": true,
+              "derived_undirected_edge_count": 12,
+              "derived_component_bounds_cm": {
+                "min": [
+                  -1.0000000149011612,
+                  -1.0000000149011612,
+                  -1.0000000149011612
+                ],
+                "max": [
+                  1.0000000149011612,
+                  1.0000000149011612,
+                  1.0000000149011612
+                ]
+              },
+              "derived_boundary_edge_count": 0,
+              "volume_applicability": "Closed oriented stored triangular mesh; signed tetrahedral sum is a derived enclosed volume"
+            },
+            "stored_mesh_index": 1,
+            "stored_prefix_11_22_hex": "0101010000000000000000",
+            "prefix_scope": "Stored index1/2 observed; remaining packed prefix retained literally, never treated as coincident native object257 reference",
+            "stored_asset_header_scalar": 1.3333333333333333,
+            "stored_asset_header_flag": 1,
+            "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed size-delimited UDPMESH v2 six-buffer triangle layouts (4 nodes/3 or4 faces,6 nodes/8 faces), typed mesh collection/component ownership and same-asset UUID/filename links. Only observed uniform native matrices are applied. Open-mesh signed tetra sums are not enclosed volumes; normal/auxiliary buffers, arbitrary topology, procedural regeneration and lifecycle remain unresolved."
+      },
+      "expected_normal_pools": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 280,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.e7c11d8c-eaf4-4a26-8c0f-3d31db11b445.paramesh",
+            "asset_fusion_uuid": "d043941d-c031-472e-b734-dd457a3269af",
+            "asset_sha256": "128cad640deaa4df0f8f261793304912368c398debfdd3f1d4c7735b3831d543",
+            "buffer_ordinal": 2,
+            "buffer_asset_offset": 430,
+            "stored_descriptor_hex": "83a14403a15403a155c3",
+            "stored_payload_hex": "abaaaa3eabaaaa3eabaaaabeabaaaabeabaaaabeabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3e",
+            "stored_packed_pairs_float32": [
+              [
+                0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                0.3333333432674408
+              ]
+            ],
+            "stored_unit_vector_count": 24,
+            "derived_asset_unit_vectors": [
+              [
+                0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ]
+            ],
+            "derived_component_covectors": [
+              [
+                0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ]
+            ],
+            "native_uniform_scale": 1.0000000149011612,
+            "lower_hemisphere_pair_count": 12,
+            "encoding": "Octahedral unit vector: z=1-|x|-|y|; fold xy when z<0, retain z, normalize",
+            "association_status": "Serialized vector pool only; per-vertex/corner/display-node association unresolved",
+            "original_polygon_mesh_normals_status": "Not reconstructed by this stored display-direction pool",
+            "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+      },
+      "expected_face_group_caches": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 280,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.e7c11d8c-eaf4-4a26-8c0f-3d31db11b445.paramesh",
+            "asset_fusion_uuid": "d043941d-c031-472e-b734-dd457a3269af",
+            "asset_sha256": "128cad640deaa4df0f8f261793304912368c398debfdd3f1d4c7735b3831d543",
+            "buffer_ordinal": 5,
+            "buffer_asset_offset": 612,
+            "stored_descriptor_hex": "82a15401a16401",
+            "stored_payload_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+            "stored_int32_forward_differences": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "decoded_triangle_face_group_temporary_ids": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "triangle_label_count": 8,
+            "distinct_temporary_label_count": 1,
+            "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+            "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+            "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+            "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+            "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+      },
+      "current_asset_API_comparison": {
+        "asset_object_id": 280,
+        "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.e7c11d8c-eaf4-4a26-8c0f-3d31db11b445.paramesh",
+        "observed_buffer_sizes": [
+          72,
+          96,
+          192,
+          72,
+          96,
+          32
+        ],
+        "node_count": 6,
+        "triangle_count": 8,
+        "exact_ordered_coordinate_and_index_arrays": true,
+        "stored_normal_vector_count": 24,
+        "actual_API_display_vector_count": 24,
+        "maximum_normal_direction_set_component_discrepancy": 6.882551328857289e-08,
+        "exact_ordered_triangle_temporary_labels": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scope": "Only numerical corroboration after typed asset/selected-mesh proof. Current native uniform matrix applied for this comparison; no universal temporal slot role or persistent identity assigned."
+      },
+      "additional_asset_recorded_before_API_comparison": {
+        "asset_object_id": 211,
+        "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.242c5394-240d-48c0-bd7c-124420cc2eba.paramesh",
+        "observed_buffer_sizes": [
+          72,
+          96,
+          192,
+          72,
+          96,
+          32
+        ],
+        "node_count": 6,
+        "triangle_count": 8,
+        "exact_ordered_coordinate_and_index_arrays": true,
+        "stored_normal_vector_count": 24,
+        "actual_API_display_vector_count": 24,
+        "maximum_normal_direction_set_component_discrepancy": 6.882551328857289e-08,
+        "exact_ordered_triangle_temporary_labels": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scope": "Only numerical corroboration after typed asset/selected-mesh proof. Current native uniform matrix applied for this comparison; no universal temporal slot role or persistent identity assigned."
+      },
+      "additional_asset_temporal_role": null
+    },
+    {
+      "archive": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d",
+      "expected_mesh_contents": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 24674,
+            "feature_object_id": 218,
+            "native_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+            "feature_owner_scope": "Explicit reciprocal native BaseMeshFeature membership",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 202,
+            "mesh_collection_record_offset": 23486,
+            "mesh_collection_base_record_offset": 23524,
+            "collection_mesh_object_ids": [
+              213
+            ],
+            "name": "OwnedOctahedronSource_requested_uniform_deviation_point_one",
+            "name_helper_object_id": 216,
+            "name_property_object_id": 217,
+            "asset_object_id": 280,
+            "asset_record_offset": 29103,
+            "asset_filename_object_id": 281,
+            "asset_filename_record_offset": 29190,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.8601dfab-3572-4b76-8aa3-5e266aaccdf8.paramesh",
+            "asset_fusion_uuid": "bddfccfe-7bcb-43d8-944a-a00a158d6af5",
+            "asset_reference_field_offset": 25215,
+            "stored_matrix_encodings": [
+              "ExplicitFloat64Matrix",
+              "ExplicitFloat64Matrix"
+            ],
+            "stored_matrix_copies": [
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380001da000000000000000000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+              "asset_size_bytes": 641,
+              "asset_sha256": "0b52ea174b2eee29a2b9ad2918f20c046350f8badfbb4aa8562f5aa5ded1a1d3",
+              "fusion_uuid": "bddfccfe-7bcb-43d8-944a-a00a158d6af5",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2464616438663636652d623832312d343536362d393765372d3463393239333361346631352a0b0805120272301a037230692a322a0608071202723232280800122430623034343236372d326335372d346130352d613339382d3739323838333364396130623a042202723142330a0b667573696f6e5f757569641a2462646466636366652d376263622d343364382d393434612d6130306131353864366166354801622434613830373532662d383166332d343861382d626532642d336435613935353661623238aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2464616438663636652d623832312d343536362d393765372d3463393239333361346631352a0b0805120272301a037230692a322a0608071202723232280800122430623034343236372d326335372d346130352d613339382d3739323838333364396130623a042202723142330a0b667573696f6e5f757569641a2462646466636366652d376263622d343364382d393434612d6130306131353864366166354801622434613830373532662d383166332d343861382d626532642d336435613935353661623238aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 308,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006b9e59726b95bfc0fd077e3b8b191f00",
+                  "uncompressed_payload_hex": "00000000000000000000803f00000000000080bf00000000000080bf00000000000000000000803f0000000000000000000000000000803f000000000000000000000000000080bf",
+                  "stored_frame_hex": "210000000000000004000000070082a14403a15403480000005d1400006b9e59726b95bfc0fd077e3b8b191f00"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 353,
+                  "stored_length": 65,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "007f3ff000800ca0e5117401a7a79f5d0d21d6d3c76770b7ac45e4946cddb9a8f66abf97c90ed4d880519098422426634662",
+                  "uncompressed_payload_hex": "feffffff04000000fcffffff0100000003000000fdffffff0200000001000000ffffffffffffffff02000000fcffffff02000000fdffffff02000000ffffffffffffffff04000000fefffffffeffffff0300000001000000fcffffff00000000",
+                  "stored_frame_hex": "410000000000000004000000070082a15401a16401600000005d14007f3ff000800ca0e5117401a7a79f5d0d21d6d3c76770b7ac45e4946cddb9a8f66abf97c90ed4d880519098422426634662"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 430,
+                  "stored_length": 53,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 192,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0055aa9106b734624669c37b6cfb90f350d310d3f44cb1044f75f438a14a1308d84a00",
+                  "uncompressed_payload_hex": "abaaaa3eabaaaa3eabaaaabeabaaaabeabaaaabeabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3e",
+                  "stored_frame_hex": "3500000000000000040000000a0083a14403a15403a155c3c00000005d140055aa9106b734624669c37b6cfb90f350d310d3f44cb1044f75f438a14a1308d84a00"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 495,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803caf0f7a44ce4ec6d475a12aa7e680",
+                  "uncompressed_payload_hex": "010000000100000001000000010000000100000001000000010000000100000001000000010000000200000001000000010000000100000002000000010000000200000014000000",
+                  "stored_frame_hex": "210000000000000004000000070082a15401a16401480000005d140000803caf0f7a44ce4ec6d475a12aa7e680"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 540,
+                  "stored_length": 55,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00010039e8c4598e39b370fb429ea9657a4c77d393e47a4e735f9575932faf34ad1baa6c91b3f3fd",
+                  "uncompressed_payload_hex": "020000000000000002000000fdffffff020000000000000001000000fbffffff01000000ffffffff04000000feffffff03000000fcffffff04000000fbffffff02000000feffffff030000000000000001000000fdffffff0100000002000000",
+                  "stored_frame_hex": "370000000000000004000000070082a15401a16401600000005d1400010039e8c4598e39b370fb429ea9657a4c77d393e47a4e735f9575932faf34ad1baa6c91b3f3fd"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 607,
+                  "stored_length": 22,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 32,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006e18479800",
+                  "uncompressed_payload_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+                  "stored_frame_hex": "160000000000000004000000070082a15401a16401200000005d1400006e18479800"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0
+                ]
+              ],
+              "triangle_node_indices": [
+                3,
+                1,
+                5,
+                1,
+                2,
+                5,
+                2,
+                4,
+                5,
+                4,
+                3,
+                5,
+                1,
+                3,
+                0,
+                2,
+                1,
+                0,
+                4,
+                2,
+                0,
+                3,
+                4,
+                0
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "node_count": 6,
+              "triangle_count": 8,
+              "count_evidence": {
+                "stored_coordinate_buffer_bytes": 72,
+                "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                "stored_triangle_buffer_bytes": 96,
+                "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+              },
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved",
+              "component_node_coordinates_cm": [
+                [
+                  0.0,
+                  0.0,
+                  1.0000000149011612
+                ],
+                [
+                  0.0,
+                  -1.0000000149011612,
+                  0.0
+                ],
+                [
+                  -1.0000000149011612,
+                  0.0,
+                  0.0
+                ],
+                [
+                  1.0000000149011612,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  1.0000000149011612,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  -1.0000000149011612
+                ]
+              ],
+              "derived_area_cm2": 6.928203436752057,
+              "derived_signed_volume_cm3": 1.333333392937979,
+              "derived_absolute_volume_cm3": 1.333333392937979,
+              "derived_closed_oriented_edge_incidence": true,
+              "derived_undirected_edge_count": 12,
+              "derived_component_bounds_cm": {
+                "min": [
+                  -1.0000000149011612,
+                  -1.0000000149011612,
+                  -1.0000000149011612
+                ],
+                "max": [
+                  1.0000000149011612,
+                  1.0000000149011612,
+                  1.0000000149011612
+                ]
+              },
+              "derived_boundary_edge_count": 0,
+              "volume_applicability": "Closed oriented stored triangular mesh; signed tetrahedral sum is a derived enclosed volume"
+            },
+            "stored_mesh_index": 1,
+            "stored_prefix_11_22_hex": "0101010000000000000000",
+            "prefix_scope": "Stored index1/2 observed; remaining packed prefix retained literally, never treated as coincident native object257 reference",
+            "stored_asset_header_scalar": 1.3333333333333333,
+            "stored_asset_header_flag": 1,
+            "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed size-delimited UDPMESH v2 six-buffer triangle layouts (4 nodes/3 or4 faces,6 nodes/8 faces), typed mesh collection/component ownership and same-asset UUID/filename links. Only observed uniform native matrices are applied. Open-mesh signed tetra sums are not enclosed volumes; normal/auxiliary buffers, arbitrary topology, procedural regeneration and lifecycle remain unresolved."
+      },
+      "expected_normal_pools": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 280,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.8601dfab-3572-4b76-8aa3-5e266aaccdf8.paramesh",
+            "asset_fusion_uuid": "bddfccfe-7bcb-43d8-944a-a00a158d6af5",
+            "asset_sha256": "0b52ea174b2eee29a2b9ad2918f20c046350f8badfbb4aa8562f5aa5ded1a1d3",
+            "buffer_ordinal": 2,
+            "buffer_asset_offset": 430,
+            "stored_descriptor_hex": "83a14403a15403a155c3",
+            "stored_payload_hex": "abaaaa3eabaaaa3eabaaaabeabaaaabeabaaaabeabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaaaa3eabaa2a3fabaa2a3fabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2abfabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaa2a3fabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaa3eabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaabeabaaaa3eabaaaabeabaaaa3e",
+            "stored_packed_pairs_float32": [
+              [
+                0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                -0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                -0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.6666666865348816,
+                0.6666666865348816
+              ],
+              [
+                0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                -0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                0.3333333432674408
+              ],
+              [
+                -0.3333333432674408,
+                0.3333333432674408
+              ]
+            ],
+            "stored_unit_vector_count": 24,
+            "derived_asset_unit_vectors": [
+              [
+                0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                -0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                -0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350234776866,
+                0.577350234776866,
+                -0.5773503380151391
+              ],
+              [
+                0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                -0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ],
+              [
+                -0.577350286396004,
+                0.577350286396004,
+                0.5773502347768675
+              ]
+            ],
+            "derived_component_covectors": [
+              [
+                0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                -0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                -0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502261736772,
+                0.5773502261736772,
+                -0.5773503294119489
+              ],
+              [
+                0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                -0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ],
+              [
+                -0.5773502777928144,
+                0.5773502777928144,
+                0.5773502261736787
+              ]
+            ],
+            "native_uniform_scale": 1.0000000149011612,
+            "lower_hemisphere_pair_count": 12,
+            "encoding": "Octahedral unit vector: z=1-|x|-|y|; fold xy when z<0, retain z, normalize",
+            "association_status": "Serialized vector pool only; per-vertex/corner/display-node association unresolved",
+            "original_polygon_mesh_normals_status": "Not reconstructed by this stored display-direction pool",
+            "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+      },
+      "expected_face_group_caches": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 280,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.8601dfab-3572-4b76-8aa3-5e266aaccdf8.paramesh",
+            "asset_fusion_uuid": "bddfccfe-7bcb-43d8-944a-a00a158d6af5",
+            "asset_sha256": "0b52ea174b2eee29a2b9ad2918f20c046350f8badfbb4aa8562f5aa5ded1a1d3",
+            "buffer_ordinal": 5,
+            "buffer_asset_offset": 607,
+            "stored_descriptor_hex": "82a15401a16401",
+            "stored_payload_hex": "0000000000000000000000000000000000000000000000000000000000000000",
+            "stored_int32_forward_differences": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "decoded_triangle_face_group_temporary_ids": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "triangle_label_count": 8,
+            "distinct_temporary_label_count": 1,
+            "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+            "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+            "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+            "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+            "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+      },
+      "current_asset_API_comparison": {
+        "asset_object_id": 280,
+        "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.8601dfab-3572-4b76-8aa3-5e266aaccdf8.paramesh",
+        "observed_buffer_sizes": [
+          72,
+          96,
+          192,
+          72,
+          96,
+          32
+        ],
+        "node_count": 6,
+        "triangle_count": 8,
+        "exact_ordered_coordinate_and_index_arrays": true,
+        "stored_normal_vector_count": 24,
+        "actual_API_display_vector_count": 24,
+        "maximum_normal_direction_set_component_discrepancy": 6.882551328857289e-08,
+        "exact_ordered_triangle_temporary_labels": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scope": "Only numerical corroboration after typed asset/selected-mesh proof. Current native uniform matrix applied for this comparison; no universal temporal slot role or persistent identity assigned."
+      },
+      "additional_asset_recorded_before_API_comparison": {
+        "asset_object_id": 211,
+        "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.2799bd7e-d7d9-4958-b776-7c45a1f21e7b.paramesh",
+        "observed_buffer_sizes": [
+          72,
+          96,
+          192,
+          72,
+          96,
+          32
+        ],
+        "node_count": 6,
+        "triangle_count": 8,
+        "exact_ordered_coordinate_and_index_arrays": true,
+        "stored_normal_vector_count": 24,
+        "actual_API_display_vector_count": 24,
+        "maximum_normal_direction_set_component_discrepancy": 6.882551328857289e-08,
+        "exact_ordered_triangle_temporary_labels": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scope": "Only numerical corroboration after typed asset/selected-mesh proof. Current native uniform matrix applied for this comparison; no universal temporal slot role or persistent identity assigned."
+      },
+      "additional_asset_temporal_role": null
+    }
+  ],
+  "legacy_controls": [
+    {
+      "archive": "meshrepairs-2387e4f9c2d2/open_close_holes.f3d",
+      "complete_mesh_normal_group_dictionaries_exact": true
+    },
+    {
+      "archive": "meshrepairs-2387e4f9c2d2/open_stitch_remove.f3d",
+      "complete_mesh_normal_group_dictionaries_exact": true
+    },
+    {
+      "archive": "meshrepairs-2387e4f9c2d2/closed_close_holes_control.f3d",
+      "complete_mesh_normal_group_dictionaries_exact": true
+    },
+    {
+      "archive": "meshrepairrebuilds-66d4316c2e8d/fast_density_eight.f3d",
+      "complete_mesh_normal_group_dictionaries_exact": true
+    },
+    {
+      "archive": "meshrepairrebuilds-66d4316c2e8d/accurate_density_eight_offset_zero.f3d",
+      "complete_mesh_normal_group_dictionaries_exact": true
+    },
+    {
+      "archive": "meshrepairrebuilds-66d4316c2e8d/accurate_density_eight_offset_point_zero_five.f3d",
+      "complete_mesh_normal_group_dictionaries_exact": true
+    },
+    {
+      "archive": "meshreduces-780954a23308/adaptive_count_six.f3d",
+      "complete_mesh_normal_group_dictionaries_exact": true
+    },
+    {
+      "archive": "meshreduces-780954a23308/uniform_count_six.f3d",
+      "complete_mesh_normal_group_dictionaries_exact": true
+    },
+    {
+      "archive": "meshreduces-780954a23308/adaptive_proportion_fifty.f3d",
+      "complete_mesh_normal_group_dictionaries_exact": true
+    },
+    {
+      "archive": "meshreduces-8f01528f7f21/adaptive_proportion_fifty.f3d",
+      "complete_mesh_normal_group_dictionaries_exact": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "Actual3 captures terminal/no case errors"
+    },
+    {
+      "check": "Actual owned closeFalse3true"
+    },
+    {
+      "check": "Executed generator snapshot hash"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d typed Deviation controls/assets decode"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d one current native mesh without errors"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d actual export hash"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d current mesh/typed asset equality"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d actual before-add/rollback input handle equality"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d actual singleton current/source name agrees"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d current complete existing24-pair layout"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d additional existing24-pair layout role remains unassigned"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d existing current normal helper exact24vectors"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d existing current group helper exact8literalzeros"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d exact ordered current API geometry"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d closed oriented edge incidence and API closure"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d derived closed current volume corroborated"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d generic auxiliary diagnostics retained"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d no mesh hierarchy/diagnostic changes during corroboration"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d typed Deviation controls/assets decode"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d one current native mesh without errors"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d actual export hash"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d current mesh/typed asset equality"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d actual before-add/rollback input handle equality"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d actual singleton current/source name agrees"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d current complete existing24-pair layout"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d additional existing24-pair layout role remains unassigned"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d existing current normal helper exact24vectors"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d existing current group helper exact8literalzeros"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d exact ordered current API geometry"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d closed oriented edge incidence and API closure"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d derived closed current volume corroborated"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d generic auxiliary diagnostics retained"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_one.f3d no mesh hierarchy/diagnostic changes during corroboration"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d typed Deviation controls/assets decode"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d one current native mesh without errors"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d actual export hash"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d current mesh/typed asset equality"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d actual before-add/rollback input handle equality"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d actual singleton current/source name agrees"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d current complete existing24-pair layout"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d additional existing24-pair layout role remains unassigned"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d existing current normal helper exact24vectors"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d existing current group helper exact8literalzeros"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d exact ordered current API geometry"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d closed oriented edge incidence and API closure"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d derived closed current volume corroborated"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d generic auxiliary diagnostics retained"
+    },
+    {
+      "check": "meshreducedeviations-05a5d48e46d0/requested_uniform_deviation_point_one.f3d no mesh hierarchy/diagnostic changes during corroboration"
+    },
+    {
+      "check": "meshrepairs-2387e4f9c2d2/open_close_holes.f3d prior complete mesh/normal/group dictionaries exact"
+    },
+    {
+      "check": "meshrepairs-2387e4f9c2d2/open_stitch_remove.f3d prior complete mesh/normal/group dictionaries exact"
+    },
+    {
+      "check": "meshrepairs-2387e4f9c2d2/closed_close_holes_control.f3d prior complete mesh/normal/group dictionaries exact"
+    },
+    {
+      "check": "meshrepairrebuilds-66d4316c2e8d/fast_density_eight.f3d prior complete mesh/normal/group dictionaries exact"
+    },
+    {
+      "check": "meshrepairrebuilds-66d4316c2e8d/accurate_density_eight_offset_zero.f3d prior complete mesh/normal/group dictionaries exact"
+    },
+    {
+      "check": "meshrepairrebuilds-66d4316c2e8d/accurate_density_eight_offset_point_zero_five.f3d prior complete mesh/normal/group dictionaries exact"
+    },
+    {
+      "check": "meshreduces-780954a23308/adaptive_count_six.f3d prior Reduce complete mesh/normal/group dictionaries exact"
+    },
+    {
+      "check": "meshreduces-780954a23308/uniform_count_six.f3d prior Reduce complete mesh/normal/group dictionaries exact"
+    },
+    {
+      "check": "meshreduces-780954a23308/adaptive_proportion_fifty.f3d prior Reduce complete mesh/normal/group dictionaries exact"
+    },
+    {
+      "check": "meshreduces-8f01528f7f21/adaptive_proportion_fifty.f3d prior Reduce complete mesh/normal/group dictionaries exact"
+    },
+    {
+      "check": "Reject normal-prefix continuation as full asset proof"
+    },
+    {
+      "check": "Reject label-buffer extent mismatch"
+    },
+    {
+      "check": "Reject asset UUID mismatch"
+    }
+  ],
+  "corroboration_guards": [
+    {
+      "guard": "Reject normal-prefix continuation as full asset proof",
+      "reason": "Deviation comparison outside complete previously supported6/8 layouts"
+    },
+    {
+      "guard": "Reject label-buffer extent mismatch",
+      "reason": "Deviation comparison outside complete previously supported6/8 layouts"
+    },
+    {
+      "guard": "Reject asset UUID mismatch",
+      "reason": "Deviation asset UUID disagreement"
+    }
+  ],
+  "actual_document_close_journal": [
+    {
+      "time_utc": "2026-10-21T14:26:18.247108+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "adaptive_deviation_point_zero_five",
+      "sample_count": 1,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    },
+    {
+      "time_utc": "2026-10-21T14:26:18.773783+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "adaptive_deviation_point_one",
+      "sample_count": 2,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    },
+    {
+      "time_utc": "2026-10-21T14:26:19.200467+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "requested_uniform_deviation_point_one",
+      "sample_count": 3,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    }
+  ],
+  "actual_terminal_journal": {
+    "time_utc": "2026-10-21T14:26:19.203380+00:00",
+    "phase": "batch_terminal",
+    "case": null,
+    "sample_count": 3,
+    "error_count": 0
+  },
+  "limitations": [
+    "All current/additional geometry layouts already supported; no codec extension",
+    "Requested deviation and method semantics remain the independent control helper responsibility",
+    "Geometry/counts do not prove maximum-deviation target attainment or method normalization",
+    "Additional asset match to recordedbefore snapshot is numerical corroboration only; temporal roleNone",
+    "Normal vectors remain unordered direction pools; no corner/node mapping",
+    "Zero labels are literal temporary cache values; no persistent native geometry identity",
+    "No reduction algorithm, regeneration or history/lifecycle claim"
+  ],
+  "source_sha256": {
+    "validate_mesh_reduce_deviation_geometry.py": "1324df88aff450eb381e2007033eee73838849dd09d80208ec34080b37c0161c",
+    "decode_mesh_reduce.py": "2a83a93806b0c746b44a9016d09c7eb62d574bf98592bf609e48dea13e57adb9",
+    "decode_mesh_contents.py": "7f01b75449612fed2f84833e96e7c7ebda6333fd7c8a2e630a75d36f84a23ad1",
+    "decode_mesh_geometry_variants.py": "a4f2f9a03f18eeccfdaadb552c6ba72f7d1733df6e79acef4c2ffa01e2aef61d",
+    "decode_mesh_normals.py": "321aa01bf9448fd69cedaa2f77297726d2a60e209db6e0a4bc72710f2ec92a14",
+    "decode_mesh_face_group_caches.py": "0a48d697e78eba9b82a9caee22d5295a722e17ad702b5a58a1f10f6bb88f239f"
+  },
+  "provenance_refresh_scope": "Final control-helper change was its module docstring only; successful dictionaries and executable body unchanged per owning agent freeze. Existing focused validation results retained."
+}
