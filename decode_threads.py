@@ -18,7 +18,7 @@ def thread_parent_hole(body):
     return optional_reference(body, cursor+38)[0]
 
 
-def decode_thread(data, records, body, feature):
+def decode_thread(data, records, body, feature, *, selection_resolver=None):
     if feature["class_guid"] != "584D9526-EF22-4F6F-9FE1-5FCF1F3CE575" or body[:2] != b"\0\0" or body[10] not in (0, 1):
         raise ValueError("Unsupported thread prefix/class")
     table_count = struct.unpack_from("<I", body, 11)[0]
@@ -62,27 +62,46 @@ def decode_thread(data, records, body, feature):
     length_role = "ThreadDepth" if parent_hole is not None else "ThreadLength"
     length, length_binding = parameter(binding_cursor, length_role)
     offset, offset_binding = parameter(binding_cursor+11, "ThreadOffset")
-    if length <= 0 or offset < 0 or struct.unpack_from("<I", body, hand_cursor+41)[0] != 1:
+    selection_cursor = hand_cursor+41
+    selection_count = struct.unpack_from("<I", body, selection_cursor)[0]
+    if length <= 0 or offset < 0 or (selection_resolver is None and selection_count != 1):
         raise ValueError("Unsupported thread length/offset/selection count")
-    selection_id = reference(body, hand_cursor+45)
-    proxies = [r for r in records if r.is_primary and r.object_id == selection_id
-               and r.class_guid == "2CA5A1CD-C99B-4C9B-91AF-57989148E841"]
-    if len(proxies) != 1:
-        raise ValueError("Thread input selection unresolved")
-    proxy = proxies[0]
-    payload = data[proxy.body:proxy.end]
-    if reference(payload, len(payload)-11) != feature["object_id"]:
-        raise ValueError("Thread selection owner disagrees with feature")
-    descriptors, _ = native_proxy_references(data, proxy)
-    if len(descriptors) != 1:
-        raise ValueError("Only observed single cylindrical thread face supported")
-    descriptor = [r for r in records if r.is_primary and r.object_id == descriptors[0]
-                  and r.class_guid == "5662F619-2281-4AD9-93DC-1FCFDA1062E7"]
-    if len(descriptor) != 1:
-        raise ValueError("Unsupported thread cylindrical-face descriptor")
-    payload = data[descriptor[0].body:descriptor[0].end]
-    if reference(payload, len(payload)-11) != feature["object_id"]:
-        raise ValueError("Thread face descriptor owner disagrees with feature")
+    selection_evidence = None
+    if selection_resolver is None:
+        selection_id = reference(body, hand_cursor+45)
+        proxies = [r for r in records if r.is_primary and r.object_id == selection_id
+                   and r.class_guid == "2CA5A1CD-C99B-4C9B-91AF-57989148E841"]
+        if len(proxies) != 1:
+            raise ValueError("Thread input selection unresolved")
+        proxy = proxies[0]
+        payload = data[proxy.body:proxy.end]
+        if reference(payload, len(payload)-11) != feature["object_id"]:
+            raise ValueError("Thread selection owner disagrees with feature")
+        descriptors, _ = native_proxy_references(data, proxy)
+        if len(descriptors) != 1:
+            raise ValueError("Only observed single cylindrical thread face supported")
+        descriptor = [r for r in records if r.is_primary and r.object_id == descriptors[0]
+                      and r.class_guid == "5662F619-2281-4AD9-93DC-1FCFDA1062E7"]
+        if len(descriptor) != 1:
+            raise ValueError("Unsupported thread cylindrical-face descriptor")
+        payload = data[descriptor[0].body:descriptor[0].end]
+        if reference(payload, len(payload)-11) != feature["object_id"]:
+            raise ValueError("Thread face descriptor owner disagrees with feature")
+    else:
+        selection_evidence = selection_resolver(data, records, body, feature, selection_cursor)
+        if not isinstance(selection_evidence,dict):
+            raise ValueError("Thread plural selection resolver did not return bounded evidence")
+        selection_ids = selection_evidence.get('selection_record_object_ids')
+        descriptors = selection_evidence.get('descriptor_object_ids')
+        selection_end = selection_evidence.get('selection_end_offset')
+        if (selection_count != 2 or not isinstance(selection_ids,list) or not isinstance(descriptors,list)
+                or len(selection_ids) != selection_count or len(descriptors) != selection_count
+                or any(type(i) is not int for i in selection_ids+descriptors)
+                or len(set(selection_ids)) != selection_count or len(set(descriptors)) != selection_count
+                or type(selection_end) is not int or selection_end != selection_cursor+4+11*selection_count
+                or selection_end > len(body)
+                or [reference(body,selection_cursor+4+11*i) for i in range(selection_count)] != selection_ids):
+            raise ValueError("Thread plural selection count/extent/identity copies disagree")
     return {"thread_type": family, "thread_size": size, "thread_designation": designation, "thread_class": thread_class,
             "thread_angle_degrees": angle, "is_internal": not bool(body[10]), "is_modeled": bool(modeled),
             "is_right_handed": bool(handed), "is_full_length": bool(full), "pitch_cm": pitch,
@@ -93,8 +112,10 @@ def decode_thread(data, records, body, feature):
             "parameter_bindings": {length_role: length_binding, "ThreadOffset": offset_binding},
             "attached_hole_object_id": parent_hole,
             "stored_modeled_table_pairs": table, "modeled_table_scope": "Opaque integer pairs; not interpreted as ASM record indices",
-            "selection_record_object_id": selection_id, "descriptor_object_ids": descriptors,
-            "input_selection_status": ("Owned cylindrical-face descriptor and attached parent-hole link retained" if parent_hole is not None else
-                                       "Owned cylindrical-face descriptor retained; persistent face-to-ASM mapping unresolved"),
+            **({"selection_record_object_id": selection_id, "descriptor_object_ids": descriptors} if selection_evidence is None else
+               {"selection_record_object_ids": selection_ids, "descriptor_object_ids": descriptors, "selection_evidence": selection_evidence}),
+            "input_selection_status": (("Owned cylindrical-face descriptor and attached parent-hole link retained" if parent_hole is not None else
+                                       "Owned cylindrical-face descriptor retained; persistent face-to-ASM mapping unresolved") if selection_evidence is None else
+                                       "Owned plural cylindrical-face descriptors and native source recipes retained; API handle and persistent face-to-ASM correspondence unresolved"),
             "length_scope": "Full-length mode has inactive native length/offset bindings even when API getters return null",
             "geometry_status": "Thread metadata/settings decoded; helical thread geometry is not regenerated"}
