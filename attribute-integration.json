@@ -1,6 +1,7 @@
 {
-  "scope": "Eleven saved main-reader designs against efef90b; optional complete initial custom-attribute JSON exposure, no live Fusion or whole-corpus main-reader run",
+  "scope": "Frozen eleven-file efef90b-to-461010f attribute-stage comparison, plus separately qualified461010f-to-current native-selection metadata followup; current CLI/API comparison, no live Fusion or whole-corpus main-reader run",
   "baseline_commit": "efef90b",
+  "attribute_stage_commit": "461010f",
   "interfaces": {
     "main": "decode_basics(path,zstd_library=None,*,include_asm_attributes=False); CLI --asm-attributes",
     "inspector": "inspect_asm_members(members,include_records=False,*,include_custom_attributes=False); CLI --custom-attributes"
@@ -294,6 +295,204 @@
     "optional_CLI_matches_API": true,
     "corrupted_metadata_retains_topology_and_token_framing": true,
     "new_API_calls": 0
+  },
+  "current_followup": {
+    "scope": "Frozen461010f optional ASM-attribute outputs versus current optional outputs; only the separately validated native-selection summaries and corresponding feature attachments may be additive. Historical eleven-case counts above remain frozen.",
+    "baseline_commit": "461010f",
+    "samples": [
+      {
+        "file": "advanced-627f7fe095f4/advanced.f3d",
+        "native_registries": 0,
+        "explicit_registry_diagnostics": 1,
+        "FACE_tracking_contexts": 0,
+        "corroborated_FACE_attributes": 0,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/native_naming_registry"
+        ]
+      },
+      {
+        "file": "moretools-88a2cd6cad0b/MoveRotate.f3d",
+        "native_registries": 1,
+        "explicit_registry_diagnostics": 0,
+        "FACE_tracking_contexts": 0,
+        "corroborated_FACE_attributes": 0,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/native_naming_registry"
+        ]
+      },
+      {
+        "file": "movemodes-0dd2f72dd9a7/point_to_position_nested_design.f3d",
+        "native_registries": 2,
+        "explicit_registry_diagnostics": 0,
+        "FACE_tracking_contexts": 0,
+        "corroborated_FACE_attributes": 0,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/native_naming_registry"
+        ]
+      },
+      {
+        "file": "splitfacemodes-4fc4adf2a868/along_vector.f3d",
+        "native_registries": 1,
+        "explicit_registry_diagnostics": 0,
+        "FACE_tracking_contexts": 0,
+        "corroborated_FACE_attributes": 0,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/native_naming_registry"
+        ]
+      },
+      {
+        "file": "splitfacemodes-4fc4adf2a868/plane.f3d",
+        "native_registries": 1,
+        "explicit_registry_diagnostics": 0,
+        "FACE_tracking_contexts": 0,
+        "corroborated_FACE_attributes": 0,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/native_naming_registry"
+        ]
+      },
+      {
+        "file": "splinepatches-900d152c2380/splinepatches.f3d",
+        "native_registries": 1,
+        "explicit_registry_diagnostics": 0,
+        "FACE_tracking_contexts": 0,
+        "corroborated_FACE_attributes": 0,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/native_naming_registry"
+        ]
+      },
+      {
+        "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+        "native_registries": 1,
+        "explicit_registry_diagnostics": 0,
+        "FACE_tracking_contexts": 0,
+        "corroborated_FACE_attributes": 0,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/native_naming_registry"
+        ]
+      },
+      {
+        "file": "loftbrepends-e07e3859ed20/edge_both_tangent.f3d",
+        "native_registries": 1,
+        "explicit_registry_diagnostics": 0,
+        "FACE_tracking_contexts": 0,
+        "corroborated_FACE_attributes": 0,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/native_naming_registry"
+        ]
+      },
+      {
+        "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+        "native_registries": 1,
+        "explicit_registry_diagnostics": 0,
+        "FACE_tracking_contexts": 0,
+        "corroborated_FACE_attributes": 0,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/native_naming_registry"
+        ]
+      },
+      {
+        "file": "circularmodes-45f859c1f1b6/feature_adjust.f3d",
+        "native_registries": 1,
+        "explicit_registry_diagnostics": 0,
+        "FACE_tracking_contexts": 1,
+        "corroborated_FACE_attributes": 6,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/face_tracking_contexts",
+          "/streams/0/features/2/face_tracking_contexts",
+          "/streams/0/native_naming_registry"
+        ]
+      },
+      {
+        "file": "parameterexpressions-3ddbef2b20bd/product_sum.f3d",
+        "native_registries": 1,
+        "explicit_registry_diagnostics": 0,
+        "FACE_tracking_contexts": 0,
+        "corroborated_FACE_attributes": 0,
+        "modifying_FACE_correspondences": 0,
+        "direct_named_vertex_associations": 0,
+        "incident_edge_associations": 0,
+        "all_prior_output_unchanged": true,
+        "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+        "qualified_difference_paths": [
+          "/streams/0/native_naming_registry"
+        ]
+      }
+    ],
+    "summary": {
+      "saved_files": 11,
+      "unexpected_prior_output_changes": 0,
+      "ASM_geometry_and_existing_selection_warnings_unchanged": true
+    },
+    "default_output_control": {
+      "file": "moretools-88a2cd6cad0b/MoveRotate.f3d",
+      "native_registries": 1,
+      "explicit_registry_diagnostics": 0,
+      "FACE_tracking_contexts": 0,
+      "corroborated_FACE_attributes": 0,
+      "modifying_FACE_correspondences": 0,
+      "direct_named_vertex_associations": 0,
+      "incident_edge_associations": 0,
+      "all_prior_output_unchanged": true,
+      "ASM_geometry_and_existing_selection_warnings_unchanged": true,
+      "qualified_difference_paths": [
+        "/streams/0/native_naming_registry"
+      ]
+    },
+    "CLI_control": {
+      "file": "moretools-88a2cd6cad0b/MoveRotate.f3d",
+      "scope": "Actual current --asm-attributes CLI compared with current include_asm_attributes=True Python API; not compared with frozen historical output",
+      "current_CLI_matches_current_API": true
+    }
   },
   "malformed_guard": {
     "file": "moretools-88a2cd6cad0b/MoveRotate.f3d",

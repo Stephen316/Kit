@@ -16,7 +16,10 @@ def read(name):
 
 def compare_outputs(before, current, filename):
     """Qualify only additive caches and the independently replayed naming fix."""
-    after = copy.deepcopy(current)
+    from validate_native_selection_integration import strip_additions
+    after, native_followup = strip_additions(current, filename)
+    native_paths = differences(after, current)
+    raw_current_paths = differences(before, current)
     assert after['asm_decoding'] == before['asm_decoding'], (filename, 'Prior ASM geometry changed')
     boundary = {r['file']: r['expected_summary'] for r in read('boundary-face-correspondence-decoding.json')['samples']}
     dimension = {r['file']: r['expected_decoded'] for r in read('dimension-annotation-decoding.json')['samples']}
@@ -71,7 +74,10 @@ def compare_outputs(before, current, filename):
             'complete_generic_naming_coverage_followups': coverage_fixes,
             'new_explicit_partial_cache_diagnostics': failures,
             'all_ASM_output_unchanged': True, 'all_other_prior_output_unchanged': True,
-            'whole_output_control_exact': not paths, 'qualified_difference_paths': paths}
+            'whole_output_control_exact': not paths, 'qualified_difference_paths': paths,
+            'native_selection_followup': native_followup,
+            'native_selection_qualified_difference_paths': native_paths,
+            'whole_current_output_control_exact': not raw_current_paths}
 
 
 def validate(zstd, *, saved_outputs=None):

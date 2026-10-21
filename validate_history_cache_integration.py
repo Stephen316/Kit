@@ -34,7 +34,7 @@ def differences(before, after, path=''):
     return [] if before == after else [path]
 
 
-def baseline_outputs(files, zstd, *, revision=BASELINE):
+def baseline_outputs(files, zstd, *, revision=BASELINE, decoder_options=None):
     """Use only trusted Python sources from the recorded local Git baseline."""
     payload = subprocess.check_output(['git', 'archive', revision, '--', '*.py'], cwd=ROOT)
     with tempfile.TemporaryDirectory(prefix='fusion-history-baseline-') as folder:
@@ -47,9 +47,11 @@ def baseline_outputs(files, zstd, *, revision=BASELINE):
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(archive.extractfile(item).read())
         script = ('import json,sys; from decode_basics import decode_basics; '
-                  'print(json.dumps([decode_basics(p,sys.argv[1]) for p in sys.argv[2:]]))')
+                  'options=json.loads(sys.argv[2]); '
+                  'print(json.dumps([decode_basics(p,sys.argv[1],**options) for p in sys.argv[3:]]))')
         return json.loads(subprocess.check_output(
-            ['/usr/bin/python3', '-c', script, zstd, *[str(ROOT/name) for name in files]], cwd=folder))
+            ['/usr/bin/python3', '-c', script, zstd, json.dumps(decoder_options or {}),
+             *[str(ROOT/name) for name in files]], cwd=folder))
 
 
 def validate(zstd):

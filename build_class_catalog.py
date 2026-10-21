@@ -73,9 +73,43 @@ def build_catalog(paths, zstd_library=None):
             "classes": normalized}
 
 
+def extend_catalog(catalog, paths, zstd_library=None):
+    """Add new captures while preserving prior class evidence and examples."""
+    existing = set(catalog['files'])
+    if len(existing) != catalog['file_count'] or len(catalog['classes']) != catalog['class_count']:
+        raise ValueError('Existing class catalog counts disagree')
+    new_paths = [p for p in paths if str(p) not in existing]
+    if len({str(p) for p in new_paths}) != len(new_paths):
+        raise ValueError('Duplicate new catalog capture paths')
+    delta = build_catalog(new_paths, zstd_library)
+    merged = {row['class_guid']: {k: list(v) if isinstance(v, list) else v for k, v in row.items()}
+              for row in catalog['classes']}
+    if len(merged) != catalog['class_count']:
+        raise ValueError('Existing class catalog has duplicate identities')
+    for incoming in delta['classes']:
+        guid = incoming['class_guid']
+        if guid not in merged:
+            merged[guid] = incoming
+            continue
+        row = merged[guid]
+        for key in ('base_class_guids', 'namespaces', 'stored_versions_or_flags', 'observed_semantics'):
+            row[key] = sorted(set(row[key]) | set(incoming[key]))
+        examples = list(row['example_files'])
+        examples.extend(p for p in incoming['example_files'] if p not in examples)
+        row['example_files'] = sorted(examples[:3])
+    rows = [merged[k] for k in sorted(merged)]
+    files = sorted(existing | set(delta['files']))
+    return {'scope': catalog['scope'], 'file_count': len(files), 'files': files,
+            'class_count': len(rows), 'classes_with_observed_semantics': sum(bool(r['observed_semantics']) for r in rows),
+            'classes': rows}
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("files", nargs="+", type=Path)
     parser.add_argument("--zstd-library")
+    parser.add_argument("--extend-catalog", type=Path, help="Preserve prior evidence and decode only newly listed capture files")
     args = parser.parse_args()
-    print(json.dumps(build_catalog(args.files, args.zstd_library), indent=2))
+    result = (extend_catalog(json.loads(args.extend_catalog.read_text()), args.files, args.zstd_library)
+              if args.extend_catalog else build_catalog(args.files, args.zstd_library))
+    print(json.dumps(result, indent=2))

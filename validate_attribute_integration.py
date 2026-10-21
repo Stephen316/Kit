@@ -11,9 +11,11 @@ from decode_asm_recipe_tags import decode_asm_generic_tags
 from decode_basics import decode_basics
 from fusion_archive import read_members
 from validate_history_cache_integration import baseline_outputs, differences
+from validate_native_selection_integration import compare_outputs
 
 ROOT = Path(__file__).resolve().parent
 BASELINE = 'efef90b'
+ATTRIBUTE_STAGE = '461010f'
 FILES = ['advanced-627f7fe095f4/advanced.f3d', 'moretools-88a2cd6cad0b/MoveRotate.f3d',
          'movemodes-0dd2f72dd9a7/point_to_position_nested_design.f3d',
          'splitfacemodes-4fc4adf2a868/along_vector.f3d', 'splitfacemodes-4fc4adf2a868/plane.f3d',
@@ -27,10 +29,12 @@ FILES = ['advanced-627f7fe095f4/advanced.f3d', 'moretools-88a2cd6cad0b/MoveRotat
 def validate(zstd, *, saved_outputs=None):
     if saved_outputs is None:
         before = baseline_outputs(FILES, zstd, revision=BASELINE)
-        after = [json.loads(json.dumps(decode_basics(ROOT/f, zstd, include_asm_attributes=True))) for f in FILES]
+        after = baseline_outputs(FILES, zstd, revision=ATTRIBUTE_STAGE,
+                                 decoder_options={'include_asm_attributes': True})
     else:
         assert saved_outputs['files'] == FILES
         before, after = saved_outputs['before'], saved_outputs['after']
+    current_outputs = [json.loads(json.dumps(decode_basics(ROOT/f, zstd, include_asm_attributes=True))) for f in FILES]
     samples = []
     totals = dict(attribute_streams=0, topology_naming_tags=0, validated_metadata_attributes=0,
                   nested_metadata_attributes=0, sketch_attributes=0, retained_attribute_diagnostics=0)
@@ -66,17 +70,21 @@ def validate(zstd, *, saved_outputs=None):
                          'exposed_naming_payloads_match_actual_member_bytes': True})
         assert stripped == old, (filename, 'Unexpected existing output change', differences(old, stripped))
         samples.append({'file': filename, 'all_prior_output_unchanged': True, 'ASM_attribute_streams': rows})
-    # The default output remains the existing compact reader result. This checks
-    # the public entry point, not merely the lower-level inspector option.
+    # Freeze the original stage's default-output promise at its actual revision.
+    # Later additive native metadata is checked separately, with bounded stripping.
     example = FILES[1]
+    frozen_ordinary, = baseline_outputs([example], zstd, revision=ATTRIBUTE_STAGE)
+    assert frozen_ordinary == before[FILES.index(example)]
     ordinary = json.loads(json.dumps(decode_basics(ROOT/example, zstd)))
-    assert ordinary == before[FILES.index(example)]
+    current_default_followup = compare_outputs(frozen_ordinary, ordinary, example)
+    followup_samples = [compare_outputs(old, actual, filename)
+                        for filename, old, actual in zip(FILES, after, current_outputs)]
     command = ['/usr/bin/python3', str(ROOT/'decode_basics.py'), '--asm-attributes']
     if zstd is not None:
         command += ['--zstd-library', zstd]
     command.append(str(ROOT/example))
     cli, = json.loads(subprocess.check_output(command, cwd=ROOT, text=True))
-    assert cli == after[FILES.index(example)]
+    assert cli == current_outputs[FILES.index(example)]
     # A damaged metadata field must remain an attribute diagnostic without
     # discarding the independently decoded geometry or token stream.
     members = read_members(ROOT/example, zstd)
@@ -92,12 +100,20 @@ def validate(zstd, *, saved_outputs=None):
     assert damaged['complete_token_stream'] is True
     assert any(r['attribute_record_index'] == child['index'] for r in damaged['custom_attributes']['unresolved'])
     assert child['index'] not in {r['attribute_record_index'] for key in ('tags', 'ignored_validated_other_definition_attributes') for r in damaged['custom_attributes'][key]}
-    return {'scope': 'Eleven saved main-reader designs against efef90b; optional complete initial custom-attribute JSON exposure, no live Fusion or whole-corpus main-reader run',
-            'baseline_commit': BASELINE, 'interfaces': {'main': 'decode_basics(path,zstd_library=None,*,include_asm_attributes=False); CLI --asm-attributes',
+    return {'scope': 'Frozen eleven-file efef90b-to-461010f attribute-stage comparison, plus separately qualified461010f-to-current native-selection metadata followup; current CLI/API comparison, no live Fusion or whole-corpus main-reader run',
+            'baseline_commit': BASELINE, 'attribute_stage_commit': ATTRIBUTE_STAGE,
+            'interfaces': {'main': 'decode_basics(path,zstd_library=None,*,include_asm_attributes=False); CLI --asm-attributes',
                 'inspector': 'inspect_asm_members(members,include_records=False,*,include_custom_attributes=False); CLI --custom-attributes'},
             'samples': samples, 'summary': {'saved_files': len(FILES), **totals,
                 'unexpected_prior_output_changes': 0, 'default_output_control_exact': True, 'optional_CLI_matches_API': True,
                 'corrupted_metadata_retains_topology_and_token_framing': True, 'new_API_calls': 0},
+            'current_followup': {'scope': 'Frozen461010f optional ASM-attribute outputs versus current optional outputs; only the separately validated native-selection summaries and corresponding feature attachments may be additive. Historical eleven-case counts above remain frozen.',
+                'baseline_commit': ATTRIBUTE_STAGE, 'samples': followup_samples,
+                'summary': {'saved_files': len(FILES), 'unexpected_prior_output_changes': 0,
+                            'ASM_geometry_and_existing_selection_warnings_unchanged': True},
+                'default_output_control': current_default_followup,
+                'CLI_control': {'file': example, 'scope': 'Actual current --asm-attributes CLI compared with current include_asm_attributes=True Python API; not compared with frozen historical output',
+                                'current_CLI_matches_current_API': True}},
             'malformed_guard': {'file': example, 'member': member, 'attribute_record_index': child['index'],
                 'changed_field': 'Empty-child stored index changed from0 to1', 'rejected_as_metadata': True,
                 'topology_unchanged': True, 'token_stream_complete': True},

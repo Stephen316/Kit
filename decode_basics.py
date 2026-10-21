@@ -45,6 +45,10 @@ from decode_hole_supports import decode_hole_supports
 from decode_boundary_fill_results import decode_boundary_fill_results
 from decode_boundary_sculpt_provenance import decode_boundary_sculpt_provenance
 from decode_boundary_face_correspondences import decode_boundary_face_correspondences
+from decode_native_naming_registry import decode_native_naming_registry
+from decode_face_tracking_contexts import decode_face_tracking_contexts
+from decode_boundary_modifying_faces import decode_boundary_modifying_faces
+from decode_named_vertex_selections import decode_named_vertex_selections
 from decode_pipe_paths import inspect_pipe_edge_path
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -782,10 +786,27 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                     entry["handle_scope"] = entry["identifier_scope"]
             mapping["scope"] = "Explicit native body/blob mapping; only validated same-blob typed BODY identifier joins supply ASM roots"
         body_binding_summary["scope"] = "Native body/blob mapping and observed typed per-blob BODY identifiers; final-body lifecycle unresolved"
+        native_naming_summary = decode_native_naming_registry(data, records)
+        face_tracking_summary = decode_face_tracking_contexts(
+            data, records, features, name, members, body_identifier_summary)
+        for evidence in face_tracking_summary['decoded']:
+            target = feature_by_id.get(evidence['feature_object_id'])
+            if target is not None:
+                target.setdefault('face_tracking_contexts', []).append(evidence)
         boundary_face_summary = decode_boundary_face_correspondences(
             data, records, name, members, body_identifier_summary)
         for evidence in boundary_face_summary['decoded']:
             feature_by_id[evidence['feature_object_id']]['boundary_face_correspondences'] = evidence
+        boundary_modifying_summary = decode_boundary_modifying_faces(
+            data, records, name, members, body_identifier_summary)
+        for evidence in boundary_modifying_summary['decoded']:
+            feature_by_id[evidence['feature_object_id']]['boundary_modifying_face_correspondences'] = evidence
+        named_vertex_summary = decode_named_vertex_selections(
+            data, records, features, name, members, body_identifier_summary)
+        for correspondence in named_vertex_summary['associations']:
+            target = feature_by_id.get(correspondence['descriptor_owner_feature_object_id'])
+            if target is not None:
+                target.setdefault('named_vertex_cache_correspondences', []).append(correspondence)
         historical_component_summary = decode_historical_body_components(
             data, records, body_binding_summary, assembly_summary)
         for patch in historical_component_summary["decoded"]:
@@ -980,9 +1001,14 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         for key, summary in (('mirror_datum_reflections', datum_reflection_summary),
                              ('circular_placement_evidence', circular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
-                             ('boundary_face_correspondences', boundary_face_summary)):
+                             ('boundary_face_correspondences', boundary_face_summary),
+                             ('native_naming_registry', native_naming_summary),
+                             ('face_tracking_contexts', face_tracking_summary),
+                             ('boundary_modifying_face_correspondences', boundary_modifying_summary)):
             if summary['decoded'] or summary['unresolved']:
                 streams[-1][key] = summary
+        if named_vertex_summary['associations'] or named_vertex_summary['unresolved']:
+            streams[-1]['named_vertex_selections'] = named_vertex_summary
         if fpm_body_tracking_summary['associations'] or fpm_body_tracking_summary['coverage'] or fpm_body_tracking_summary['unresolved']:
             streams[-1]['fpm_body_tracking'] = fpm_body_tracking_summary
     return {
