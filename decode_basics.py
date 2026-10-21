@@ -107,6 +107,8 @@ from decode_mesh_face_group_caches import decode_mesh_face_group_caches
 from decode_mesh_normals import decode_mesh_normal_pools
 from decode_base_feature_empty_lists import decode_base_feature_empty_lists
 from decode_base_feature_single_lists import decode_base_feature_single_lists
+from decode_base_mesh_feature_definitions import decode_base_mesh_feature_definitions
+from decode_base_mesh_sources import decode_base_mesh_sources
 from decode_split_face_metadata_variants import decode_split_face_metadata_variants
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -876,6 +878,15 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         mesh_summary = decode_mesh_contents_variants(data, records, name, members)
         mesh_normal_summary = decode_mesh_normal_pools(mesh_summary)
         mesh_face_group_cache_summary = decode_mesh_face_group_caches(mesh_summary)
+        base_mesh_definition_summary = decode_base_mesh_feature_definitions(data, records, features)
+        for partial in base_mesh_definition_summary['partial']:
+            feature = next(f for f in features if f['object_id'] == partial['feature_object_id'])
+            feature['base_mesh_feature_definition'] = partial
+        base_mesh_source_summary = decode_base_mesh_sources(data, records, features, name, members,
+            definitions=base_mesh_definition_summary, mesh_contents=mesh_summary)
+        for partial in base_mesh_source_summary['partial']:
+            feature = next(f for f in features if f['object_id'] == partial['feature_object_id'])
+            feature['base_mesh_source_provenance'] = partial
         base_empty_summary = decode_base_feature_empty_lists(data, records, features)
         for partial in base_empty_summary['partial']:
             feature = next(f for f in features if f['object_id'] == partial['feature_object_id'])
@@ -1694,6 +1705,10 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('profile_cache_correspondences', profile_cache_summary)):
             if summary['decoded'] or summary['unresolved'] or (key == 'mesh_face_groups' and historical_mesh_face_group_ids):
                 streams[-1][key] = summary
+        if base_mesh_definition_summary['partial'] or base_mesh_definition_summary['unresolved']:
+            streams[-1]['base_mesh_feature_definitions'] = base_mesh_definition_summary
+        if base_mesh_source_summary['partial'] or base_mesh_source_summary['unresolved']:
+            streams[-1]['base_mesh_sources'] = base_mesh_source_summary
         if base_empty_summary['partial'] or base_empty_summary['unresolved']:
             streams[-1]['base_feature_empty_lists'] = base_empty_summary
         if base_single_summary['partial'] or base_single_summary['unresolved']:

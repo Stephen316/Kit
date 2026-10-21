@@ -1,7 +1,8 @@
-"""Typed selected mesh retained outside current counted collection membership.
+"""Typed stored mesh retained outside current counted collection membership.
 
 No generic mesh ownership exception, lifecycle reconstruction or hidden-body
-classification is made. The caller supplies an explicit owned mesh selection.
+classification is made. The selected-source wrapper additionally validates an
+explicit owned mesh selection; the neutral record factory makes no such claim.
 """
 import math
 import lzma
@@ -19,6 +20,18 @@ def decode_retained_mesh_source(data, records, mesh_id, selection, member, membe
     _require(selection['mesh_object_id'] == mesh_id and decode_mesh_selection(data, records,
         selection['proxy_object_id'], selection['owner_feature_object_id']) == selection,
         'Retained source selection does not match independently validated native mesh route')
+    result = decode_retained_mesh_record(data, records, mesh_id, member, members)
+    result['collection_scope'] = 'Retained selected-mesh owner reference with explicit current counted members excluding source; not reciprocal source membership or lifecycle reconstruction'
+    result['source_identity_scope'] = 'Feature-owned typed proxy/descriptor and explicit BaseMeshFeature membership; geometry never chooses identity'
+    return result
+
+
+def decode_retained_mesh_record(data, records, mesh_id, member, members):
+    """Strict stored mesh/asset route, requiring absence from current counted members.
+
+    This does not establish an operation selection or parent BaseFeature. Callers
+    qualify their own input association independently.
+    """
     source_mesh_id = mesh_id
     def typed(identity, guid):
         rows = [r for r in records if r.is_primary and r.object_id == identity]
@@ -85,8 +98,8 @@ def decode_retained_mesh_source(data, records, mesh_id, selection, member, membe
         'base_mesh_feature_class_guid': '99F6967E-ED35-4222-B906-5CCF0AC70B53',
         'retained_mesh_collection_object_id': retained_collection_id, 'stored_current_collection_member_count': count,
         'retained_owner_collection_member_ids': counted_members, 'retained_membership_status': 'NotInCountedMembers',
-        'collection_scope': 'Retained selected-mesh owner reference with explicit current counted members excluding source; not reciprocal source membership or lifecycle reconstruction',
-        'source_identity_scope': 'Feature-owned typed proxy/descriptor and explicit BaseMeshFeature membership; geometry never chooses identity',
+        'collection_scope': 'Stored mesh owner reference with explicit current counted members excluding source; not reciprocal source membership, operation selection or lifecycle reconstruction',
+        'source_identity_scope': 'Explicit reciprocal stored mesh/BaseMeshFeature and same-asset route only; no operation selection or parent BaseFeature inferred',
         'stored_packed_prefix_hex': source_payload[:22].hex(), 'stored_mesh_index': stored_index, 'packed_prefix_scope': 'Literal captured variant; flag semantics unresolved',
         'stored_matrix_copies': [matrix, second_matrix], 'asset_coordinates_to_component_matrix': matrix,
         **asset, 'name_property_object_id': property_id, 'name_helper_object_id': helper_id}
