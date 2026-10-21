@@ -1,0 +1,1381 @@
+{
+  "status": "complete",
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "join",
+      "file": "join.f3d",
+      "status": "exported",
+      "getter_errors": [],
+      "requested": {
+        "operation": "join",
+        "section_type": "Circular",
+        "section_size_cm": 0.6,
+        "is_hollow": false,
+        "distance_one": 1.0,
+        "path_start_cm": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "path_end_cm": [
+          4.0,
+          0.0,
+          0.0
+        ],
+        "target_bounds_min_cm": [
+          0.0,
+          -1.0,
+          -1.0
+        ],
+        "target_bounds_max_cm": [
+          3.0,
+          1.0,
+          1.0
+        ],
+        "explicit_participant_bodies_set": false
+      },
+      "source_before_pipe": {
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuaNe7i+lfst752wzFnvd9VnoAojBWMzhUQzIwNLc9MkXaNko2RdEwMjC91EQ3MTXXNjc0NzQzMjszRzA7BaoBkMaABsn4EC2DpTQyMwbWxgomAIYgMAFzVASJIAAAA=",
+                "sketch_name": "PipeOperationPathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuaNe7i+lfst752wzFnvd9VnoAojBWMzhUQzIwNLc9MkXaNko2RdEwMjC91EQ3MTXXNjc0NzQzMjszRzA7BaoBkMaABsn4EC2DqQ9cYGJgBKY+wBiAAAAA==",
+                "natural_world_geometry": {
+                  "entity_type": "adsk::core::Line3D",
+                  "parameter_extents_returned": true,
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "samples": [
+                    {
+                      "fraction": 0.0,
+                      "parameter": 0.0,
+                      "returned": true,
+                      "point_cm": [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 0.5,
+                      "parameter": 0.5,
+                      "returned": true,
+                      "point_cm": [
+                        1.5,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 1.0,
+                      "parameter": 1.0,
+                      "returned": true,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  ]
+                },
+                "start_world_cm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "path_curve_geometry": {
+                "entity_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents_returned": true,
+                "parameter_extents": [
+                  0.0,
+                  5.0
+                ],
+                "samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 2.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.5,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 5.0,
+                    "returned": true,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "target_body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuaNe7i+lfst752wzFnvd9VnoAojBWMzhUQzIwNLc9MkXaNko2RdEwMjC91EQ3MTXXNjc0NzQzMjszRzA7BaoBkMaABsn4EC2DqQ9UaW5gCO4+VIiAAAAA==",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 12.0,
+          "bounds_min_cm": [
+            0.0,
+            -1.0,
+            -1.0
+          ],
+          "bounds_max_cm": [
+            3.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "actual_input_before_add": {
+        "operation": 0,
+        "section_type": 0,
+        "is_hollow": false,
+        "section_size_real": 0.6,
+        "distance_one_real": 1.0,
+        "participant_bodies": {
+          "applicable": false,
+          "scope": "Documented participant property applies to Cut/Intersect; Join inference left to Fusion"
+        }
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuaNe7i+lfst752wzFnvd9VnoAojBWMzhUQzIwNLc9MkXaNko2RdEwMjC91EQ3MTXXNjc0NzQzMjszRzA7BaoBkMaABsn4EC2DqQ9UaW5gCO4+VIiAAAAA==",
+          "is_solid": true,
+          "face_count": 10,
+          "edge_count": 16,
+          "vertex_count": 12,
+          "volume_cm3": 12.565486677646188,
+          "bounds_min_cm": [
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "bounds_max_cm": [
+            4.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "root_bodies_after": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuaNe7i+lfst752wzFnvd9VnoAojBWMzhUQzIwNLc9MkXaNko2RdEwMjC91EQ3MTXXNjc0NzQzMjszRzA7BaoBkMaABsn4EC2DqQ9UaW5gCO4+VIiAAAAA==",
+          "is_solid": true,
+          "face_count": 10,
+          "edge_count": 16,
+          "vertex_count": 12,
+          "volume_cm3": 12.565486677646188,
+          "bounds_min_cm": [
+            -1.0,
+            -1.0,
+            -1.0
+          ],
+          "bounds_max_cm": [
+            4.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "settings": {
+        "operation": 0,
+        "section_type": 0,
+        "is_hollow": false,
+        "section_size": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d7",
+          "role": "SectionSize",
+          "raw_value": 0.6000000000000001,
+          "unit": "mm",
+          "expression": "6.00 mm",
+          "created_by": "ProbePipeOperation_join"
+        },
+        "section_thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d8",
+          "role": "SectionThickness",
+          "raw_value": 0.0,
+          "unit": "mm",
+          "expression": "0.00 mm",
+          "created_by": "ProbePipeOperation_join"
+        },
+        "distance_one": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "AgainstDistance",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbePipeOperation_join"
+        },
+        "distance_two": {
+          "getter_returned_null": true
+        },
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuaNe7i+lfst752wzFnvd9VnoAojBWMzhUQzIwNLc9MkXaNko2RdEwMjC91EQ3MTXXNjc0NzQzMjszRzA7BaoBkMaABsn4EC2DpTQyMwbWxgomAIYgMAFzVASJIAAAA=",
+                "sketch_name": "PipeOperationPathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwuaNe7i+lfst752wzFnvd9VnoAojBWMzhUQzIwNLc9MkXaNko2RdEwMjC91EQ3MTXXNjc0NzQzMjszRzA7BaoBkMaABsn4EC2DqQ9cYGJgBKY+wBiAAAAA==",
+                "natural_world_geometry": {
+                  "entity_type": "adsk::core::Line3D",
+                  "parameter_extents_returned": true,
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "samples": [
+                    {
+                      "fraction": 0.0,
+                      "parameter": 0.0,
+                      "returned": true,
+                      "point_cm": [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 0.5,
+                      "parameter": 0.5,
+                      "returned": true,
+                      "point_cm": [
+                        1.5,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 1.0,
+                      "parameter": 1.0,
+                      "returned": true,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  ]
+                },
+                "start_world_cm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "path_curve_geometry": {
+                "entity_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents_returned": true,
+                "parameter_extents": [
+                  0.0,
+                  5.0
+                ],
+                "samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 2.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.5,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 5.0,
+                    "returned": true,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "participant_bodies": {
+          "applicable": false,
+          "scope": "No inactive Join participant getter called"
+        }
+      },
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": -1.0,
+          "unit": "mm",
+          "expression": "-10.00 mm",
+          "created_by": "PipeTargetBasePlane"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "AlongDistance",
+          "raw_value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "PipeTargetExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "PipeTargetExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "AlongDistance",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbePipeOperation_join"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "AgainstDistance",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbePipeOperation_join"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d7",
+          "role": "SectionSize",
+          "raw_value": 0.6000000000000001,
+          "unit": "mm",
+          "expression": "6.00 mm",
+          "created_by": "ProbePipeOperation_join"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d8",
+          "role": "SectionThickness",
+          "raw_value": 0.0,
+          "unit": "mm",
+          "expression": "0.00 mm",
+          "created_by": "ProbePipeOperation_join"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "cut",
+      "file": "cut.f3d",
+      "status": "exported",
+      "getter_errors": [],
+      "requested": {
+        "operation": "cut",
+        "section_type": "Circular",
+        "section_size_cm": 0.6,
+        "is_hollow": false,
+        "distance_one": 1.0,
+        "path_start_cm": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "path_end_cm": [
+          4.0,
+          0.0,
+          0.0
+        ],
+        "target_bounds_min_cm": [
+          0.0,
+          -1.0,
+          -1.0
+        ],
+        "target_bounds_max_cm": [
+          3.0,
+          1.0,
+          1.0
+        ],
+        "explicit_participant_bodies_set": true
+      },
+      "source_before_pipe": {
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAts7U0AhMGxuYKBiC2ADUhf0bkgAAAA==",
+                "sketch_name": "PipeOperationPathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAtg5kvbGBCQBILVRBiAAAAA==",
+                "natural_world_geometry": {
+                  "entity_type": "adsk::core::Line3D",
+                  "parameter_extents_returned": true,
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "samples": [
+                    {
+                      "fraction": 0.0,
+                      "parameter": 0.0,
+                      "returned": true,
+                      "point_cm": [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 0.5,
+                      "parameter": 0.5,
+                      "returned": true,
+                      "point_cm": [
+                        1.5,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 1.0,
+                      "parameter": 1.0,
+                      "returned": true,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  ]
+                },
+                "start_world_cm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "path_curve_geometry": {
+                "entity_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents_returned": true,
+                "parameter_extents": [
+                  0.0,
+                  5.0
+                ],
+                "samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 2.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.5,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 5.0,
+                    "returned": true,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "target_body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAtg5kvZGlOQCMrV0IiAAAAA==",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 12.0,
+          "bounds_min_cm": [
+            0.0,
+            -1.0,
+            -1.0
+          ],
+          "bounds_max_cm": [
+            3.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "actual_input_before_add": {
+        "operation": 1,
+        "section_type": 0,
+        "is_hollow": false,
+        "section_size_real": 0.6,
+        "distance_one_real": 1.0,
+        "participant_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "PipeOperationTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAtg5kvZGlOQCMrV0IiAAAAA==",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "vertex_count": 8,
+            "volume_cm3": 12.0,
+            "bounds_min_cm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "bounds_max_cm": [
+              3.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAtg5kvZGlOQCMrV0IiAAAAA==",
+          "is_solid": true,
+          "face_count": 7,
+          "edge_count": 14,
+          "vertex_count": 10,
+          "volume_cm3": 11.15176998353072,
+          "bounds_min_cm": [
+            0.0,
+            -1.0,
+            -1.0
+          ],
+          "bounds_max_cm": [
+            3.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "root_bodies_after": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAtg5kvZGlOQCMrV0IiAAAAA==",
+          "is_solid": true,
+          "face_count": 7,
+          "edge_count": 14,
+          "vertex_count": 10,
+          "volume_cm3": 11.15176998353072,
+          "bounds_min_cm": [
+            0.0,
+            -1.0,
+            -1.0
+          ],
+          "bounds_max_cm": [
+            3.0,
+            1.0,
+            1.0
+          ]
+        }
+      ],
+      "settings": {
+        "operation": 1,
+        "section_type": 0,
+        "is_hollow": false,
+        "section_size": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d7",
+          "role": "SectionSize",
+          "raw_value": 0.6000000000000001,
+          "unit": "mm",
+          "expression": "6.00 mm",
+          "created_by": "ProbePipeOperation_cut"
+        },
+        "section_thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d8",
+          "role": "SectionThickness",
+          "raw_value": 0.0,
+          "unit": "mm",
+          "expression": "0.00 mm",
+          "created_by": "ProbePipeOperation_cut"
+        },
+        "distance_one": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "AgainstDistance",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbePipeOperation_cut"
+        },
+        "distance_two": {
+          "getter_returned_null": true
+        },
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAts7U0AhMGxuYKBiC2ADUhf0bkgAAAA==",
+                "sketch_name": "PipeOperationPathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAtg5kvbGBCQBILVRBiAAAAA==",
+                "natural_world_geometry": {
+                  "entity_type": "adsk::core::Line3D",
+                  "parameter_extents_returned": true,
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "samples": [
+                    {
+                      "fraction": 0.0,
+                      "parameter": 0.0,
+                      "returned": true,
+                      "point_cm": [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 0.5,
+                      "parameter": 0.5,
+                      "returned": true,
+                      "point_cm": [
+                        1.5,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 1.0,
+                      "parameter": 1.0,
+                      "returned": true,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  ]
+                },
+                "start_world_cm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "path_curve_geometry": {
+                "entity_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents_returned": true,
+                "parameter_extents": [
+                  0.0,
+                  5.0
+                ],
+                "samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 2.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.5,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 5.0,
+                    "returned": true,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "participant_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "PipeOperationTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgu/9Ft2LF93eT203ad1xz18IqMJIwdhMwdwoJcnYMtlI18TCJE3XxCjZVNfCIM1EN8UgydgsMdXYxDjRDKwWaAYDGgDbZ6AAtg5kvZGlOQCMrV0IiAAAAA==",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "vertex_count": 8,
+            "volume_cm3": 12.0,
+            "bounds_min_cm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "bounds_max_cm": [
+              3.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": -1.0,
+          "unit": "mm",
+          "expression": "-10.00 mm",
+          "created_by": "PipeTargetBasePlane"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "AlongDistance",
+          "raw_value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "PipeTargetExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "PipeTargetExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "AlongDistance",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbePipeOperation_cut"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "AgainstDistance",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbePipeOperation_cut"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d7",
+          "role": "SectionSize",
+          "raw_value": 0.6000000000000001,
+          "unit": "mm",
+          "expression": "6.00 mm",
+          "created_by": "ProbePipeOperation_cut"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d8",
+          "role": "SectionThickness",
+          "raw_value": 0.0,
+          "unit": "mm",
+          "expression": "0.00 mm",
+          "created_by": "ProbePipeOperation_cut"
+        }
+      ],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "intersect",
+      "file": "intersect.f3d",
+      "status": "exported",
+      "getter_errors": [],
+      "requested": {
+        "operation": "intersect",
+        "section_type": "Circular",
+        "section_size_cm": 0.6,
+        "is_hollow": false,
+        "distance_one": 1.0,
+        "path_start_cm": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "path_end_cm": [
+          4.0,
+          0.0,
+          0.0
+        ],
+        "target_bounds_min_cm": [
+          0.0,
+          -1.0,
+          -1.0
+        ],
+        "target_bounds_max_cm": [
+          3.0,
+          1.0,
+          1.0
+        ],
+        "explicit_participant_bodies_set": true
+      },
+      "source_before_pipe": {
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbJ2poRGYNjYwUTAEsQHzpl2DkgAAAA==",
+                "sketch_name": "PipeOperationPathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbB1IkbGBCQCyMjSTiAAAAA==",
+                "natural_world_geometry": {
+                  "entity_type": "adsk::core::Line3D",
+                  "parameter_extents_returned": true,
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "samples": [
+                    {
+                      "fraction": 0.0,
+                      "parameter": 0.0,
+                      "returned": true,
+                      "point_cm": [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 0.5,
+                      "parameter": 0.5,
+                      "returned": true,
+                      "point_cm": [
+                        1.5,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 1.0,
+                      "parameter": 1.0,
+                      "returned": true,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  ]
+                },
+                "start_world_cm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "path_curve_geometry": {
+                "entity_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents_returned": true,
+                "parameter_extents": [
+                  0.0,
+                  5.0
+                ],
+                "samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 2.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.5,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 5.0,
+                    "returned": true,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "target_body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbB1YkaU5AHayPdqIAAAA",
+          "is_solid": true,
+          "face_count": 6,
+          "edge_count": 12,
+          "vertex_count": 8,
+          "volume_cm3": 12.0,
+          "bounds_min_cm": [
+            0.0,
+            -1.0,
+            -1.0
+          ],
+          "bounds_max_cm": [
+            3.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "actual_input_before_add": {
+        "operation": 2,
+        "section_type": 0,
+        "is_hollow": false,
+        "section_size_real": 0.6,
+        "distance_one_real": 1.0,
+        "participant_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "PipeOperationTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbB1YkaU5AHayPdqIAAAA",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "vertex_count": 8,
+            "volume_cm3": 12.0,
+            "bounds_min_cm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "bounds_max_cm": [
+              3.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbB1YkaU5AHayPdqIAAAA",
+          "is_solid": true,
+          "face_count": 3,
+          "edge_count": 2,
+          "vertex_count": 2,
+          "volume_cm3": 0.8482300164692809,
+          "bounds_min_cm": [
+            0.0,
+            -0.30000000000000004,
+            -0.30000000000000004
+          ],
+          "bounds_max_cm": [
+            3.0,
+            0.30000000000000004,
+            0.30000000000000004
+          ]
+        }
+      ],
+      "root_bodies_after": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PipeOperationTarget",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbB1YkaU5AHayPdqIAAAA",
+          "is_solid": true,
+          "face_count": 3,
+          "edge_count": 2,
+          "vertex_count": 2,
+          "volume_cm3": 0.8482300164692809,
+          "bounds_min_cm": [
+            0.0,
+            -0.30000000000000004,
+            -0.30000000000000004
+          ],
+          "bounds_max_cm": [
+            3.0,
+            0.30000000000000004,
+            0.30000000000000004
+          ]
+        }
+      ],
+      "settings": {
+        "operation": 2,
+        "section_type": 0,
+        "is_hollow": false,
+        "section_size": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d7",
+          "role": "SectionSize",
+          "raw_value": 0.6000000000000001,
+          "unit": "mm",
+          "expression": "6.00 mm",
+          "created_by": "ProbePipeOperation_intersect"
+        },
+        "section_thickness": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d8",
+          "role": "SectionThickness",
+          "raw_value": 0.0,
+          "unit": "mm",
+          "expression": "0.00 mm",
+          "created_by": "ProbePipeOperation_intersect"
+        },
+        "distance_one": {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "AgainstDistance",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbePipeOperation_intersect"
+        },
+        "distance_two": {
+          "getter_returned_null": true
+        },
+        "path": {
+          "entity_type": "adsk::fusion::Path",
+          "count": 1,
+          "is_closed": false,
+          "members": [
+            {
+              "index": 0,
+              "is_opposed_to_entity": false,
+              "entity": {
+                "entity_type": "adsk::fusion::SketchLine",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbJ2poRGYNjYwUTAEsQHzpl2DkgAAAA==",
+                "sketch_name": "PipeOperationPathSketch",
+                "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbB1IkbGBCQCyMjSTiAAAAA==",
+                "natural_world_geometry": {
+                  "entity_type": "adsk::core::Line3D",
+                  "parameter_extents_returned": true,
+                  "parameter_extents": [
+                    0.0,
+                    1.0
+                  ],
+                  "samples": [
+                    {
+                      "fraction": 0.0,
+                      "parameter": 0.0,
+                      "returned": true,
+                      "point_cm": [
+                        -1.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 0.5,
+                      "parameter": 0.5,
+                      "returned": true,
+                      "point_cm": [
+                        1.5,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "fraction": 1.0,
+                      "parameter": 1.0,
+                      "returned": true,
+                      "point_cm": [
+                        4.0,
+                        0.0,
+                        0.0
+                      ]
+                    }
+                  ]
+                },
+                "start_world_cm": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "end_world_cm": [
+                  4.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "path_curve_geometry": {
+                "entity_type": "adsk::core::NurbsCurve3D",
+                "parameter_extents_returned": true,
+                "parameter_extents": [
+                  0.0,
+                  5.0
+                ],
+                "samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      -1.0,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 2.5,
+                    "returned": true,
+                    "point_cm": [
+                      1.5,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 5.0,
+                    "returned": true,
+                    "point_cm": [
+                      4.0,
+                      0.0,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "participant_bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "PipeOperationTarget",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgtS2Y0dWNfp82JXZNas+S3YRUIWRgrGZQpqluaFFcqKhrllqcqKuiVGKqa6FoZmRrlGKsaGBhXmiSWqyBVgt0AwGNAC2z0ABbB1YkaU5AHayPdqIAAAA",
+            "is_solid": true,
+            "face_count": 6,
+            "edge_count": 12,
+            "vertex_count": 8,
+            "volume_cm3": 12.0,
+            "bounds_min_cm": [
+              0.0,
+              -1.0,
+              -1.0
+            ],
+            "bounds_max_cm": [
+              3.0,
+              1.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d1",
+          "role": "AlongDistance",
+          "raw_value": -1.0,
+          "unit": "mm",
+          "expression": "-10.00 mm",
+          "created_by": "PipeTargetBasePlane"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d3",
+          "role": "AlongDistance",
+          "raw_value": 2.0,
+          "unit": "mm",
+          "expression": "20.00 mm",
+          "created_by": "PipeTargetExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d4",
+          "role": "TaperAngle",
+          "raw_value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "PipeTargetExtrude"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d5",
+          "role": "AlongDistance",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbePipeOperation_intersect"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d6",
+          "role": "AgainstDistance",
+          "raw_value": 1.0,
+          "unit": "",
+          "expression": "1",
+          "created_by": "ProbePipeOperation_intersect"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d7",
+          "role": "SectionSize",
+          "raw_value": 0.6000000000000001,
+          "unit": "mm",
+          "expression": "6.00 mm",
+          "created_by": "ProbePipeOperation_intersect"
+        },
+        {
+          "entity_type": "adsk::fusion::ModelParameter",
+          "name": "d8",
+          "role": "SectionThickness",
+          "raw_value": 0.0,
+          "unit": "mm",
+          "expression": "0.00 mm",
+          "created_by": "ProbePipeOperation_intersect"
+        }
+      ],
+      "close_owned_document_result": true
+    }
+  ],
+  "errors": [],
+  "executed_generator_sha256": "83149cb97c00eebf9a1923e19a094fd5ad3eb91db6a691feb47a2c2f592c48cb",
+  "SDK_scope": "PipeFeatures.createInput(path,operation); circular sectionSize real internal cm; participantBodies applies to Cut/Intersect only; actual path/participants read after rollback before feature.",
+  "identity_scope": "Requested source geometry/target identities retained independently; no native code, ASM identity or tool/target role inferred from coordinate coincidence"
+}

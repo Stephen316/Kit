@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 609,
+  "file_count": 618,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -283,6 +283,9 @@
     "pathpatterncomposites-b6b4cf615504/composite_identical.f3d",
     "pathpatterncomposites-b6b4cf615504/composite_multiple.f3d",
     "pathpatterncomposites-b6b4cf615504/spline_along.f3d",
+    "pathpatterninputs-7edfa558db34/feature_identical.f3d",
+    "pathpatterninputs-7edfa558db34/feature_optimized.f3d",
+    "pathpatterninputs-7edfa558db34/root_occurrence.f3d",
     "pathpatterns-de9857f6a1bc/arc_along.f3d",
     "pathpatterns-de9857f6a1bc/arc_identical.f3d",
     "pathpatterns-de9857f6a1bc/extent.f3d",
@@ -309,10 +312,16 @@
     "pipemodes-87cfa7d8d82b/partial_open.f3d",
     "pipemodes-87cfa7d8d82b/square.f3d",
     "pipemodes-87cfa7d8d82b/triangular.f3d",
+    "pipeoperations-6afc81788dbf/cut.f3d",
+    "pipeoperations-6afc81788dbf/intersect.f3d",
+    "pipeoperations-6afc81788dbf/join.f3d",
     "pipepaths-3d11bd427946/brep_edge_circular.f3d",
     "pipepaths-3d11bd427946/composite_circular.f3d",
     "pipepaths-3d11bd427946/composite_square_hollow_partial.f3d",
     "pipepaths-3d11bd427946/spline_circular.f3d",
+    "placedprofiletrims-037ed41056a4/angled_rectangle_overlap.f3d",
+    "placedprofiletrims-037ed41056a4/offset_xy_circle_lens.f3d",
+    "placedprofiletrims-037ed41056a4/origin_xz_mixed_segment.f3d",
     "placement-c6ad25e75d60/placement.f3d",
     "planedefinitions-6cd0820a832e/angle.f3d",
     "planedefinitions-6cd0820a832e/midplane.f3d",
@@ -612,8 +621,8 @@
     "variablefillets-a5080b076434/one_three_quarters.f3d",
     "variablefillets-a5080b076434/two_intermediates.f3d"
   ],
-  "class_count": 371,
-  "classes_with_observed_semantics": 61,
+  "class_count": 374,
+  "classes_with_observed_semantics": 62,
   "classes": [
     {
       "class_guid": "00D157C2-2332-4BD5-BB53-048C4081D1C3",
@@ -2112,6 +2121,22 @@
         "advanced-627f7fe095f4/advanced.f3d",
         "analytic-86a12b291d0a/analytic.f3d",
         "assembly-acc48a9dc05d/assembly.f3d"
+      ]
+    },
+    {
+      "class_guid": "414A485F-2F33-4B4F-9641-B6D824E214AF",
+      "base_class_guids": [
+        "CB818863-9C9D-432E-858A-4B4B3963F7E0"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [],
+      "example_files": [
+        "pathpatterninputs-7edfa558db34/root_occurrence.f3d"
       ]
     },
     {
@@ -3941,6 +3966,20 @@
         "bodymodes-405fbd002680/mirror_xz.f3d",
         "bodymodes-405fbd002680/mirror_yz.f3d"
       ]
+    },
+    {
+      "class_guid": "8DC49A8A-45FB-4595-9F20-E482D17F16EC",
+      "base_class_guids": [
+        "BADF6309-013D-48F0-9AB0-0C05FB086CF4"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [],
+      "example_files": []
     },
     {
       "class_guid": "8DFDD543-F823-43AA-BDAF-C638E023F0A0",
@@ -6391,6 +6430,24 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "EBCDE6CC-CA52-44AD-A6B0-76265794E4BD",
+      "base_class_guids": [
+        "8DC49A8A-45FB-4595-9F20-E482D17F16EC"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: PathPattern"
+      ],
+      "example_files": [
+        "pathpatterninputs-7edfa558db34/root_occurrence.f3d"
+      ]
     },
     {
       "class_guid": "ECE74E76-963C-4BF4-A70D-01F62AB233A8",

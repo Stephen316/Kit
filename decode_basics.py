@@ -56,12 +56,15 @@ from decode_trimmed_profiles import decode_trimmed_profiles
 from decode_profile_circle_portions import decode_profile_circle_portions
 from decode_profile_line_portions import decode_profile_line_portions
 from decode_profile_mixed_portions import decode_profile_mixed_portions
+from decode_placed_profile_portions import decode_placed_profile_portions
 from decode_variable_fillets import decode_variable_fillets
 from decode_asymmetric_fillet_flips import decode_asymmetric_fillet_flips
 from decode_circular_symmetric_suppression import decode_circular_symmetric_suppression
 from decode_asbuilt_joints import ASBUILT, decode_asbuilt_joints
 from decode_rigid_groups import decode_rigid_groups
 from decode_pipe_paths import inspect_pipe_edge_path
+from decode_pipe_operations import decode_pipe_operations
+from decode_path_pattern_inputs import decode_path_pattern_inputs
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
 from fusion_records import Record, record_fragments
@@ -508,6 +511,20 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         selection_summary["unresolved"] = [a for a in selection_summary["unresolved"]
                                              if (a["feature_object_id"], a["selection_object_id"]) not in resolved_axis_keys]
         tool_summary = decode_tools(data, records, features)
+        pipe_operation_summary = decode_pipe_operations(data, records, features)
+        pipe_operation_ids = set()
+        for operation in pipe_operation_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == operation['feature_object_id'])
+            feature.update(tool_settings=operation['tool_settings'],
+                pipe_operation_inputs={key: operation[key] for key in ('stored_operation_code', 'target_body',
+                    'API_participant_applicability', 'participant_scope', 'layout')},
+                decode_level='Observed Pipe Boolean controls and owned historical target; topology, lifecycle and regeneration unresolved')
+            pipe_operation_ids.add(feature['object_id'])
+            if not any(item['object_id'] == feature['object_id'] for item in tool_summary['decoded']):
+                tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': 'Pipe'})
+        pipe_operation_error = 'Unsupported Pipe variant; single path: Unsupported observed Pipe prefix/operation; extended sketch path: Unsupported observed Pipe prefix/operation'
+        tool_summary['unresolved'] = [item for item in tool_summary['unresolved']
+            if item['object_id'] not in pipe_operation_ids or item['reason'] != pipe_operation_error]
         hole_point_summary = decode_hole_point_sources(data, records, features)
         for sources in hole_point_summary["decoded"]:
             hole = next(f for f in features if f["object_id"] == sources["feature_object_id"])
@@ -666,6 +683,21 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                                                 or item["object_id"] not in resolved_component_proxies]
         body_selection_summary["unresolved"].extend(component_body_summary["unresolved"])
         body_selection_summary["component_context_scope"] = component_body_summary["scope"]
+        path_pattern_input_summary = decode_path_pattern_inputs(data, records, features, assembly_summary,
+            body_selections=body_selection_summary)
+        path_pattern_input_ids = set()
+        for pattern in path_pattern_input_summary['decoded']:
+            feature = feature_by_id[pattern['feature_object_id']]
+            feature.update(tool_settings=pattern['settings'],
+                decode_level='Observed Feature/Occurrence PathPattern controls and typed input/result provenance; replay, general placement and regeneration unresolved')
+            path_pattern_input_ids.add(feature['object_id'])
+            if not any(item['object_id'] == feature['object_id'] for item in tool_summary['decoded']):
+                tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': 'PathPattern'})
+        path_pattern_input_errors = {
+            'Unsupported PathPattern variant; single path: Unsupported path-pattern control layout; composite path: Unsupported path-pattern control layout',
+            'Unsupported PathPattern variant; single path: Unsupported body path-pattern prefix/class; composite path: Unsupported body path-pattern prefix/class'}
+        tool_summary['unresolved'] = [item for item in tool_summary['unresolved']
+            if item['object_id'] not in path_pattern_input_ids or item['reason'] not in path_pattern_input_errors]
         hole_support_summary = decode_hole_supports(data, records, features, body_selection_summary)
         for inputs in hole_support_summary["decoded"]:
             hole = feature_by_id[inputs["feature_object_id"]]
@@ -944,6 +976,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             data, records, features, name, members, body_identifier_summary)
         profile_mixed_summary = decode_profile_mixed_portions(
             data, records, features, name, members, body_identifier_summary)
+        placed_profile_summary = decode_placed_profile_portions(
+            data, records, features, name, members, body_identifier_summary)
         for correspondence in profile_line_summary['decoded']:
             feature_by_id[correspondence['source_feature_object_id']].setdefault(
                 'profile_line_portions', []).append(correspondence)
@@ -998,6 +1032,23 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 profile_summary['decoded'].append({'feature_object_id': target['object_id'],
                     'descriptor_object_id': descriptor_id, 'loop_count': len(correspondence['profile_loops']),
                     'reference_layout': 'ObservedMixedCircleLinePortionSelectors'})
+            trimmed_ids.add(target['object_id'])
+        for correspondence in placed_profile_summary['decoded']:
+            target = feature_by_id[correspondence['source_feature_object_id']]
+            target.setdefault('placed_profile_portions', []).append(correspondence)
+            descriptor_id = correspondence['profile_descriptor_object_id']
+            if not any(p['descriptor_object_id'] == descriptor_id for p in target.get('profile_selection', [])):
+                target.setdefault('profile_selection', []).append({
+                    'sketch_object_id': correspondence['native_sketch_object_id'],
+                    'sketch_name': correspondence['native_sketch_name'],
+                    'descriptor_object_id': descriptor_id,
+                    'loop_definition_object_id': correspondence['profile_loop_definition_object_id'],
+                    'loops': correspondence['profile_loops'],
+                    'selection_level': 'Observed placed profile portion references with qualified native component-frame geometry',
+                    'limitations': 'Derived local parameters and component points remain separate from serialized parameters; general traversal and cache lifecycle remain unresolved'})
+                profile_summary['decoded'].append({'feature_object_id': target['object_id'],
+                    'descriptor_object_id': descriptor_id, 'loop_count': len(correspondence['profile_loops']),
+                    'reference_layout': 'ObservedPlacedProfilePortionSelectors'})
             trimmed_ids.add(target['object_id'])
         profile_summary['unresolved'] = [item for item in profile_summary['unresolved']
             if item['feature_object_id'] not in trimmed_ids or item['reason'] != 'Unsupported profile curve or trim-reference layout']
@@ -1199,11 +1250,14 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('profile_circle_portions', profile_circle_summary),
                              ('profile_line_portions', profile_line_summary),
                              ('profile_mixed_portions', profile_mixed_summary),
+                             ('placed_profile_portions', placed_profile_summary),
                              ('variable_fillets', variable_fillet_summary),
                              ('asymmetric_fillet_flips', asymmetric_flip_summary),
                              ('as_built_joints', asbuilt_summary),
                              ('rigid_groups', rigid_group_summary),
                              ('remove_features', remove_summary),
+                             ('pipe_operations', pipe_operation_summary),
+                             ('path_pattern_inputs', path_pattern_input_summary),
                              ('circular_placement_evidence', circular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),

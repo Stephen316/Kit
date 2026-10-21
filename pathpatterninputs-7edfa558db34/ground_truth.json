@@ -1,0 +1,1468 @@
+{
+  "batch_id": "7edfa558db34",
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "feature_optimized",
+      "file": "feature_optimized.f3d",
+      "getter_errors": [
+        {
+          "field": "requested_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "requested_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        }
+      ],
+      "setter_errors": [],
+      "compute_before": true,
+      "requested_input": {
+        "kind": "ExtrudeFeature",
+        "entity_type": "adsk::fusion::ExtrudeFeature",
+        "name": "PathPatternSeedExtrude",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvZGIMAN9ojEeIAAAA",
+        "parent_component_name": "(Unsaved)",
+        "timeline_index": 1,
+        "bodies": [
+          {
+            "name": "PathPatternSeedBody",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvZG4KACmewoWIAAAA",
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ]
+      },
+      "requested_path": {
+        "count": 1,
+        "entities": [
+          {
+            "curve_type": 0,
+            "source_entity_type": "adsk::fusion::SketchLine",
+            "source_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtMzU0AtNGFkClIDYAKsVCSpIAAAA=",
+            "source_sketch_name": "InputContrastStraightPath",
+            "is_opposed_to_entity": false,
+            "path_curve_start_cm": null,
+            "path_curve_end_cm": null,
+            "source_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_end_cm": [
+              6.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "collections_before": {
+        "root_body_count": 1,
+        "root_bodies": [
+          {
+            "name": "PathPatternSeedBody",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvZG4KACmewoWIAAAA",
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "root_occurrence_count": 0,
+        "all_occurrences": []
+      },
+      "requested_compute_option": 0,
+      "requested_common_controls": {
+        "quantity": 3,
+        "distance_cm": 1.5,
+        "distance_type": 1,
+        "start_fraction": 0.0,
+        "is_flipped": false,
+        "is_symmetric": false,
+        "orientation_along_path": false
+      },
+      "actual_inputs": [
+        {
+          "kind": "ExtrudeFeature",
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "PathPatternSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvZGIMAN9ojEeIAAAA",
+          "parent_component_name": "(Unsaved)",
+          "timeline_index": 1,
+          "bodies": [
+            {
+              "name": "PathPatternSeedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvZG4KACmewoWIAAAA",
+              "bounding_box_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_path": {
+        "count": 1,
+        "entities": [
+          {
+            "curve_type": 0,
+            "source_entity_type": "adsk::fusion::SketchLine",
+            "source_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtMzU0AtNGFkClIDYAKsVCSpIAAAA=",
+            "source_sketch_name": "InputContrastStraightPath",
+            "is_opposed_to_entity": false,
+            "path_curve_start_cm": null,
+            "path_curve_end_cm": null,
+            "source_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_end_cm": [
+              6.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "compute_after": true,
+      "feature_identity": {
+        "name": "ProbePathPatternFeatureOptimized",
+        "entity_type": "adsk::fusion::PathPatternFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvbGYMAGpgeHSIAAAA",
+        "timeline_index": 3,
+        "parent_component_name": "(Unsaved)"
+      },
+      "settings": {
+        "quantity": 3.0,
+        "distance_cm": 1.5,
+        "distance_type": 1,
+        "start_fraction": 0.0,
+        "is_flipped": false,
+        "is_symmetric": false,
+        "orientation_along_path": false,
+        "pattern_entity_type": 1,
+        "pattern_compute_option": 0,
+        "suppressed_element_ids": []
+      },
+      "pattern_elements": [
+        {
+          "id": 0,
+          "name": "Occurrence1",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        },
+        {
+          "id": 1,
+          "name": "Occurrence2",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.5,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        },
+        {
+          "id": 2,
+          "name": "Occurrence3",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        }
+      ],
+      "result_features": {
+        "status": "returned_null",
+        "entities": []
+      },
+      "feature_bodies": [
+        {
+          "name": "PathPatternSeedBody (1)",
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvYmQMAOuzWxWIAAAA",
+          "bounding_box_cm": {
+            "min": [
+              1.5,
+              0.0,
+              0.0
+            ],
+            "max": [
+              2.5,
+              1.0,
+              1.0
+            ]
+          }
+        },
+        {
+          "name": "PathPatternSeedBody (2)",
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvYmQBAGNqiYKIAAAA",
+          "bounding_box_cm": {
+            "min": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              1.0,
+              1.0
+            ]
+          }
+        },
+        {
+          "name": "PathPatternSeedBody",
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvZG4KACmewoWIAAAA",
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "collections_after": {
+        "root_body_count": 3,
+        "root_bodies": [
+          {
+            "name": "PathPatternSeedBody",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvZG4KACmewoWIAAAA",
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "name": "PathPatternSeedBody (1)",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvYmQMAOuzWxWIAAAA",
+            "bounding_box_cm": {
+              "min": [
+                1.5,
+                0.0,
+                0.0
+              ],
+              "max": [
+                2.5,
+                1.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "name": "PathPatternSeedBody (2)",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgnb9xPfLfdy27PwtXsMyQ1cQqMJIwdhMwSzJJCUpOclI1zLFwFzXxNQIyEozTdQ1TkxKsbRISrM0T04CqwWawYAGwPYZKICtA1lvYmQBAGNqiYKIAAAA",
+            "bounding_box_cm": {
+              "min": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                4.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "root_occurrence_count": 0,
+        "all_occurrences": []
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "expression": "10.00 mm",
+          "created_by": "PathPatternSeedExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "PathPatternSeedExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "countU",
+          "value": 3.0,
+          "unit": "",
+          "expression": "3",
+          "created_by": "ProbePathPatternFeatureOptimized"
+        },
+        {
+          "name": "d4",
+          "role": "PathPatternDelta",
+          "value": 1.5,
+          "unit": "mm",
+          "expression": "15.00 mm",
+          "created_by": "ProbePathPatternFeatureOptimized"
+        }
+      ],
+      "export": {
+        "returned_success": true,
+        "byte_count": 91560,
+        "sha256": "bcc3cea55028eeb0eff24b37c6ee3701bb2b9e2eb8ed477d6c7d4c28abb9c086"
+      },
+      "close_owned_document_returned": true
+    },
+    {
+      "case": "feature_identical",
+      "file": "feature_identical.f3d",
+      "getter_errors": [
+        {
+          "field": "requested_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "requested_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        }
+      ],
+      "setter_errors": [],
+      "compute_before": true,
+      "requested_input": {
+        "kind": "ExtrudeFeature",
+        "entity_type": "adsk::fusion::ExtrudeFeature",
+        "name": "PathPatternSeedExtrude",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvZGJMQBzb9VNiAAAAA==",
+        "parent_component_name": "(Unsaved)",
+        "timeline_index": 1,
+        "bodies": [
+          {
+            "name": "PathPatternSeedBody",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvZG5KQCFmZuPiAAAAA==",
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ]
+      },
+      "requested_path": {
+        "count": 1,
+        "entities": [
+          {
+            "curve_type": 0,
+            "source_entity_type": "adsk::fusion::SketchLine",
+            "source_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAts7U0AhMG1kAlYLYAB/1XnOSAAAA",
+            "source_sketch_name": "InputContrastStraightPath",
+            "is_opposed_to_entity": false,
+            "path_curve_start_cm": null,
+            "path_curve_end_cm": null,
+            "source_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_end_cm": [
+              6.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "collections_before": {
+        "root_body_count": 1,
+        "root_bodies": [
+          {
+            "name": "PathPatternSeedBody",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvZG5KQCFmZuPiAAAAA==",
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "root_occurrence_count": 0,
+        "all_occurrences": []
+      },
+      "requested_compute_option": 1,
+      "requested_common_controls": {
+        "quantity": 3,
+        "distance_cm": 1.5,
+        "distance_type": 1,
+        "start_fraction": 0.0,
+        "is_flipped": false,
+        "is_symmetric": false,
+        "orientation_along_path": false
+      },
+      "actual_inputs": [
+        {
+          "kind": "ExtrudeFeature",
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "PathPatternSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvZGJMQBzb9VNiAAAAA==",
+          "parent_component_name": "(Unsaved)",
+          "timeline_index": 1,
+          "bodies": [
+            {
+              "name": "PathPatternSeedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvZG5KQCFmZuPiAAAAA==",
+              "bounding_box_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_path": {
+        "count": 1,
+        "entities": [
+          {
+            "curve_type": 0,
+            "source_entity_type": "adsk::fusion::SketchLine",
+            "source_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAts7U0AhMG1kAlYLYAB/1XnOSAAAA",
+            "source_sketch_name": "InputContrastStraightPath",
+            "is_opposed_to_entity": false,
+            "path_curve_start_cm": null,
+            "path_curve_end_cm": null,
+            "source_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_end_cm": [
+              6.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "compute_after": true,
+      "feature_identity": {
+        "name": "ProbePathPatternFeatureIdentical",
+        "entity_type": "adsk::fusion::PathPatternFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvbGZMQDGZyF+iAAAAA==",
+        "timeline_index": 3,
+        "parent_component_name": "(Unsaved)"
+      },
+      "settings": {
+        "quantity": 3.0,
+        "distance_cm": 1.5,
+        "distance_type": 1,
+        "start_fraction": 0.0,
+        "is_flipped": false,
+        "is_symmetric": false,
+        "orientation_along_path": false,
+        "pattern_entity_type": 1,
+        "pattern_compute_option": 1,
+        "suppressed_element_ids": []
+      },
+      "pattern_elements": [
+        {
+          "id": 0,
+          "name": "Occurrence1",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        },
+        {
+          "id": 1,
+          "name": "Occurrence2",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.5,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        },
+        {
+          "id": 2,
+          "name": "Occurrence3",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "face_count": 6
+        }
+      ],
+      "result_features": {
+        "status": "returned_null",
+        "entities": []
+      },
+      "feature_bodies": [
+        {
+          "name": "PathPatternSeedBody (1)",
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvYmRMQBHtAIfiAAAAA==",
+          "bounding_box_cm": {
+            "min": [
+              1.5,
+              0.0,
+              0.0
+            ],
+            "max": [
+              2.5,
+              1.0,
+              1.0
+            ]
+          }
+        },
+        {
+          "name": "PathPatternSeedBody (2)",
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvYmRBQDPbdCIiAAAAA==",
+          "bounding_box_cm": {
+            "min": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              1.0,
+              1.0
+            ]
+          }
+        },
+        {
+          "name": "PathPatternSeedBody",
+          "entity_type": "adsk::fusion::BRepBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvZG5KQCFmZuPiAAAAA==",
+          "bounding_box_cm": {
+            "min": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          }
+        }
+      ],
+      "health_state": 0,
+      "warning": "",
+      "collections_after": {
+        "root_body_count": 3,
+        "root_bodies": [
+          {
+            "name": "PathPatternSeedBody",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvZG5KQCFmZuPiAAAAA==",
+            "bounding_box_cm": {
+              "min": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                1.0,
+                1.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "name": "PathPatternSeedBody (1)",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvYmRMQBHtAIfiAAAAA==",
+            "bounding_box_cm": {
+              "min": [
+                1.5,
+                0.0,
+                0.0
+              ],
+              "max": [
+                2.5,
+                1.0,
+                1.0
+              ]
+            }
+          },
+          {
+            "name": "PathPatternSeedBody (2)",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpO5k9YaKTkVb3jPfTHCX7oGqMJIwdhMwczA3NwkxdxS18zCwlLXxMzSQjcp2ShZ18gkxczQOMk0xSzVAKwWaAYDGgDbZ6AAtg5kvYmRBQDPbdCIiAAAAA==",
+            "bounding_box_cm": {
+              "min": [
+                3.0,
+                0.0,
+                0.0
+              ],
+              "max": [
+                4.0,
+                1.0,
+                1.0
+              ]
+            }
+          }
+        ],
+        "root_occurrence_count": 0,
+        "all_occurrences": []
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 1.0,
+          "unit": "mm",
+          "expression": "10.00 mm",
+          "created_by": "PathPatternSeedExtrude"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "expression": "0.0 deg",
+          "created_by": "PathPatternSeedExtrude"
+        },
+        {
+          "name": "d3",
+          "role": "countU",
+          "value": 3.0,
+          "unit": "",
+          "expression": "3",
+          "created_by": "ProbePathPatternFeatureIdentical"
+        },
+        {
+          "name": "d4",
+          "role": "PathPatternDelta",
+          "value": 1.5,
+          "unit": "mm",
+          "expression": "15.00 mm",
+          "created_by": "ProbePathPatternFeatureIdentical"
+        }
+      ],
+      "export": {
+        "returned_success": true,
+        "byte_count": 91686,
+        "sha256": "d0cec70a54852ac4700d420975a84006618806904958f7a007f49dd17877f1f9"
+      },
+      "close_owned_document_returned": true
+    },
+    {
+      "case": "root_occurrence",
+      "file": "root_occurrence.f3d",
+      "getter_errors": [
+        {
+          "field": "requested_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "requested_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.startPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 78, in <lambda>\n    path_curve_start_cm=observe(label+'.curve.startPoint',lambda:item.curve.startPoint.asArray()),\n                                                                 ^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'startPoint'\n"
+        },
+        {
+          "field": "actual_path.curve.endPoint",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 40, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GeneratePathPatternInputContrasts.py\", line 79, in <lambda>\n    path_curve_end_cm=observe(label+'.curve.endPoint',lambda:item.curve.endPoint.asArray()),\n                                                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NurbsCurve3D' object has no attribute 'endPoint'\n"
+        }
+      ],
+      "setter_errors": [],
+      "compute_before": true,
+      "requested_input": {
+        "kind": "Occurrence",
+        "name": "PathPatternSourceComponent:1",
+        "full_path_name": "PathPatternSourceComponent:1",
+        "component_name": "PathPatternSourceComponent",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhyXHsJK6ZxIl/5qBGDMIG7MEgzEAEPbrmdHq6OwIBhgS0lLgtl35JgfPt8T69Lvvn9Xi3HRwWwZALjJDGrWWMMEPZSLHZqOhb03AfGqSrZZFGZJLJMMkglFwZvepEYi4ypg7f4v+Wd+5llIleIqOQdrSaFHPYTFNpdvp+/wBW2BYTxwAAAA==",
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": null,
+        "bodies": [
+          {
+            "name": "PathPatternSeedBody",
+            "entity_type": "adsk::fusion::BRepBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEKyQGoEVyQUNhyfFPYtdMkpe8zEGNGIQN2INBmIE86NHJ0un0yfYRONBUAp7zdezTJdAtyXC+Pd6n12X/vB7vsYPDJBgkQ+vq7C7YewTqSoYerWBd3XqtzTrZ3DLJIAoVCkzaCFUKYy02kJiztmGtrv3/rbrwklseWHMXVLIFoyRD6THSMBoL/X7fuoj4B4hxYEDVAAAA",
+            "bounding_box_cm": {
+              "min": [
+                1.0,
+                2.0,
+                0.0
+              ],
+              "max": [
+                2.0,
+                3.0,
+                1.0
+              ]
+            }
+          }
+        ]
+      },
+      "requested_path": {
+        "count": 1,
+        "entities": [
+          {
+            "curve_type": 0,
+            "source_entity_type": "adsk::fusion::SketchLine",
+            "source_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgmbXincql5w5tjfI9liyKogAVRgpGJspJKeYWBhZWBjrpqRYWuqapBqY6lpYJpvrJqZamKYkJiabphiYgtUCzWBAA2D7DBTA1pkaGoFpYxNTBUMDYwUDAComTH6SAAAA",
+            "source_sketch_name": "InputContrastStraightPath",
+            "is_opposed_to_entity": false,
+            "path_curve_start_cm": null,
+            "path_curve_end_cm": null,
+            "source_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_end_cm": [
+              6.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "collections_before": {
+        "root_body_count": 0,
+        "root_bodies": [],
+        "root_occurrence_count": 1,
+        "all_occurrences": [
+          {
+            "name": "PathPatternSourceComponent:1",
+            "full_path_name": "PathPatternSourceComponent:1",
+            "component_name": "PathPatternSourceComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhyXHsJK6ZxIl/5qBGDMIG7MEgzEAEPbrmdHq6OwIBhgS0lLgtl35JgfPt8T69Lvvn9Xi3HRwWwZALjJDGrWWMMEPZSLHZqOhb03AfGqSrZZFGZJLJMMkglFwZvepEYi4ypg7f4v+Wd+5llIleIqOQdrSaFHPYTFNpdvp+/wBW2BYTxwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "bodies": [
+              {
+                "name": "PathPatternSeedBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEKyQGoEVyQUNhyfFPYtdMkpe8zEGNGIQN2INBmIE86NHJ0un0yfYRONBUAp7zdezTJdAtyXC+Pd6n12X/vB7vsYPDJBgkQ+vq7C7YewTqSoYerWBd3XqtzTrZ3DLJIAoVCkzaCFUKYy02kJiztmGtrv3/rbrwklseWHMXVLIFoyRD6THSMBoL/X7fuoj4B4hxYEDVAAAA",
+                "bounding_box_cm": {
+                  "min": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ],
+                  "max": [
+                    2.0,
+                    3.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "requested_compute_option": null,
+      "requested_common_controls": {
+        "quantity": 3,
+        "distance_cm": 1.5,
+        "distance_type": 1,
+        "start_fraction": 0.0,
+        "is_flipped": false,
+        "is_symmetric": false,
+        "orientation_along_path": false
+      },
+      "actual_inputs": [
+        {
+          "kind": "Occurrence",
+          "name": "PathPatternSourceComponent:1",
+          "full_path_name": "PathPatternSourceComponent:1",
+          "component_name": "PathPatternSourceComponent",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhyXHsJK6ZxIl/5qBGDMIG7MEgzEAEPbrmdHq6OwIBhgS0lLgtl35JgfPt8T69Lvvn9Xi3HRwWwZALjJDGrWWMMEPZSLHZqOhb03AfGqSrZZFGZJLJMMkglFwZvepEYi4ypg7f4v+Wd+5llIleIqOQdrSaFHPYTFNpdvp+/wBW2BYTxwAAAA==",
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "assembly_context_path": null,
+          "bodies": [
+            {
+              "name": "PathPatternSeedBody",
+              "entity_type": "adsk::fusion::BRepBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEKyQGoEVyQUNhyfFPYtdMkpe8zEGNGIQN2INBmIE86NHJ0un0yfYRONBUAp7zdezTJdAtyXC+Pd6n12X/vB7vsYPDJBgkQ+vq7C7YewTqSoYerWBd3XqtzTrZ3DLJIAoVCkzaCFUKYy02kJiztmGtrv3/rbrwklseWHMXVLIFoyRD6THSMBoL/X7fuoj4B4hxYEDVAAAA",
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  2.0,
+                  0.0
+                ],
+                "max": [
+                  2.0,
+                  3.0,
+                  1.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_path": {
+        "count": 1,
+        "entities": [
+          {
+            "curve_type": 0,
+            "source_entity_type": "adsk::fusion::SketchLine",
+            "source_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgmbXincql5w5tjfI9liyKogAVRgpGJspJKeYWBhZWBjrpqRYWuqapBqY6lpYJpvrJqZamKYkJiabphiYgtUCzWBAA2D7DBTA1pkaGoFpYxNTBUMDYwUDAComTH6SAAAA",
+            "source_sketch_name": "InputContrastStraightPath",
+            "is_opposed_to_entity": false,
+            "path_curve_start_cm": null,
+            "path_curve_end_cm": null,
+            "source_start_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_end_cm": [
+              6.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "compute_after": true,
+      "feature_identity": {
+        "name": "ProbePathPatternRootOccurrence",
+        "entity_type": "adsk::fusion::PathPatternFeature",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgmbXincql5w5tjfI9liyKogAVRgpGJspJKeYWBhZWBjrpqRYWuqapBqY6lpYJpvrJqZamKYkJiabphiYgtUCzWBAA2D7DBTA1oGsNzGyAADBbxi4iAAAAA==",
+        "timeline_index": 4,
+        "parent_component_name": "(Unsaved)"
+      },
+      "settings": {
+        "quantity": 3.0,
+        "distance_cm": 1.5,
+        "distance_type": 1,
+        "start_fraction": 0.0,
+        "is_flipped": false,
+        "is_symmetric": false,
+        "orientation_along_path": false,
+        "pattern_entity_type": 3,
+        "pattern_compute_option": 2,
+        "suppressed_element_ids": []
+      },
+      "pattern_elements": [
+        {
+          "id": 0,
+          "name": "Occurrence1",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "occurrences": [
+            {
+              "name": "PathPatternSourceComponent:1",
+              "full_path_name": "PathPatternSourceComponent:1",
+              "component_name": "PathPatternSourceComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhyXHsJK6ZxIl/5qBGDMIG7MEgzEAEPbrmdHq6OwIBhgS0lLgtl35JgfPt8T69Lvvn9Xi3HRwWwZALjJDGrWWMMEPZSLHZqOhb03AfGqSrZZFGZJLJMMkglFwZvepEYi4ypg7f4v+Wd+5llIleIqOQdrSaFHPYTFNpdvp+/wBW2BYTxwAAAA==",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                1.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "bodies": [
+                {
+                  "name": "PathPatternSeedBody",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEKyQGoEVyQUNhyfFPYtdMkpe8zEGNGIQN2INBmIE86NHJ0un0yfYRONBUAp7zdezTJdAtyXC+Pd6n12X/vB7vsYPDJBgkQ+vq7C7YewTqSoYerWBd3XqtzTrZ3DLJIAoVCkzaCFUKYy02kJiztmGtrv3/rbrwklseWHMXVLIFoyRD6THSMBoL/X7fuoj4B4hxYEDVAAAA",
+                  "bounding_box_cm": {
+                    "min": [
+                      1.0,
+                      2.0,
+                      0.0
+                    ],
+                    "max": [
+                      2.0,
+                      3.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "name": "Occurrence2",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            1.5,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "occurrences": [
+            {
+              "name": "PathPatternSourceComponent:2",
+              "full_path_name": "PathPatternSourceComponent:2",
+              "component_name": "PathPatternSourceComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhKXHsxK6ZJImTOagRg7ABezAIM/wAPbrmdHq6uwAMBBHCUiRdLv6SDOfb4316XfbP6/FuOzgsgiBl6M5KqgndzZBHEFTrBetQ8Vq7eJDVskgfzmWOhKl3/5ANtVHEZYgt0WQp/7dqo5Z7nlizJ+QgDa1EweQ245QwW/h+3wDjzYE/xwAAAA==",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                2.5,
+                0.0,
+                1.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "bodies": [
+                {
+                  "name": "PathPatternSeedBody",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PPQqCMQyGJ8EDuAoZXBwCadK06exJ2qY9h7N4EG/gPTyIZ7Cf7hICDy8P+SEwoFUBePWX2BYFiFuS4Hx7vE+vy/55Pd7LDg7LYJAE3aOxmaB7KRgHKVrpGesw9Vq7OumaskwfHvMcgtK7b2ZDaxxwAcciPKPm/7tq45Z6mliTC0bShiUHRfEyw1SajX63b7+I2Afc/sLv1QAAAA==",
+                  "bounding_box_cm": {
+                    "min": [
+                      2.5,
+                      2.0,
+                      0.0
+                    ],
+                    "max": [
+                      3.5,
+                      3.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Occurrence3",
+          "is_suppressed": false,
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "occurrences": [
+            {
+              "name": "PathPatternSourceComponent:3",
+              "full_path_name": "PathPatternSourceComponent:3",
+              "component_name": "PathPatternSourceComponent",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhKXHixK6ZJIm/56BGDMIG7MEgzIAFPbrmdHq6uwQVCDKkUCYJl39Jg/Pt8T69Lvvn9XjXHRyCICgNllUhkYJmqli3xCi6Oo5N2MZYbImjJcg6vQ9tjlxrkIMchRohTxYvqq5m/7fGpNlWNIxmBWviidozYzH17Jx8pu/3D6GVkm3HAAAA",
+              "transform": [
+                1.0,
+                0.0,
+                0.0,
+                4.0,
+                0.0,
+                1.0,
+                0.0,
+                2.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              "assembly_context_path": null,
+              "bodies": [
+                {
+                  "name": "PathPatternSeedBody",
+                  "entity_type": "adsk::fusion::BRepBody",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxEKyQGoEVyQUNhKXHifLtmkiT+noMaMQgbsAeDMAP+0CPL0sl6ujsnEEgxGSj2q0hCZajbpcH59nifXpf983q86w4OQRCUBtOqkEhBM1Wsa2IUnQv2Vdh6n2yJwyXIOnzp2hy51iA7OQo1Qh4sXlRdzf5n9UGjzXDozQrWxAN1yYzF1LNz8pF+3bdfSpEPAnDRU9UAAAA=",
+                  "bounding_box_cm": {
+                    "min": [
+                      4.0,
+                      2.0,
+                      0.0
+                    ],
+                    "max": [
+                      5.0,
+                      3.0,
+                      1.0
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "result_features": {
+        "status": "returned_null",
+        "entities": []
+      },
+      "feature_bodies": [],
+      "health_state": 0,
+      "warning": "",
+      "collections_after": {
+        "root_body_count": 0,
+        "root_bodies": [],
+        "root_occurrence_count": 3,
+        "all_occurrences": [
+          {
+            "name": "PathPatternSourceComponent:1",
+            "full_path_name": "PathPatternSourceComponent:1",
+            "component_name": "PathPatternSourceComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhyXHsJK6ZxIl/5qBGDMIG7MEgzEAEPbrmdHq6OwIBhgS0lLgtl35JgfPt8T69Lvvn9Xi3HRwWwZALjJDGrWWMMEPZSLHZqOhb03AfGqSrZZFGZJLJMMkglFwZvepEYi4ypg7f4v+Wd+5llIleIqOQdrSaFHPYTFNpdvp+/wBW2BYTxwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "bodies": [
+              {
+                "name": "PathPatternSeedBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEKyQGoEVyQUNhyfFPYtdMkpe8zEGNGIQN2INBmIE86NHJ0un0yfYRONBUAp7zdezTJdAtyXC+Pd6n12X/vB7vsYPDJBgkQ+vq7C7YewTqSoYerWBd3XqtzTrZ3DLJIAoVCkzaCFUKYy02kJiztmGtrv3/rbrwklseWHMXVLIFoyRD6THSMBoL/X7fuoj4B4hxYEDVAAAA",
+                "bounding_box_cm": {
+                  "min": [
+                    1.0,
+                    2.0,
+                    0.0
+                  ],
+                  "max": [
+                    2.0,
+                    3.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "PathPatternSourceComponent:2",
+            "full_path_name": "PathPatternSourceComponent:2",
+            "component_name": "PathPatternSourceComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhKXHsxK6ZJImTOagRg7ABezAIM/wAPbrmdHq6uwAMBBHCUiRdLv6SDOfb4316XfbP6/FuOzgsgiBl6M5KqgndzZBHEFTrBetQ8Vq7eJDVskgfzmWOhKl3/5ANtVHEZYgt0WQp/7dqo5Z7nlizJ+QgDa1EweQ245QwW/h+3wDjzYE/xwAAAA==",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              2.5,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "bodies": [
+              {
+                "name": "PathPatternSeedBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PPQqCMQyGJ8EDuAoZXBwCadK06exJ2qY9h7N4EG/gPTyIZ7Cf7hICDy8P+SEwoFUBePWX2BYFiFuS4Hx7vE+vy/55Pd7LDg7LYJAE3aOxmaB7KRgHKVrpGesw9Vq7OumaskwfHvMcgtK7b2ZDaxxwAcciPKPm/7tq45Z6mliTC0bShiUHRfEyw1SajX63b7+I2Afc/sLv1QAAAA==",
+                "bounding_box_cm": {
+                  "min": [
+                    2.5,
+                    2.0,
+                    0.0
+                  ],
+                  "max": [
+                    3.5,
+                    3.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "PathPatternSourceComponent:3",
+            "full_path_name": "PathPatternSourceComponent:3",
+            "component_name": "PathPatternSourceComponent",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxEKyQGoEVyQUNhKXHixK6ZJIm/56BGDMIG7MEgzIAFPbrmdHq6uwQVCDKkUCYJl39Jg/Pt8T69Lvvn9XjXHRyCICgNllUhkYJmqli3xCi6Oo5N2MZYbImjJcg6vQ9tjlxrkIMchRohTxYvqq5m/7fGpNlWNIxmBWviidozYzH17Jx8pu/3D6GVkm3HAAAA",
+            "transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "assembly_context_path": null,
+            "bodies": [
+              {
+                "name": "PathPatternSeedBody",
+                "entity_type": "adsk::fusion::BRepBody",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ1CMQxEKyQGoEVyQUNhKXHifLtmkiT+noMaMQgbsAeDMAP+0CPL0sl6ujsnEEgxGSj2q0hCZajbpcH59nifXpf983q86w4OQRCUBtOqkEhBM1Wsa2IUnQv2Vdh6n2yJwyXIOnzp2hy51iA7OQo1Qh4sXlRdzf5n9UGjzXDozQrWxAN1yYzF1LNz8pF+3bdfSpEPAnDRU9UAAAA=",
+                "bounding_box_cm": {
+                  "min": [
+                    4.0,
+                    2.0,
+                    0.0
+                  ],
+                  "max": [
+                    5.0,
+                    3.0,
+                    1.0
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d3",
+          "role": "countU",
+          "value": 3.0,
+          "unit": "",
+          "expression": "3",
+          "created_by": "ProbePathPatternRootOccurrence"
+        },
+        {
+          "name": "d4",
+          "role": "PathPatternDelta",
+          "value": 1.5,
+          "unit": "mm",
+          "expression": "15.00 mm",
+          "created_by": "ProbePathPatternRootOccurrence"
+        }
+      ],
+      "export": {
+        "returned_success": true,
+        "byte_count": 92291,
+        "sha256": "144bcbc930fc9859dd10ebd4d91c63bef9e79aa7cb563f5eb98c57c031dbb07f"
+      },
+      "close_owned_document_returned": true
+    }
+  ],
+  "errors": [],
+  "requested_cases": [
+    "feature_optimized",
+    "feature_identical",
+    "root_occurrence"
+  ],
+  "executed_generator_sha256": "82547904202acc73ce6ae845583e14e8294098e2bfbdc4856cb1513e1061138c",
+  "execution_scope": "Three independent owned parametric root documents, local exports and closeFalse only; no existing document or global setting changes",
+  "API_scope": "Documented PathPatternFeatures.createInput homogeneous Feature or Occurrence inputs; PathPatternFeatureInput.patternComputeOption is set only for feature inputs",
+  "evidence_scope": "Requested source and path, actual rolled-back inputEntities/path, actual settings/elements/resultFeatures/collections/health; native identities and regeneration remain for offline inspection",
+  "terminal_status": "complete",
+  "exported_sample_count": 3
+}

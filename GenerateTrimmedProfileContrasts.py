@@ -56,6 +56,13 @@ def run(context):
             if (invalid_geometry or spec['selection'] not in ('min_area','max_area','max_centroid_x')
                     or not 1<=spec['expected_profile_count']<=16):
                 raise ValueError('Unobserved or invalid controlled trim-selector input')
+            if 'plane_spec' in spec:
+                plane_spec=spec['plane_spec']
+                if not isinstance(plane_spec,dict) or plane_spec.get('kind') not in ('OffsetXY','OriginXZ','AngleXY'):
+                    raise ValueError('Unsupported controlled profile source plane')
+                field={'OffsetXY':'offset_cm','AngleXY':'angle_deg'}.get(plane_spec['kind'])
+                if field is not None and not math.isfinite(plane_spec[field]):
+                    raise ValueError('Nonfinite controlled profile source plane parameter')
     output = Path(__file__).resolve().parent / (prefix + uuid.uuid4().hex[:12])
     output.mkdir()
     generator_source=Path(__file__).read_bytes()
@@ -121,14 +128,19 @@ def run(context):
                     result['evaluated_points'].append({'role': role, 'parameter': parameter, 'result_cm': point_result})
         return result
 
+    capture_placement=False
+
     def source_truth(entity, index):
         errors = []
-        return {'source_index': index, 'object_type': observe('objectType', lambda: entity.objectType, errors),
+        result={'source_index': index, 'object_type': observe('objectType', lambda: entity.objectType, errors),
                 'entity_token': observe('entityToken', lambda: entity.entityToken, errors),
                 'is_reference': observe('isReference', lambda: entity.isReference, errors),
                 'is_construction': observe('isConstruction', lambda: entity.isConstruction, errors),
                 'full_sketch_geometry': geometry_truth(observe('geometry', lambda: entity.geometry, errors)),
                 'getter_errors': errors}
+        if capture_placement:
+            result['full_world_geometry']=geometry_truth(observe('worldGeometry',lambda:entity.worldGeometry,errors))
+        return result
 
     def profile_truth(profile, sources):
         errors = []
@@ -152,6 +164,14 @@ def run(context):
                 entry['underlying_sketch_entity_type'] = observe('sketchEntity.objectType', lambda: source.objectType, entry['getter_errors'])
                 entry['geometry_type'] = observe('geometryType', lambda: int(curve.geometryType), entry['getter_errors'])
                 entry['portion_geometry'] = geometry_truth(observe('geometry', lambda: curve.geometry, entry['getter_errors']))
+                if capture_placement and source is not None:
+                    entry['portion_evaluated_component_points_cm']=[]
+                    for probe in entry['portion_geometry'].get('evaluated_points',[]):
+                        evaluated=probe['result_cm']
+                        if evaluated and evaluated[0]:
+                            converted=observe('sketchToModelSpace.'+probe['role'],
+                                lambda evaluated=evaluated:serial(source.parentSketch.sketchToModelSpace(adsk.core.Point3D.create(*evaluated[1]))),entry['getter_errors'])
+                            entry['portion_evaluated_component_points_cm'].append({'role':probe['role'],'point_cm':converted})
                 row['curves'].append(entry)
             result['loops'].append(row)
         return result
@@ -168,7 +188,22 @@ def run(context):
                 raise RuntimeError('Owned document lacks Fusion Design')
             design.designType = adsk.fusion.DesignTypes.ParametricDesignType
             component = design.rootComponent
-            sketch = component.sketches.add(component.xYConstructionPlane)
+            plane_spec=specs[case].get('plane_spec') if specs is not None else None
+            capture_placement=plane_spec is not None
+            support_plane=component.xYConstructionPlane
+            if plane_spec is not None:
+                if plane_spec['kind']=='OriginXZ':
+                    support_plane=component.xZConstructionPlane
+                else:
+                    plane_input=component.constructionPlanes.createInput()
+                    if plane_spec['kind']=='OffsetXY':
+                        succeeded=plane_input.setByOffset(component.xYConstructionPlane,adsk.core.ValueInput.createByReal(plane_spec['offset_cm']))
+                    else:
+                        succeeded=plane_input.setByAngle(component.xConstructionAxis,adsk.core.ValueInput.createByReal(math.radians(plane_spec['angle_deg'])),component.xYConstructionPlane)
+                    if not succeeded:raise RuntimeError('Controlled profile support-plane setter rejected input')
+                    support_plane=component.constructionPlanes.add(plane_input)
+                    support_plane.name='PlacedProfileSupportPlane'
+            sketch = component.sketches.add(support_plane)
             sketch.name = 'TrimmedProfileSources'
             point = adsk.core.Point3D.create
             if specs is not None:
@@ -214,6 +249,18 @@ def run(context):
                       'source_curves': [source_truth(entity, i) for i, entity in enumerate(sources)],
                       'available_profile_count': len(candidates), 'selected_candidate_index': selected_index,
                       'candidate_profiles': [profile_truth(profile, sources) for profile in candidates]}
+            if capture_placement:
+                inverse=sketch.transform.copy()
+                inverted=inverse.invert()
+                sample['placement_truth']={
+                    'plane_spec':plane_spec,'plane_name':support_plane.name,'plane_type':support_plane.objectType,
+                    'plane_entity_token':support_plane.entityToken,'plane_origin_cm':serial(support_plane.geometry.origin),
+                    'plane_normal':serial(support_plane.geometry.normal),
+                    'api_sketch_transform_raw':serial(sketch.transform),'inverse_returned':bool(inverted),
+                    'api_inverted_sketch_transform_raw':serial(inverse),
+                    'basis_local_points_cm':[[0.,0.,0.],[1.,0.,0.],[0.,1.,0.],[0.,0.,1.]],
+                    'basis_component_points_cm':[serial(sketch.sketchToModelSpace(point(*local))) for local in ([0.,0.,0.],[1.,0.,0.],[0.,1.,0.],[0.,0.,1.])],
+                    'transform_scope':'Raw API transform and copied inverse; determine direction from independent sketchToModelSpace basis probes, because the installed SDK direction description disagrees with observed getters'}
             # Truth is captured while profiles are valid, before creating their consumer.
             sample['selected_profile'] = sample['candidate_profiles'][selected_index]
             truth['active_sample'] = sample

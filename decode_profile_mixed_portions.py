@@ -11,6 +11,7 @@ import struct
 
 from asm_records import inspect_asm
 from decode_brep import decode_topology
+from decode_placement import rigid_matrix, transform_point
 from decode_profile_circle_portions import _point as circle_point, _cached_samples as circle_cached_samples
 from decode_profile_line_portions import _point as line_point, evaluate_stored_line_samples
 from decode_profiles import read_loops
@@ -59,7 +60,7 @@ def _eligible_features(features):
     return [feature for feature in features if feature['kind']!='Extrude' or feature['object_id'] in owners],owners
 
 
-def _derive_intersections(data,records,sketch,sources):
+def _derive_intersections(data,records,sketch,sources,*,source_frame=None):
     curves=[geometry for geometry in sketch['geometry'] if geometry['kind']!='Point']
     if sorted(curve['kind'] for curve in curves)!=['Circle','Line']:
         raise ValueError('Mixed context must contain exactly one Line and one Circle')
@@ -67,8 +68,13 @@ def _derive_intersections(data,records,sketch,sources):
         raise ValueError('Mixed sources lack complete independently qualified native/cache membership')
     identity=[1.,0.,0.,0.,0.,1.,0.,0.,0.,0.,1.,0.,0.,0.,0.,1.]
     matrix=sketch.get('placement',{}).get('sketch_to_component_matrix')
-    if matrix is None or len(matrix)!=16 or any(not math.isclose(a,b,abs_tol=EPS) for a,b in zip(matrix,identity)):
-        raise ValueError('Mixed source Sketch placement outside observed identity context')
+    if source_frame is None:
+        if matrix is None or len(matrix)!=16 or any(not math.isclose(a,b,abs_tol=EPS) for a,b in zip(matrix,identity)):
+            raise ValueError('Mixed source Sketch placement outside observed identity context')
+    else:
+        if not isinstance(source_frame,dict) or source_frame.get('sketch_to_component_matrix')!=matrix:
+            raise ValueError('Qualified source frame differs from canonical Sketch placement')
+        rigid_matrix(matrix)
     line=next(curve for curve in curves if curve['kind']=='Line');circle=next(curve for curve in curves if curve['kind']=='Circle')
     start,end=line['start_cm'],line['end_cm'];center=circle['center_cm'];radius=circle['radius_cm']
     if (any(curve.get('entity_genesis')!=2 or curve.get('is_construction') is not False for curve in curves)
@@ -102,9 +108,10 @@ def _derive_intersections(data,records,sketch,sources):
     return line,circle,fractions,angles,points
 
 
-def decode_profile_mixed_portions(data,records,features,member,members,body_identifier_summary):
+def decode_profile_mixed_portions(data,records,features,member,members,body_identifier_summary,*,source_frame=None):
+    result_scope=SCOPE if source_frame is None else 'Observed local-XY Mixed profile portions in a qualified native rigid Sketch-to-component frame; derived source parameters and component cache corroboration remain separate from assembly/world placement'
     eligible,owners=_eligible_features(features)
-    if not owners:return {'decoded':[],'unresolved':[],'scope':SCOPE}
+    if not owners:return {'decoded':[],'unresolved':[],'scope':result_scope}
     base=decode_trimmed_profiles(data,records,eligible,member,members,body_identifier_summary,
                                  profile_loops_reader=read_mixed_profile_loops)
     decoded=[];unresolved=list(base['unresolved'])
@@ -112,7 +119,10 @@ def decode_profile_mixed_portions(data,records,features,member,members,body_iden
         try:
             row=copy.deepcopy(cached);sketches=[feature for feature in features if feature['kind']=='Sketch' and feature['sketch_object_id']==row['native_sketch_object_id']]
             if len(sketches)!=1:raise ValueError('Mixed source Sketch missing/ambiguous')
-            line,circle,fractions,angles,intersection_points=_derive_intersections(data,records,sketches[0],row['source_curves'])
+            frame=None if source_frame is None else source_frame(sketches[0],row)
+            if source_frame is not None and not isinstance(frame,dict):
+                raise ValueError('Source frame callback must return a qualified proof dictionary')
+            line,circle,fractions,angles,intersection_points=_derive_intersections(data,records,sketches[0],row['source_curves'],source_frame=frame)
             topology=decode_topology(inspect_asm(members[row['history_blob_member']]))
             graphs=[graph for graph in topology['body_graphs'] if graph['body_index']==row['asm_body_index']]
             if len(graphs)!=1 or graphs[0]['body_transform_is_identity'] is not True:
@@ -129,13 +139,14 @@ def decode_profile_mixed_portions(data,records,features,member,members,body_iden
                 else:
                     a,b=angles;points=[circle_point(circle,t) for t in (a,(a+b)/2,b)]
                     parameter={'derived_reference_axis_angle_interval_radians':[a,b]};evaluator=circle_cached_samples
+                comparison_points=points if frame is None else [transform_point(frame['sketch_to_component_matrix'],point) for point in points]
                 evidence=[]
                 for candidate in source['cached_coedge_candidates']:
                     if candidate['stored_decimal_text_fields']!=ref['stored_coedge_text_fields']:
                         raise ValueError('Mixed candidate lacks complete native tuple identity')
                     observed=evaluator(candidate)
-                    endpoint_error=max(min(math.dist(point,other) for other in (observed[0],observed[2])) for point in (points[0],points[2]))
-                    midpoint_error=math.dist(points[1],observed[1])
+                    endpoint_error=max(min(math.dist(point,other) for other in (observed[0],observed[2])) for point in (comparison_points[0],comparison_points[2]))
+                    midpoint_error=math.dist(comparison_points[1],observed[1])
                     if max(endpoint_error,midpoint_error)>EPS:
                         raise ValueError('Derived mixed source portion disagrees with a full-tuple named cached boundary')
                     evidence.append({'coedge_record_index':candidate['coedge_record_index'],'edge_record_index':candidate['edge_record_index'],
@@ -145,6 +156,7 @@ def decode_profile_mixed_portions(data,records,features,member,members,body_iden
                                  'geometry_status':'DerivedAnalyticMixedSource'+kind+'Portion',
                                  'derived_portion_ordinal':ordinal,'derived_portion_count':count,
                                  **parameter,'derived_sketch_local_points_cm':{'start':points[0],'midpoint':points[1],'end':points[2]},
+                                 **({} if frame is None else {'derived_component_points_cm':{'start':comparison_points[0],'midpoint':comparison_points[1],'end':comparison_points[2]}}),
                                  'all_full_tuple_cache_candidates_corroborate':evidence,
                                  'parameter_status':'Derived from proper finite-Line/Circle intersections; no serialized trim parameters, API evaluator conversion or stored traversal semantics'})
             row.update(derived_source_circle_line_intersections={
@@ -157,7 +169,11 @@ def decode_profile_mixed_portions(data,records,features,member,members,body_iden
                                               'Other selector/count combinations or repeated mixed source portions',
                                               'Serialized/native/API parameterization and stored direction flag traversal semantics',
                                               'Modified cached geometry, persistent topology identity and lifecycle'])
+            if frame is not None:
+                row['source_frame']=copy.deepcopy(frame)
+                row['remaining_uncertainty'][0]='Uncaptured source-local primitive families/frames and nonproper intersections'
+                row['geometry_status']='Derived sketch-local source portions and separately transformed component points, corroborated in a qualified native BODY component frame'
             decoded.append(row)
         except (ValueError,KeyError,IndexError,TypeError,ArithmeticError,UnicodeError,struct.error) as error:
             unresolved.append({'source_feature_object_id':cached['source_feature_object_id'],'reason':str(error)})
-    return {'decoded':decoded,'unresolved':unresolved,'scope':SCOPE}
+    return {'decoded':decoded,'unresolved':unresolved,'scope':result_scope}
