@@ -54,6 +54,8 @@ from decode_datum_mirror_supports import decode_datum_mirror_supports
 from decode_thin_extrudes import decode_thin_extrudes
 from decode_thread_multi_faces import decode_thread_multi_faces
 from decode_thread_families import decode_thread_families
+from decode_replace_face_targets import decode_replace_face_targets
+from decode_replace_face_body_routes import qualify_replace_face_body_routes, SCOPE as REPLACE_FACE_BODY_SCOPE
 from decode_thread_family_body_routes import qualify_thread_family_body_routes, SCOPE as THREAD_FAMILY_BODY_SCOPE
 from decode_thread_body_routes import qualify_thread_body_routes, SCOPE as THREAD_BODY_ROUTE_SCOPE
 from decode_thin_extrude_operations import decode_thin_extrude_operations
@@ -606,6 +608,27 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 thread_family_body_summary['unresolved'].append(dict(feature_object_id=feature['object_id'], reason=str(error)))
         tool_summary['unresolved'] = [row for row in tool_summary['unresolved']
             if row['object_id'] not in thread_family_ids or row['reason'] != 'Only observed matching straight metric thread definitions supported']
+        replace_face_summary = decode_replace_face_targets(data, records, features)
+        replace_face_ids = {row['feature_object_id'] for row in replace_face_summary['decoded']}
+        eligible_replace_ids = {row['object_id'] for row in tool_summary['unresolved']
+            if row['kind'] == 'ReplaceFace' and row['reason'] == 'Unsupported face-edit selection descriptor class'}
+        if not replace_face_ids <= eligible_replace_ids:
+            raise ValueError('Qualified sheet ReplaceFace does not match the prior plane-target frontier')
+        replace_face_body_summary = dict(decoded=[], unresolved=[], scope=REPLACE_FACE_BODY_SCOPE)
+        for replacement in replace_face_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == replacement['feature_object_id'])
+            feature.update(tool_settings=replacement['settings'],
+                decode_level='Observed ReplaceFace sheet target type, tangent control and owned source/target routes; persistent face identity and regeneration unresolved')
+            if not any(row['object_id'] == feature['object_id'] for row in tool_summary['decoded']):
+                tool_summary['decoded'].append(dict(object_id=feature['object_id'], kind='ReplaceFace'))
+            try:
+                routes = qualify_replace_face_body_routes(data, records, name, members, replacement['settings']['replacement_target']['native_evidence'])
+                feature['replace_face_body_routes'] = routes
+                replace_face_body_summary['decoded'].append(routes)
+            except (ValueError, KeyError, IndexError, TypeError, struct.error) as error:
+                replace_face_body_summary['unresolved'].append(dict(feature_object_id=feature['object_id'], reason=str(error)))
+        tool_summary['unresolved'] = [row for row in tool_summary['unresolved']
+            if row['object_id'] not in replace_face_ids or row['reason'] != 'Unsupported face-edit selection descriptor class']
         parting_draft_summary = decode_parting_line_drafts(data, records, features)
         parting_draft_ids = set()
         for draft in parting_draft_summary['decoded']:
@@ -1475,6 +1498,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         })
         for key, summary in (('mirror_datum_reflections', datum_reflection_summary),
                              ('datum_mirror_supports', datum_support_summary),
+                             ('replace_face_targets', replace_face_summary),
+                             ('replace_face_body_routes', replace_face_body_summary),
                              ('thread_families', thread_family_summary),
                              ('thread_family_body_routes', thread_family_body_summary),
                              ('thread_multi_faces', thread_multi_summary),

@@ -6,7 +6,7 @@ from decode_selection import native_proxy_references, resolve_native_selection
 from decode_sketch import reference
 
 
-def decode_face_tool(data, records, body, feature, known):
+def decode_face_tool(data, records, body, feature, known, *, replace_target_resolver=None):
     expected_guid = {"OffsetFaces": "D087EFE5-2D28-42e6-BB45-61739E7D0204",
                      "ReplaceFace": "8BD31492-18F4-45C9-8512-D720CCFC2450",
                      "DeleteFace": "29EF07D3-7BAF-4FA1-A28A-43A36279EA6D"}[feature["kind"]]
@@ -52,11 +52,20 @@ def decode_face_tool(data, records, body, feature, known):
                 or struct.unpack_from("<I", body, 18)[0] != 1):
             raise ValueError("Unsupported replacement-face selection groups")
         target_id, source_id = reference(body, 7), reference(body, 22)
-        targets = selection(target_id, "5A1BF548-241F-46FD-9FB5-E4B05126EB9D")
-        sources = selection(source_id, topology_guid)
-        target = resolve_native_selection(data, records, target_id, known)
-        if len(targets) != 1 or target is None or target["entity"]["kind"] != "ConstructionPlane":
-            raise ValueError("Only observed replacement construction-plane targets supported")
+        if replace_target_resolver is None:
+            targets = selection(target_id, "5A1BF548-241F-46FD-9FB5-E4B05126EB9D")
+            sources = selection(source_id, topology_guid)
+            target = resolve_native_selection(data, records, target_id, known)
+            if len(targets) != 1 or target is None or target["entity"]["kind"] != "ConstructionPlane":
+                raise ValueError("Only observed replacement construction-plane targets supported")
+        else:
+            descriptor_guid, target = replace_target_resolver(data, records, target_id, feature, known)
+            if descriptor_guid not in (topology_guid, "9716F783-676D-42E0-93F9-EBF273E7C035") or not isinstance(target, dict):
+                raise ValueError("Unsupported replacement target resolver evidence")
+            targets = selection(target_id, descriptor_guid)
+            sources = selection(source_id, topology_guid)
+            if len(targets) != 1:
+                raise ValueError("Only observed singleton replacement BRep targets supported")
         result.update(is_tangent_chain=bool(body[2]), source_selection_record_object_id=source_id,
                       source_descriptor_object_ids=sources, selected_descriptor_count=len(sources),
                       target_selection_record_object_id=target_id, target_descriptor_object_ids=targets,
