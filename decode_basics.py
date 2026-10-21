@@ -79,6 +79,8 @@ from decode_mesh_reverse_normals import decode_mesh_reverse_normals
 from decode_mesh_shell import decode_mesh_shell
 from decode_mesh_face_groups import decode_mesh_face_groups
 from decode_mesh_separate import decode_mesh_separate
+from decode_mesh_remove import decode_mesh_remove
+from decode_mesh_combine_face_groups import decode_mesh_combine_face_groups
 from decode_mesh_face_group_caches import decode_mesh_face_group_caches
 from decode_mesh_normals import decode_mesh_normal_pools
 from decode_base_feature_empty_lists import decode_base_feature_empty_lists
@@ -685,6 +687,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         mesh_shell_summary = decode_mesh_shell(data, records, features, name, members, mesh_summary)
         mesh_face_group_summary = decode_mesh_face_groups(data, records, features, name, members, mesh_summary)
         mesh_separate_summary = decode_mesh_separate(data, records, features, name, members, mesh_summary)
+        mesh_remove_summary = decode_mesh_remove(data, records, features, name, members, mesh_summary)
+        mesh_combine_group_summary = decode_mesh_combine_face_groups(data, records, features, name, members, mesh_summary)
         for operation_summary, counter_key, level in (
                 (mesh_plane_cut_summary, 'class_decoded_mesh_plane_cut_count',
                  'Observed MeshPlaneCut controls, selected plane and owned mesh/asset routes; flip encoding, historical lifecycle and regeneration unresolved'),
@@ -705,7 +709,11 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 (mesh_face_group_summary, 'class_decoded_mesh_face_group_count',
                  'Observed MeshGenerateFaceGroups method, owned parameters and triangle group cache; general partitions and regeneration unresolved'),
                 (mesh_separate_summary, 'class_decoded_mesh_separate_count',
-                 'Observed MeshSeparate method and typed source/output membership; flag encodings, lifecycle and regeneration unresolved')):
+                 'Observed MeshSeparate method and typed source/output membership; flag encodings, lifecycle and regeneration unresolved'),
+                (mesh_remove_summary, 'class_decoded_mesh_remove_count',
+                 'Observed MeshRemove singleton inputs and retained source/current membership routes; call grouping, lifecycle and regeneration unresolved'),
+                (mesh_combine_group_summary, 'class_decoded_mesh_combine_face_group_count',
+                 'Observed CombineFaceGroups selected asset group keys and current mesh cache; persistent identity, lifecycle and regeneration unresolved')):
             operation_ids = set()
             for operation in operation_summary['decoded']:
                 feature = next(f for f in features if f['object_id'] == operation['feature_object_id'])
@@ -1390,6 +1398,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('mesh_shells', mesh_shell_summary),
                              ('mesh_face_groups', mesh_face_group_summary),
                              ('mesh_separations', mesh_separate_summary),
+                             ('mesh_removals', mesh_remove_summary),
+                             ('mesh_combined_face_groups', mesh_combine_group_summary),
                              ('mesh_normal_pools', mesh_normal_summary),
                              ('mesh_face_group_caches', mesh_face_group_cache_summary),
                              ('circular_placement_evidence', circular_cache_summary),
