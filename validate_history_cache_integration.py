@@ -78,8 +78,12 @@ def validate(zstd):
             tracks += 1
             qualified += 1
         paths = differences(before, current)
+        for asm in current['asm_decoding']['streams']:
+            assert not asm.get('inline_subtypes', {}).get('unresolved', [])
         for path in paths:
             if path in ('/streams/0/fpm_selection_tracking', '/streams/0/fpm_context_line_caches'):
+                continue
+            if re.fullmatch(r'/asm_decoding/streams/\d+/inline_subtypes', path):
                 continue
             if filename in GEOMETRY_TARGETS:
                 # Admit only the newly decoded caches and their geometry-only

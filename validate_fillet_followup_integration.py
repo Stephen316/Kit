@@ -52,6 +52,9 @@ def validate_outputs(files, baseline, current):
             if path in ('/file', '/streams/0/fpm_context_line_caches'):
                 admitted.append(path)
                 continue
+            if re.fullmatch(r'/asm_decoding/streams/\d+/inline_subtypes', path):
+                admitted.append(path)
+                continue
             if filename in set(SCALED_FILES) | SURFACES:
                 if re.fullmatch(r'/asm_decoding/streams/\d+/topology/unresolved\(length\)', path):
                     admitted.append(path)
@@ -66,6 +69,7 @@ def validate_outputs(files, baseline, current):
                 continue
             raise AssertionError((filename, path, 'Unexpected prior-output change'))
         for asm in after['asm_decoding']['streams']:
+            assert not asm.get('inline_subtypes', {}).get('unresolved', [])
             if filename in set(SCALED_FILES) | SURFACES:
                 assert not asm['topology']['unresolved'], (filename, asm['member'])
             if filename in SURFACES and asm['member'].endswith('.smbh'):

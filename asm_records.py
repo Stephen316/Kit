@@ -173,7 +173,24 @@ def inspect_asm_members(members, include_records=False):
         try:
             result = inspect_asm(data)
             from decode_brep import decode_topology
-            topology = decode_topology(result)
+            subtype_catalog, subtype_summary = None, None
+            needs_subtypes = any(
+                (t['kind'] == 'entity_name' and t['value'] == 'ref')
+                or (r['name'] == 'pcurve' and len(r['tokens']) == 7 and r['tokens'][3]['value'] in (1, -1, 2, -2))
+                for r in result['records'] for t in r['tokens'])
+            if needs_subtypes:
+                from decode_asm_subtypes import decode_asm_subtypes
+                try:
+                    subtype_catalog = decode_asm_subtypes(data, parsed=result)
+                    subtype_summary = {
+                        'definition_count': len(subtype_catalog['definitions']),
+                        'qualified_reference_count': len(subtype_catalog['references']),
+                        'references': subtype_catalog['references'],
+                        'unresolved': subtype_catalog['unresolved'], 'scope': subtype_catalog['scope']}
+                except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
+                    subtype_summary = {'references': [], 'unresolved': [{'reason': str(error)}],
+                        'scope': 'Inline subtype namespace unresolved; original token framing and initial topology reported separately'}
+            topology = decode_topology(result, subtype_catalog=subtype_catalog)
             if not include_records:
                 topology.pop("nodes", None)
             topology["nodes_included"] = include_records
@@ -181,6 +198,8 @@ def inspect_asm_members(members, include_records=False):
             summary = {key: value for key, value in result.items() if key != "records"}
             summary.update(member=member, record_count=len(result["records"]), record_type_counts=counts,
                            blob_role="history" if member.endswith(".smbh") else "body data", topology=topology)
+            if subtype_summary is not None:
+                summary['inline_subtypes'] = subtype_summary
             if any(r["name"] == INT64_ATTRIBUTE for r in result["records"]):
                 from decode_sculpt_tool_attributes import decode_sculpt_tool_attributes
                 try:

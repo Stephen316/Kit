@@ -3,7 +3,7 @@
 from decode_bspline import read_token, knot_vector, evaluate_curve
 
 
-def decode_pcurve(record):
+def _decode_observed_pcurve(record):
     tokens = record["tokens"]
     if read_token(tokens, 3, "integer") != 0:
         raise ValueError("Unsupported pcurve prefix flags")
@@ -50,6 +50,14 @@ def decode_pcurve(record):
                       representation="Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
                       cache_status="Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout")
     return result
+
+
+def decode_pcurve(record):
+    try:
+        return _decode_observed_pcurve(record)
+    except (ValueError, IndexError):
+        from decode_pcurve_variants import decode_pcurve_variants
+        return decode_pcurve_variants(record)
 
 
 def evaluate_pcurve(cache, parameter):

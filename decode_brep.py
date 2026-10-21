@@ -30,12 +30,12 @@ LINKS = {
 }
 
 
-def decode_topology(parsed):
+def decode_topology(parsed, *, subtype_catalog=None):
     if not parsed["complete_token_stream"]:
         return {"body_graphs": [], "unresolved": [{"reason": "ASM token stream incomplete"}], "nodes": []}
     records = parsed["records"]
     geometry_limit = next((i for i, r in enumerate(records) if r.get("record_kind") == "marker"), len(records))
-    nodes, unresolved = {}, []
+    nodes, unresolved, pending_pcurves = {}, [], []
 
     def token(record, index, kinds):
         item = record["tokens"][index]
@@ -124,9 +124,18 @@ def decode_topology(parsed):
             elif name == "vertex":
                 node["uninterpreted_field_4"] = token(record, 4, ("integer",))
             elif name == "pcurve":
-                node["uv_curve"] = decode_pcurve(record)
+                if record['tokens'][3]['value'] in (1, -1, 2, -2):
+                    node['uv_curve'] = None
+                    pending_pcurves.append(record['index'])
+                else:
+                    node["uv_curve"] = decode_pcurve(record)
             elif name in ("spline-surface", "intcurve-curve"):
-                node["bspline_surface" if name == "spline-surface" else "bspline_curve"] = decode_bspline(record)
+                if subtype_catalog is None:
+                    cache = decode_bspline(record)
+                else:
+                    from decode_asm_subtypes import decode_asm_subtype_cache
+                    cache = decode_asm_subtype_cache(record, subtype_catalog, records, decoder=decode_bspline)
+                node["bspline_surface" if name == "spline-surface" else "bspline_curve"] = cache
             elif name in ("cone-surface", "sphere-surface", "torus-surface"):
                 node["analytic_surface"] = decode_analytic_surface(record)
             elif name in geometry:
@@ -170,6 +179,18 @@ def decode_topology(parsed):
             nodes[record["index"]] = node
         except (ValueError, IndexError) as error:
             unresolved.append({"index": record["index"], "kind": name, "reason": str(error)})
+
+    # A compact pcurve names an intersection curve parsed elsewhere. Resolve it
+    # only after typed coedge/loop/face and curve/surface nodes are available.
+    for index in pending_pcurves:
+        try:
+            if subtype_catalog is None:
+                raise ValueError('Compact pcurve requires a qualified blob-local subtype namespace')
+            from decode_pcurve_variants import decode_compact_pcurve
+            nodes[index]['uv_curve'] = decode_compact_pcurve(records[index], records, nodes, subtype_catalog)
+        except (ValueError, KeyError, IndexError) as error:
+            nodes.pop(index, None)
+            unresolved.append({'index': index, 'kind': 'pcurve', 'reason': str(error)})
 
     def get(index, expected):
         node = nodes.get(index)
