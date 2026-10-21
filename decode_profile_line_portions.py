@@ -143,6 +143,15 @@ def _point(line,fraction):
     return [a+fraction*(b-a) for a,b in zip(line['start_cm'],line['end_cm'])]
 
 
+def evaluate_stored_line_samples(candidate):
+    """Evaluate the already qualified stored Line interval at its endpoints/midpoint."""
+    curve=candidate['stored_curve_geometry'];a,b=candidate['stored_edge_parameter_interval']
+    if curve['kind']!='straight-curve' or not all(math.isfinite(t) for t in (a,b)) or b<=a:
+        raise ValueError('Named stored Line primitive/interval unsupported')
+    return [[origin+t*direction for origin,direction in zip(curve['raw_origin'],curve['direction'])]
+            for t in (a,(a+b)/2,b)]
+
+
 def decode_profile_line_portions(data,records,features,member,members,body_identifier_summary):
     selected,owners=_eligible_features(data,records,features)
     if not owners:return {'decoded':[],'unresolved':[],'scope':SCOPE}
@@ -171,11 +180,7 @@ def decode_profile_line_portions(data,records,features,member,members,body_ident
                 for candidate in source['cached_coedge_candidates']:
                     if candidate['stored_decimal_text_fields']!=ref['stored_coedge_text_fields']:
                         raise ValueError('Derived Line candidate lacks complete native tuple identity')
-                    curve=candidate['stored_curve_geometry'];a,b=candidate['stored_edge_parameter_interval']
-                    if curve['kind']!='straight-curve' or not all(math.isfinite(t) for t in (a,b)) or b<=a:
-                        raise ValueError('Named stored Line primitive/interval unsupported')
-                    observed=[[origin+t*direction for origin,direction in zip(curve['raw_origin'],curve['direction'])]
-                              for t in (a,(a+b)/2,b)]
+                    observed=evaluate_stored_line_samples(candidate)
                     endpoint_error=max(min(math.dist(point,other) for other in (observed[0],observed[2])) for point in (points[0],points[2]))
                     midpoint_error=math.dist(points[1],observed[1])
                     if max(endpoint_error,midpoint_error)>EPS:

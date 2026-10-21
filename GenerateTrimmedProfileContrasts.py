@@ -31,16 +31,28 @@ def run(context):
         for name,spec in specs.items():
             if not isinstance(name,str) or not name or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789_' for c in name):
                 raise ValueError('Unsupported trim-selector case name')
-            if not isinstance(spec,dict) or ('circles' in spec)==('rectangles' in spec):
+            if not isinstance(spec,dict) or sum(key in spec for key in ('circles','rectangles','geometry_sources'))!=1:
                 raise ValueError('Expected exactly one controlled source geometry family')
             if 'circles' in spec:
                 circles=spec['circles']
                 invalid_geometry=(not 2<=len(circles)<=3 or any(len(circle)!=3 or not all(math.isfinite(v) for v in circle)
                                   or circle[2]<=0 for circle in circles))
-            else:
+            elif 'rectangles' in spec:
                 rectangles=spec['rectangles']
                 invalid_geometry=(len(rectangles)!=2 or any(len(rectangle)!=4 or not all(math.isfinite(v) for v in rectangle)
                                   or rectangle[0]>=rectangle[2] or rectangle[1]>=rectangle[3] for rectangle in rectangles))
+            else:
+                sources=spec['geometry_sources']
+                invalid_geometry=(len(sources)!=2 or any(not isinstance(source,dict) for source in sources)
+                                  or sorted(source.get('kind','') for source in sources)!=['Circle','Line'])
+                if not invalid_geometry:
+                    circle=next(source for source in sources if source['kind']=='Circle')
+                    line=next(source for source in sources if source['kind']=='Line')
+                    invalid_geometry=(len(circle['center_cm'])!=2 or not all(math.isfinite(v) for v in circle['center_cm'])
+                                      or not math.isfinite(circle['radius_cm']) or circle['radius_cm']<=0
+                                      or len(line['start_cm'])!=2 or len(line['end_cm'])!=2
+                                      or not all(math.isfinite(v) for v in (*line['start_cm'],*line['end_cm']))
+                                      or math.dist(line['start_cm'],line['end_cm'])==0)
             if (invalid_geometry or spec['selection'] not in ('min_area','max_area','max_centroid_x')
                     or not 1<=spec['expected_profile_count']<=16):
                 raise ValueError('Unobserved or invalid controlled trim-selector input')
@@ -165,6 +177,11 @@ def run(context):
                     sketch.sketchCurves.sketchCircles.addByCenterRadius(point(cx,cy,0),radius)
                 for xmin,ymin,xmax,ymax in spec.get('rectangles',[]):
                     sketch.sketchCurves.sketchLines.addTwoPointRectangle(point(xmin,ymin,0),point(xmax,ymax,0))
+                for source in spec.get('geometry_sources',[]):
+                    if source['kind']=='Circle':
+                        sketch.sketchCurves.sketchCircles.addByCenterRadius(point(*source['center_cm'],0),source['radius_cm'])
+                    else:
+                        sketch.sketchCurves.sketchLines.addByTwoPoints(point(*source['start_cm'],0),point(*source['end_cm'],0))
                 requested={'controlled_specification':spec}
             elif case.startswith('circle_'):
                 sketch.sketchCurves.sketchCircles.addByCenterRadius(point(-1, 0, 0), 2)

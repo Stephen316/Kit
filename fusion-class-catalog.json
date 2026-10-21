@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 597,
+  "file_count": 609,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -51,6 +51,12 @@
     "circularmodes-45f859c1f1b6/feature_identical.f3d",
     "circularmodes-45f859c1f1b6/feature_optimized.f3d",
     "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
+    "circularsymsuppression-bef7ede4d911/quantity4_suppress_id2.f3d",
+    "circularsymsuppression-bef7ede4d911/quantity5_suppress_id1.f3d",
+    "circularsymsuppression-bef7ede4d911/quantity5_suppress_id3.f3d",
+    "circularsymsuppression-c837268fa458/quantity4_suppress_id0.f3d",
+    "circularsymsuppression-c837268fa458/quantity5_suppress_id0.f3d",
+    "circularsymsuppression-c837268fa458/quantity5_suppress_id4.f3d",
     "combinemodes-dcb4956eca6b/cut_keep.f3d",
     "combinemodes-dcb4956eca6b/cut_multiple.f3d",
     "combinemodes-dcb4956eca6b/cut_swapped.f3d",
@@ -206,6 +212,9 @@
     "mirrorfeatures-1ffa1b15c612/feature_adjust.f3d",
     "mirrorfeatures-1ffa1b15c612/feature_identical.f3d",
     "mirrorfeatures-1ffa1b15c612/feature_optimized.f3d",
+    "mixedprofiletrims-a125a4c1749e/circle_line_segment.f3d",
+    "mixedprofiletrims-a125a4c1749e/line_circle_reverse_creation.f3d",
+    "mixedprofiletrims-a125a4c1749e/shifted_circle_line_segment.f3d",
     "models-97a5e41e2ba7/revolve_full.f3d",
     "models-97a5e41e2ba7/revolve_partial.f3d",
     "models-b8a640dbddc6/cut.f3d",
@@ -345,6 +354,9 @@
     "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d",
     "remainingbodyinputs-7b3357274e85/mirror_two_features.f3d",
     "remainingbodyinputs-7b3357274e85/scale_two_sketches.f3d",
+    "removecontrasts-9c5f83456a0e/nested_occurrence.f3d",
+    "removecontrasts-9c5f83456a0e/root_body.f3d",
+    "removecontrasts-9c5f83456a0e/root_occurrence.f3d",
     "revolveaxes-14700158dba9/brep_edge_offset_x.f3d",
     "revolveaxes-36bd04ac77e1/custom_two_points.f3d",
     "revolveaxes-a83b542c4a07/brep_edge.f3d",
@@ -600,8 +612,8 @@
     "variablefillets-a5080b076434/one_three_quarters.f3d",
     "variablefillets-a5080b076434/two_intermediates.f3d"
   ],
-  "class_count": 370,
-  "classes_with_observed_semantics": 60,
+  "class_count": 371,
+  "classes_with_observed_semantics": 61,
   "classes": [
     {
       "class_guid": "00D157C2-2332-4BD5-BB53-048C4081D1C3",
@@ -2319,7 +2331,8 @@
         "Named feature: RemoveBody"
       ],
       "example_files": [
-        "boundaryfills-a0953038318b/new_middle_remove.f3d"
+        "boundaryfills-a0953038318b/new_middle_remove.f3d",
+        "removecontrasts-9c5f83456a0e/root_body.f3d"
       ]
     },
     {
@@ -5757,6 +5770,25 @@
       "observed_semantics": [],
       "example_files": [
         "sketchtools-85066e723410/sketchtools.f3d"
+      ]
+    },
+    {
+      "class_guid": "D3DC9613-9714-4DBE-99C4-0A76DB3327F1",
+      "base_class_guids": [
+        "BADF6309-013D-48F0-9AB0-0C05FB086CF4"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        3
+      ],
+      "observed_semantics": [
+        "Named feature: RemoveInstance"
+      ],
+      "example_files": [
+        "removecontrasts-9c5f83456a0e/nested_occurrence.f3d",
+        "removecontrasts-9c5f83456a0e/root_occurrence.f3d"
       ]
     },
     {

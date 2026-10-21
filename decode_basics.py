@@ -55,8 +55,10 @@ from decode_thin_extrudes import decode_thin_extrudes
 from decode_trimmed_profiles import decode_trimmed_profiles
 from decode_profile_circle_portions import decode_profile_circle_portions
 from decode_profile_line_portions import decode_profile_line_portions
+from decode_profile_mixed_portions import decode_profile_mixed_portions
 from decode_variable_fillets import decode_variable_fillets
 from decode_asymmetric_fillet_flips import decode_asymmetric_fillet_flips
+from decode_circular_symmetric_suppression import decode_circular_symmetric_suppression
 from decode_asbuilt_joints import ASBUILT, decode_asbuilt_joints
 from decode_rigid_groups import decode_rigid_groups
 from decode_pipe_paths import inspect_pipe_edge_path
@@ -101,6 +103,7 @@ from decode_selection_context_variants import decode_selection_context_variants
 from decode_sketch_symmetric_indices import decode_sketch_symmetric_indices
 from decode_scale_inputs import decode_scale_vertex_points
 from decode_direct_body_features import decode_direct_body_features
+from decode_remove_features import decode_remove_features
 from decode_copy_paste_occurrences import decode_copy_paste_occurrences
 from decode_silhouette_splits import decode_silhouette_splits
 from decode_silhouette_directions import decode_silhouette_directions
@@ -718,6 +721,18 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': 'Fillet'})
         tool_summary['unresolved'] = [item for item in tool_summary['unresolved']
             if item['object_id'] not in asymmetric_flip_ids or item['reason'] != 'Unsupported fillet edge-set mode or layout']
+        circular_symmetric_summary = decode_circular_symmetric_suppression(data, records, features)
+        circular_symmetric_ids = set()
+        for pattern in circular_symmetric_summary['decoded']:
+            feature = feature_by_id[pattern['feature_object_id']]
+            feature.update(tool_settings=pattern['tool_settings'],
+                decode_level='Observed symmetric circular suppression IDs through the ordered native element table; seed suppression, placement and regeneration unresolved')
+            circular_symmetric_ids.add(feature['object_id'])
+            if not any(item['object_id'] == feature['object_id'] for item in tool_summary['decoded']):
+                tool_summary['decoded'].append({'object_id': feature['object_id'], 'kind': 'CircularPattern'})
+        tool_summary['unresolved'] = [item for item in tool_summary['unresolved']
+            if item['object_id'] not in circular_symmetric_ids
+                or item['reason'] != 'Symmetric circular suppression/API identifier mapping has not been observed']
         selection_context_summary = decode_selection_context_recipes(data, records, body_selection_summary)
         selection_context_variant_summary = decode_selection_context_variants(data, records, body_selection_summary,
                                                                               selection_context_summary)
@@ -732,6 +747,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         if recovered_context_ids:
             selection_context_summary["scope"] += "; "+selection_context_variant_summary["scope"]
         direct_body_summary = decode_direct_body_features(data, records, body_selection_summary)
+        remove_summary = decode_remove_features(data, records, features, assembly_summary,
+            body_selections=body_selection_summary, component_creations=component_creation_summary)
         silhouette_summary = decode_silhouette_splits(data, records, features, body_selection_summary)
         silhouette_direction_summary = decode_silhouette_directions(data, records, features, body_selection_summary)
         silhouette_line_summary = decode_silhouette_line_contexts(data, records, features, body_selection_summary,
@@ -759,6 +776,22 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 feature.update(kind=direct_body["kind"], direct_body_feature=direct_body,
                                decode_level="Observed explicit body provenance; general direct editing, lifecycle and regeneration unsupported")
                 direct_body_ids.add(feature["object_id"])
+        remove_ids = set()
+        for removal in remove_summary['decoded']:
+            feature = feature_by_id[removal['feature_object_id']]
+            feature.update(kind=removal['kind'], name=feature.get('name') or removal['name'],
+                remove_feature_settings=removal,
+                decode_level='Observed native removal target and component scope; current visibility, lifecycle replay and regeneration unresolved')
+            remove_ids.add(feature['object_id'])
+        if remove_ids:
+            for sequence in timeline_summary['sequences']:
+                pending = list(sequence['visible_entries'])
+                while pending:
+                    entry = pending.pop()
+                    pending.extend(entry.get('children', []))
+                    if entry['object_id'] in remove_ids:
+                        feature = feature_by_id[entry['object_id']]
+                        entry.update(kind=feature['kind'], name=feature['name'])
         silhouette_ids = set()
         for split in silhouette_summary["decoded"]:
             feature = feature_by_id[split["feature_object_id"]]
@@ -767,10 +800,12 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             silhouette_ids.add(feature["object_id"])
             tool_summary["decoded"].append({"object_id": feature["object_id"], "kind": "SilhouetteSplit"})
         discovery_summary["unsupported_features"] = [f for f in discovery_summary["unsupported_features"]
-                                                     if f["object_id"] not in direct_body_ids|silhouette_ids]
+                                                     if f["object_id"] not in direct_body_ids|silhouette_ids|remove_ids]
         discovery_summary["unsupported_feature_count"] = len(discovery_summary["unsupported_features"])
         discovery_summary["class_decoded_direct_body_feature_count"] = len(direct_body_ids)
         discovery_summary["class_decoded_silhouette_split_count"] = len(silhouette_ids)
+        if remove_summary['decoded'] or remove_summary['unresolved']:
+            discovery_summary['class_decoded_remove_feature_count'] = len(remove_ids)
         attach_combine_bodies(features, body_selection_summary)
         remaining_input_summary = {"decoded_settings": [], "partial": [], "unresolved": [],
                                    "scope": "Observed additional feature/face/Sketch inputs and separate occurrence/datum provenance; unavailable controls and regeneration remain unresolved"}
@@ -907,6 +942,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             data, records, features, name, members, body_identifier_summary)
         profile_line_summary = decode_profile_line_portions(
             data, records, features, name, members, body_identifier_summary)
+        profile_mixed_summary = decode_profile_mixed_portions(
+            data, records, features, name, members, body_identifier_summary)
         for correspondence in profile_line_summary['decoded']:
             feature_by_id[correspondence['source_feature_object_id']].setdefault(
                 'profile_line_portions', []).append(correspondence)
@@ -944,6 +981,23 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 profile_summary['decoded'].append({'feature_object_id': target['object_id'],
                     'descriptor_object_id': descriptor_id, 'loop_count': len(correspondence['profile_loops']),
                     'reference_layout': 'ObservedCirclePortionSelectors'})
+            trimmed_ids.add(target['object_id'])
+        for correspondence in profile_mixed_summary['decoded']:
+            target = feature_by_id[correspondence['source_feature_object_id']]
+            target.setdefault('profile_mixed_portions', []).append(correspondence)
+            descriptor_id = correspondence['profile_descriptor_object_id']
+            if not any(p['descriptor_object_id'] == descriptor_id for p in target.get('profile_selection', [])):
+                target.setdefault('profile_selection', []).append({
+                    'sketch_object_id': correspondence['native_sketch_object_id'],
+                    'sketch_name': correspondence['native_sketch_name'],
+                    'descriptor_object_id': descriptor_id,
+                    'loop_definition_object_id': correspondence['profile_loop_definition_object_id'],
+                    'loops': correspondence['profile_loops'],
+                    'selection_level': 'Observed mixed Circle/Line portion references with corroborated derived source geometry',
+                    'limitations': 'Derived angles and source fractions are separate from serialized parameters; general trim reconstruction/traversal remain unresolved'})
+                profile_summary['decoded'].append({'feature_object_id': target['object_id'],
+                    'descriptor_object_id': descriptor_id, 'loop_count': len(correspondence['profile_loops']),
+                    'reference_layout': 'ObservedMixedCircleLinePortionSelectors'})
             trimmed_ids.add(target['object_id'])
         profile_summary['unresolved'] = [item for item in profile_summary['unresolved']
             if item['feature_object_id'] not in trimmed_ids or item['reason'] != 'Unsupported profile curve or trim-reference layout']
@@ -1144,10 +1198,12 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('trimmed_profiles', trimmed_profile_summary),
                              ('profile_circle_portions', profile_circle_summary),
                              ('profile_line_portions', profile_line_summary),
+                             ('profile_mixed_portions', profile_mixed_summary),
                              ('variable_fillets', variable_fillet_summary),
                              ('asymmetric_fillet_flips', asymmetric_flip_summary),
                              ('as_built_joints', asbuilt_summary),
                              ('rigid_groups', rigid_group_summary),
+                             ('remove_features', remove_summary),
                              ('circular_placement_evidence', circular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),
@@ -1161,6 +1217,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 streams[-1][key] = summary
         if named_vertex_summary['associations'] or named_vertex_summary['unresolved']:
             streams[-1]['named_vertex_selections'] = named_vertex_summary
+        if any(circular_symmetric_summary[key] for key in ('decoded', 'partial', 'unresolved')):
+            streams[-1]['circular_symmetric_suppression'] = circular_symmetric_summary
         if fpm_body_tracking_summary['associations'] or fpm_body_tracking_summary['coverage'] or fpm_body_tracking_summary['unresolved']:
             streams[-1]['fpm_body_tracking'] = fpm_body_tracking_summary
     return {

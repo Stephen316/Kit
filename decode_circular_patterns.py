@@ -16,7 +16,7 @@ ELEMENT = "AD719C1A-11AF-4537-BB41-030A9091D36B"
 COLLECTION = "8DB90DAE-3FF5-4E01-BACC-00AAA3EBB3EF"
 
 
-def decode_circular_pattern(data, records, body, feature, known, features=None, body_selections=None):
+def decode_circular_pattern(data, records, body, feature, known, features=None, body_selections=None, *, symmetric_suppression_resolver=None):
     if feature["class_guid"] != FEATURE or body[:6] != bytes.fromhex("000100000000"):
         raise ValueError("Unsupported circular pattern feature prefix/class")
     grouped = {}
@@ -89,9 +89,18 @@ def decode_circular_pattern(data, records, body, feature, known, features=None, 
     suppressed = list(struct.unpack_from("<"+"I"*suppressed_count, payload, cursor+4))
     if len(set(suppressed)) != suppressed_count or any(identity not in element_ordinals or identity == 1 for identity in suppressed):
         raise ValueError("Invalid or duplicate circular pattern suppression identifiers")
+    suppression_status = "Observed non-symmetric native ordinal minus one matches API element ID; symmetric suppression remains unsupported"
     if payload[2] and suppressed:
-        raise ValueError("Symmetric circular suppression/API identifier mapping has not been observed")
-    api_suppressed = [identity-1 for identity in suppressed]
+        if symmetric_suppression_resolver is None:
+            raise ValueError("Symmetric circular suppression/API identifier mapping has not been observed")
+        api_suppressed, suppression_status = symmetric_suppression_resolver(quantity, list(element_ordinals), list(suppressed))
+        if (not isinstance(api_suppressed, list) or len(api_suppressed)!=suppressed_count
+                or any(type(identity) is not int or not 0<=identity<quantity for identity in api_suppressed)
+                or len(set(api_suppressed))!=suppressed_count
+                or not isinstance(suppression_status,str) or not suppression_status):
+            raise ValueError('Symmetric circular suppression resolver returned invalid API identifiers/status')
+    else:
+        api_suppressed = [identity-1 for identity in suppressed]
     _, inputs = typed(collection_id, COLLECTION)
     count = struct.unpack_from("<I", inputs, 6)[0]
     if inputs[:6] != b"\0"*6 or not 1 <= count <= 1024 or len(inputs) != 74+26*count:
@@ -179,7 +188,7 @@ def decode_circular_pattern(data, records, body, feature, known, features=None, 
             "element_record_object_ids": element_ids, "stored_element_ordinals": element_ordinals,
             "stored_suppressed_element_ordinals": suppressed,
             "suppressed_element_ids": api_suppressed,
-            "suppression_status": "Observed non-symmetric native ordinal minus one matches API element ID; symmetric suppression remains unsupported",
+            "suppression_status": suppression_status,
             "input_selection_record_object_id": input_proxy_id,
             "input_entity_collection_object_id": collection_id, "input_count": count,
             "input_body_count": count if entity_type == 2 else None,
