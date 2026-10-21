@@ -46,7 +46,7 @@ def scalar_lists(tokens, cursor, count):
     return result, cursor
 
 
-def decode_bspline(record):
+def _decode_observed_bspline(record):
     tokens, name = record["tokens"], record["name"]
     if (len(tokens) > 6 and tokens[4]["kind"] == "subtype_start"
             and tokens[5]["kind"] == "entity_name"):
@@ -62,13 +62,24 @@ def decode_bspline(record):
                 return decode_intersection_curve_variants(record)
         if name == "spline-surface" and tokens[5]["value"] == "srf_srf_v_bl_spl_sur":
             from decode_variable_blend_cache import decode_variable_blend_cache
-            return decode_variable_blend_cache(record)
+            try:
+                return decode_variable_blend_cache(record)
+            except (ValueError, IndexError):
+                from decode_rule_blend_cache import decode_rule_blend_cache
+                return decode_rule_blend_cache(record)
         if name == "intcurve-curve" and tokens[5]["value"] == "spring_int_cur":
             from decode_spring_curve_cache import decode_spring_curve_cache
-            return decode_spring_curve_cache(record)
+            try:
+                return decode_spring_curve_cache(record)
+            except (ValueError, IndexError):
+                from decode_rule_blend_cache import decode_rule_blend_cache
+                return decode_rule_blend_cache(record)
         if name == "spline-surface" and tokens[5]["value"] == "sweep_sur":
             from decode_sweep_surface_cache import decode_sweep_surface_cache
             return decode_sweep_surface_cache(record)
+        if name == "spline-surface" and tokens[5]["value"] == "cyl_spl_sur":
+            from decode_cylindrical_spline_cache import decode_cylindrical_spline_cache
+            return decode_cylindrical_spline_cache(record)
         if name == "intcurve-curve" and tokens[5]["value"] == "par_int_cur":
             from decode_parameter_curve_cache import decode_parameter_curve_cache
             return decode_parameter_curve_cache(record)
@@ -184,6 +195,18 @@ def decode_bspline(record):
                                if procedural == "exact_spl_sur" else
                                "Stored non-rational loft NUBS approximation; original procedural loft is not reconstructed"),
             "coordinate_scope": "Raw ASM control coordinates; body transforms and units/context not applied"}
+
+
+def decode_bspline(record):
+    try:
+        return _decode_observed_bspline(record)
+    except (ValueError, IndexError):
+        ts = record['tokens']
+        if (record['name'] == 'spline-surface' and len(ts) > 6 and ts[5].get('value') in
+                ('exact_spl_sur', 'loft_spl_sur', 'cl_loft_spl_sur')):
+            from decode_surface_cache_variants import decode_surface_cache_variants
+            return decode_surface_cache_variants(record)
+        raise
 
 
 def evaluate_curve(cache, parameter):

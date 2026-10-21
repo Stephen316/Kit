@@ -11,6 +11,17 @@ from decode_bspline import knot_vector, scalar_lists
 from decode_fillet_spline_caches import _expect, _prefix
 
 
+def _support_bounds(tokens, cursor):
+    flags, values = [], []
+    for _ in range(4):
+        finite = _expect(tokens, cursor, 'boolean_token')
+        flags.append(finite)
+        cursor += 1
+        values.append(_expect(tokens, cursor, 'double') if finite else None)
+        cursor += int(finite)
+    return flags, values, cursor
+
+
 def _grid(tokens, start, dimensions, allowed_degrees, rational_allowed):
     representation = _expect(tokens, start, 'entity_name')
     if representation not in (('nubs', 'nurbs') if rational_allowed else ('nubs',)):
@@ -47,9 +58,10 @@ def decode_parameter_curve_cache(record):
     if support_kind == 'plane':
         for offset, kind in ((1, 'position_vector'), (2, 'direction_vector'), (3, 'direction_vector')):
             _expect(tokens, cursor+offset, kind)
-        for offset in range(4, 9):
-            _expect(tokens, cursor+offset, 'boolean_token', False)
-        cursor += 9
+        _expect(tokens, cursor+4, 'boolean_token', False)
+        flags, bounds, cursor = _support_bounds(tokens, cursor+5)
+        if any(flags):
+            support.update(stored_interval_flags=flags, stored_parameter_intervals=bounds)
         support['definition_status'] = 'Explicit plane fields preserved; no procedural reconstruction or global identity mapping'
     elif support_kind == 'spline':
         flag = _expect(tokens, cursor+1, 'boolean_token')
@@ -62,9 +74,9 @@ def decode_parameter_curve_cache(record):
             if ref < 0:
                 raise ValueError('Negative inline parameter-curve support reference')
             _expect(tokens, cursor+5, 'subtype_end')
-            for offset in range(6, 10):
-                _expect(tokens, cursor+offset, 'boolean_token', False)
-            cursor += 10
+            flags, bounds, cursor = _support_bounds(tokens, cursor+6)
+            if any(flags):
+                support.update(stored_interval_flags=flags, stored_parameter_intervals=bounds)
             support.update(stored_inline_surface_ref=ref,
                            definition_status='Inline reference namespace unresolved; not an ASM entity index')
         elif subtype == 'sweep_sur':
@@ -81,7 +93,7 @@ def decode_parameter_curve_cache(record):
         raise ValueError('Unsupported parameter-curve support kind')
     support['stored_definition'] = tokens[support_start:cursor]
     _expect(tokens, cursor, 'entity_name', 'null_surface')
-    uv, cursor = _grid(tokens, cursor+1, 2, (1, 5), False)
+    uv, cursor = _grid(tokens, cursor+1, 2, (1, 3, 5), False)
     _expect(tokens, cursor, 'entity_name', 'nullbs')
     _expect(tokens, cursor+1, 'boolean_token', False)
     _expect(tokens, cursor+2, 'boolean_token', False)
@@ -109,4 +121,6 @@ def decode_parameter_curve_cache(record):
                  representation='Stored cubic XYZ and degree-one/five UV approximation caches; exact parameter-defined curve is not reconstructed',
                  cache_status='No direct API XYZ/UV cache/evaluator getter comparison captured for this layout',
                  coordinate_scope='Raw ASM coordinates; body transforms and units/context not applied')
+    if uv['degree'] == 3:
+        cache['representation'] = 'Stored cubic XYZ and cubic UV approximation caches; exact parameter-defined curve is not reconstructed'
     return cache

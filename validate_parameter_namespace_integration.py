@@ -1,4 +1,4 @@
-"""Main-reader geometry integration with explicit prior-output boundaries."""
+"""Original namespace recovery and the separately bounded surface follow-up."""
 
 import copy
 import json
@@ -38,9 +38,16 @@ def topology_structure(graph):
 
 def validate(zstd):
     baseline = baseline_outputs(FILES, zstd, revision='0f97d1d')
+    # Freeze the original recovery boundary, then check the current reader
+    # separately: tolerant topology intentionally recovers two extra graphs and
+    # one typed BODY vertex placement, beyond the earlier geometry-only stage.
+    stage_outputs = baseline_outputs(FILES, zstd, revision='42ce116')
+    from validate_surface_topology_integration import compare_outputs
+    followups = []
     rows, old_failures, remaining, new_uv = [], 0, 0, 0
-    for filename, before in zip(FILES, baseline):
-        after = json.loads(json.dumps(decode_basics(ROOT/filename, zstd)))
+    for filename, before, after in zip(FILES, baseline, stage_outputs):
+        current = json.loads(json.dumps(decode_basics(ROOT/filename, zstd)))
+        followups.append(compare_outputs(after, current, filename))
         # Parameters, constraints, feature controls, body joins/placement and
         # context/source diagnostics must remain identical outside ASM geometry.
         a, b = copy.deepcopy(before), copy.deepcopy(after)
@@ -97,11 +104,15 @@ def validate(zstd):
                 'initial_topology_structure_unchanged': True, 'prior_geometry_outputs_unchanged': True})
         rows.append({'file': filename, 'non_ASM_output_unchanged': True, 'streams': stream_rows})
     assert remaining < old_failures and new_uv > 0
-    return {'scope': 'Thirteen saved main-reader cases at baseline0f97d1d; newly recovered cached geometry and subtype/UV links only, with unsupported geometry diagnostics retained',
+    followup_remaining = sum(len(stream['remaining_geometry_rejections']) for row in followups for stream in row['streams'])
+    return {'scope': 'Original thirteen-file geometry/namespace recovery from0f97d1d to42ce116, plus separately checked current surface/topology follow-up; unsupported geometry diagnostics retained',
             'baseline_commit': '0f97d1d', 'samples': rows,
+            'original_stage_commit': '42ce116', 'current_surface_topology_followup': followups,
             'summary': {'saved_files': len(FILES), 'prior_geometry_rejections': old_failures,
                         'remaining_geometry_rejections': remaining, 'new_uv_trim_caches': new_uv,
-                        'non_ASM_output_changes': 0, 'new_API_calls': 0},
+                        'non_ASM_output_changes': 0, 'current_followup_geometry_rejections': followup_remaining,
+                        'current_followup_typed_BODY_vertex_placements': sum(row['new_typed_BODY_vertex_placements'] for row in followups),
+                        'new_API_calls': 0},
             'limitations': ['Counts concern these thirteen archives, not full-format completion.',
                            'No native writer, exact procedural geometry, general parameter remapping or history regeneration is established.']}
 

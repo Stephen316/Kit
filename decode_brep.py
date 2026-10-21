@@ -30,6 +30,17 @@ LINKS = {
 }
 
 
+def _spline_or_encoded_geometry(record):
+    subtype = record['tokens'][5].get('value') if len(record['tokens']) > 5 else None
+    if subtype in ('helix_int_cur', 'helix_spl_line'):
+        from decode_helix_cache import decode_helix_cache
+        return decode_helix_cache(record)
+    if record['name'] == 'spline-surface' and subtype == 'VBL_SURF':
+        from decode_rule_blend_cache import decode_rule_blend_definition
+        return {'partial_surface_definition': decode_rule_blend_definition(record)}
+    return decode_bspline(record)
+
+
 def decode_topology(parsed, *, subtype_catalog=None):
     if not parsed["complete_token_stream"]:
         return {"body_graphs": [], "unresolved": [{"reason": "ASM token stream incomplete"}], "nodes": []}
@@ -71,7 +82,15 @@ def decode_topology(parsed, *, subtype_catalog=None):
     sizes = {"body": (6,), "lump": (6,), "shell": (8,), "face": (10, 11), "loop": (6,), "wire": (8,),
              "coedge": (11,), "edge": (11,), "vertex": (6,), "point": (4,), "straight-curve": (7, 8, 9),
              "ellipse-curve": (9, 10, 11)}
-    for record in records[:geometry_limit]:
+    for original_record in records[:geometry_limit]:
+        record, tolerant_metadata = original_record, None
+        if record['name'] in ('tcoedge-coedge', 'tedge-edge', 'tvertex-vertex'):
+            from decode_tolerant_topology import decode_tolerant_topology
+            try:
+                record, tolerant_metadata = decode_tolerant_topology(record)
+            except (ValueError, KeyError, IndexError) as error:
+                unresolved.append({'index': record['index'], 'kind': record['name'], 'reason': str(error)})
+                continue
         name = record["name"]
         if name not in LINKS and name not in geometry:
             continue
@@ -131,11 +150,20 @@ def decode_topology(parsed, *, subtype_catalog=None):
                     node["uv_curve"] = decode_pcurve(record)
             elif name in ("spline-surface", "intcurve-curve"):
                 if subtype_catalog is None:
-                    cache = decode_bspline(record)
+                    cache = _spline_or_encoded_geometry(record)
                 else:
                     from decode_asm_subtypes import decode_asm_subtype_cache
-                    cache = decode_asm_subtype_cache(record, subtype_catalog, records, decoder=decode_bspline)
-                node["bspline_surface" if name == "spline-surface" else "bspline_curve"] = cache
+                    cache = decode_asm_subtype_cache(record, subtype_catalog, records, decoder=_spline_or_encoded_geometry)
+                if 'encoded_curve_kind' in cache:
+                    node['encoded_curve_geometry'] = cache
+                elif 'encoded_surface_kind' in cache:
+                    node['encoded_surface_geometry'] = cache
+                elif 'partial_surface_definition' in cache:
+                    node['partial_surface_definition'] = cache
+                    unresolved.append({'index': record['index'], 'kind': name,
+                        'reason': 'VBL component definitions decoded; standalone XYZ surface evaluator remains unsupported'})
+                else:
+                    node["bspline_surface" if name == "spline-surface" else "bspline_curve"] = cache
             elif name in ("cone-surface", "sphere-surface", "torus-surface"):
                 node["analytic_surface"] = decode_analytic_surface(record)
             elif name in geometry:
@@ -176,6 +204,11 @@ def decode_topology(parsed, *, subtype_catalog=None):
                                                     "coordinate_scope": "Raw ASM coordinates; body transform/context not applied"}
                 elif name == "straight-curve":
                     node["parameter_interval"] = intervals(record, 5, 2)
+            if tolerant_metadata is not None:
+                node['tolerant_record'] = tolerant_metadata
+                if tolerant_metadata.get('unresolved_inline_curve'):
+                    unresolved.append({'index': record['index'], 'kind': original_record['name'],
+                        'reason': 'Tolerant topology header decoded; inline curve cache unresolved: '+tolerant_metadata['unresolved_inline_curve']})
             nodes[record["index"]] = node
         except (ValueError, IndexError) as error:
             unresolved.append({"index": record["index"], "kind": name, "reason": str(error)})
@@ -343,6 +376,8 @@ def decode_topology(parsed, *, subtype_catalog=None):
                                 "geometry": nodes.get(nodes[f]["surface_index"], {}).get("analytic_surface"),
                                 "geometry_status": "Observed analytic fields decoded" if nodes.get(nodes[f]["surface_index"], {}).get("analytic_surface")
                                                    else "Cached spline surface decoded separately" if nodes.get(nodes[f]["surface_index"], {}).get("bspline_surface")
+                                                   else "Restricted encoded surface decoded separately" if nodes.get(nodes[f]["surface_index"], {}).get("encoded_surface_geometry")
+                                                   else "Partial surface component definitions decoded separately" if nodes.get(nodes[f]["surface_index"], {}).get("partial_surface_definition")
                                                    else "Surface geometry schema unresolved"}
                                for f in faces],
                            "spline_surfaces": [{"face_index": f, "surface_index": nodes[f]["surface_index"],
@@ -354,6 +389,21 @@ def decode_topology(parsed, *, subtype_catalog=None):
                            "all_coedges_have_partners": bool(coedges) and all(nodes[c]["partner_index"] is not None for c in coedges),
                            "identity_status": "Stored body graph; final visible body mapping unresolved",
                            "coordinate_scope": "Raw ASM points; body transform and units/context not applied"}
+            encoded_curves = [{'edge_index': e, 'curve_index': nodes[e]['curve_index'],
+                'geometry': nodes[nodes[e]['curve_index']]['encoded_curve_geometry']}
+                for e in sorted(edges) if nodes.get(nodes[e]['curve_index'], {}).get('encoded_curve_geometry')]
+            encoded_surfaces = [{'face_index': f, 'surface_index': nodes[f]['surface_index'],
+                'geometry': nodes[nodes[f]['surface_index']]['encoded_surface_geometry']}
+                for f in faces if nodes.get(nodes[f]['surface_index'], {}).get('encoded_surface_geometry')]
+            partial_surfaces = [{'face_index': f, 'surface_index': nodes[f]['surface_index'],
+                'definition': nodes[nodes[f]['surface_index']]['partial_surface_definition']}
+                for f in faces if nodes.get(nodes[f]['surface_index'], {}).get('partial_surface_definition')]
+            if encoded_curves:
+                graph['encoded_curves'] = encoded_curves
+            if encoded_surfaces:
+                graph['encoded_surfaces'] = encoded_surfaces
+            if partial_surfaces:
+                graph['partial_surface_definitions'] = partial_surfaces
             if wires:
                 counts["wire"] = len(wires)
                 graph.update(wire_indices=wires, wire_coedge_rings=wire_rings,
