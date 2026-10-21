@@ -4,6 +4,8 @@ This is an experimental, read-only `.f3d` decoder for recovering parametric CAD 
 
 Live Fusion capture is permitted after explicit user authorization and a verified repair to the study script's Trim cleanup order. Five healthy captures completed and closed while the same Fusion process stayed alive, including two subsequent sketch-Line contrasts. `fusion-live-capture-hold.json` records the authorization and native validation evidence; suspend captures again on process loss or an unsafe transaction. When active, the dispatcher blocks before UI/event access except for an explicitly authorized validation whose entrypoint and helper hashes match reviewed sources. Existing files remain readable without Fusion. This repairs the observed capture lifecycle; it is not a claim that every Fusion crash is fixed.
 
+`fusion-capture-repair-status.json` reconciles the original three-case native validation with the two later healthy Line captures, including archive hashes and cleanup journal ordering. The latest read-only check still found Fusion PID5619 running and no newer local CER crash archive. macOS explicitly reported the session locked, so no new command was dispatched. Unlocking and rechecking Fusion's accessible command field are still required before the prepared live capture can run.
+
 Work is stored in this standalone Git repository:
 
 ```text
