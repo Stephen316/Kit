@@ -1,7 +1,7 @@
 {
   "scope": "Saved-corpus initial ASM custom attribute payload/owner-chain framing and exact counted generic naming audit. Raw trailing attribute counts are inventories only; no complete-format coverage percentage.",
   "provenance": {
-    "repository_HEAD_at_start": "bfeab9374abc8e3ea02a67d0a9a1c3c35355f0a9",
+    "repository_HEAD_at_start": "87487cc32b43f631fbebfaae1fcaaa2347d19397",
     "reader_source_sha256": {
       "audit_asm_attribute_frontier.py": "03ff46016d25c8dab20e6bc357cfe2e31268e1e8f14592c53724760705b1893b",
       "asm_records.py": "9f25caf199136979418a90e185401a0cec073aeb1eb50f09383c57de3a775dab",
@@ -14,7 +14,7 @@
     },
     "reader_sources_unchanged_during_run": true,
     "archive_discovery": "Sorted root.glob(\"*/*.f3d\") in the saved capture layout; no temporary discovery file is read.",
-    "archive_manifest_sha256": "d68c48e78b2cc4d6d8fc3ac06b3e37b560568b421d65d0d0e127366285321a88",
+    "archive_manifest_sha256": "8edbd866b4afc4fb4ec754ccbebdd8f9a738d3bcb7da2cfced03a8a6889818b7",
     "archive_manifest": [
       {
         "file": "advanced-627f7fe095f4/advanced.f3d",
@@ -1165,6 +1165,21 @@
         "file": "meshremoves-8b2188cd274d/two_remove_first.f3d",
         "byte_count": 59125,
         "sha256": "f8fc1aaff309873738501d68a3fdb6e10a031bcbfc9ca7e077faea6735ab7356"
+      },
+      {
+        "file": "meshrepairs-2387e4f9c2d2/closed_close_holes_control.f3d",
+        "byte_count": 58759,
+        "sha256": "589a4c5ce431273952399077612e81bd3ed8992b3e349d22bddac327cafd1079"
+      },
+      {
+        "file": "meshrepairs-2387e4f9c2d2/open_close_holes.f3d",
+        "byte_count": 55664,
+        "sha256": "765c5d2f79d6ee5c25eaa4435969eca7034b747e4145cf857209b301fabffa1f"
+      },
+      {
+        "file": "meshrepairs-2387e4f9c2d2/open_stitch_remove.f3d",
+        "byte_count": 59423,
+        "sha256": "a9bcdade4cc8448b36561d1af87f82db83deff4c855372dc027932518bf63361"
       },
       {
         "file": "meshreversenormals-2bc2dd3780cc/closed_once.f3d",
@@ -3368,7 +3383,7 @@
       "archive_count": {
         "matches_prior_discovery": false,
         "prior": 559,
-        "current": 664
+        "current": 667
       },
       "blob_count": {
         "matches_prior_discovery": false,
@@ -3430,7 +3445,7 @@
       }
     }
   },
-  "archive_count": 664,
+  "archive_count": 667,
   "blob_count": 1093,
   "initial_custom_attribute_count": 33627,
   "initial_attribute_classification_counts": {
@@ -34184,7 +34199,7 @@
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     }
   ],
-  "elapsed_seconds": 6.18,
+  "elapsed_seconds": 6.261,
   "limits": [
     "A validated generic naming payload/owner chain is not a persistent topology ID or qualified selected source.",
     "FPM/FDM literals and opaque fields retain their existing reader scope; raw trailing attributes are not relabeled validated initial attributes.",
