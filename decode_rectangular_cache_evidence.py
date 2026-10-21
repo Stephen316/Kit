@@ -1,8 +1,9 @@
-"""Body-input rectangular element keys joined to named stored BODY caches.
+"""Rectangular element keys joined to named stored BODY caches.
 
 Native selectors, result anchors and same-blob stored IDs fix BODY identities.
 The complete controller-key/source-prefix bijection precedes every rigid fit.
 No Cantor coordinates, API element IDs or result-list order choose a cache.
+Feature inputs require an explicit source resolver; the default remains BODY-only.
 """
 import math
 import struct
@@ -19,12 +20,17 @@ from decode_sketch import attributes, reference
 SCOPE = ('Observed zero-suppression rectangular BODY-input controller-key/source-prefix cache '
          'correspondences and measured relative rigid matrices; logical grid/API element mapping, '
          'serialized transforms, current/final lifecycle and regeneration remain unresolved')
+FEATURE_SCOPE = ('Observed zero-suppression rectangular Feature-input controller-key/source-prefix '
+         'cache correspondences and measured relative rigid matrices with explicit source feature '
+         'and complete canonical generic/FPM FACE ownership; logical grid/API identity, serialized '
+         'transforms, current/final lifecycle and regeneration remain unresolved')
 ANCHOR = 'D26351F0-5940-4D23-AA20-2C35475A6D9E'
 ELEMENT = 'AD719C1A-11AF-4537-BB41-030A9091D36B'
 COLLECTION = '8DB90DAE-3FF5-4E01-BACC-00AAA3EBB3EF'
 
 
-def decode_rectangular_cache_evidence(data, records, features, member, members, body_blob_bindings):
+def decode_rectangular_cache_evidence(data, records, features, member, members, body_blob_bindings,
+                                      *, feature_source_resolver=None):
     """Return separate decoded/unresolved/scope evidence without changing settings."""
     result = dict(decoded=[], unresolved=[], scope=SCOPE)
     candidates = [f for f in features if f.get('class_guid') == FEATURE]
@@ -59,11 +65,11 @@ def decode_rectangular_cache_evidence(data, records, features, member, members, 
                 raise ValueError('Rectangular cache controller is shorter than observed framing')
             _, mode_cursor = optional_reference(control, 114)
             compute, entity_type = struct.unpack_from('<II', control, mode_cursor+12)
-            # This addition is body-only. Existing Feature patterns are not
-            # attempted and do not receive a new unsupported diagnostic.
-            if entity_type == 1:
+            # By default Feature patterns are not attempted and do not receive
+            # a new unsupported diagnostic. The opt-in retains Features mode.
+            if entity_type == 1 and feature_source_resolver is None:
                 continue
-            if (entity_type != 2 or compute not in (0, 1, 2)
+            if (entity_type not in (1, 2) or compute not in (0, 1, 2)
                     or control[:5] != bytes.fromhex('0102000000')
                     or control[16:20] != bytes(4) or control[31:44] != bytes(9)+b'\xff'*4
                     or any(flag not in (0, 1) for flag in control[90:92])
@@ -118,12 +124,36 @@ def decode_rectangular_cache_evidence(data, records, features, member, members, 
                 raise ValueError('Rectangular cache evidence supports explicit zero suppression only')
             if selections is None:
                 selections = decode_body_selections(data, records)
-            proxies = [p for p in selections['selection_proxies'] if p['selection_record_object_id'] == proxy_id]
-            if len(proxies) != 1 or proxies[0]['owner_object_id'] != fid:
-                raise ValueError('Rectangular explicit source BODY proxy ownership unresolved')
-            proxy = proxies[0]
-            sources = proxy['native_body_object_ids']
-            descriptors = proxy['descriptor_object_ids']
+            source_feature_ids, source_provenance = None, None
+            if entity_type == 2:
+                proxies = [p for p in selections['selection_proxies'] if p['selection_record_object_id'] == proxy_id]
+                if len(proxies) != 1 or proxies[0]['owner_object_id'] != fid:
+                    raise ValueError('Rectangular explicit source BODY proxy ownership unresolved')
+                proxy = proxies[0]
+                sources = proxy['native_body_object_ids']
+                descriptors = proxy['descriptor_object_ids']
+            else:
+                resolved = feature_source_resolver(data, records, feature, proxy_id, collection_id)
+                required = {'descriptor_object_ids', 'source_feature_object_ids',
+                            'source_native_body_object_ids', 'provenance'}
+                if not isinstance(resolved, dict) or set(resolved) != required:
+                    raise ValueError('Rectangular feature-source resolver returned an unobserved schema')
+                descriptors = resolved['descriptor_object_ids']
+                source_feature_ids = resolved['source_feature_object_ids']
+                sources = resolved['source_native_body_object_ids']
+                source_provenance = resolved['provenance']
+                if (any(not isinstance(values, list) or not 1 <= len(values) <= 1024
+                        or any(type(value) is not int or value <= 0 for value in values)
+                        or len(set(values)) != len(values)
+                        for values in (descriptors, source_feature_ids, sources))
+                        or len({len(descriptors), len(source_feature_ids), len(sources)}) != 1
+                        or not isinstance(source_provenance, dict) or not source_provenance):
+                    raise ValueError('Rectangular feature-source resolver count/identities/provenance invalid')
+                from decode_selection import native_proxy_references
+                proxy_record, proxy_body = typed(proxy_id, '2CA5A1CD-C99B-4C9B-91AF-57989148E841')
+                proxy_descriptors, _ = native_proxy_references(data, proxy_record)
+                if reference(proxy_body, len(proxy_body)-11) != fid or proxy_descriptors != descriptors:
+                    raise ValueError('Rectangular feature-source proxy/descriptor ownership disagrees')
             if len(sources) != len(descriptors) or len(set(sources)) != len(sources):
                 raise ValueError('Rectangular source BODY/descriptor identities are ambiguous')
             _, collection = typed(collection_id, COLLECTION)
@@ -135,14 +165,34 @@ def decode_rectangular_cache_evidence(data, records, features, member, members, 
                     or reference(collection, 10+26*count) != fid or reference(collection, len(collection)-11) != fid):
                 raise ValueError('Rectangular source collection/proxy/count/owner copies disagree')
             source_descriptors = []
-            for descriptor_id in descriptors:
-                _, descriptor = typed(descriptor_id, '9716F783-676D-42E0-93F9-EBF273E7C035')
-                if reference(descriptor, len(descriptor)-11) != fid:
-                    raise ValueError('Rectangular source BODY descriptor owner disagrees')
-                found = [d for d in selections['body_descriptors'] if d['object_id'] == descriptor_id]
-                if len(found) != 1:
-                    raise ValueError('Rectangular source descriptor lacks one typed native BODY route')
-                source_descriptors.append(found[0])
+            for index, descriptor_id in enumerate(descriptors):
+                if entity_type == 2:
+                    _, descriptor = typed(descriptor_id, '9716F783-676D-42E0-93F9-EBF273E7C035')
+                    if reference(descriptor, len(descriptor)-11) != fid:
+                        raise ValueError('Rectangular source BODY descriptor owner disagrees')
+                    found = [d for d in selections['body_descriptors'] if d['object_id'] == descriptor_id]
+                    if len(found) != 1:
+                        raise ValueError('Rectangular source descriptor lacks one typed native BODY route')
+                    source_descriptors.append(found[0])
+                else:
+                    _, descriptor = typed(descriptor_id, '5A1BF548-241F-46FD-9FB5-E4B05126EB9D')
+                    if len(descriptor) != 263 or reference(descriptor, 252) != fid:
+                        raise ValueError('Rectangular source Feature descriptor owner/extent disagrees')
+                    leaf_id = reference(descriptor, 2)
+                    _, leaf = typed(leaf_id, '90055C05-546C-4EE7-B3C9-3DD922AD0C9C')
+                    source_id = source_feature_ids[index]
+                    if (len(leaf) != 10 or leaf[:2] != bytes(2)
+                            or struct.unpack_from('<Q', leaf, 2)[0] != source_id
+                            or source_id == fid or len(grouped.get(source_id, [])) != 1):
+                        raise ValueError('Rectangular feature source differs from explicit typed descriptor leaf')
+                    owned = [a for a in selections['body_anchors'] if a['source_owner_object_id'] == source_id]
+                    if len(owned) != 1 or owned[0]['native_body_object_id'] != sources[index]:
+                        raise ValueError('Rectangular source Feature lacks exactly one selected owned BODY anchor')
+                    typed(owned[0]['object_id'], ANCHOR)
+                    source_descriptors.append(dict(descriptor_object_id=descriptor_id,
+                        descriptor_class_guid='5A1BF548-241F-46FD-9FB5-E4B05126EB9D',
+                        terminal_object_id=leaf_id, source_feature_object_id=source_id,
+                        source_body_anchor=owned[0]))
             for i in range(count):
                 typed(reference(collection, 25+26*i), 'C46D3EEB-40E1-43FA-83DC-9CB204335417')
             if body[feature_header_end:feature_header_end+4] != bytes(4):
@@ -183,7 +233,7 @@ def decode_rectangular_cache_evidence(data, records, features, member, members, 
                 raise ValueError('Rectangular mapped cache topology has unresolved fields')
             nodes = {n['index']: n for n in topology['nodes']}
             graphs = {g['body_index']: g for g in topology['body_graphs']}
-            bodies = {}
+            bodies, feature_name_proofs = {}, []
             binding_fields = ('native_body_object_id', 'stored_handle', 'asm_body_index', 'asm_stored_entity_id',
                 'asm_body_record_offset', 'asm_identifier_token_offset', 'association_status', 'identifier_scope')
             for nid in native_ids:
@@ -191,7 +241,17 @@ def decode_rectangular_cache_evidence(data, records, features, member, members, 
                 graph = graphs.get(entry['asm_body_index'])
                 if graph is None:
                     raise ValueError('Rectangular keyed BODY lacks one complete typed cache graph')
-                names = _face_names(blob, parsed, graph)
+                if entity_type == 1:
+                    # Reuse the already bounded canonical generic/FPM FACE
+                    # chain reader. FPM literals never choose an identity.
+                    from decode_circular_feature_caches import _face_names as canonical_face_names
+                    named = canonical_face_names(blob, parsed, graph)
+                    names = named['names']
+                    feature_name_proofs.append(dict(native_body_object_id=nid,
+                        asm_body_index=entry['asm_body_index'],
+                        binding={k: entry[k] for k in binding_fields}, proof=named['proof']))
+                else:
+                    names = _face_names(blob, parsed, graph)
                 components = {v['components'] for v in names.values()}
                 if len(components) != 1:
                     raise ValueError('Rectangular BODY complete face naming components disagree')
@@ -243,9 +303,16 @@ def decode_rectangular_cache_evidence(data, records, features, member, members, 
                 stored_source_naming_prefix=list(bodies[nid]['components']),
                 complete_face_naming_proof=bodies[nid]['complete_face_naming_proof'])
                 for nid, descriptor in zip(sources, source_descriptors)]
+            if entity_type == 1:
+                source_proofs = [dict(source_native_body_object_id=nid, source_feature_descriptor=descriptor,
+                    source_body_binding=bodies[nid]['binding'],
+                    stored_source_naming_prefix=list(bodies[nid]['components']),
+                    complete_face_naming_proof=bodies[nid]['complete_face_naming_proof'])
+                    for nid, descriptor in zip(sources, source_descriptors)]
             evidence = dict(feature_object_id=fid, control_record_object_id=control_id,
                 input_selection_record_object_id=proxy_id, input_entity_collection_object_id=collection_id,
-                pattern_entity_type='Bodies', stored_entity_type_code=2, stored_compute_option_code=compute,
+                pattern_entity_type='Bodies' if entity_type == 2 else 'Features',
+                stored_entity_type_code=entity_type, stored_compute_option_code=compute,
                 stored_symmetry_flags=[bool(v) for v in control[90:92]],
                 stored_instance_key_pairs=pairs, element_record_object_ids=element_ids,
                 element_record_keys=[struct.unpack_from('<I', typed(eid, ELEMENT)[1], 2)[0] for eid in element_ids],
@@ -259,6 +326,10 @@ def decode_rectangular_cache_evidence(data, records, features, member, members, 
                 native_key_scope='Literal native element key paired with an opaque naming key; no Cantor coordinate or API ID interpretation',
                 API_element_identity=None, logical_grid_identity=None, current_placement=None,
                 cache_application='Evidence only; no matrices applied to the already placed stored caches', scope=SCOPE)
+            if entity_type == 1:
+                evidence.update(source_feature_object_ids=source_feature_ids,
+                    source_feature_input_provenance=source_provenance,
+                    source_feature_face_naming_proofs=feature_name_proofs, scope=FEATURE_SCOPE)
             for element_key, naming_key in pairs:
                 cache_group = dict(element_object_id=elements[element_key], stored_element_key=element_key,
                     stored_naming_key=naming_key, cache_bodies=[])
@@ -276,4 +347,8 @@ def decode_rectangular_cache_evidence(data, records, features, member, members, 
             result['decoded'].append(evidence)
         except (ValueError, KeyError, IndexError, TypeError, UnicodeError, struct.error) as error:
             result['unresolved'].append(dict(feature_object_id=fid, reason=str(error)))
+    if any(row.get('stored_entity_type_code') == 1 for row in result['decoded']):
+        result['scope'] = ('Observed zero-suppression rectangular BODY/Feature-input native naming/cache '
+            'evidence and measured relative matrices; API/logical element mapping, serialized transforms, '
+            'current/final lifecycle and regeneration remain unresolved')
     return result
