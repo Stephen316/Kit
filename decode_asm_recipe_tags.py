@@ -60,7 +60,7 @@ def encode_generic_tag_payload(tag):
     return output
 
 
-def decode_asm_generic_tags(blob, parsed=None):
+def decode_asm_generic_tags(blob, parsed=None, *, allow_fpm_tracking=False):
     """Return framed tags/unresolved/scope; only initial geometry is examined."""
     parsed = parsed if parsed is not None else inspect_asm(blob)
     if not parsed['complete_token_stream']:
@@ -133,6 +133,16 @@ def decode_asm_generic_tags(blob, parsed=None):
                 ignored.append({'attribute_record_index': record['index'], 'definition_name': definition,
                                 'owner_record_index': owner_id, 'owner_kind': 'coedge',
                                 'uninterpreted_text': sketch_text})
+                continue
+            if definition == 'FPM_tracked_attrib_def' and allow_fpm_tracking:
+                owner_chain(owner_id, record['index'], ('edge',))
+                if len(tokens) != 8 or _integer(tokens[6], 1, 1) != 1:
+                    raise ValueError('Unobserved FPM tracking definition framing prevents complete generic-tag audit')
+                literal = _integer(tokens[7], 1, 0xffffffff)
+                ignored.append({'attribute_record_index': record['index'], 'definition_name': definition,
+                                'owner_record_index': owner_id, 'owner_kind': 'edge',
+                                'stored_tracking_literal': literal,
+                                'scope': 'Literal tracking value only; no native identity meaning assigned here'})
                 continue
             if definition != DEFINITION:
                 raise ValueError('Unobserved custom attribute definition prevents complete generic-tag audit')

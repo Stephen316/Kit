@@ -5,8 +5,9 @@ from decode_bspline import read_token, knot_vector, evaluate_curve
 
 def decode_pcurve(record):
     tokens = record["tokens"]
-    if read_token(tokens, 3, "integer") != 0 or read_token(tokens, 4, "boolean_token"):
+    if read_token(tokens, 3, "integer") != 0:
         raise ValueError("Unsupported pcurve prefix flags")
+    prefix_flag = read_token(tokens, 4, "boolean_token")
     if tokens[5]["kind"] != "subtype_start" or read_token(tokens, 6, "entity_name") != "exp_par_cur":
         raise ValueError("Unsupported parameter curve subtype")
     if read_token(tokens, 7, "entity_name") != "nubs":
@@ -16,14 +17,13 @@ def decode_pcurve(record):
     if (degree, form) not in ((1, 0), (1, 2), (3, 0)):
         raise ValueError("Only observed degree-one/cubic UV curve forms supported")
     knots, compact, count, cursor = knot_vector(tokens, 11, read_token(tokens, 10, "integer"), degree)
-    if count != degree+1:
-        raise ValueError("Only observed single-span UV curve grids supported")
     flat = [read_token(tokens, cursor+i, "double") for i in range(2*count)]
     cursor += 2*count
     if len(tokens) != cursor+14:
         raise ValueError("Unsupported explicit pcurve trailer length")
     scalar = read_token(tokens, cursor, "double")
-    if (read_token(tokens, cursor+1, "entity_name") != "spline" or read_token(tokens, cursor+2, "boolean_token")
+    support_flag = read_token(tokens, cursor+2, "boolean_token")
+    if (read_token(tokens, cursor+1, "entity_name") != "spline"
             or tokens[cursor+3]["kind"] != "subtype_start"
             or read_token(tokens, cursor+4, "entity_name") != "ref"
             or tokens[cursor+6]["kind"] != "subtype_end" or tokens[cursor+11]["kind"] != "subtype_end"):
@@ -34,7 +34,7 @@ def decode_pcurve(record):
     offset = [read_token(tokens, cursor+12+i, "double") for i in range(2)]
     raw = [flat[i:i+2] for i in range(0, len(flat), 2)]
     shifted = [[x+d for x,d in zip(p, offset)] for p in raw]
-    return {"degree": degree, "knots": knots, "stored_compact_knots": compact,
+    result = {"degree": degree, "knots": knots, "stored_compact_knots": compact,
             "raw_control_points_uv": raw, "parameter_offset_uv": offset, "control_points_uv": shifted,
             "weights": [], "parameter_domain": [knots[degree], knots[-degree-1]],
             "stored_form_code": form, "uninterpreted_cache_scalar": scalar,
@@ -43,6 +43,13 @@ def decode_pcurve(record):
             "coordinate_system": "Parent surface UV parameter space; curve parameter units not inferred",
             "representation": "Stored explicit degree-one/cubic non-rational UV cache; exact coedge parameterization is not reconstructed",
             "cache_status": "Matches observed API spline geometry; sampled exact coedge evaluations may differ"}
+    if prefix_flag or support_flag or count != degree+1:
+        result.update(stored_prefix_flag_4=prefix_flag, stored_support_surface_flag=support_flag,
+                      stored_control_count=count, stored_span_count=len(compact)-1,
+                      flag_scope="Literal wrapper flags retained; no coedge direction, surface sense or parameter remapping inferred",
+                      representation="Stored explicit clamped non-rational UV spline cache, including multiple spans; exact coedge parameterization unresolved",
+                      cache_status="Stored control grid decoded; no direct API UV-cache getter comparison captured for this layout")
+    return result
 
 
 def evaluate_pcurve(cache, parameter):

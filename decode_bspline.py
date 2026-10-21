@@ -48,6 +48,14 @@ def scalar_lists(tokens, cursor, count):
 
 def decode_bspline(record):
     tokens, name = record["tokens"], record["name"]
+    if (len(tokens) > 6 and tokens[4]["kind"] == "subtype_start"
+            and tokens[5]["kind"] == "entity_name"):
+        if name == "spline-surface" and tokens[5]["value"] == "g2_blend_spl_sur":
+            from decode_fillet_spline_caches import decode_g2_blend_surface_cache
+            return decode_g2_blend_surface_cache(record)
+        if name == "intcurve-curve" and tokens[5]["value"] == "int_int_cur":
+            from decode_fillet_spline_caches import decode_intersection_curve_cache
+            return decode_intersection_curve_cache(record)
     if read_token(tokens, 3, "boolean_token") or tokens[4]["kind"] != "subtype_start":
         raise ValueError("Unsupported spline wrapper")
     procedural = read_token(tokens, 5, "entity_name")

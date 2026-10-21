@@ -67,6 +67,7 @@ from decode_body_bindings import decode_body_bindings
 from decode_body_asm_identifiers import decode_body_asm_identifiers
 from decode_historical_body_components import decode_historical_body_components
 from decode_selection_recipe_incidence import decode_selection_recipe_incidence
+from decode_fpm_tracking import decode_fpm_selection_tracking
 from decode_asm_recipe_tags import inspect_pipe_recipe_tags
 from decode_pipe_recipe_incidence import inspect_pipe_recipe_incidence
 from decode_pipe_edge_limits import inspect_pipe_edge_limits
@@ -770,6 +771,8 @@ def decode_basics(path, zstd_library=None):
                           ("component_object_id", "component_name", "historical_component_context")})
         selection_recipe_incidence_summary = decode_selection_recipe_incidence(
             data, records, features, name, members, body_identifier_summary, body_selection_summary)
+        fpm_selection_tracking_summary = decode_fpm_selection_tracking(
+            data, records, features, name, members, body_identifier_summary, body_selection_summary)
         boundary_sculpt_summary = decode_boundary_sculpt_provenance(
             data, records, name, members, features, body_binding_summary)
         for provenance in boundary_sculpt_summary["decoded"]:
@@ -888,6 +891,7 @@ def decode_basics(path, zstd_library=None):
             "body_asm_identifiers": body_identifier_summary,
             "historical_body_components": historical_component_summary,
             "selection_recipe_incidence": selection_recipe_incidence_summary,
+            "fpm_selection_tracking": fpm_selection_tracking_summary,
             "body_properties": body_property_summary,
             "body_selections": body_selection_summary,
             "selection_context_recipes": selection_context_summary,
