@@ -15,13 +15,15 @@ SCOPE = ('Observed slot0 literal initial-head/trailing generic-tag pair with an 
          'raw typed FACE-owner ordinal; complete naming tuples and paired BODY stored-ID values are provenance '
          'only. No canonical-tag mutation, materialization, chronology, current/persistent identity '
          'or native FPM/descriptor bridge.')
-def decode_asm_name_versions(blob, *, parsed=None):
+def decode_asm_name_versions(blob, *, parsed=None, allow_modified_nested=False):
     """Return decoded/unresolved/scope and full literal journal_history when targeted.
 
     A caller may query ``trailing_attribute.terms`` as an entire version tuple.
     It must independently qualify its native source against
     ``initial_body_record_index``; the paired trailing BODY is never substituted.
     """
+    if type(allow_modified_nested) is not bool:
+        raise ValueError('Naming-version modified nested-family opt-in must be Boolean')
     canonical = inspect_asm(blob)
     if parsed is not None and parsed != canonical:
         raise ValueError('ASM naming-version parsed records differ from source bytes')
@@ -158,12 +160,13 @@ def decode_asm_name_versions(blob, *, parsed=None):
         if len(initial['terms']) != 1 or len(trailing['terms']) != 1:
             raise ValueError('Naming-version requires one complete term on each paired attribute')
         a, b = initial['terms'][0], trailing['terms'][0]
+        modified = (a['name'] == b['name'] and a['stored_index'] == b['stored_index']
+            and a['stored_reference_component_count'] == 2 and b['stored_reference_component_count'] == 1
+            and a['stored_reference_components_int32'][:1] == b['stored_reference_components_int32'])
         if 'validated_nested_metadata' in initial:
-            if initial['terms'] != trailing['terms']:
+            if initial['terms'] != trailing['terms'] and not (allow_modified_nested and modified):
                 raise ValueError('Naming-version nested-child family requires identical complete paired tuples')
-        elif (a['name'] != b['name'] or a['stored_index'] != b['stored_index']
-                or a['stored_reference_component_count'] != 2 or b['stored_reference_component_count'] != 1
-                or a['stored_reference_components_int32'][:1] != b['stored_reference_components_int32']):
+        elif not modified:
             raise ValueError('Naming-version complete tuples differ from the observed two/one component family')
         graphs = [g for g in topology['body_graphs'] if face_index in g['face_indices']]
         if len(graphs) != 1 or nodes.get(face_index, {}).get('kind') != 'face':
