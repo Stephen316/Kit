@@ -1,0 +1,362 @@
+{
+  "batch_id": "8fc83529b236",
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "01_literal.f3d",
+      "case": "literal",
+      "stage_index": 0,
+      "getter_errors": [],
+      "requested_result_expression": "10 mm",
+      "expected_result_dependency_names": [],
+      "expected_internal_value_cm": 1.0,
+      "requested_expression_character_count": 5,
+      "requested_expression_utf16le_bytes": 10,
+      "timeline_count": 0,
+      "marker_position": 0,
+      "user_parameter_count": 3,
+      "parameters": [
+        {
+          "getter_errors": [],
+          "name": "alpha",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjACADqLhg7iAAAAA==",
+          "is_valid": true,
+          "expression": "10 mm",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        },
+        {
+          "getter_errors": [],
+          "name": "bravo",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjAGAB8Hh9MiAAAAA==",
+          "is_valid": true,
+          "expression": "10 mm",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        },
+        {
+          "getter_errors": [],
+          "name": "result",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjABADfi3vSiAAAAA==",
+          "is_valid": true,
+          "expression": "10 mm",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        }
+      ],
+      "observed_controls": {
+        "expression_matches_request": true,
+        "expression_character_count_is_five": true,
+        "expression_utf16le_bytes_is_ten": true,
+        "all_cached_values_one_cm": true,
+        "result_value_one_cm": true,
+        "result_dependency_names_match_prediction": true,
+        "all_original_handles_valid": true
+      },
+      "export": {
+        "returned_success": true,
+        "size_bytes": 31092,
+        "sha256": "77381405b647267a4f1f1a4624dad674f2e9ddcffe12ebf75dea7a6819d18294"
+      }
+    },
+    {
+      "file": "02_alpha_reference.f3d",
+      "case": "alpha_reference",
+      "stage_index": 1,
+      "getter_errors": [],
+      "requested_result_expression": "alpha",
+      "expected_result_dependency_names": [
+        "alpha"
+      ],
+      "expected_internal_value_cm": 1.0,
+      "requested_expression_character_count": 5,
+      "requested_expression_utf16le_bytes": 10,
+      "timeline_count": 0,
+      "marker_position": 0,
+      "user_parameter_count": 3,
+      "parameters": [
+        {
+          "getter_errors": [],
+          "name": "alpha",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjACADqLhg7iAAAAA==",
+          "is_valid": true,
+          "expression": "10 mm",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [],
+          "dependent_names": [
+            "result"
+          ],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        },
+        {
+          "getter_errors": [],
+          "name": "bravo",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjAGAB8Hh9MiAAAAA==",
+          "is_valid": true,
+          "expression": "10 mm",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        },
+        {
+          "getter_errors": [],
+          "name": "result",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjABADfi3vSiAAAAA==",
+          "is_valid": true,
+          "expression": "alpha",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [
+            "alpha"
+          ],
+          "dependent_names": [],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        }
+      ],
+      "observed_controls": {
+        "expression_matches_request": true,
+        "expression_character_count_is_five": true,
+        "expression_utf16le_bytes_is_ten": true,
+        "all_cached_values_one_cm": true,
+        "result_value_one_cm": true,
+        "result_dependency_names_match_prediction": true,
+        "all_original_handles_valid": true
+      },
+      "export": {
+        "returned_success": true,
+        "size_bytes": 31159,
+        "sha256": "b6d7b7b2adb6fc93c597ea0c019c281cfe5de8d3c773f791d29b5cc2a0f67a9b"
+      }
+    },
+    {
+      "file": "03_bravo_reference.f3d",
+      "case": "bravo_reference",
+      "stage_index": 2,
+      "getter_errors": [],
+      "requested_result_expression": "bravo",
+      "expected_result_dependency_names": [
+        "bravo"
+      ],
+      "expected_internal_value_cm": 1.0,
+      "requested_expression_character_count": 5,
+      "requested_expression_utf16le_bytes": 10,
+      "timeline_count": 0,
+      "marker_position": 0,
+      "user_parameter_count": 3,
+      "parameters": [
+        {
+          "getter_errors": [],
+          "name": "alpha",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjACADqLhg7iAAAAA==",
+          "is_valid": true,
+          "expression": "10 mm",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        },
+        {
+          "getter_errors": [],
+          "name": "bravo",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjAGAB8Hh9MiAAAAA==",
+          "is_valid": true,
+          "expression": "10 mm",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [],
+          "dependent_names": [
+            "result"
+          ],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        },
+        {
+          "getter_errors": [],
+          "name": "result",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjABADfi3vSiAAAAA==",
+          "is_valid": true,
+          "expression": "bravo",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [
+            "bravo"
+          ],
+          "dependent_names": [],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        }
+      ],
+      "observed_controls": {
+        "expression_matches_request": true,
+        "expression_character_count_is_five": true,
+        "expression_utf16le_bytes_is_ten": true,
+        "all_cached_values_one_cm": true,
+        "result_value_one_cm": true,
+        "result_dependency_names_match_prediction": true,
+        "all_original_handles_valid": true
+      },
+      "export": {
+        "returned_success": true,
+        "size_bytes": 31167,
+        "sha256": "bc7d3ecb1fab356a4efc60955124c62b7771734b7fe343099802a0a9dd7f6e0c"
+      }
+    },
+    {
+      "file": "04_literal_return.f3d",
+      "case": "literal_return",
+      "stage_index": 3,
+      "getter_errors": [],
+      "requested_result_expression": "10 mm",
+      "expected_result_dependency_names": [],
+      "expected_internal_value_cm": 1.0,
+      "requested_expression_character_count": 5,
+      "requested_expression_utf16le_bytes": 10,
+      "timeline_count": 0,
+      "marker_position": 0,
+      "user_parameter_count": 3,
+      "parameters": [
+        {
+          "getter_errors": [],
+          "name": "alpha",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjACADqLhg7iAAAAA==",
+          "is_valid": true,
+          "expression": "10 mm",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        },
+        {
+          "getter_errors": [],
+          "name": "bravo",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjAGAB8Hh9MiAAAAA==",
+          "is_valid": true,
+          "expression": "10 mm",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        },
+        {
+          "getter_errors": [],
+          "name": "result",
+          "object_type": "adsk::fusion::UserParameter",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgo7M2dK+dz4OcxY5au7Ou8gJVGGkYGymkJxilGRpbmaqa5ZkYq5rYmxhqJtknmaga2iemmJinGZolmZsDlYLNIMBDYDtM1AAWwey3sjABADfi3vSiAAAAA==",
+          "is_valid": true,
+          "expression": "10 mm",
+          "unit": "mm",
+          "value_type": 0,
+          "value_cm": 1.0,
+          "dependency_names": [],
+          "dependent_names": [],
+          "actual_expression_character_count": 5,
+          "actual_expression_utf16le_bytes": 10
+        }
+      ],
+      "observed_controls": {
+        "expression_matches_request": true,
+        "expression_character_count_is_five": true,
+        "expression_utf16le_bytes_is_ten": true,
+        "all_cached_values_one_cm": true,
+        "result_value_one_cm": true,
+        "result_dependency_names_match_prediction": true,
+        "all_original_handles_valid": true
+      },
+      "export": {
+        "returned_success": true,
+        "size_bytes": 31139,
+        "sha256": "138058bbabd9df7b3b68bf3bba65de61aca1c54814d2c2bca1f9823f1c8b66f0"
+      }
+    }
+  ],
+  "errors": [],
+  "stage_plan": [
+    {
+      "case": "literal",
+      "expression": "10 mm",
+      "expected_dependency_names": [],
+      "requested_character_count": 5,
+      "requested_utf16le_bytes": 10,
+      "expected_internal_value_cm": 1.0
+    },
+    {
+      "case": "alpha_reference",
+      "expression": "alpha",
+      "expected_dependency_names": [
+        "alpha"
+      ],
+      "requested_character_count": 5,
+      "requested_utf16le_bytes": 10,
+      "expected_internal_value_cm": 1.0
+    },
+    {
+      "case": "bravo_reference",
+      "expression": "bravo",
+      "expected_dependency_names": [
+        "bravo"
+      ],
+      "requested_character_count": 5,
+      "requested_utf16le_bytes": 10,
+      "expected_internal_value_cm": 1.0
+    },
+    {
+      "case": "literal_return",
+      "expression": "10 mm",
+      "expected_dependency_names": [],
+      "requested_character_count": 5,
+      "requested_utf16le_bytes": 10,
+      "expected_internal_value_cm": 1.0
+    }
+  ],
+  "execution_scope": "One newly created owned parametric document; three user parameters created once; only result.expression changes between four independent local exports.",
+  "identity_scope": "Same API handles are retained without deletion, rename or recreation. Native object-ID equality is pending offline inspection of actual archives. Entity tokens are opaque evidence, not interpreted as native IDs.",
+  "evidence_scope": "API dependencies are actual getter results, not inferred from requested expressions. Expected controls and actual getter snapshots remain separate.",
+  "terminal_status": "complete",
+  "exported_sample_count": 4
+}

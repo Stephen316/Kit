@@ -1,7 +1,7 @@
 {
   "scope": "Saved-corpus initial ASM custom attribute payload/owner-chain framing and exact counted generic naming audit. Raw trailing attribute counts are inventories only; no complete-format coverage percentage.",
   "provenance": {
-    "repository_HEAD_at_start": "461010f70597efc70e34fc909ea536011d933fe9",
+    "repository_HEAD_at_start": "1bdc9bcddbdb744fdd0f4c5f4aa930d2287f8ea7",
     "reader_source_sha256": {
       "audit_asm_attribute_frontier.py": "28ec43d69d6c6b535c79d370a6c62d085d8324f75f060ac581af60873d60aa8d",
       "asm_records.py": "9f25caf199136979418a90e185401a0cec073aeb1eb50f09383c57de3a775dab",
@@ -13,7 +13,7 @@
     },
     "reader_sources_unchanged_during_run": true,
     "archive_discovery": "Sorted root.glob(\"*/*.f3d\") in the saved capture layout; no temporary discovery file is read.",
-    "archive_manifest_sha256": "5f123da45456a1310292ff16004abd6a07509c931bd2ac761f2ce68978eef660",
+    "archive_manifest_sha256": "04b584adc056b73412c8b07d1c60b8578b7cb35eb81dba72fb4477e243104e3e",
     "archive_manifest": [
       {
         "file": "advanced-627f7fe095f4/advanced.f3d",
@@ -264,6 +264,11 @@
         "file": "combinemodes-dcb4956eca6b/join_keep.f3d",
         "byte_count": 75535,
         "sha256": "4b5aa8c69b12719cdee8762266b31a7c2cccd4aec95dcdf6c81b1a5cc01c2993"
+      },
+      {
+        "file": "componentcolorcontrast-775cb30dfc1e/known_component_color.f3d",
+        "byte_count": 31238,
+        "sha256": "31431ede448564c8814188af8379cb235a20a35da5b8713ebf78990b73364472"
       },
       {
         "file": "constructionmodes-521ce7cdfdbe/axis_perpendicular_at_point.f3d",
@@ -1254,6 +1259,26 @@
         "file": "parameterfunctions-bc10224394fe/sqrt_sum.f3d",
         "byte_count": 31089,
         "sha256": "abe397dc3b710890f1f8792cc5304b3982c7452cada6b0982507d8e8b2f5bd6c"
+      },
+      {
+        "file": "parameteridentity-8fc83529b236/01_literal.f3d",
+        "byte_count": 31092,
+        "sha256": "77381405b647267a4f1f1a4624dad674f2e9ddcffe12ebf75dea7a6819d18294"
+      },
+      {
+        "file": "parameteridentity-8fc83529b236/02_alpha_reference.f3d",
+        "byte_count": 31159,
+        "sha256": "b6d7b7b2adb6fc93c597ea0c019c281cfe5de8d3c773f791d29b5cc2a0f67a9b"
+      },
+      {
+        "file": "parameteridentity-8fc83529b236/03_bravo_reference.f3d",
+        "byte_count": 31167,
+        "sha256": "bc7d3ecb1fab356a4efc60955124c62b7771734b7fe343099802a0a9dd7f6e0c"
+      },
+      {
+        "file": "parameteridentity-8fc83529b236/04_literal_return.f3d",
+        "byte_count": 31139,
+        "sha256": "138058bbabd9df7b3b68bf3bba65de61aca1c54814d2c2bca1f9823f1c8b66f0"
       },
       {
         "file": "parametertexts-d16f951482fc/model_favorite_false.f3d",
@@ -2852,7 +2877,7 @@
       "archive_count": {
         "matches_prior_discovery": false,
         "prior": 559,
-        "current": 561
+        "current": 566
       },
       "blob_count": {
         "matches_prior_discovery": false,
@@ -2912,37 +2937,9 @@
           "3": 1954
         }
       }
-    },
-    "new_capture_delta_attribution": {
-      "files": [
-        "namedvertexprobe-8d81619f74e6/construction_polynomial_vertex0.f3d",
-        "namedvertexprobe-8d81619f74e6/scale_rational_vertex2.f3d"
-      ],
-      "added_archives": 2,
-      "added_blobs": 4,
-      "initial_custom_definition_counts": {
-        "Timestamp_attrib_def": 8,
-        "generic_tag_attrib_def": 152
-      },
-      "initial_generic_term_counts": {
-        "1": 152
-      },
-      "initial_generic_component_counts": {
-        "0": 8,
-        "1": 143,
-        "2": 1
-      },
-      "subtracting_actual_added_capture_occurrences_recovers_every_prior_raw_discovery_count": {
-        "initial_custom_definition_counts": true,
-        "initial_generic_term_counts": true,
-        "initial_generic_component_counts": true,
-        "archive_count": true,
-        "blob_count": true
-      },
-      "scope": "The false559-versus561 prior-discovery comparisons are expected raw occurrence changes caused by these two actual exports. This says nothing about independent experiments, persistent identity or whole-format decoding coverage."
     }
   },
-  "archive_count": 561,
+  "archive_count": 566,
   "blob_count": 963,
   "initial_custom_attribute_count": 29954,
   "initial_attribute_classification_counts": {
@@ -30162,7 +30159,7 @@
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     }
   ],
-  "elapsed_seconds": 6.549,
+  "elapsed_seconds": 6.718,
   "limits": [
     "A validated generic naming payload/owner chain is not a persistent topology ID or qualified selected source.",
     "FPM/FDM literals and opaque fields retain their existing reader scope; raw trailing attributes are not relabeled validated initial attributes.",

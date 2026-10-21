@@ -1,4 +1,4 @@
-"""Reciprocal native owner/opaque naming-key tables in the observed registry.
+"""Stored native owner/opaque naming-key tables in the observed registry.
 
 Naming keys never become native Design object IDs. Owner fields are resolved
 independently to unique typed native records, and a typed footer/backlink binds
@@ -13,6 +13,10 @@ OWNER = 'C3423E04-7E85-4B44-8E31-A5FA9C100052'
 SCOPE = ('Observed reciprocal owner-to-naming-key and key-to-owner tables with typed native owner records '
          'and registry-container backlink. Keys are opaque naming literals, not native object IDs, '
          'ASM entity ordinals, lifecycle classes or complete persistent topology identifiers.')
+
+REVERSE_ONLY_SCOPE = ('Observed stored reverse-only naming-key/typed-native-owner table with an explicit empty forward table '
+                      'and exact registry-container footer/backlink. No missing forward rows are synthesized; '
+                      'bidirectional reciprocity, persistent topology identity and lifecycle remain unclaimed.')
 
 
 def encode_native_naming_registry(registry):
@@ -79,13 +83,18 @@ def decode_native_naming_registry(data,records):
                     'naming_keys':keys,'stored_key_field_offsets':offsets})
             reverse_count_offset=record.body+cursor
             n=number('<I')
-            if n!=len(owned_keys)or cursor+16*n+15!=len(body):
+            reverse_only = count==0 and n>0
+            if (n>1000000 or not reverse_only and n!=len(owned_keys))or cursor+16*n+15!=len(body):
                 raise ValueError('Native naming reverse count or exact footer extent disagrees')
             reverse,seen=[],set()
             for _ in range(n):
                 position=record.body+cursor
                 key,owner=number('<Q'),number('<Q')
-                if key in seen or owned_keys.get(key)!=owner:
+                if reverse_only:
+                    target=primary.get(owner)
+                    if not 1<=key<=0x7fffffff or key in seen or target is None or owner==record.object_id:
+                        raise ValueError('Native reverse-only naming key/typed owner is invalid, missing or duplicated')
+                elif key in seen or owned_keys.get(key)!=owner:
                     raise ValueError('Native naming forward/reverse owner association is not reciprocal')
                 seen.add(key)
                 reverse.append({'naming_key':key,'native_owner_object_id':owner,
@@ -101,12 +110,15 @@ def decode_native_naming_registry(data,records):
             if len(container_body)<33 or reference(container_body,len(container_body)-33)!=record.object_id:
                 raise ValueError('Native naming registry/container typed backlink disagrees')
             value={'object_id':record.object_id,'class_guid':REGISTRY,'record_offset':record.start,
-                'owner_to_keys':forward,'key_to_owner':reverse,'registry_is_empty':not forward,'stored_reverse_count_offset':reverse_count_offset,
+                'owner_to_keys':forward,'key_to_owner':reverse,'registry_is_empty':not (forward or reverse),'stored_reverse_count_offset':reverse_count_offset,
                 'registry_container_object_id':container_id,'registry_container_class_guid':OWNER,
                 'container_reference_offset':record.body+cursor+4,'container_backlink_offset':container.end-33,
                 'stored_footer_hex':body[cursor:].hex(),'payload_offset':record.body,'payload_byte_count':len(body),
                 'payload_hex':body.hex(),'naming_key_namespace':'Opaque positive registry keys, independently distinct from typed native owner object IDs',
                 'scope':SCOPE}
+            if reverse_only:
+                value.update(table_layout='StoredReverseOnly',reciprocity_status='ForwardTableAbsent',scope=REVERSE_ONLY_SCOPE)
+                result['scope'] = 'Observed reciprocal or explicitly reverse-only native naming registries; each decoded record retains its own table and identity scope'
             if encode_native_naming_registry(value)!=body:
                 raise ValueError('Native naming registry full payload replay disagrees')
             result['decoded'].append(value)

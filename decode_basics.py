@@ -49,6 +49,7 @@ from decode_native_naming_registry import decode_native_naming_registry
 from decode_face_tracking_contexts import decode_face_tracking_contexts
 from decode_boundary_modifying_faces import decode_boundary_modifying_faces
 from decode_named_vertex_selections import decode_named_vertex_selections
+from decode_profile_cache_correspondence import decode_profile_cache_correspondence
 from decode_pipe_paths import inspect_pipe_edge_path
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -66,6 +67,8 @@ from decode_profiles import decode_profiles
 from decode_timeline import decode_timeline
 from decode_timeline_state_details import decode_timeline_state_details
 from decode_assembly import decode_assembly
+from decode_component_display_colors import decode_component_display_colors
+from decode_scope_update_times import decode_scope_update_times
 from decode_occurrence_gate_attributes import occurrence_with_gate_attributes
 from decode_dependencies import decode_dependencies
 from asm_records import inspect_asm_members
@@ -787,6 +790,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             mapping["scope"] = "Explicit native body/blob mapping; only validated same-blob typed BODY identifier joins supply ASM roots"
         body_binding_summary["scope"] = "Native body/blob mapping and observed typed per-blob BODY identifiers; final-body lifecycle unresolved"
         native_naming_summary = decode_native_naming_registry(data, records)
+        component_color_summary = decode_component_display_colors(data, records)
+        scope_update_summary = decode_scope_update_times(data, records, assembly_summary)
         face_tracking_summary = decode_face_tracking_contexts(
             data, records, features, name, members, body_identifier_summary)
         for evidence in face_tracking_summary['decoded']:
@@ -807,6 +812,12 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             target = feature_by_id.get(correspondence['descriptor_owner_feature_object_id'])
             if target is not None:
                 target.setdefault('named_vertex_cache_correspondences', []).append(correspondence)
+        profile_cache_summary = decode_profile_cache_correspondence(
+            data, records, features, name, members, body_identifier_summary)
+        for correspondence in profile_cache_summary['decoded']:
+            target = feature_by_id.get(correspondence['source_feature_object_id'])
+            if target is not None:
+                target.setdefault('profile_cache_correspondences', []).append(correspondence)
         historical_component_summary = decode_historical_body_components(
             data, records, body_binding_summary, assembly_summary)
         for patch in historical_component_summary["decoded"]:
@@ -1003,8 +1014,11 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),
                              ('native_naming_registry', native_naming_summary),
+                             ('component_display_colors', component_color_summary),
+                             ('scope_update_times', scope_update_summary),
                              ('face_tracking_contexts', face_tracking_summary),
-                             ('boundary_modifying_face_correspondences', boundary_modifying_summary)):
+                             ('boundary_modifying_face_correspondences', boundary_modifying_summary),
+                             ('profile_cache_correspondences', profile_cache_summary)):
             if summary['decoded'] or summary['unresolved']:
                 streams[-1][key] = summary
         if named_vertex_summary['associations'] or named_vertex_summary['unresolved']:
