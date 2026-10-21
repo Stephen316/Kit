@@ -1,0 +1,796 @@
+{
+  "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics",
+  "interfaces": {
+    "decoder": "decode_dimension_annotations(data,records,features,dimension_controls=None)->decoded/unresolved/scope",
+    "integration": "Call after existing dimension_controls; attach separate measurement-cache summary and optional matching dimension annotation. Existing class/kind/binding/reference/style/text fields are preserved.",
+    "replay": "encode_dimension_measurement_cache(item)->129byte cache block"
+  },
+  "observed_framing": "At validated dimension attribute/dependency prefix end: measurement-line XYZ pair, source-anchor XYZ pair, literal0, float64 distance, repeated second source-anchor XYZ; then already-decoded reference/style fields.",
+  "recovered_fields": [
+    "Point/Point input roles are copied in reverse order into source-anchor slots; measurement points are the explicit Aligned/Horizontal/Vertical projection onto the stored annotation line.",
+    "Parallel Line/Line Offset copies the explicitly referenced endpoint of each input line, in reverse input order, and shifts both onto the annotation line along the first source line.",
+    "Ellipse radius anchors are the explicit center and positive stored major/minor axis radius point; no arbitrary endpoint search or universal side flag inferred.",
+    "Concentric inner-first circles contribute radial points on their explicitly referenced circles along the stored annotation direction.",
+    "LinearDiameter stores the explicit second point and its reflection across the explicitly referenced first line.",
+    "Cached distance equals the bound parameter and projected measurement span; repeated anchor equals source-anchor slot1. Horizontal/Vertical source-anchor Euclidean distance is a concrete counterexample to treating every stored pair as the measurement span."
+  ],
+  "samples": [
+    {
+      "file": "dimensions-f83a2edd2f72/dimensions.f3d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "object_id": 236,
+            "kind": "Linear",
+            "sketch_object_id": 202,
+            "binding_object_id": 238,
+            "entity_ids": [
+              228,
+              230
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                2.794594594594595,
+                5.5675675675675675,
+                0.0
+              ],
+              [
+                -0.7054054054054053,
+                3.0675675675675675,
+                0.0
+              ]
+            ],
+            "stored_source_anchor_points_cm": [
+              [
+                4.2,
+                3.6,
+                0.0
+              ],
+              [
+                0.7,
+                1.1,
+                0.0
+              ]
+            ],
+            "source_anchor_roles": [
+              {
+                "source_entity_object_id": 230,
+                "role": "SecondInputPoint"
+              },
+              {
+                "source_entity_object_id": 228,
+                "role": "FirstInputPoint"
+              }
+            ],
+            "cached_measurement_cm": 4.301162633521313,
+            "stored_repeated_anchor_cm": [
+              0.7,
+              1.1,
+              0.0
+            ],
+            "geometry_cache_offset": 29835,
+            "geometry_cache_byte_count": 129,
+            "stored_pre_measurement_control_byte": 0,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_identity_scope": "Explicit ordered dimension inputs and typed reciprocal sketch ownership before geometric copy/construction checks",
+            "annotation_scope": "Existing bounded annotation field reused; no new textPosition getter, flag or style semantics claimed",
+            "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+          },
+          {
+            "object_id": 276,
+            "kind": "Linear",
+            "sketch_object_id": 243,
+            "binding_object_id": 278,
+            "entity_ids": [
+              268,
+              270
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                4.2,
+                5.0,
+                0.0
+              ],
+              [
+                0.7,
+                5.0,
+                0.0
+              ]
+            ],
+            "stored_source_anchor_points_cm": [
+              [
+                4.2,
+                3.6,
+                0.0
+              ],
+              [
+                0.7,
+                1.1,
+                0.0
+              ]
+            ],
+            "source_anchor_roles": [
+              {
+                "source_entity_object_id": 270,
+                "role": "SecondInputPoint"
+              },
+              {
+                "source_entity_object_id": 268,
+                "role": "FirstInputPoint"
+              }
+            ],
+            "cached_measurement_cm": 3.5,
+            "stored_repeated_anchor_cm": [
+              0.7,
+              1.1,
+              0.0
+            ],
+            "geometry_cache_offset": 33772,
+            "geometry_cache_byte_count": 129,
+            "stored_pre_measurement_control_byte": 0,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_identity_scope": "Explicit ordered dimension inputs and typed reciprocal sketch ownership before geometric copy/construction checks",
+            "annotation_scope": "Existing bounded annotation field reused; no new textPosition getter, flag or style semantics claimed",
+            "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+          },
+          {
+            "object_id": 316,
+            "kind": "Linear",
+            "sketch_object_id": 283,
+            "binding_object_id": 318,
+            "entity_ids": [
+              308,
+              310
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                2.0,
+                3.6,
+                0.0
+              ],
+              [
+                2.0,
+                1.1,
+                0.0
+              ]
+            ],
+            "stored_source_anchor_points_cm": [
+              [
+                4.2,
+                3.6,
+                0.0
+              ],
+              [
+                0.7,
+                1.1,
+                0.0
+              ]
+            ],
+            "source_anchor_roles": [
+              {
+                "source_entity_object_id": 310,
+                "role": "SecondInputPoint"
+              },
+              {
+                "source_entity_object_id": 308,
+                "role": "FirstInputPoint"
+              }
+            ],
+            "cached_measurement_cm": 2.5,
+            "stored_repeated_anchor_cm": [
+              0.7,
+              1.1,
+              0.0
+            ],
+            "geometry_cache_offset": 37673,
+            "geometry_cache_byte_count": 129,
+            "stored_pre_measurement_control_byte": 0,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_identity_scope": "Explicit ordered dimension inputs and typed reciprocal sketch ownership before geometric copy/construction checks",
+            "annotation_scope": "Existing bounded annotation field reused; no new textPosition getter, flag or style semantics claimed",
+            "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+          },
+          {
+            "object_id": 356,
+            "kind": "Linear",
+            "sketch_object_id": 323,
+            "binding_object_id": 358,
+            "entity_ids": [
+              348,
+              350
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                2.794594594594595,
+                5.5675675675675675,
+                0.0
+              ],
+              [
+                -0.7054054054054053,
+                3.0675675675675675,
+                0.0
+              ]
+            ],
+            "stored_source_anchor_points_cm": [
+              [
+                4.2,
+                3.6,
+                0.0
+              ],
+              [
+                0.7,
+                1.1,
+                0.0
+              ]
+            ],
+            "source_anchor_roles": [
+              {
+                "source_entity_object_id": 350,
+                "role": "SecondInputPoint"
+              },
+              {
+                "source_entity_object_id": 348,
+                "role": "FirstInputPoint"
+              }
+            ],
+            "cached_measurement_cm": 4.301162633521313,
+            "stored_repeated_anchor_cm": [
+              0.7,
+              1.1,
+              0.0
+            ],
+            "geometry_cache_offset": 41584,
+            "geometry_cache_byte_count": 129,
+            "stored_pre_measurement_control_byte": 0,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_identity_scope": "Explicit ordered dimension inputs and typed reciprocal sketch ownership before geometric copy/construction checks",
+            "annotation_scope": "Existing bounded annotation field reused; no new textPosition getter, flag or style semantics claimed",
+            "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+          },
+          {
+            "object_id": 404,
+            "kind": "Offset",
+            "sketch_object_id": 363,
+            "binding_object_id": 406,
+            "entity_ids": [
+              392,
+              400
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                5.0,
+                3.0,
+                0.0
+              ],
+              [
+                5.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "stored_source_anchor_points_cm": [
+              [
+                4.0,
+                3.0,
+                0.0
+              ],
+              [
+                4.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "source_anchor_roles": [
+              {
+                "source_entity_object_id": 400,
+                "source_point_object_id": 398,
+                "role": "ExplicitLineEndPoint"
+              },
+              {
+                "source_entity_object_id": 392,
+                "source_point_object_id": 390,
+                "role": "ExplicitLineEndPoint"
+              }
+            ],
+            "cached_measurement_cm": 2.0,
+            "stored_repeated_anchor_cm": [
+              4.0,
+              1.0,
+              0.0
+            ],
+            "geometry_cache_offset": 46440,
+            "geometry_cache_byte_count": 129,
+            "stored_pre_measurement_control_byte": 0,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_identity_scope": "Explicit ordered dimension inputs and typed reciprocal sketch ownership before geometric copy/construction checks",
+            "annotation_scope": "Existing bounded annotation field reused; no new textPosition getter, flag or style semantics claimed",
+            "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+          },
+          {
+            "object_id": 468,
+            "kind": "EllipseMajorRadius",
+            "sketch_object_id": 411,
+            "binding_object_id": 470,
+            "entity_ids": [
+              438
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                4.0,
+                4.0,
+                0.0
+              ],
+              [
+                1.0,
+                4.0,
+                0.0
+              ]
+            ],
+            "stored_source_anchor_points_cm": [
+              [
+                4.0,
+                1.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "source_anchor_roles": [
+              {
+                "source_entity_object_id": 438,
+                "role": "StoredPositiveMajorAxisRadiusPoint"
+              },
+              {
+                "source_entity_object_id": 438,
+                "source_point_object_id": 436,
+                "role": "ExplicitEllipseCenter"
+              }
+            ],
+            "cached_measurement_cm": 3.0,
+            "stored_repeated_anchor_cm": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "geometry_cache_offset": 52623,
+            "geometry_cache_byte_count": 129,
+            "stored_pre_measurement_control_byte": 0,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_identity_scope": "Explicit ordered dimension inputs and typed reciprocal sketch ownership before geometric copy/construction checks",
+            "annotation_scope": "Existing bounded annotation field reused; no new textPosition getter, flag or style semantics claimed",
+            "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+          },
+          {
+            "object_id": 532,
+            "kind": "EllipseMinorRadius",
+            "sketch_object_id": 475,
+            "binding_object_id": 534,
+            "entity_ids": [
+              502
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                5.0,
+                -0.5,
+                0.0
+              ],
+              [
+                5.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "stored_source_anchor_points_cm": [
+              [
+                1.0,
+                -0.5,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "source_anchor_roles": [
+              {
+                "source_entity_object_id": 502,
+                "role": "StoredPositiveMinorAxisRadiusPoint"
+              },
+              {
+                "source_entity_object_id": 502,
+                "source_point_object_id": 500,
+                "role": "ExplicitEllipseCenter"
+              }
+            ],
+            "cached_measurement_cm": 1.5,
+            "stored_repeated_anchor_cm": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "geometry_cache_offset": 58795,
+            "geometry_cache_byte_count": 129,
+            "stored_pre_measurement_control_byte": 0,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_identity_scope": "Explicit ordered dimension inputs and typed reciprocal sketch ownership before geometric copy/construction checks",
+            "annotation_scope": "Existing bounded annotation field reused; no new textPosition getter, flag or style semantics claimed",
+            "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+          },
+          {
+            "object_id": 576,
+            "kind": "ConcentricCircle",
+            "sketch_object_id": 539,
+            "binding_object_id": 578,
+            "entity_ids": [
+              566,
+              572
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                2.4399051908057237,
+                3.2937935014506956,
+                0.0
+              ],
+              [
+                1.321394711002044,
+                1.8834976790895348,
+                0.0
+              ]
+            ],
+            "stored_source_anchor_points_cm": [
+              [
+                2.4399051908057237,
+                3.2937935014506947,
+                0.0
+              ],
+              [
+                1.321394711002044,
+                1.883497679089534,
+                0.0
+              ]
+            ],
+            "source_anchor_roles": [
+              {
+                "source_entity_object_id": 572,
+                "role": "CirclePointAlongAnnotationRadialDirection"
+              },
+              {
+                "source_entity_object_id": 566,
+                "role": "CirclePointAlongAnnotationRadialDirection"
+              }
+            ],
+            "cached_measurement_cm": 1.8,
+            "stored_repeated_anchor_cm": [
+              1.321394711002044,
+              1.883497679089534,
+              0.0
+            ],
+            "geometry_cache_offset": 63038,
+            "geometry_cache_byte_count": 129,
+            "stored_pre_measurement_control_byte": 0,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_identity_scope": "Explicit ordered dimension inputs and typed reciprocal sketch ownership before geometric copy/construction checks",
+            "annotation_scope": "Existing bounded annotation field reused; no new textPosition getter, flag or style semantics claimed",
+            "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+          },
+          {
+            "object_id": 668,
+            "kind": "LinearDiameter",
+            "sketch_object_id": 627,
+            "binding_object_id": 670,
+            "entity_ids": [
+              656,
+              663
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                -3.0,
+                2.0,
+                0.0
+              ],
+              [
+                3.0,
+                2.0,
+                0.0
+              ]
+            ],
+            "stored_source_anchor_points_cm": [
+              [
+                -3.0,
+                2.0,
+                0.0
+              ],
+              [
+                3.0,
+                2.0,
+                0.0
+              ]
+            ],
+            "source_anchor_roles": [
+              {
+                "source_entity_object_id": 656,
+                "reflected_source_point_object_id": 663,
+                "role": "PointReflectedAcrossExplicitFirstInputLine"
+              },
+              {
+                "source_entity_object_id": 663,
+                "role": "ExplicitSecondInputPoint"
+              }
+            ],
+            "cached_measurement_cm": 6.0,
+            "stored_repeated_anchor_cm": [
+              3.0,
+              2.0,
+              0.0
+            ],
+            "geometry_cache_offset": 71684,
+            "geometry_cache_byte_count": 129,
+            "stored_pre_measurement_control_byte": 0,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_identity_scope": "Explicit ordered dimension inputs and typed reciprocal sketch ownership before geometric copy/construction checks",
+            "annotation_scope": "Existing bounded annotation field reused; no new textPosition getter, flag or style semantics claimed",
+            "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+      },
+      "checks": [
+        {
+          "object_id": 236,
+          "kind": "Linear",
+          "sketch_name": "DimensionAligned",
+          "matches_captured_API_measurement": true,
+          "actual_API_measurement_cm": 4.30116263352,
+          "cache_block_replay_matches": true,
+          "cache_block_sha256": "9a56b3d08d721b11c32bd3d8b0ae89e76ec82e9677a807d9665243f0bca22258",
+          "source_anchor_distance_cm": 4.301162633521313,
+          "projected_measurement_distance_cm": 4.301162633521313,
+          "source_role_geometry_and_annotation_projection_validated": true
+        },
+        {
+          "object_id": 276,
+          "kind": "Linear",
+          "sketch_name": "DimensionHorizontal",
+          "matches_captured_API_measurement": true,
+          "actual_API_measurement_cm": 3.5,
+          "cache_block_replay_matches": true,
+          "cache_block_sha256": "6edab99fd99bd083cf5b2d4dc3ddebc6b7429aaefc082c06546921bd007f9059",
+          "source_anchor_distance_cm": 4.301162633521313,
+          "projected_measurement_distance_cm": 3.5,
+          "source_role_geometry_and_annotation_projection_validated": true
+        },
+        {
+          "object_id": 316,
+          "kind": "Linear",
+          "sketch_name": "DimensionVertical",
+          "matches_captured_API_measurement": true,
+          "actual_API_measurement_cm": 2.5,
+          "cache_block_replay_matches": true,
+          "cache_block_sha256": "53bfd61636bd0854c9c5ade16c274c6d58d82266f4a0f4671388851525ebb0ca",
+          "source_anchor_distance_cm": 4.301162633521313,
+          "projected_measurement_distance_cm": 2.5,
+          "source_role_geometry_and_annotation_projection_validated": true
+        },
+        {
+          "object_id": 356,
+          "kind": "Linear",
+          "sketch_name": "DimensionDrivenAligned",
+          "matches_captured_API_measurement": true,
+          "actual_API_measurement_cm": 4.30116263352,
+          "cache_block_replay_matches": true,
+          "cache_block_sha256": "9a56b3d08d721b11c32bd3d8b0ae89e76ec82e9677a807d9665243f0bca22258",
+          "source_anchor_distance_cm": 4.301162633521313,
+          "projected_measurement_distance_cm": 4.301162633521313,
+          "source_role_geometry_and_annotation_projection_validated": true
+        },
+        {
+          "object_id": 404,
+          "kind": "Offset",
+          "sketch_name": "DimensionOffset",
+          "matches_captured_API_measurement": true,
+          "actual_API_measurement_cm": 2.0,
+          "cache_block_replay_matches": true,
+          "cache_block_sha256": "248ac82a7ae9f11b8fe149fe39f3332c4df39ec0ecfca75fe3c8cfc0f08ceecb",
+          "source_anchor_distance_cm": 2.0,
+          "projected_measurement_distance_cm": 2.0,
+          "source_role_geometry_and_annotation_projection_validated": true
+        },
+        {
+          "object_id": 468,
+          "kind": "EllipseMajorRadius",
+          "sketch_name": "DimensionEllipseMajor",
+          "matches_captured_API_measurement": true,
+          "actual_API_measurement_cm": 3.0,
+          "cache_block_replay_matches": true,
+          "cache_block_sha256": "8dfbc5e49376284906db7637c831ad20798d33f9dca1c1a29188af05bd14bff7",
+          "source_anchor_distance_cm": 3.0,
+          "projected_measurement_distance_cm": 3.0,
+          "source_role_geometry_and_annotation_projection_validated": true
+        },
+        {
+          "object_id": 532,
+          "kind": "EllipseMinorRadius",
+          "sketch_name": "DimensionEllipseMinor",
+          "matches_captured_API_measurement": true,
+          "actual_API_measurement_cm": 1.5,
+          "cache_block_replay_matches": true,
+          "cache_block_sha256": "7abc137f5295f4000536931727a213a68df779fc20e415d20ecd326a448b0347",
+          "source_anchor_distance_cm": 1.5,
+          "projected_measurement_distance_cm": 1.5,
+          "source_role_geometry_and_annotation_projection_validated": true
+        },
+        {
+          "object_id": 576,
+          "kind": "ConcentricCircle",
+          "sketch_name": "DimensionConcentric",
+          "matches_captured_API_measurement": true,
+          "actual_API_measurement_cm": 1.8,
+          "cache_block_replay_matches": true,
+          "cache_block_sha256": "22bea84dc787afd9c38b1854716c2cd383aa7c05bed34e77ffce48447cb2cd66",
+          "source_anchor_distance_cm": 1.8000000000000003,
+          "projected_measurement_distance_cm": 1.8000000000000003,
+          "source_role_geometry_and_annotation_projection_validated": true
+        },
+        {
+          "object_id": 668,
+          "kind": "LinearDiameter",
+          "sketch_name": "DimensionLinearDiameter",
+          "matches_captured_API_measurement": true,
+          "actual_API_measurement_cm": 6.0,
+          "cache_block_replay_matches": true,
+          "cache_block_sha256": "cb71fd630d48aef2f1bf153073d0ddd91d1fccf45f1f90732e8b673d9493cc14",
+          "source_anchor_distance_cm": 6.0,
+          "projected_measurement_distance_cm": 6.0,
+          "source_role_geometry_and_annotation_projection_validated": true
+        }
+      ],
+      "existing_controls_and_features_unchanged": true
+    },
+    {
+      "file": "advanced-627f7fe095f4/advanced.f3d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "object_id": 1538,
+            "kind": "Linear",
+            "sketch_object_id": 1505,
+            "binding_object_id": 1540,
+            "entity_ids": [
+              1530,
+              1532
+            ],
+            "stored_measurement_line_points_cm": [
+              [
+                4.0,
+                1.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "stored_source_anchor_points_cm": [
+              [
+                4.0,
+                2.0,
+                0.0
+              ],
+              [
+                1.0,
+                2.0,
+                0.0
+              ]
+            ],
+            "source_anchor_roles": [
+              {
+                "source_entity_object_id": 1532,
+                "role": "SecondInputPoint"
+              },
+              {
+                "source_entity_object_id": 1530,
+                "role": "FirstInputPoint"
+              }
+            ],
+            "cached_measurement_cm": 3.0,
+            "stored_repeated_anchor_cm": [
+              1.0,
+              2.0,
+              0.0
+            ],
+            "geometry_cache_offset": 73598,
+            "geometry_cache_byte_count": 129,
+            "stored_pre_measurement_control_byte": 0,
+            "coordinate_system": "sketch-local",
+            "coordinate_units": "cm",
+            "source_identity_scope": "Explicit ordered dimension inputs and typed reciprocal sketch ownership before geometric copy/construction checks",
+            "annotation_scope": "Existing bounded annotation field reused; no new textPosition getter, flag or style semantics claimed",
+            "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed shared-linear dimension measurement/projection caches in sketch-local cm; no general solver, side selection or rendered-label semantics"
+      },
+      "checks": [
+        {
+          "object_id": 1538,
+          "kind": "Linear",
+          "sketch_name": "LinearDimension",
+          "matches_captured_API_measurement": true,
+          "actual_API_measurement_cm": 3.0,
+          "cache_block_replay_matches": true,
+          "cache_block_sha256": "978299a2f1fc3edceb286ec8bcbc22e8c4d0d8a16d50f6e0c5c4a7f3d7efe560",
+          "source_anchor_distance_cm": 3.0,
+          "projected_measurement_distance_cm": 3.0,
+          "source_role_geometry_and_annotation_projection_validated": true
+        }
+      ],
+      "existing_controls_and_features_unchanged": true
+    }
+  ],
+  "negative_controls": [
+    {
+      "file": "dimcontrols-2a0d0bdbc8a6/tangent_reference.f3d",
+      "no_unrelated_class_recovered": true
+    },
+    {
+      "file": "dimcontrols-2a0d0bdbc8a6/radius_driving.f3d",
+      "no_unrelated_class_recovered": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "label": "Wrong stored annotation projection coordinate",
+      "rejected": true,
+      "reason": "Dimension cached measurement/anchor distances disagree with bound value"
+    },
+    {
+      "label": "Measurement cache disagrees with bound parameter",
+      "rejected": true,
+      "reason": "Dimension cached measurement/anchor distances disagree with bound value"
+    },
+    {
+      "label": "Repeated anchor differs from explicit first input copy",
+      "rejected": true,
+      "reason": "Dimension cached measurement/anchor distances disagree with bound value"
+    },
+    {
+      "label": "Source geometry claims a different sketch owner",
+      "rejected": true,
+      "reason": "Dimension measurement source type/reciprocal sketch ownership unsupported"
+    }
+  ],
+  "limitations": [
+    "This is stored annotation/measurement geometry, not a constraint or sketch solver, general dimension recomputation algorithm or final rendered label.",
+    "The original nine-case study captures actual parameter/driving getters and API creation text-position arguments, but no final post-creation textPosition getter; existing position evidence remains labeled accordingly.",
+    "Only observed ordinary shared-linear-class XY source configurations are admitted. Other shared-class inputs and rotated/3D/cache variants stay explicit failures.",
+    "No new reference/style/tangent-side flags or getter properties are invented. Projected and source anchors remain distinct stored fields.",
+    "Synthetic radius/reflection/contact construction points do not acquire invented native sketch-point IDs. Native IDs are used only for explicit ordered source and endpoint/center references."
+  ],
+  "validation": {
+    "decoded_measurement_caches": 10,
+    "complete129byte_replays": 10,
+    "actual_API_value_comparisons": 10,
+    "independent_holdout_caches": 1,
+    "negative_class_controls": 2,
+    "malformed_guards_passed": 4,
+    "existing_annotation_outputs_unchanged": true,
+    "new_live_API_calls": 0,
+    "new_solver_claims": 0
+  }
+}

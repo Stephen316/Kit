@@ -6,6 +6,7 @@ from pathlib import Path
 import struct
 
 from asm_records import inspect_asm
+from decode_asm_recipe_tags import decode_asm_generic_tags
 from decode_basics import decode_basics
 from decode_fpm_partial_coverage import decode_fpm_partial_coverage
 from decode_fpm_tracking import decode_fpm_selection_tracking, encode_fpm_attribute
@@ -56,9 +57,8 @@ def validate(root, zstd):
                 check(len(actual['tool_names']) == 2, 'saved API records two source tool names')
                 coverage, = output['coverage']
                 check(coverage['initial_BODY_record_indices'] == [1,2,3] and coverage['initial_BODY_naming_complete'], 'all three mapped initial BODY roots have complete scoped naming')
-                check(not coverage['global_generic_tag_coverage_complete'], 'incomplete global naming is not relabeled complete')
-                check([u['attribute_record_index'] for u in coverage['remaining_other_kind_generic_tag_failures']] == [29,43,68,117,188,254]
-                      and all(u['owner_kind'] == 'face' for u in coverage['remaining_other_kind_generic_tag_failures']), 'all six independently typed FACE errors retained')
+                check(coverage['global_generic_tag_coverage_complete'], 'shared counted-name follow-up now frames the complete initial generic namespace')
+                check(coverage['remaining_other_kind_generic_tag_failures'] == [], 'no obsolete FACE framing failures retained after their typed grammar recovery')
                 props = {b['object_id']: b for b in stream['body_properties']['bodies']}
                 for assoc in output['associations']:
                     attr = assoc['FPM_attribute']
@@ -71,13 +71,17 @@ def validate(root, zstd):
                     check(props[assoc['native_body_object_id']]['name'] in actual['tool_names'], 'independently mapped source BODY stored name matches actual API tool list')
                     check(assoc['owned_removal_action']['parent_boundary_fill_object_id'] == 359,
                           'native removal parent backlink agrees with actual BoundaryFill owner')
-                # Report the exact still-unsupported face framing without decoding
-                # its provenance or changing the generic reader.
+                # Independently check the six formerly rejected FACE payloads.
+                # Framing does not itself establish their source/result meaning.
                 blob_member = output['associations'][0]['same_asset_mapping']['history_blob_member']
                 parsed = inspect_asm(members[blob_member])
+                current_tags = decode_asm_generic_tags(members[blob_member], parsed, allow_fpm_tracking=True)
+                check(not current_tags['unresolved'], 'shared naming reader validates all current initial attributes')
+                faces = {t['attribute_record_index']: t for t in current_tags['tags'] if t['owner_kind'] == 'face'}
                 framing = []
-                for missing in coverage['remaining_other_kind_generic_tag_failures']:
-                    rec = parsed['records'][missing['attribute_record_index']]
+                for identity in (29,43,68,117,188,254):
+                    rec = parsed['records'][identity]
+                    check(identity in faces, 'formerly rejected attribute now has an independently typed FACE owner')
                     ts, cursor, terms = rec['tokens'], 11, []
                     for _ in range(ts[10]['value']):
                         size, name, index, count = [t['value'] for t in ts[cursor:cursor+4]]
@@ -89,8 +93,8 @@ def validate(root, zstd):
                     check(cursor == len(ts) == 18, 'diagnostic face tuple consumes all 18 fields')
                     framing.append({'attribute_record_index': rec['index'], 'owner_record_index': ts[4]['value'],
                                     'owner_kind': 'face', 'term_count': ts[10]['value'], 'terms': terms,
-                                    'status': 'Framing observation only; production generic tag reader still rejects this component count'})
-                row['remaining_FACE_tuple_framing'] = framing
+                                    'status': 'Complete production counted-name framing and FACE ownership; source/result semantic correspondence is validated separately'})
+                row['counted_FACE_naming_followup'] = framing
                 row['actual_API_controls'] = {'is_remove_tools': actual['is_remove_tools'], 'tool_names': actual['tool_names'],
                     'scope': 'Independent saved getters corroborate parent mode/source names only; no API tracking literal or persistent body identity getter.'}
                 saved = data, records, member, members, mapping, output
@@ -140,15 +144,15 @@ def validate(root, zstd):
         'integration': 'Add separate late summary after body identifier/direct-body decoding. Each success carries attribute_record_index and mapping_record_object_id. Preserve old trailing-edge tracks. The old mapping-level Incomplete FPM attribute coverage diagnostic can be replaced only when every rejected FPM attribute ID appears in successful associations here; retain any new unresolved records and all global generic-tag or exact-source failures.',
         'validation': {'checks': checks, 'saved_files': len(files), 'saved_streams': len(samples),
                        'new_BODY_attribute_associations': associations, 'complete_BODY_kind_namespaces': 1,
-                       'global_FACE_naming_failures_retained': 6, 'malformed_guards': guards, 'new_API_calls': 0},
+                       'global_FACE_naming_failures_retained': 0, 'newly_framed_other_FACE_tags': 6, 'malformed_guards': guards, 'new_API_calls': 0},
         'findings': ['The two rejected attributes are initial BODY-owned FPM records, not malformed trailing EDGE records. Their reciprocal owner chains and full payload bytes are valid.',
             'Positive literals 391/402 correspond to actual RemoveBody descriptors only after independent native anchor/BODY, explicit same-asset stored handle, parent BoundaryFill ownership and complete BODY-kind naming tuples all agree.',
-            'Three initial typed BODY roots have exactly one validated BODY naming tag each. Every initial custom attribute has a bounded typed owner; the six remaining generic failures are explicitly FACE-owned, so global completeness stays false.',
-            'Those six face layouts each contain one term with two counted components and a zero terminator. This is recorded for the next bounded generic parser extension, without assigning component semantics.',
+            'Three initial typed BODY roots have exactly one validated BODY naming tag each. Every initial custom attribute has a bounded typed owner; the shared follow-up reader also frames the six previously rejected FACE tuples and BODY-owned FPM literals.',
+            'Those six FACE layouts each contain one term with two counted components and a zero terminator. Framing/ownership completeness does not itself assign source/result component semantics.',
             'The naming mismatch guard changes 301 to 999 while preserving literal 391 and all native reference chains; that association is rejected while the unaffected 402 association survives.'],
         'limitations': ['FPM literals remain stored integers, not serialized typed references. The independent native BODY association does not promote an exact selected-source or persistent ASM identity.',
             'Only initial BODY-owned FPM attributes attached to validated BoundaryFill-owned removal actions are admitted. Trailing EDGE provenance remains the existing reader responsibility.',
-            'Global face naming, unknown history direction/current state and actual tool removal lifecycle are unresolved. Actual API source names and remove-tools flags corroborate scope only.'],
+            'Generic FACE framing now succeeds, while source/result semantics require separate typed correspondence evidence. History direction/current state and actual tool removal lifecycle remain unresolved. Actual API source names and remove-tools flags corroborate scope only.'],
         'samples': samples}
 
 

@@ -135,50 +135,34 @@ def decode_asm_generic_tags(blob, parsed=None, *, allow_fpm_tracking=False):
                                 'uninterpreted_text': sketch_text})
                 continue
             if definition == 'FPM_tracked_attrib_def' and allow_fpm_tracking:
-                owner_chain(owner_id, record['index'], ('edge',))
+                owner_chain(owner_id, record['index'], ('body', 'edge'))
                 if len(tokens) != 8 or _integer(tokens[6], 1, 1) != 1:
                     raise ValueError('Unobserved FPM tracking definition framing prevents complete generic-tag audit')
                 literal = _integer(tokens[7], 1, 0xffffffff)
                 ignored.append({'attribute_record_index': record['index'], 'definition_name': definition,
-                                'owner_record_index': owner_id, 'owner_kind': 'edge',
+                                'owner_record_index': owner_id, 'owner_kind': records[owner_id]['name'],
                                 'stored_tracking_literal': literal,
                                 'scope': 'Literal tracking value only; no native identity meaning assigned here'})
+                continue
+            if definition == 'FDM_feature_attrib_def':
+                chain = owner_chain(owner_id, record['index'], ('face',))
+                from decode_fdm_face_attributes import decode_fdm_face_attribute
+                payload = decode_fdm_face_attribute(record)
+                if bytes.fromhex(payload['payload_hex']) != blob[payload['payload_offset']:payload['payload_end_offset']]:
+                    raise ValueError('FDM feature attribute exact byte replay disagrees')
+                ignored.append({'attribute_record_index': record['index'],
+                                'owner_record_index': owner_id, 'owner_kind': 'face',
+                                'owner_attribute_chain': chain, **payload})
                 continue
             if definition != DEFINITION:
                 raise ValueError('Unobserved custom attribute definition prevents complete generic-tag audit')
             chain = owner_chain(owner_id, record['index'])
-            schema = [_integer(t, -1, 3) for t in tokens[6:9]]
-            namespace = _ascii(tokens[9])
-            if schema != [3, 3, -1] or namespace != definition+' ':
-                raise ValueError('Unobserved ASM generic-tag definition/schema namespace')
-            count = _integer(tokens[10], 1, 2)
-            cursor, terms = 11, []
-            for _ in range(count):
-                size = _integer(tokens[cursor], 1, 128)
-                name = _ascii(tokens[cursor+1])
-                if len(name.encode('ascii')) != size:
-                    raise ValueError('ASM generic-tag explicit name length disagrees')
-                stored_index = _integer(tokens[cursor+2], 0, 0xffffffff)
-                component_count = _integer(tokens[cursor+3], 0, 1)
-                cursor += 4
-                components = [_integer(tokens[cursor+i], -0x80000000, 0x7fffffff) for i in range(component_count)]
-                cursor += component_count
-                if _integer(tokens[cursor], 0, 0) != 0:
-                    raise ValueError('ASM generic-tag reference terminator is not zero')
-                cursor += 1
-                terms.append({'name': name, 'stored_index': stored_index,
-                              'stored_reference_component_count': component_count,
-                              'stored_reference_components_int32': components,
-                              'stored_reference_components_uint32': [value & 0xffffffff for value in components],
-                              'stored_reference_terminator_uint32': 0})
-            if cursor != len(tokens):
-                raise ValueError('Unconsumed ASM generic-tag payload fields')
-            start, end = tokens[5]['offset'], record['end_offset']-1
+            from decode_counted_asm_names import decode_counted_asm_name
+            payload = decode_counted_asm_name(record)
+            start, end = payload['payload_offset'], payload['payload_end_offset']
             tag = {'attribute_record_index': record['index'], 'owner_record_index': owner_id,
                    'owner_kind': records[owner_id]['name'], 'owner_attribute_chain': chain,
-                   'definition_name': definition, 'stored_definition_schema_fields': schema,
-                   'stored_namespace_text': namespace, 'stored_term_count': count, 'terms': terms,
-                   'payload_offset': start, 'payload_end_offset': end, 'payload_hex': blob[start:end].hex(),
+                   **payload,
                    'scope': 'Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved'}
             if encode_generic_tag_payload(tag) != blob[start:end]:
                 raise ValueError('ASM generic-tag exact byte replay disagrees')
@@ -342,7 +326,7 @@ def validate_fixtures(root, zstd_library=None):
         'grammar': {
             'attribute_header': 'Typed ATTRIB_CUSTOM-attrib owner pointer4 plus owner attribute-head and reciprocal next/previous chain pointers2/3. Observed owner kinds BODY/face/edge only; all pointers stay in initial geometry.',
             'definition_fields': 'String generic_tag_attrib_def, integer schema fields[3,3,-1], literal namespace string generic_tag_attrib_def followed by one space. Definition strings are checked; no unobserved definition-object pointer is invented.',
-            'payload': 'Integer term_count1/2; each term integer ASCII byte length, short ASCII string, integer stored_index, integer component_count0/1, that many signed32-range integer components, separate integerzero terminator. No remaining tokens permitted.',
+            'payload': 'Observed integer term_count1/2/3/4/5/6/8; each term integer ASCII byte length, short ASCII string, integer stored_index, integer component_count0..3, that many signed32-range integer components, separate integerzero terminator. No remaining tokens permitted.',
             'native_correspondence': 'The full ordered term group (ASCII name,stored index,counted signed components) matches the separately framed native recipe name-table group exactly. Numeric components are never looked up as native design-object IDs.',
             'byte_encoding': 'Observed integer token4+int64, string token7+u8 byte length+ASCII bytes. Exact payload replay preserves every parsed definition/schema/namespace/term byte.',
             'namespace_scope': 'Native descriptor UUID namespaces are not literal ASM generic-tag namespaces. Both are retained separately and matches are scoped through the explicitly referenced same-asset history blob.'},

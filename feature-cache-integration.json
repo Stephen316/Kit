@@ -1,6 +1,7 @@
 {
-  "scope": "Fourteen saved main-reader cases against local eeb5363; new native/cache correspondences only, no live Fusion access",
+  "scope": "Fourteen saved main-reader cases: frozen eeb5363 to 3910bdc feature-cache stage, with separately qualified current followup; no live Fusion access",
   "baseline_commit": "eeb5363",
+  "stage_commit": "3910bdc",
   "samples": [
     {
       "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
@@ -143,6 +144,172 @@
       ]
     }
   ],
+  "current_followup": {
+    "baseline_commit": "3910bdc",
+    "scope": "Current outputs compared separately against the frozen historical stage using the counted-name followup comparator; original fourteen-case facts remain unchanged",
+    "saved_files": 14,
+    "samples": [
+      {
+        "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 6,
+        "complete_generic_naming_coverage_followups": 1,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": false,
+        "qualified_difference_paths": [
+          "/streams/0/boundary_face_correspondences",
+          "/streams/0/features/4/boundary_face_correspondences",
+          "/streams/0/fpm_body_tracking/coverage/0/global_generic_tag_coverage_complete",
+          "/streams/0/fpm_body_tracking/coverage/0/remaining_other_kind_generic_tag_failures(length)"
+        ]
+      },
+      {
+        "file": "circularmodes-45f859c1f1b6/body_full.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "circularmodes-45f859c1f1b6/body_negative.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "circularmodes-45f859c1f1b6/body_suppressed.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "circularmodes-45f859c1f1b6/body_symmetric.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "circularmodes-45f859c1f1b6/feature_identical.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "circularmodes-45f859c1f1b6/feature_optimized.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "edgemodes-52695761f185/fillet_curvature.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "mirrorfeatures-1ffa1b15c612/feature_optimized.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "parameterexpressions-3ddbef2b20bd/product_sum.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      },
+      {
+        "file": "remainingbodyinputs-7b3357274e85/mirror_construction_plane.f3d",
+        "measurement_caches": 0,
+        "result_FACE_correspondences": 0,
+        "complete_generic_naming_coverage_followups": 0,
+        "new_explicit_partial_cache_diagnostics": 0,
+        "all_ASM_output_unchanged": true,
+        "all_other_prior_output_unchanged": true,
+        "whole_output_control_exact": true,
+        "qualified_difference_paths": []
+      }
+    ]
+  },
   "summary": {
     "saved_files": 14,
     "measured_pattern_body_caches": 18,

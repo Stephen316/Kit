@@ -3,19 +3,22 @@
 import copy
 import json
 from pathlib import Path
+import subprocess
 
 from decode_basics import decode_basics
 from validate_history_cache_integration import baseline_outputs, differences
 
 ROOT = Path(__file__).resolve().parent
 BASELINE = 'eeb5363'
+STAGE = '3910bdc'
 CONTROLS = ('parameterexpressions-3ddbef2b20bd/product_sum.f3d',
             'edgemodes-52695761f185/fillet_curvature.f3d',
             'mirrorfeatures-1ffa1b15c612/feature_optimized.f3d')
 
 
 def read(name):
-    return json.loads((ROOT/name).read_text())
+    """Pin original evidence to the commit whose integration facts it proves."""
+    return json.loads(subprocess.check_output(['git','show',STAGE+':'+name],cwd=ROOT))
 
 
 def validate(zstd):
@@ -28,9 +31,10 @@ def validate(zstd):
     fpm_cases = {row['file']: row for row in fpm['samples'] if row['expected_summary']['associations']}
     files = sorted(set(circular_cases) | set(circular_unsupported) | set(mirror_cases) | set(fpm_cases) | set(CONTROLS))
     baseline = baseline_outputs(files, zstd, revision=BASELINE)
+    stage_outputs = baseline_outputs(files, zstd, revision=STAGE)
     rows, measured_bodies, measured_vertices, reflections, tracked, covered_mapping_errors = [], 0, 0, 0, 0, 0
-    for filename, before in zip(files, baseline):
-        after = json.loads(json.dumps(decode_basics(ROOT/filename, zstd)))
+    for filename, before, stage_output in zip(files, baseline, stage_outputs):
+        after = copy.deepcopy(stage_output)
         assert after['asm_decoding'] == before['asm_decoding'], filename
         original = copy.deepcopy(after)
         stream, = after['streams']; old_stream, = before['streams']
@@ -99,8 +103,19 @@ def validate(zstd):
                      'all_prior_output_unchanged_except_qualified_fields': True,
                      'whole_output_control': filename in CONTROLS, 'qualified_difference_paths': changes})
     assert (measured_bodies, measured_vertices, reflections, tracked, covered_mapping_errors) == (18, 144, 3, 2, 1)
-    return {'scope': 'Fourteen saved main-reader cases against local eeb5363; new native/cache correspondences only, no live Fusion access',
-            'baseline_commit': BASELINE, 'samples': rows,
+    # The current comparator is deliberately lazy: the historical validator
+    # remains tied to its original outputs and evidence, while later qualified
+    # changes get a separate report rather than rewriting old facts.
+    from validate_counted_name_integration import compare_outputs
+    followups = []
+    for filename, stage_output in zip(files, stage_outputs):
+        current = json.loads(json.dumps(decode_basics(ROOT/filename, zstd)))
+        followups.append(compare_outputs(stage_output, current, filename))
+    return {'scope': 'Fourteen saved main-reader cases: frozen eeb5363 to 3910bdc feature-cache stage, with separately qualified current followup; no live Fusion access',
+            'baseline_commit': BASELINE, 'stage_commit': STAGE, 'samples': rows,
+            'current_followup': {'baseline_commit': STAGE,
+                'scope': 'Current outputs compared separately against the frozen historical stage using the counted-name followup comparator; original fourteen-case facts remain unchanged',
+                'saved_files': len(followups), 'samples': followups},
             'summary': {'saved_files': len(files), 'measured_pattern_body_caches': measured_bodies,
                         'typed_pattern_vertex_pairs': measured_vertices, 'datum_reflections': reflections,
                         'initial_BODY_FPM_correspondences': tracked, 'fully_accounted_BODY_only_edge_reader_mapping_errors': covered_mapping_errors,

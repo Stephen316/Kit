@@ -3,12 +3,13 @@
   "interface": "decode_fpm_partial_coverage(data, records, member, members, body_identifier_summary) -> associations/coverage/unresolved/scope",
   "integration": "Add separate late summary after body identifier/direct-body decoding. Each success carries attribute_record_index and mapping_record_object_id. Preserve old trailing-edge tracks. The old mapping-level Incomplete FPM attribute coverage diagnostic can be replaced only when every rejected FPM attribute ID appears in successful associations here; retain any new unresolved records and all global generic-tag or exact-source failures.",
   "validation": {
-    "checks": 73,
+    "checks": 80,
     "saved_files": 12,
     "saved_streams": 12,
     "new_BODY_attribute_associations": 2,
     "complete_BODY_kind_namespaces": 1,
-    "global_FACE_naming_failures_retained": 6,
+    "global_FACE_naming_failures_retained": 0,
+    "newly_framed_other_FACE_tags": 6,
     "malformed_guards": [
       {
         "guard": "Duplicate literal cannot establish numeric uniqueness",
@@ -88,14 +89,14 @@
   "findings": [
     "The two rejected attributes are initial BODY-owned FPM records, not malformed trailing EDGE records. Their reciprocal owner chains and full payload bytes are valid.",
     "Positive literals 391/402 correspond to actual RemoveBody descriptors only after independent native anchor/BODY, explicit same-asset stored handle, parent BoundaryFill ownership and complete BODY-kind naming tuples all agree.",
-    "Three initial typed BODY roots have exactly one validated BODY naming tag each. Every initial custom attribute has a bounded typed owner; the six remaining generic failures are explicitly FACE-owned, so global completeness stays false.",
-    "Those six face layouts each contain one term with two counted components and a zero terminator. This is recorded for the next bounded generic parser extension, without assigning component semantics.",
+    "Three initial typed BODY roots have exactly one validated BODY naming tag each. Every initial custom attribute has a bounded typed owner; the shared follow-up reader also frames the six previously rejected FACE tuples and BODY-owned FPM literals.",
+    "Those six FACE layouts each contain one term with two counted components and a zero terminator. Framing/ownership completeness does not itself assign source/result component semantics.",
     "The naming mismatch guard changes 301 to 999 while preserving literal 391 and all native reference chains; that association is rejected while the unaffected 402 association survives."
   ],
   "limitations": [
     "FPM literals remain stored integers, not serialized typed references. The independent native BODY association does not promote an exact selected-source or persistent ASM identity.",
     "Only initial BODY-owned FPM attributes attached to validated BoundaryFill-owned removal actions are admitted. Trailing EDGE provenance remains the existing reader responsibility.",
-    "Global face naming, unknown history direction/current state and actual tool removal lifecycle are unresolved. Actual API source names and remove-tools flags corroborate scope only."
+    "Generic FACE framing now succeeds, while source/result semantics require separate typed correspondence evidence. History direction/current state and actual tool removal lifecycle remain unresolved. Actual API source names and remove-tools flags corroborate scope only."
   ],
   "samples": [
     {
@@ -847,39 +848,8 @@
               6
             ],
             "initial_BODY_naming_complete": true,
-            "global_generic_tag_coverage_complete": false,
-            "remaining_other_kind_generic_tag_failures": [
-              {
-                "attribute_record_index": 29,
-                "reason": "ASM generic tag integer kind/range mismatch",
-                "owner_kind": "face"
-              },
-              {
-                "attribute_record_index": 43,
-                "reason": "ASM generic tag integer kind/range mismatch",
-                "owner_kind": "face"
-              },
-              {
-                "attribute_record_index": 68,
-                "reason": "ASM generic tag integer kind/range mismatch",
-                "owner_kind": "face"
-              },
-              {
-                "attribute_record_index": 117,
-                "reason": "ASM generic tag integer kind/range mismatch",
-                "owner_kind": "face"
-              },
-              {
-                "attribute_record_index": 188,
-                "reason": "ASM generic tag integer kind/range mismatch",
-                "owner_kind": "face"
-              },
-              {
-                "attribute_record_index": 254,
-                "reason": "ASM generic tag integer kind/range mismatch",
-                "owner_kind": "face"
-              }
-            ],
+            "global_generic_tag_coverage_complete": true,
+            "remaining_other_kind_generic_tag_failures": [],
             "scope": "Exhaustive initial BODY-kind namespace only. Face/edge/global naming failures are retained; no global uniqueness claim."
           }
         ],
@@ -893,7 +863,7 @@
           "reason": "Incomplete FPM attribute coverage prevents unique literal correspondence"
         }
       ],
-      "remaining_FACE_tuple_framing": [
+      "counted_FACE_naming_followup": [
         {
           "attribute_record_index": 29,
           "owner_record_index": 20,
@@ -910,7 +880,7 @@
               ]
             }
           ],
-          "status": "Framing observation only; production generic tag reader still rejects this component count"
+          "status": "Complete production counted-name framing and FACE ownership; source/result semantic correspondence is validated separately"
         },
         {
           "attribute_record_index": 43,
@@ -928,7 +898,7 @@
               ]
             }
           ],
-          "status": "Framing observation only; production generic tag reader still rejects this component count"
+          "status": "Complete production counted-name framing and FACE ownership; source/result semantic correspondence is validated separately"
         },
         {
           "attribute_record_index": 68,
@@ -946,7 +916,7 @@
               ]
             }
           ],
-          "status": "Framing observation only; production generic tag reader still rejects this component count"
+          "status": "Complete production counted-name framing and FACE ownership; source/result semantic correspondence is validated separately"
         },
         {
           "attribute_record_index": 117,
@@ -964,7 +934,7 @@
               ]
             }
           ],
-          "status": "Framing observation only; production generic tag reader still rejects this component count"
+          "status": "Complete production counted-name framing and FACE ownership; source/result semantic correspondence is validated separately"
         },
         {
           "attribute_record_index": 188,
@@ -982,7 +952,7 @@
               ]
             }
           ],
-          "status": "Framing observation only; production generic tag reader still rejects this component count"
+          "status": "Complete production counted-name framing and FACE ownership; source/result semantic correspondence is validated separately"
         },
         {
           "attribute_record_index": 254,
@@ -1000,7 +970,7 @@
               ]
             }
           ],
-          "status": "Framing observation only; production generic tag reader still rejects this component count"
+          "status": "Complete production counted-name framing and FACE ownership; source/result semantic correspondence is validated separately"
         }
       ],
       "actual_API_controls": {
