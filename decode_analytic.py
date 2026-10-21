@@ -49,16 +49,23 @@ def decode_analytic_surface(record):
         axis, reference = direction(4), direction(7)
         perpendicular(axis, reference)
         major, minor = read(5, "double"), read(6, "double")
-        if not 0 < minor < major:
+        negative_minor = (math.isfinite(major) and math.isfinite(minor) and 0 < -minor < major)
+        if not 0 < minor < major and not negative_minor:
             raise ValueError("Only observed ring-torus radii supported")
         result.update(kind="Torus", axis=axis, raw_major_radius=major, raw_minor_radius=minor,
                       stored_reference_axis=reference, is_v_reversed=read(8, "boolean_token"))
+        if negative_minor:
+            result.update(derived_tube_radius_magnitude=-minor, stored_minor_radius_is_negative=True,
+                          parameterization_scope="Observed negative minor-radius field retained literally; tube magnitude corroborated by typed boundary points, signed UV/orientation semantics unresolved")
         intervals = bounds(9)
     elif name == "cone-surface":
         axis = direction(4)
         reference = read(5, "direction_vector")
         perpendicular(axis, reference)
         ratio, parameter_scale = read(6, "double"), read(11, "double")
+        if not math.isclose(ratio, 1., abs_tol=1e-10):
+            from decode_elliptic_cone import decode_elliptic_cone
+            return decode_elliptic_cone(record)
         # The base ellipse defines the physical radius. Its separate parameter
         # scale can retain a pre-edit value after a cosmetic thread resizes it.
         radius = math.hypot(*reference)

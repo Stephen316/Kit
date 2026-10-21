@@ -80,6 +80,9 @@ def _decode_observed_bspline(record):
         if name == "spline-surface" and tokens[5]["value"] == "cyl_spl_sur":
             from decode_cylindrical_spline_cache import decode_cylindrical_spline_cache
             return decode_cylindrical_spline_cache(record)
+        if name == "spline-surface" and tokens[5]["value"] == "sum_spl_sur":
+            from decode_sum_surface_cache import decode_sum_surface_cache
+            return decode_sum_surface_cache(record)
         if name == "intcurve-curve" and tokens[5]["value"] == "par_int_cur":
             from decode_parameter_curve_cache import decode_parameter_curve_cache
             return decode_parameter_curve_cache(record)
@@ -99,6 +102,9 @@ def _decode_observed_bspline(record):
         if form == 1:
             from decode_exact_curve_form_one import decode_exact_curve_form_one
             return decode_exact_curve_form_one(record)
+        if form == 2:
+            from decode_exact_curve_form_two import decode_exact_curve_form_two
+            return decode_exact_curve_form_two(record)
         if form != 0:
             raise ValueError("Unsupported spline curve form")
         knots, compact, count, cursor = knot_vector(tokens, 12, read_token(tokens, 11, "integer"), degree)

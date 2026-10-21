@@ -220,7 +220,13 @@ def decode_topology(parsed, *, subtype_catalog=None):
             if subtype_catalog is None:
                 raise ValueError('Compact pcurve requires a qualified blob-local subtype namespace')
             from decode_pcurve_variants import decode_compact_pcurve
-            nodes[index]['uv_curve'] = decode_compact_pcurve(records[index], records, nodes, subtype_catalog)
+            try:
+                nodes[index]['uv_curve'] = decode_compact_pcurve(records[index], records, nodes, subtype_catalog)
+            except ValueError as error:
+                if str(error) != 'Nonzero compact pcurve offset semantics uncontrasted':
+                    raise
+                from decode_compact_pcurve_offsets import decode_compact_pcurve_offsets
+                nodes[index]['uv_curve'] = decode_compact_pcurve_offsets(records[index], records, nodes, subtype_catalog)
         except (ValueError, KeyError, IndexError) as error:
             nodes.pop(index, None)
             unresolved.append({'index': index, 'kind': 'pcurve', 'reason': str(error)})

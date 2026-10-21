@@ -191,6 +191,14 @@ def inspect_asm_members(members, include_records=False):
                     subtype_summary = {'references': [], 'unresolved': [{'reason': str(error)}],
                         'scope': 'Inline subtype namespace unresolved; original token framing and initial topology reported separately'}
             topology = decode_topology(result, subtype_catalog=subtype_catalog)
+            if any(node.get('partial_surface_definition') for node in topology['nodes']):
+                from decode_vbl_components import decode_vbl_components
+                try:
+                    topology['vbl_component_boundaries'] = decode_vbl_components(
+                        data, parsed=result, subtype_catalog=subtype_catalog, topology=topology)
+                except (ValueError, KeyError, IndexError) as error:
+                    topology['vbl_component_boundaries'] = {'decoded': [], 'unresolved': [{'reason': str(error)}],
+                        'scope': 'VBL boundary component links unresolved; original partial definitions and surface diagnostics retained'}
             if not include_records:
                 topology.pop("nodes", None)
             topology["nodes_included"] = include_records
