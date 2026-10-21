@@ -177,6 +177,7 @@ from decode_scale_reconstruction import decode_scale_reconstruction
 from decode_shell_reconstruction import decode_shell_reconstruction
 from decode_extrusion_reconstruction import decode_extrusion_reconstruction
 from decode_plane_extrusion_reconstruction import decode_plane_extrusion_reconstruction
+from decode_trimmed_extrusion_reconstruction import decode_trimmed_extrusion_reconstruction
 from decode_fpm_partial_coverage import decode_fpm_partial_coverage
 from decode_mirror_nested_occurrences import decode_mirror_nested_occurrences
 from decode_special_fillets import decode_special_fillets
@@ -1624,6 +1625,10 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             data, records, features, name, members, body_binding_summary)
         for evidence in plane_extrusion_reconstruction_summary['decoded']:
             feature_by_id[evidence['feature_object_id']]['plane_extrusion_reconstruction'] = evidence
+        trimmed_extrusion_reconstruction_summary = decode_trimmed_extrusion_reconstruction(
+            data, records, features, name, members, body_binding_summary)
+        for evidence in trimmed_extrusion_reconstruction_summary['decoded']:
+            feature_by_id[evidence['feature_object_id']]['trimmed_extrusion_reconstruction'] = evidence
         fpm_context_cache_summary = decode_fpm_context_cache(data, records, fpm_selection_tracking_summary)
         boundary_sculpt_summary = decode_boundary_sculpt_provenance(
             data, records, name, members, features, body_binding_summary)
@@ -1834,6 +1839,7 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('shell_reconstruction', shell_reconstruction_summary),
                              ('extrusion_reconstruction', extrusion_reconstruction_summary),
                              ('plane_extrusion_reconstruction', plane_extrusion_reconstruction_summary),
+                             ('trimmed_extrusion_reconstruction', trimmed_extrusion_reconstruction_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),
                              ('native_naming_registry', native_naming_summary),

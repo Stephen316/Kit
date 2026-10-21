@@ -35,7 +35,7 @@ SCOPE = ('Observed solid NewBody Extrude, complete Circle or four-Line profile, 
 
 
 def qualify_extrusion_source_operands(data, records, features, member, members,
-                                     body_blob_bindings, feature, *, allow_plane_limits=False):
+                                     body_blob_bindings, feature, *, allow_plane_limits=False, allow_trimmed_profiles=False):
     """Return a fresh creator/source row, None outside Extrude, or ValueError."""
     if feature.get('class_guid') != EXTRUDE:
         return None
@@ -135,12 +135,19 @@ def qualify_extrusion_source_operands(data, records, features, member, members,
     sketch = sketches[0]
     definition_id = reference(db,2)
     _,definition = typed(definition_id,PROFILE_LOOP_GUID)
-    loops = read_loops(definition,descriptor.object_id,sketch)
+    trimmed_family = None
+    try:
+        loops = read_loops(definition,descriptor.object_id,sketch)
+    except ValueError:
+        if not allow_trimmed_profiles:
+            raise
+        from decode_trimmed_extrusion_sources import read_trimmed_extrusion_profile
+        loops,trimmed_family = read_trimmed_extrusion_profile(definition,descriptor.object_id,sketch)
     if len(loops) != 1 or loops[0]['is_outer'] is not True:
         raise ValueError('Extrusion source requires one complete outer profile loop')
     refs = loops[0]['curve_references']
     kinds = [r['entity_kind'] for r in refs]
-    profile_kind = 'Circle' if kinds == ['Circle'] else 'FourLine' if kinds == ['Line']*4 else None
+    profile_kind = trimmed_family or ('Circle' if kinds == ['Circle'] else 'FourLine' if kinds == ['Line']*4 else None)
     if profile_kind is None:
         raise ValueError('Extrusion source profile outside complete Circle/four-Line family')
     bases = [r for r in records if not r.is_primary and r.object_id == sketch_id and r.class_guid == SKETCH_BASE_GUID]
@@ -162,12 +169,14 @@ def qualify_extrusion_source_operands(data, records, features, member, members,
     if sketch.get('component_object_id') != component:
         raise ValueError('Extrusion source Sketch collection/transform component differs')
     lines,circles,points = [],[],{}
-    for ref in refs:
+    primitive_refs = refs if trimmed_family is None else [dict(entity_id=g['object_id'],entity_kind=g['kind'],
+        entity_tag=g['entity_tag']) for g in sketch['geometry'] if g['kind']!='Point']
+    for ref in primitive_refs:
         identity = ref['entity_id']
-        _,payload = typed(identity,LINE if profile_kind == 'FourLine' else CIRCLE)
+        _,payload = typed(identity,LINE if ref['entity_kind'] == 'Line' else CIRCLE)
         props,cursor = attributes(payload,2)
         matches = [g for g in sketch['geometry'] if g['object_id'] == identity and g['kind'] == ref['entity_kind']]
-        expected_length = 171 if profile_kind == 'FourLine' else 162
+        expected_length = 171 if ref['entity_kind'] == 'Line' else 162
         if (len(matches) != 1 or payload[:2] != b'\0\1' or len(payload)-cursor != expected_length
                 or props.get('crv_primary_id') != ref['entity_tag'] or props.get('crv_secondary_id') != 0
                 or reference(payload,len(payload)-11) != sketch_id):
@@ -176,7 +185,7 @@ def qualify_extrusion_source_operands(data, records, features, member, members,
         values = numbers(payload,cursor,12)
         if not all(math.isfinite(v) for v in values):
             raise ValueError('Extrusion source curve has nonfinite coefficients')
-        if profile_kind == 'FourLine':
+        if ref['entity_kind'] == 'Line':
             if reference(payload,cursor+107) != geometry['start_point_id'] or reference(payload,cursor+96) != geometry['end_point_id']:
                 raise ValueError('Extrusion source Line endpoint identities differ')
             ids = [geometry['start_point_id'],geometry['end_point_id']]
@@ -257,6 +266,11 @@ def qualify_extrusion_source_operands(data, records, features, member, members,
         direction_scope='Stored Extrude vector and independent native Sketch-to-component frame; consumer must qualify their relation',
         profile_cache_correspondence=profile_cache,profile_cache_diagnostics=diagnostics,
         source_native_records=[raw(receiver),raw(anchor_id),raw(native)])
+    trimmed_proof = None
+    if trimmed_family is not None:
+        from decode_trimmed_extrusion_sources import qualify_trimmed_extrusion_portions
+        trimmed_proof = qualify_trimmed_extrusion_portions(data,records,private,member,members,mappings,group)
+        group.update(trimmed_proof)
     result = dict(feature_object_id=receiver,settings=settings,source_groups=[group],source_group_count=1,
         component_provenance=dict(component_object_id=component,body_ownership=[dict(native_body_object_id=native,
             body_properties=prop,collection=collections[0])],dependency_scopes=dependencies,assembly_scope=assembly['scope']),
@@ -266,4 +280,6 @@ def qualify_extrusion_source_operands(data, records, features, member, members,
         group['plane_limit_provenance'] = plane_limit_provenance
         result['plane_limit_provenance'] = plane_limit_provenance
         result['scope'] = SCOPE+' '+plane_limit_provenance['scope']
+    if trimmed_proof is not None:
+        result['scope'] += ' '+trimmed_proof['scope']
     return result
