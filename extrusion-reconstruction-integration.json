@@ -1,0 +1,1350 @@
+{
+  "scope": "Fixed ordinary solid Extrude reconstruction with independently derived native primitive controls and complete typed stored-cache corroboration; unsupported controls, modified caches and frames remain explicit",
+  "baseline_commit": "b8a24f1",
+  "files": [
+    "extents-f0f33a9a605f/distance_positive.f3d",
+    "extents-f0f33a9a605f/distance_negative.f3d",
+    "extents-f0f33a9a605f/offset_positive.f3d",
+    "extents-f0f33a9a605f/offset_negative.f3d",
+    "extents-f0f33a9a605f/to_plane.f3d",
+    "extents-f0f33a9a605f/to_plane_offset.f3d",
+    "extents-f0f33a9a605f/from_plane.f3d",
+    "extents-f0f33a9a605f/through_positive.f3d",
+    "extents-f0f33a9a605f/through_negative.f3d",
+    "extents-f0f33a9a605f/two_sided_mixed.f3d",
+    "extents-f0f33a9a605f/taper.f3d",
+    "models-b8a640dbddc6/symmetric_full.f3d",
+    "models-b8a640dbddc6/symmetric_half.f3d",
+    "models-b8a640dbddc6/two_sided.f3d",
+    "holdouts-f8c508a73323/two_extrusions.f3d",
+    "holdouts-f8c508a73323/drafted_extrusion.f3d",
+    "thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+    "assembly-acc48a9dc05d/assembly.f3d",
+    "placedprofiletrims-037ed41056a4/offset_xy_circle_lens.f3d",
+    "placedprofiletrims-037ed41056a4/origin_xz_mixed_segment.f3d",
+    "placedprofiletrims-037ed41056a4/angled_rectangle_overlap.f3d",
+    "placement-c6ad25e75d60/placement.f3d",
+    "meshseparates-41126250c03f/two_shells.f3d"
+  ],
+  "summary": {
+    "saved_files": 23,
+    "decoded_Extrude_features": 13,
+    "unresolved_Extrude_features": 14,
+    "receiving_feature_annotations": 13,
+    "independent_native_source_candidates": 18,
+    "source_operand_failures": 9,
+    "source_candidates_without_successful_cache_corroboration": 5,
+    "reconstructed_cylinders": 10,
+    "reconstructed_frusta": 2,
+    "reconstructed_rectangular_prisms": 1,
+    "native_BODY_groups": 13,
+    "native_FACE_count": 42,
+    "native_LOOP_count": 54,
+    "native_COEDGE_count": 72,
+    "native_EDGE_count": 36,
+    "native_VERTEX_count": 32,
+    "native_endpoint_evaluations": 72,
+    "complete_cap_circle_equations": 24,
+    "lateral_station_radius_equations": 24,
+    "native_Line_equations": 12,
+    "native_Plane_equations": 6,
+    "independent_saved_API_bound_controls": 6,
+    "independent_saved_API_volume_controls": 1,
+    "whole_output_unchanged_controls": 2,
+    "unexpected_changes": 0,
+    "comparator_baseline_main_calls": 0,
+    "comparator_current_main_calls": 0,
+    "live_API_calls": 0
+  },
+  "samples": [
+    {
+      "archive": "extents-f0f33a9a605f/distance_positive.f3d",
+      "archive_sha256": "dd9067920bccc513668d479ae4e32c88456aac037c2dcf976e5d9d7dc310ffe0",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 234,
+          "native_body_object_id": 260,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cylinder",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            0.0,
+            1.7000000000000002
+          ],
+          "independent_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0,
+              1.7000000000000002
+            ]
+          ],
+          "independent_volume_cm3": 5.340707511102649,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [
+        {
+          "truth_file": "extents-f0f33a9a605f/ground_truth.json",
+          "feature_object_id": 234,
+          "actual_API_body_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0,
+              1.7000000000000002
+            ]
+          ],
+          "independently_derived_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            [
+              1.0,
+              1.0,
+              1.7000000000000002
+            ]
+          ],
+          "native_identity_joins_precede_comparison": true,
+          "API_BODY_entity_assignment": null,
+          "scope": "Complete independently captured root result bounds corroborated after native feature/BODY/Sketch joins; bounds never select identity"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "f1e5ee3029b114dc717024540b77ae010e44c2b0c5365bdd7dbbb292c66afc16",
+      "current_output_sha256": "4b5e4dc946f38d136459a5001f2a7ac1eec850d93f6baabfd2804b7043a5d844",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/1/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/distance_negative.f3d",
+      "archive_sha256": "b768ddb426cddb33c87c30093b699fe5e1b340244d70f956f6209f136f33f030",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 234,
+          "native_body_object_id": 260,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cylinder",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            -1.7000000000000002,
+            0.0
+          ],
+          "independent_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              -1.7000000000000002
+            ],
+            [
+              1.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "independent_volume_cm3": 5.340707511102649,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [
+        {
+          "truth_file": "extents-f0f33a9a605f/ground_truth.json",
+          "feature_object_id": 234,
+          "actual_API_body_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              -1.7000000000000002
+            ],
+            [
+              1.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "independently_derived_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              -1.7000000000000002
+            ],
+            [
+              1.0,
+              1.0,
+              0.0
+            ]
+          ],
+          "native_identity_joins_precede_comparison": true,
+          "API_BODY_entity_assignment": null,
+          "scope": "Complete independently captured root result bounds corroborated after native feature/BODY/Sketch joins; bounds never select identity"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "32b725ff13b2da333d7845686c9d538aed4e8ea04a02ac9f65dd535fe1be2ec9",
+      "current_output_sha256": "b9b4f8b3d2a43949bcd6e1d661de1c05df26ea49d158400b4023b9bb540e21a2",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/1/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/offset_positive.f3d",
+      "archive_sha256": "f5ab345de67aa234d2161202a43c3d0964eb5b2dccac9610660703945d6bef33",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 234,
+          "native_body_object_id": 263,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cylinder",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            0.7000000000000001,
+            2.4000000000000004
+          ],
+          "independent_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              0.7000000000000001
+            ],
+            [
+              1.0,
+              1.0,
+              2.4000000000000004
+            ]
+          ],
+          "independent_volume_cm3": 5.340707511102649,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [
+        {
+          "truth_file": "extents-f0f33a9a605f/ground_truth.json",
+          "feature_object_id": 234,
+          "actual_API_body_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              0.7000000000000001
+            ],
+            [
+              1.0,
+              1.0,
+              2.4000000000000004
+            ]
+          ],
+          "independently_derived_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              0.7000000000000001
+            ],
+            [
+              1.0,
+              1.0,
+              2.4000000000000004
+            ]
+          ],
+          "native_identity_joins_precede_comparison": true,
+          "API_BODY_entity_assignment": null,
+          "scope": "Complete independently captured root result bounds corroborated after native feature/BODY/Sketch joins; bounds never select identity"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "ea8857aec9b9ac4129b47f6381b1964cd14ca6293a67dfcb646c4d0987fe18d3",
+      "current_output_sha256": "7cf01277fdb6939f0c8c4fd973c6fe736a7212bc7d56a954c859e85af5622027",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/1/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/offset_negative.f3d",
+      "archive_sha256": "e9bd6d5af4ce1b8f3272ae81b2e418a6eb20e5c2bb854201c03b5cfe3485a8ff",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 234,
+          "native_body_object_id": 263,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cylinder",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            -0.9,
+            0.8000000000000002
+          ],
+          "independent_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              -0.9
+            ],
+            [
+              1.0,
+              1.0,
+              0.8000000000000002
+            ]
+          ],
+          "independent_volume_cm3": 5.340707511102649,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [
+        {
+          "truth_file": "extents-f0f33a9a605f/ground_truth.json",
+          "feature_object_id": 234,
+          "actual_API_body_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              -0.9
+            ],
+            [
+              1.0,
+              1.0,
+              0.8000000000000002
+            ]
+          ],
+          "independently_derived_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              -0.9
+            ],
+            [
+              1.0,
+              1.0,
+              0.8000000000000002
+            ]
+          ],
+          "native_identity_joins_precede_comparison": true,
+          "API_BODY_entity_assignment": null,
+          "scope": "Complete independently captured root result bounds corroborated after native feature/BODY/Sketch joins; bounds never select identity"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "19a6456cf8b52ec2fa82398c81c6396217e824775cfefe64108a35a34490b03e",
+      "current_output_sha256": "adc4f4c46bc15e42b298a07154dae969705c16a5bac398e3f1a5b2cc168d02e5",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/1/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/to_plane.f3d",
+      "archive_sha256": "303569cf8385ec8da507a57a5f5b14cdb73d590463d474481cd763da9c97afe1",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 1,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 0,
+      "source_operand_failures": 1,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "ea8d0ee0f11442a2005849681170f714b7c72e5d1b4cb8ffc75dcc8a997da89c",
+      "current_output_sha256": "2f76508cf2601ba89449ae9f9fe0faecc743d29981f97b4bf084e8ecbe8b447e",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/to_plane_offset.f3d",
+      "archive_sha256": "f3a634322fee984a9ef99375ada9f0ca849ca963c103736d9e190875066f83ad",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 1,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 0,
+      "source_operand_failures": 1,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "70769c659637cf4dbbb9a4f00f9f0e70b133297f9f311c2ed07c2dbc7fe06c3d",
+      "current_output_sha256": "7e201b3b0465290c6f6b65f6a3c52ac4064d61e51f8d09162ea83f60b5008fb6",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/from_plane.f3d",
+      "archive_sha256": "535708797f1600c2b314019077462326bc371363cf75da9195e6cb0d60f0e23e",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 1,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 0,
+      "source_operand_failures": 1,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "8caafd2238b21884390877bdfc10f89206cdfdfa8e22c4a4ac9805ad8a6a5c1f",
+      "current_output_sha256": "3a8e78f821cddfdff02c64067ba52a900549ec676389f5b5830593caed388990",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/through_positive.f3d",
+      "archive_sha256": "8c6c01cbd0bd26ff1b41e0f74d7689a55a9ce59d0011ee687f32315fedb9c963",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 2,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 1,
+      "source_candidates_without_successful_cache_corroboration": [
+        234
+      ],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "400116d35f6d974202b8f6151f31718eda63283889849ff954e81a3a44d02168",
+      "current_output_sha256": "f201cdde922afcbe2d8207f74aa5972affb0d29010aa4a3694b10072b72d49ea",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/through_negative.f3d",
+      "archive_sha256": "0c8e3e418d096017c0bbdbaf941e7b5468693694284763869b6774cb66f42f21",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 2,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 1,
+      "source_candidates_without_successful_cache_corroboration": [
+        234
+      ],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "a6d1e88e9d6114d53a97ba6513f1403e7fdb539774be37ec68f58a0f51d97778",
+      "current_output_sha256": "6f74969279a6da349ff527a0c033dd4fb101390854c425dc1cdf709f74a8b710",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/two_sided_mixed.f3d",
+      "archive_sha256": "a61f0752312bbee70e3a6dc7b2f152e5532718feb796c1ecdfe62e305e16ee00",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 2,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 1,
+      "source_candidates_without_successful_cache_corroboration": [
+        234
+      ],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "822d37caf4e86193470e9a0845a3465dd37556fda8b3aabd47463278df18116f",
+      "current_output_sha256": "9ee6c6de7f0b559253be46792b1dc27283e411668bce89b6fbe27937ce5472f3",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/taper.f3d",
+      "archive_sha256": "d5e776fa897782747e699b1ed366f9bf51bf6652c19a21001676651c2cd4118f",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 234,
+          "native_body_object_id": 260,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cone",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            0.0,
+            1.7000000000000002
+          ],
+          "independent_bounds_cm": [
+            [
+              -1.2087337535349378,
+              -1.2087337535349378,
+              0.0
+            ],
+            [
+              1.2087337535349378,
+              1.2087337535349378,
+              1.7000000000000002
+            ]
+          ],
+          "independent_volume_cm3": 6.533057919954323,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [
+        {
+          "truth_file": "extents-f0f33a9a605f/ground_truth.json",
+          "feature_object_id": 234,
+          "actual_API_body_bounds_cm": [
+            [
+              -1.2087337535349378,
+              -1.2087337535349378,
+              0.0
+            ],
+            [
+              1.2087337535349378,
+              1.2087337535349378,
+              1.7000000000000002
+            ]
+          ],
+          "independently_derived_bounds_cm": [
+            [
+              -1.2087337535349378,
+              -1.2087337535349378,
+              0.0
+            ],
+            [
+              1.2087337535349378,
+              1.2087337535349378,
+              1.7000000000000002
+            ]
+          ],
+          "native_identity_joins_precede_comparison": true,
+          "API_BODY_entity_assignment": null,
+          "scope": "Complete independently captured root result bounds corroborated after native feature/BODY/Sketch joins; bounds never select identity"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "2ae8695ce78492c830169dd181b2cf4e61ff54aa0411a234d629dea55b014b6a",
+      "current_output_sha256": "f322318fc7e5a2e5a182b1d6a44bacf588ee5267e55dabb3f80785dd1508d8a8",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/1/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "models-b8a640dbddc6/symmetric_full.f3d",
+      "archive_sha256": "7c3279dfdf3f4b46c0e476977345b1fb07640472f36ea0e38795a156e9df545d",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 234,
+          "native_body_object_id": 260,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cylinder",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            -1.2000000000000002,
+            1.2000000000000002
+          ],
+          "independent_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              -1.2000000000000002
+            ],
+            [
+              1.0,
+              1.0,
+              1.2000000000000002
+            ]
+          ],
+          "independent_volume_cm3": 7.539822368615504,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "17e590bc84fbca8cc7257c7f42198352a4ba1300e6e3c85da223bddcff2b354b",
+      "current_output_sha256": "d1fdef7b1f2a226beecddcccc9adea76ec7941b66b62062c4030000b84adbb2a",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/1/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "models-b8a640dbddc6/symmetric_half.f3d",
+      "archive_sha256": "4a0f4f1ab96974f8f06da3ee8902f06dd84befc2c7738bd271cb13a4434453ae",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 234,
+          "native_body_object_id": 260,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cylinder",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            -2.4000000000000004,
+            2.4000000000000004
+          ],
+          "independent_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              -2.4000000000000004
+            ],
+            [
+              1.0,
+              1.0,
+              2.4000000000000004
+            ]
+          ],
+          "independent_volume_cm3": 15.079644737231009,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "62167693df3b992d36a6effa743d6a2fe412480b9ae1315b62b1848a9cdbf042",
+      "current_output_sha256": "c61d210ba99fe60b8c2de835d99fad03c610f1a95ee73aa227dd81b7c13e9fc7",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/1/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "models-b8a640dbddc6/two_sided.f3d",
+      "archive_sha256": "f31fc9a7b9a0c77262fec339f4fd1e5ef10765cf500d61da3796ca51cfa210aa",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 234,
+          "native_body_object_id": 266,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cylinder",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            -2.3000000000000003,
+            1.1
+          ],
+          "independent_bounds_cm": [
+            [
+              -1.0,
+              -1.0,
+              -2.3000000000000003
+            ],
+            [
+              1.0,
+              1.0,
+              1.1
+            ]
+          ],
+          "independent_volume_cm3": 10.681415022205298,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "5d7ced34d0d72bef9488dcc6fc06a5334906bef729efb25ce8d26f02cf548d3f",
+      "current_output_sha256": "472e9fb8a65a888a25b3877421e3047f1085a7a9ecaea99d1581d6a0825d7866",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/1/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "holdouts-f8c508a73323/two_extrusions.f3d",
+      "archive_sha256": "1995deb1b78e8ca45b3cc0bb3e0fdb30205ed0674600776a9bffa1ba222c21ce",
+      "decoded_Extrude_features": 2,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 2,
+      "independent_native_source_candidates": 2,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 267,
+          "native_body_object_id": 293,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cylinder",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            0.0,
+            4.3125
+          ],
+          "independent_bounds_cm": [
+            [
+              -0.4,
+              -0.4,
+              0.0
+            ],
+            [
+              0.4,
+              0.4,
+              4.3125
+            ]
+          ],
+          "independent_volume_cm3": 2.167698930976958,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        },
+        {
+          "feature_object_id": 331,
+          "native_body_object_id": 357,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cylinder",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            -0.5875,
+            0.0
+          ],
+          "independent_bounds_cm": [
+            [
+              4.7,
+              -0.2999999999999998,
+              -0.5875
+            ],
+            [
+              5.3,
+              0.2999999999999998,
+              0.0
+            ]
+          ],
+          "independent_volume_cm3": 0.1661117115585601,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "8f0717eebed6ea07dd633b1659cd2ae58828fe3c3a70370be9ed8ec883ada205",
+      "current_output_sha256": "1f902878681fbd3aa0d30ce5a7bd6e6443d01ae18de1c78cffdbc41ec6a4a7fc",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/2/extrusion_reconstruction",
+        "/streams/0/features/4/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "holdouts-f8c508a73323/drafted_extrusion.f3d",
+      "archive_sha256": "8745a3c1396959165517d872f70078377411273cd7f5bcb1870554fc613785fa",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 234,
+          "native_body_object_id": 260,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cone",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            0.0,
+            2.125
+          ],
+          "independent_bounds_cm": [
+            [
+              -1.1859134099925885,
+              -1.1859134099925885,
+              0.0
+            ],
+            [
+              1.1859134099925885,
+              1.1859134099925885,
+              2.125
+            ]
+          ],
+          "independent_volume_cm3": 7.993935455743432,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "d1f8dbf9efa333f750f9fa84b697aafa0f0642fd284d463fe4f038a4f37282ac",
+      "current_output_sha256": "937ee56c8d7d0572c2406af190eefa01599ec1fa127237bf642ff5d4e18666e7",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/1/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+      "archive_sha256": "09980af5a2c9e03e0fc9246ed0b20e796c8f5574c8838d255c85bdd08ea1aa9c",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 1,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 279,
+          "native_body_object_id": 311,
+          "native_profile_kind": "FourLine",
+          "derived_primitive_kind": "RectangularPrism",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 6,
+            "loop": 6,
+            "coedge": 24,
+            "edge": 12,
+            "vertex": 8
+          },
+          "independent_axial_interval_cm": [
+            0.0,
+            2.5
+          ],
+          "independent_bounds_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0,
+              2.5
+            ]
+          ],
+          "independent_volume_cm3": 30.0,
+          "native_endpoint_evaluations": 24,
+          "complete_cap_circle_equations": 0,
+          "lateral_station_radius_equations": 0,
+          "native_Line_equations": 12,
+          "native_Plane_equations": 6,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [
+        {
+          "truth_file": "thinextrudes-c1632bcb5efe/ground_truth.json",
+          "feature_object_id": 279,
+          "actual_API_body_bounds_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0,
+              2.5
+            ]
+          ],
+          "independently_derived_bounds_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0,
+              2.5
+            ]
+          ],
+          "actual_API_volume_cm3": 30.0,
+          "independently_derived_volume_cm3": 30.0,
+          "native_identity_joins_precede_comparison": true,
+          "API_BODY_entity_assignment": null,
+          "scope": "Complete result bounds/volume/counts corroborated after native joins; no API ENTITY assigned by coordinates"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "0129c7cbe693492679f8d9effcf34a662e375c09553b9c27d4bafebae82d4a61",
+      "current_output_sha256": "a538d77612eba6a19385526229657f7075ce720b310f68af444da2d824ac6296",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/1/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "assembly-acc48a9dc05d/assembly.f3d",
+      "archive_sha256": "6ffe10b64fcc97308f2d7084e18548d24bcde4f66b0b7e3261ba7f7743e4d057",
+      "decoded_Extrude_features": 1,
+      "unresolved_Extrude_features": 2,
+      "receiving_feature_annotations": 1,
+      "independent_native_source_candidates": 3,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [
+        424,
+        565
+      ],
+      "successful_primitive_geometry_proofs": [
+        {
+          "feature_object_id": 297,
+          "native_body_object_id": 323,
+          "native_profile_kind": "Circle",
+          "derived_primitive_kind": "Cylinder",
+          "native_ID_joins_precede_arithmetic": true,
+          "cache_counts": {
+            "lump": 1,
+            "shell": 1,
+            "face": 3,
+            "loop": 4,
+            "coedge": 4,
+            "edge": 2,
+            "vertex": 2
+          },
+          "independent_axial_interval_cm": [
+            0.0,
+            1.2000000000000002
+          ],
+          "independent_bounds_cm": [
+            [
+              0.2999999999999998,
+              0.7999999999999998,
+              0.0
+            ],
+            [
+              1.1,
+              1.6,
+              1.2000000000000002
+            ]
+          ],
+          "independent_volume_cm3": 0.6031857894892407,
+          "native_endpoint_evaluations": 4,
+          "complete_cap_circle_equations": 2,
+          "lateral_station_radius_equations": 2,
+          "native_Line_equations": 0,
+          "native_Plane_equations": 0,
+          "complete_nested_topology_and_geometry_bundles_corroborated": true,
+          "semantic_to_native_ENTITY_assignment": null,
+          "API_ENTITY_assignment": null
+        }
+      ],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "61ee492131409a7010477ff037f934ac17f62c41020f86438b32dddb1840bf95",
+      "current_output_sha256": "1268a03db0de7a0d233cd5689246d80906d89b93d57aa226e7d1a571c650091c",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction",
+        "/streams/0/features/3/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "placedprofiletrims-037ed41056a4/offset_xy_circle_lens.f3d",
+      "archive_sha256": "20853a802b7f529261b98ff4e2fffcc4787877cc063c0c062851df2459ce9d79",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 1,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 0,
+      "source_operand_failures": 1,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "c9b4a9ee3a933a7cc4811a3ee9fc2e516b07de4bd6fec95d997946df0ad93d52",
+      "current_output_sha256": "319dde418eeceebe70c82d4cc818e8008310ef19115e610d30f52c285a3a60d6",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "placedprofiletrims-037ed41056a4/origin_xz_mixed_segment.f3d",
+      "archive_sha256": "a06ed776a4b5d4b4b54a43af8d622df65b8dcf447d81693d7023da6e31dd0668",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 1,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 0,
+      "source_operand_failures": 1,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "aa858af7204b4dfb5ab8212bf919e320e66ee7cbcd516834cd1c068c91868f27",
+      "current_output_sha256": "b1513cda2035ddd5872f2be80b05c1b7335c236a64cc85ae21c22c4322d6c51a",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "placedprofiletrims-037ed41056a4/angled_rectangle_overlap.f3d",
+      "archive_sha256": "b2ffb04c65cbdc61ff97800ad0a0ff6e9154f1d136dc8901c540578fdcdf92e9",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 1,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 0,
+      "source_operand_failures": 1,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "10b6fee6a0a7283a3ee3937b9ccfd41bf58b91de4e094c34f87ea0fb3c180d81",
+      "current_output_sha256": "8a7a6a7681ffa627ca795d4ab9891eb08921c5db230ce25abd061b5a854f6912",
+      "qualified_difference_paths": [
+        "/streams/0/extrusion_reconstruction"
+      ]
+    },
+    {
+      "archive": "placement-c6ad25e75d60/placement.f3d",
+      "archive_sha256": "bbc9669c1767727dc5f3a1aefe955338608caa4a87a221d61f70a5bd189b38be",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 0,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "f0a87b2ae735aa0036d65e1a2701d6fd1ae9081f0c552ed4d1dce887e3ca4ba3",
+      "current_output_sha256": "f0a87b2ae735aa0036d65e1a2701d6fd1ae9081f0c552ed4d1dce887e3ca4ba3",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "meshseparates-41126250c03f/two_shells.f3d",
+      "archive_sha256": "de4cfab56392bbf8f6e22361d02bb594ae3df56d12b2c2a9291dab5829665e16",
+      "decoded_Extrude_features": 0,
+      "unresolved_Extrude_features": 0,
+      "receiving_feature_annotations": 0,
+      "independent_native_source_candidates": 0,
+      "source_operand_failures": 0,
+      "source_candidates_without_successful_cache_corroboration": [],
+      "successful_primitive_geometry_proofs": [],
+      "saved_API_geometry_controls": [],
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "eaec037a938cbf5703c0845240b8933547a95327becee31db34f1a57fa0036fa",
+      "current_output_sha256": "eaec037a938cbf5703c0845240b8933547a95327becee31db34f1a57fa0036fa",
+      "qualified_difference_paths": []
+    }
+  ],
+  "fixed_manifest_acquisition": {
+    "baseline_main_calls": 23,
+    "current_main_calls": 23,
+    "baseline_passes": 1,
+    "current_passes": 1,
+    "interpreter": "/usr/bin/python3",
+    "entrypoint": "decode_basics.decode_basics(ROOT / filename, zstd_library)",
+    "fixed_order": [
+      "extents-f0f33a9a605f/distance_positive.f3d",
+      "extents-f0f33a9a605f/distance_negative.f3d",
+      "extents-f0f33a9a605f/offset_positive.f3d",
+      "extents-f0f33a9a605f/offset_negative.f3d",
+      "extents-f0f33a9a605f/to_plane.f3d",
+      "extents-f0f33a9a605f/to_plane_offset.f3d",
+      "extents-f0f33a9a605f/from_plane.f3d",
+      "extents-f0f33a9a605f/through_positive.f3d",
+      "extents-f0f33a9a605f/through_negative.f3d",
+      "extents-f0f33a9a605f/two_sided_mixed.f3d",
+      "extents-f0f33a9a605f/taper.f3d",
+      "models-b8a640dbddc6/symmetric_full.f3d",
+      "models-b8a640dbddc6/symmetric_half.f3d",
+      "models-b8a640dbddc6/two_sided.f3d",
+      "holdouts-f8c508a73323/two_extrusions.f3d",
+      "holdouts-f8c508a73323/drafted_extrusion.f3d",
+      "thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+      "assembly-acc48a9dc05d/assembly.f3d",
+      "placedprofiletrims-037ed41056a4/offset_xy_circle_lens.f3d",
+      "placedprofiletrims-037ed41056a4/origin_xz_mixed_segment.f3d",
+      "placedprofiletrims-037ed41056a4/angled_rectangle_overlap.f3d",
+      "placement-c6ad25e75d60/placement.f3d",
+      "meshseparates-41126250c03f/two_shells.f3d"
+    ],
+    "scope": "Original fixed acquisition, distinct from cached comparator zero-main execution"
+  },
+  "cache_provenance": {
+    "baseline": {
+      "path": "/private/tmp/fusion-extrusion-reconstruction-baseline.json",
+      "sha256": "809c8077d21ebeda4df070037dfb39db65e44e7a8840a357fde20c5699f173c9"
+    },
+    "current": {
+      "path": "/private/tmp/fusion-extrusion-reconstruction-current.json",
+      "sha256": "25ff47790bfe170aa9dad3f32013c3036eeac855e61157559658329048e0bcfc"
+    }
+  },
+  "frozen_production_sha256": {
+    "decode_extrusion_source_operands.py": "9f45976340deef3a4d71f6c999e360841c88d82e129c9754e00e38e535b74b40",
+    "decode_extrusion_reconstruction.py": "95647f20dd3e5d599c9567922facee5f021568e21c7d5474a222500929c5496f",
+    "decode_circular_extrusion_geometry.py": "77fe57a5a7b50cb7b2d3add0dd738b84b13b3501cf87893cd60205fc00ffe6d1"
+  },
+  "evidence_sha256": {
+    "extrusion-reconstruction-decoding.json": "0fc5600236c9fe94ea5b319417175fa097626d680d6deb9dc1ad47741b588ab7",
+    "extrusion-source-operand-decoding.json": "634d388bf69a289f15339b97eb035a5769e32eb9908446d46ebf62a6eda864bc"
+  },
+  "saved_API_truth_sha256": {
+    "extents-f0f33a9a605f/ground_truth.json": "26bd0b62fc010805faab5504a61616d850c003bb942a2db5d8448abeae61fb7b",
+    "thinextrudes-c1632bcb5efe/ground_truth.json": "9d6736ba99d6837cc0e18b4dab51ba85f2117df4a7e9c452fc4858feeeaf3ec9"
+  },
+  "source_sha256": {
+    "validate_extrusion_reconstruction_integration.py": "36feea1c0f7405bbd4e69727fbcbd525f7ef4b4115c6cf3da7eeeecdfe5c041e",
+    "decode_extrusion_source_operands.py": "9f45976340deef3a4d71f6c999e360841c88d82e129c9754e00e38e535b74b40",
+    "decode_extrusion_reconstruction.py": "95647f20dd3e5d599c9567922facee5f021568e21c7d5474a222500929c5496f",
+    "decode_circular_extrusion_geometry.py": "77fe57a5a7b50cb7b2d3add0dd738b84b13b3501cf87893cd60205fc00ffe6d1",
+    "decode_basics.py": "1860c71ea34e21437cd5729d6edb8b5ab96d07d4e467f75911db6ee294acfa7f"
+  },
+  "limitations": [
+    "Source profile/Sketch/feature/anchor/BODY/mapping identities are fixed before numerical primitive/cache comparison.",
+    "Complete analytic coefficients and nested finite boundary topology corroborate geometry collectively; no mathematical role selects or assigns native ENTITY identity.",
+    "Six saved complete result bounds and one volume corroborate after native joins; no API handle or vertex assignment by coordinates.",
+    "Five qualified source candidates lack successful cache/frame corroboration and remain unresolved; deriving their source primitive is not counted as reconstruction success.",
+    "From/ToEntity, Boolean operations, trimmed source portions and unqualified assembly-frame direction relationships remain explicit unsupported cases.",
+    "No current/final/historical/persistent geometry identity or native regeneration is established. Separate root translated-source holdout is outside this fixed manifest and all acquisition counts."
+  ]
+}
