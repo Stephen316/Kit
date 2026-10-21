@@ -61,6 +61,8 @@ from decode_sweep_fixed_spline_paths import decode_sweep_fixed_spline_paths
 from decode_sweep_fixed_spline_sources import SCOPE as SWEEP_FIXED_SOURCE_SCOPE
 from decode_surface_trim_tools import decode_surface_trim_tools
 from decode_surface_trim_sources import SCOPE as SURFACE_TRIM_SOURCE_SCOPE
+from decode_surface_trim_lines import decode_surface_trim_lines
+from decode_surface_trim_line_sources import SCOPE as SURFACE_TRIM_LINE_SOURCE_SCOPE
 from decode_split_body_multi_sheet_routes import qualify_split_body_multi_sheet_routes, SCOPE as SPLIT_BODY_MULTI_SHEET_SCOPE
 from decode_split_body_sheet_routes import qualify_split_body_sheet_routes, SCOPE as SPLIT_BODY_SHEET_SCOPE
 from decode_replace_face_body_routes import qualify_replace_face_body_routes, SCOPE as REPLACE_FACE_BODY_SCOPE
@@ -727,6 +729,25 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             surface_trim_source_summary['decoded'].append(source)
         tool_summary['unresolved'] = [row for row in tool_summary['unresolved']
             if row['object_id'] not in surface_trim_ids or row['reason'] != 'Only observed planar trim tools supported']
+        surface_trim_line_summary = decode_surface_trim_lines(data, records, features)
+        surface_trim_line_ids = {row['feature_object_id'] for row in surface_trim_line_summary['decoded']}
+        eligible_surface_trim_line_ids = {row['object_id'] for row in tool_summary['unresolved']
+            if row['kind'] == 'SurfaceTrim' and row['reason'] == 'Only observed planar trim tools supported'}
+        if not surface_trim_line_ids <= eligible_surface_trim_line_ids:
+            raise ValueError('Qualified SurfaceTrim Line does not match the prior plane-only tool frontier')
+        surface_trim_line_source_summary = dict(decoded=[], unresolved=[], scope=SURFACE_TRIM_LINE_SOURCE_SCOPE)
+        for trim in surface_trim_line_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == trim['feature_object_id'])
+            feature.update(tool_settings=trim['settings'],
+                decode_level='Observed SurfaceTrim sketch-Line tool and typed sketch source; selected-cell recipe, persistent topology and regeneration unresolved')
+            if not any(row['object_id'] == feature['object_id'] for row in tool_summary['decoded']):
+                tool_summary['decoded'].append(dict(object_id=feature['object_id'], kind='SurfaceTrim'))
+            source = dict(feature_object_id=feature['object_id'],
+                native_source_evidence=trim['settings']['tool']['native_source_evidence'], scope=SURFACE_TRIM_LINE_SOURCE_SCOPE)
+            feature['surface_trim_line_source'] = source
+            surface_trim_line_source_summary['decoded'].append(source)
+        tool_summary['unresolved'] = [row for row in tool_summary['unresolved']
+            if row['object_id'] not in surface_trim_line_ids or row['reason'] != 'Only observed planar trim tools supported']
         parting_draft_summary = decode_parting_line_drafts(data, records, features)
         parting_draft_ids = set()
         for draft in parting_draft_summary['decoded']:
@@ -1600,6 +1621,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('sweep_fixed_spline_sources', sweep_fixed_source_summary),
                              ('surface_trim_tools', surface_trim_summary),
                              ('surface_trim_sources', surface_trim_source_summary),
+                             ('surface_trim_lines', surface_trim_line_summary),
+                             ('surface_trim_line_sources', surface_trim_line_source_summary),
                              ('split_body_multi_sheet_routes', split_multi_route_summary),
                              ('split_body_sheet_tools', split_sheet_summary),
                              ('split_body_sheet_routes', split_sheet_route_summary),

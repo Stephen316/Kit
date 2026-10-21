@@ -6,7 +6,7 @@ from decode_selection import native_proxy_references, resolve_native_selection
 from decode_sketch import reference
 
 
-def decode_surface_tool(data, records, body, feature, known=None, *, patch_boundary_resolver=None, trim_tool_resolver=None):
+def decode_surface_tool(data, records, body, feature, known=None, *, patch_boundary_resolver=None, trim_tool_resolver=None, allowed_trim_tool_kinds=None):
     classes = {"SurfacePatch": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
                "SurfaceOffset": "1589BC73-D484-4A6E-8E69-2A1531E845F5",
                "SurfaceStitch": "16722593-7399-4963-9EB3-656FE1949577",
@@ -187,13 +187,21 @@ def decode_surface_tool(data, records, body, feature, known=None, *, patch_bound
             if tool is None or tool["entity"]["kind"] != "ConstructionPlane":
                 raise ValueError("Only observed planar trim tools supported")
         else:
+            allowed_kinds = ("BRepFace", "BRepBody")
+            if allowed_trim_tool_kinds is not None:
+                if (not isinstance(allowed_trim_tool_kinds, tuple) or not allowed_trim_tool_kinds
+                        or any(type(kind) is not str or kind not in ("BRepFace", "BRepBody", "SketchLine")
+                               for kind in allowed_trim_tool_kinds)
+                        or len(set(allowed_trim_tool_kinds)) != len(allowed_trim_tool_kinds)):
+                    raise ValueError("Unsupported explicit Trim tool kinds")
+                allowed_kinds = allowed_trim_tool_kinds
             tool = trim_tool_resolver(data, records, tool_id, feature, known or {})
             if not isinstance(tool, dict) or not isinstance(tool.get("entity"), dict):
                 raise ValueError("Trim tool resolver did not return a qualified source")
             evidence = tool.get("native_source_evidence")
             if (type(tool.get("selection_record_object_id")) is not int
                     or tool["selection_record_object_id"] != tool_id
-                    or tool["entity"].get("kind") not in ("BRepFace", "BRepBody")
+                    or tool["entity"].get("kind") not in allowed_kinds
                     or not isinstance(evidence, dict)
                     or type(evidence.get("feature_object_id")) is not int
                     or evidence["feature_object_id"] != feature["object_id"]

@@ -15,6 +15,10 @@ import adsk.core
 import adsk.fusion
 
 CASES = ('sheet_face','sheet_body','sketch_line')
+OPTIONAL_LINE_CASE_SPECS = {
+    'sketch_line_offset_positive': [[-3.,.25,0.],[3.,.25,0.]],
+    'sketch_line_reversed_negative': [[3.,-.25,0.],[-3.,-.25,0.]],
+}
 HALTED_NATIVE_ATTRIBUTE = '_codex_FusionFileStudy_surface_trim_halted_native_handles'
 
 
@@ -25,9 +29,10 @@ def run(context):
     cases=CASES
     if isinstance(context,dict) and 'cases' in context:
         selected=context['cases']
-        if not isinstance(selected,(list,tuple)) or not selected or len(set(selected))!=len(selected) or set(selected)-set(CASES):
+        available=CASES+tuple(OPTIONAL_LINE_CASE_SPECS)
+        if not isinstance(selected,(list,tuple)) or not selected or len(selected)>3 or len(set(selected))!=len(selected) or set(selected)-set(available):
             raise ValueError('Select one to three known distinct SurfaceTrim tool cases')
-        cases=tuple(case for case in CASES if case in selected)
+        cases=tuple(case for case in available if case in selected)
     source=Path(__file__).resolve();output=source.parent/('surfacetrimtools-'+uuid.uuid4().hex[:12]);output.mkdir()
     executed=source.read_bytes();(output/'executed-generator-source.txt').write_bytes(executed)
     sdk_path=Path(adsk.fusion.__file__);sdk=sdk_path.read_bytes();text=sdk.decode();blocks=[]
@@ -41,12 +46,13 @@ def run(context):
         scope='Fresh owned parametric documents only. Independent XY target Patch and XZ sheet face/body tool or XY SketchLine. Exact tool argument, normalized input/rolled feature tool, all temporary cells and current results remain distinct. Cell indices label API enumeration only; selection is an explicit observed geometric request, not persistent/native identity.',
         requested_setup=dict(target_xy_cm=[[-2.,-1.],[2.,1.]],target_z_cm=0.,
             sheet_tool_local_XZ_cm=[[-3.,-1.],[3.,1.]],line_xy_cm=[[-3.,0.],[3.,0.]],
+            optional_line_case_endpoints_cm=OPTIONAL_LINE_CASE_SPECS,
             selection='Clear every cell; remove only the unique target-plane cell with bounding-box center y>0. All other valid cells remain unselected.'),
         transaction_policy='Every returned TrimFeatureInput is added or cancelled in finally before timeline/export/close. A failed cancellation halts the batch and leaves the owned document untouched for diagnosis.')
 
     if isinstance(context,dict) and context.get('entrypoint_source_path'):
         entrypoint=Path(context['entrypoint_source_path']).resolve()
-        if entrypoint.parent!=source.parent or entrypoint.name not in ('GenerateSurfaceTrimRemainingContrasts.py','GenerateSurfaceTrimLifecycleValidation.py') or not entrypoint.is_file():
+        if entrypoint.parent!=source.parent or entrypoint.name not in ('GenerateSurfaceTrimRemainingContrasts.py','GenerateSurfaceTrimLifecycleValidation.py','GenerateSurfaceTrimLineContrasts.py') or not entrypoint.is_file():
             raise ValueError('Unexpected owned SurfaceTrim resume entrypoint')
         entrypoint_bytes=entrypoint.read_bytes()
         (output/'executed-entrypoint-source.txt').write_bytes(entrypoint_bytes)
@@ -213,9 +219,12 @@ def run(context):
             target_feature,target,target_sketch=patch(root,root.xYConstructionPlane,[[-2.,-1.],[2.,1.]],'OwnedTrimTarget_'+case)
             sample['target_patch_sketch']=dict(identity=identity(target_sketch),transform=target_sketch.transform.asArray())
             tool_body=None;tool_feature=None
-            if case=='sketch_line':
+            if case.startswith('sketch_line'):
                 sketch=root.sketches.add(root.xYConstructionPlane);sketch.name='OwnedTrimLine_'+case
-                tool=sketch.sketchCurves.sketchLines.addByTwoPoints(adsk.core.Point3D.create(-3.,0.,0.),adsk.core.Point3D.create(3.,0.,0.))
+                line_endpoints=OPTIONAL_LINE_CASE_SPECS.get(case,[[-3.,0.,0.],[3.,0.,0.]])
+                sample['exact_line_endpoint_arguments_cm']=line_endpoints
+                sample['requested']['line_endpoints_cm']=line_endpoints
+                tool=sketch.sketchCurves.sketchLines.addByTwoPoints(adsk.core.Point3D.create(*line_endpoints[0]),adsk.core.Point3D.create(*line_endpoints[1]))
             else:
                 tool_feature,tool_body,tool_sketch=patch(root,root.xZConstructionPlane,[[-3.,-1.],[3.,1.]],'OwnedTrimTool_'+case)
                 sample['tool_patch_sketch']=dict(identity=identity(tool_sketch),transform=tool_sketch.transform.asArray())
@@ -411,7 +420,7 @@ def run(context):
     for case in cases:
         doc=None
         sample=dict(case=case,file=case+'.f3d',phase='document_create',getter_errors=[],
-            requested=dict(trim_tool_argument_type={'sheet_face':'BRepFace','sheet_body':'BRepBody','sketch_line':'SketchLine'}[case],
+            requested=dict(trim_tool_argument_type='SketchLine' if case.startswith('sketch_line') else {'sheet_face':'BRepFace','sheet_body':'BRepBody'}[case],
                 remove_target_positive_y_half=True,targetBaseFeature_set=False))
         truth['active_sample']=sample
         state=dict(sample=sample,safe_to_close=False,halted=False)
