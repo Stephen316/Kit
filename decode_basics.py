@@ -174,6 +174,7 @@ from decode_mirror_face_planes import decode_mirror_face_planes
 from decode_mirror_cache_reflections import decode_mirror_cache_reflections
 from decode_mirror_boundary_caches import decode_mirror_boundary_caches
 from decode_scale_reconstruction import decode_scale_reconstruction
+from decode_shell_reconstruction import decode_shell_reconstruction
 from decode_fpm_partial_coverage import decode_fpm_partial_coverage
 from decode_mirror_nested_occurrences import decode_mirror_nested_occurrences
 from decode_special_fillets import decode_special_fillets
@@ -1609,6 +1610,10 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             data, records, features, name, members, body_binding_summary)
         for evidence in scale_reconstruction_summary['decoded']:
             feature_by_id[evidence['feature_object_id']]['scale_reconstruction'] = evidence
+        shell_reconstruction_summary = decode_shell_reconstruction(
+            data, records, features, name, members, body_binding_summary)
+        for evidence in shell_reconstruction_summary['decoded']:
+            feature_by_id[evidence['feature_object_id']]['shell_reconstruction'] = evidence
         fpm_context_cache_summary = decode_fpm_context_cache(data, records, fpm_selection_tracking_summary)
         boundary_sculpt_summary = decode_boundary_sculpt_provenance(
             data, records, name, members, features, body_binding_summary)
@@ -1816,6 +1821,7 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('mirror_cache_reflections', mirror_cache_reflection_summary),
                              ('mirror_boundary_caches', mirror_boundary_cache_summary),
                              ('scale_reconstruction', scale_reconstruction_summary),
+                             ('shell_reconstruction', shell_reconstruction_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),
                              ('native_naming_registry', native_naming_summary),
