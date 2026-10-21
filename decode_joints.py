@@ -27,6 +27,83 @@ MOTION_TYPES = {0: (0, "Rigid"), 1: (1, "Revolute"), 2: (2, "Slider"),
                 4: (3, "Cylindrical"), 6: (4, "PinSlot"), 7: (5, "Planar"), 8: (6, "Ball")}
 
 
+def parse_native_joint_motion(payload, joint_object_id, *, cursor=36, matrix_decoder=None):
+    """Shared observed native motion slots; caller proves typed owner/footer routes."""
+    joint, joint_id = payload, joint_object_id
+    motion = []
+    for slot in range(6):
+        count = struct.unpack_from("<I", joint, cursor)[0]
+        cursor += 4
+        if count not in (0, 1):
+            raise ValueError("Unsupported joint motion slot membership count")
+        if not count:
+            continue
+        if reference(joint, cursor) != joint_id:
+            raise ValueError("Joint motion entry self-owner mismatch")
+        flags = joint[cursor+11:cursor+14]
+        if any(flag not in (0, 1) for flag in flags) or joint[cursor+14] != 0:
+            raise ValueError("Unsupported joint motion limit flags")
+        current, maximum, minimum, rest = numbers(joint, cursor+15, 4)
+        motion.append({"slot_index": slot, "stored_axis_tag": struct.unpack_from("<I", joint, cursor+47)[0],
+                       "current_value": current, "maximum_value": maximum, "minimum_value": minimum,
+                       "rest_value": rest, "maximum_enabled": bool(flags[0]),
+                       "minimum_enabled": bool(flags[1]), "rest_enabled": bool(flags[2])})
+        cursor += 51
+    native_code = struct.unpack_from("<I", joint, cursor)[0]
+    if native_code not in MOTION_TYPES or joint[cursor+4:cursor+14] != bytes.fromhex("00010000000002000000"):
+        raise ValueError("Unobserved native joint motion type/trailer")
+    api_code, kind = MOTION_TYPES[native_code]
+    matrix_details = None
+    if joint[cursor+14:cursor+15] == b'\0':
+        stored_matrix = rigid_matrix(numbers(joint, cursor+15, 16))
+        tail = cursor+143
+    elif matrix_decoder is not None:
+        decoded_matrix = matrix_decoder(joint, marker_offset=cursor+14)
+        stored_matrix = rigid_matrix(decoded_matrix['stored_context_matrix'])
+        tail = decoded_matrix['footer_offset']
+        matrix_details = decoded_matrix.get('matrix_layout_details')
+    else:
+        raise ValueError("Unobserved native joint motion type/trailer")
+    slots = [item["slot_index"] for item in motion]
+    expected_counts = {"Rigid": 0, "Revolute": 1, "Slider": 1, "Cylindrical": 2,
+                       "PinSlot": 2, "Planar": 3, "Ball": 3}
+    if len(motion) != expected_counts[kind]:
+        raise ValueError("Native joint motion type/degree count disagree")
+    labels, directions = [], {}
+    if kind == "Rigid":
+        pass
+    elif kind == "Ball":
+        if slots != [0, 1, 2] or [item["stored_axis_tag"] for item in motion] != [3, 4, 5]:
+            raise ValueError("Unsupported ball joint motion layout")
+        labels = ["pitchLimits", "yawLimits", "rollLimits"]
+    else:
+        angular = [item for item in motion if item["slot_index"] < 3]
+        linear = [item for item in motion if item["slot_index"] >= 3]
+        required = {"Revolute": (1, 0), "Slider": (0, 1), "Cylindrical": (1, 1),
+                    "PinSlot": (1, 1), "Planar": (1, 2)}[kind]
+        if (len(angular), len(linear)) != required:
+            raise ValueError("Joint angular/linear degree partition disagrees")
+        if any(item["stored_axis_tag"] != item["slot_index"]+(3 if item["slot_index"] >= 3 else 0) for item in motion):
+            raise ValueError("Unobserved native joint axis tags")
+        if kind == "Planar":
+            labels = ["rotationLimits", "primarySlideLimits", "secondarySlideLimits"]
+            directions = {"normalDirection": angular[0]["slot_index"], "primarySlideDirection": linear[0]["slot_index"]-3}
+        else:
+            labels = (["rotationLimits"] if angular else [])+(["slideLimits"] if linear else [])
+            if angular:
+                directions["rotationAxis"] = angular[0]["slot_index"]
+            if kind in ("Slider", "PinSlot"):
+                directions["slideDirection"] = linear[0]["slot_index"]-3
+    for item, label in zip(motion, labels):
+        item.update(limit_kind=label, units="cm" if item["slot_index"] >= 3 else "rad")
+    result = {"motion_limits": motion, "direction_codes": directions, "joint_type": kind,
+            "api_joint_type_code": api_code, "stored_joint_type_code": native_code,
+            "stored_context_matrix": stored_matrix, "footer_offset": tail}
+    if matrix_details is not None:
+        result['matrix_layout_details'] = matrix_details
+    return result
+
+
 def decode_joints(data, records, assembly, features=None):
     primary_groups = {}
     for record in records:
@@ -197,66 +274,17 @@ def decode_joints(data, records, assembly, features=None):
             member_fields = [struct.unpack_from("<I", joint, offset)[0] for offset in (16, 31)]
             if any(identity not in occurrences for identity in member_ids):
                 raise ValueError("Native joint references an unresolved occurrence")
-            motion, cursor = [], 36
-            for slot in range(6):
-                count = struct.unpack_from("<I", joint, cursor)[0]
-                cursor += 4
-                if count not in (0, 1):
-                    raise ValueError("Unsupported joint motion slot membership count")
-                if not count:
-                    continue
-                if reference(joint, cursor) != joint_id:
-                    raise ValueError("Joint motion entry self-owner mismatch")
-                flags = joint[cursor+11:cursor+14]
-                if any(flag not in (0, 1) for flag in flags) or joint[cursor+14] != 0:
-                    raise ValueError("Unsupported joint motion limit flags")
-                current, maximum, minimum, rest = numbers(joint, cursor+15, 4)
-                motion.append({"slot_index": slot, "stored_axis_tag": struct.unpack_from("<I", joint, cursor+47)[0],
-                               "current_value": current, "maximum_value": maximum, "minimum_value": minimum,
-                               "rest_value": rest, "maximum_enabled": bool(flags[0]),
-                               "minimum_enabled": bool(flags[1]), "rest_enabled": bool(flags[2])})
-                cursor += 51
-            native_code = struct.unpack_from("<I", joint, cursor)[0]
-            if native_code not in MOTION_TYPES or joint[cursor+4:cursor+15] != bytes.fromhex("0001000000000200000000"):
-                raise ValueError("Unobserved native joint motion type/trailer")
-            api_code, kind = MOTION_TYPES[native_code]
-            stored_matrix = rigid_matrix(numbers(joint, cursor+15, 16))
-            tail = cursor+143
+            parsed_motion = parse_native_joint_motion(joint, joint_id)
+            motion = parsed_motion["motion_limits"]
+            directions = parsed_motion["direction_codes"]
+            kind = parsed_motion["joint_type"]
+            api_code = parsed_motion["api_joint_type_code"]
+            native_code = parsed_motion["stored_joint_type_code"]
+            stored_matrix = parsed_motion["stored_context_matrix"]
+            tail = parsed_motion["footer_offset"]
             name, end = read_string(joint, tail+79)
             if end+12 != len(joint) or joint[end] != 0 or reference(joint, end+1) != collection["object_id"]:
                 raise ValueError("Native joint name/collection footer disagrees")
-            slots = [item["slot_index"] for item in motion]
-            expected_counts = {"Rigid": 0, "Revolute": 1, "Slider": 1, "Cylindrical": 2,
-                               "PinSlot": 2, "Planar": 3, "Ball": 3}
-            if len(motion) != expected_counts[kind]:
-                raise ValueError("Native joint motion type/degree count disagree")
-            labels, directions = [], {}
-            if kind == "Rigid":
-                pass
-            elif kind == "Ball":
-                if slots != [0, 1, 2] or [item["stored_axis_tag"] for item in motion] != [3, 4, 5]:
-                    raise ValueError("Unsupported ball joint motion layout")
-                labels = ["pitchLimits", "yawLimits", "rollLimits"]
-            else:
-                angular = [item for item in motion if item["slot_index"] < 3]
-                linear = [item for item in motion if item["slot_index"] >= 3]
-                required = {"Revolute": (1, 0), "Slider": (0, 1), "Cylindrical": (1, 1),
-                            "PinSlot": (1, 1), "Planar": (1, 2)}[kind]
-                if (len(angular), len(linear)) != required:
-                    raise ValueError("Joint angular/linear degree partition disagrees")
-                if any(item["stored_axis_tag"] != item["slot_index"]+(3 if item["slot_index"] >= 3 else 0) for item in motion):
-                    raise ValueError("Unobserved native joint axis tags")
-                if kind == "Planar":
-                    labels = ["rotationLimits", "primarySlideLimits", "secondarySlideLimits"]
-                    directions = {"normalDirection": angular[0]["slot_index"], "primarySlideDirection": linear[0]["slot_index"]-3}
-                else:
-                    labels = (["rotationLimits"] if angular else [])+(["slideLimits"] if linear else [])
-                    if angular:
-                        directions["rotationAxis"] = angular[0]["slot_index"]
-                    if kind in ("Slider", "PinSlot"):
-                        directions["slideDirection"] = linear[0]["slot_index"]-3
-            for item, label in zip(motion, labels):
-                item.update(limit_kind=label, units="cm" if item["slot_index"] >= 3 else "rad")
             origins = [point_origin(identity) for identity in origin_ids]
             contexts = [context_frame(identity, record.object_id, origin) for identity, origin in zip(context_ids, origins)]
             if set(member_ids) != {item["native_occurrence_object_id"] for item in contexts}:

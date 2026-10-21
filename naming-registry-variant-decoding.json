@@ -10,19 +10,19 @@
   },
   "interface": "Existing decode_native_naming_registry(data,records) and encode_native_naming_registry(registry); new layout retains actual empty owner_to_keys and actual populated key_to_owner.",
   "validation": {
-    "checks": 4100,
-    "saved_archives": 578,
-    "exact_payload_replays": 613,
+    "checks": 4156,
+    "saved_archives": 589,
+    "exact_payload_replays": 630,
     "new_reverse_only_registries": 99,
     "new_reverse_only_rows": 185,
     "frozen_reverse_only_registries": 97,
     "frozen_reverse_only_rows": 179,
-    "previous_registry_dictionaries_exact": 514,
+    "previous_registry_dictionaries_exact": 531,
     "frozen_previous_registry_dictionaries_exact": 499,
-    "additional_current_old_schema_controls_exact": 15,
+    "additional_current_old_schema_controls_exact": 32,
     "later_reverse_only_registries": 2,
     "later_reverse_only_rows": 6,
-    "total_registry_records": 613,
+    "total_registry_records": 630,
     "reverse_only_second_table_count_distribution": {
       "1": 70,
       "2": 13,
@@ -96,6 +96,78 @@
       "canonical_dictionary_sha256": "fb3042abbd549618869232b2c3c11d9e339bb05fd866136daf80f6e2094687c6",
       "exact_unchanged": true,
       "in_frozen_census_manifest": true
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/revolute.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "6f7c0deafff16010d5f1d75d12d5647b67c05acf96739524a8f38e664c415b33",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/revolute.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 229,
+      "canonical_dictionary_sha256": "723001e46d9617bfc4b9016a708274c5d0892639a7be805b84f02b14a789d057",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/revolute.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 372,
+      "canonical_dictionary_sha256": "f86e39b32fec7c505df2bf19dc222dee8f9768f3710273e43356a5e6e5a9152a",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/rigid.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "3948e1a0d33a83ca50444527c94ce22f7ce878d4e23e082de9bf4c89ced0ed56",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/rigid.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 229,
+      "canonical_dictionary_sha256": "a498bb03e1977babc5c49771e40f284046f78c54680259e579f93aba3ab16f03",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/rigid.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 372,
+      "canonical_dictionary_sha256": "047cce69ab9eecefffefbb1707f2b7136d77d70ae2a7e7fb0b2da0649cdc92c9",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/slider.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "1014084dc15a4ccd48d287f24ce3efc10c225fab2f3c2627e92f7bef708d357c",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/slider.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 229,
+      "canonical_dictionary_sha256": "8ee1b4c583082a953179d4e88d346520a95190e0501848eeeacc4338753ba6dd",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "asbuiltjoints-790406c4498b/slider.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 372,
+      "canonical_dictionary_sha256": "a956cc47ebe798050b2932b4f0c17937b881391f0fa844eabc4c725f423e8892",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
     },
     {
       "file": "assembly-acc48a9dc05d/assembly.f3d",
@@ -4138,6 +4210,38 @@
       "in_frozen_census_manifest": false
     },
     {
+      "file": "trimselectorholdouts-ac245ecd1e2f/repeated_circle.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "de508dcb5f753881af9951045b78df5c627f5a0d1aa14f1957f5eb53c1a59bf9",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "trimselectorholdouts-ac245ecd1e2f/repeated_circle_reverse_creation.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "de508dcb5f753881af9951045b78df5c627f5a0d1aa14f1957f5eb53c1a59bf9",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "trimselectorholdouts-ac245ecd1e2f/reverse_creation_lens.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "d26e0933f9b82431e69e572b1c5ef0f55331b6035dbd80a84c9966b7ecacc269",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "trimselectorholdouts-ac245ecd1e2f/shifted_unequal_lens.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "d26e0933f9b82431e69e572b1c5ef0f55331b6035dbd80a84c9966b7ecacc269",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
       "file": "userparameters-e9c6959ff5fd/angle.f3d",
       "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
       "object_id": 31,
@@ -4200,6 +4304,38 @@
       "canonical_dictionary_sha256": "5e367d1f1d7ad3e6befdd139835f87c6b4957355938d6f15192aa5ecefab687f",
       "exact_unchanged": true,
       "in_frozen_census_manifest": true
+    },
+    {
+      "file": "variablefillets-a5080b076434/endpoint_only_control.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "ab953f051a4945110ec988c5a3213077417f28c0cede4e708306c81981d44657",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "variablefillets-a5080b076434/one_quarter.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "6c5e12fce219e51cb5f6f6fead4bd5876c06053637852125ec1c650055857e29",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "variablefillets-a5080b076434/one_three_quarters.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "6c5e12fce219e51cb5f6f6fead4bd5876c06053637852125ec1c650055857e29",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
+    },
+    {
+      "file": "variablefillets-a5080b076434/two_intermediates.f3d",
+      "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+      "object_id": 31,
+      "canonical_dictionary_sha256": "e09677330d8f4794d82608d00434ed9472c10ad42175015e6f53d5e3c8f9e4ec",
+      "exact_unchanged": true,
+      "in_frozen_census_manifest": false
     }
   ],
   "reverse_only_samples": [

@@ -7,6 +7,7 @@ only; native tag/trim identity requires later inspection of actual exports.
 from datetime import datetime, timezone
 import hashlib
 import json
+import math
 from pathlib import Path
 import traceback
 import uuid
@@ -20,11 +21,32 @@ OUTPUT_PREFIX = 'trimmedprofiles-'
 
 def run(context):
     app = adsk.core.Application.get()
-    output = Path(__file__).resolve().parent / (OUTPUT_PREFIX + uuid.uuid4().hex[:12])
+    specs=context.get('case_specs') if isinstance(context,dict) else None
+    prefix=context.get('output_prefix',OUTPUT_PREFIX) if isinstance(context,dict) else OUTPUT_PREFIX
+    if not isinstance(prefix,str) or not prefix or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789-' for c in prefix):
+        raise ValueError('Capture prefix must be one bounded local directory name')
+    if specs is not None:
+        if not isinstance(specs,dict) or not 1<=len(specs)<=4:
+            raise ValueError('Expected one to four bounded trim-selector case specifications')
+        for name,spec in specs.items():
+            if not isinstance(name,str) or not name or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789_' for c in name):
+                raise ValueError('Unsupported trim-selector case name')
+            circles=spec['circles']
+            if (not 2<=len(circles)<=3 or any(len(circle)!=3 or not all(math.isfinite(v) for v in circle)
+                    or circle[2]<=0 for circle in circles) or spec['selection'] not in ('min_area','max_area','max_centroid_x')
+                    or not 1<=spec['expected_profile_count']<=16):
+                raise ValueError('Unobserved or invalid controlled trim-selector input')
+    output = Path(__file__).resolve().parent / (prefix + uuid.uuid4().hex[:12])
     output.mkdir()
+    generator_source=Path(__file__).read_bytes()
+    (output/'executed-generator-source.txt').write_bytes(generator_source)
+    cases = [case for case in (specs if specs is not None else CASES)
+             if not isinstance(context, dict) or 'cases' not in context or case in context['cases']]
     truth = {'fusion_version': app.version, 'samples': [], 'errors': [],
-             'planned_cases': list(CASES),
-             'scope': 'Three owned local documents, independent archive exports, close(False); no cloud saves.',
+             'planned_cases': list(specs) if specs is not None else list(CASES),
+             'executed_generator_sha256': hashlib.sha256(generator_source).hexdigest(),
+             'scope': ('Three owned local documents, independent archive exports, close(False); no cloud saves.' if specs is None
+                       else str(len(cases))+' owned local documents, independent archive exports, close(False); no cloud saves.'),
              'identity_scope': 'Direct API sketchEntity equality supplies source array indices. Tokens are opaque evidence; they are not parsed as native IDs. Native profile references await actual saved-file inspection.',
              'geometry_scope': 'ProfileCurve.geometry and its evaluator describe the actual profile portion; source SketchCircle/SketchLine geometry is recorded separately. Profile region choice uses area/centroid only in this generator.',
              'capture_status': 'running'}
@@ -114,7 +136,6 @@ def run(context):
             result['loops'].append(row)
         return result
 
-    cases = [case for case in CASES if not isinstance(context, dict) or 'cases' not in context or case in context['cases']]
     journal('batch_begin', planned_sample_count=len(cases))
     for case in cases:
         document = None
@@ -130,7 +151,12 @@ def run(context):
             sketch = component.sketches.add(component.xYConstructionPlane)
             sketch.name = 'TrimmedProfileSources'
             point = adsk.core.Point3D.create
-            if case.startswith('circle_'):
+            if specs is not None:
+                spec=specs[case]
+                for cx,cy,radius in spec['circles']:
+                    sketch.sketchCurves.sketchCircles.addByCenterRadius(point(cx,cy,0),radius)
+                requested={'controlled_specification':spec}
+            elif case.startswith('circle_'):
                 sketch.sketchCurves.sketchCircles.addByCenterRadius(point(-1, 0, 0), 2)
                 sketch.sketchCurves.sketchCircles.addByCenterRadius(point(1, 0, 0), 2)
                 requested = {'sources': 'Two radius-2cm circles centered at(-1,0) and(1,0)',
@@ -144,11 +170,15 @@ def run(context):
                 raise RuntimeError('Source computeAll returned false')
             sources = items(sketch.sketchCurves)
             candidates = items(sketch.profiles)
-            if len(candidates) != 3:
-                raise RuntimeError('Expected exactly three intersection regions; got '+str(len(candidates)))
+            expected_count=specs[case]['expected_profile_count'] if specs is not None else 3
+            if len(candidates) != expected_count:
+                raise RuntimeError('Expected '+str(expected_count)+' intersection regions; got '+str(len(candidates)))
             properties = [profile.areaProperties() for profile in candidates]
-            if case == 'circle_right_complement':
+            selection=specs[case]['selection'] if specs is not None else ('max_centroid_x' if case=='circle_right_complement' else 'min_area')
+            if selection=='max_centroid_x':
                 selected_index = max(range(len(candidates)), key=lambda i: properties[i].centroid.x)
+            elif selection=='max_area':
+                selected_index = max(range(len(candidates)), key=lambda i: properties[i].area)
             else:
                 selected_index = min(range(len(candidates)), key=lambda i: properties[i].area)
             selected = candidates[selected_index]

@@ -25,12 +25,17 @@ def read(name):
 
 
 def compare(before, current, filename, zstd, expected):
-    after = copy.deepcopy(current)
+    if any('profile_circle_portions' in stream for stream in current['streams']):
+        from validate_advanced_feature_integration import strip_circle_additions
+        after, circle_counts = strip_circle_additions(current, filename, zstd)
+    else:
+        after, circle_counts = copy.deepcopy(current), {}
     members = read_members(ROOT/filename, zstd)
     counts = dict(thin_features=0, active_wall_bindings=0, open_line_sources=0,
                   trimmed_profile_groups=0, trimmed_source_references=0,
                   retained_trim_COEDGE_candidates=0, custom_datum_supports=0,
                   qualified_old_profile_diagnostics_resolved=0)
+    counts.update({'circle_portion_followup_'+key: value for key, value in circle_counts.items()})
     for original, stream in zip(before['streams'], after['streams']):
         member = stream['member']; data = members[member]
         records, _ = design_records(data, members[member.replace('BulkStream.dat', 'MetaStream.dat')])

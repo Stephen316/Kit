@@ -1,0 +1,563 @@
+{
+  "scope": "Four actual owned-document straight-edge fillets: endpoint-only control, quarter/three-quarter single midpoint contrast, two intermediate points. No whole-corpus sweep.",
+  "interface": "decode_variable_fillets(data,records,features)->decoded/unresolved/scope (intermediate-only); decode_variable_fillet(data,records,body,feature) reuses shared controls; decode_variable_radius_payload(chunk,value) is shared-reader callback",
+  "integration": "Add intermediate-only summary and replace same-feature tool_settings on successful rows; keep existing input topology warning. Default shared decoder and endpoint-only output are unchanged.",
+  "capture_provenance": {
+    "file": "variablefillets-a5080b076434/ground_truth.json",
+    "sha256": "12eaf9f99697d0373452e351d88e38809c6d08ff5ab25f9c73bee57ee63c1782",
+    "executed_generator_sha256": "9431d92fb4d2d65eea5bdadcdc16cbb72ae8200e5e0db2a169fb078febe80e83",
+    "exact_executed_source_snapshot": "variablefillets-a5080b076434/executed-generator-source.txt"
+  },
+  "schema": {
+    "mid_position_count_offset": 28,
+    "mid_position_refs_offset": 32,
+    "list_rule": "u32 position count, counted11byte MidParams refs, zero4, u32radius count=count+2, StartRadius/EndRadius/MidRadius refs in native/API order, zero9, setIndexu32, TangencyWeightref, zero4",
+    "extent_rule": "Edge-set body length90+22*midpointcount; positive bounded count; exact references and all separators/trailer checked",
+    "position_units": "Actual API unitless MidParams fraction; no automatic reversal or coordinate inference",
+    "parameter_units": "Start/End/MidRadius raw internal cm; actual display unit mm retained in API evidence"
+  },
+  "samples": [
+    {
+      "file": "variablefillets-a5080b076434/endpoint_only_control.f3d",
+      "expected_summary": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Counted intermediate-radius fillet settings and existing owned selection proxy; no fillet regeneration, ASM edge orientation or exact selected topology inferred"
+      },
+      "expected_settings": {
+        "rolling_ball_corner": true,
+        "edge_sets": [
+          {
+            "definition_record_object_id": 295,
+            "tangent_chain": false,
+            "continuity": 1,
+            "kind": "VariableRadiusFilletEdgeSet",
+            "startRadius": {
+              "value": 0.1,
+              "role": "StartRadius",
+              "name": "d4",
+              "binding_object_id": 307
+            },
+            "endRadius": {
+              "value": 0.30000000000000004,
+              "role": "EndRadius",
+              "name": "d5",
+              "binding_object_id": 310
+            },
+            "radius_scope": "Observed endpoint-only variable radius; intermediate radii unsupported",
+            "tangencyWeight": {
+              "value": 1.0,
+              "role": "TangencyWeight",
+              "name": "d3",
+              "binding_object_id": 297
+            },
+            "selection_record_object_id": 299
+          }
+        ],
+        "input_selection_status": "Actual fillet edge/face topology unresolved"
+      },
+      "edge_set_definition_object_id": 295,
+      "native_body_hex": "00000000000000000000012b010000000000000000000000000000000000000000000000020000000133010000000000000000013601000000000000000000000000000000000000000000012901000000000000000000000000",
+      "exact_payload_replay": true,
+      "actual_mid_radius_values": [],
+      "actual_mid_position_values": [],
+      "source_getters_before_consumption_equal_rolled_getters": true,
+      "native_to_ASM_source_orientation": "unresolved",
+      "actual_API_health_state": 0,
+      "close_owned_document_result": true
+    },
+    {
+      "file": "variablefillets-a5080b076434/one_quarter.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 294,
+            "tool_settings": {
+              "rolling_ball_corner": true,
+              "edge_sets": [
+                {
+                  "definition_record_object_id": 295,
+                  "tangent_chain": false,
+                  "continuity": 1,
+                  "kind": "VariableRadiusFilletEdgeSet",
+                  "startRadius": {
+                    "value": 0.1,
+                    "role": "StartRadius",
+                    "name": "d4",
+                    "binding_object_id": 307
+                  },
+                  "endRadius": {
+                    "value": 0.30000000000000004,
+                    "role": "EndRadius",
+                    "name": "d5",
+                    "binding_object_id": 310
+                  },
+                  "midRadii": [
+                    {
+                      "value": 0.2,
+                      "role": "MidRadius",
+                      "name": "d6",
+                      "binding_object_id": 313
+                    }
+                  ],
+                  "midPositions": [
+                    {
+                      "value": 0.25,
+                      "role": "MidParams",
+                      "name": "d7",
+                      "binding_object_id": 316
+                    }
+                  ],
+                  "radius_scope": "Observed counted intermediate-radius/position bindings; native order matches actual API getter order",
+                  "midpoint_order_scope": "Stored list order retained; API getters may reorder setter request, no ASM traversal sign assigned",
+                  "midpoint_position_scope": "Unitless fractions along API selected curve; source-to-ASM orientation and nonlinear distance parameterization unresolved",
+                  "tangencyWeight": {
+                    "value": 1.0,
+                    "role": "TangencyWeight",
+                    "name": "d3",
+                    "binding_object_id": 297
+                  },
+                  "selection_record_object_id": 299
+                }
+              ],
+              "input_selection_status": "Actual fillet edge/face topology unresolved"
+            },
+            "scope": "Counted intermediate-radius fillet settings and existing owned selection proxy; no fillet regeneration, ASM edge orientation or exact selected topology inferred"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Counted intermediate-radius fillet settings and existing owned selection proxy; no fillet regeneration, ASM edge orientation or exact selected topology inferred"
+      },
+      "expected_settings": {
+        "rolling_ball_corner": true,
+        "edge_sets": [
+          {
+            "definition_record_object_id": 295,
+            "tangent_chain": false,
+            "continuity": 1,
+            "kind": "VariableRadiusFilletEdgeSet",
+            "startRadius": {
+              "value": 0.1,
+              "role": "StartRadius",
+              "name": "d4",
+              "binding_object_id": 307
+            },
+            "endRadius": {
+              "value": 0.30000000000000004,
+              "role": "EndRadius",
+              "name": "d5",
+              "binding_object_id": 310
+            },
+            "midRadii": [
+              {
+                "value": 0.2,
+                "role": "MidRadius",
+                "name": "d6",
+                "binding_object_id": 313
+              }
+            ],
+            "midPositions": [
+              {
+                "value": 0.25,
+                "role": "MidParams",
+                "name": "d7",
+                "binding_object_id": 316
+              }
+            ],
+            "radius_scope": "Observed counted intermediate-radius/position bindings; native order matches actual API getter order",
+            "midpoint_order_scope": "Stored list order retained; API getters may reorder setter request, no ASM traversal sign assigned",
+            "midpoint_position_scope": "Unitless fractions along API selected curve; source-to-ASM orientation and nonlinear distance parameterization unresolved",
+            "tangencyWeight": {
+              "value": 1.0,
+              "role": "TangencyWeight",
+              "name": "d3",
+              "binding_object_id": 297
+            },
+            "selection_record_object_id": 299
+          }
+        ],
+        "input_selection_status": "Actual fillet edge/face topology unresolved"
+      },
+      "edge_set_definition_object_id": 295,
+      "native_body_hex": "00000000000000000000012b0100000000000000000000000000000001000000013c010000000000000000000000000300000001330100000000000000000136010000000000000000013901000000000000000000000000000000000000000000012901000000000000000000000000",
+      "exact_payload_replay": true,
+      "actual_mid_radius_values": [
+        0.2
+      ],
+      "actual_mid_position_values": [
+        0.25
+      ],
+      "source_getters_before_consumption_equal_rolled_getters": true,
+      "native_to_ASM_source_orientation": "unresolved",
+      "actual_API_health_state": 0,
+      "close_owned_document_result": true
+    },
+    {
+      "file": "variablefillets-a5080b076434/one_three_quarters.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 294,
+            "tool_settings": {
+              "rolling_ball_corner": true,
+              "edge_sets": [
+                {
+                  "definition_record_object_id": 295,
+                  "tangent_chain": false,
+                  "continuity": 1,
+                  "kind": "VariableRadiusFilletEdgeSet",
+                  "startRadius": {
+                    "value": 0.1,
+                    "role": "StartRadius",
+                    "name": "d4",
+                    "binding_object_id": 307
+                  },
+                  "endRadius": {
+                    "value": 0.30000000000000004,
+                    "role": "EndRadius",
+                    "name": "d5",
+                    "binding_object_id": 310
+                  },
+                  "midRadii": [
+                    {
+                      "value": 0.2,
+                      "role": "MidRadius",
+                      "name": "d6",
+                      "binding_object_id": 313
+                    }
+                  ],
+                  "midPositions": [
+                    {
+                      "value": 0.75,
+                      "role": "MidParams",
+                      "name": "d7",
+                      "binding_object_id": 316
+                    }
+                  ],
+                  "radius_scope": "Observed counted intermediate-radius/position bindings; native order matches actual API getter order",
+                  "midpoint_order_scope": "Stored list order retained; API getters may reorder setter request, no ASM traversal sign assigned",
+                  "midpoint_position_scope": "Unitless fractions along API selected curve; source-to-ASM orientation and nonlinear distance parameterization unresolved",
+                  "tangencyWeight": {
+                    "value": 1.0,
+                    "role": "TangencyWeight",
+                    "name": "d3",
+                    "binding_object_id": 297
+                  },
+                  "selection_record_object_id": 299
+                }
+              ],
+              "input_selection_status": "Actual fillet edge/face topology unresolved"
+            },
+            "scope": "Counted intermediate-radius fillet settings and existing owned selection proxy; no fillet regeneration, ASM edge orientation or exact selected topology inferred"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Counted intermediate-radius fillet settings and existing owned selection proxy; no fillet regeneration, ASM edge orientation or exact selected topology inferred"
+      },
+      "expected_settings": {
+        "rolling_ball_corner": true,
+        "edge_sets": [
+          {
+            "definition_record_object_id": 295,
+            "tangent_chain": false,
+            "continuity": 1,
+            "kind": "VariableRadiusFilletEdgeSet",
+            "startRadius": {
+              "value": 0.1,
+              "role": "StartRadius",
+              "name": "d4",
+              "binding_object_id": 307
+            },
+            "endRadius": {
+              "value": 0.30000000000000004,
+              "role": "EndRadius",
+              "name": "d5",
+              "binding_object_id": 310
+            },
+            "midRadii": [
+              {
+                "value": 0.2,
+                "role": "MidRadius",
+                "name": "d6",
+                "binding_object_id": 313
+              }
+            ],
+            "midPositions": [
+              {
+                "value": 0.75,
+                "role": "MidParams",
+                "name": "d7",
+                "binding_object_id": 316
+              }
+            ],
+            "radius_scope": "Observed counted intermediate-radius/position bindings; native order matches actual API getter order",
+            "midpoint_order_scope": "Stored list order retained; API getters may reorder setter request, no ASM traversal sign assigned",
+            "midpoint_position_scope": "Unitless fractions along API selected curve; source-to-ASM orientation and nonlinear distance parameterization unresolved",
+            "tangencyWeight": {
+              "value": 1.0,
+              "role": "TangencyWeight",
+              "name": "d3",
+              "binding_object_id": 297
+            },
+            "selection_record_object_id": 299
+          }
+        ],
+        "input_selection_status": "Actual fillet edge/face topology unresolved"
+      },
+      "edge_set_definition_object_id": 295,
+      "native_body_hex": "00000000000000000000012b0100000000000000000000000000000001000000013c010000000000000000000000000300000001330100000000000000000136010000000000000000013901000000000000000000000000000000000000000000012901000000000000000000000000",
+      "exact_payload_replay": true,
+      "actual_mid_radius_values": [
+        0.2
+      ],
+      "actual_mid_position_values": [
+        0.75
+      ],
+      "source_getters_before_consumption_equal_rolled_getters": true,
+      "native_to_ASM_source_orientation": "unresolved",
+      "actual_API_health_state": 0,
+      "close_owned_document_result": true
+    },
+    {
+      "file": "variablefillets-a5080b076434/two_intermediates.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 294,
+            "tool_settings": {
+              "rolling_ball_corner": true,
+              "edge_sets": [
+                {
+                  "definition_record_object_id": 295,
+                  "tangent_chain": false,
+                  "continuity": 1,
+                  "kind": "VariableRadiusFilletEdgeSet",
+                  "startRadius": {
+                    "value": 0.1,
+                    "role": "StartRadius",
+                    "name": "d4",
+                    "binding_object_id": 307
+                  },
+                  "endRadius": {
+                    "value": 0.30000000000000004,
+                    "role": "EndRadius",
+                    "name": "d5",
+                    "binding_object_id": 310
+                  },
+                  "midRadii": [
+                    {
+                      "value": 0.24,
+                      "role": "MidRadius",
+                      "name": "d6",
+                      "binding_object_id": 313
+                    },
+                    {
+                      "value": 0.18000000000000002,
+                      "role": "MidRadius",
+                      "name": "d7",
+                      "binding_object_id": 316
+                    }
+                  ],
+                  "midPositions": [
+                    {
+                      "value": 0.75,
+                      "role": "MidParams",
+                      "name": "d8",
+                      "binding_object_id": 319
+                    },
+                    {
+                      "value": 0.25,
+                      "role": "MidParams",
+                      "name": "d9",
+                      "binding_object_id": 322
+                    }
+                  ],
+                  "radius_scope": "Observed counted intermediate-radius/position bindings; native order matches actual API getter order",
+                  "midpoint_order_scope": "Stored list order retained; API getters may reorder setter request, no ASM traversal sign assigned",
+                  "midpoint_position_scope": "Unitless fractions along API selected curve; source-to-ASM orientation and nonlinear distance parameterization unresolved",
+                  "tangencyWeight": {
+                    "value": 1.0,
+                    "role": "TangencyWeight",
+                    "name": "d3",
+                    "binding_object_id": 297
+                  },
+                  "selection_record_object_id": 299
+                }
+              ],
+              "input_selection_status": "Actual fillet edge/face topology unresolved"
+            },
+            "scope": "Counted intermediate-radius fillet settings and existing owned selection proxy; no fillet regeneration, ASM edge orientation or exact selected topology inferred"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Counted intermediate-radius fillet settings and existing owned selection proxy; no fillet regeneration, ASM edge orientation or exact selected topology inferred"
+      },
+      "expected_settings": {
+        "rolling_ball_corner": true,
+        "edge_sets": [
+          {
+            "definition_record_object_id": 295,
+            "tangent_chain": false,
+            "continuity": 1,
+            "kind": "VariableRadiusFilletEdgeSet",
+            "startRadius": {
+              "value": 0.1,
+              "role": "StartRadius",
+              "name": "d4",
+              "binding_object_id": 307
+            },
+            "endRadius": {
+              "value": 0.30000000000000004,
+              "role": "EndRadius",
+              "name": "d5",
+              "binding_object_id": 310
+            },
+            "midRadii": [
+              {
+                "value": 0.24,
+                "role": "MidRadius",
+                "name": "d6",
+                "binding_object_id": 313
+              },
+              {
+                "value": 0.18000000000000002,
+                "role": "MidRadius",
+                "name": "d7",
+                "binding_object_id": 316
+              }
+            ],
+            "midPositions": [
+              {
+                "value": 0.75,
+                "role": "MidParams",
+                "name": "d8",
+                "binding_object_id": 319
+              },
+              {
+                "value": 0.25,
+                "role": "MidParams",
+                "name": "d9",
+                "binding_object_id": 322
+              }
+            ],
+            "radius_scope": "Observed counted intermediate-radius/position bindings; native order matches actual API getter order",
+            "midpoint_order_scope": "Stored list order retained; API getters may reorder setter request, no ASM traversal sign assigned",
+            "midpoint_position_scope": "Unitless fractions along API selected curve; source-to-ASM orientation and nonlinear distance parameterization unresolved",
+            "tangencyWeight": {
+              "value": 1.0,
+              "role": "TangencyWeight",
+              "name": "d3",
+              "binding_object_id": 297
+            },
+            "selection_record_object_id": 299
+          }
+        ],
+        "input_selection_status": "Actual fillet edge/face topology unresolved"
+      },
+      "edge_set_definition_object_id": 295,
+      "native_body_hex": "00000000000000000000012b0100000000000000000000000000000002000000013f01000000000000000001420100000000000000000000000004000000013301000000000000000001360100000000000000000139010000000000000000013c01000000000000000000000000000000000000000000012901000000000000000000000000",
+      "exact_payload_replay": true,
+      "actual_mid_radius_values": [
+        0.24,
+        0.18000000000000002
+      ],
+      "actual_mid_position_values": [
+        0.75,
+        0.25
+      ],
+      "source_getters_before_consumption_equal_rolled_getters": true,
+      "native_to_ASM_source_orientation": "unresolved",
+      "actual_API_health_state": 0,
+      "close_owned_document_result": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "case": "Position count exceeds exact payload extent",
+      "reason": "Variable-fillet midpoint count/payload extent disagrees"
+    },
+    {
+      "case": "Radius count disagrees with midpoint count",
+      "reason": "Variable-fillet radius/position list counts disagree"
+    },
+    {
+      "case": "Nonzero counted-list separator",
+      "reason": "Variable-fillet radius/position list counts disagree"
+    },
+    {
+      "case": "Position reference repeats radius binding",
+      "reason": "Variable-fillet parameter bindings repeat across lists"
+    },
+    {
+      "case": "Set index disagrees with feature order",
+      "reason": "Fillet edge-set index disagrees with feature list order"
+    },
+    {
+      "case": "Selection proxy owner disagrees with feature",
+      "reason": "Edge-set selection owner disagrees with feature"
+    },
+    {
+      "case": "Midpoint fraction at endpoint rejected",
+      "reason": "Variable-fillet midpoint fractions must be distinct and interior"
+    },
+    {
+      "case": "Correct typed binding with wrong parameter role",
+      "reason": "Edge-set binding does not resolve: MidRadius"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "file": "edgemodes-87edbf67527b/fillet_constant.f3d",
+      "shared_default_dictionary_exact": true,
+      "no_new_summary": true
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_variable.f3d",
+      "shared_default_dictionary_exact": true,
+      "no_new_summary": true
+    },
+    {
+      "file": "edgemodes-87edbf67527b/fillet_chord.f3d",
+      "shared_default_dictionary_exact": true,
+      "no_new_summary": true
+    }
+  ],
+  "limitations": [
+    "New branch observed only continuity1, straight single-edge input and rolling ball; numeric values are decoded bindings, not fixture constants.",
+    "Stored list order is actual API getter order. The two-point setter order is reversed by Fusion; no ascending sort/request-order assumption.",
+    "Existing owned selection proxy remains validated by shared reader; exact selected ASM edge identity and traversal orientation remain unresolved.",
+    "No fillet regeneration, midpointXYZ inference, nonlinear arc-length mapping or radius interpolation law is claimed."
+  ],
+  "setter_order_counterexample": {
+    "case": "two_intermediates",
+    "requested_positions": [
+      0.25,
+      0.75
+    ],
+    "actual_getter_positions": [
+      0.75,
+      0.25
+    ],
+    "requested_radii_cm": [
+      0.18,
+      0.24
+    ],
+    "actual_getter_radii_cm": [
+      0.24,
+      0.18000000000000002
+    ],
+    "native_lists_match_actual_getter_order": true
+  },
+  "summary": {
+    "actual_exports": 4,
+    "intermediate_features": 3,
+    "endpoint_control": 1,
+    "actual_parameter_getter_matches": 20,
+    "actual_midpoint_pairs": 4,
+    "exact_edge_set_payload_replays": 4,
+    "before_after_source_getter_controls": 4,
+    "malformed_guards": 8,
+    "legacy_default_controls": 3,
+    "all_owned_documents_closed_true": true
+  }
+}

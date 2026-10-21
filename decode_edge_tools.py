@@ -6,7 +6,7 @@ from decode_extrude import optional_reference
 from decode_sketch import reference
 
 
-def decode_edge_tool(data, records, body, feature):
+def decode_edge_tool(data, records, body, feature, *, variable_radius_decoder=None):
     bindings = {p["binding_object_id"]: p for p in feature["parameters"]}
 
     def value(identity, role):
@@ -116,6 +116,11 @@ def decode_edge_tool(data, records, body, feature):
                         endRadius=value(reference(chunk, 51), "EndRadius"),
                         radius_scope="Observed endpoint-only variable radius; intermediate radii unsupported")
             selection_id, weight_offset = reference(chunk, 10), 75
+        elif mode == b"\0"*4 and variable_radius_decoder is not None:
+            extra, selection_id, weight_offset = variable_radius_decoder(chunk, value)
+            if not isinstance(extra, dict) or item.keys() & extra.keys():
+                raise ValueError('Variable fillet callback would replace shared definition identity/flags')
+            item.update(extra)
         else:
             raise ValueError("Unsupported fillet edge-set mode or layout")
         if chunk[weight_offset+11:] != b"\0"*4:

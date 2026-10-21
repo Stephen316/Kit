@@ -1,9 +1,12 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 578,
+  "file_count": 589,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
+    "asbuiltjoints-790406c4498b/revolute.f3d",
+    "asbuiltjoints-790406c4498b/rigid.f3d",
+    "asbuiltjoints-790406c4498b/slider.f3d",
     "assembly-acc48a9dc05d/assembly.f3d",
     "bodymodes-405fbd002680/mirror_xy.f3d",
     "bodymodes-405fbd002680/mirror_xz.f3d",
@@ -572,6 +575,10 @@
     "trimmedprofiles-a804f8da1496/circle_lens.f3d",
     "trimmedprofiles-a804f8da1496/circle_right_complement.f3d",
     "trimmedprofiles-a804f8da1496/rectangle_overlap.f3d",
+    "trimselectorholdouts-ac245ecd1e2f/repeated_circle.f3d",
+    "trimselectorholdouts-ac245ecd1e2f/repeated_circle_reverse_creation.f3d",
+    "trimselectorholdouts-ac245ecd1e2f/reverse_creation_lens.f3d",
+    "trimselectorholdouts-ac245ecd1e2f/shifted_unequal_lens.f3d",
     "userparameters-e9c6959ff5fd/angle.f3d",
     "userparameters-e9c6959ff5fd/comment.f3d",
     "userparameters-e9c6959ff5fd/dependency_chain.f3d",
@@ -579,10 +586,14 @@
     "userparameters-e9c6959ff5fd/length_in.f3d",
     "userparameters-e9c6959ff5fd/length_mm.f3d",
     "userparameters-e9c6959ff5fd/text.f3d",
-    "userparameters-e9c6959ff5fd/unitless.f3d"
+    "userparameters-e9c6959ff5fd/unitless.f3d",
+    "variablefillets-a5080b076434/endpoint_only_control.f3d",
+    "variablefillets-a5080b076434/one_quarter.f3d",
+    "variablefillets-a5080b076434/one_three_quarters.f3d",
+    "variablefillets-a5080b076434/two_intermediates.f3d"
   ],
-  "class_count": 369,
-  "classes_with_observed_semantics": 59,
+  "class_count": 370,
+  "classes_with_observed_semantics": 60,
   "classes": [
     {
       "class_guid": "00D157C2-2332-4BD5-BB53-048C4081D1C3",
@@ -1252,7 +1263,8 @@
         1
       ],
       "observed_semantics": [
-        "Named feature: Pin"
+        "Named feature: Pin",
+        "Unsupported feature with stored label: Pin"
       ],
       "example_files": [
         "jointmodes-20d3aef2a07d/ball.f3d",
@@ -4546,6 +4558,26 @@
         "dimcontrols-2a0d0bdbc8a6/tangent_driving.f3d",
         "dimcontrols-2a0d0bdbc8a6/tangent_reference.f3d",
         "dimensions-f83a2edd2f72/dimensions.f3d"
+      ]
+    },
+    {
+      "class_guid": "AA8B3D40-B67D-4AF1-B3CF-E1E00279B5F0",
+      "base_class_guids": [
+        "9DD3D1F9-3DAB-4230-937F-240074B40CE7"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        1
+      ],
+      "observed_semantics": [
+        "Named feature: AsBuiltJoint"
+      ],
+      "example_files": [
+        "asbuiltjoints-790406c4498b/revolute.f3d",
+        "asbuiltjoints-790406c4498b/rigid.f3d",
+        "asbuiltjoints-790406c4498b/slider.f3d"
       ]
     },
     {

@@ -53,21 +53,21 @@ def read_trimmed_profile_loops(body, descriptor_id, sketch):
     return loops
 
 
-def decode_trimmed_profiles(data, records, features, member, members, body_identifier_summary):
+def decode_trimmed_profiles(data, records, features, member, members, body_identifier_summary, *, profile_loops_reader=None):
     """Returns decoded/unresolved/scope; does not mutate or clear original features."""
     active_expected = {}
 
     def loops_reader(body, descriptor_id, sketch):
-        loops = read_trimmed_profile_loops(body, descriptor_id, sketch)
+        loops = (profile_loops_reader or read_trimmed_profile_loops)(body, descriptor_id, sketch)
         active_expected.clear()
         for loop in loops:
             for ref in loop['curve_references']:
-                active_expected[ref['entity_tag']] = ref['stored_coedge_text_fields']
+                active_expected.setdefault(ref['entity_tag'], []).append(ref['stored_coedge_text_fields'])
         return loops
 
     def fields_validator(fields, sources):
-        return len(fields) == 6 and any(fields == expected and tag in sources
-                                       for tag, expected in active_expected.items())
+        return len(fields) == 6 and sum(fields == expected for tag, rows in active_expected.items()
+                                        for expected in rows if tag in sources) == 1
 
     # Opt in only when an explicitly owned, counted native definition stores a
     # non-(1,1) selector. Ordinary whole-reference profiles keep their old output.
@@ -118,13 +118,27 @@ def decode_trimmed_profiles(data, records, features, member, members, body_ident
             if topology['unresolved']:
                 raise ValueError('Trimmed boundary cache topology incomplete')
             nodes = {node['index']: node for node in topology['nodes']}
-            refs = {ref['entity_tag']: ref for loop in row['profile_loops'] for ref in loop['curve_references']}
+            refs = {}
+            for loop in row['profile_loops']:
+                for ref in loop['curve_references']:
+                    refs.setdefault(ref['entity_tag'], []).append(ref)
             for source in row['source_curves']:
-                ref = refs[source['native_entity_tag']]
-                source['stored_profile_reference'] = ref
+                references = refs[source['native_entity_tag']]
+                if len(references) == 1:
+                    source['stored_profile_reference'] = references[0]
+                else:
+                    source['stored_profile_references'] = references
+                covered = set()
                 for candidate in source['cached_coedge_candidates']:
-                    if candidate['stored_decimal_text_fields'] != ref['stored_coedge_text_fields']:
+                    matches = [ref for ref in references if candidate['stored_decimal_text_fields'] == ref['stored_coedge_text_fields']]
+                    if not matches:
                         raise ValueError('Complete profile/cache tuple literal disagreement')
+                    if len(matches) != 1:
+                        raise ValueError('Complete profile/cache tuple literal ambiguity')
+                    ref = matches[0]
+                    covered.add(tuple(ref['stored_coedge_text_fields']))
+                    if len(references) > 1:
+                        candidate['stored_profile_reference'] = ref
                     coedge = nodes[candidate['coedge_record_index']]
                     partner = nodes.get(coedge['partner_index'])
                     if partner is None or partner['partner_index'] != coedge['index'] or partner['edge_index'] != coedge['edge_index']:
@@ -151,6 +165,8 @@ def decode_trimmed_profiles(data, records, features, member, members, body_ident
                                      cached_endpoint_points=points,
                                      stored_curve_geometry={key: copy.deepcopy(curve[key]) for key in literal_keys if key in curve},
                                      geometry_scope='Raw stored result-BODY primitive and edge interval after literal naming proof; no source-profile evaluator parameter conversion')
+                if covered != {tuple(ref['stored_coedge_text_fields']) for ref in references}:
+                    raise ValueError('A selected native portion lacks full-tuple COEDGE correspondence')
             row.update(comparison_basis='All six canonical decimal text literals exactly match the complete owned native profile reference tuple after independent typed source and same-asset BODY proof',
                        identity_status='Qualified source-reference to multiple cached COEDGE correspondences; no coordinate-based identity or unique persistent edge',
                        geometry_status='Raw stored result-BODY edge primitives/intervals retained separately from source SketchCurve geometry; native selectors remain opaque',
