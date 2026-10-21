@@ -89,6 +89,9 @@ from decode_silhouette_directions import decode_silhouette_directions
 from decode_silhouette_line_contexts import decode_silhouette_line_contexts
 from decode_remaining_body_inputs import decode_remaining_body_input, MIRROR_COMPONENT, MIRROR_DATUM
 from decode_mirror_datum_outputs import decode_mirror_datum_outputs
+from decode_mirror_datum_reflections import decode_mirror_datum_reflections
+from decode_circular_placement_evidence import decode_circular_placement_evidence
+from decode_fpm_partial_coverage import decode_fpm_partial_coverage
 from decode_mirror_nested_occurrences import decode_mirror_nested_occurrences
 from decode_special_fillets import decode_special_fillets
 from decode_surface_extrudes import decode_surface_extrudes
@@ -716,6 +719,15 @@ def decode_basics(path, zstd_library=None):
             except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
                 remaining_input_summary["unresolved"].append({"feature_object_id": feature["object_id"], "reason": str(error)})
         tool_summary["unresolved"] = [item for item in tool_summary["unresolved"] if item["object_id"] not in resolved_input_ids]
+        datum_reflection_summary = decode_mirror_datum_reflections(data, records, features, assembly_summary)
+        datum_reflections = {row['feature_object_id']: row for row in datum_reflection_summary['decoded']}
+        for identity, reflection in datum_reflections.items():
+            feature_by_id[identity].update(datum_reflection=reflection,
+                decode_level='Observed datum Mirror inputs/output and component reflection cache; unavailable controls and general replay unresolved',
+                unresolved_inputs=reflection['unresolved_controls'])
+        for item in tool_summary['unresolved']:
+            if item['object_id'] in datum_reflections:
+                item['reason'] = 'Datum Mirror inputs/output and reflected cache decoded; combine/stitch control semantics and general regeneration remain unresolved'
         scale_vertex_summary = decode_scale_vertex_points(data, records, features, body_selection_summary)
         for selected_point in scale_vertex_summary["decoded"]:
             feature_by_id[selected_point["feature_object_id"]]["tool_settings"].update(
@@ -774,6 +786,37 @@ def decode_basics(path, zstd_library=None):
             data, records, features, name, members, body_identifier_summary, body_selection_summary)
         fpm_selection_tracking_summary = decode_fpm_selection_tracking(
             data, records, features, name, members, body_identifier_summary, body_selection_summary)
+        fpm_body_tracking_summary = decode_fpm_partial_coverage(data, records, name, members, body_identifier_summary)
+        for correspondence in fpm_body_tracking_summary['associations']:
+            target = feature_by_id.get(correspondence['feature_object_id'])
+            if target is not None:
+                target.setdefault('fpm_body_correspondences', []).append(correspondence)
+        # A complete successful BODY-kind bridge can account for an edge-only
+        # reader's rejected attributes. Never clear a mapping on grammar coverage
+        # alone, or when a valid edge attribute still needs the old tracking pass.
+        if fpm_body_tracking_summary['associations']:
+            from decode_fpm_tracking import decode_fpm_attributes
+            covered_mappings = set()
+            for coverage in fpm_body_tracking_summary['coverage']:
+                mapping_id, blob_member = coverage['mapping_record_object_id'], coverage['history_blob_member']
+                successful = {row['FPM_attribute']['attribute_record_index']
+                    for row in fpm_body_tracking_summary['associations']
+                    if row['mapping_record_object_id'] == mapping_id and row['history_blob_member'] == blob_member}
+                try:
+                    legacy = decode_fpm_attributes(members[blob_member])
+                except (ValueError, KeyError, IndexError, UnicodeError, struct.error):
+                    # Optional coverage reconciliation cannot invalidate the
+                    # separately qualified BODY associations or old diagnostic.
+                    continue
+                rejected_ids = {row['attribute_record_index'] for row in legacy['unresolved']}
+                if rejected_ids and rejected_ids <= successful and not legacy['attributes']:
+                    covered_mappings.add(mapping_id)
+            fpm_selection_tracking_summary['unresolved'] = [row for row in fpm_selection_tracking_summary['unresolved']
+                if row.get('mapping_record_object_id') not in covered_mappings
+                or row.get('reason') != 'Incomplete FPM attribute coverage prevents unique literal correspondence']
+        circular_cache_summary = decode_circular_placement_evidence(data, records, features, name, members, body_binding_summary)
+        for evidence in circular_cache_summary['decoded']:
+            feature_by_id[evidence['feature_object_id']]['circular_placement_evidence'] = evidence
         fpm_context_cache_summary = decode_fpm_context_cache(data, records, fpm_selection_tracking_summary)
         boundary_sculpt_summary = decode_boundary_sculpt_provenance(
             data, records, name, members, features, body_binding_summary)
@@ -921,6 +964,12 @@ def decode_basics(path, zstd_library=None):
             "recipe_decoding": recipe_summary,
             "body_placement": body_placement_summary,
         })
+        for key, summary in (('mirror_datum_reflections', datum_reflection_summary),
+                             ('circular_placement_evidence', circular_cache_summary)):
+            if summary['decoded'] or summary['unresolved']:
+                streams[-1][key] = summary
+        if fpm_body_tracking_summary['associations'] or fpm_body_tracking_summary['coverage'] or fpm_body_tracking_summary['unresolved']:
+            streams[-1]['fpm_body_tracking'] = fpm_body_tracking_summary
     return {
         "file": str(path), "status": "experimental partial decoder",
         "scope": "Observed layouts in Fusion 2705.1.30; unsupported records remain undecoded",
