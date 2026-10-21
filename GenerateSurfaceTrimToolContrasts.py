@@ -4,6 +4,7 @@ Pending TrimFeatureInput transactions must finish with add() or cancel() before
 any timeline change, export or close. Failed cancellation stops the batch.
 """
 from datetime import datetime, timezone
+import gc
 import hashlib
 import json
 from pathlib import Path
@@ -14,9 +15,12 @@ import adsk.core
 import adsk.fusion
 
 CASES = ('sheet_face','sheet_body','sketch_line')
+HALTED_NATIVE_ATTRIBUTE = '_codex_FusionFileStudy_surface_trim_halted_native_handles'
 
 
 def run(context):
+    if getattr(adsk.fusion,HALTED_NATIVE_ATTRIBUTE,None):
+        raise RuntimeError('Owned SurfaceTrim native handles remain quarantined; no further case may start')
     app=adsk.core.Application.get()
     cases=CASES
     if isinstance(context,dict) and 'cases' in context:
@@ -42,13 +46,19 @@ def run(context):
 
     if isinstance(context,dict) and context.get('entrypoint_source_path'):
         entrypoint=Path(context['entrypoint_source_path']).resolve()
-        if entrypoint.parent!=source.parent or entrypoint.name!='GenerateSurfaceTrimRemainingContrasts.py' or not entrypoint.is_file():
+        if entrypoint.parent!=source.parent or entrypoint.name not in ('GenerateSurfaceTrimRemainingContrasts.py','GenerateSurfaceTrimLifecycleValidation.py') or not entrypoint.is_file():
             raise ValueError('Unexpected owned SurfaceTrim resume entrypoint')
         entrypoint_bytes=entrypoint.read_bytes()
         (output/'executed-entrypoint-source.txt').write_bytes(entrypoint_bytes)
         truth['entrypoint_provenance']=dict(source_path=str(entrypoint),
             sha256=hashlib.sha256(entrypoint_bytes).hexdigest(),executed_snapshot='executed-entrypoint-source.txt',
-            invocation='Absolute runpy of GenerateSurfaceTrimToolContrasts.py; remaining sheet_body/sketch_line only')
+            invocation='Absolute runpy of GenerateSurfaceTrimToolContrasts.py; explicitly selected owned cases',selected_cases=list(cases))
+
+    truth['lifecycle_policy']='Capture frame releases Trim wrappers while timeline is before the feature and document is open; outer garbage collection, short final compute/export frame, second garbage collection, then document close. Unsafe transaction/lifecycle state is quarantined on adsk.fusion and halts without export/close/new case.'
+    if isinstance(context,dict) and context.get('lifecycle_validation'):
+        if tuple(cases)!=('sheet_face',) or not context.get('entrypoint_source_path'):
+            raise ValueError('Lifecycle validation requires the explicit single sheet_face entrypoint')
+        truth['lifecycle_validation']=dict(single_case=True,automatic_retry=False,requested_by_entrypoint=True)
 
     def persist():
         (output/'ground_truth.json').write_text(json.dumps(truth,indent=2)+'\n')
@@ -175,16 +185,26 @@ def run(context):
         if body.isSolid or body.faces.count!=1:raise RuntimeError('Owned rectangular Patch must be one non-solid face')
         return feature,body,sketch
 
-    journal('batch_begin',planned_sample_count=len(cases),output_directory=str(output))
-    for case in cases:
-        doc,design,pending,feature=None,None,None,None
+    def retain_unsafe_native_handles(handles,case,reason):
+        retained=getattr(adsk.fusion,HALTED_NATIVE_ATTRIBUTE,None)
+        if retained is None:
+            retained=[]
+            setattr(adsk.fusion,HALTED_NATIVE_ATTRIBUTE,retained)
+        retained.append(dict(case=case,output_directory=str(output),reason=reason,handles=handles))
+        return dict(module='adsk.fusion',attribute=HALTED_NATIVE_ATTRIBUTE,case=case,
+            retained_handle_names=sorted(name for name,value in handles.items() if value is not None),
+            quarantine_entry_count=len(retained))
+
+    def run_owned_case(doc,case,sample):
+        # No API handle, exception, traceback or closure from this frame is returned.
+        design=root=pending=feature=cells=cell=bounds=None
         transaction_unsettled=False
-        sample=dict(case=case,file=case+'.f3d',phase='document_create',getter_errors=[],
-            requested=dict(trim_tool_argument_type={'sheet_face':'BRepFace','sheet_body':'BRepBody','sketch_line':'SketchLine'}[case],
-                remove_target_positive_y_half=True,targetBaseFeature_set=False))
-        truth['active_sample']=sample
+        lifecycle_uncertain=False
+        pre_node_position_attempted=False
+        at_pre_node=False
+        safe_to_close=False
+        halted_reason=None
         try:
-            doc=app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
             design=adsk.fusion.Design.cast(doc.products.itemByProductType('DesignProductType'))
             if design is None:raise RuntimeError('Owned document lacks Fusion design')
             design.designType=adsk.fusion.DesignTypes.ParametricDesignType;root=design.rootComponent
@@ -270,52 +290,182 @@ def run(context):
                     if not cancelled:raise RuntimeError('Pending Trim input cancel returned false; batch must halt before timeline/export/close')
                     pending=None;transaction_unsettled=False;sample['transaction_completion']='cancel returned true'
             if pending is not None or transaction_unsettled:raise RuntimeError('Unfinished or uncertain Trim transaction before timeline operations')
-            design.timeline.moveToEnd();sample['compute_all_returned']=bool(design.computeAll())
+            sample['compute_all_returned']=bool(design.computeAll())
             sample['feature_at_timeline_end']=feature_truth(feature)
             sample['component_bodies_after_trim']=bodies_truth(root.bRepBodies)
             sample['original_target_handle_after_trim']=read('original target after trim',lambda:body_truth(target),sample['getter_errors'])
             sample['original_tool_handle_after_trim']=read('original tool after trim',lambda:tool_truth(tool),sample['getter_errors'])
             sample['model_parameters_after']=[parameter_truth(parameter) for parameter in items(root.modelParameters)]
             if feature is not None:
-                try:
-                    rolled=feature.timelineObject.rollTo(True);sample['roll_before_feature_returned']=bool(rolled)
-                    if rolled:
-                        sample['feature_before_node']=feature_truth(feature,True)
-                        sample['component_bodies_before_node']=bodies_truth(root.bRepBodies)
-                        sample['original_target_handle_before_node']=read('original target before node',lambda:body_truth(target),sample['getter_errors'])
-                        sample['original_tool_argument_before_node']=read('original tool before node',lambda:tool_truth(tool),sample['getter_errors'])
-                except Exception:
-                    sample['getter_errors'].append(dict(getter='owned Trim roll/snapshot',error=traceback.format_exc()))
-                finally:design.timeline.moveToEnd()
+                pre_node_position_attempted=True
+                rolled=feature.timelineObject.rollTo(True);sample['roll_before_feature_returned']=bool(rolled)
+                if not rolled:
+                    lifecycle_uncertain=True
+                    raise RuntimeError('Cannot release Trim wrapper safely: timeline did not roll before the feature')
+                at_pre_node=True
+                sample['feature_before_node']=feature_truth(feature,True)
+                sample['component_bodies_before_node']=bodies_truth(root.bRepBodies)
+                sample['original_target_handle_before_node']=read('original target before node',lambda:body_truth(target),sample['getter_errors'])
+                sample['original_tool_argument_before_node']=read('original tool before node',lambda:tool_truth(tool),sample['getter_errors'])
             sample['trim_collection_count_after']=root.features.trimFeatures.count
-            sample['timeline_count']=design.timeline.count;sample['timeline_marker_position']=design.timeline.markerPosition
-            sample['phase']='local_export';journal('local_export_begin',case,file=sample['file'])
-            destination=output/sample['file'];success=design.exportManager.execute(design.exportManager.createFusionArchiveExportOptions(str(destination)))
-            if not success or not destination.is_file() or destination.stat().st_size==0:raise RuntimeError('Owned local SurfaceTrim export did not complete')
-            sample['export']=dict(returned_success=bool(success),size_bytes=destination.stat().st_size,sha256=hashlib.sha256(destination.read_bytes()).hexdigest())
-            sample['phase']='export_complete';truth['samples'].append(sample);truth.pop('active_sample',None)
-            journal('local_export_complete',case,file=sample['file'])
+            sample['phase']='capture_complete'
         except Exception:
-            truth['errors'].append(dict(case=case,phase=sample['phase'],error=traceback.format_exc(),partial_sample=sample))
-            truth.pop('active_sample',None);journal('case_error',case)
+            error=dict(case=case,phase=sample['phase'],error=traceback.format_exc())
+            sample['case_error']=error;truth['errors'].append(error)
+            journal('case_error',case)
         finally:
-            if pending is None and not transaction_unsettled:
-                if design is not None:
-                    try:design.timeline.moveToEnd()
-                    except Exception:truth['errors'].append(dict(case=case,phase='restore_owned_timeline',error=traceback.format_exc()))
-                if doc is not None:
-                    try:
-                        journal('owned_document_close_begin',case,save=False)
-                        closed=doc.close(False);sample['close_owned_document_returned']=bool(closed)
-                        if not closed:truth['errors'].append(dict(case=case,phase='close_owned_document',error='close(False) returned false'))
-                        journal('owned_document_close_returned',case,save=False,returned=bool(closed))
-                    except Exception:truth['errors'].append(dict(case=case,phase='close_owned_document',error=traceback.format_exc()))
+            # Any pending input that escaped its inner finally is uncertain: do not
+            # retry cancel, move the timeline, or destroy its native wrappers.
+            if pending is not None or transaction_unsettled:
+                lifecycle_uncertain=True
+                halted_reason='Unfinished or uncertain Trim transaction after failed cancellation or createInput exception'
+            if not lifecycle_uncertain and feature is not None:
+                try:
+                    # An earlier snapshot error may bypass the normal roll. Make
+                    # at most one positioning attempt, then release in edit state.
+                    if not at_pre_node:
+                        if pre_node_position_attempted:
+                            raise RuntimeError('Previous pre-node positioning attempt failed')
+                        pre_node_position_attempted=True
+                        rolled=feature.timelineObject.rollTo(True)
+                        sample['cleanup_roll_before_feature_returned']=bool(rolled)
+                        if not rolled:raise RuntimeError('Cleanup could not roll before Trim feature')
+                        at_pre_node=True
+                    sample['lifecycle_release_marker_before']=design.timeline.markerPosition
+                    journal('trim_wrapper_release_begin',case,timeline_immediately_before_feature=True)
+                    # Include collection/last-item aliases from input selection.
+                    pending=None;cells=None;cell=None;bounds=None
+                    feature=None
+                    sample['trim_wrapper_release_gc_collected']=gc.collect()
+                    sample['trim_wrapper_release_marker_after']=design.timeline.markerPosition
+                    sample['trim_wrappers_released_before_move_to_end']=True
+                    journal('trim_wrapper_release_returned',case,timeline_immediately_before_feature=True,
+                        gc_collected=sample['trim_wrapper_release_gc_collected'])
+                except Exception:
+                    lifecycle_uncertain=True
+                    halted_reason='Trim wrapper pre-node release or positioning was not confirmed'
+                    error=dict(case=case,phase='release_trim_wrappers',error=traceback.format_exc())
+                    sample['lifecycle_error']=error;truth['errors'].append(error)
+            if not lifecycle_uncertain:
+                try:
+                    if design is not None:
+                        design.timeline.moveToEnd()
+                        sample['timeline_count']=design.timeline.count
+                        sample['timeline_marker_position']=design.timeline.markerPosition
+                    safe_to_close=True
+                except Exception:
+                    lifecycle_uncertain=True
+                    halted_reason='Owned timeline restoration after Trim wrapper release failed'
+                    error=dict(case=case,phase='restore_owned_timeline',error=traceback.format_exc())
+                    sample['lifecycle_error']=error;truth['errors'].append(error)
+            if lifecycle_uncertain:
+                # Explicit native references only: never retain locals()/frames,
+                # exceptions, tracebacks or callable objects in the quarantine.
+                native_locals=locals()
+                handles={name:native_locals.get(name) for name in (
+                    'doc','design','root','pending','feature','cells','cell','bounds',
+                    'target_feature','target','target_sketch','tool_feature','tool_body','tool_sketch','tool','sketch')}
+                native_locals=None
+                sample['native_handle_quarantine']=retain_unsafe_native_handles(handles,case,halted_reason)
+                sample['cleanup_status']='Halted: owned document and native wrappers retained; no export/close/new case'
+                journal('batch_halted_unsafe_lifecycle',case,reason=halted_reason)
+        # Serialization copies data only; it cannot return an API wrapper hidden
+        # in an incidental helper result. All native locals die with this frame.
+        return json.loads(json.dumps(dict(sample=sample,safe_to_close=safe_to_close,
+            halted=bool(lifecycle_uncertain),halted_reason=halted_reason)))
+
+    def finalize_owned_document(doc,sample):
+        # Separate short frame, called only after the capture frame was released.
+        # It reacquires design/root only; never a TrimFeature/Input/cell wrapper.
+        result=dict(ok=False,safe_to_close=True)
+        try:
+            design=adsk.fusion.Design.cast(doc.products.itemByProductType('DesignProductType'))
+            if design is None:raise RuntimeError('Owned document lost Fusion design before final export')
+            root=design.rootComponent
+            sample['phase']='post_wrapper_release_compute'
+            journal('post_wrapper_release_compute_begin',sample['case'])
+            sample['post_wrapper_release_compute_all_returned']=bool(design.computeAll())
+            if not sample['post_wrapper_release_compute_all_returned']:
+                raise RuntimeError('Owned final computeAll returned false; export not attempted')
+            sample['post_wrapper_release_body_count']=root.bRepBodies.count
+            sample['post_wrapper_release_timeline_count']=design.timeline.count
+            sample['post_wrapper_release_timeline_marker_position']=design.timeline.markerPosition
+            journal('post_wrapper_release_compute_returned',sample['case'],
+                returned=sample['post_wrapper_release_compute_all_returned'])
+            sample['phase']='local_export';journal('local_export_begin',sample['case'],file=sample['file'])
+            destination=output/sample['file']
+            success=design.exportManager.execute(design.exportManager.createFusionArchiveExportOptions(str(destination)))
+            if not success or not destination.is_file() or destination.stat().st_size==0:
+                raise RuntimeError('Owned local SurfaceTrim export did not complete')
+            sample['export']=dict(returned_success=bool(success),size_bytes=destination.stat().st_size,
+                sha256=hashlib.sha256(destination.read_bytes()).hexdigest())
+            sample['phase']='export_complete';result['ok']=True
+            journal('local_export_complete',sample['case'],file=sample['file'])
+        except Exception:
+            error=dict(case=sample['case'],phase=sample['phase'],error=traceback.format_exc())
+            sample['finalize_error']=error;truth['errors'].append(error)
+            journal('finalize_owned_document_error',sample['case'])
+        return json.loads(json.dumps(result))
+
+    journal('batch_begin',planned_sample_count=len(cases),output_directory=str(output))
+    for case in cases:
+        doc=None
+        sample=dict(case=case,file=case+'.f3d',phase='document_create',getter_errors=[],
+            requested=dict(trim_tool_argument_type={'sheet_face':'BRepFace','sheet_body':'BRepBody','sketch_line':'SketchLine'}[case],
+                remove_target_positive_y_half=True,targetBaseFeature_set=False))
+        truth['active_sample']=sample
+        state=dict(sample=sample,safe_to_close=False,halted=False)
+        try:
+            journal('owned_document_create_begin',case)
+            doc=app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
+            if doc is None:raise RuntimeError('Owned document creation returned null')
+            journal('owned_document_create_returned',case)
+            journal('owned_case_capture_frame_begin',case)
+            state=run_owned_case(doc,case,sample)
+            sample=state['sample'];truth['active_sample']=sample
+            journal('owned_case_capture_frame_returned',case,safe_to_close=state['safe_to_close'],halted=state['halted'])
+            if not state['safe_to_close'] or state['halted']:
+                truth['halted_unfinished_transaction']=dict(case=case,reason=state.get('halted_reason'),
+                    cleanup_status=sample.get('cleanup_status'),native_handle_quarantine=sample.get('native_handle_quarantine'))
             else:
-                sample['cleanup_status']='Halted with unfinished or uncertain owned Trim transaction after failed cancellation or createInput exception; no timeline/export/close attempted'
-                truth['halted_unfinished_transaction']=dict(case=case,owned_document=identity(doc),reason=sample['cleanup_status'])
-                journal('batch_halted_unfinished_transaction',case)
+                journal('owned_case_frame_gc_begin',case,document_still_open=True)
+                sample['owned_case_frame_gc_collected']=gc.collect()
+                journal('owned_case_frame_gc_returned',case,document_still_open=True,
+                    gc_collected=sample['owned_case_frame_gc_collected'])
+                finalization=finalize_owned_document(doc,sample)
+                sample['finalization']=finalization
+                journal('finalize_frame_returned',case,**finalization)
+                journal('finalize_frame_gc_begin',case,document_still_open=True)
+                sample['finalize_frame_gc_collected']=gc.collect()
+                journal('finalize_frame_gc_returned',case,document_still_open=True,
+                    gc_collected=sample['finalize_frame_gc_collected'])
+                if finalization['ok']:
+                    truth['samples'].append(sample);truth.pop('active_sample',None)
+        except Exception:
+            error=dict(case=case,phase=sample['phase'],error=traceback.format_exc())
+            sample['outer_error']=error;truth['errors'].append(error)
+            # An unexpected escaped frame is conservatively retained by the
+            # stable adsk.fusion module, not closed; normal native errors are internal.
+            if doc is not None:
+                sample['native_handle_quarantine']=retain_unsafe_native_handles({'doc':doc},case,'Unexpected outer lifecycle error')
+                state['halted']=True;state['safe_to_close']=False
+                truth['halted_unfinished_transaction']=dict(case=case,reason='Unexpected outer lifecycle error',
+                    native_handle_quarantine=sample['native_handle_quarantine'])
+            journal('outer_lifecycle_error',case)
+        finally:
+            if doc is not None and state['safe_to_close'] and not state['halted']:
+                try:
+                    journal('owned_document_close_begin',case,save=False)
+                    closed=doc.close(False);sample['close_owned_document_returned']=bool(closed)
+                    if not closed:
+                        truth['errors'].append(dict(case=case,phase='close_owned_document',error='close(False) returned false'))
+                        state['halted']=True
+                    journal('owned_document_close_returned',case,save=False,returned=bool(closed))
+                except Exception:
+                    truth['errors'].append(dict(case=case,phase='close_owned_document',error=traceback.format_exc()))
+                    state['halted']=True
             persist()
-        if pending is not None or transaction_unsettled:break
+        if state['halted'] or not state['safe_to_close']:break
     truth['terminal_status']='HaltedUnfinishedTransaction' if truth.get('halted_unfinished_transaction') else ('Complete' if not truth['errors'] else 'CompleteWithErrors')
     journal('batch_complete',terminal_status=truth['terminal_status'])
     (output/'complete.txt').write_text('SurfaceTrim tool capture finished; consult terminal_status, ground_truth.json and journal.jsonl.\n')

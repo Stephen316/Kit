@@ -1,7 +1,27 @@
 {
-  "active": true,
-  "reason": "Two native TrimFeature cleanup crashes during live captures; user reports repeated Fusion crashes.",
+  "active": false,
+  "reason": "Capture cleanup repair passed the original rolled-cell path and a multi-document continuation: three healthy exports/closes, same Fusion process alive, no new local CER crash archive.",
   "investigation": "fusion-trim-crash-investigation.json",
   "scope": "All study live API generators and automatic resume; offline readers and validators continue.",
-  "resume_requirement": "Investigate capture object lifetime and obtain explicit user authorization before clearing this hold. Do not automatically clear it on subsequent goal turns."
+  "resume_requirement": "Explicit user repair/resumption authorization received and the controlled lifecycle validations passed. Fusion capture may continue using the repaired lifecycle; suspend again on a new process loss or unsafe transaction.",
+  "repair_authorization": "Can you fix the crashes, and continue onusing fusion",
+  "authorized_validation": {},
+  "single_case_validation": {
+    "capture_directory": "surfacetrimtools-560510587441",
+    "status": "Complete",
+    "fusion_pid": 5619,
+    "same_process_alive_after_completion": true,
+    "rolled_cell_read_exercised": true,
+    "all_owned_closes_succeeded": true
+  },
+  "prior_reason": "Two native TrimFeature cleanup crashes during live captures; user reports repeated Fusion crashes.",
+  "verified_validation": {
+    "evidence_file": "fusion-trim-native-lifecycle-validation.json",
+    "sha256": "1864f6e7a91c9157bdc76f7bba3ca37ee6f852aa11bd97a57ac023e4fe31366d",
+    "completed_batches": 2,
+    "healthy_exports": 3,
+    "successful_owned_closes": 3,
+    "fusion_pid": 5619,
+    "same_process_alive": true
+  }
 }

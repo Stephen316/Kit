@@ -9,6 +9,7 @@ and event-posting permissions; never opens a permission request.
 
 import argparse
 import ctypes
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -48,12 +49,23 @@ def dispatch(path):
     if path.parent != Path(__file__).resolve().parent or not path.name.startswith("Generate") or path.suffix != ".py":
         raise ValueError("Only an existing generator in this study directory can be dispatched")
     hold = Path(__file__).with_name('fusion-live-capture-hold.json')
+    validation_only = False
     if hold.exists():
         state = json.loads(hold.read_text())
         if state.get('active', True):
-            raise RuntimeError('Live Fusion captures are suspended after repeated native trim-cleanup crashes. '
-                               'Continue offline; review fusion-trim-crash-investigation.json and obtain '
-                               'explicit user authorization before clearing fusion-live-capture-hold.json.')
+            validation = state.get('authorized_validation', {})
+            dependencies = validation.get('dependency_sha256', {})
+            validation_only = (validation.get('generator') == path.name
+                and validation.get('sha256') == hashlib.sha256(path.read_bytes()).hexdigest()
+                and bool(validation.get('user_authorization'))
+                and isinstance(dependencies, dict) and bool(dependencies)
+                and all(Path(name).name == name and (path.parent/name).is_file()
+                        and hashlib.sha256((path.parent/name).read_bytes()).hexdigest() == digest
+                        for name, digest in dependencies.items()))
+            if not validation_only:
+                raise RuntimeError('Live Fusion captures are suspended after repeated native trim-cleanup crashes. '
+                                   'Only an explicitly authorized validation with matching source hashes may run '
+                                   'before the capture hold is cleared.')
     if any(character in str(path) for character in ('"', "\\", "\r", "\n")):
         raise ValueError("Unsupported generator path quoting")
     cg = ctypes.CDLL("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics")
@@ -90,6 +102,7 @@ def dispatch(path):
             cg.CGEventPostToPid(target_pid, event)
         return {"status": "Targeted command dispatched; execution unverified", "generator": path.name,
                 "target_pid": target_pid, "foreground_pid_during_preparation": foreground_pid,
+                "authorized_lifecycle_validation_only": validation_only,
                 "global_keyboard_events": False,
                 "next_evidence": "Actual generator output and terminal complete/error records"}
     finally:
