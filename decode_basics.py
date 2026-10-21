@@ -170,6 +170,7 @@ from decode_mirror_datum_reflections import decode_mirror_datum_reflections
 from decode_circular_feature_caches import decode_circular_cache_evidence
 from decode_rectangular_feature_caches import decode_rectangular_pattern_cache_evidence
 from decode_path_pattern_feature_caches import decode_path_pattern_cache_evidence
+from decode_mirror_face_planes import decode_mirror_face_planes
 from decode_fpm_partial_coverage import decode_fpm_partial_coverage
 from decode_mirror_nested_occurrences import decode_mirror_nested_occurrences
 from decode_special_fillets import decode_special_fillets
@@ -1583,6 +1584,16 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             data, records, features, name, members, body_binding_summary)
         for evidence in path_cache_summary['decoded']:
             feature_by_id[evidence['feature_object_id']]['path_pattern_cache_evidence'] = evidence
+        mirror_face_plane_summary = decode_mirror_face_planes(
+            data, records, features, name, members, body_binding_summary)
+        for evidence in mirror_face_plane_summary['decoded']:
+            target = feature_by_id[evidence['feature_object_id']]
+            target['mirror_face_plane_cache'] = evidence
+            settings = target.get('tool_settings', {})
+            source = settings.get('plane_source')
+            if isinstance(source, dict) and source.get('kind') == 'BRepFaceRecipe':
+                settings['plane_selection_status'] = 'Owned BRepFace recipe mapped to a named initial-cache plane; qualified before-feature/current plane and persistent face identity remain unresolved'
+                source['geometry_status'] = 'Named initial ASM plane decoded in mirror_face_plane_cache; qualified before-feature/current geometry and persistent identity unresolved'
         fpm_context_cache_summary = decode_fpm_context_cache(data, records, fpm_selection_tracking_summary)
         boundary_sculpt_summary = decode_boundary_sculpt_provenance(
             data, records, name, members, features, body_binding_summary)
@@ -1786,6 +1797,7 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('circular_placement_evidence', circular_cache_summary),
                              ('rectangular_cache_evidence', rectangular_cache_summary),
                              ('path_pattern_cache_evidence', path_cache_summary),
+                             ('mirror_face_planes', mirror_face_plane_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),
                              ('native_naming_registry', native_naming_summary),
