@@ -27,8 +27,13 @@ def validate(zstd, targets):
     previous = namespace['decode_analytic_surface']
     report = {'scope': 'Observed initial-geometry zero-slope negative-cosine cylinders only',
               'targets': targets, 'surfaces': [], 'unresolved': [], 'guards': [], 'API_controls': [],
+              'target_catalog_field_note': 'targets[].radius retains the historical field-11 catalog label; it is now decoded as stored_u_parameter_scale. Physical radius is surfaces[].geometry.raw_radius.',
+              'format_reference': {'title': 'ACIS SAT Save File Format, cone::restore_data and ellipse::restore_data',
+                                   'url': 'https://studylib.net/doc/18215310/sat-save-file-format',
+                                   'scope': 'Historical primary format documentation identifies a base ellipse and separate U parameter scale/reversal; local Fusion caches and independent API dimensions corroborate the differing-radius case.'},
               'limitations': ['No direct API surface getters were captured in these files.',
                               'Boundary points and independent Pipe dimension getters corroborate cylinder geometry, not persistent face identity.',
+                              'The cone/cylinder reversal field is named is_u_reversed following the documented field order; evaluated native UV orientation remains unverified.',
                               'Signed native parameter direction, UV evaluation, trimmed surface reconstruction and negative-cosine nonzero-slope cones remain unsupported.']}
     root = Path(__file__).resolve().parent
     old_successes, checked_points = 0, 0
@@ -47,7 +52,15 @@ def validate(zstd, targets):
                     old = previous(record)
                 except (ValueError, KeyError, IndexError):
                     continue
-                assert decode_analytic_surface(record) == old, (relative, record['index'])
+                current = decode_analytic_surface(record)
+                if record['name'] == 'cone-surface':
+                    assert close(current['raw_radius'], old['raw_radius'])
+                    comparable = {k: v for k, v in current.items() if k != 'stored_u_parameter_scale'}
+                    comparable['is_v_reversed'] = comparable.pop('is_u_reversed')
+                    comparable['raw_radius'] = old['raw_radius']
+                    assert comparable == old, (relative, record['index'])
+                else:
+                    assert current == old, (relative, record['index'])
                 old_successes += 1
             for target in [t for t in targets if t['file'] == relative and t['member'] == member]:
                 record = parsed['records'][target['index']]
@@ -61,7 +74,21 @@ def validate(zstd, targets):
                 assert geometry['kind'] == 'Cylinder'
                 assert geometry['stored_cone_angular_pair'] == [target['sine'], target['cosine']] == [0., -1.]
                 assert geometry['raw_origin'] == target['origin'] and geometry['axis'] == target['axis']
-                assert close(geometry['raw_radius'], target['radius'])
+                assert close(geometry['stored_u_parameter_scale'], target['radius'])
+                if relative == 'threadmodes-d51d2ae60564/internal.f3d' and record['index'] == 10:
+                    truth = json.loads((root / Path(relative).parent / 'ground_truth.json').read_text())
+                    settings = next(s for s in truth['samples'] if s['file'] == Path(relative).name)['settings']
+                    assert settings['is_internal'] and not settings['is_modeled']
+                    assert close(geometry['raw_radius'], settings['minor_diameter_cm']/2)
+                    assert not close(geometry['raw_radius'], geometry['stored_u_parameter_scale'])
+                    report['API_controls'].append({'file': relative, 'member': member,
+                        'surface_index': record['index'], 'saved_API_minor_diameter_cm': settings['minor_diameter_cm'],
+                        'decoded_physical_radius_cm': geometry['raw_radius'],
+                        'separate_stored_u_parameter_scale': geometry['stored_u_parameter_scale'],
+                        'physical_radius_matches_API_minor_diameter': True,
+                        'direct_surface_getter_comparison': False})
+                else:
+                    assert close(geometry['raw_radius'], target['radius'])
                 assert nodes[record['index']]['analytic_surface'] == geometry
                 owned_faces = [n for n in nodes.values() if n['kind'] == 'face' and n['surface_index'] == record['index']]
                 assert owned_faces
@@ -90,8 +117,7 @@ def validate(zstd, targets):
                                            'scope': 'Raw initial cache geometry; no current/final face identity assigned'})
                 exemplar = record
     assert len(report['surfaces'])+len(report['unresolved']) == len(targets)
-    assert [(u['file'], u['surface_index'], u['reason']) for u in report['unresolved']] == [
-        ('threadmodes-d51d2ae60564/internal.f3d', 10, 'Cone radius and reference vector length disagree')]
+    assert not report['unresolved']
     # The independently captured Pipe getters distinguish section diameter and
     # wall thickness. Compare the unique inner cylindrical radius in each blob,
     # without identifying an API face or equating history with current state.
@@ -110,7 +136,8 @@ def validate(zstd, targets):
                                        'direct_surface_getter_comparison': False})
     for label, index, value in [('nonunit angular pair', 10, -.5),
                                 ('negative-cosine nonzero-slope cone', 9, .6),
-                                ('nonpositive radius', 11, -1.),
+                                ('nonpositive parameter scale', 11, -1.),
+                                ('collapsed base ellipse', 5, [0., 0., 0.]),
                                 ('unsupported elliptic ratio', 6, .5),
                                 ('nonunit axis', 4, [0., 0., 2.]),
                                 ('unknown prefix flag', 7, True)]:
@@ -128,7 +155,7 @@ def validate(zstd, targets):
                          'recovered_surfaces': len(report['surfaces']),
                          'retained_unresolved_surfaces': len(report['unresolved']),
                          'boundary_endpoint_occurrences_checked': checked_points,
-                         'previous_successful_analytic_outputs_unchanged': old_successes,
+                         'previous_successful_analytic_geometry_preserved': old_successes,
                          'API_dimension_comparisons': len(report['API_controls']),
                          'malformed_or_unsupported_guards': len(report['guards'])}
     return report

@@ -44,6 +44,14 @@ def decode_body_placement(bindings, assembly, asm_summary):
                     bodies[-1]["initial_geometry_validation"] = {
                         key: value for key, value in initial_validation.items()
                         if key != "validated_initial_geometry_body_graphs"}
+                if entry.get("historical_component_context"):
+                    cached = bodies[-1]
+                    cached["historical_component_context"] = entry["historical_component_context"]
+                    cached["coordinate_scope"] = "Historical component association composed with stored occurrence caches; historic and current world placements unresolved"
+                    for placement in cached["placements"]:
+                        placement["component_to_stored_occurrence_cache_matrix"] = placement.pop("component_to_world_matrix")
+                        placement["stored_occurrence_cache_vertex_positions_cm"] = placement.pop("world_vertex_positions_cm")
+                        placement["world_placement_status"] = "Stored occurrence-cache context only; historical occurrence transforms and current visibility unresolved"
             except (ValueError, KeyError, IndexError) as error:
                 unresolved.append({"native_body_object_id": entry["native_body_object_id"], "reason": str(error)})
     return {"bodies": bodies, "unresolved": unresolved,
@@ -79,6 +87,10 @@ def label_joint_cache_placements(assembly, body_placement, features):
     body_placement['scope'] = 'Typed same-blob BODY identifier joins through stored occurrence caches; no solved joint placement or final-body lifecycle'
     for body in body_placement['bodies']:
         for placement in body['placements']:
-            placement['component_to_stored_occurrence_cache_matrix'] = placement.pop('component_to_world_matrix')
-            placement['stored_occurrence_cache_vertex_positions_cm'] = placement.pop('world_vertex_positions_cm')
+            if 'component_to_world_matrix' in placement:
+                placement['component_to_stored_occurrence_cache_matrix'] = placement.pop('component_to_world_matrix')
+            if 'world_vertex_positions_cm' in placement:
+                placement['stored_occurrence_cache_vertex_positions_cm'] = placement.pop('world_vertex_positions_cm')
             placement['world_placement_status'] = status
+            if body.get('historical_component_context'):
+                placement['world_placement_status'] += '; historical occurrence transforms and current visibility unresolved'

@@ -42,6 +42,7 @@ from decode_tools import decode_tools
 from decode_hole_point_sources import decode_hole_point_sources
 from decode_hole_supports import decode_hole_supports
 from decode_boundary_fill_results import decode_boundary_fill_results
+from decode_boundary_sculpt_provenance import decode_boundary_sculpt_provenance
 from decode_pipe_paths import inspect_pipe_edge_path
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -64,6 +65,8 @@ from decode_dependencies import decode_dependencies
 from asm_records import inspect_asm_members
 from decode_body_bindings import decode_body_bindings
 from decode_body_asm_identifiers import decode_body_asm_identifiers
+from decode_historical_body_components import decode_historical_body_components
+from decode_selection_recipe_incidence import decode_selection_recipe_incidence
 from decode_asm_recipe_tags import inspect_pipe_recipe_tags
 from decode_pipe_recipe_incidence import inspect_pipe_recipe_incidence
 from decode_pipe_edge_limits import inspect_pipe_edge_limits
@@ -756,6 +759,21 @@ def decode_basics(path, zstd_library=None):
                     entry["handle_scope"] = entry["identifier_scope"]
             mapping["scope"] = "Explicit native body/blob mapping; only validated same-blob typed BODY identifier joins supply ASM roots"
         body_binding_summary["scope"] = "Native body/blob mapping and observed typed per-blob BODY identifiers; final-body lifecycle unresolved"
+        historical_component_summary = decode_historical_body_components(
+            data, records, body_binding_summary, assembly_summary)
+        for patch in historical_component_summary["decoded"]:
+            mapping = next(m for m in body_binding_summary["decoded"]
+                           if m["mapping_record_object_id"] == patch["mapping_record_object_id"])
+            entry = next(b for b in mapping["bindings"]
+                         if b["native_body_object_id"] == patch["native_body_object_id"])
+            entry.update({key: patch[key] for key in
+                          ("component_object_id", "component_name", "historical_component_context")})
+        selection_recipe_incidence_summary = decode_selection_recipe_incidence(
+            data, records, features, name, members, body_identifier_summary, body_selection_summary)
+        boundary_sculpt_summary = decode_boundary_sculpt_provenance(
+            data, records, name, members, features, body_binding_summary)
+        for provenance in boundary_sculpt_summary["decoded"]:
+            feature_by_id[provenance["feature_object_id"]]["boundary_fill_sculpt_provenance"] = provenance
         pipe_tag_summary = {"decoded": [], "unresolved": [],
                             "scope": "Explicit same-asset native recipe/ASM naming candidates; duplicate owners and whole-recipe semantics stay unresolved"}
         pipe_incidence_summary = {"decoded": [], "unresolved": [],
@@ -851,6 +869,7 @@ def decode_basics(path, zstd_library=None):
             "hole_point_sources": hole_point_summary,
             "hole_supports": hole_support_summary,
             "boundary_fill_results": boundary_result_summary,
+            "boundary_fill_sculpt_provenance": boundary_sculpt_summary,
             "pipe_path_provenance": pipe_provenance_summary,
             "pipe_vertex_contexts": pipe_vertex_summary,
             "pipe_asm_recipe_tags": pipe_tag_summary,
@@ -867,6 +886,8 @@ def decode_basics(path, zstd_library=None):
             "dependency_decoding": dependency_summary,
             "body_blob_bindings": body_binding_summary,
             "body_asm_identifiers": body_identifier_summary,
+            "historical_body_components": historical_component_summary,
+            "selection_recipe_incidence": selection_recipe_incidence_summary,
             "body_properties": body_property_summary,
             "body_selections": body_selection_summary,
             "selection_context_recipes": selection_context_summary,

@@ -58,11 +58,13 @@ def decode_analytic_surface(record):
         axis = direction(4)
         reference = read(5, "direction_vector")
         perpendicular(axis, reference)
-        ratio, radius = read(6, "double"), read(11, "double")
-        if radius <= 0 or not math.isclose(ratio, 1., abs_tol=1e-10):
+        ratio, parameter_scale = read(6, "double"), read(11, "double")
+        # The base ellipse defines the physical radius. Its separate parameter
+        # scale can retain a pre-edit value after a cosmetic thread resizes it.
+        radius = math.hypot(*reference)
+        if (not math.isfinite(radius) or radius <= 0 or not math.isfinite(parameter_scale) or parameter_scale <= 0
+                or not math.isclose(ratio, 1., abs_tol=1e-10)):
             raise ValueError("Only observed circular cone/cylinder radii supported")
-        if not math.isclose(math.sqrt(sum(v*v for v in reference)), radius, rel_tol=1e-9, abs_tol=1e-9):
-            raise ValueError("Cone radius and reference vector length disagree")
         if read(7, "boolean_token") or read(8, "boolean_token"):
             raise ValueError("Unsupported cone prefix flags")
         sine, cosine = read(9, "double"), read(10, "double")
@@ -72,7 +74,8 @@ def decode_analytic_surface(record):
                 or (cosine <= 0 and not negative_cylinder_pair)):
             raise ValueError("Invalid cone angular pair")
         result.update(kind=kind, axis=axis, raw_radius=radius, stored_reference_axis=reference,
-                      stored_axis_ratio=ratio, is_v_reversed=read(12, "boolean_token"))
+                      stored_axis_ratio=ratio, stored_u_parameter_scale=parameter_scale,
+                      is_u_reversed=read(12, "boolean_token"))
         if negative_cylinder_pair:
             result.update(stored_cone_angular_pair=[sine, cosine],
                           parameterization_scope="Observed zero-slope negative-cosine cylinder; stored axis retained, signed parameter direction unresolved")

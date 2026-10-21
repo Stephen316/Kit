@@ -1,6 +1,7 @@
 """Focused shell-owned auxiliary line-wire proof and solid-graph preservation."""
 
 import argparse
+import copy
 import hashlib
 import json
 import math
@@ -27,6 +28,24 @@ def near(a, b):
     return len(a) == len(b) and all(math.isclose(x, y, abs_tol=1e-9, rel_tol=1e-9) for x, y in zip(a, b))
 
 
+def previous_analytic_schema(graphs):
+    """Compare historical graph snapshots across the documented field correction.
+
+    This does not tolerate geometry differences: the old conflated parameter
+    scale must still equal physical radius within numeric precision here.
+    """
+    result = copy.deepcopy(graphs)
+    for graph in result:
+        for surface in graph['analytic_surfaces']:
+            geometry = surface['geometry']
+            if geometry and geometry['kind'] in ('Cone', 'Cylinder') and 'stored_u_parameter_scale' in geometry:
+                scale = geometry.pop('stored_u_parameter_scale')
+                assert math.isclose(geometry['raw_radius'], scale, abs_tol=1e-9, rel_tol=1e-9)
+                geometry['raw_radius'] = scale
+                geometry['is_v_reversed'] = geometry.pop('is_u_reversed')
+    return result
+
+
 def validate(zstd_library, baseline):
     root = Path(__file__).resolve().parent
     truth = json.loads((root / 'splitfacemodes-4fc4adf2a868/ground_truth.json').read_text())
@@ -35,7 +54,7 @@ def validate(zstd_library, baseline):
                   'parser': 'decode_brep.decode_topology(parsed)',
                   'shared_hook_changes': 'None; existing native BODY stored-ID reader now accepts the decoded auxiliary BODY graph',
                   'new_graph_fields': ['counts.wire', 'wire_indices', 'wire_coedge_rings', 'topology_kind', 'wire_scope'],
-                  'compatibility': 'Wire-specific fields are emitted only for the observed wire variant; existing complete solid graphs remain exact',
+                  'compatibility': 'Wire-specific fields are emitted only for the observed wire variant; prior topology/geometry is preserved across the documented analytic parameter-scale/reversal-field correction',
                   'validation_command': '/usr/bin/python3 validate_auxiliary_wires.py',
               }, 'native_layout': {
                   'wire': 'Observed8tokens: attribute pointer,storedID,pattern pointer,nextWire,firstCoedge,shell,uninterpreted pointer6,boolean flag7. Shell.firstWire and wire.shell reciprocate; pointer6 null and flag7false required.',
@@ -111,11 +130,16 @@ def validate(zstd_library, baseline):
         previous = [g for g in topology['body_graphs'] if g['body_index'] in old['body_graph_indices']]
         current_hash = digest(previous)
         assert [g['body_index'] for g in previous] == old['body_graph_indices']
-        assert current_hash == old['body_graphs_sha256'], (old['file'], old['member'])
+        comparison_hash = current_hash
+        if current_hash != old['body_graphs_sha256']:
+            comparison_hash = digest(previous_analytic_schema(previous))
+        assert comparison_hash == old['body_graphs_sha256'], (old['file'], old['member'])
         report['solid_topology_preservation'].append({
             'file': old['file'], 'member': old['member'], 'body_graph_indices': old['body_graph_indices'],
             'body_graphs_sha256': old['body_graphs_sha256'], 'current_body_graphs_sha256': current_hash,
-            'complete_prior_graph_outputs_exact': True})
+            'comparison_body_graphs_sha256': comparison_hash,
+            'complete_prior_graph_outputs_exact': current_hash == old['body_graphs_sha256'],
+            'preserved_after_documented_analytic_field_correction': True})
 
     context = contexts[FILES[0]]
     data, records, member, members, mapping, parsed = context
@@ -154,7 +178,8 @@ def validate(zstd_library, baseline):
                          'native_mappings_recovered': len(report['samples']),
                          'unassociated_BODY_minus_one_roots_retained': len(report['samples']),
                          'actual_API_line_geometry_controls': len(report['samples']),
-                         'prior_complete_body_graphs_preserved_exact': sum(len(b['body_graph_indices']) for b in baseline),
+                         'prior_body_graphs_preserved_after_analytic_field_correction': sum(len(b['body_graph_indices']) for b in baseline),
+                         'prior_complete_body_graphs_preserved_exact': sum(len(b['body_graph_indices']) for b in report['solid_topology_preservation'] if b['complete_prior_graph_outputs_exact']),
                          'prior_control_streams': len(baseline), 'malformed_guards': len(report['guards'])}
     return report
 
