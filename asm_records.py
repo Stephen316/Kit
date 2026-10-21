@@ -199,6 +199,14 @@ def inspect_asm_members(members, include_records=False, *, include_custom_attrib
                 except (ValueError, KeyError, IndexError) as error:
                     topology['vbl_component_boundaries'] = {'decoded': [], 'unresolved': [{'reason': str(error)}],
                         'scope': 'VBL boundary component links unresolved; original partial definitions and surface diagnostics retained'}
+                from decode_vbl_boundary_corners import decode_vbl_boundary_corners
+                try:
+                    topology['vbl_boundary_corners'] = decode_vbl_boundary_corners(
+                        data, parsed=result, subtype_catalog=subtype_catalog, topology=topology,
+                        component_boundaries=topology['vbl_component_boundaries'])
+                except (ValueError, KeyError, IndexError, TypeError) as error:
+                    topology['vbl_boundary_corners'] = {'decoded': [], 'unresolved': [{'reason': str(error)}],
+                        'scope': 'VBL boundary corner ownership unresolved; original component proofs and interior diagnostics retained'}
             if not include_records:
                 topology.pop("nodes", None)
             topology["nodes_included"] = include_records

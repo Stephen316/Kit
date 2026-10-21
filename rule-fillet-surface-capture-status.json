@@ -1,0 +1,37 @@
+{
+  "status": "Prepared; not executed",
+  "observed_at_utc": "2026-10-21T18:08:14.180932+00:00",
+  "generator": "GenerateRuleFilletSurfaceContrasts.py",
+  "generator_sha256": "bbb12b2016aea348867062f5f861cc9ceec9e139e48e005c10564c1eb0304cb4",
+  "planned_cases": [
+    "offsets_one_two",
+    "offsets_one_three"
+  ],
+  "planned_capture": "Direct source surface metadata/NURBS data and trim-aware evaluator samples; one temporary ProceduralToNURBSConversion body per case; all API tempId split matches, independent converted UVs",
+  "dispatch_observation": {
+    "return_code": 1,
+    "return_posted": false,
+    "execution_started": false,
+    "reason": "Target Fusion command window absent from macOS accessibility; dispatcher stopped before targeted Return events",
+    "fusion_pid": 5619,
+    "same_process_verified_alive": true,
+    "accessible_fusion_window_count": 0
+  },
+  "console_observation": {
+    "CGSSessionScreenIsLocked": true,
+    "kCGSessionLoginDoneKey": true,
+    "scope": "Only lock/login flags read; no capture of screen contents or console identities"
+  },
+  "safety": {
+    "automatic_restart": false,
+    "global_keyboard_events": false,
+    "crash_observed": false,
+    "new_archives": 0,
+    "capture_hold_changed": false
+  },
+  "limits": [
+    "SDK and lifecycle code review is not proof of native execution or data availability.",
+    "No source/API native face mapping, NURBS data, interior truth or added live feature coverage is claimed.",
+    "Recheck live process/window state and current source before resuming; do not treat this observation as a running capture job."
+  ]
+}
