@@ -1,0 +1,1767 @@
+{
+  "scope": "Three actual fixed cubic NURBS Sweep paths, polynomial/rational/multispan, with one Circle profile and solid full perpendicular NewBody controls. Common profile/numeric parser reused; explicit curve caches are separate from traversal and swept geometry.",
+  "interface": "decode_sweep_fixed_spline_paths(data,records,features)->decoded/unresolved/scope; rows feature_object_id/kind/name/settings",
+  "shared_hook": "decode_sweep_modes(...,path_resolver=None); opt-in primary-path-only five-argument callback, bounded selection/descriptor/count/unique-curve/closure schema. Default primitive and rail parsers unchanged.",
+  "integration": {
+    "stream": "sweep_fixed_spline_paths",
+    "settings_field": "settings",
+    "cleared_old_reason": "Unsupported observed Sweep variant; decode_sweep: Sketch/curve tag missing, unsupported or ambiguous; decode_sweep_operations: Sweep path sketch/curve tag unresolved or ambiguous; decode_sweep_profiles: Unsupported observed Sweep mode control header; decode_solid_sweep: Unsupported observed Cut solid Sweep control layout",
+    "decode_level": "Observed Sweep fixed-NURBS path controls and typed sketch source; traversal, persistent topology and regeneration unresolved",
+    "source_stream": "sweep_fixed_spline_sources",
+    "source_feature_field": "sweep_fixed_spline_source",
+    "native_source_evidence_path": "settings.path.native_source_evidence",
+    "scope": "Replace only same-feature old aggregate Sweep failure after qualified success. Existing input warnings, cached geometry, placements, topology and unrelated errors retained."
+  },
+  "capture_provenance": {
+    "ground_truth": "sweepnurbspaths-7ded30a4b9ae/ground_truth.json",
+    "ground_truth_sha256": "881d859c57f2103c838f77e860d849f4aadec2c747457a4092e2a6f55889bd09",
+    "executed_generator_sha256": "e467b9119211d3f78aea830a6bf2b4b33e4e7669f835b8dbf5b460c2caaa43e0",
+    "sdk_sources": {
+      "core": {
+        "runtime_module": "/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/core.py",
+        "sha256": "4b1178a4b2837699c6840221513866808ddb6cdf15c2d3e79186d31f573b7f8a",
+        "executed_surface_file": "executed-core-sdk-surface.txt",
+        "executed_surface_sha256": "69df623215b24bb50493955e59fe13f4d456a0d89a7fd0bec098fbdb63f56b3d",
+        "classes": [
+          "NurbsCurve3D",
+          "CurveEvaluator3D",
+          "ValueInput"
+        ]
+      },
+      "fusion": {
+        "runtime_module": "/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py",
+        "sha256": "9a03dc2a1b27e300e1668206fa7c074d310502fa86c94c59c7bd43173f3f31c1",
+        "executed_surface_file": "executed-fusion-sdk-surface.txt",
+        "executed_surface_sha256": "444227ee266031d462aa4944bd757d58173e367d6fb9082ba51f39c6a6386bb4",
+        "classes": [
+          "SketchFixedSplines",
+          "SketchFixedSpline",
+          "Path",
+          "PathEntity",
+          "SweepFeatures",
+          "SweepFeatureInput",
+          "SweepFeature"
+        ]
+      }
+    },
+    "fusion_version": "2705.1.30"
+  },
+  "native_schema": {
+    "Sweep_class_guid": "FCBB1707-4450-46B3-9E65-0F61682EA8CA",
+    "path": "Existing owned proxy5A descriptor/E2 leaf selecting sketchID/entitytag; canonical FixedSpline geometry continuation and typed parent-component frame qualified by B source helper",
+    "controls": "Existing decode_sweep_modes defaultNewBody/full/perpendicular controls/profile/control-owner/result-anchor checks; no duplicated codec",
+    "source_family": "Open nonperiodic cubic, natural domain0..1;4controls polynomial/rational single span or6controls polynomial multispan in captured identity native sketch frame"
+  },
+  "samples": [
+    {
+      "archive": "sweepnurbspaths-7ded30a4b9ae/polynomial_cubic.f3d",
+      "archive_sha256": "54ddce421696306314088d8960fe9e996f7d89d8369755d22e2be3b93bcd6313",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 468,
+            "kind": "Sweep",
+            "name": "OwnedFixedNurbsSweep_polynomial_cubic",
+            "settings": {
+              "operation": "NewBody",
+              "stored_operation_code": 4,
+              "is_solid": true,
+              "sweep_mode": "SinglePathPerpendicular",
+              "stored_mode_code": 2,
+              "orientation": "Perpendicular",
+              "orientation_status": "Observed single-path enum",
+              "path_fraction": 1.0,
+              "stored_against_path_fraction": 0.0,
+              "distance_two_fraction": null,
+              "stored_parameter_values": {
+                "AgainstDistance": 0.0,
+                "AgainstRailDistance": 1.0,
+                "AlongDistance": 1.0,
+                "AlongRailDistance": 1.0,
+                "TaperAngle": 0.0,
+                "TwistAngle": 0.0
+              },
+              "parameter_bindings": {
+                "AgainstDistance": 487,
+                "AgainstRailDistance": 493,
+                "AlongDistance": 484,
+                "AlongRailDistance": 490,
+                "TaperAngle": 499,
+                "TwistAngle": 496
+              },
+              "taper_angle_radians": 0.0,
+              "twist_angle_radians": 0.0,
+              "angle_control_status": "Single-path orientation controls activity",
+              "path": {
+                "selection_record_object_id": 476,
+                "count": 1,
+                "segments": [
+                  {
+                    "index": 0,
+                    "descriptor_object_id": 479,
+                    "terminal_object_id": 482,
+                    "sketch_object_id": 202,
+                    "sketch_name": "OwnedNurbsSweepPath_polynomial_cubic",
+                    "curve_object_id": 232,
+                    "curve_entity_tag": 103,
+                    "kind": "FixedSpline",
+                    "path_is_opposed_to_entity": null
+                  }
+                ],
+                "is_closed": false,
+                "order_scope": "One explicitly selected native source; path traversal/opposition unresolved",
+                "closure_scope": "Captured nonperiodic open cubic has distinct natural endpoints; no general native closure flag",
+                "native_source_evidence": {
+                  "feature_object_id": 468,
+                  "selection": {
+                    "selection_record_object_id": 476,
+                    "descriptor_object_id": 479,
+                    "terminal_object_id": 482,
+                    "sketch_object_id": 202,
+                    "curve_object_id": 232,
+                    "curve_entity_tag": 103,
+                    "kind": "FixedSpline",
+                    "is_closed": false
+                  },
+                  "source_nurbs": {
+                    "degree": 3,
+                    "knots": [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0
+                    ],
+                    "control_points_cm": [
+                      [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        2.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        4.0,
+                        1.0,
+                        0.0
+                      ],
+                      [
+                        6.0,
+                        2.0,
+                        0.0
+                      ]
+                    ],
+                    "weights": [],
+                    "is_rational": false,
+                    "is_periodic": false,
+                    "parameter_domain": [
+                      0.0,
+                      1.0
+                    ],
+                    "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+                  },
+                  "source_start_point_id": 228,
+                  "source_end_point_id": 230,
+                  "native_curve_primary_record_offset": 27023,
+                  "native_geometry_continuation_record_offset": 27216,
+                  "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363440000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436346700000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e7436340000000000000000ffffffffffffffff",
+                  "stored_geometry_continuation_payload_hex": "01eb000000000000000000000000000000000000000000000000000101e900000000000000000001e600000000000000000001e400000000000000000001000300000095d626e80b2e113e0800000008000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000f03f000000000000f03f000000000000f03f000000000000f03f0000000000000000080000000400000004000000080000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000001040000000000000f03f000000000000000000000000000018400000000000000040000000000000000011ea2d819997713d01010000000000000000000000000000f03f01ea00000000000000000000000000010000000000000100000000010000000000000000000000000000803f0000803f000300000001e900000000000000000001ea00000000000000000001eb00000000000000000001ca000000000000000000",
+                  "source_sketch_base_record_offset": 24631,
+                  "source_sketch_collection_object_id": 9,
+                  "native_transform_object_id": 204,
+                  "native_transform_record_offset": 24890,
+                  "stored_transform_payload_hex": "000001000103000000000000000000",
+                  "canonical_placement": {
+                    "sketch_to_component_matrix": [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "matrix_order": "row-major; column-vector multiplication",
+                    "translation_units": "cm",
+                    "encoding": "ImplicitIdentity",
+                    "transform_object_id": 204,
+                    "record_offset": 24890,
+                    "scope": "Parent component; assembly occurrences unresolved"
+                  },
+                  "source_component_object_id": 3,
+                  "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+                  "natural_derived_samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_sketch_local_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        6.0,
+                        0.0,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        6.0,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_sketch_local_cm": [
+                        1.5,
+                        0.171875,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        1.5,
+                        0.171875,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        6.0,
+                        1.3125,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        6.0,
+                        1.3125,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_sketch_local_cm": [
+                        3.0,
+                        0.625,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        3.0,
+                        0.625,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        6.0,
+                        2.25,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        6.0,
+                        2.25,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_sketch_local_cm": [
+                        4.5,
+                        1.265625,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        4.5,
+                        1.265625,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        6.0,
+                        2.8125,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        6.0,
+                        2.8125,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_sketch_local_cm": [
+                        6.0,
+                        2.0,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        6.0,
+                        2.0,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        6.0,
+                        3.0,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        6.0,
+                        3.0,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "natural_source_parameter_domain": [
+                    0.0,
+                    1.0
+                  ],
+                  "path_is_opposed_to_entity": null,
+                  "evaluator_scope": "Natural full stored NURBS evaluations in sketch-local and native parent-component frame; no API interior-sample verification, Sweep trim/traversal or occurrence/world transform claim",
+                  "direction_scope": "Native traversal/opposition unproved; natural knot-domain order is not a Sweep path direction flag",
+                  "scope": "Observed singleton owned Sweep proxy/descriptor/leaf selecting a native FixedSpline sketch ID/tag; canonical stored NURBS and typed identity Sketch-to-component frame qualify natural source geometry. Derived evaluations are separate from API evidence and Sweep traversal; opposition, native/API handle identity, result geometry, lifecycle and regeneration remain unresolved."
+                }
+              },
+              "profile": {
+                "selection_record_object_id": 469,
+                "descriptor_object_id": 472,
+                "loop_definition_object_id": 475,
+                "sketch_object_id": 269,
+                "sketch_name": "OwnedNurbsSweepCircle_polynomial_cubic",
+                "loops": [
+                  {
+                    "is_outer": true,
+                    "curve_references": [
+                      {
+                        "entity_id": 296,
+                        "entity_kind": "Circle",
+                        "entity_tag": 106,
+                        "secondary_tag": 0,
+                        "stored_direction_flag": 0
+                      }
+                    ],
+                    "order_status": "Stored membership order; traversal ordering not decoded"
+                  }
+                ],
+                "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+              },
+              "profile_scaling": null,
+              "stored_scaling_bits": [
+                1,
+                1
+              ],
+              "extent": null,
+              "guide_rail": null,
+              "stored_guide_rail": null,
+              "guide_rail_status": "No rail selection",
+              "guide_surfaces": [],
+              "is_chain_selection": null,
+              "stored_chain_selection_flag": 1,
+              "is_direction_flipped": null,
+              "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+              "result_control_record_object_id": 501,
+              "uninterpreted_result_control_prefix_hex": "000000000100",
+              "result_body_anchors": [
+                {
+                  "object_id": 530,
+                  "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                  "native_body_object_id": 524,
+                  "source_owner_object_id": 468,
+                  "native_uuid_text": "012a728d-56db-4413-ac45-c676c416cf7f",
+                  "stored_flags": [
+                    0,
+                    1
+                  ],
+                  "native_body_reference_offset": 37560,
+                  "body_properties": {},
+                  "association": "Typed anchor contains an explicit reference to the native body record",
+                  "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+                }
+              ],
+              "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid full-distance perpendicular NewBody Sweep with one circular sketch profile and one open fixed cubic NURBS path, including polynomial/rational and multispan sources. Explicit source identity, local/component caches and numeric controls retained; traversal opposition, general profile frames, swept surfaces, lifecycle and regeneration unresolved."
+      },
+      "expected_old_failure": {
+        "error_type": "ValueError",
+        "reason": "Unsupported observed Sweep variant; decode_sweep: Sketch/curve tag missing, unsupported or ambiguous; decode_sweep_operations: Sweep path sketch/curve tag unresolved or ambiguous; decode_sweep_profiles: Unsupported observed Sweep mode control header; decode_solid_sweep: Unsupported observed Cut solid Sweep control layout"
+      },
+      "actual_API_operation": 3,
+      "actual_API_orientation": 1,
+      "actual_input_guideRail_getter_errors": [
+        {
+          "getter": "guideRail",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepNurbsPathContrasts.py\", line 60, in read\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepNurbsPathContrasts.py\", line 200, in <lambda>\n    row['guideRail']=read('guideRail',lambda:path_truth(subject.guideRail),errors)\n                                                        ^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 74833, in _get_guideRail\n    return _fusion.SweepFeatureInput__get_guideRail(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : res\n"
+        }
+      ],
+      "actual_rolled_guideRail": null,
+      "actual_rolled_getter_errors": [],
+      "actual_input_distanceTwo": 1.0,
+      "actual_rolled_distanceTwo": null,
+      "actual_API_path_is_opposed_to_entity": false,
+      "native_path_opposition": null,
+      "actual_current_BRep_count": 1,
+      "actual_timeline_end_feature_BRep_count": 1,
+      "actual_rolled_before_node_feature_BRep_count": 0,
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "sweepnurbspaths-7ded30a4b9ae/rational_cubic.f3d",
+      "archive_sha256": "dca8ba6701fdb7e3e55074cddc45cf954d3a53bdd90561ebe0cc027546426444",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 468,
+            "kind": "Sweep",
+            "name": "OwnedFixedNurbsSweep_rational_cubic",
+            "settings": {
+              "operation": "NewBody",
+              "stored_operation_code": 4,
+              "is_solid": true,
+              "sweep_mode": "SinglePathPerpendicular",
+              "stored_mode_code": 2,
+              "orientation": "Perpendicular",
+              "orientation_status": "Observed single-path enum",
+              "path_fraction": 1.0,
+              "stored_against_path_fraction": 0.0,
+              "distance_two_fraction": null,
+              "stored_parameter_values": {
+                "AgainstDistance": 0.0,
+                "AgainstRailDistance": 1.0,
+                "AlongDistance": 1.0,
+                "AlongRailDistance": 1.0,
+                "TaperAngle": 0.0,
+                "TwistAngle": 0.0
+              },
+              "parameter_bindings": {
+                "AgainstDistance": 487,
+                "AgainstRailDistance": 493,
+                "AlongDistance": 484,
+                "AlongRailDistance": 490,
+                "TaperAngle": 499,
+                "TwistAngle": 496
+              },
+              "taper_angle_radians": 0.0,
+              "twist_angle_radians": 0.0,
+              "angle_control_status": "Single-path orientation controls activity",
+              "path": {
+                "selection_record_object_id": 476,
+                "count": 1,
+                "segments": [
+                  {
+                    "index": 0,
+                    "descriptor_object_id": 479,
+                    "terminal_object_id": 482,
+                    "sketch_object_id": 202,
+                    "sketch_name": "OwnedNurbsSweepPath_rational_cubic",
+                    "curve_object_id": 232,
+                    "curve_entity_tag": 103,
+                    "kind": "FixedSpline",
+                    "path_is_opposed_to_entity": null
+                  }
+                ],
+                "is_closed": false,
+                "order_scope": "One explicitly selected native source; path traversal/opposition unresolved",
+                "closure_scope": "Captured nonperiodic open cubic has distinct natural endpoints; no general native closure flag",
+                "native_source_evidence": {
+                  "feature_object_id": 468,
+                  "selection": {
+                    "selection_record_object_id": 476,
+                    "descriptor_object_id": 479,
+                    "terminal_object_id": 482,
+                    "sketch_object_id": 202,
+                    "curve_object_id": 232,
+                    "curve_entity_tag": 103,
+                    "kind": "FixedSpline",
+                    "is_closed": false
+                  },
+                  "source_nurbs": {
+                    "degree": 3,
+                    "knots": [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0
+                    ],
+                    "control_points_cm": [
+                      [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        2.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        4.0,
+                        1.0,
+                        0.0
+                      ],
+                      [
+                        6.0,
+                        2.0,
+                        0.0
+                      ]
+                    ],
+                    "weights": [
+                      1.0,
+                      0.7,
+                      1.3,
+                      1.0
+                    ],
+                    "is_rational": true,
+                    "is_periodic": false,
+                    "parameter_domain": [
+                      0.0,
+                      1.0
+                    ],
+                    "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+                  },
+                  "source_start_point_id": 228,
+                  "source_end_point_id": 230,
+                  "native_curve_primary_record_offset": 27019,
+                  "native_geometry_continuation_record_offset": 27212,
+                  "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363440000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436346700000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e7436340000000000000000ffffffffffffffff",
+                  "stored_geometry_continuation_payload_hex": "01eb000000000000000000000000000000000000000000000000000101e900000000000000000001e600000000000000000001e400000000000000000001000300000095d626e80b2e113e0800000008000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000f03f000000000000f03f000000000000f03f000000000000f03f040000000400000008000000000000000000f03f666666666666e63fcdccccccccccf43f000000000000f03f0400000004000000080000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000001040000000000000f03f000000000000000000000000000018400000000000000040000000000000000011ea2d819997713d01010000000000000000000000000000f03f01ea00000000000000000000000000010000000000000100000000010000000000000000000000000000803f0000803f000300000001e900000000000000000001ea00000000000000000001eb00000000000000000001ca000000000000000000",
+                  "source_sketch_base_record_offset": 24631,
+                  "source_sketch_collection_object_id": 9,
+                  "native_transform_object_id": 204,
+                  "native_transform_record_offset": 24886,
+                  "stored_transform_payload_hex": "000001000103000000000000000000",
+                  "canonical_placement": {
+                    "sketch_to_component_matrix": [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "matrix_order": "row-major; column-vector multiplication",
+                    "translation_units": "cm",
+                    "encoding": "ImplicitIdentity",
+                    "transform_object_id": 204,
+                    "record_offset": 24886,
+                    "scope": "Parent component; assembly occurrences unresolved"
+                  },
+                  "source_component_object_id": 3,
+                  "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+                  "natural_derived_samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_sketch_local_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        4.199999999999999,
+                        0.0,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        4.199999999999999,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_sketch_local_cm": [
+                        1.546075085324232,
+                        0.23378839590443687,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        1.546075085324232,
+                        0.23378839590443687,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        7.223007839345828,
+                        1.7118894803666902,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        7.223007839345828,
+                        1.7118894803666902,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_sketch_local_cm": [
+                        3.2249999999999996,
+                        0.7374999999999999,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        3.2249999999999996,
+                        0.7374999999999999,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        5.89875,
+                        2.143125,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        5.89875,
+                        2.143125,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_sketch_local_cm": [
+                        4.538904899135446,
+                        1.2838616714697404,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        4.538904899135446,
+                        1.2838616714697404,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        4.958499779916783,
+                        2.3048443222682686,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        4.958499779916783,
+                        2.3048443222682686,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_sketch_local_cm": [
+                        6.0,
+                        2.0,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        6.0,
+                        2.0,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        7.8,
+                        3.9,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        7.8,
+                        3.9,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "natural_source_parameter_domain": [
+                    0.0,
+                    1.0
+                  ],
+                  "path_is_opposed_to_entity": null,
+                  "evaluator_scope": "Natural full stored NURBS evaluations in sketch-local and native parent-component frame; no API interior-sample verification, Sweep trim/traversal or occurrence/world transform claim",
+                  "direction_scope": "Native traversal/opposition unproved; natural knot-domain order is not a Sweep path direction flag",
+                  "scope": "Observed singleton owned Sweep proxy/descriptor/leaf selecting a native FixedSpline sketch ID/tag; canonical stored NURBS and typed identity Sketch-to-component frame qualify natural source geometry. Derived evaluations are separate from API evidence and Sweep traversal; opposition, native/API handle identity, result geometry, lifecycle and regeneration remain unresolved."
+                }
+              },
+              "profile": {
+                "selection_record_object_id": 469,
+                "descriptor_object_id": 472,
+                "loop_definition_object_id": 475,
+                "sketch_object_id": 269,
+                "sketch_name": "OwnedNurbsSweepCircle_rational_cubic",
+                "loops": [
+                  {
+                    "is_outer": true,
+                    "curve_references": [
+                      {
+                        "entity_id": 296,
+                        "entity_kind": "Circle",
+                        "entity_tag": 106,
+                        "secondary_tag": 0,
+                        "stored_direction_flag": 0
+                      }
+                    ],
+                    "order_status": "Stored membership order; traversal ordering not decoded"
+                  }
+                ],
+                "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+              },
+              "profile_scaling": null,
+              "stored_scaling_bits": [
+                1,
+                1
+              ],
+              "extent": null,
+              "guide_rail": null,
+              "stored_guide_rail": null,
+              "guide_rail_status": "No rail selection",
+              "guide_surfaces": [],
+              "is_chain_selection": null,
+              "stored_chain_selection_flag": 1,
+              "is_direction_flipped": null,
+              "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+              "result_control_record_object_id": 501,
+              "uninterpreted_result_control_prefix_hex": "000000000100",
+              "result_body_anchors": [
+                {
+                  "object_id": 530,
+                  "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                  "native_body_object_id": 524,
+                  "source_owner_object_id": 468,
+                  "native_uuid_text": "9a36a86d-cbc0-430a-b565-1e56bab891eb",
+                  "stored_flags": [
+                    0,
+                    1
+                  ],
+                  "native_body_reference_offset": 37580,
+                  "body_properties": {},
+                  "association": "Typed anchor contains an explicit reference to the native body record",
+                  "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+                }
+              ],
+              "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid full-distance perpendicular NewBody Sweep with one circular sketch profile and one open fixed cubic NURBS path, including polynomial/rational and multispan sources. Explicit source identity, local/component caches and numeric controls retained; traversal opposition, general profile frames, swept surfaces, lifecycle and regeneration unresolved."
+      },
+      "expected_old_failure": {
+        "error_type": "ValueError",
+        "reason": "Unsupported observed Sweep variant; decode_sweep: Sketch/curve tag missing, unsupported or ambiguous; decode_sweep_operations: Sweep path sketch/curve tag unresolved or ambiguous; decode_sweep_profiles: Unsupported observed Sweep mode control header; decode_solid_sweep: Unsupported observed Cut solid Sweep control layout"
+      },
+      "actual_API_operation": 3,
+      "actual_API_orientation": 1,
+      "actual_input_guideRail_getter_errors": [
+        {
+          "getter": "guideRail",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepNurbsPathContrasts.py\", line 60, in read\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepNurbsPathContrasts.py\", line 200, in <lambda>\n    row['guideRail']=read('guideRail',lambda:path_truth(subject.guideRail),errors)\n                                                        ^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 74833, in _get_guideRail\n    return _fusion.SweepFeatureInput__get_guideRail(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : res\n"
+        }
+      ],
+      "actual_rolled_guideRail": null,
+      "actual_rolled_getter_errors": [],
+      "actual_input_distanceTwo": 1.0,
+      "actual_rolled_distanceTwo": null,
+      "actual_API_path_is_opposed_to_entity": false,
+      "native_path_opposition": null,
+      "actual_current_BRep_count": 1,
+      "actual_timeline_end_feature_BRep_count": 1,
+      "actual_rolled_before_node_feature_BRep_count": 0,
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "sweepnurbspaths-7ded30a4b9ae/polynomial_multispan.f3d",
+      "archive_sha256": "0640d5208fb1f2cfa6157b814e8b2a21f6c65bfe3f498f99d7206f8c044803b1",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 468,
+            "kind": "Sweep",
+            "name": "OwnedFixedNurbsSweep_polynomial_multispan",
+            "settings": {
+              "operation": "NewBody",
+              "stored_operation_code": 4,
+              "is_solid": true,
+              "sweep_mode": "SinglePathPerpendicular",
+              "stored_mode_code": 2,
+              "orientation": "Perpendicular",
+              "orientation_status": "Observed single-path enum",
+              "path_fraction": 1.0,
+              "stored_against_path_fraction": 0.0,
+              "distance_two_fraction": null,
+              "stored_parameter_values": {
+                "AgainstDistance": 0.0,
+                "AgainstRailDistance": 1.0,
+                "AlongDistance": 1.0,
+                "AlongRailDistance": 1.0,
+                "TaperAngle": 0.0,
+                "TwistAngle": 0.0
+              },
+              "parameter_bindings": {
+                "AgainstDistance": 487,
+                "AgainstRailDistance": 493,
+                "AlongDistance": 484,
+                "AlongRailDistance": 490,
+                "TaperAngle": 499,
+                "TwistAngle": 496
+              },
+              "taper_angle_radians": 0.0,
+              "twist_angle_radians": 0.0,
+              "angle_control_status": "Single-path orientation controls activity",
+              "path": {
+                "selection_record_object_id": 476,
+                "count": 1,
+                "segments": [
+                  {
+                    "index": 0,
+                    "descriptor_object_id": 479,
+                    "terminal_object_id": 482,
+                    "sketch_object_id": 202,
+                    "sketch_name": "OwnedNurbsSweepPath_polynomial_multispan",
+                    "curve_object_id": 232,
+                    "curve_entity_tag": 103,
+                    "kind": "FixedSpline",
+                    "path_is_opposed_to_entity": null
+                  }
+                ],
+                "is_closed": false,
+                "order_scope": "One explicitly selected native source; path traversal/opposition unresolved",
+                "closure_scope": "Captured nonperiodic open cubic has distinct natural endpoints; no general native closure flag",
+                "native_source_evidence": {
+                  "feature_object_id": 468,
+                  "selection": {
+                    "selection_record_object_id": 476,
+                    "descriptor_object_id": 479,
+                    "terminal_object_id": 482,
+                    "sketch_object_id": 202,
+                    "curve_object_id": 232,
+                    "curve_entity_tag": 103,
+                    "kind": "FixedSpline",
+                    "is_closed": false
+                  },
+                  "source_nurbs": {
+                    "degree": 3,
+                    "knots": [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.3333333333333333,
+                      0.6666666666666666,
+                      1.0,
+                      1.0,
+                      1.0,
+                      1.0
+                    ],
+                    "control_points_cm": [
+                      [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        1.5,
+                        0.0,
+                        0.0
+                      ],
+                      [
+                        3.0,
+                        0.4,
+                        0.0
+                      ],
+                      [
+                        4.5,
+                        1.0,
+                        0.0
+                      ],
+                      [
+                        6.0,
+                        1.5,
+                        0.0
+                      ],
+                      [
+                        7.5,
+                        1.8,
+                        0.0
+                      ]
+                    ],
+                    "weights": [],
+                    "is_rational": false,
+                    "is_periodic": false,
+                    "parameter_domain": [
+                      0.0,
+                      1.0
+                    ],
+                    "representation": "Stored sketch-local NURBS; no fitted-point approximation"
+                  },
+                  "source_start_point_id": 228,
+                  "source_end_point_id": 230,
+                  "native_curve_primary_record_offset": 27031,
+                  "native_geometry_continuation_record_offset": 27224,
+                  "stored_curve_primary_payload_hex": "0001030000000d000000456e7469747947656e6573697317000000496e7472696e7369634d6574615479706575696e74363440000000000000000e0000006372765f7072696d6172795f696417000000496e7472696e7369634d6574615479706575696e7436346700000000000000100000006372765f7365636f6e646172795f696417000000496e7472696e7369634d6574615479706575696e7436340000000000000000ffffffffffffffff",
+                  "stored_geometry_continuation_payload_hex": "01eb000000000000000000000000000000000000000000000000000101e900000000000000000001e600000000000000000001e400000000000000000001000300000095d626e80b2e113e0a0000000a000000080000000000000000000000000000000000000000000000000000000000000000000000555555555555d53f555555555555e53f000000000000f03f000000000000f03f000000000000f03f000000000000f03f000000000000000008000000060000000600000008000000000000000000000000000000000000000000000000000000000000000000f83f0000000000000000000000000000000000000000000008409a9999999999d93f00000000000000000000000000001240000000000000f03f00000000000000000000000000001840000000000000f83f00000000000000000000000000001e40cdccccccccccfc3f000000000000000011ea2d819997713d01010000000000000000000000000000f03f01ea00000000000000000000000000010000000000000100000000010000000000000000000000000000803f0000803f000300000001e900000000000000000001ea00000000000000000001eb00000000000000000001ca000000000000000000",
+                  "source_sketch_base_record_offset": 24631,
+                  "source_sketch_collection_object_id": 9,
+                  "native_transform_object_id": 204,
+                  "native_transform_record_offset": 24898,
+                  "stored_transform_payload_hex": "000001000103000000000000000000",
+                  "canonical_placement": {
+                    "sketch_to_component_matrix": [
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      1.0
+                    ],
+                    "matrix_order": "row-major; column-vector multiplication",
+                    "translation_units": "cm",
+                    "encoding": "ImplicitIdentity",
+                    "transform_object_id": 204,
+                    "record_offset": 24898,
+                    "scope": "Parent component; assembly occurrences unresolved"
+                  },
+                  "source_component_object_id": 3,
+                  "source_component_association": "Explicit sketch collection and reciprocal owner reference",
+                  "natural_derived_samples": [
+                    {
+                      "parameter_fraction": 0.0,
+                      "parameter": 0.0,
+                      "point_sketch_local_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        13.5,
+                        0.0,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        13.5,
+                        0.0,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.25,
+                      "parameter": 0.25,
+                      "point_sketch_local_cm": [
+                        2.373046875,
+                        0.25312500000000004,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        2.373046875,
+                        0.25312500000000004,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        6.5390625,
+                        1.6875,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        6.5390625,
+                        1.6875,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.5,
+                      "parameter": 0.5,
+                      "point_sketch_local_cm": [
+                        3.75,
+                        0.703125,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        3.75,
+                        0.703125,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        5.0625,
+                        1.8562499999999997,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        5.0625,
+                        1.8562499999999997,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 0.75,
+                      "parameter": 0.75,
+                      "point_sketch_local_cm": [
+                        5.126953125,
+                        1.1988281250000001,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        5.126953125,
+                        1.1988281250000001,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        6.5390625,
+                        2.1515625,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        6.5390625,
+                        2.1515625,
+                        0.0
+                      ]
+                    },
+                    {
+                      "parameter_fraction": 1.0,
+                      "parameter": 1.0,
+                      "point_sketch_local_cm": [
+                        7.5,
+                        1.8,
+                        0.0
+                      ],
+                      "point_component_cm": [
+                        7.5,
+                        1.8,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_sketch_local": [
+                        13.499999999999998,
+                        2.7,
+                        0.0
+                      ],
+                      "natural_parameter_derivative_component": [
+                        13.499999999999998,
+                        2.7,
+                        0.0
+                      ]
+                    }
+                  ],
+                  "natural_source_parameter_domain": [
+                    0.0,
+                    1.0
+                  ],
+                  "path_is_opposed_to_entity": null,
+                  "evaluator_scope": "Natural full stored NURBS evaluations in sketch-local and native parent-component frame; no API interior-sample verification, Sweep trim/traversal or occurrence/world transform claim",
+                  "direction_scope": "Native traversal/opposition unproved; natural knot-domain order is not a Sweep path direction flag",
+                  "scope": "Observed singleton owned Sweep proxy/descriptor/leaf selecting a native FixedSpline sketch ID/tag; canonical stored NURBS and typed identity Sketch-to-component frame qualify natural source geometry. Derived evaluations are separate from API evidence and Sweep traversal; opposition, native/API handle identity, result geometry, lifecycle and regeneration remain unresolved."
+                }
+              },
+              "profile": {
+                "selection_record_object_id": 469,
+                "descriptor_object_id": 472,
+                "loop_definition_object_id": 475,
+                "sketch_object_id": 269,
+                "sketch_name": "OwnedNurbsSweepCircle_polynomial_multispan",
+                "loops": [
+                  {
+                    "is_outer": true,
+                    "curve_references": [
+                      {
+                        "entity_id": 296,
+                        "entity_kind": "Circle",
+                        "entity_tag": 106,
+                        "secondary_tag": 0,
+                        "stored_direction_flag": 0
+                      }
+                    ],
+                    "order_status": "Stored membership order; traversal ordering not decoded"
+                  }
+                ],
+                "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+              },
+              "profile_scaling": null,
+              "stored_scaling_bits": [
+                1,
+                1
+              ],
+              "extent": null,
+              "guide_rail": null,
+              "stored_guide_rail": null,
+              "guide_rail_status": "No rail selection",
+              "guide_surfaces": [],
+              "is_chain_selection": null,
+              "stored_chain_selection_flag": 1,
+              "is_direction_flipped": null,
+              "direction_flip_status": "Native flag unverified; API returned true for one-sided rails where SDK says it is inapplicable",
+              "result_control_record_object_id": 501,
+              "uninterpreted_result_control_prefix_hex": "000000000100",
+              "result_body_anchors": [
+                {
+                  "object_id": 530,
+                  "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                  "native_body_object_id": 524,
+                  "source_owner_object_id": 468,
+                  "native_uuid_text": "8dbb4143-2a07-491c-8f0a-a4dd42fdc08d",
+                  "stored_flags": [
+                    0,
+                    1
+                  ],
+                  "native_body_reference_offset": 37648,
+                  "body_properties": {},
+                  "association": "Typed anchor contains an explicit reference to the native body record",
+                  "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+                }
+              ],
+              "input_selection_status": "Explicit sketch profile/path/rail membership and guide-face historical body references; general path traversal, trims and persistent face mapping unresolved"
+            }
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed solid full-distance perpendicular NewBody Sweep with one circular sketch profile and one open fixed cubic NURBS path, including polynomial/rational and multispan sources. Explicit source identity, local/component caches and numeric controls retained; traversal opposition, general profile frames, swept surfaces, lifecycle and regeneration unresolved."
+      },
+      "expected_old_failure": {
+        "error_type": "ValueError",
+        "reason": "Unsupported observed Sweep variant; decode_sweep: Sketch/curve tag missing, unsupported or ambiguous; decode_sweep_operations: Sweep path sketch/curve tag unresolved or ambiguous; decode_sweep_profiles: Unsupported observed Sweep mode control header; decode_solid_sweep: Unsupported observed Cut solid Sweep control layout"
+      },
+      "actual_API_operation": 3,
+      "actual_API_orientation": 1,
+      "actual_input_guideRail_getter_errors": [
+        {
+          "getter": "guideRail",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepNurbsPathContrasts.py\", line 60, in read\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateSweepNurbsPathContrasts.py\", line 200, in <lambda>\n    row['guideRail']=read('guideRail',lambda:path_truth(subject.guideRail),errors)\n                                                        ^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 74833, in _get_guideRail\n    return _fusion.SweepFeatureInput__get_guideRail(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : res\n"
+        }
+      ],
+      "actual_rolled_guideRail": null,
+      "actual_rolled_getter_errors": [],
+      "actual_input_distanceTwo": 1.0,
+      "actual_rolled_distanceTwo": null,
+      "actual_API_path_is_opposed_to_entity": false,
+      "native_path_opposition": null,
+      "actual_current_BRep_count": 1,
+      "actual_timeline_end_feature_BRep_count": 1,
+      "actual_rolled_before_node_feature_BRep_count": 0,
+      "owned_document_closed_true": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Path proxy feature owner differs",
+      "absolute_mutation_offset": 31968,
+      "rejected": true,
+      "reason": "Sketch-curve proxy owner disagrees with feature"
+    },
+    {
+      "guard": "Path descriptor feature owner differs",
+      "absolute_mutation_offset": 32390,
+      "rejected": true,
+      "reason": "Unsupported sketch-curve descriptor layout/owner"
+    },
+    {
+      "guard": "Uncaptured surface Sweep",
+      "absolute_mutation_offset": 30560,
+      "rejected": true,
+      "reason": "Unsupported fixed-NURBS Sweep outside captured solid/full/perpendicular/circular NewBody family"
+    },
+    {
+      "guard": "Uncaptured parallel orientation",
+      "absolute_mutation_offset": 30677,
+      "rejected": true,
+      "reason": "Unsupported fixed-NURBS Sweep outside captured solid/full/perpendicular/circular NewBody family"
+    },
+    {
+      "guard": "Uncaptured partial fixed-NURBS distance",
+      "absolute_mutation_offset": null,
+      "rejected": true,
+      "reason": "Unsupported fixed-NURBS Sweep outside captured solid/full/perpendicular/circular NewBody family"
+    },
+    {
+      "guard": "Callback selection identity differs",
+      "rejected": true,
+      "reason": "Sweep resolved path identity/count/closure schema disagrees"
+    },
+    {
+      "guard": "Callback count differs from literal proxy",
+      "rejected": true,
+      "reason": "Sweep resolved path identity/count/closure schema disagrees"
+    },
+    {
+      "guard": "Callback closure flag must be bool",
+      "rejected": true,
+      "reason": "Sweep resolved path identity/count/closure schema disagrees"
+    },
+    {
+      "guard": "Callback descriptor differs from native list",
+      "rejected": true,
+      "reason": "Sweep resolved path descriptor/curve identities differ or duplicate"
+    }
+  ],
+  "legacy_controls": [
+    {
+      "archive": "sweeps-5f87eff25e24/line_perpendicular.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 276,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "56d72e6c22992d125731c2a35dfb1dd14e47f3bbe3afc06932789a3df042a405",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweeps-5f87eff25e24/arc_perpendicular.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 278,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "656b3e04d86f12719169c3cbe2e9f71970645b56d67dc8afc882287a7f541c3e",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweeps-5f87eff25e24/arc_parallel.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 278,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "429225e10f571a9d10bea348636fab45ef45e01b8a23c2a25a8fa05c5e896948",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweeps-5f87eff25e24/arc_partial.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 278,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "5e6c3e4a64406f9a4269e4ba4b174a6286e669ead2f7e85c1fd6ba541793a575",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweeps-5f87eff25e24/line_taper.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 276,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "f6daabcf6b3c4d61e2764c8b6f68d231d52d168bbeed81acbca8911eff6a3d33",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweeps-5f87eff25e24/line_twist.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 276,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "a4e20006384ee4887ff5b2f2afd1e75b85fcea02b543082f3a224e93787aaa6d",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweeps-5f87eff25e24/line_surface.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 276,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "4149d9789f2f6b2e6d9c536e62b07b986a5108bd454d8beecdfa48a9c0126497",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweeps-5f87eff25e24/line_cut.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 355,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "be392ff435d09a5135f4166eaf62a0668678ec3935ca41496198da542f0bea62",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "moretools-88a2cd6cad0b/Sweep.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 267,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "8c3751684558c75b6d2aaba6c98ede153229a0b8cccbd7dcc2185fc998fec6ea",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "moretools-380212ab6368/SweepPartial.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 267,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "72c69cca7ca44950ff5cc3c260d2c2b17cb2fcd51ec519be9ce05721f8738296",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepguides-db118be14bfe/composite_line_arc.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 286,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "f2aae171eaba8df024a5cd7fa73d32621a719b940b6c2d94a7e02135f8831056",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepguides-db118be14bfe/closed_circle.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 274,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "090158994eae2a6ecd7e8f7429bcdbf24cde489439642e225e2414c4c507a662",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepguides-9887de71bf9e/rail_scale.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 309,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "b3dd00609895838e82272fbd5787497c95bbd88d8d3568764d51875baf24e27b",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepguides-9887de71bf9e/rail_stretch.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 309,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "1d0d2fbef1ef44f4292812b73e9fc70de4ea3ad3e210f5077e947f0a30fe48cd",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepguides-9887de71bf9e/rail_no_scaling.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 309,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "ee490ab8fd1e9834d5a9aee22c6082ecd6b4442c9bfe0282b8a089974cb138ba",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepguides-9887de71bf9e/rail_full_extents.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 309,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "eee134eb934e85f683a7807a8695b542ac013961cfa7d5087c8756e547f8ca8b",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepguides-9887de71bf9e/guide_surface.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 358,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "7edab26b2f9798befecee2da5db6d99e58d4543458f7890fda10d35d7519507a",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepguides-9887de71bf9e/guide_surface_chain.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 358,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "976cc0d50a343567d8a72ddebbd91f3025e639fee88f297fc83c807ecb1024fd",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepoperations-62378e7c0294/join.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 361,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "8c31c9f48166ca81d289587d0184597dd5134ca306ec80d358cb2a7b2753e1a1",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepoperations-62378e7c0294/intersect.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 361,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "38b045b1d1dc71e3b669f0d1a60a234cb6024e53f9bf2e89a2874ac65e49c85c",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepoperations-62378e7c0294/two_sided.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 276,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "b0fa60ee2444298872bf7ac26fda8c54fe991c0971c6eb79cbab998cd0e5344c",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepoperations-62378e7c0294/rail_flip_false.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 309,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "d5fb56a4dea7bf9183d47a6fd22cb1a907dbac4537e4708cba5a5cba62566ac6",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepoperations-62378e7c0294/rail_flip_true.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 309,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "434f21f969992e8f603db60e506913f480dfd4807ed8292c5e598f750533f0da",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepoperations-62378e7c0294/guided_cut.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 394,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "a436153eb3cc915326badc2ba872ed5faca478fab6e58e1b04af26930fcf2208",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepprofiles-b2b7a2774752/planar_face.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 543,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "5ab150380f55454cad8d9d47507fb50807f9bb9b4b297f3657a6210c8bb94df1",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepprofiles-b2b7a2774752/open_sketch_surface.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 293,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "8299531536550a759626b211596bb4d0f8c56c081f1cce627e5372028a38b740",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepprofiles-b2b7a2774752/open_brep_edge_surface.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 342,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "5e4f180f67a6f5524f0ec81ae44116db82b43fca1d758cfa8742f7f32d54ceb7",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepprofiles-b2b7a2774752/two_profile_collection.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 357,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "69dc78a5a61a3cb608edd5ab74a9d7a7990c298da2ef495dd3db000c421f791d",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepprofiles-8d489fe02d2d/open_sketch_surface.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 293,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "3c77ecf2496be6f27f2d22bd2ccce6f5180a3e5276bbfd3b09e4a761ddc7994e",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepprofiles-8d489fe02d2d/open_brep_edge_surface.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 342,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "b64a556b3ab0d6f12af6000c60f698d1b530a44e2047117fa0e2ba50b2f35903",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepprofiles-f20861d6c5c2/open_brep_edge_partial.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 342,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "d610ca9fb64f2e24276a711f9c40bb95f0ef58820476b7882ffde5b404f77d4f",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "sweepprofiles-f20861d6c5c2/open_brep_edge_reversed.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 342,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "e633e55f28a2ed00837730e1d6d43492a217e6e6c6bfa98c405215bf0e64bbea",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "solidsweeps-7d2677669e3d/solid_perpendicular.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 412,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "b6d8f37ef34d675c9dde2f2f789b61acf43c0fd0fc5f0b451098c4b698682374",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "solidsweeps-7d2677669e3d/solid_rigid.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 412,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "b6d8f37ef34d675c9dde2f2f789b61acf43c0fd0fc5f0b451098c4b698682374",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "solidsweeps-7d2677669e3d/solid_aligned.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 418,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "ec86392d320435b16ce4704ac5efcf3c66d209734fa4fca73af32b93c25e419b",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "solidsweeps-7d2677669e3d/solid_twist.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 416,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "aea1ff53a30236a753034a7149b10b1c17c4ad8e25a5562e2c7bd9c888cb0a02",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "solidsweeps-5b5ecd5e01b9/solid_twist_zero.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 416,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "ff915153872d5c3335c2b0ef6fc83502761394dc8171ac6705e2446ddeb17081",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    },
+    {
+      "archive": "solidsweeps-5b5ecd5e01b9/solid_twist_sixty.f3d",
+      "comparisons": [
+        {
+          "feature_object_id": 416,
+          "full_public_outcome_exact": true,
+          "strict_default_mode_outcome_exact": true,
+          "public_outcome_sha256": "d2e257985927a6eaaed4913bfd2b79ce96f535be84a98f2f8b1d70e9a73304f9",
+          "public_decoded": true
+        }
+      ],
+      "new_wrapper_no_candidate": true
+    }
+  ],
+  "limitations": [
+    "Only captured open fixed-cubic paths, one outer Circle profile, full-distance solid perpendicular NewBody, no guides and zero taper/twist are qualified. Other modes, profiles, frames and periodic forms remain unsupported.",
+    "NURBS natural parameter-domain evaluations are derived from stored source controls; no swept surface, frame transport, general trim or regeneration algorithm is reconstructed.",
+    "All actual PathEntity.isOpposedToEntity getters are false, but no native contrast proves that semantic. Native traversal/opposition remainsNone and is not inferred from natural knot order.",
+    "Configured input.guideRail getter fails InternalValidationError in all3. Native absent guide selections and rolled guideRailNone/successful getters are independent evidence.",
+    "Input distanceTwo is ValueInput1 although rolled feature.distanceTwo isNone and native AgainstDistance0 is inactive. No equality is claimed between those distinct states.",
+    "Actual API NURBS controlPoints getters serialize metadata rather than coordinates in this capture. Constructor numeric arrays and other actual getters are corroborated separately by the source validator, not represented as direct API control-point equality here.",
+    "Rolled-before-node feature.bodies is empty in all3, while timeline-end feature.bodies and current component bodies each contain1; no result identity is inferred from an empty rollback collection.",
+    "Native source frame is the parent component identity frame, not a solved occurrence/world placement. Persistent face identities, topology/lifecycle and native writing remain unresolved."
+  ],
+  "default_preservation": {
+    "pinned_revision": "e8206de",
+    "pinned_decode_sweep_modes_sha256": "3a69ed57b6c7362a7fd43131b2cc043268492f4280faa2cc7eb402400fdae028",
+    "legacy_files": 38,
+    "public_decoded_features": 38,
+    "strict_default_mode_decoded_features": 18,
+    "scope": "Full public dictionary/error comparison with pinned common modes substituted into unchanged operations/profile readers; strict default modes compared separately. No main-reader execution."
+  },
+  "source_sha256": {
+    "decode_sweep_modes.py": "b529757337f083a037b4b56f284735dfaa3b2f75df4bd1ccaa13358d257b3b37",
+    "decode_sweep_fixed_spline_paths.py": "1780152c09804fe16a37430578b58383eb8f4eac5cade119d00d4ae3ae1b81d2",
+    "decode_sweep_fixed_spline_sources.py": "568f2067ab4aaf5d03fafed88d987c7754be8ed98f5650823a9f4272f902e74a",
+    "validate_sweep_fixed_spline_paths.py": "61ea24d9286523ecc386c9310122a56ef9e35ce83ff44802094c487bf8b8f320"
+  },
+  "validation": {
+    "actual_exports": 3,
+    "decoded_fixed_NURBS_paths": 3,
+    "actual_common_control_comparisons": 18,
+    "actual_input_guideRail_failures_retained": 3,
+    "native_opposition_unresolved": 3,
+    "malformed_guards": 9,
+    "exact_legacy_public_files": 38,
+    "exact_strict_default_mode_files": 38,
+    "no_main_calls": true
+  }
+}

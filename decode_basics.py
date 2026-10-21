@@ -57,6 +57,8 @@ from decode_thread_families import decode_thread_families
 from decode_replace_face_targets import decode_replace_face_targets
 from decode_split_body_sheet_tools import decode_split_body_sheet_tools
 from decode_split_body_multi_sheet_tools import decode_split_body_multi_sheet_tools
+from decode_sweep_fixed_spline_paths import decode_sweep_fixed_spline_paths
+from decode_sweep_fixed_spline_sources import SCOPE as SWEEP_FIXED_SOURCE_SCOPE
 from decode_split_body_multi_sheet_routes import qualify_split_body_multi_sheet_routes, SCOPE as SPLIT_BODY_MULTI_SHEET_SCOPE
 from decode_split_body_sheet_routes import qualify_split_body_sheet_routes, SCOPE as SPLIT_BODY_SHEET_SCOPE
 from decode_replace_face_body_routes import qualify_replace_face_body_routes, SCOPE as REPLACE_FACE_BODY_SCOPE
@@ -681,6 +683,29 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 split_multi_route_summary['decoded'].append(routes)
             except (ValueError, KeyError, IndexError, TypeError, struct.error) as error:
                 split_multi_route_summary['unresolved'].append(dict(feature_object_id=feature['object_id'], reason=str(error)))
+        sweep_fixed_summary = decode_sweep_fixed_spline_paths(data, records, features)
+        sweep_fixed_reason = ('Unsupported observed Sweep variant; decode_sweep: Sketch/curve tag missing, unsupported or ambiguous; '
+            'decode_sweep_operations: Sweep path sketch/curve tag unresolved or ambiguous; '
+            'decode_sweep_profiles: Unsupported observed Sweep mode control header; '
+            'decode_solid_sweep: Unsupported observed Cut solid Sweep control layout')
+        sweep_fixed_ids = {row['feature_object_id'] for row in sweep_fixed_summary['decoded']}
+        eligible_sweep_fixed_ids = {row['object_id'] for row in tool_summary['unresolved']
+            if row['kind'] == 'Sweep' and row['reason'] == sweep_fixed_reason}
+        if not sweep_fixed_ids <= eligible_sweep_fixed_ids:
+            raise ValueError('Qualified fixed-NURBS Sweep does not match the prior primitive-path frontier')
+        sweep_fixed_source_summary = dict(decoded=[], unresolved=[], scope=SWEEP_FIXED_SOURCE_SCOPE)
+        for sweep in sweep_fixed_summary['decoded']:
+            feature = next(f for f in features if f['object_id'] == sweep['feature_object_id'])
+            feature.update(tool_settings=sweep['settings'],
+                decode_level='Observed Sweep fixed-NURBS path controls and typed sketch source; traversal, persistent topology and regeneration unresolved')
+            if not any(row['object_id'] == feature['object_id'] for row in tool_summary['decoded']):
+                tool_summary['decoded'].append(dict(object_id=feature['object_id'], kind='Sweep'))
+            source = dict(feature_object_id=feature['object_id'],
+                native_source_evidence=sweep['settings']['path']['native_source_evidence'], scope=SWEEP_FIXED_SOURCE_SCOPE)
+            feature['sweep_fixed_spline_source'] = source
+            sweep_fixed_source_summary['decoded'].append(source)
+        tool_summary['unresolved'] = [row for row in tool_summary['unresolved']
+            if row['object_id'] not in sweep_fixed_ids or row['reason'] != sweep_fixed_reason]
         parting_draft_summary = decode_parting_line_drafts(data, records, features)
         parting_draft_ids = set()
         for draft in parting_draft_summary['decoded']:
@@ -1550,6 +1575,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         })
         for key, summary in (('mirror_datum_reflections', datum_reflection_summary),
                              ('datum_mirror_supports', datum_support_summary),
+                             ('sweep_fixed_spline_paths', sweep_fixed_summary),
+                             ('sweep_fixed_spline_sources', sweep_fixed_source_summary),
                              ('split_body_multi_sheet_routes', split_multi_route_summary),
                              ('split_body_sheet_tools', split_sheet_summary),
                              ('split_body_sheet_routes', split_sheet_route_summary),

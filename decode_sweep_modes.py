@@ -20,8 +20,10 @@ CURVE_LEAF = "E2CEFD18-D755-4E09-8E7F-953A2F6D43F8"
 
 def decode_sweep_modes(data, records, body, feature, features, *, allowed_operation_codes=(4,), allow_two_sided=False,
                        profile_resolver=None, allowed_header_vectors=((1., 0., 0.),),
-                       allowed_new_body_anchor_counts=(1,)):
+                       allowed_new_body_anchor_counts=(1,), path_resolver=None):
     """Strict defaults; optional observed operations/branches serve the wrapper."""
+    if path_resolver is not None and not callable(path_resolver):
+        raise ValueError("Unsupported Sweep path resolver")
     allowed_operation_codes = tuple(allowed_operation_codes)
     allowed_header_vectors = tuple(tuple(v) for v in allowed_header_vectors)
     allowed_new_body_anchor_counts = tuple(allowed_new_body_anchor_counts)
@@ -160,7 +162,26 @@ def decode_sweep_modes(data, records, body, feature, features, *, allowed_operat
                 "order_scope": "Explicit descriptor list order; API traversal reversal flags and general trim reconstruction unresolved",
                 "closure_scope": "Observed single Circle is closed; single Line/Arc or joined Line-Arc samples are open; no general native closure flag claimed"}
 
-    source_path = path(path_id)
+    source_path = path(path_id) if path_resolver is None else path_resolver(data, records, path_id, owner, features)
+    if path_resolver is not None:
+        source_record, _ = owned(path_id, PROXY)
+        source_descriptors, source_attributes = native_proxy_references(data, source_record)
+        if not isinstance(source_path, dict):
+            raise ValueError("Sweep path resolver did not return bounded source evidence")
+        source_segments = source_path.get("segments")
+        source_count = source_path.get("count")
+        if (source_attributes or source_path.get("selection_record_object_id") != path_id
+                or type(source_path.get("is_closed")) is not bool or type(source_count) is not int
+                or not 1 <= source_count <= 1024 or not isinstance(source_segments, list)
+                or len(source_segments) != source_count or source_count != len(source_descriptors)
+                or any(not isinstance(segment, dict) for segment in source_segments)):
+            raise ValueError("Sweep resolved path identity/count/closure schema disagrees")
+        segment_descriptors = [segment.get("descriptor_object_id") for segment in source_segments]
+        segment_curves = [segment.get("curve_object_id") for segment in source_segments]
+        if (any(type(identity) is not int for identity in segment_descriptors+segment_curves)
+                or len(set(segment_descriptors)) != source_count or len(set(segment_curves)) != source_count
+                or segment_descriptors != source_descriptors):
+            raise ValueError("Sweep resolved path descriptor/curve identities differ or duplicate")
     is_rail, is_surface = mode in (3, 4), mode == 5
     if ((is_rail and (rail_id is None or surface_id is not None))
             or (is_surface and (surface_id is None or rail_id is not None))
