@@ -28,7 +28,7 @@ DISCOVERY = {
     'initial_generic_component_counts': {'0':1101, '1':8108, '2':830, '3':1954},
 }
 SOURCES = ('audit_asm_attribute_frontier.py','asm_records.py','decode_asm_recipe_tags.py',
-           'decode_counted_asm_names.py','decode_fdm_face_attributes.py','decode_sketch_attributes.py','fusion_archive.py')
+           'decode_stitch_hint_attributes.py','decode_counted_asm_names.py','decode_fdm_face_attributes.py','decode_sketch_attributes.py','fusion_archive.py')
 
 
 def _hash(raw):

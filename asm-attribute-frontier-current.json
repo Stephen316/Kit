@@ -1,11 +1,12 @@
 {
   "scope": "Saved-corpus initial ASM custom attribute payload/owner-chain framing and exact counted generic naming audit. Raw trailing attribute counts are inventories only; no complete-format coverage percentage.",
   "provenance": {
-    "repository_HEAD_at_start": "cd4cad14f89c9a5cea0bffa4ad145ba21217fe93",
+    "repository_HEAD_at_start": "593bc5e9da498a40c04c95993b8d28aa70da995e",
     "reader_source_sha256": {
-      "audit_asm_attribute_frontier.py": "28ec43d69d6c6b535c79d370a6c62d085d8324f75f060ac581af60873d60aa8d",
+      "audit_asm_attribute_frontier.py": "03ff46016d25c8dab20e6bc357cfe2e31268e1e8f14592c53724760705b1893b",
       "asm_records.py": "9f25caf199136979418a90e185401a0cec073aeb1eb50f09383c57de3a775dab",
-      "decode_asm_recipe_tags.py": "78a0a5e4f9003c03f03825760e6531a5dc9e1e8af2a353bd940f630c2bfb45f1",
+      "decode_asm_recipe_tags.py": "6b5570617fd92d99c44722d502198b18eaf81b0040d59ea73d6db1999638dde0",
+      "decode_stitch_hint_attributes.py": "f4d13b8a7278ee872e99c73c6ff7ba8adcf913d6c4ca52c7a408aa021300d22d",
       "decode_counted_asm_names.py": "55455c4d215e95c88929e662dc98798fbc00866aa0b60f2dbd4a0f2ee4a79ada",
       "decode_fdm_face_attributes.py": "e6d25333dcbf8c6875116f068fe6858ce87d7a83fa312ca041ea872f4d7ddd96",
       "decode_sketch_attributes.py": "5f3744d2c5711155a4593b6de086e996dd96f7738455ffd773537a17cd7858e8",
@@ -3248,8 +3249,7 @@
   "blob_count": 1091,
   "initial_custom_attribute_count": 33616,
   "initial_attribute_classification_counts": {
-    "OwnedGenericName": 12664,
-    "Unresolved": 10,
+    "OwnedGenericName": 12674,
     "ValidatedOtherDefinition": 20942
   },
   "custom_definition_counts_by_section": {
@@ -3370,8 +3370,7 @@
       "ValidatedOtherDefinition": 1156
     },
     "generic_tag_attrib_def": {
-      "OwnedGenericName": 12664,
-      "Unresolved": 10,
+      "OwnedGenericName": 12674,
       "ValidatedOtherDefinition": 90
     },
     "sketch_attrib_def": {
@@ -3428,7 +3427,7 @@
   },
   "owned_initial_generic_names": {
     "term_count_distribution": {
-      "1": 12219,
+      "1": 12229,
       "2": 371,
       "3": 55,
       "4": 13,
@@ -3438,7 +3437,7 @@
     },
     "component_count_distribution_per_term": {
       "0": 1205,
-      "1": 8997,
+      "1": 9007,
       "2": 931,
       "3": 2080
     }
@@ -3711,7 +3710,7 @@
       "component_counts_in_stored_order": [
         1
       ],
-      "count": 1408,
+      "count": 1418,
       "example": {
         "file": "analytic-86a12b291d0a/analytic.f3d",
         "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46dcc685-cf13-4602-b6c8-f57b2a7da8ed.smb",
@@ -3765,27 +3764,6 @@
         "owner_kind": "edge",
         "stored_owner_geometry_entity_ordinal": 123,
         "owner_inspection_record_index": 123
-      }
-    },
-    {
-      "definition_name": "generic_tag_attrib_def",
-      "owner_kind": "edge",
-      "classification": "Unresolved",
-      "term_count": 1,
-      "component_counts_in_stored_order": [
-        1
-      ],
-      "count": 10,
-      "example": {
-        "file": "partinglinedrafts-c4d07c76fcd5/fixed_seven.f3d",
-        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.be93b8b6-58d0-457f-a509-414143e218db.smb",
-        "attribute_record_index": 81,
-        "attribute_geometry_entity_ordinal": 81,
-        "attribute_byte_offset": 7589,
-        "definition_name": "generic_tag_attrib_def",
-        "owner_kind": "edge",
-        "stored_owner_geometry_entity_ordinal": 33,
-        "owner_inspection_record_index": 33
       }
     },
     {
@@ -4116,187 +4094,13 @@
       }
     }
   ],
-  "unresolved_diagnostic_count": 10,
-  "frontier_summary": [
-    {
-      "definition_name": "generic_tag_attrib_def",
-      "owner_kind": "edge",
-      "reason": "Unsupported no-merge EDGE attribute header",
-      "count": 6,
-      "representative": {
-        "file": "partinglinedrafts-c4d07c76fcd5/fixed_seven.f3d",
-        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.be93b8b6-58d0-457f-a509-414143e218db.smb",
-        "attribute_record_index": 81,
-        "attribute_geometry_entity_ordinal": 81,
-        "attribute_byte_offset": 7589,
-        "definition_name": "generic_tag_attrib_def",
-        "owner_kind": "edge",
-        "stored_owner_geometry_entity_ordinal": 33,
-        "owner_inspection_record_index": 33,
-        "reason": "Unsupported no-merge EDGE attribute header"
-      }
-    },
-    {
-      "definition_name": "generic_tag_attrib_def",
-      "owner_kind": "edge",
-      "reason": "Unobserved generic-tag attribute chain class/header",
-      "count": 4,
-      "representative": {
-        "file": "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
-        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0fe6384e-1436-4bb3-a550-ff30240d0188.smb",
-        "attribute_record_index": 48,
-        "attribute_geometry_entity_ordinal": 48,
-        "attribute_byte_offset": 19293,
-        "definition_name": "generic_tag_attrib_def",
-        "owner_kind": "edge",
-        "stored_owner_geometry_entity_ordinal": 36,
-        "owner_inspection_record_index": 36,
-        "reason": "Unobserved generic-tag attribute chain class/header"
-      }
-    }
-  ],
-  "blobs_with_initial_attribute_diagnostics": 7,
+  "unresolved_diagnostic_count": 0,
+  "frontier_summary": [],
+  "blobs_with_initial_attribute_diagnostics": 0,
   "read_or_framing_failure_count": 0,
   "failure_stage_counts": {},
   "namespace_scope": "Owner pointers are resolved through initial-plus-trailing geometry-entity ordinals, excluding section markers/history records. Attribute and owner inspection indices are separately retained; equality in initial geometry does not merge the namespaces.",
-  "unresolved_groups": [
-    {
-      "definition_name": "generic_tag_attrib_def",
-      "owner_kind": "edge",
-      "reason": "Unsupported no-merge EDGE attribute header",
-      "count": 6,
-      "entries": [
-        {
-          "file": "partinglinedrafts-c4d07c76fcd5/fixed_seven.f3d",
-          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.be93b8b6-58d0-457f-a509-414143e218db.smb",
-          "attribute_record_index": 81,
-          "attribute_geometry_entity_ordinal": 81,
-          "attribute_byte_offset": 7589,
-          "definition_name": "generic_tag_attrib_def",
-          "owner_kind": "edge",
-          "stored_owner_geometry_entity_ordinal": 33,
-          "owner_inspection_record_index": 33,
-          "reason": "Unsupported no-merge EDGE attribute header"
-        },
-        {
-          "file": "partinglinedrafts-c4d07c76fcd5/fixed_seven.f3d",
-          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.be93b8b6-58d0-457f-a509-414143e218db.smb",
-          "attribute_record_index": 89,
-          "attribute_geometry_entity_ordinal": 89,
-          "attribute_byte_offset": 8329,
-          "definition_name": "generic_tag_attrib_def",
-          "owner_kind": "edge",
-          "stored_owner_geometry_entity_ordinal": 37,
-          "owner_inspection_record_index": 37,
-          "reason": "Unsupported no-merge EDGE attribute header"
-        },
-        {
-          "file": "partinglinedrafts-c4d07c76fcd5/fixed_three.f3d",
-          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.12c2b2ac-10ee-4831-8b88-2802fd480325.smb",
-          "attribute_record_index": 81,
-          "attribute_geometry_entity_ordinal": 81,
-          "attribute_byte_offset": 7589,
-          "definition_name": "generic_tag_attrib_def",
-          "owner_kind": "edge",
-          "stored_owner_geometry_entity_ordinal": 33,
-          "owner_inspection_record_index": 33,
-          "reason": "Unsupported no-merge EDGE attribute header"
-        },
-        {
-          "file": "partinglinedrafts-c4d07c76fcd5/fixed_three.f3d",
-          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.12c2b2ac-10ee-4831-8b88-2802fd480325.smb",
-          "attribute_record_index": 89,
-          "attribute_geometry_entity_ordinal": 89,
-          "attribute_byte_offset": 8329,
-          "definition_name": "generic_tag_attrib_def",
-          "owner_kind": "edge",
-          "stored_owner_geometry_entity_ordinal": 37,
-          "owner_inspection_record_index": 37,
-          "reason": "Unsupported no-merge EDGE attribute header"
-        },
-        {
-          "file": "partinglinedrafts-c4d07c76fcd5/moving_both_three.f3d",
-          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7f38aabb-fb89-4762-b07f-61d43b9e3a19.smb",
-          "attribute_record_index": 81,
-          "attribute_geometry_entity_ordinal": 81,
-          "attribute_byte_offset": 7589,
-          "definition_name": "generic_tag_attrib_def",
-          "owner_kind": "edge",
-          "stored_owner_geometry_entity_ordinal": 33,
-          "owner_inspection_record_index": 33,
-          "reason": "Unsupported no-merge EDGE attribute header"
-        },
-        {
-          "file": "partinglinedrafts-c4d07c76fcd5/moving_both_three.f3d",
-          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7f38aabb-fb89-4762-b07f-61d43b9e3a19.smb",
-          "attribute_record_index": 89,
-          "attribute_geometry_entity_ordinal": 89,
-          "attribute_byte_offset": 8329,
-          "definition_name": "generic_tag_attrib_def",
-          "owner_kind": "edge",
-          "stored_owner_geometry_entity_ordinal": 37,
-          "owner_inspection_record_index": 37,
-          "reason": "Unsupported no-merge EDGE attribute header"
-        }
-      ]
-    },
-    {
-      "definition_name": "generic_tag_attrib_def",
-      "owner_kind": "edge",
-      "reason": "Unobserved generic-tag attribute chain class/header",
-      "count": 4,
-      "entries": [
-        {
-          "file": "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
-          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0fe6384e-1436-4bb3-a550-ff30240d0188.smb",
-          "attribute_record_index": 48,
-          "attribute_geometry_entity_ordinal": 48,
-          "attribute_byte_offset": 19293,
-          "definition_name": "generic_tag_attrib_def",
-          "owner_kind": "edge",
-          "stored_owner_geometry_entity_ordinal": 36,
-          "owner_inspection_record_index": 36,
-          "reason": "Unobserved generic-tag attribute chain class/header"
-        },
-        {
-          "file": "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
-          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4530a523-0a85-4518-af28-62157a3e6e56.smbh",
-          "attribute_record_index": 64,
-          "attribute_geometry_entity_ordinal": 64,
-          "attribute_byte_offset": 21412,
-          "definition_name": "generic_tag_attrib_def",
-          "owner_kind": "edge",
-          "stored_owner_geometry_entity_ordinal": 47,
-          "owner_inspection_record_index": 47,
-          "reason": "Unobserved generic-tag attribute chain class/header"
-        },
-        {
-          "file": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
-          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.470ae810-5481-4a60-a494-86e548d1dee4.smb",
-          "attribute_record_index": 48,
-          "attribute_geometry_entity_ordinal": 48,
-          "attribute_byte_offset": 19293,
-          "definition_name": "generic_tag_attrib_def",
-          "owner_kind": "edge",
-          "stored_owner_geometry_entity_ordinal": 36,
-          "owner_inspection_record_index": 36,
-          "reason": "Unobserved generic-tag attribute chain class/header"
-        },
-        {
-          "file": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
-          "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e2af32e1-7782-4a5e-a52b-91539659308f.smbh",
-          "attribute_record_index": 64,
-          "attribute_geometry_entity_ordinal": 64,
-          "attribute_byte_offset": 21412,
-          "definition_name": "generic_tag_attrib_def",
-          "owner_kind": "edge",
-          "stored_owner_geometry_entity_ordinal": 47,
-          "owner_inspection_record_index": 47,
-          "reason": "Unobserved generic-tag attribute chain class/header"
-        }
-      ]
-    }
-  ],
+  "unresolved_groups": [],
   "inventory_classification_errors": [],
   "read_or_framing_failures": [],
   "blobs": [
@@ -18927,8 +18731,7 @@
         }
       },
       "initial_attribute_classification_counts": {
-        "OwnedGenericName": 9,
-        "Unresolved": 2,
+        "OwnedGenericName": 11,
         "ValidatedOtherDefinition": 26
       },
       "initial_generic_term_counts": {
@@ -18938,7 +18741,7 @@
       "initial_generic_component_counts": {
         "1": 13
       },
-      "unresolved_count": 2,
+      "unresolved_count": 0,
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     },
     {
@@ -18954,8 +18757,7 @@
         }
       },
       "initial_attribute_classification_counts": {
-        "OwnedGenericName": 9,
-        "Unresolved": 2,
+        "OwnedGenericName": 11,
         "ValidatedOtherDefinition": 26
       },
       "initial_generic_term_counts": {
@@ -18965,7 +18767,7 @@
       "initial_generic_component_counts": {
         "1": 13
       },
-      "unresolved_count": 2,
+      "unresolved_count": 0,
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     },
     {
@@ -19049,8 +18851,7 @@
         }
       },
       "initial_attribute_classification_counts": {
-        "OwnedGenericName": 9,
-        "Unresolved": 2,
+        "OwnedGenericName": 11,
         "ValidatedOtherDefinition": 26
       },
       "initial_generic_term_counts": {
@@ -19060,7 +18861,7 @@
       "initial_generic_component_counts": {
         "1": 13
       },
-      "unresolved_count": 2,
+      "unresolved_count": 0,
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     },
     {
@@ -19076,8 +18877,7 @@
         }
       },
       "initial_attribute_classification_counts": {
-        "OwnedGenericName": 4,
-        "Unresolved": 1,
+        "OwnedGenericName": 5,
         "ValidatedOtherDefinition": 11
       },
       "initial_generic_term_counts": {
@@ -19086,7 +18886,7 @@
       "initial_generic_component_counts": {
         "1": 5
       },
-      "unresolved_count": 1,
+      "unresolved_count": 0,
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     },
     {
@@ -19107,8 +18907,7 @@
         }
       },
       "initial_attribute_classification_counts": {
-        "OwnedGenericName": 6,
-        "Unresolved": 1,
+        "OwnedGenericName": 7,
         "ValidatedOtherDefinition": 12
       },
       "initial_generic_term_counts": {
@@ -19118,7 +18917,7 @@
         "0": 2,
         "1": 5
       },
-      "unresolved_count": 1,
+      "unresolved_count": 0,
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     },
     {
@@ -19192,8 +18991,7 @@
         }
       },
       "initial_attribute_classification_counts": {
-        "OwnedGenericName": 4,
-        "Unresolved": 1,
+        "OwnedGenericName": 5,
         "ValidatedOtherDefinition": 11
       },
       "initial_generic_term_counts": {
@@ -19202,7 +19000,7 @@
       "initial_generic_component_counts": {
         "1": 5
       },
-      "unresolved_count": 1,
+      "unresolved_count": 0,
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     },
     {
@@ -19223,8 +19021,7 @@
         }
       },
       "initial_attribute_classification_counts": {
-        "OwnedGenericName": 6,
-        "Unresolved": 1,
+        "OwnedGenericName": 7,
         "ValidatedOtherDefinition": 12
       },
       "initial_generic_term_counts": {
@@ -19234,7 +19031,7 @@
         "0": 2,
         "1": 5
       },
-      "unresolved_count": 1,
+      "unresolved_count": 0,
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     },
     {
@@ -34150,7 +33947,7 @@
       "initial_generic_term_count_scope": "All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes."
     }
   ],
-  "elapsed_seconds": 6.434,
+  "elapsed_seconds": 6.619,
   "limits": [
     "A validated generic naming payload/owner chain is not a persistent topology ID or qualified selected source.",
     "FPM/FDM literals and opaque fields retain their existing reader scope; raw trailing attributes are not relabeled validated initial attributes.",

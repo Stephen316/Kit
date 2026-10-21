@@ -120,7 +120,28 @@ def decode_asm_generic_tags(blob, parsed=None, *, allow_fpm_tracking=False):
 
     def attribute_header(record, owner):
         tokens = record['tokens']
+        if record['name'] == 'stitch_hint-sys-attrib':
+            from decode_stitch_hint_attributes import decode_stitch_hint_attribute
+            hint = decode_stitch_hint_attribute(record, records)
+            if hint['owner_record_index'] != owner:
+                raise ValueError('Stitch-hint EDGE owner disagrees with traversed attribute chain')
+            return hint['next_attribute_record_index'], hint['previous_attribute_record_index']
         if record['name'] == 'no_merge_attribute-st-attrib':
+            if len(tokens) == 5 and pointer(tokens[2], True) is not None:
+                following = pointer(tokens[2])
+                sibling = records[following]
+                st = sibling['tokens']
+                if (records[owner]['name'] != 'edge' or pointer(tokens[0], True) is not None
+                        or _integer(tokens[1], -1, -1) != -1
+                        or pointer(tokens[3], True) is not None or pointer(tokens[4]) != owner
+                        or pointer(records[owner]['tokens'][0]) != record['index']
+                        or sibling['name'] != 'ATTRIB_CUSTOM-attrib' or len(st) < 6
+                        or st[5]['kind'] != 'string' or st[5]['value'] != DEFINITION
+                        or pointer(st[0], True) is not None or _integer(st[1], -1, -1) != -1
+                        or pointer(st[2], True) is not None or pointer(st[3]) != record['index']
+                        or pointer(st[4]) != owner):
+                    raise ValueError('Unsupported no-merge EDGE head/generic-tail header reciprocity')
+                return following, None
             if (len(tokens) != 5 or records[owner]['name'] != 'edge'
                     or pointer(tokens[0], True) is not None
                     or _integer(tokens[1], -1, -1) != -1
