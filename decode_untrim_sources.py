@@ -234,14 +234,21 @@ def decode_untrim_sources(data, records, features, member, members,
             face.update(naming_correspondence=naming,literal_face_name_version=version,
                 stored_initial_operand_cache=_face_cache(topology,body_id,face_id),
                 qualification='Literal paired naming-version to initial-cache face correspondence' if version else 'Exact initial-cache face naming correspondence')
-            # The same strict local materializer may qualify a literal alternate
-            # FACE cache for Internal as well as Manual. Eligibility follows the
-            # serialized journal proof, never a filename or numeric BODY ID.
+            # Dispatch the strict alternate FACE cache wrapper by canonical
+            # journal family. Each wrapper independently qualifies its literal
+            # view, never choosing by filename, mode or numeric BODY identity.
             from materialize_untrim_cache import materialize_untrim_cache
             alternate = None
             try:
-                candidate_view = materialize_untrim_cache(blob,initial_body_record_index=body_id,
-                    stored_body_identifier=binding['stored_handle'],parsed=parsed)
+                from decode_asm_history import decode_asm_history
+                history = decode_asm_history(blob,parsed=parsed)
+                if len(history['journal_states']) == 6:
+                    from materialize_untrim_six_state_cache import materialize_untrim_six_state_cache
+                    candidate_view = materialize_untrim_six_state_cache(blob,initial_body_record_index=body_id,
+                        stored_body_identifier=binding['stored_handle'],parsed=parsed,history=history)
+                else:
+                    candidate_view = materialize_untrim_cache(blob,initial_body_record_index=body_id,
+                        stored_body_identifier=binding['stored_handle'],parsed=parsed)
             except ValueError as error:
                 face['alternate_cache_status'] = dict(status='UnsupportedAlternateCache',reason=str(error),
                     scope='Initial face/name provenance remains qualified; no alternate state inferred')
