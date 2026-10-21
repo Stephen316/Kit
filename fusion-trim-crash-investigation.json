@@ -1,0 +1,124 @@
+{
+  "scope": "Offline investigation of two native Fusion exits during owned SurfaceTrim capture; no additional live reproduction.",
+  "created_utc": "2026-10-21T15:48:23.915348+00:00",
+  "user_report": "Fusion has crashed multiple times now",
+  "saved_capture_observations": [
+    {
+      "capture_folder": "surfacetrimtools-c507461585b5",
+      "case": "sheet_face",
+      "dispatch_process_id": 903,
+      "observed_process_exit": "Root ps -p check returned no process after the successful close journal; no forced termination or restart was performed.",
+      "batch_status": "PartialNoTerminalMarker",
+      "terminal_status": null,
+      "complete_marker_present": false,
+      "saved_healthy_export": true,
+      "close_owned_document_returned": true,
+      "progress": {
+        "time_utc": "2026-10-21T15:43:05.857306+00:00",
+        "phase": "owned_document_close_returned",
+        "case": "sheet_face",
+        "sample_count": 1,
+        "error_count": 0,
+        "save": false,
+        "returned": true
+      },
+      "source_evidence_sha256": {
+        "surfacetrimtools-c507461585b5/ground_truth.json": "8c3c07fcaa42976eda83002bd4190d52f1bf3f224726233614950b8255bc75d3",
+        "surfacetrimtools-c507461585b5/progress.json": "39690a3680947b28e931a0ea5ff51e024b4a2aad3a12c63723cb1790f8f3e976",
+        "surfacetrimtools-c507461585b5/journal.jsonl": "31d46bd8e8151668cdfe9a32b5f0e0b6a801ea018d06be10db2ecb503270249e",
+        "surfacetrimtools-c507461585b5/executed-generator-source.txt": "6c1756d6b418c6ee3f949f17ce0ec8bdca8909f1376e8bc13b257ee437813d32"
+      },
+      "actual_add_completed": "add returned feature",
+      "uncancelled_returned_input_established": false
+    },
+    {
+      "capture_folder": "surfacetrimtools-ce3c7e1c703e",
+      "case": "sheet_body",
+      "dispatch_process_id": 5025,
+      "observed_process_exit": "Root ps -p check returned no process after the successful close journal; no forced termination or restart was performed.",
+      "batch_status": "PartialNoTerminalMarker",
+      "terminal_status": null,
+      "complete_marker_present": false,
+      "saved_healthy_export": true,
+      "close_owned_document_returned": true,
+      "progress": {
+        "time_utc": "2026-10-21T15:45:53.600968+00:00",
+        "phase": "owned_document_close_returned",
+        "case": "sheet_body",
+        "sample_count": 1,
+        "error_count": 0,
+        "save": false,
+        "returned": true
+      },
+      "source_evidence_sha256": {
+        "surfacetrimtools-ce3c7e1c703e/ground_truth.json": "679948677652f24690f370d094421ce691c1426913a123e300bd3f7a28607b38",
+        "surfacetrimtools-ce3c7e1c703e/progress.json": "b0668abbf76ed364cedc67798c7b2398d2a5f9cc8446b3a44b8efff1516dbc67",
+        "surfacetrimtools-ce3c7e1c703e/journal.jsonl": "93d99012abb82b988fdd5d7ec75af8c43f1ac16e865ded82ff1ec6169e50a09c",
+        "surfacetrimtools-ce3c7e1c703e/executed-generator-source.txt": "6a77d71b4b8045e883866a1521949b61735f34fa5b103ae4e107598d1381d5d9"
+      },
+      "actual_add_completed": "add returned feature",
+      "uncancelled_returned_input_established": false
+    }
+  ],
+  "local_native_crash_evidence": [
+    {
+      "local_crash_archive": "/Users/stephenh/Library/Application Support/Autodesk/CER/e0f2534590c738a95adbb4988b8e58c137a3a627/1792597386795/crashLog.txt.dmp.zip",
+      "archive_sha256": "fdb0a73d423f177dec96840198ca324921118125783a18fa63aeed0cd43d005f",
+      "crash_text_sha256": "41bd04011fba163081e9b26ab7e1a971191a8ab02bcf5a9e8dd70f03f6b71d0e",
+      "archive_modified_utc": "2026-10-21T15:43:08.824425+00:00",
+      "main_thread_header": "Thread 3533881:",
+      "relevant_main_thread_frames": [
+        "  7 ...em/libsystem_platform.dylib 0x00000183c31740 __sigtramp + 52",
+        "  8 ...Neutron/NsDataModel10.dylib 0x00000107fe7dbc __ZNK2Ns5Asset14transactionMgrEv + 0",
+        "  9 ...Neutron/NsDataModel10.dylib 0x0000010827fd48 __ZN2Ns15TransactionUtil17commitTransactionEPNS_5AssetE + 12",
+        " 10 ...Neutron/NsDataModel10.dylib 0x000001082c06d4 __ZN2Ns26TransactedRequestProcessorD2Ev + 72",
+        " 11 ...Fusion/FusionXLayer10.dylib 0x000003a3803b34 __ZN2Xl6Fusion16RequestProcessorD2Ev + 100",
+        " 12 ...Fusion/FusionXLayer10.dylib 0x000003a3803b54 __ZN2Xl6Fusion16RequestProcessorD0Ev + 8",
+        " 13 ...Fusion/FusionXLayer10.dylib 0x000003a3806198 __ZN2Xl6Fusion14MultiStepInputD2Ev + 44",
+        " 14 ...Fusion/FusionXLayer10.dylib 0x000003a34cf900 __ZN2Xl6Fusion16TrimFeatureInputD2Ev + 164",
+        " 15 ...Fusion/FusionXLayer10.dylib 0x000003a34cf990 __ZThn56_N2Xl6Fusion16TrimFeatureInputD0Ev + 12",
+        " 16 ...Fusion/FusionXLayer10.dylib 0x000003a34cda58 __ZN2Xl6Fusion11TrimFeatureD2Ev + 64",
+        " 17 ...Fusion/FusionXLayer10.dylib 0x000003a34cdac8 __ZThn32_N2Xl6Fusion11TrimFeatureD0Ev + 12",
+        " 18 ...on/packages/adsk/_fusion.so 0x00000422a11df8 __ZL24_wrap_delete_TrimFeatureP7_objectS0_ + 80",
+        " 19 ...on/packages/adsk/_fusion.so 0x00000422c7b348 __ZL20SwigPyObject_deallocP7_object + 352",
+        " 20 ...mework/Versions/3.14/Python 0x0000010b263f4c _subtype_dealloc + 2636",
+        " 21 ...mework/Versions/3.14/Python 0x0000010b391f64 __PyEval_EvalFrameDefault + 424664"
+      ],
+      "unrelated_thread_stacks_and_system_profile_omitted": true
+    },
+    {
+      "local_crash_archive": "/Users/stephenh/Library/Application Support/Autodesk/CER/e0f2534590c738a95adbb4988b8e58c137a3a627/1792597553858/crashLog.txt.dmp.zip",
+      "archive_sha256": "72d097d5f16a563eb7767e184fba371dbac8153b10af9aa470b7e525c5f60cdc",
+      "crash_text_sha256": "3f67a9d582709323187a3043f30c0fcf4181724810861f2d219a03871d5fbed7",
+      "archive_modified_utc": "2026-10-21T15:45:56.642221+00:00",
+      "main_thread_header": "Thread 4738504:",
+      "relevant_main_thread_frames": [
+        "  7 ...em/libsystem_platform.dylib 0x00000183c31740 __sigtramp + 52",
+        "  8 ...Neutron/NsDataModel10.dylib 0x00000103f37dbc __ZNK2Ns5Asset14transactionMgrEv + 0",
+        "  9 ...Neutron/NsDataModel10.dylib 0x000001041cfd48 __ZN2Ns15TransactionUtil17commitTransactionEPNS_5AssetE + 12",
+        " 10 ...Neutron/NsDataModel10.dylib 0x000001042106d4 __ZN2Ns26TransactedRequestProcessorD2Ev + 72",
+        " 11 ...Fusion/FusionXLayer10.dylib 0x000003acbafb34 __ZN2Xl6Fusion16RequestProcessorD2Ev + 100",
+        " 12 ...Fusion/FusionXLayer10.dylib 0x000003acbafb54 __ZN2Xl6Fusion16RequestProcessorD0Ev + 8",
+        " 13 ...Fusion/FusionXLayer10.dylib 0x000003acbb2198 __ZN2Xl6Fusion14MultiStepInputD2Ev + 44",
+        " 14 ...Fusion/FusionXLayer10.dylib 0x000003ac87b900 __ZN2Xl6Fusion16TrimFeatureInputD2Ev + 164",
+        " 15 ...Fusion/FusionXLayer10.dylib 0x000003ac87b990 __ZThn56_N2Xl6Fusion16TrimFeatureInputD0Ev + 12",
+        " 16 ...Fusion/FusionXLayer10.dylib 0x000003ac879a58 __ZN2Xl6Fusion11TrimFeatureD2Ev + 64",
+        " 17 ...Fusion/FusionXLayer10.dylib 0x000003ac879ac8 __ZThn32_N2Xl6Fusion11TrimFeatureD0Ev + 12",
+        " 18 ...on/packages/adsk/_fusion.so 0x0000042003ddf8 __ZL24_wrap_delete_TrimFeatureP7_objectS0_ + 80",
+        " 19 ...on/packages/adsk/_fusion.so 0x000004202a7348 __ZL20SwigPyObject_deallocP7_object + 352",
+        " 20 ...mework/Versions/3.14/Python 0x000001071b3f4c _subtype_dealloc + 2636",
+        " 21 ...mework/Versions/3.14/Python 0x000001072e1f64 __PyEval_EvalFrameDefault + 424664"
+      ],
+      "unrelated_thread_stacks_and_system_profile_omitted": true
+    }
+  ],
+  "finding": "Recent native crash stacks show Python/SWIG deleting a TrimFeature wrapper, its native TrimFeatureInput/MultiStepInput destructors reaching a transaction commit and Asset::transactionMgr after a signal. Both capture journals end after a successful document close.",
+  "interpretation": "The retained TrimFeature wrapper is released after its document closes at the next loop iteration. The native cleanup stack and journal boundary support this as the leading lifecycle failure. They do not establish a complete Autodesk root cause or a verified repair.",
+  "immediate_action": "Persistent dispatcher hold prevents every live study capture before loading CoreGraphics, preparing UI or posting events. Continue only from saved files.",
+  "future_candidate": "Release all TrimFeature, TrimFeatureInput and temporary cell wrappers while the owned document is still alive; isolate one case per invocation and journal document creation/cleanup boundaries before any explicitly authorized live validation.",
+  "unverified": [
+    "No capture-lifecycle repair has been run or verified.",
+    "The uncaptured SketchLine tool remains unsupported.",
+    "No crash report or file has been submitted to Autodesk by this investigation."
+  ]
+}

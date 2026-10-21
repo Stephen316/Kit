@@ -47,6 +47,13 @@ def dispatch(path):
     path = Path(path).resolve(strict=True)
     if path.parent != Path(__file__).resolve().parent or not path.name.startswith("Generate") or path.suffix != ".py":
         raise ValueError("Only an existing generator in this study directory can be dispatched")
+    hold = Path(__file__).with_name('fusion-live-capture-hold.json')
+    if hold.exists():
+        state = json.loads(hold.read_text())
+        if state.get('active', True):
+            raise RuntimeError('Live Fusion captures are suspended after repeated native trim-cleanup crashes. '
+                               'Continue offline; review fusion-trim-crash-investigation.json and obtain '
+                               'explicit user authorization before clearing fusion-live-capture-hold.json.')
     if any(character in str(path) for character in ('"', "\\", "\r", "\n")):
         raise ValueError("Unsupported generator path quoting")
     cg = ctypes.CDLL("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics")

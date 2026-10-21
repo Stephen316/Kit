@@ -1,0 +1,7 @@
+{
+  "active": true,
+  "reason": "Two native TrimFeature cleanup crashes during live captures; user reports repeated Fusion crashes.",
+  "investigation": "fusion-trim-crash-investigation.json",
+  "scope": "All study live API generators and automatic resume; offline readers and validators continue.",
+  "resume_requirement": "Investigate capture object lifetime and obtain explicit user authorization before clearing this hold. Do not automatically clear it on subsequent goal turns."
+}

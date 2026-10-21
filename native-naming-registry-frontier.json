@@ -2,7 +2,7 @@
   "scope": "Pure read-only census of every saved one-level capture archive and every native Design asset member; shared registry parser plus exact typed-body replay, no decode_basics/full model pipeline",
   "provenance": {
     "root": "/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy",
-    "manifest_sha256": "89814f2ba279a26e6b3097170ecb8568472ba11814437c7ca02a4f96c12d574d",
+    "manifest_sha256": "7690d0522b6b9bf7deecb30581db8ee9dcf57dd5101995891c521ab41e9bb1b6",
     "source_sha256": {
       "audit_native_naming_registry.py": "963eec24d15b680b12bb61bb6254e61a1d58aa34ccf18bd4eb8804f17b1366d5",
       "decode_native_naming_registry.py": "44e514a4ea3ccd916ab707ffad8cc4e7700dc9af08468ea7cf3b317cba628450",
@@ -2996,6 +2996,16 @@
       "file": "surfacetools-856ca50cf4c7/unstitch_face.f3d",
       "sha256": "6f21d95b96a1a47c65fe33062a9892189ed5f3605b09091b25a32c033f8bb3f4",
       "byte_count": 66321
+    },
+    {
+      "file": "surfacetrimtools-c507461585b5/sheet_face.f3d",
+      "sha256": "5b0b6a741e6e968768fc253986e3eef2b4fec268521a628a785353a852af3cb4",
+      "byte_count": 62242
+    },
+    {
+      "file": "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d",
+      "sha256": "013412f19df98f93a03b6a21020df68014c32babfe568be12fc4daaeeb09b103",
+      "byte_count": 61625
     },
     {
       "file": "sweepguides-9887de71bf9e/guide_surface.f3d",
@@ -93981,6 +93991,348 @@
       ]
     },
     {
+      "file": "surfacetrimtools-c507461585b5/sheet_face.f3d",
+      "sha256": "5b0b6a741e6e968768fc253986e3eef2b4fec268521a628a785353a852af3cb4",
+      "Design_assets": [
+        {
+          "asset_scope": "FusionAssetName[Active]",
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "source_Design_sha256": "30d31d853ae069014e96328ff07bcb2b595836a03fafc625aee0e80524db4839",
+          "indexed_record_count": 450,
+          "typed_registry_record_count": 1,
+          "registries": [
+            {
+              "object_id": 31,
+              "registry_container_object_id": 26,
+              "payload_offset": 5642,
+              "payload_byte_count": 205,
+              "payload_sha256": "2a233710c63ec1bc9be1e27214c8b91a0235a1a95c8a4f756d0363a0e6c68b7e",
+              "exact_payload_replay_matches": true,
+              "registry_is_empty": false,
+              "owner_row_count": 5,
+              "key_row_count": 5,
+              "audit_table_layout": "ReciprocalPopulated",
+              "reciprocity_evidence": "Exact equality of both stored owner/key association sets",
+              "owner_to_keys": [
+                {
+                  "native_owner_object_id": 331,
+                  "native_owner_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+                  "native_owner_record_offset": 38847,
+                  "stored_owner_field_offset": 5648,
+                  "naming_keys": [
+                    303
+                  ],
+                  "stored_key_field_offsets": [
+                    5660
+                  ]
+                },
+                {
+                  "native_owner_object_id": 295,
+                  "native_owner_class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                  "native_owner_record_offset": 34872,
+                  "stored_owner_field_offset": 5668,
+                  "naming_keys": [
+                    302
+                  ],
+                  "stored_key_field_offsets": [
+                    5680
+                  ]
+                },
+                {
+                  "native_owner_object_id": 898,
+                  "native_owner_class_guid": "FF1741AE-E78B-4A5F-8418-751899E12F66",
+                  "native_owner_record_offset": 43357,
+                  "stored_owner_field_offset": 5688,
+                  "naming_keys": [
+                    304
+                  ],
+                  "stored_key_field_offsets": [
+                    5700
+                  ]
+                },
+                {
+                  "native_owner_object_id": 243,
+                  "native_owner_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+                  "native_owner_record_offset": 29360,
+                  "stored_owner_field_offset": 5708,
+                  "naming_keys": [
+                    301
+                  ],
+                  "stored_key_field_offsets": [
+                    5720
+                  ]
+                },
+                {
+                  "native_owner_object_id": 207,
+                  "native_owner_class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                  "native_owner_record_offset": 25513,
+                  "stored_owner_field_offset": 5728,
+                  "naming_keys": [
+                    300
+                  ],
+                  "stored_key_field_offsets": [
+                    5740
+                  ]
+                }
+              ],
+              "key_to_owner": [
+                {
+                  "naming_key": 300,
+                  "native_owner_object_id": 207,
+                  "native_owner_class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                  "stored_key_field_offset": 5752,
+                  "stored_owner_field_offset": 5760
+                },
+                {
+                  "naming_key": 301,
+                  "native_owner_object_id": 243,
+                  "native_owner_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+                  "stored_key_field_offset": 5768,
+                  "stored_owner_field_offset": 5776
+                },
+                {
+                  "naming_key": 302,
+                  "native_owner_object_id": 295,
+                  "native_owner_class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                  "stored_key_field_offset": 5784,
+                  "stored_owner_field_offset": 5792
+                },
+                {
+                  "naming_key": 303,
+                  "native_owner_object_id": 331,
+                  "native_owner_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+                  "stored_key_field_offset": 5800,
+                  "stored_owner_field_offset": 5808
+                },
+                {
+                  "naming_key": 304,
+                  "native_owner_object_id": 898,
+                  "native_owner_class_guid": "FF1741AE-E78B-4A5F-8418-751899E12F66",
+                  "stored_key_field_offset": 5816,
+                  "stored_owner_field_offset": 5824
+                }
+              ],
+              "raw_forward_owner_field_evidence": [
+                {
+                  "table": "owner_to_keys",
+                  "absolute_offset": 5648,
+                  "encoding": "raw_u64_schema_field",
+                  "native_owner_object_id": 331
+                },
+                {
+                  "table": "owner_to_keys",
+                  "absolute_offset": 5668,
+                  "encoding": "raw_u64_schema_field",
+                  "native_owner_object_id": 295
+                },
+                {
+                  "table": "owner_to_keys",
+                  "absolute_offset": 5688,
+                  "encoding": "raw_u64_schema_field",
+                  "native_owner_object_id": 898
+                },
+                {
+                  "table": "owner_to_keys",
+                  "absolute_offset": 5708,
+                  "encoding": "raw_u64_schema_field",
+                  "native_owner_object_id": 243
+                },
+                {
+                  "table": "owner_to_keys",
+                  "absolute_offset": 5728,
+                  "encoding": "raw_u64_schema_field",
+                  "native_owner_object_id": 207
+                }
+              ],
+              "typed_footer_reference": {
+                "absolute_offset": 5836,
+                "encoded_hex": "011a000000000000000000",
+                "target_object_id": 26
+              },
+              "typed_container_backlink": {
+                "absolute_offset": 3627,
+                "encoded_hex": "011f000000000000000000",
+                "target_registry_object_id": 31
+              },
+              "stored_footer_hex": "00000000011a000000000000000000"
+            }
+          ],
+          "unresolved": []
+        }
+      ]
+    },
+    {
+      "file": "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d",
+      "sha256": "013412f19df98f93a03b6a21020df68014c32babfe568be12fc4daaeeb09b103",
+      "Design_assets": [
+        {
+          "asset_scope": "FusionAssetName[Active]",
+          "member": "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+          "source_Design_sha256": "36f7483d2e4fb6c40b48e0530567514bf740c55ff5754406332bf1cd57b559ef",
+          "indexed_record_count": 428,
+          "typed_registry_record_count": 1,
+          "registries": [
+            {
+              "object_id": 31,
+              "registry_container_object_id": 26,
+              "payload_offset": 5642,
+              "payload_byte_count": 205,
+              "payload_sha256": "c91aa5a2b54df322cd42a05af1f60ab484cbd7be2548affb4b5cb6401b532b6e",
+              "exact_payload_replay_matches": true,
+              "registry_is_empty": false,
+              "owner_row_count": 5,
+              "key_row_count": 5,
+              "audit_table_layout": "ReciprocalPopulated",
+              "reciprocity_evidence": "Exact equality of both stored owner/key association sets",
+              "owner_to_keys": [
+                {
+                  "native_owner_object_id": 331,
+                  "native_owner_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+                  "native_owner_record_offset": 38847,
+                  "stored_owner_field_offset": 5648,
+                  "naming_keys": [
+                    303
+                  ],
+                  "stored_key_field_offsets": [
+                    5660
+                  ]
+                },
+                {
+                  "native_owner_object_id": 295,
+                  "native_owner_class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                  "native_owner_record_offset": 34872,
+                  "stored_owner_field_offset": 5668,
+                  "naming_keys": [
+                    302
+                  ],
+                  "stored_key_field_offsets": [
+                    5680
+                  ]
+                },
+                {
+                  "native_owner_object_id": 833,
+                  "native_owner_class_guid": "FF1741AE-E78B-4A5F-8418-751899E12F66",
+                  "native_owner_record_offset": 43357,
+                  "stored_owner_field_offset": 5688,
+                  "naming_keys": [
+                    304
+                  ],
+                  "stored_key_field_offsets": [
+                    5700
+                  ]
+                },
+                {
+                  "native_owner_object_id": 243,
+                  "native_owner_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+                  "native_owner_record_offset": 29360,
+                  "stored_owner_field_offset": 5708,
+                  "naming_keys": [
+                    301
+                  ],
+                  "stored_key_field_offsets": [
+                    5720
+                  ]
+                },
+                {
+                  "native_owner_object_id": 207,
+                  "native_owner_class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                  "native_owner_record_offset": 25513,
+                  "stored_owner_field_offset": 5728,
+                  "naming_keys": [
+                    300
+                  ],
+                  "stored_key_field_offsets": [
+                    5740
+                  ]
+                }
+              ],
+              "key_to_owner": [
+                {
+                  "naming_key": 300,
+                  "native_owner_object_id": 207,
+                  "native_owner_class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                  "stored_key_field_offset": 5752,
+                  "stored_owner_field_offset": 5760
+                },
+                {
+                  "naming_key": 301,
+                  "native_owner_object_id": 243,
+                  "native_owner_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+                  "stored_key_field_offset": 5768,
+                  "stored_owner_field_offset": 5776
+                },
+                {
+                  "naming_key": 302,
+                  "native_owner_object_id": 295,
+                  "native_owner_class_guid": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+                  "stored_key_field_offset": 5784,
+                  "stored_owner_field_offset": 5792
+                },
+                {
+                  "naming_key": 303,
+                  "native_owner_object_id": 331,
+                  "native_owner_class_guid": "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B",
+                  "stored_key_field_offset": 5800,
+                  "stored_owner_field_offset": 5808
+                },
+                {
+                  "naming_key": 304,
+                  "native_owner_object_id": 833,
+                  "native_owner_class_guid": "FF1741AE-E78B-4A5F-8418-751899E12F66",
+                  "stored_key_field_offset": 5816,
+                  "stored_owner_field_offset": 5824
+                }
+              ],
+              "raw_forward_owner_field_evidence": [
+                {
+                  "table": "owner_to_keys",
+                  "absolute_offset": 5648,
+                  "encoding": "raw_u64_schema_field",
+                  "native_owner_object_id": 331
+                },
+                {
+                  "table": "owner_to_keys",
+                  "absolute_offset": 5668,
+                  "encoding": "raw_u64_schema_field",
+                  "native_owner_object_id": 295
+                },
+                {
+                  "table": "owner_to_keys",
+                  "absolute_offset": 5688,
+                  "encoding": "raw_u64_schema_field",
+                  "native_owner_object_id": 833
+                },
+                {
+                  "table": "owner_to_keys",
+                  "absolute_offset": 5708,
+                  "encoding": "raw_u64_schema_field",
+                  "native_owner_object_id": 243
+                },
+                {
+                  "table": "owner_to_keys",
+                  "absolute_offset": 5728,
+                  "encoding": "raw_u64_schema_field",
+                  "native_owner_object_id": 207
+                }
+              ],
+              "typed_footer_reference": {
+                "absolute_offset": 5836,
+                "encoded_hex": "011a000000000000000000",
+                "target_object_id": 26
+              },
+              "typed_container_backlink": {
+                "absolute_offset": 3627,
+                "encoded_hex": "011f000000000000000000",
+                "target_registry_object_id": 31
+              },
+              "stored_footer_hex": "00000000011a000000000000000000"
+            }
+          ],
+          "unresolved": []
+        }
+      ]
+    },
+    {
       "file": "sweepguides-9887de71bf9e/guide_surface.f3d",
       "sha256": "e520fdbdf89d7534223889d0bc06555d88b77fb1f7f2a73ec6a4b56bb3a7ca1d",
       "Design_assets": [
@@ -109779,24 +110131,24 @@
     }
   ],
   "validation": {
-    "Design_asset_occurrences": 700,
-    "typed_registry_records": 754,
-    "Design_assets_with_registry_candidates": 700,
+    "Design_asset_occurrences": 702,
+    "typed_registry_records": 756,
+    "Design_assets_with_registry_candidates": 702,
     "decoded_reverse_only_registries": 99,
     "reverse_only_naming_key_rows": 185,
-    "decoded_registries": 754,
-    "owner_rows": 2619,
-    "naming_key_rows": 3441,
-    "scoped_native_owner_identities": 2804,
-    "raw_u64_owner_fields": 6060,
-    "typed_footer_references": 754,
-    "typed_container_backlinks": 754,
-    "exact_payload_byte_replays": 754,
-    "replayed_payload_bytes": 131382,
+    "decoded_registries": 756,
+    "owner_rows": 2629,
+    "naming_key_rows": 3451,
+    "scoped_native_owner_identities": 2814,
+    "raw_u64_owner_fields": 6080,
+    "typed_footer_references": 756,
+    "typed_container_backlinks": 756,
+    "exact_payload_byte_replays": 756,
+    "replayed_payload_bytes": 131792,
     "unresolved_registries": 0,
-    "decoded_populated_registries": 576,
+    "decoded_populated_registries": 578,
     "decoded_empty_registries": 79,
-    "saved_archives": 700,
+    "saved_archives": 702,
     "archive_failures": 0,
     "record_failures": 0,
     "Design_assets_without_registry": 0,
@@ -109804,7 +110156,7 @@
     "source_files_unchanged_during_run": true,
     "new_live_API_calls": 0,
     "full_main_decodes": 0,
-    "elapsed_seconds": 3.089592417
+    "elapsed_seconds": 2.449266709
   },
   "limitations": [
     "Exact replay and table-layout qualification establish stored associations only. Reverse-only layouts do not acquire a fabricated forward map or reciprocity claim; persistent topology identity, dependency edges, lifecycle and ASM association remain outside scope.",
@@ -109813,7 +110165,7 @@
     "This census makes no live Fusion calls and does not run feature, geometry, ASM, solve or native-writing pipelines."
   ],
   "asset_scope_string_distribution": {
-    "FusionAssetName[Active]": 700
+    "FusionAssetName[Active]": 702
   },
   "native_owner_class_distribution": {
     "02E8AA49-08B8-439C-A8C7-221BE20143D8": 16,
@@ -109850,7 +110202,7 @@
     "828DDA62-2750-447D-8728-06C9B7C2B117": 3,
     "8BD31492-18F4-45C9-8512-D720CCFC2450": 5,
     "8DA2F4A9-C420-419B-AD5D-9CC901DF0B78": 2,
-    "8DA771B7-52ED-42FC-94E2-2353FE141373": 835,
+    "8DA771B7-52ED-42FC-94E2-2353FE141373": 839,
     "8DFDD543-F823-43AA-BDAF-C638E023F0A0": 8,
     "99F6967E-ED35-4222-B906-5CCF0AC70B53": 57,
     "A07D5F17-68CB-464D-9935-BF68E98A865F": 25,
@@ -109863,7 +110215,7 @@
     "BB4EDD5D-0BE0-4E13-B667-365B7C99C972": 4,
     "BCE0AD0E-377B-4A37-9F4F-112D0DAFEAA1": 9,
     "BE693D4C-741E-4794-A93E-5BFED71E9E13": 6,
-    "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B": 47,
+    "BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B": 51,
     "C3A9ECCE-7D25-4432-A645-3A0D9687F22A": 10,
     "CA2AE956-FD81-4EBD-A601-F93A0F335722": 6,
     "D087EFE5-2D28-42e6-BB45-61739E7D0204": 4,
@@ -109885,7 +110237,7 @@
     "F757D611-217B-4B72-9C41-B617BDCE43DA": 8,
     "F84CD988-9696-458D-8AF3-795D12E6B9EF": 3,
     "FCBB1707-4450-46B3-9E65-0F61682EA8CA": 41,
-    "FF1741AE-E78B-4A5F-8418-751899E12F66": 2
+    "FF1741AE-E78B-4A5F-8418-751899E12F66": 4
   },
   "native_owner_class_distribution_scope": "Actual forward-table owner rows only; the independently stored reverse-only owner associations have their separate class distribution below.",
   "reverse_only_native_owner_class_distribution": {
@@ -110087,7 +110439,7 @@
         1
       ],
       "audit_table_layout": "ReciprocalPopulated",
-      "registry_count": 13
+      "registry_count": 15
     },
     {
       "owner_count": 5,
@@ -110611,7 +110963,7 @@
     }
   ],
   "stored_footer_distribution": {
-    "00000000011a000000000000000000": 700,
+    "00000000011a000000000000000000": 702,
     "00000000011f010000000000000000": 4,
     "000000000160010000000000000000": 1,
     "00000000016f010000000000000000": 15,
@@ -111050,6 +111402,8 @@
       "splitbodysheets-b7548618fb65/sheet_body_no_extend.f3d",
       "splitbodysheets-b7548618fb65/sheet_face_no_extend.f3d",
       "splitbodysheets-b7548618fb65/small_sheet_face_extend.f3d",
+      "surfacetrimtools-c507461585b5/sheet_face.f3d",
+      "surfacetrimtools-ce3c7e1c703e/sheet_body.f3d",
       "sweepnurbspaths-7ded30a4b9ae/polynomial_cubic.f3d",
       "sweepnurbspaths-7ded30a4b9ae/polynomial_multispan.f3d",
       "sweepnurbspaths-7ded30a4b9ae/rational_cubic.f3d",
@@ -111082,11 +111436,11 @@
       "variablefillets-a5080b076434/two_intermediates.f3d"
     ],
     "counts": {
-      "saved_archives": 134,
-      "Design_asset_occurrences": 134,
+      "saved_archives": 136,
+      "Design_asset_occurrences": 136,
       "unresolved_registries": 0,
-      "decoded_registries": 153,
-      "ReciprocalPopulated": 132,
+      "decoded_registries": 155,
+      "ReciprocalPopulated": 134,
       "StoredEmpty": 19,
       "StoredReverseOnly": 2
     },
