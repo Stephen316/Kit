@@ -10,12 +10,14 @@ import struct
 DEFINITION = 'generic_tag_attrib_def'
 
 
-def decode_counted_asm_name(record):
+def decode_counted_asm_name(record, *, allow_empty_names=False):
     """Return existing generic-tag payload dictionary fields, with typed replay.
 
     Proven term counts1/2/3/4/5/6/8 and component counts0/1/2/3 only. Offsets refer to the
     supplied serialized record; callers must compare payload_hex with the actual
     blob bytes and independently qualify owner/coverage before any association.
+    Empty term names require an explicit opt-in for separately qualified nested
+    attribute metadata; definition and namespace strings are always nonempty.
     """
     tokens = record['tokens']
     if record['name'] != 'ATTRIB_CUSTOM-attrib' or len(tokens) < 11:
@@ -31,12 +33,13 @@ def decode_counted_asm_name(record):
             raise ValueError('Counted ASM naming integer token kind/range mismatch')
         encoded.extend(b'\x04'+struct.pack('<q', value))
         return value
-    def text():
+    def text(allow_empty=False):
         nonlocal cursor
         token = tokens[cursor]; cursor += 1
         value = token['value']
         if (token['kind'] != 'string' or token.get('tag') != 7 or not isinstance(value, str)
-                or not 1 <= len(value) <= 128 or any(not 32 <= ord(c) <= 126 for c in value)):
+                or not (0 if allow_empty else 1) <= len(value) <= 128
+                or any(not 32 <= ord(c) <= 126 for c in value)):
             raise ValueError('Counted ASM naming string is not bounded printable ASCII')
         raw = value.encode('ascii')
         encoded.extend(bytes((7, len(raw)))+raw)
@@ -51,8 +54,8 @@ def decode_counted_asm_name(record):
         raise ValueError('Unobserved counted ASM naming term count')
     terms = []
     for _ in range(count):
-        size = integer(1, 128)
-        name = text()
+        size = integer(0 if allow_empty_names else 1, 128)
+        name = text(allow_empty_names)
         if len(name.encode('ascii')) != size:
             raise ValueError('Counted ASM naming explicit byte length disagrees')
         index = integer(0, 0xffffffff)

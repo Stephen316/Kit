@@ -67,6 +67,9 @@ def decode_asm_generic_tags(blob, parsed=None, *, allow_fpm_tracking=False):
         raise ValueError('Generic tags require a complete bounded ASM token stream')
     records = parsed['records']
     limit = next((r['index'] for r in records if r['record_kind'] == 'marker'), len(records))
+    if any(r['index'] != i or r['record_kind'] != 'entity' or r['section'] != 'geometry'
+           for i, r in enumerate(records[:limit])):
+        raise ValueError('ASM initial geometry entity ordinals lack a contiguous record prefix')
 
     def pointer(token, nullable=False):
         value = token['value']
@@ -78,16 +81,66 @@ def decode_asm_generic_tags(blob, parsed=None, *, allow_fpm_tracking=False):
             raise ValueError('ASM generic tag pointer leaves initial geometry')
         return value
 
+    def naming_payload(record, *, allow_empty_names=False):
+        from decode_counted_asm_names import decode_counted_asm_name
+        payload = decode_counted_asm_name(record, allow_empty_names=allow_empty_names)
+        start, end = payload['payload_offset'], payload['payload_end_offset']
+        if encode_generic_tag_payload(payload) != blob[start:end]:
+            raise ValueError('ASM generic-tag exact byte replay disagrees')
+        return payload
+
+    def nested_child(parent):
+        """One observed empty-name metadata child, never a topology naming tag."""
+        tokens = parent['tokens']
+        if (parent['name'] != 'ATTRIB_CUSTOM-attrib' or len(tokens) < 6
+                or tokens[5]['kind'] != 'string' or tokens[5]['value'] != DEFINITION):
+            raise ValueError('Unsupported nested attribute parent definition')
+        topology_owner = pointer(tokens[4])
+        if records[topology_owner]['name'] not in ('body', 'face'):
+            raise ValueError('Nested naming metadata parent lacks observed BODY/FACE owner')
+        child_id = pointer(tokens[0])
+        if child_id == parent['index']:
+            raise ValueError('Nested attribute parent/child cycle')
+        child = records[child_id]; ct = child['tokens']
+        if (child['name'] != 'ATTRIB_CUSTOM-attrib' or len(ct) != 17
+                or any(pointer(ct[i], True) is not None for i in (0, 2, 3))
+                or _integer(ct[1], -1, -1) != -1
+                or pointer(ct[4]) != parent['index']):
+            raise ValueError('Nested naming metadata child header/owner reciprocity disagrees')
+        naming_payload(parent)
+        payload = naming_payload(child, allow_empty_names=True)
+        if payload['stored_term_count'] != 1:
+            raise ValueError('Unsupported nested naming metadata term group')
+        term, = payload['terms']
+        if (term['name'] != '' or term['stored_index'] != 0
+                or term['stored_reference_component_count'] != 1
+                or term['stored_reference_components_int32'][0] <= 0):
+            raise ValueError('Unsupported nested empty-name metadata payload')
+        return child, payload, topology_owner
+
     def attribute_header(record, owner):
         tokens = record['tokens']
+        if record['name'] == 'no_merge_attribute-st-attrib':
+            if (len(tokens) != 5 or records[owner]['name'] != 'edge'
+                    or pointer(tokens[0], True) is not None
+                    or _integer(tokens[1], -1, -1) != -1
+                    or pointer(tokens[2], True) is not None or pointer(tokens[4]) != owner):
+                raise ValueError('Unsupported no-merge EDGE attribute header')
+            previous = pointer(tokens[3])
+            sibling = records[previous]
+            if (sibling['name'] != 'ATTRIB_CUSTOM-attrib' or len(sibling['tokens']) < 6
+                    or sibling['tokens'][5]['value'] != DEFINITION):
+                raise ValueError('No-merge EDGE attribute lacks observed generic sibling')
+            return None, previous
         if record['name'] != 'ATTRIB_CUSTOM-attrib' or len(tokens) < 6:
             raise ValueError('Unobserved generic-tag attribute chain class/header')
-        if (pointer(tokens[0], True) is not None or _integer(tokens[1], -1, -1) != -1
-                or pointer(tokens[4]) != owner):
+        if _integer(tokens[1], -1, -1) != -1 or pointer(tokens[4]) != owner:
             raise ValueError('ASM attribute owner/header correspondence disagrees')
+        if pointer(tokens[0], True) is not None:
+            nested_child(record)
         return pointer(tokens[2], True), pointer(tokens[3], True)
 
-    def owner_chain(owner_id, target_attribute, allowed_kinds=('body', 'face', 'edge')):
+    def owner_chain(owner_id, target_attribute, allowed_kinds=('body', 'face', 'edge', 'vertex')):
         owner = records[owner_id]
         if owner['name'] not in allowed_kinds or len(owner['tokens']) < 1:
             raise ValueError('Custom attribute owner is not an observed typed owner for this definition')
@@ -123,19 +176,17 @@ def decode_asm_generic_tags(blob, parsed=None, *, allow_fpm_tracking=False):
                                 'owner_record_index': owner_id, 'owner_kind': 'body'})
                 continue
             if definition == 'sketch_attrib_def':
-                owner_chain(owner_id, record['index'], ('coedge',))
-                if len(tokens) != 10 or [_integer(t, 1, 3) for t in tokens[6:9]] != [1, 1, 3]:
-                    raise ValueError('Unobserved sketch attribute framing prevents complete generic-tag audit')
-                sketch_text = _ascii(tokens[9])
-                parts = sketch_text.split(' ')
-                if len(parts) != 6 or any(not part.isdecimal() for part in parts):
-                    raise ValueError('Unobserved sketch attribute opaque text layout prevents complete generic-tag audit')
+                owner_chain(owner_id, record['index'], ('coedge', 'edge', 'vertex'))
+                from decode_sketch_attributes import decode_sketch_attribute
+                payload = decode_sketch_attribute(record)
+                if bytes.fromhex(payload['payload_hex']) != blob[payload['payload_offset']:payload['payload_end_offset']]:
+                    raise ValueError('Sketch attribute exact byte replay disagrees')
                 ignored.append({'attribute_record_index': record['index'], 'definition_name': definition,
-                                'owner_record_index': owner_id, 'owner_kind': 'coedge',
-                                'uninterpreted_text': sketch_text})
+                                'owner_record_index': owner_id, 'owner_kind': records[owner_id]['name'],
+                                'uninterpreted_text': payload['uninterpreted_text']})
                 continue
             if definition == 'FPM_tracked_attrib_def' and allow_fpm_tracking:
-                owner_chain(owner_id, record['index'], ('body', 'edge'))
+                owner_chain(owner_id, record['index'], ('body', 'edge', 'face'))
                 if len(tokens) != 8 or _integer(tokens[6], 1, 1) != 1:
                     raise ValueError('Unobserved FPM tracking definition framing prevents complete generic-tag audit')
                 literal = _integer(tokens[7], 1, 0xffffffff)
@@ -156,16 +207,26 @@ def decode_asm_generic_tags(blob, parsed=None, *, allow_fpm_tracking=False):
                 continue
             if definition != DEFINITION:
                 raise ValueError('Unobserved custom attribute definition prevents complete generic-tag audit')
+            if records[owner_id]['name'] == 'ATTRIB_CUSTOM-attrib':
+                parent = records[owner_id]
+                child, payload, topology_owner = nested_child(parent)
+                if child['index'] != record['index']:
+                    raise ValueError('Nested naming metadata is absent from claimed parent')
+                parent_chain = owner_chain(topology_owner, owner_id, ('body', 'face'))
+                ignored.append({'attribute_record_index': record['index'],
+                                'owner_record_index': owner_id, 'owner_kind': 'ATTRIB_CUSTOM-attrib',
+                                'owner_attribute_chain': [record['index']],
+                                'parent_topology_owner_record_index': topology_owner,
+                                'parent_topology_owner_kind': records[topology_owner]['name'],
+                                'parent_owner_attribute_chain': parent_chain, **payload,
+                                'scope': 'Explicit singleton nested naming metadata; opaque component is not a native identity or topology naming candidate'})
+                continue
             chain = owner_chain(owner_id, record['index'])
-            from decode_counted_asm_names import decode_counted_asm_name
-            payload = decode_counted_asm_name(record)
-            start, end = payload['payload_offset'], payload['payload_end_offset']
+            payload = naming_payload(record)
             tag = {'attribute_record_index': record['index'], 'owner_record_index': owner_id,
                    'owner_kind': records[owner_id]['name'], 'owner_attribute_chain': chain,
                    **payload,
                    'scope': 'Explicit reciprocal attribute owner and framed serialized naming tuple; design object and persistent topology identity unresolved'}
-            if encode_generic_tag_payload(tag) != blob[start:end]:
-                raise ValueError('ASM generic-tag exact byte replay disagrees')
             tags.append(tag)
         except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
             unresolved.append({'attribute_record_index': record['index'], 'reason': str(error)})
@@ -202,7 +263,8 @@ def match_recipe_tag_names(recipe, tag_summary, *, parsed=None):
                          'owner_record_index': owner, 'owner_kind': tag['owner_kind']}
             if topology is not None:
                 candidate['body_graph_membership'] = [g['body_index'] for g in topology['body_graphs']
-                    if owner == g['body_index'] or owner in g[{'face': 'face_indices', 'edge': 'edge_indices'}.get(tag['owner_kind'], 'edge_indices')]]
+                    if (owner == g['body_index'] if tag['owner_kind'] == 'body' else
+                        owner in g[{'face': 'face_indices', 'edge': 'edge_indices', 'vertex': 'vertex_indices'}[tag['owner_kind']]])]
                 node = nodes.get(owner)
                 if node and tag['owner_kind'] == 'edge':
                     curve = nodes.get(node['curve_index'])
@@ -324,7 +386,7 @@ def validate_fixtures(root, zstd_library=None):
         'integration': 'Generic-tag catalogs and naming candidate evidence only. All initial geometry owners participate in uniqueness checks; never filter duplicate tags by coordinates, root order, or source-body membership to claim selected-source closure. All six full Pipe settings failures remain unresolved.',
         'expected_outputs': 'samples[].expected_pipe_evidence contains complete candidate output; samples[].expected_tag_catalog contains all framed initial attributes.'},
         'grammar': {
-            'attribute_header': 'Typed ATTRIB_CUSTOM-attrib owner pointer4 plus owner attribute-head and reciprocal next/previous chain pointers2/3. Observed owner kinds BODY/face/edge only; all pointers stay in initial geometry.',
+            'attribute_header': 'Typed ATTRIB_CUSTOM-attrib owner pointer4 plus owner attribute-head and reciprocal next/previous chain pointers2/3. Observed topology naming owners BODY/face/edge/vertex; bounded singleton nested metadata and exact no-merge EDGE sibling chains are separately qualified. All pointers stay in initial geometry.',
             'definition_fields': 'String generic_tag_attrib_def, integer schema fields[3,3,-1], literal namespace string generic_tag_attrib_def followed by one space. Definition strings are checked; no unobserved definition-object pointer is invented.',
             'payload': 'Observed integer term_count1/2/3/4/5/6/8; each term integer ASCII byte length, short ASCII string, integer stored_index, integer component_count0..3, that many signed32-range integer components, separate integerzero terminator. No remaining tokens permitted.',
             'native_correspondence': 'The full ordered term group (ASCII name,stored index,counted signed components) matches the separately framed native recipe name-table group exactly. Numeric components are never looked up as native design-object IDs.',

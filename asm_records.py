@@ -165,7 +165,7 @@ def inspect_asm(data):
             "scope": "Typed tokens with explicit history markers; pointer meanings outside the initial geometry section remain uninterpreted"}
 
 
-def inspect_asm_members(members, include_records=False):
+def inspect_asm_members(members, include_records=False, *, include_custom_attributes=False):
     streams = []
     for member, data in members.items():
         if "/Breps.BlobParts/" not in member or not member.endswith((".smb", ".smbh")):
@@ -206,6 +206,18 @@ def inspect_asm_members(members, include_records=False):
             summary = {key: value for key, value in result.items() if key != "records"}
             summary.update(member=member, record_count=len(result["records"]), record_type_counts=counts,
                            blob_role="history" if member.endswith(".smbh") else "body data", topology=topology)
+            if include_custom_attributes and any(
+                    r['name'] == 'ATTRIB_CUSTOM-attrib' and r['section'] == 'geometry'
+                    for r in result['records']):
+                from decode_asm_recipe_tags import decode_asm_generic_tags
+                try:
+                    summary['custom_attributes'] = decode_asm_generic_tags(
+                        data, parsed=result, allow_fpm_tracking=True)
+                except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
+                    summary['custom_attributes'] = {
+                        'tags': [], 'ignored_validated_other_definition_attributes': [],
+                        'unresolved': [{'reason': str(error)}],
+                        'scope': 'Custom attribute framing/ownership unresolved; original topology and token framing retained'}
             if subtype_summary is not None:
                 summary['inline_subtypes'] = subtype_summary
             if any(r["name"] == INT64_ATTRIBUTE for r in result["records"]):
@@ -239,6 +251,8 @@ if __name__ == "__main__":
     parser.add_argument("files", nargs="+", type=Path)
     parser.add_argument("--zstd-library")
     parser.add_argument("--records", action="store_true", help="Include full typed records; output can be large")
+    parser.add_argument("--custom-attributes", action="store_true", help="Include bounded initial custom naming and metadata attributes")
     args = parser.parse_args()
-    print(json.dumps([{"file": str(p), **inspect_asm_members(read_members(p, args.zstd_library), args.records)}
+    print(json.dumps([{"file": str(p), **inspect_asm_members(read_members(p, args.zstd_library), args.records,
+                                               include_custom_attributes=args.custom_attributes)}
                       for p in args.files], indent=2))

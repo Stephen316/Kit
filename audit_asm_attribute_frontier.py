@@ -28,7 +28,7 @@ DISCOVERY = {
     'initial_generic_component_counts': {'0':1101, '1':8108, '2':830, '3':1954},
 }
 SOURCES = ('audit_asm_attribute_frontier.py','asm_records.py','decode_asm_recipe_tags.py',
-           'decode_counted_asm_names.py','decode_fdm_face_attributes.py','fusion_archive.py')
+           'decode_counted_asm_names.py','decode_fdm_face_attributes.py','decode_sketch_attributes.py','fusion_archive.py')
 
 
 def _hash(raw):
@@ -77,6 +77,7 @@ def audit(root=ROOT, zstd_library=None):
     definition_status = defaultdict(Counter)
     payload_terms, payload_components, owned_terms, owned_components = Counter(),Counter(),Counter(),Counter()
     raw_terms, raw_components = Counter(), Counter()
+    nested_terms, nested_components = Counter(), Counter()
     frontier_groups, framing_groups = defaultdict(list), {}
     totals = Counter()
     files = sorted(root.glob('*/*.f3d'))
@@ -161,17 +162,30 @@ def audit(root=ROOT, zstd_library=None):
                     except (ValueError,KeyError,IndexError,UnicodeError) as error:
                         failures.append(dict(proof,stage='raw_counted_extent_observation',reason=str(error)))
                     try:
-                        payload = decode_counted_asm_name(rec)
+                        nested_metadata = (status=='ValidatedOtherDefinition'
+                            and item.get('owner_kind')=='ATTRIB_CUSTOM-attrib'
+                            and item.get('parent_topology_owner_kind') in ('body','face')
+                            and isinstance(item.get('parent_topology_owner_record_index'),int)
+                            and item.get('owner_attribute_chain')==[rec['index']]
+                            and bool(item.get('parent_owner_attribute_chain')))
+                        payload = decode_counted_asm_name(rec,allow_empty_names=nested_metadata)
+                        if nested_metadata and any(item.get(key)!=value for key,value in payload.items()):
+                            raise ValueError('Shared qualified nested metadata differs from its exact counted payload')
                         encoded = encode_generic_tag_payload(payload)
                         if encoded!=blob[payload['payload_offset']:payload['payload_end_offset']]:
                             raise ValueError('Counted generic name exact source payload replay disagrees')
                         term_count = payload['stored_term_count']
                         component_counts = tuple(t['stored_reference_component_count']for t in payload['terms'])
-                        payload_terms[term_count] += 1
-                        payload_components.update(component_counts)
+                        if nested_metadata:
+                            nested_terms[term_count] += 1
+                            nested_components.update(component_counts)
+                            totals['nested_metadata_payload_byte_replays'] += 1
+                        else:
+                            payload_terms[term_count] += 1
+                            payload_components.update(component_counts)
+                            totals['generic_name_payload_byte_replays'] += 1
                         local_terms[term_count] += 1
                         local_components.update(component_counts)
-                        totals['generic_name_payload_byte_replays'] += 1
                         if status=='OwnedGenericName':
                             owned_terms[term_count] += 1
                             owned_components.update(component_counts)
@@ -188,6 +202,7 @@ def audit(root=ROOT, zstd_library=None):
             totals.update(local_status)
             row['initial_attribute_classification_counts'] = _counts(local_status)
             row['initial_generic_term_counts'] = _counts(local_terms)
+            row['initial_generic_term_count_scope'] = 'All framed generic payloads in this blob, including separately qualified nested metadata; global summary separates ordinary/nested scopes.'
             row['initial_generic_component_counts'] = _counts(local_components)
             row['unresolved_count'] = len(decoded['unresolved'])
             blobs.append(row)
@@ -216,7 +231,12 @@ def audit(root=ROOT, zstd_library=None):
             'empty_name_term_occurrences':totals['raw_empty_name_terms'],
             'scope':'Literal counted length/component/terminator observations only; includes empty names rejected by the production payload parser, and does not qualify owners or semantic identity.'},
         'initial_generic_payload_framing':{'term_count_distribution':_counts(payload_terms),'component_count_distribution_per_term':_counts(payload_components),
-                                          'exact_source_payload_replays':totals['generic_name_payload_byte_replays']},
+                                          'exact_source_payload_replays':totals['generic_name_payload_byte_replays'],
+                                          'scope':'Ordinary strict nonempty topology naming payloads only; separately qualified nested metadata is excluded from these counts.'},
+        'nested_metadata_payload_framing':{'term_count_distribution':_counts(nested_terms),
+            'component_count_distribution_per_term':_counts(nested_components),
+            'exact_source_payload_replays':totals['nested_metadata_payload_byte_replays'],
+            'scope':'Empty-name opt-in only for shared-reader-qualified singleton metadata whose immediate owner is an attribute and whose BODY/FACE root owner and parent chain are explicit. These records are not topology naming candidates.'},
         'owned_initial_generic_names':{'term_count_distribution':_counts(owned_terms),'component_count_distribution_per_term':_counts(owned_components)},
         'counted_owner_framing_inventory':[{'definition_name':d,'owner_kind':o,'classification':s,'term_count':t,
                                           'component_counts_in_stored_order':list(cs),**row}

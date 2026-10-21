@@ -261,10 +261,10 @@ def sketch_references(data, records, features):
             by_feature[owner].setdefault("sketch_reference_candidates", []).extend(matches)
 
 
-def decode_basics(path, zstd_library=None):
+def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
     streams = []
     members = read_members(path, zstd_library)
-    asm_summary = inspect_asm_members(members)
+    asm_summary = inspect_asm_members(members, include_custom_attributes=include_asm_attributes)
     for name, data in members.items():
         if not name.endswith("FusionDesignSegmentType1/BulkStream.dat"):
             continue
@@ -1005,5 +1005,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("files", nargs="+", type=Path)
     parser.add_argument("--zstd-library")
+    parser.add_argument("--asm-attributes", action="store_true", help="Include bounded initial ASM custom naming and metadata attributes")
     args = parser.parse_args()
-    print(json.dumps([decode_basics(p, args.zstd_library) for p in args.files], indent=2))
+    print(json.dumps([decode_basics(p, args.zstd_library, include_asm_attributes=args.asm_attributes) for p in args.files], indent=2))
