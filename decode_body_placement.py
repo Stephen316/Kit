@@ -10,6 +10,10 @@ def decode_body_placement(bindings, assembly, asm_summary):
     for mapping in bindings["decoded"]:
         stream = streams.get(mapping["history_blob_member"], {})
         graphs = {g["body_index"]: g for g in stream.get("topology", {}).get("body_graphs", [])}
+        initial_validation = mapping.get("initial_geometry_validation")
+        if (initial_validation and initial_validation.get("initial_geometry_complete") is True
+                and initial_validation.get("whole_token_stream_complete") is False):
+            graphs = {g["body_index"]: g for g in initial_validation.get("validated_initial_geometry_body_graphs", [])}
         for entry in mapping["bindings"]:
             try:
                 body = graphs.get(entry.get("asm_body_index"))
@@ -36,6 +40,10 @@ def decode_body_placement(bindings, assembly, asm_summary):
                                               for p in paths],
                                "coordinate_scope": "Observed Fusion component-coordinate convention; ASM header scale not applied",
                                "geometry_scope": "Vertices only; curved extrema, full trimmed surfaces and body regeneration not covered"})
+                if initial_validation:
+                    bodies[-1]["initial_geometry_validation"] = {
+                        key: value for key, value in initial_validation.items()
+                        if key != "validated_initial_geometry_body_graphs"}
             except (ValueError, KeyError, IndexError) as error:
                 unresolved.append({"native_body_object_id": entry["native_body_object_id"], "reason": str(error)})
     return {"bodies": bodies, "unresolved": unresolved,

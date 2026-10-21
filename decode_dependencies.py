@@ -47,14 +47,14 @@ def scope_datum(body, identity, components):
     anchor = reference(body, 17)
     cursor = 28
     if body[cursor] == 0:
-        snapshot, cursor = None, cursor+1
+        related, cursor = None, cursor+1
     else:
-        snapshot, cursor = reference(body, cursor), cursor+11
+        related, cursor = reference(body, cursor), cursor+11
     if body[cursor:] != b"\0":
         raise ValueError("Unrecognized component-scope datum suffix")
     return {"object_id": identity, "component_object_id": component,
             "component_name": components[component]["name"], "anchor_object_id": anchor,
-            "optional_snapshot_object_id": snapshot}
+            "optional_related_object_id": related}
 
 
 def decode_dependencies(data, records, features, assembly):

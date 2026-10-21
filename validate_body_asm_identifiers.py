@@ -15,6 +15,8 @@ from decode_body_bindings import decode_body_bindings
 from decode_body_mapping_variants import decode_body_mapping_variants
 from fusion_archive import read_members
 from fusion_metadata import design_records
+from decode_parameters import read_string
+from decode_sketch import reference
 
 FILES = [
     'namedbodies-3c7c11fc2924/namedbodies.f3d',
@@ -364,15 +366,269 @@ def validate_mixed(zstd_library):
     return report
 
 
+def _raw_mapping_frame(data, records, member, identity):
+    """Extract only the native framing that the identifier reader revalidates."""
+    record, = [r for r in records if r.is_primary and r.object_id == identity
+               and r.class_guid == '74CA4562-59F8-4C97-8AD1-F8297C21F9AA']
+    body = data[record.body:record.end]
+    count = struct.unpack_from('<I', body, 2)[0]
+    assert 1 <= count <= 100000 and 6 + 16 * count + 16 <= len(body)
+    entries = [struct.unpack_from('<QQ', body, 6 + 16 * i) for i in range(count)]
+    filename, end = read_string(body, 18 + 16 * count)
+    assert end == len(body)
+    return {'mapping_record_object_id': identity, 'owner_object_id': reference(body, 6 + 16 * count),
+            'history_blob_member': member.rsplit('/FusionDesignSegmentType1/', 1)[0] + '/Breps.BlobParts/' + filename,
+            'body_count': count,
+            'bindings': [{'stored_handle': handle, 'native_body_object_id': native} for handle, native in entries]}
+
+
+def validate_auxiliary(zstd_library, classification):
+    """Recheck exactly enumerated raw targets plus focused API/guard evidence."""
+    from decode_brep import decode_topology
+    from decode_body_asm_identifiers import _validated_initial_geometry
+    root = Path(__file__).resolve().parent
+    assert not classification['errors']
+    report = {'scope': 'Typed mapped nonnegative BODY IDs, bounded unassociated BODY-1/FACE roots and explicitly closed initial geometry prefixes',
+              'classification': classification, 'target_results': [], 'API_controls': [], 'guards': [],
+              'integration': {
+                  'function': 'decode_body_asm_identifiers(data, records, member, members, body_blob_bindings)',
+                  'native_joins': 'Unchanged asm_body_index/asm_stored_entity_id patches; exact keys cover all and only nonnegative initial BODY stored IDs',
+                  'auxiliary': 'auxiliary_declared_roots additionally retains unnumbered BODY and detached single-ellipse planar FACE records without native identities',
+                  'prefix_recovery': 'mapping.initial_geometry_validation.validated_initial_geometry_body_graphs may supply explicitly scoped placement fallback; preserve asm_summary whole complete=false and its error',
+                  'validation_command': '/usr/bin/python3 validate_body_asm_identifiers.py --auxiliary',
+              }, 'limitations': [
+                  'Multiple BODY roots with ID=-1 remain distinct auxiliary record indices; they are never aliases of each other or of a named native body.',
+                  'All initial BODY roots must be declared; every nonnegative ID is unique and the key set is exactly the explicit native handle set.',
+                  'Auxiliary BODYs require decoded reciprocal initial body graphs; shell/wire variants currently fail this requirement and remain rejected.',
+                  'Detached FACE support is bounded to a planar face, one reciprocal loop/self-coedge/closed ellipse edge and endpoint vertex/point chain.',
+                  'API plane/curve/cylinder comparisons corroborate cached geometry only; they do not assign ownership to auxiliary entities.',
+                  'A validated complete initial section does not make later history complete; raw tag23 failure remains untouched and public.',
+                  'Current visibility/final lifecycle, persistent topology naming, solving and regeneration are not inferred.',
+              ]}
+    contexts = {}
+    for target in classification['targets']:
+        path = root / target['file']
+        members = read_members(path, zstd_library)
+        member = next(m for m in members if m.endswith('FusionDesignSegmentType1/BulkStream.dat'))
+        data = members[member]
+        records, _ = design_records(data, members[member.replace('BulkStream.dat', 'MetaStream.dat')])
+        mapping = _raw_mapping_frame(data, records, member, target['mapping_record_object_id'])
+        assert [[e['stored_handle'], e['native_body_object_id']] for e in mapping['bindings']] == target['native_handle_body_pairs']
+        parsed = inspect_asm(members[mapping['history_blob_member']])
+        assert [r['name'] for r in parsed['records'][:parsed['header']['stored_entity_count']]] == target['declared_root_kinds']
+        result = decode_body_asm_identifiers(data, records, member, members, {'decoded': [mapping]})
+        report['target_results'].append({'file': target['file'], 'decoded': result['decoded'], 'unresolved': result['unresolved']})
+        contexts[target['file']] = data, records, member, members, mapping, parsed, result
+    expected_remaining = {'splitfacemodes-4fc4adf2a868/along_vector.f3d', 'splitfacemodes-4fc4adf2a868/closest_point.f3d'}
+    assert {r['file'] for r in report['target_results'] if r['unresolved']} == expected_remaining
+    for relative in expected_remaining:
+        parsed = contexts[relative][5]
+        topology = decode_topology(parsed)
+        result = next(r for r in report['target_results'] if r['file'] == relative)
+        result['retained_topology_diagnostics'] = topology['unresolved']
+        result['keyed_body_graphs_present_but_auxiliary_wire_graph_unresolved'] = [g['body_index'] for g in topology['body_graphs']]
+
+    api_files = [
+        'planedefinitions-6cd0820a832e/tangent.f3d',
+        'projectionfamilies-d987c50c2d73/surface_closest_line.f3d',
+        'sketchsurfaceconstraints-5a2cd669cd19/line_on_face.f3d',
+        'extents-f0f33a9a605f/from_plane.f3d', 'extents-f0f33a9a605f/to_plane.f3d',
+        'extents-f0f33a9a605f/to_plane_offset.f3d',
+        'revolveto-b1d196f65c46/negative_plane.f3d', 'revolveto-b1d196f65c46/positive_plane.f3d',
+        'revolveto-b1d196f65c46/two_planes.f3d',
+        'sweepguides-9887de71bf9e/guide_surface.f3d',
+        'boundaryfills-a0953038318b/plane_first.f3d',
+    ]
+
+    def near(a, b):
+        return len(a) == len(b) and all(math.isclose(x, y, abs_tol=1e-9, rel_tol=1e-9) for x, y in zip(a, b))
+
+    def on_plane(node, point):
+        return abs(sum((x - o) * n for x, o, n in zip(point, node['raw_origin'], node['normal']))) < 1e-9
+
+    for relative in api_files:
+        data, records, member, members, mapping, parsed, decoded = contexts[relative]
+        model = decode_basics(root / relative, zstd_library)
+        stream = next(s for s in model['streams'] if s['member'] == member)
+        actual = next(s for s in json.loads((root / relative).with_name('ground_truth.json').read_text())['samples']
+                      if s['file'] == Path(relative).name)
+        bounded, prefix = _validated_initial_geometry(parsed, members[mapping['history_blob_member']])
+        topology = decode_topology(bounded)
+        nodes = {n['index']: n for n in topology['nodes']}
+        graphs = {g['body_index']: g for g in topology['body_graphs']}
+        associations = decoded['decoded'][0]['bindings']
+        named = {b['object_id']: b['name'] for b in stream['body_properties']['bodies']}
+        checked = {'file': relative, 'native_body_to_ASM_indices': [
+            {'native_body_object_id': b['native_body_object_id'], 'asm_body_index': b['asm_body_index']}
+            for b in associations], 'geometry_identity_scope': 'API corroboration after exact stored-ID join; no auxiliary identity selected by geometry'}
+        if relative.startswith('planedefinitions-'):
+            patch, = associations
+            actual_face = actual['inputs'][0]['entity']
+            assert named[patch['native_body_object_id']] == actual_face['body_name']
+            graph = graphs[patch['asm_body_index']]
+            surfaces = [nodes[nodes[f]['surface_index']].get('analytic_surface') for f in graph['face_indices']]
+            cylinder, = [s for s in surfaces if s and s['kind'] == actual_face['geometry_type']]
+            point = actual_face['point_on_face_cm']
+            displacement = [x - o for x, o in zip(point, cylinder['raw_origin'])]
+            along = sum(x * a for x, a in zip(displacement, cylinder['axis']))
+            radius = math.sqrt(sum((x - along * a) ** 2 for x, a in zip(displacement, cylinder['axis'])))
+            assert math.isclose(radius, cylinder['raw_radius'], abs_tol=1e-9)
+            checked.update(actual_body_name_matches_native=True, actual_point_lies_on_mapped_body_cylinder=True,
+                           mapped_body_faces=graph['counts']['face'], auxiliary_body_faces=graphs[2]['counts']['face'])
+        elif relative.startswith('projectionfamilies-'):
+            patch, = associations
+            actual_face = actual['requested']['face']
+            assert named[patch['native_body_object_id']] == actual_face['identity']['body_name']
+            graph = graphs[patch['asm_body_index']]
+            plane = nodes[nodes[graph['face_indices'][0]]['surface_index']]
+            assert actual_face['surface_geometry_type'] == 'Plane' and on_plane(plane, actual_face['point_on_face_world_cm'])
+            auxiliary = nodes[nodes[graphs[1]['face_indices'][0]]['surface_index']]
+            assert near(auxiliary['raw_origin'], plane['raw_origin']) and near(auxiliary['normal'], plane['normal'])
+            checked.update(actual_body_name_and_planar_point_match=True,
+                           auxiliary_has_identical_plane_cache_but_is_not_joined=True)
+        elif relative.startswith('sketchsurfaceconstraints-'):
+            patch, = associations
+            actual_plane = actual['requested']['surface_before']
+            assert named[patch['native_body_object_id']] == actual_plane['body']['name']
+            plane = nodes[nodes[graphs[patch['asm_body_index']]['face_indices'][0]]['surface_index']]
+            assert near(plane['raw_origin'], actual_plane['plane_origin_cm']) and near(plane['normal'], actual_plane['plane_normal'])
+            checked.update(actual_body_name_and_plane_frame_match=True,
+                           auxiliary_retained_unassociated_despite_matching_geometry=True)
+        elif relative.startswith('extents-'):
+            patch, = associations
+            graph = graphs[patch['asm_body_index']]
+            assert graph['body_transform_is_identity']
+            surfaces = [nodes[nodes[f]['surface_index']].get('analytic_surface') for f in graph['face_indices']]
+            cylinder, = [s for s in surfaces if s and s['kind'] == 'Cylinder']
+            assert near(cylinder['axis'], [0., 0., 1.])
+            radius = cylinder['raw_radius']
+            origin = cylinder['raw_origin']
+            zs = [p[2] for p in graph['raw_vertex_positions']]
+            bounds = [[origin[0] - radius, origin[1] - radius, min(zs)],
+                      [origin[0] + radius, origin[1] + radius, max(zs)]]
+            assert all(near(p, q) for p, q in zip(bounds, actual['body_bounds_cm']))
+            checked.update(mapped_cylinder_bounds_match_actual_API=True, result_bounds_cm=bounds,
+                           auxiliary_face_native_plane_identity='Unresolved; cached planar face is not assigned to an API plane')
+        elif relative.startswith('revolveto-'):
+            aux = decoded['decoded'][0]['auxiliary_declared_roots']
+            actual_planes = actual['input_planes']
+            assert len(aux) == len(actual_planes)
+            assert all(any(near(a['raw_plane_origin'], p['origin_cm']) and near(a['raw_plane_normal'], p['normal'])
+                           for p in actual_planes) for a in aux)
+            checked.update(auxiliary_plane_cache_frames_match_actual_API_multiset=True,
+                           auxiliary_plane_identity='Unresolved; frame agreement does not assign an API source identity',
+                           retained_surface_diagnostics=topology['unresolved'])
+        elif relative.startswith('sweepguides-'):
+            sweep, = [f for f in stream['features'] if f['kind'] == 'Sweep']
+            guide = sweep['tool_settings']['guide_surfaces'][0]
+            patch = next(b for b in associations if b['native_body_object_id'] == guide['native_body_object_id'])
+            api_guide = actual['requested']['guide_surfaces'][0]
+            assert named[patch['native_body_object_id']] == api_guide['body_name']
+            plane = nodes[nodes[graphs[patch['asm_body_index']]['face_indices'][0]]['surface_index']]
+            assert plane['kind'] == 'plane-surface' and on_plane(plane, api_guide['point_on_face_cm'])
+            result_ids = [a['native_body_object_id'] for a in sweep['tool_settings']['result_body_anchors']]
+            assert len(result_ids) == len(actual['result_bodies']) == 1
+            assert all(any(b['native_body_object_id'] == identity for b in associations) for identity in result_ids)
+            checked.update(explicit_guide_native_body_name_and_plane_match_API=True,
+                           explicit_result_anchor_count_matches_actual_API=True,
+                           unnumbered_auxiliary_BODY_count=len([a for a in decoded['decoded'][0]['auxiliary_declared_roots'] if a['kind'] == 'body']))
+        else:
+            from decode_boundary_fill_results import decode_boundary_fill_results
+            result = decode_boundary_fill_results(data, records)['decoded'][0]
+            identity = result['owned_result_bodies'][0]['native_body_object_id']
+            patch = next(b for b in associations if b['native_body_object_id'] == identity)
+            positions = graphs[patch['asm_body_index']]['raw_vertex_positions']
+            bounds = [list(map(min, zip(*positions))), list(map(max, zip(*positions)))]
+            actual_bounds = actual['output_bodies'][0]['geometry']
+            assert near(bounds[0], actual_bounds['min_cm']) and near(bounds[1], actual_bounds['max_cm'])
+            original_stream = next(s for s in model['asm_decoding']['streams'] if s['member'] == mapping['history_blob_member'])
+            assert not original_stream['complete_token_stream'] and original_stream['unresolved_reason']
+            assert prefix is not None and not prefix['whole_token_stream_complete']
+            checked.update(explicit_boundary_fill_result_bounds_match_actual_API=True, result_bounds_cm=bounds,
+                           whole_ASM_token_stream_still_incomplete=True,
+                           unsupported_later_history_reason=original_stream['unresolved_reason'])
+        report['API_controls'].append(checked)
+
+    data, records, member, members, mapping, parsed, _ = contexts['planedefinitions-6cd0820a832e/tangent.f3d']
+    blob = mapping['history_blob_member']
+
+    def rejected(label, context, changed):
+        data, records, member, members, mapping, parsed, _ = context
+        result = decode_body_asm_identifiers(data, records, member,
+            {**members, mapping['history_blob_member']: bytes(changed)}, {'decoded': [mapping]})
+        assert not result['decoded'] and len(result['unresolved']) == 1, (label, result)
+        report['guards'].append({'guard': label, 'rejected': True, 'reason': result['unresolved'][0]['reason']})
+
+    tangent = contexts['planedefinitions-6cd0820a832e/tangent.f3d']
+    for value, label in [(1, 'Auxiliary BODY cannot duplicate an explicitly keyed nonnegative ID'),
+                         (-2, 'Negative BODY values other than the observed unnumbered -1 are rejected'),
+                         (99, 'An extra positive BODY ID without a native handle breaks the bijection')]:
+        changed = bytearray(members[blob])
+        struct.pack_into('<q', changed, parsed['records'][2]['tokens'][1]['offset'] + 1, value)
+        rejected(label, tangent, changed)
+    changed = bytearray(members[blob])
+    auxiliary_lump = parsed['records'][parsed['records'][2]['tokens'][3]['value']]
+    struct.pack_into('<q', changed, auxiliary_lump['tokens'][5]['offset'] + 1, 1)
+    rejected('Unnumbered auxiliary BODY/lump ownership must remain reciprocal', tangent, changed)
+    plane = contexts['extents-f0f33a9a605f/from_plane.f3d']
+    parsed = plane[5]
+    changed = bytearray(plane[3][plane[4]['history_blob_member']])
+    struct.pack_into('<q', changed, parsed['records'][3]['tokens'][5]['offset'] + 1, 2)
+    rejected('Detached planar FACE loop cannot claim a BODY as its owning face', plane, changed)
+    incomplete = contexts['boundaryfills-a0953038318b/plane_first.f3d']
+    raw = incomplete[3][incomplete[4]['history_blob_member']]
+    parsed = incomplete[5]
+    marker = next(r for r in parsed['records'] if r['record_kind'] == 'marker')
+    changed = bytearray(raw)
+    changed[marker['offset'] + 2:marker['offset'] + 7] = b'Other'
+    rejected('Incomplete stream requires the exact first Begin-of-ASM-History-Data boundary', incomplete, changed)
+    rejected('A truncated stream ending at the history marker does not prove a later failure location', incomplete, raw[:marker['end_offset']])
+    numeric = next(t for r in parsed['records'][:marker['index']] for t in r['tokens'] if t['kind'] == 'double')
+    changed = bytearray(raw)
+    struct.pack_into('<d', changed, numeric['offset'] + 1, float('nan'))
+    rejected('Numeric failure inside initial geometry cannot be relabelled as unsupported later history', incomplete, changed)
+    previous = validate_mixed(zstd_library)
+    historical = json.loads((root / 'mixed-body-root-decoding.json').read_text())
+    assert previous['cases'] == historical['cases']
+    report['historical_pure_and_detached_edge_case_outputs_exact'] = True
+    report['prior_focused_preservation'] = previous['summary']
+    recovered_files = {t['file'] for t in report['target_results'] if t['decoded']}
+    report['summary'] = {
+        'catalog_files_classified_without_main_audit': classification['catalog_files_inspected'],
+        'explicit_mapping_targets': len(report['target_results']),
+        'recovered_mappings': sum(bool(t['decoded']) for t in report['target_results']),
+        'recovered_body_joins': sum(len(m['bindings']) for t in report['target_results'] for m in t['decoded']),
+        'complete_negative_ID_target_mappings': sum(t['has_negative_BODY_ID'] and t['complete_token_stream'] for t in classification['targets']),
+        'complete_negative_ID_mappings_recovered': sum(t['has_negative_BODY_ID'] and t['complete_token_stream'] and t['file'] in recovered_files for t in classification['targets']),
+        'detached_FACE_target_mappings_recovered': sum(t['has_FACE_root'] and t['file'] in recovered_files for t in classification['targets']),
+        'retained_auxiliary_BODY_roots': sum(a['kind'] == 'body' for t in report['target_results'] for m in t['decoded'] for a in m.get('auxiliary_declared_roots', [])),
+        'retained_auxiliary_FACE_roots': sum(a['kind'] == 'face' for t in report['target_results'] for m in t['decoded'] for a in m.get('auxiliary_declared_roots', [])),
+        'retained_unresolved_auxiliary_wire_mappings': len(expected_remaining),
+        'initial_prefix_only_recoveries': sum('initial_geometry_validation' in m for t in report['target_results'] for m in t['decoded']),
+        'focused_API_controls': len(report['API_controls']), 'malformed_guards': len(report['guards']),
+    }
+    return report
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--zstd-library')
     parser.add_argument('--mixed', action='store_true', help='Validate mixed BODY/detached-edge roots and preserve the historical report')
+    parser.add_argument('--auxiliary', action='store_true', help='Validate exact classified auxiliary BODY/FACE targets and initial-section recovery')
+    parser.add_argument('--root-inventory', help='Read a saved read-only catalog root classification; otherwise reuse the new report snapshot')
     parser.add_argument('--output')
     args = parser.parse_args()
     zstd = args.zstd_library or next(Path('/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production').glob(
         '*/Autodesk Fusion.app/Contents/Frameworks/Python.framework/Versions/3.14/lib/libzstd.1.5.7.dylib'))
-    report = validate_mixed(zstd) if args.mixed else validate(zstd)
-    output = args.output or ('mixed-body-root-decoding.json' if args.mixed else 'body-asm-identifier-decoding.json')
+    if args.auxiliary and args.mixed:
+        parser.error('Choose one focused stage')
+    if args.auxiliary:
+        inventory = json.loads(Path(args.root_inventory).read_text()) if args.root_inventory else json.loads(
+            Path(__file__).with_name('auxiliary-body-root-decoding.json').read_text())['classification']
+        report = validate_auxiliary(zstd, inventory)
+    else:
+        report = validate_mixed(zstd) if args.mixed else validate(zstd)
+    output = args.output or ('auxiliary-body-root-decoding.json' if args.auxiliary else
+                            'mixed-body-root-decoding.json' if args.mixed else 'body-asm-identifier-decoding.json')
     Path(output).write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report['summary'], sort_keys=True))

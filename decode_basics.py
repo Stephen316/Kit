@@ -64,10 +64,12 @@ from decode_dependencies import decode_dependencies
 from asm_records import inspect_asm_members
 from decode_body_bindings import decode_body_bindings
 from decode_body_asm_identifiers import decode_body_asm_identifiers
+from decode_asm_recipe_tags import inspect_pipe_recipe_tags
 from decode_body_properties import decode_body_properties
 from decode_body_selections import decode_body_selections
 from decode_body_tool_selections import decode_body_tool_selections
 from decode_component_creation import decode_component_creation
+from decode_mirror_component_creations import decode_mirror_component_creations
 from decode_pin_provenance import decode_pin_provenance
 from decode_selection_context_recipes import decode_selection_context_recipes
 from decode_selection_context_variants import decode_selection_context_variants
@@ -501,6 +503,11 @@ def decode_basics(path, zstd_library=None):
         timeline_summary = decode_timeline(data, records, features, feature_state_overrides=recovered_states)
         dependency_summary = decode_dependencies(data, records, features, assembly_summary)
         component_creation_summary = decode_component_creation(data, records, features, assembly_summary)
+        mirror_creation_summary = decode_mirror_component_creations(data, records, features, assembly_summary)
+        mirror_creation_ids = {item["feature_object_id"] for item in mirror_creation_summary["decoded"]}
+        component_creation_summary["mirror_owned_creations"] = mirror_creation_summary["decoded"]
+        component_creation_summary["unresolved"] = [item for item in component_creation_summary["unresolved"]
+                                                       if item["feature_object_id"] not in mirror_creation_ids]
         timeline_state_summary = decode_timeline_state_details(data, records, features, assembly=assembly_summary,
                                                                component_creation=component_creation_summary)
         timeline_aliases = {(item["history_record_object_id"], item["native_history_entry_object_id"]): item
@@ -523,6 +530,11 @@ def decode_basics(path, zstd_library=None):
             if snapshot is not None:
                 snapshot["component_creation_snapshot"] = creation
             decoded_assembly_feature_ids.add(feature["object_id"])
+        for creation in mirror_creation_summary["decoded"]:
+            feature = feature_by_id[creation["feature_object_id"]]
+            feature.update(kind="CreateComponent", mirror_component_creation=creation,
+                           decode_level="Observed Mirror-owned component creation and stored occurrence correspondence; no snapshot or solved placement inferred")
+            decoded_assembly_feature_ids.add(feature["object_id"])
         for pin in pin_provenance_summary["decoded"]:
             feature = feature_by_id[pin["feature_object_id"]]
             feature.update(kind="Pin", pin_provenance=pin,
@@ -536,7 +548,7 @@ def decode_basics(path, zstd_library=None):
         discovery_summary["unsupported_features"] = [f for f in discovery_summary["unsupported_features"]
                                                      if f["object_id"] not in decoded_assembly_feature_ids]
         discovery_summary["unsupported_feature_count"] = len(discovery_summary["unsupported_features"])
-        discovery_summary["class_decoded_component_creation_count"] = len(component_creation_summary["decoded"])
+        discovery_summary["class_decoded_component_creation_count"] = len(component_creation_summary["decoded"])+len(mirror_creation_ids)
         discovery_summary["class_decoded_pin_provenance_count"] = len(pin_provenance_summary["decoded"])
         discovery_summary["class_decoded_copy_paste_count"] = len(copy_paste_summary["decoded"])
         body_property_summary = decode_body_properties(data, records, assembly_summary)
@@ -730,6 +742,9 @@ def decode_basics(path, zstd_library=None):
             mapping_id = mapping["mapping_record_object_id"]
             if mapping_id not in invalidated_mapping_ids:
                 continue
+            for field in ("auxiliary_declared_roots", "root_table_status", "initial_geometry_validation"):
+                if field in keyed_mappings.get(mapping_id, {}):
+                    mapping[field] = keyed_mappings[mapping_id][field]
             patches = {entry["native_body_object_id"]: entry for entry in keyed_mappings.get(mapping_id, {}).get("bindings", [])}
             for entry in mapping["bindings"]:
                 entry.pop("candidate_asm_body_index", None)
@@ -739,6 +754,18 @@ def decode_basics(path, zstd_library=None):
                     entry["handle_scope"] = entry["identifier_scope"]
             mapping["scope"] = "Explicit native body/blob mapping; only validated same-blob typed BODY identifier joins supply ASM roots"
         body_binding_summary["scope"] = "Native body/blob mapping and observed typed per-blob BODY identifiers; final-body lifecycle unresolved"
+        pipe_tag_summary = {"decoded": [], "unresolved": [],
+                            "scope": "Explicit same-asset native recipe/ASM naming candidates; duplicate owners and whole-recipe semantics stay unresolved"}
+        for source in pipe_provenance_summary["partial"]:
+            pipe = feature_by_id[source["feature_object_id"]]
+            pipe_record = next(r for r in records if r.start == pipe["record_offset"])
+            try:
+                naming = inspect_pipe_recipe_tags(data, records, data[pipe_record.body:pipe_record.end], pipe,
+                                                  features, name, members, body_identifier_summary, source_evidence=source)
+                pipe_tag_summary["decoded"].append(naming)
+                source["asm_recipe_naming_candidates"] = naming
+            except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
+                pipe_tag_summary["unresolved"].append({"feature_object_id": pipe["object_id"], "reason": str(error)})
         body_placement_summary = decode_body_placement(body_binding_summary, assembly_summary, asm_summary)
         if any(r.is_primary and r.class_guid == NATIVE_JOINT_GUID for r in records):
             label_joint_cache_placements(assembly_summary, body_placement_summary, features)
@@ -795,10 +822,12 @@ def decode_basics(path, zstd_library=None):
             "boundary_fill_results": boundary_result_summary,
             "pipe_path_provenance": pipe_provenance_summary,
             "pipe_vertex_contexts": pipe_vertex_summary,
+            "pipe_asm_recipe_tags": pipe_tag_summary,
             "pattern_placements": pattern_placement_summary,
             "timeline_decoding": timeline_summary,
             "assembly_decoding": assembly_summary,
             "component_creations": component_creation_summary,
+            "mirror_component_creations": mirror_creation_summary,
             "pin_provenance": pin_provenance_summary,
             "copy_paste_occurrences": copy_paste_summary,
             "joint_decoding": joint_summary,

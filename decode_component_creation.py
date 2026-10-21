@@ -51,7 +51,7 @@ def decode_component_creation(data, records, features, assembly):
                 raise ValueError('Unobserved CreateComponent header/identity layout')
             scope_id, snapshot_id = reference(body, 2), reference(body, 210)
             scope = scope_datum(typed(scope_id, SCOPE_GUID), scope_id, components)
-            if scope['optional_snapshot_object_id'] != snapshot_id:
+            if scope['optional_related_object_id'] != snapshot_id:
                 raise ValueError('Component creation scope/snapshot correspondence disagrees')
             snapshot = typed(snapshot_id, SNAPSHOT)
             if snapshot[:6] != bytes(6) or snapshot[17] != 1:

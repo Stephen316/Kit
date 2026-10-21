@@ -41,7 +41,9 @@ def rectangular_translation_set(settings):
         distance = settings.get("distance_"+name+"_cm")
         if not isinstance(distance, (int, float)) or not math.isfinite(distance):
             raise ValueError("Invalid rectangular placement distance")
-        if quantity == 1:
+        # A zero distance contributes no displacement, even when its stored
+        # quantity repeats logical instances and the default axis is unknown.
+        if quantity == 1 or distance == 0:
             steps.append([0.0, 0.0, 0.0])
             continue
         direction = settings.get("direction_"+name)

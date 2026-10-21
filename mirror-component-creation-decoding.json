@@ -1,0 +1,553 @@
+{
+  "stage": "Mirror-owned component creation correspondence",
+  "status": "Three saved association variants recovered; canonical snapshot schema preserved",
+  "schema": {
+    "creation_class": "78B9DEFC-DA1C-4ED0-A395-40890BDAE590",
+    "creation_body_length": 222,
+    "creation_scope_reference_offset": 2,
+    "creation_final_owner_reference_offset": 210,
+    "owner_class": "71BBEDD5-81F8-4585-816B-05908C207204",
+    "owner_kind": "MirrorComponent, not Snapshot",
+    "scope": "Typed component scope selects new component and repeats the same Mirror owner; scope bookkeeping reciprocates owner. Existing scope parser field optional_snapshot_object_id is a legacy name only here, not a semantic Snapshot claim.",
+    "Mirror_fields": {
+      "lengths": [
+        542,
+        544
+      ],
+      "derived_instance_reference_offset": 20,
+      "source_occurrence_reference_offset": 64,
+      "source_component_reference_offset": 186,
+      "creation_backlink_offset": 197,
+      "repeated_three_link_count_offset": "length-109",
+      "repeated_three_links": "[Mirror owner, CreateComponent feature, component scope]"
+    },
+    "derived_fields": {
+      "class": "66E375EA-40F1-4115-8D83-0F23DD30593E",
+      "length": 563,
+      "Mirror_owner_offset": 2,
+      "occurrence_datum_offset": 17,
+      "stored_transform_flag_offset": 28,
+      "stored_transform_offset": 29,
+      "context_frame_offset": 161,
+      "repeated_datum_offsets": [
+        172,
+        187,
+        202,
+        426
+      ],
+      "other_fields": "Opaque middle retained; no full DerivedInstance operation decoding"
+    },
+    "datum": "Typed39-byte datum selects output occurrence and repeats DerivedInstance owner, with reciprocal39-byte bookkeeping.",
+    "ownership": "Created occurrence component equals creation scope component; source/output parent collection same, reciprocal membership checked.",
+    "transform": "Explicit DerivedInstance transform matches saved native occurrence local cache; composed path cache matches actual saved API contextual transform. No initial-time snapshot or solved-state claim."
+  },
+  "validation": {
+    "checks": 68,
+    "saved_cases": 3,
+    "unchanged_normal_snapshot_creations_in_target_files": 5,
+    "ordinary_controls": [
+      {
+        "file": "assembly-acc48a9dc05d/assembly.f3d",
+        "ordinary_snapshot_creations": 3,
+        "exact_previous_outputs": true
+      },
+      {
+        "file": "boundaryfills-a0953038318b/component_middle.f3d",
+        "ordinary_snapshot_creations": 1,
+        "exact_previous_outputs": true
+      }
+    ],
+    "malformed_guards": [
+      {
+        "mutation": "Mirror_creation_backlink",
+        "rejected": true,
+        "reason": "Mirror creation direct/repeated Mirror backreferences disagree"
+      },
+      {
+        "mutation": "derived_repeated_datum",
+        "rejected": true,
+        "reason": "Mirror derived-instance repeated occurrence datum references disagree"
+      },
+      {
+        "mutation": "datum_bookkeeping_backlink",
+        "rejected": true,
+        "reason": "Mirror creation bookkeeping owner backlink disagrees"
+      },
+      {
+        "mutation": "derived_matrix_translation",
+        "rejected": true,
+        "reason": "Mirror derived-instance transform disagrees with saved native occurrence cache"
+      }
+    ],
+    "actual_API": "Saved component names, full paths and contextual transforms checked only after native identities were selected by explicit references. No token decoding or coordinate-based ID assignment."
+  },
+  "cases": [
+    {
+      "file": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+      "sha256": "0e5fdd1998c7663a2d6b218335358012a6d89bbaf809b5a378dda52c64634391",
+      "actual_output_occurrence": {
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "NestedMirrorSource(Mirror):1",
+        "full_path_name": "NestedMirrorParent:1+NestedMirrorSource(Mirror):1",
+        "component_name": "NestedMirrorSource(Mirror)",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Puw1CMQxFqZkiC1hKHMdxFmAO7HwKhqBgA6agoqOgZKpX4yd65MayjnzPjYEChhSiT0LxLf0uHLb34XO7nuS5PV6X4/3sBIbMITdLaEgQSRRoZAFdg2CWpNlk2Vj4I2ux6WSDZtSBuDE0EgIe/kF6nY3Kzo0qS7oWqJQTUC0DhJPCNMo0Oyrx/O/kFli1K2DL7EnsTlwRyoi0usU9e+/4BenaJeDvAAAA",
+        "transform": [
+          2.220446049250313e-16,
+          -1.0,
+          0.0,
+          3.000000000000001,
+          -1.0,
+          -2.220446049250313e-16,
+          0.0,
+          -6.0,
+          0.0,
+          0.0,
+          -1.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": "NestedMirrorParent:1",
+        "native_object_token": null,
+        "bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "NestedSourceBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PvQ1CMQyEqZkiC1hKHNtxFmAO8lswBAUbMAUVHQUlU70a59Ejy9LJ+uS7806dtwkObXeFaio4Whdx2/vwuV1P+twer8vxfjYCXRQXcw1YkcCTFqAeFcrsBINDiVVn7RN/ZOI6jMyQKzUgyQKZlEC6fdCWRiZeXE86tRWGRDEAJe6gEgqMSpFGw0Iy/meyFJhKK4A5ijmJZZKEwN3TbNUv773j6syMX/SmgFj9AAAA",
+            "bounding_box_cm": {
+              "min": [
+                2.000000000000001,
+                -8.0,
+                3.0
+              ],
+              "max": [
+                3.0000000000000013,
+                -6.0,
+                4.0
+              ]
+            }
+          }
+        ]
+      },
+      "previous_base_unresolved": [
+        {
+          "feature_object_id": 518,
+          "kind": "CreateComponent",
+          "reason": "Component creation typed reference missing, ambiguous or wrong class"
+        }
+      ],
+      "unchanged_normal_creation_count": 2,
+      "output": {
+        "decoded": [
+          {
+            "feature_object_id": 518,
+            "kind": "MirrorOwnedComponentCreation",
+            "component_object_id": 467,
+            "component_name": "NestedMirrorSource(Mirror)",
+            "component_scope_object_id": 496,
+            "scope_bookkeeping_object_id": 497,
+            "owning_mirror_feature_object_id": 450,
+            "source_native_occurrence_object_id": 316,
+            "derived_instance_feature_object_id": 531,
+            "derived_context_frame_object_id": 539,
+            "occurrence_datum_object_id": 529,
+            "datum_bookkeeping_object_id": 530,
+            "native_occurrence_object_id": 528,
+            "occurrence_paths": [
+              "NestedMirrorParent:1+NestedMirrorSource(Mirror):1"
+            ],
+            "parent_collection_object_id": 204,
+            "parent_component_object_id": 202,
+            "parent_component_name": "NestedMirrorParent",
+            "stored_derived_instance_transform": [
+              -1.0,
+              -4.440892098500626e-16,
+              0.0,
+              -9.0,
+              -4.440892098500626e-16,
+              1.0,
+              0.0,
+              -1.0000000000000029,
+              0.0,
+              0.0,
+              -1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_occurrence_local_transform": [
+              -1.0,
+              -4.440892098500626e-16,
+              0.0,
+              -9.0,
+              -4.440892098500626e-16,
+              1.0,
+              0.0,
+              -1.0000000000000029,
+              0.0,
+              0.0,
+              -1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "derived_instance_transform_matches_occurrence_cache": true,
+            "stored_occurrence_path_transforms": [
+              {
+                "path": "NestedMirrorParent:1+NestedMirrorSource(Mirror):1",
+                "matrix": [
+                  2.220446049250313e-16,
+                  -1.0,
+                  0.0,
+                  3.000000000000001,
+                  -1.0,
+                  -2.220446049250313e-16,
+                  0.0,
+                  -6.0,
+                  0.0,
+                  0.0,
+                  -1.0,
+                  3.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "snapshot_status": "No Snapshot record in this correspondence: CreateComponent and scope explicitly reference MirrorComponent",
+            "transform_scope": "Stored derived-feature and occurrence caches; not an initial snapshot timestamp guarantee, reflection replay, grounding or solved joint placement",
+            "uninterpreted_derived_middle_hex": "01000000011b02000000000000000001110200000000000000000100000001110200000000000000000000000001110200000000000000000100000000000000f03f0000000000000000000000000000000000000000000008400000000000000000000000000000f03f0000000000000000000000000000f0bf00000000000000000000000000000000000000000000f03f0000000000000040000000000000000000000000000000000000000000000000000000000000f03f24000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d0030003000300030003000300030003000300030003000300000000001000000",
+            "association": "CreateComponent/scope/Mirror reciprocal links, repeated derived datum, datum bookkeeping owner, typed occurrence component and parent membership all agree",
+            "remaining_scope": "Existing separate Mirror provenance owns plane/source routes and general Mirror controls remain partial"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Mirror-owned CreateComponent -> component scope and Mirror backlinks -> DerivedInstance -> reciprocal datum -> created native occurrence; no Snapshot or solved placement inferred",
+        "limitations": "Only captured one-output Mirror-owned component creation association; no canonical snapshot fields, full Mirror regeneration, external component resolution or solved assembly placement"
+      }
+    },
+    {
+      "file": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
+      "sha256": "d3564aa04b5d4ae7c716ef3f84a9a0e07a7f135eea35723122425da9fd3681e0",
+      "actual_output_occurrence": {
+        "entity_type": "adsk::fusion::Occurrence",
+        "name": "NestedMirrorSource(Mirror):1",
+        "full_path_name": "NestedMirrorParent:1+NestedMirrorSource(Mirror):1",
+        "component_name": "NestedMirrorSource(Mirror)",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Puw1CMQxFGwoKhsgCluLPc5wJqFiAznESanZCYg5KdqBlD4LokaUr6+rIOs5JEiVMeQ2SrQ1/jSZ6HN676zHfL8/T/vy6LYISa2KsjXg4WCkdRHuHJm1FpsbBpaPNH0mKWDYRmNXyIreAWr3CdHbsId6tfDln5DJpA6w2QHwYNK0CrZDldW/Q1P9OY2BosC8TZZChAm6h4G4zR0Su1r8/fgDYDFJ67wAAAA==",
+        "transform": [
+          -1.0,
+          0.0,
+          0.0,
+          -5.0,
+          0.0,
+          1.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0,
+          -1.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "assembly_context_path": "NestedMirrorParent:1",
+        "native_object_token": null,
+        "bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "NestedSourceBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32Pu22DMQyEGxcpPIQWICA+RFETpMoC7ihKSp2dAmSOlN7Brfewfrs3CBKHwwfiLidLeQ8m2vtUZFthksPRRP/n++nnM/99X78+LrffTVBiTYytE08Hq3WA6BjQpe+TqXNwHWjrRZIi1iICq1neZAlozRssZ8cR4sPqwTkj10UFsNkE8WnQtQn0Spb3v0lL32eaE0ODfSdRBpkq4BYK7rZyRORm49nx6FwKPQCgwWVU/QAAAA==",
+            "bounding_box_cm": {
+              "min": [
+                -7.0,
+                2.0,
+                3.0
+              ],
+              "max": [
+                -5.0,
+                3.0,
+                4.0
+              ]
+            }
+          }
+        ]
+      },
+      "previous_base_unresolved": [
+        {
+          "feature_object_id": 518,
+          "kind": "CreateComponent",
+          "reason": "Component creation typed reference missing, ambiguous or wrong class"
+        }
+      ],
+      "unchanged_normal_creation_count": 2,
+      "output": {
+        "decoded": [
+          {
+            "feature_object_id": 518,
+            "kind": "MirrorOwnedComponentCreation",
+            "component_object_id": 467,
+            "component_name": "NestedMirrorSource(Mirror)",
+            "component_scope_object_id": 496,
+            "scope_bookkeeping_object_id": 497,
+            "owning_mirror_feature_object_id": 450,
+            "source_native_occurrence_object_id": 316,
+            "derived_instance_feature_object_id": 531,
+            "derived_context_frame_object_id": 539,
+            "occurrence_datum_object_id": 529,
+            "datum_bookkeeping_object_id": 530,
+            "native_occurrence_object_id": 528,
+            "occurrence_paths": [
+              "NestedMirrorParent:1+NestedMirrorSource(Mirror):1"
+            ],
+            "parent_collection_object_id": 204,
+            "parent_component_object_id": 202,
+            "parent_component_name": "NestedMirrorParent",
+            "stored_derived_instance_transform": [
+              -1.0,
+              0.0,
+              0.0,
+              -7.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_occurrence_local_transform": [
+              -1.0,
+              0.0,
+              0.0,
+              -7.0,
+              0.0,
+              1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              2.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "derived_instance_transform_matches_occurrence_cache": true,
+            "stored_occurrence_path_transforms": [
+              {
+                "path": "NestedMirrorParent:1+NestedMirrorSource(Mirror):1",
+                "matrix": [
+                  -1.0,
+                  0.0,
+                  0.0,
+                  -5.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  -1.0,
+                  3.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "snapshot_status": "No Snapshot record in this correspondence: CreateComponent and scope explicitly reference MirrorComponent",
+            "transform_scope": "Stored derived-feature and occurrence caches; not an initial snapshot timestamp guarantee, reflection replay, grounding or solved joint placement",
+            "uninterpreted_derived_middle_hex": "01000000011b02000000000000000001110200000000000000000100000001110200000000000000000000000001110200000000000000000100000000000000f03f0000000000000000000000000000000000000000000008400000000000000000000000000000f03f0000000000000000000000000000f0bf00000000000000000000000000000000000000000000f03f0000000000000040000000000000000000000000000000000000000000000000000000000000f03f24000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d0030003000300030003000300030003000300030003000300000000001000000",
+            "association": "CreateComponent/scope/Mirror reciprocal links, repeated derived datum, datum bookkeeping owner, typed occurrence component and parent membership all agree",
+            "remaining_scope": "Existing separate Mirror provenance owns plane/source routes and general Mirror controls remain partial"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Mirror-owned CreateComponent -> component scope and Mirror backlinks -> DerivedInstance -> reciprocal datum -> created native occurrence; no Snapshot or solved placement inferred",
+        "limitations": "Only captured one-output Mirror-owned component creation association; no canonical snapshot fields, full Mirror regeneration, external component resolution or solved assembly placement"
+      }
+    },
+    {
+      "file": "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d",
+      "sha256": "6ff0ea506671fb12d0505f93de678d0f2d40873bfbffb4565d778563e28b5bdb",
+      "actual_output_occurrence": {
+        "entity_type": "adsk::fusion::Occurrence",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32OsQ1CMQxES9awRG3JcfzjZAUYANokjsegQPRUv2YrVvgtI5AvenTN6fR0dwQCDAFoKnCeLvySBNvxvD5vp/VxObxf9891EgwxQYtdenLDViihqGUsNl2LHAb3kIfNrp0czbUbL9g9MkoRwsZE6KyWbJhk0f9bi0cPRBV1tIpCkrBUVhxaqnvUnIvt37+3ol7BxwAAAA==",
+        "name": "OccurrenceMirrorSource(Mirror):1",
+        "full_path_name": "OccurrenceMirrorSource(Mirror):1",
+        "component_name": "OccurrenceMirrorSource(Mirror)",
+        "transform": [
+          -1.0,
+          0.0,
+          0.0,
+          -4.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bodies": [
+          {
+            "entity_type": "adsk::fusion::BRepBody",
+            "name": "OccurrenceInputBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/32PsQ0CMQxFS9aIRG3JsX1xsgIMAG0Sx2NQIHqqq9mKFWgZgdwNgL4sPX192f4YcsCpGGjOTpQnxSCbk8LneF6ft9P6uBzer/v3OhMUOIXGXXpyg1YwgahlKDapMcVBPeZh29aZHM21Gy3QnQmkCEIjRHBSSzZMsuj/W4uzR8QKOloFQUlQKikMLdWdNedi++9bF1H+ASN1zaHVAAAA",
+            "is_solid": true,
+            "bounding_box_cm": {
+              "min": [
+                -6.0,
+                1.0,
+                0.0
+              ],
+              "max": [
+                -4.0,
+                3.0,
+                1.0
+              ]
+            }
+          }
+        ]
+      },
+      "previous_base_unresolved": [
+        {
+          "feature_object_id": 439,
+          "kind": "CreateComponent",
+          "reason": "Component creation typed reference missing, ambiguous or wrong class"
+        }
+      ],
+      "unchanged_normal_creation_count": 1,
+      "output": {
+        "decoded": [
+          {
+            "feature_object_id": 439,
+            "kind": "MirrorOwnedComponentCreation",
+            "component_object_id": 388,
+            "component_name": "OccurrenceMirrorSource(Mirror)",
+            "component_scope_object_id": 417,
+            "scope_bookkeeping_object_id": 418,
+            "owning_mirror_feature_object_id": 371,
+            "source_native_occurrence_object_id": 253,
+            "derived_instance_feature_object_id": 452,
+            "derived_context_frame_object_id": 460,
+            "occurrence_datum_object_id": 450,
+            "datum_bookkeeping_object_id": 451,
+            "native_occurrence_object_id": 449,
+            "occurrence_paths": [
+              "OccurrenceMirrorSource(Mirror):1"
+            ],
+            "parent_collection_object_id": 6,
+            "parent_component_object_id": 3,
+            "parent_component_name": "(Unsaved)",
+            "stored_derived_instance_transform": [
+              -1.0,
+              0.0,
+              0.0,
+              -4.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "stored_occurrence_local_transform": [
+              -1.0,
+              0.0,
+              0.0,
+              -4.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "derived_instance_transform_matches_occurrence_cache": true,
+            "stored_occurrence_path_transforms": [
+              {
+                "path": "OccurrenceMirrorSource(Mirror):1",
+                "matrix": [
+                  -1.0,
+                  0.0,
+                  0.0,
+                  -4.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  -1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ]
+              }
+            ],
+            "snapshot_status": "No Snapshot record in this correspondence: CreateComponent and scope explicitly reference MirrorComponent",
+            "transform_scope": "Stored derived-feature and occurrence caches; not an initial snapshot timestamp guarantee, reflection replay, grounding or solved joint placement",
+            "uninterpreted_derived_middle_hex": "0100000001cc01000000000000000001c20100000000000000000100000001c20100000000000000000000000001c20100000000000000000100000000000000f03f0000000000000000000000000000000000000000000010400000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f24000000300030003000300030003000300030002d0030003000300030002d0030003000300030002d0030003000300030002d0030003000300030003000300030003000300030003000300000000001000000",
+            "association": "CreateComponent/scope/Mirror reciprocal links, repeated derived datum, datum bookkeeping owner, typed occurrence component and parent membership all agree",
+            "remaining_scope": "Existing separate Mirror provenance owns plane/source routes and general Mirror controls remain partial"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Mirror-owned CreateComponent -> component scope and Mirror backlinks -> DerivedInstance -> reciprocal datum -> created native occurrence; no Snapshot or solved placement inferred",
+        "limitations": "Only captured one-output Mirror-owned component creation association; no canonical snapshot fields, full Mirror regeneration, external component resolution or solved assembly placement"
+      }
+    }
+  ],
+  "integration": {
+    "signature": "decode_mirror_component_creations(data,records,features,assembly)",
+    "mutates_inputs": false,
+    "shared_hook": "None needed",
+    "summary_merge": "Keep existing component_creations.decoded as snapshot definitions. Add component_creations.mirror_owned_creations = helper.decoded, and remove old unresolved only by successful feature_object_id. Expose full helper summary separately if useful.",
+    "feature_annotation": "Attach separate Mirror-owned creation provenance to matching CreateComponent feature IDs; no snapshot_object_id/snapshot_transform fields fabricated.",
+    "call_order": "After assembly and canonical component creation; may run before existing Mirror provenance, because helper validates its own raw links independently.",
+    "existing_helpers": "Canonical timeline/copy-paste routines can continue consuming component_creations.decoded without seeing non-Snapshot records."
+  },
+  "limitations": [
+    "Only observed one-output Mirror-owned association; no full Mirror/DerivedInstance regeneration or external component support.",
+    "Transform caches agree with these saved API getters but are not asserted to be current solved joint/grounding state or an immutable creation snapshot.",
+    "Plane selection/source routes remain the existing separate Mirror provenance, not duplicated here.",
+    "No Fusion/live actions, captures, shared source edits or Git mutations."
+  ]
+}
