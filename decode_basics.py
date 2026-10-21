@@ -141,6 +141,8 @@ from decode_asm_recipe_tags import inspect_pipe_recipe_tags
 from decode_pipe_recipe_incidence import inspect_pipe_recipe_incidence
 from decode_pipe_edge_limits import inspect_pipe_edge_limits
 from decode_body_properties import decode_body_properties
+from decode_mixed_body_collections import decode_mixed_body_collections
+from decode_mixed_empty_body_mappings import decode_mixed_empty_body_mappings
 from decode_body_selections import decode_body_selections
 from decode_body_tool_selections import decode_body_tool_selections
 from decode_component_creation import decode_component_creation
@@ -1055,6 +1057,27 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         discovery_summary["class_decoded_pin_provenance_count"] = len(pin_provenance_summary["decoded"])
         discovery_summary["class_decoded_copy_paste_count"] = len(copy_paste_summary["decoded"])
         body_property_summary = decode_body_properties(data, records, assembly_summary)
+        mixed_body_collection_summary = decode_mixed_body_collections(
+            data, records, assembly_summary, body_property_summary)
+        mixed_empty_mapping_summary = decode_mixed_empty_body_mappings(
+            data, records, assembly_summary, mixed_collections=mixed_body_collection_summary,
+            body_properties=body_property_summary)
+        mixed_collection_ids = {row['object_id'] for row in mixed_body_collection_summary['decoded']}
+        prior_mixed_collection_errors = {row['object_id'] for row in body_property_summary['unresolved']
+            if row['kind'] == 'BodyCollection' and row['reason'] in (
+                'Body collection repeated count disagrees', 'Body collection repeated membership disagrees')}
+        if not mixed_collection_ids <= prior_mixed_collection_errors:
+            raise ValueError('Mixed collection proof does not match the prior repeated-list frontier')
+        body_property_summary['collections'].extend(row['collection'] for row in mixed_body_collection_summary['decoded'])
+        mixed_body_ownership = {patch['object_id']: patch
+            for row in mixed_body_collection_summary['decoded'] for patch in row['body_ownership_updates']}
+        for body in body_property_summary['bodies']:
+            if body['object_id'] in mixed_body_ownership:
+                body.update(mixed_body_ownership[body['object_id']])
+                body.pop('ownership_status', None)
+        body_property_summary['unresolved'] = [row for row in body_property_summary['unresolved']
+            if not (row['kind'] == 'BodyCollection' and row['object_id'] in mixed_collection_ids
+                and row['reason'] in ('Body collection repeated count disagrees', 'Body collection repeated membership disagrees'))]
         body_property_variant_summary = decode_body_collection_attribute_variants(data, records, assembly_summary, body_property_summary)
         existing_collection_ids = {item["object_id"] for item in body_property_summary["collections"]}
         body_property_summary["collections"].extend(item for item in body_property_variant_summary["decoded_collections"]
@@ -1068,6 +1091,15 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         body_property_summary["unresolved"] = [item for item in body_property_summary["unresolved"]
                                                   if item["kind"] != "BodyCollection" or item["object_id"] not in recovered_collection_ids]
         body_mapping_variant_summary = decode_body_mapping_variants(data, records, name, asm_summary, body_property_summary)
+        mixed_empty_mapping_ids = {row['mapping_record_object_id'] for row in mixed_empty_mapping_summary['decoded']}
+        prior_mixed_mapping_errors = {row['object_id'] for row in body_mapping_variant_summary['unresolved']
+            if row['reason'] == 'Body collection repeated native membership disagrees'}
+        if not mixed_empty_mapping_ids <= prior_mixed_mapping_errors:
+            raise ValueError('Mixed empty mapping proof does not match the prior collection frontier')
+        body_mapping_variant_summary['decoded'].extend(mixed_empty_mapping_summary['decoded'])
+        body_mapping_variant_summary['unresolved'] = [row for row in body_mapping_variant_summary['unresolved']
+            if not (row['object_id'] in mixed_empty_mapping_ids
+                and row['reason'] == 'Body collection repeated native membership disagrees')]
         recovered_body_names = {item["object_id"]: item for item in body_mapping_variant_summary["passive_body_name_updates"]}
         for body in body_property_summary["bodies"]:
             if body["object_id"] in recovered_body_names:
@@ -1315,6 +1347,9 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         if recovered_recipe_ids:
             recipe_summary["scope"] += "; "+recipe_component_summary["scope"]
         body_binding_summary = decode_body_bindings(data, records, name, asm_summary, body_property_summary)
+        if not mixed_empty_mapping_ids <= {row['object_id'] for row in body_binding_summary['unresolved']
+                if row['reason'] == 'Unsupported native body mapping count'}:
+            raise ValueError('Mixed empty mapping proof does not match the prior zero-count frontier')
         existing_mapping_ids = {item["mapping_record_object_id"] for item in body_binding_summary["decoded"]}
         body_binding_summary["decoded"].extend(item for item in body_mapping_variant_summary["decoded"]
                                                  if item["mapping_record_object_id"] not in existing_mapping_ids)
@@ -1643,7 +1678,9 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             "recipe_decoding": recipe_summary,
             "body_placement": body_placement_summary,
         })
-        for key, summary in (('mirror_datum_reflections', datum_reflection_summary),
+        for key, summary in (('mixed_body_collections', mixed_body_collection_summary),
+                             ('mixed_empty_body_mappings', mixed_empty_mapping_summary),
+                             ('mirror_datum_reflections', datum_reflection_summary),
                              ('datum_mirror_supports', datum_support_summary),
                              ('sweep_fixed_spline_paths', sweep_fixed_summary),
                              ('sweep_fixed_spline_sources', sweep_fixed_source_summary),
