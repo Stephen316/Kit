@@ -240,7 +240,8 @@ def decode_mesh_contents(data, records, member, members, *, geometry_decoder=Non
             if native_layout_decoder is None:
                 _require(body[:22] == bytes.fromhex('00000100000000000000000101010000000000000000'), 'Unobserved native mesh prefix')
             else:
-                native_extras.update(native_layout_decoder('MeshPrefix', body[:22], {'mesh_object_id': record.object_id}))
+                native_extras.update(native_layout_decoder('MeshPrefix', body[:22], {
+                    'mesh_object_id': record.object_id, 'data': data, 'records': records}))
             cursor, matrices, matrix_encoding = 22, [], []
             for _ in range(2):
                 _require(cursor < len(body) and body[cursor] in (0, 1), 'Unknown native mesh matrix encoding')

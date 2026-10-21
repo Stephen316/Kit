@@ -1,0 +1,2008 @@
+{
+  "sample_count": 3,
+  "qualified_result_BODY_count": 4,
+  "recovered_current_mesh_count": 2,
+  "check_count": 67,
+  "malformed_guard_count": 7,
+  "samples": [
+    {
+      "archive": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d",
+      "feature_object_id": 300,
+      "result_anchor_object_ids": [
+        317
+      ],
+      "expected_result_body_routes": {
+        "result_body_anchors": [
+          {
+            "object_id": 317,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 312,
+            "source_owner_object_id": 300,
+            "native_uuid_text": "1a074ace-bf4e-4de7-a57d-2001472d56b5",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 30399,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "result_native_body_object_ids": [
+          312
+        ],
+        "result_body_collection_object_id": 7,
+        "result_body_component_object_id": 3,
+        "native_history_mapping": {
+          "mapping_record_object_id": 8,
+          "owner_object_id": 7,
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.009e2294-ae4b-4439-a2dd-6adcd9afbef5.smbh",
+          "body_count": 1,
+          "bindings": [
+            {
+              "stored_handle": 30,
+              "native_body_object_id": 312
+            }
+          ]
+        },
+        "stored_asm_body_identifiers": {
+          "decoded": [
+            {
+              "mapping_record_object_id": 8,
+              "owner_object_id": 7,
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.009e2294-ae4b-4439-a2dd-6adcd9afbef5.smbh",
+              "body_count": 1,
+              "bindings": [
+                {
+                  "native_body_object_id": 312,
+                  "stored_handle": 30,
+                  "asm_body_index": 1,
+                  "asm_stored_entity_id": 30,
+                  "asm_body_record_offset": 186,
+                  "asm_identifier_token_offset": 201,
+                  "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                  "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                  "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                  "previous_ordinal_candidate": null,
+                  "ordinal_candidate_conflict": false
+                }
+              ]
+            }
+          ],
+          "unresolved": [],
+          "invalidate_ordinal_candidates_for_mapping_ids": [
+            8
+          ],
+          "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+        },
+        "result_collection_provenance": {
+          "native_entity_members": [
+            {
+              "object_id": 213,
+              "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D"
+            },
+            {
+              "object_id": 312,
+              "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20"
+            }
+          ],
+          "repeated_native_body_object_ids": [
+            312
+          ],
+          "property_record_object_id": 316,
+          "bookkeeping_record_object_id": 18,
+          "collection_record_offset": 2091,
+          "stored_collection_payload_hex": "000000010000000200000001d5000000000000000000013801000000000000000001013c0100000000000000000108000000000000000000010112000000000000000000000100000001380100000000000000000103000000000000000000",
+          "mapping_record_offset": 2205,
+          "stored_mapping_payload_hex": "0000010000001e0000000000000038010000000000000107000000000000000000002e00000042005200450050002e00300030003900650032003200390034002d0061006500340062002d0034003400330039002d0061003200640064002d003600610064006300640039006100660062006500660035002e0073006d0062006800",
+          "exact_collection_and_mapping_replay": true,
+          "scope": "Literal mixed entity collection and owned BODY subset; mesh entries do not establish source/result pairing or current mesh membership"
+        },
+        "result_identity_scope": "Owned anchors and reciprocal native BODY/collection mapping qualify same-blob ASM stored IDs. Stored handles are not record ordinals; no per-input/result pairing, lifecycle, current visibility or regeneration inferred"
+      },
+      "expected_mesh_contents": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 24533,
+            "feature_object_id": 218,
+            "native_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+            "feature_owner_scope": "Explicit reciprocal native BaseMeshFeature membership",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 202,
+            "mesh_collection_record_offset": 23311,
+            "mesh_collection_base_record_offset": 23349,
+            "collection_mesh_object_ids": [
+              213
+            ],
+            "name": "OwnedTetraSource_base_feature_closed",
+            "name_helper_object_id": 216,
+            "name_property_object_id": 217,
+            "asset_object_id": 211,
+            "asset_record_offset": 24286,
+            "asset_filename_object_id": 212,
+            "asset_filename_record_offset": 24373,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.7bc3fc71-ad87-49d7-8cad-452d110663fb.paramesh",
+            "asset_fusion_uuid": "7cb6ac6c-569a-4a90-8231-64d62bebd0f3",
+            "asset_reference_field_offset": 25074,
+            "stored_matrix_encodings": [
+              "ExplicitFloat64Matrix",
+              "ExplicitFloat64Matrix"
+            ],
+            "stored_matrix_copies": [
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380001da000000000000000000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+              "asset_size_bytes": 602,
+              "asset_sha256": "45181ad7f1b81e6a1643269a9ae357d5b69dc198123eaae6857a5fd91f1cf321",
+              "fusion_uuid": "7cb6ac6c-569a-4a90-8231-64d62bebd0f3",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2462323565323862652d383135652d343736382d616663342d6330336637633633333438302a0b0805120272301a037230692a322a0608071202723232280800122462303639316339362d666661632d343130622d616362342d3961653138666236366430613a042202723142330a0b667573696f6e5f757569641a2437636236616336632d353639612d346139302d383233312d3634643632626562643066334801622464643462653938632d383431642d343034362d623561322d633938663733346533613639aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2462323565323862652d383135652d343736382d616663342d6330336637633633333438302a0b0805120272301a037230692a322a0608071202723232280800122462303639316339362d666661632d343130622d616362342d3961653138666236366430613a042202723142330a0b667573696f6e5f757569641a2437636236616336632d353639612d346139302d383233312d3634643632626562643066334801622464643462653938632d383431642d343034362d623561322d633938663733346533613639aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 308,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006e04c805ffb4164acd525892ac000000",
+                  "uncompressed_payload_hex": "000000000000000000000000000000000000000000008040000000000000404000000000000000400000000000000000",
+                  "stored_frame_hex": "210000000000000004000000070082a14403a15403300000005d1400006e04c805ffb4164acd525892ac000000"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 353,
+                  "stored_length": 43,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0001003896e95f6e232ca533bc7dc1ded79e804282abbb5df89fc000",
+                  "uncompressed_payload_hex": "0200000001000000fdffffff03000000feffffffffffffff010000000100000001000000ffffffffffffffff01000000",
+                  "stored_frame_hex": "2b0000000000000004000000070082a15401a16401300000005d140001003896e95f6e232ca533bc7dc1ded79e804282abbb5df89fc000"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 408,
+                  "stored_length": 52,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 96,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00000015c74ce927a4d8a3e286c42d8c980dfa9a32c1c8e76a36648597a3b6b1fa00",
+                  "uncompressed_payload_hex": "000080bf00000000c54eec3ed9899d3ec54eec3ed9899d3ec54eec3ed9899d3e0000803f0000803f0000803f0000803f0000803f0000803f00000000000080bf00000000000080bf00000000000080bf000080bf00000000000080bf00000000",
+                  "stored_frame_hex": "3400000000000000040000000a0083a14403a15403a155c3600000005d1400000015c74ce927a4d8a3e286c42d8c980dfa9a32c1c8e76a36648597a3b6b1fa00"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 472,
+                  "stored_length": 29,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 32,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803cad8c6878a1208efd2c00",
+                  "uncompressed_payload_hex": "0100000001000000010000000100000001000000020000000100000008000000",
+                  "stored_frame_hex": "1d0000000000000004000000070082a15401a16401200000005d140000803cad8c6878a1208efd2c00"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 513,
+                  "stored_length": 43,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00018038bbd50f013dc4a6cc56015d6d98768ee276134820b4490000",
+                  "uncompressed_payload_hex": "03000000feffffff02000000ffffffff01000000fdffffff02000000ffffffff01000000feffffff0100000001000000",
+                  "stored_frame_hex": "2b0000000000000004000000070082a15401a16401300000005d1400018038bbd50f013dc4a6cc56015d6d98768ee276134820b4490000"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 568,
+                  "stored_length": 22,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 16,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006d3e4b0000",
+                  "uncompressed_payload_hex": "00000000000000000000000000000000",
+                  "stored_frame_hex": "160000000000000004000000070082a15401a16401100000005d1400006d3e4b0000"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  2.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "triangle_node_indices": [
+                0,
+                2,
+                3,
+                0,
+                3,
+                1,
+                0,
+                1,
+                2,
+                3,
+                2,
+                1
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "node_count": 4,
+              "triangle_count": 4,
+              "count_evidence": {
+                "stored_coordinate_buffer_bytes": 48,
+                "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                "stored_triangle_buffer_bytes": 48,
+                "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+              },
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved",
+              "component_node_coordinates_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.000000059604645
+                ],
+                [
+                  0.0,
+                  3.0000000447034836,
+                  0.0
+                ],
+                [
+                  2.0000000298023224,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "derived_area_cm2": 20.81025029610043,
+              "derived_signed_volume_cm3": 4.000000178813937,
+              "derived_absolute_volume_cm3": 4.000000178813937,
+              "derived_closed_oriented_edge_incidence": true,
+              "derived_undirected_edge_count": 6,
+              "derived_component_bounds_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  2.0000000298023224,
+                  3.0000000447034836,
+                  4.000000059604645
+                ]
+              },
+              "derived_boundary_edge_count": 0,
+              "volume_applicability": "Closed oriented stored triangular mesh; signed tetrahedral sum is a derived enclosed volume"
+            },
+            "stored_mesh_index": 1,
+            "stored_prefix_11_22_hex": "0100010000000000000000",
+            "prefix_scope": "Literal alternate stored index1 prefix; current membership independently proven, no flag/visibility meanings",
+            "native_current_prefix_membership": {
+              "mesh_object_id": 213,
+              "mesh_collection_object_id": 202,
+              "stored_current_collection_member_ids": [
+                213
+              ],
+              "component_object_id": 3,
+              "reciprocal_base_mesh_feature_object_id": 218,
+              "reciprocal_base_mesh_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+              "stored_prefix_hex": "00000100000000000000000100010000000000000000",
+              "source_record_offset": 24533,
+              "association": "Typed singleton counted current collection, component and reciprocal BaseMesh membership; no BaseFeature-to-source identity or lifecycle inference"
+            },
+            "stored_asset_header_scalar": 4.0,
+            "stored_asset_header_flag": 1,
+            "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed size-delimited UDPMESH v2 six-buffer triangle layouts (4 nodes/3 or4 faces,6 nodes/8 faces), typed mesh collection/component ownership and same-asset UUID/filename links. Only observed uniform native matrices are applied. Open-mesh signed tetra sums are not enclosed volumes; normal/auxiliary buffers, arbitrary topology, procedural regeneration and lifecycle remain unresolved."
+      },
+      "expected_normal_pools": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 211,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.7bc3fc71-ad87-49d7-8cad-452d110663fb.paramesh",
+            "asset_fusion_uuid": "7cb6ac6c-569a-4a90-8231-64d62bebd0f3",
+            "asset_sha256": "45181ad7f1b81e6a1643269a9ae357d5b69dc198123eaae6857a5fd91f1cf321",
+            "buffer_ordinal": 2,
+            "buffer_asset_offset": 408,
+            "stored_descriptor_hex": "83a14403a15403a155c3",
+            "stored_payload_hex": "000080bf00000000c54eec3ed9899d3ec54eec3ed9899d3ec54eec3ed9899d3e0000803f0000803f0000803f0000803f0000803f0000803f00000000000080bf00000000000080bf00000000000080bf000080bf00000000000080bf00000000",
+            "stored_packed_pairs_float32": [
+              [
+                -1.0,
+                0.0
+              ],
+              [
+                0.4615384638309479,
+                0.3076923191547394
+              ],
+              [
+                0.4615384638309479,
+                0.3076923191547394
+              ],
+              [
+                0.4615384638309479,
+                0.3076923191547394
+              ],
+              [
+                1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ],
+              [
+                0.0,
+                -1.0
+              ],
+              [
+                0.0,
+                -1.0
+              ],
+              [
+                0.0,
+                -1.0
+              ],
+              [
+                -1.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0
+              ]
+            ],
+            "stored_unit_vector_count": 12,
+            "derived_asset_unit_vectors": [
+              [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.768221280410578,
+                0.5121475368088363,
+                0.3841106154026127
+              ],
+              [
+                0.768221280410578,
+                0.5121475368088363,
+                0.3841106154026127
+              ],
+              [
+                0.768221280410578,
+                0.5121475368088363,
+                0.3841106154026127
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "derived_component_covectors": [
+              [
+                -0.999999985098839,
+                0.0,
+                0.0
+              ],
+              [
+                0.7682212689631891,
+                0.5121475291772434,
+                0.3841106096789186
+              ],
+              [
+                0.7682212689631891,
+                0.5121475291772434,
+                0.3841106096789186
+              ],
+              [
+                0.7682212689631891,
+                0.5121475291772434,
+                0.3841106096789186
+              ],
+              [
+                0.0,
+                0.0,
+                -0.999999985098839
+              ],
+              [
+                0.0,
+                0.0,
+                -0.999999985098839
+              ],
+              [
+                0.0,
+                0.0,
+                -0.999999985098839
+              ],
+              [
+                0.0,
+                -0.999999985098839,
+                0.0
+              ],
+              [
+                0.0,
+                -0.999999985098839,
+                0.0
+              ],
+              [
+                0.0,
+                -0.999999985098839,
+                0.0
+              ],
+              [
+                -0.999999985098839,
+                0.0,
+                0.0
+              ],
+              [
+                -0.999999985098839,
+                0.0,
+                0.0
+              ]
+            ],
+            "native_uniform_scale": 1.0000000149011612,
+            "lower_hemisphere_pair_count": 3,
+            "encoding": "Octahedral unit vector: z=1-|x|-|y|; fold xy when z<0, retain z, normalize",
+            "association_status": "Serialized vector pool only; per-vertex/corner/display-node association unresolved",
+            "original_polygon_mesh_normals_status": "Not reconstructed by this stored display-direction pool",
+            "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+      },
+      "expected_face_group_caches": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 211,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.7bc3fc71-ad87-49d7-8cad-452d110663fb.paramesh",
+            "asset_fusion_uuid": "7cb6ac6c-569a-4a90-8231-64d62bebd0f3",
+            "asset_sha256": "45181ad7f1b81e6a1643269a9ae357d5b69dc198123eaae6857a5fd91f1cf321",
+            "buffer_ordinal": 5,
+            "buffer_asset_offset": 568,
+            "stored_descriptor_hex": "82a15401a16401",
+            "stored_payload_hex": "00000000000000000000000000000000",
+            "stored_int32_forward_differences": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "decoded_triangle_face_group_temporary_ids": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "triangle_label_count": 4,
+            "distinct_temporary_label_count": 1,
+            "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+            "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+            "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+            "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+            "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+      },
+      "expected_prior_mesh_diagnostics": [],
+      "actual_API_result_BRep_data_multiset": [
+        {
+          "vertex_count": 4,
+          "edge_count": 6,
+          "face_count": 4,
+          "unordered_vertices_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              4.0
+            ],
+            [
+              0.0,
+              3.0,
+              0.0
+            ],
+            [
+              2.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "unordered_plane_origin_normal_pairs": [
+            [
+              [
+                0.0,
+                0.0,
+                4.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0,
+                4.0
+              ],
+              [
+                0.768221279597,
+                0.512147519732,
+                0.384110639799
+              ]
+            ],
+            [
+              [
+                0.0,
+                3.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ]
+          ]
+        }
+      ],
+      "result_geometry_comparison_scope": "Native BODY mapping established by explicit anchors/collection/ASM stored IDs first. Complete geometric result bundles compared collectively as an unordered multiset at12decimal numerical precision; no per-native-ID API identity or per-source/result pairing.",
+      "native_API_result_assignment": null
+    },
+    {
+      "archive": "meshconvertoperations-5af73924aa60/base_feature_open.f3d",
+      "feature_object_id": 300,
+      "result_anchor_object_ids": [
+        317
+      ],
+      "expected_result_body_routes": {
+        "result_body_anchors": [
+          {
+            "object_id": 317,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 312,
+            "source_owner_object_id": 300,
+            "native_uuid_text": "566f91d4-b0b2-444d-90b4-63e237fa4f10",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 30371,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "result_native_body_object_ids": [
+          312
+        ],
+        "result_body_collection_object_id": 7,
+        "result_body_component_object_id": 3,
+        "native_history_mapping": {
+          "mapping_record_object_id": 8,
+          "owner_object_id": 7,
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4d8ca507-238c-46a6-8dc9-70e433f70e73.smbh",
+          "body_count": 1,
+          "bindings": [
+            {
+              "stored_handle": 25,
+              "native_body_object_id": 312
+            }
+          ]
+        },
+        "stored_asm_body_identifiers": {
+          "decoded": [
+            {
+              "mapping_record_object_id": 8,
+              "owner_object_id": 7,
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4d8ca507-238c-46a6-8dc9-70e433f70e73.smbh",
+              "body_count": 1,
+              "bindings": [
+                {
+                  "native_body_object_id": 312,
+                  "stored_handle": 25,
+                  "asm_body_index": 1,
+                  "asm_stored_entity_id": 25,
+                  "asm_body_record_offset": 186,
+                  "asm_identifier_token_offset": 201,
+                  "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                  "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                  "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                  "previous_ordinal_candidate": null,
+                  "ordinal_candidate_conflict": false
+                }
+              ]
+            }
+          ],
+          "unresolved": [],
+          "invalidate_ordinal_candidates_for_mapping_ids": [
+            8
+          ],
+          "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+        },
+        "result_collection_provenance": {
+          "native_entity_members": [
+            {
+              "object_id": 213,
+              "class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D"
+            },
+            {
+              "object_id": 312,
+              "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20"
+            }
+          ],
+          "repeated_native_body_object_ids": [
+            312
+          ],
+          "property_record_object_id": 316,
+          "bookkeeping_record_object_id": 18,
+          "collection_record_offset": 2091,
+          "stored_collection_payload_hex": "000000010000000200000001d5000000000000000000013801000000000000000001013c0100000000000000000108000000000000000000010112000000000000000000000100000001380100000000000000000103000000000000000000",
+          "mapping_record_offset": 2205,
+          "stored_mapping_payload_hex": "000001000000190000000000000038010000000000000107000000000000000000002e00000042005200450050002e00340064003800630061003500300037002d0032003300380063002d0034003600610036002d0038006400630039002d003700300065003400330033006600370030006500370033002e0073006d0062006800",
+          "exact_collection_and_mapping_replay": true,
+          "scope": "Literal mixed entity collection and owned BODY subset; mesh entries do not establish source/result pairing or current mesh membership"
+        },
+        "result_identity_scope": "Owned anchors and reciprocal native BODY/collection mapping qualify same-blob ASM stored IDs. Stored handles are not record ordinals; no per-input/result pairing, lifecycle, current visibility or regeneration inferred"
+      },
+      "expected_mesh_contents": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "mesh_class_guid": "EA90DA22-556C-4C61-89BB-20C2681B7A9D",
+            "mesh_record_offset": 24521,
+            "feature_object_id": 218,
+            "native_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+            "feature_owner_scope": "Explicit reciprocal native BaseMeshFeature membership",
+            "component_object_id": 3,
+            "component_primary_class_guid": "E03784ED-5E19-4E14-B9F2-3B07017018CD",
+            "mesh_collection_object_id": 202,
+            "mesh_collection_record_offset": 23311,
+            "mesh_collection_base_record_offset": 23349,
+            "collection_mesh_object_ids": [
+              213
+            ],
+            "name": "OwnedTetraSource_base_feature_open",
+            "name_helper_object_id": 216,
+            "name_property_object_id": 217,
+            "asset_object_id": 211,
+            "asset_record_offset": 24274,
+            "asset_filename_object_id": 212,
+            "asset_filename_record_offset": 24361,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.8db636b3-43f8-4a82-b507-10060432a6fa.paramesh",
+            "asset_fusion_uuid": "90ce9e22-98bd-4aa0-b606-b4019f92f2c1",
+            "asset_reference_field_offset": 25062,
+            "stored_matrix_encodings": [
+              "ExplicitFloat64Matrix",
+              "ExplicitFloat64Matrix"
+            ],
+            "stored_matrix_copies": [
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ],
+              [
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0000000149011612,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "asset_coordinates_to_component_matrix": [
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0000000149011612,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "matrix_scope": "Observed equal uniform-scale matrices; transformed stored vertices agree with component MeshBody.mesh API coordinates in three captures. Assembly/world placement and arbitrary affine cases unsupported.",
+            "stored_native_prefix_material_hex": "0000803f010100000000000000000024000000310046003000430033003200410042002d0033004300360042002d0045003600420039002d0044003500310046002d0046004400370043003400430042004300420043003600360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000001100000050007200690073006d004d006100740065007200690061006c002d0030003100380001da000000000000000000",
+            "stored_native_material_tail_hex": "0000000000000000000024000000320044003600420043004300360038002d0030003900300034002d0042004600300030002d0044003200440035002d0038003100320043003100340035003900310041003400360024000000430031004500450041003500370043002d0033004600350036002d0034003500460043002d0042003800430042002d00410039004500430034003600410039003900390034004300000000002b00000050007200690073006d004d006100740065007200690061006c002d003000310038005f0070006800790073006d00610074005f0061007300700065006300740073003a0050007200690073006d002d00320035003600000000000000803f",
+            "geometry": {
+              "format": "ObservedUDPMESHv2SixBufferTriangleVariants",
+              "asset_size_bytes": 581,
+              "asset_sha256": "08ae32e8f31dcedb6f9018a1e16eab211f29d88b2fe9c249a6969d07e2b5ee4b",
+              "fusion_uuid": "90ce9e22-98bd-4aa0-b606-b4019f92f2c1",
+              "stored_header_metadata_dictionary_hex": "895544504d4553480d0a1a0a020000000000000000000000000000000000000000000000000000000000000000000000d4000000000000000100000022331a2432623664613966662d343931372d346535622d386334642d3861653830366233613338332a0b0805120272301a037230692a322a0608071202723232280800122434366432653065382d333933662d346537302d383231652d6236373030383832346135313a042202723142330a0b667573696f6e5f757569641a2439306365396532322d393862642d346161302d623630362d6234303139663932663263314801622430396237343430332d626232612d343261642d386238612d626462613062643732616639aa010176b201017418000000000000000300000086a2723004a372306905a2723106a2723207a17403a17602",
+              "stored_metadata_hex": "22331a2432623664613966662d343931372d346535622d386334642d3861653830366233613338332a0b0805120272301a037230692a322a0608071202723232280800122434366432653065382d333933662d346537302d383231652d6236373030383832346135313a042202723142330a0b667573696f6e5f757569641a2439306365396532322d393862642d346161302d623630362d6234303139663932663263314801622430396237343430332d626232612d343261642d386238612d626462613062643732616639aa010176b2010174",
+              "buffers": [
+                {
+                  "buffer_ordinal": 0,
+                  "asset_offset": 308,
+                  "stored_length": 33,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a14403a15403",
+                  "uncompressed_size": 48,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006e04c805ffb4164acd525892ac000000",
+                  "uncompressed_payload_hex": "000000000000000000000000000000000000000000008040000000000000404000000000000000400000000000000000",
+                  "stored_frame_hex": "210000000000000004000000070082a14403a15403300000005d1400006e04c805ffb4164acd525892ac000000"
+                },
+                {
+                  "buffer_ordinal": 1,
+                  "asset_offset": 353,
+                  "stored_length": 41,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 36,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0001003896e95f6e232ca533bc7dc1ded79e803e9b5c52ff0000",
+                  "uncompressed_payload_hex": "0200000001000000fdffffff03000000feffffffffffffff010000000100000002000000",
+                  "stored_frame_hex": "290000000000000004000000070082a15401a16401240000005d140001003896e95f6e232ca533bc7dc1ded79e803e9b5c52ff0000"
+                },
+                {
+                  "buffer_ordinal": 2,
+                  "asset_offset": 406,
+                  "stored_length": 39,
+                  "stored_kind": 4,
+                  "descriptor_hex": "83a14403a15403a155c3",
+                  "uncompressed_size": 72,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00000015c74ce93d8d06c6629e02dfdfc3220a9100",
+                  "uncompressed_payload_hex": "000080bf00000000000080bf00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000803f0000803f00000000000080bf00000000000080bf",
+                  "stored_frame_hex": "2700000000000000040000000a0083a14403a15403a155c3480000005d1400000015c74ce93d8d06c6629e02dfdfc3220a9100"
+                },
+                {
+                  "buffer_ordinal": 3,
+                  "asset_offset": 457,
+                  "stored_length": 28,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 20,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "0000803ca791d1848c94e344e0",
+                  "uncompressed_payload_hex": "0100000001000000010000000200000005000000",
+                  "stored_frame_hex": "1c0000000000000004000000070082a15401a16401140000005d140000803ca791d1848c94e344e0"
+                },
+                {
+                  "buffer_ordinal": 4,
+                  "asset_offset": 497,
+                  "stored_length": 38,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 24,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00018038bbafc6013dc4a6c2d52376eb330728bcbf1200",
+                  "uncompressed_payload_hex": "03000000fdffffff02000000feffffff0100000001000000",
+                  "stored_frame_hex": "260000000000000004000000070082a15401a16401180000005d1400018038bbafc6013dc4a6c2d52376eb330728bcbf1200"
+                },
+                {
+                  "buffer_ordinal": 5,
+                  "asset_offset": 547,
+                  "stored_length": 22,
+                  "stored_kind": 4,
+                  "descriptor_hex": "82a15401a16401",
+                  "uncompressed_size": 12,
+                  "compressed_properties_hex": "5d14",
+                  "compressed_payload_hex": "00006c3e4f0000",
+                  "uncompressed_payload_hex": "000000000000000000000000",
+                  "stored_frame_hex": "160000000000000004000000070082a15401a164010c0000005d1400006c3e4f0000"
+                }
+              ],
+              "stored_node_coordinates_float32": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.0
+                ],
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  2.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "triangle_node_indices": [
+                0,
+                2,
+                3,
+                0,
+                3,
+                1,
+                0,
+                1,
+                2
+              ],
+              "triangle_index_encoding": "SignedInt32 forward differences followed by final absolute index; integrated backward",
+              "node_count": 4,
+              "triangle_count": 3,
+              "count_evidence": {
+                "stored_coordinate_buffer_bytes": 48,
+                "coordinate_descriptor": "D=3,T=3 observed Float32 triples",
+                "stored_triangle_buffer_bytes": 36,
+                "triangle_descriptor": "T=1,d=1 observed Int32 forward-difference triples",
+                "node_count_derivation": "Stored uncompressed coordinate byte count divided by12",
+                "triangle_count_derivation": "Stored uncompressed triangle-index byte count divided by12",
+                "metadata_count_scope": "No independent vertex/triangle scalar count identified; repeated buffer kind4 remains4 for6-node/8-triangle captures and is not a vertex/face count"
+              },
+              "unresolved_buffers": [
+                2,
+                3,
+                4,
+                5
+              ],
+              "normal_scope": "Stored descriptor/buffer bytes retained; normal/auxiliary transformations unresolved",
+              "component_node_coordinates_cm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0,
+                  4.000000059604645
+                ],
+                [
+                  0.0,
+                  3.0000000447034836,
+                  0.0
+                ],
+                [
+                  2.0000000298023224,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "derived_area_cm2": 13.000000387430195,
+              "derived_closed_oriented_edge_incidence": false,
+              "derived_undirected_edge_count": 6,
+              "derived_component_bounds_cm": {
+                "min": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max": [
+                  2.0000000298023224,
+                  3.0000000447034836,
+                  4.000000059604645
+                ]
+              },
+              "derived_boundary_edge_count": 3,
+              "volume_applicability": "Open mesh: signed tetrahedral sum is not an enclosed physical volume",
+              "raw_signed_tetrahedral_sum_cm3": 0.0,
+              "derived_enclosed_volume_cm3": null
+            },
+            "stored_mesh_index": 1,
+            "stored_prefix_11_22_hex": "0100010000000000000000",
+            "prefix_scope": "Literal alternate stored index1 prefix; current membership independently proven, no flag/visibility meanings",
+            "native_current_prefix_membership": {
+              "mesh_object_id": 213,
+              "mesh_collection_object_id": 202,
+              "stored_current_collection_member_ids": [
+                213
+              ],
+              "component_object_id": 3,
+              "reciprocal_base_mesh_feature_object_id": 218,
+              "reciprocal_base_mesh_feature_class_guid": "99F6967E-ED35-4222-B906-5CCF0AC70B53",
+              "stored_prefix_hex": "00000100000000000000000100010000000000000000",
+              "source_record_offset": 24521,
+              "association": "Typed singleton counted current collection, component and reciprocal BaseMesh membership; no BaseFeature-to-source identity or lifecycle inference"
+            },
+            "stored_asset_header_scalar": 0.0,
+            "stored_asset_header_flag": 0,
+            "asset_header_scalar_scope": "Literal finite native header value; semantic meaning unresolved",
+            "ownership_evidence": "Unique typed mesh/collection reciprocal membership and inherited component owner; native asset UUID/filename backlinks plus same-asset filename and embedded fusion_uuid agreement",
+            "unresolved": [
+              "Normal buffer semantics",
+              "Auxiliary buffers",
+              "Material/property fields",
+              "API baseOrFormFeature is not reconstructed",
+              "Timeline lifecycle and mesh regeneration"
+            ]
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed size-delimited UDPMESH v2 six-buffer triangle layouts (4 nodes/3 or4 faces,6 nodes/8 faces), typed mesh collection/component ownership and same-asset UUID/filename links. Only observed uniform native matrices are applied. Open-mesh signed tetra sums are not enclosed volumes; normal/auxiliary buffers, arbitrary topology, procedural regeneration and lifecycle remain unresolved."
+      },
+      "expected_normal_pools": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 211,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.8db636b3-43f8-4a82-b507-10060432a6fa.paramesh",
+            "asset_fusion_uuid": "90ce9e22-98bd-4aa0-b606-b4019f92f2c1",
+            "asset_sha256": "08ae32e8f31dcedb6f9018a1e16eab211f29d88b2fe9c249a6969d07e2b5ee4b",
+            "buffer_ordinal": 2,
+            "buffer_asset_offset": 406,
+            "stored_descriptor_hex": "83a14403a15403a155c3",
+            "stored_payload_hex": "000080bf00000000000080bf00000000000080bf0000000000000000000080bf0000803f0000803f0000803f0000803f0000803f0000803f00000000000080bf00000000000080bf",
+            "stored_packed_pairs_float32": [
+              [
+                -1.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0
+              ],
+              [
+                1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ],
+              [
+                1.0,
+                1.0
+              ],
+              [
+                0.0,
+                -1.0
+              ],
+              [
+                0.0,
+                -1.0
+              ]
+            ],
+            "stored_unit_vector_count": 9,
+            "derived_asset_unit_vectors": [
+              [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            "derived_component_covectors": [
+              [
+                -0.999999985098839,
+                0.0,
+                0.0
+              ],
+              [
+                -0.999999985098839,
+                0.0,
+                0.0
+              ],
+              [
+                -0.999999985098839,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                -0.999999985098839,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -0.999999985098839
+              ],
+              [
+                0.0,
+                0.0,
+                -0.999999985098839
+              ],
+              [
+                0.0,
+                0.0,
+                -0.999999985098839
+              ],
+              [
+                0.0,
+                -0.999999985098839,
+                0.0
+              ],
+              [
+                0.0,
+                -0.999999985098839,
+                0.0
+              ]
+            ],
+            "native_uniform_scale": 1.0000000149011612,
+            "lower_hemisphere_pair_count": 3,
+            "encoding": "Octahedral unit vector: z=1-|x|-|y|; fold xy when z<0, retain z, normalize",
+            "association_status": "Serialized vector pool only; per-vertex/corner/display-node association unresolved",
+            "original_polygon_mesh_normals_status": "Not reconstructed by this stored display-direction pool",
+            "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+      },
+      "expected_face_group_caches": {
+        "decoded": [
+          {
+            "mesh_object_id": 213,
+            "component_object_id": 3,
+            "asset_object_id": 211,
+            "asset_member": "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.8db636b3-43f8-4a82-b507-10060432a6fa.paramesh",
+            "asset_fusion_uuid": "90ce9e22-98bd-4aa0-b606-b4019f92f2c1",
+            "asset_sha256": "08ae32e8f31dcedb6f9018a1e16eab211f29d88b2fe9c249a6969d07e2b5ee4b",
+            "buffer_ordinal": 5,
+            "buffer_asset_offset": 547,
+            "stored_descriptor_hex": "82a15401a16401",
+            "stored_payload_hex": "000000000000000000000000",
+            "stored_int32_forward_differences": [
+              0,
+              0,
+              0
+            ],
+            "decoded_triangle_face_group_temporary_ids": [
+              0,
+              0,
+              0
+            ],
+            "triangle_label_count": 3,
+            "distinct_temporary_label_count": 1,
+            "triangle_order": "Consecutive triples of qualified geometry.triangle_node_indices; no coordinate-based reordering",
+            "encoding": "SignedInt32 forward differences followed by final absolute label, integrated backward",
+            "zero_label_scope": "Literal zero retained; no semantic assignment to unlabeled/source/default groups",
+            "identity_scope": "Temporary cache labels only; no persistent native face/group identity",
+            "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+      },
+      "expected_prior_mesh_diagnostics": [],
+      "actual_API_result_BRep_data_multiset": [
+        {
+          "vertex_count": 4,
+          "edge_count": 6,
+          "face_count": 3,
+          "unordered_vertices_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              4.0
+            ],
+            [
+              0.0,
+              3.0,
+              0.0
+            ],
+            [
+              2.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "unordered_plane_origin_normal_pairs": [
+            [
+              [
+                0.0,
+                0.0,
+                4.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                3.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ]
+          ]
+        }
+      ],
+      "result_geometry_comparison_scope": "Native BODY mapping established by explicit anchors/collection/ASM stored IDs first. Complete geometric result bundles compared collectively as an unordered multiset at12decimal numerical precision; no per-native-ID API identity or per-source/result pairing.",
+      "native_API_result_assignment": null
+    },
+    {
+      "archive": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d",
+      "feature_object_id": 349,
+      "result_anchor_object_ids": [
+        383,
+        388
+      ],
+      "expected_result_body_routes": {
+        "result_body_anchors": [
+          {
+            "object_id": 383,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 377,
+            "source_owner_object_id": 349,
+            "native_uuid_text": "62e18b47-e4d1-40e1-9419-393f1848ff88",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 33572,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          },
+          {
+            "object_id": 388,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 384,
+            "source_owner_object_id": 349,
+            "native_uuid_text": "dde32f11-b34d-4648-b528-e4935239f54e",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 35061,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "result_native_body_object_ids": [
+          377,
+          384
+        ],
+        "result_body_collection_object_id": 7,
+        "result_body_component_object_id": 3,
+        "native_history_mapping": {
+          "mapping_record_object_id": 8,
+          "owner_object_id": 7,
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e37721b2-294c-4931-837b-a91f362d3c4a.smbh",
+          "body_count": 2,
+          "bindings": [
+            {
+              "stored_handle": 60,
+              "native_body_object_id": 377
+            },
+            {
+              "stored_handle": 61,
+              "native_body_object_id": 384
+            }
+          ]
+        },
+        "stored_asm_body_identifiers": {
+          "decoded": [
+            {
+              "mapping_record_object_id": 8,
+              "owner_object_id": 7,
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.e37721b2-294c-4931-837b-a91f362d3c4a.smbh",
+              "body_count": 2,
+              "bindings": [
+                {
+                  "native_body_object_id": 377,
+                  "stored_handle": 60,
+                  "asm_body_index": 1,
+                  "asm_stored_entity_id": 60,
+                  "asm_body_record_offset": 186,
+                  "asm_identifier_token_offset": 201,
+                  "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                  "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                  "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                  "previous_ordinal_candidate": null,
+                  "ordinal_candidate_conflict": false
+                },
+                {
+                  "native_body_object_id": 384,
+                  "stored_handle": 61,
+                  "asm_body_index": 2,
+                  "asm_stored_entity_id": 61,
+                  "asm_body_record_offset": 247,
+                  "asm_identifier_token_offset": 262,
+                  "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                  "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                  "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                  "previous_ordinal_candidate": null,
+                  "ordinal_candidate_conflict": false
+                }
+              ]
+            }
+          ],
+          "unresolved": [],
+          "invalidate_ordinal_candidates_for_mapping_ids": [
+            8
+          ],
+          "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+        },
+        "result_collection_provenance": {
+          "native_entity_members": [
+            {
+              "object_id": 377,
+              "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20"
+            },
+            {
+              "object_id": 384,
+              "class_guid": "D3937028-C20C-4E65-B010-94AD418A5C20"
+            }
+          ],
+          "repeated_native_body_object_ids": [
+            377,
+            384
+          ],
+          "property_record_object_id": 382,
+          "bookkeeping_record_object_id": 18,
+          "collection_record_offset": 2091,
+          "stored_collection_payload_hex": "00000002000000020000000179010000000000000000018001000000000000000001017e01000000000000000001080000000000000000000101120000000000000000000002000000017901000000000000000001800100000000000000000103000000000000000000",
+          "mapping_record_offset": 2216,
+          "stored_mapping_payload_hex": "0000020000003c0000000000000079010000000000003d0000000000000080010000000000000107000000000000000000002e00000042005200450050002e00650033003700370032003100620032002d0032003900340063002d0034003900330031002d0038003300370062002d006100390031006600330036003200640033006300340061002e0073006d0062006800",
+          "exact_collection_and_mapping_replay": true,
+          "scope": "Literal mixed entity collection and owned BODY subset; mesh entries do not establish source/result pairing or current mesh membership"
+        },
+        "result_identity_scope": "Owned anchors and reciprocal native BODY/collection mapping qualify same-blob ASM stored IDs. Stored handles are not record ordinals; no per-input/result pairing, lifecycle, current visibility or regeneration inferred"
+      },
+      "expected_mesh_contents": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "mesh_object_id": 213,
+            "reason": "Unobserved opt-in native mesh prefix"
+          },
+          {
+            "mesh_object_id": 226,
+            "reason": "Unobserved opt-in native mesh prefix"
+          }
+        ],
+        "scope": "Observed size-delimited UDPMESH v2 six-buffer triangle layouts (4 nodes/3 or4 faces,6 nodes/8 faces), typed mesh collection/component ownership and same-asset UUID/filename links. Only observed uniform native matrices are applied. Open-mesh signed tetra sums are not enclosed volumes; normal/auxiliary buffers, arbitrary topology, procedural regeneration and lifecycle remain unresolved."
+      },
+      "expected_normal_pools": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed Float32-pair octahedral unit-vector pool in typed UDPMESH buffer2, qualified through native mesh/asset provenance. Directions corroborate saved display-normal sets; vector order, corner/vertex assignment, unused entries, original PolygonMesh normals and normal regeneration remain unresolved. Component covectors are derived by the proved native inverse uniform scale, not serialized XYZ normals."
+      },
+      "expected_face_group_caches": {
+        "decoded": [],
+        "unresolved": [],
+        "scope": "Observed complete UDPMESH buffer5 signedInt32 forward differences and final absolute anchor, yielding one temporary group label per stored triangle in qualified current native mesh/asset layouts. Ordered API group arrays corroborate the observed layouts; temporary labels are not persistent native face/group IDs. Retained sources, lifecycle, other auxiliary buffers and regeneration remain unresolved."
+      },
+      "expected_prior_mesh_diagnostics": [
+        {
+          "mesh_object_id": 213,
+          "reason": "Unobserved opt-in native mesh prefix"
+        },
+        {
+          "mesh_object_id": 226,
+          "reason": "Unobserved opt-in native mesh prefix"
+        }
+      ],
+      "actual_API_result_BRep_data_multiset": [
+        {
+          "vertex_count": 4,
+          "edge_count": 6,
+          "face_count": 4,
+          "unordered_vertices_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              4.0
+            ],
+            [
+              0.0,
+              3.0,
+              0.0
+            ],
+            [
+              2.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "unordered_plane_origin_normal_pairs": [
+            [
+              [
+                0.0,
+                0.0,
+                4.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0,
+                4.0
+              ],
+              [
+                0.768221279597,
+                0.512147519732,
+                0.384110639799
+              ]
+            ],
+            [
+              [
+                0.0,
+                3.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ]
+          ]
+        },
+        {
+          "vertex_count": 4,
+          "edge_count": 6,
+          "face_count": 4,
+          "unordered_vertices_cm": [
+            [
+              6.0,
+              0.0,
+              0.0
+            ],
+            [
+              6.0,
+              0.0,
+              4.0
+            ],
+            [
+              6.0,
+              3.0,
+              0.0
+            ],
+            [
+              8.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "unordered_plane_origin_normal_pairs": [
+            [
+              [
+                6.0,
+                0.0,
+                4.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                6.0,
+                0.0,
+                4.0
+              ],
+              [
+                0.768221279597,
+                0.512147519732,
+                0.384110639799
+              ]
+            ],
+            [
+              [
+                6.0,
+                3.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                8.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            ]
+          ]
+        }
+      ],
+      "result_geometry_comparison_scope": "Native BODY mapping established by explicit anchors/collection/ASM stored IDs first. Complete geometric result bundles compared collectively as an unordered multiset at12decimal numerical precision; no per-native-ID API identity or per-source/result pairing.",
+      "native_API_result_assignment": null
+    }
+  ],
+  "legacy_controls": [
+    {
+      "archive": "meshconverts-4b42d39fb1d5/faceted_closed.f3d",
+      "old_Convert_and_mesh_dictionaries_exact": true
+    },
+    {
+      "archive": "meshconverts-4b42d39fb1d5/prismatic_closed.f3d",
+      "old_Convert_and_mesh_dictionaries_exact": true
+    },
+    {
+      "archive": "meshconverts-4b42d39fb1d5/faceted_open.f3d",
+      "old_Convert_and_mesh_dictionaries_exact": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "Actual3captures complete with no case errors"
+    },
+    {
+      "check": "Actual3owned closeFalse returned true"
+    },
+    {
+      "check": "Exact executed generator snapshot hash"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d export hash exact"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d input handle equality actually recorded"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d null return independent of new BRep count"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d native partialBaseFeature300 independently decoded"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d explicit result and stored body table identities distinct"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d component derived from BODYcollection, suppliedargumentexact"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d one current nativeMesh still counted independently"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d alternateprefix proves current singleton/BaseMeshowner without flag meanings"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d current mesh API arrays exact after native identity fixed"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d collection and native mapping fullbytes replay"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d explicit sameblob initialBODY mapping fully parsed"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d nativeBODY312 storedhandle/ASMrootunique"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d complete BRep result-data multiset corroborates API collectively"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d collective result proof invariant to API ordering"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d current normal/group helpers have no errors"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d existing current normal directions and ordered labels corroborate API"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d native bytes untouched"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d export hash exact"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d input handle equality actually recorded"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d null return independent of new BRep count"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d native partialBaseFeature300 independently decoded"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d explicit result and stored body table identities distinct"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d component derived from BODYcollection, suppliedargumentexact"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d one current nativeMesh still counted independently"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d alternateprefix proves current singleton/BaseMeshowner without flag meanings"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d current mesh API arrays exact after native identity fixed"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d collection and native mapping fullbytes replay"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d explicit sameblob initialBODY mapping fully parsed"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d nativeBODY312 storedhandle/ASMrootunique"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d complete BRep result-data multiset corroborates API collectively"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d collective result proof invariant to API ordering"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d current normal/group helpers have no errors"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d existing current normal directions and ordered labels corroborate API"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/base_feature_open.f3d native bytes untouched"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d export hash exact"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d input handle equality actually recorded"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d one two-input native Parametric feature/noBasepartial"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d two independent results and no source/resultpairing"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d no current native mesh; retained warnings exact"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d source213 explicit retained mesh and API source name"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d source213 source arrays corroborate without resultpairing"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d source226 explicit retained mesh and API source name"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d source226 source arrays corroborate without resultpairing"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d collection and native mapping fullbytes replay"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d explicit sameblob initialBODY mapping fully parsed"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d nativeBODY377 storedhandle/ASMrootunique"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d nativeBODY384 storedhandle/ASMrootunique"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d complete BRep result-data multiset corroborates API collectively"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d collective result proof invariant to API ordering"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d current normal/group helpers have no errors"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d native bytes untouched"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d legacy full Convert dictionary exact"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d legacy current mesh diagnostics/fullsummary exact"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/prismatic_closed.f3d legacy full Convert dictionary exact"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/prismatic_closed.f3d legacy current mesh diagnostics/fullsummary exact"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d legacy full Convert dictionary exact"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_open.f3d legacy current mesh diagnostics/fullsummary exact"
+    },
+    {
+      "check": "Reject duplicate result anchor IDs"
+    },
+    {
+      "check": "Reject supplied unrelated component"
+    },
+    {
+      "check": "Reject native handle absent from ASM BODY table"
+    },
+    {
+      "check": "Reject repeated collection BODY reference mismatch"
+    },
+    {
+      "check": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d retains exact old prefix diagnostic"
+    },
+    {
+      "check": "meshconverts-4b42d39fb1d5/faceted_closed.f3d retains exact old prefix diagnostic"
+    },
+    {
+      "check": "meshcombines-541ebb6cc93f/join.f3d retains exact old prefix diagnostic"
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Reject duplicate result anchor IDs",
+      "reason": "Convert result anchor list outside observed singleton/two-body family"
+    },
+    {
+      "guard": "Reject supplied unrelated component",
+      "reason": "Convert result explicit component disagrees with collection backlink"
+    },
+    {
+      "guard": "Reject native handle absent from ASM BODY table",
+      "reason": "Convert result stored ASM BODY identifier association unresolved"
+    },
+    {
+      "guard": "Reject repeated collection BODY reference mismatch",
+      "reason": "Convert result repeated BODY/component backlinks disagree"
+    },
+    {
+      "guard": "meshconvertoperations-5af73924aa60/two_mesh_parametric.f3d retainedsourceprefix",
+      "reason": "Unobserved opt-in native mesh prefix"
+    },
+    {
+      "guard": "meshconverts-4b42d39fb1d5/faceted_closed.f3d retainedsourceprefix",
+      "reason": "Unobserved opt-in native mesh prefix"
+    },
+    {
+      "guard": "meshcombines-541ebb6cc93f/join.f3d retainedsourceprefix",
+      "reason": "Unobserved opt-in native mesh prefix"
+    }
+  ],
+  "actual_terminal_journal": {
+    "time_utc": "2026-10-21T14:34:01.695713+00:00",
+    "phase": "batch_complete",
+    "case": null,
+    "sample_count": 3,
+    "error_count": 0,
+    "planned_sample_count": 3,
+    "exported_sample_count": 3
+  },
+  "actual_document_close_journal": [
+    {
+      "time_utc": "2026-10-21T14:34:00.896672+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "base_feature_closed",
+      "sample_count": 1,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    },
+    {
+      "time_utc": "2026-10-21T14:34:01.259455+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "base_feature_open",
+      "sample_count": 2,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    },
+    {
+      "time_utc": "2026-10-21T14:34:01.693099+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "two_mesh_parametric",
+      "sample_count": 3,
+      "error_count": 0,
+      "returned": true,
+      "save": false
+    }
+  ],
+  "limitations": [
+    "Null BaseFeature operation return alone does not prove conversion; typed partial definition/owned result anchors and independent API BRep collection retained separately",
+    "BaseFeature stored-tableBODY306 and anchoredBODY312 remain distinct without PM/DM identity inference",
+    "Alternative mesh packed prefix accepted only with reciprocal counted current membership/component/BaseMesh proof; retained warnings unchanged",
+    "Result cache comparisons are unordered collective data, no native/API per-result assignment",
+    "Mesh source lists and BRep result lists remain independent; no source/result matching by order/geometry",
+    "ASM stored IDs are local to explicitly referenced history blobs, not global identities or ordinals",
+    "No conversion algorithm, lifecycle, current visibility or regeneration claim"
+  ],
+  "source_sha256": {
+    "validate_mesh_convert_operation_geometry.py": "08838e2bd6709576557b31a855c62944d10c9e58a9cc5bef1d0d5a0c7bb585ad",
+    "decode_mesh_convert_result_bodies.py": "25b9a551f99adc4ba6a17fe6200370f6c31a94657ba46d3a4632a48b9ba82bcd",
+    "decode_mesh_current_prefix.py": "e2a48320af52203ce4330323d7ad296daab351ce00aa6f29aeae312a704d11f6",
+    "decode_mesh_convert_inputs.py": "d73c16e164dee79508540ae1deea50516c050202ec0834da7cfda9102d161bd4",
+    "decode_base_feature_single_lists.py": "8bfc9cf8be772ae6da65592d6d1c9234d4fac179b16981439070bb6865fd6f72",
+    "decode_mesh_contents.py": "5a6efbe8963159ff35cad743c194fcd1291dc434690b765611e3cae8ed2a2be2",
+    "decode_mesh_geometry_variants.py": "62a4abc0151da650ead1cc65166ecd047fefa7132199a328550c20aab6624c1a",
+    "decode_body_asm_identifiers.py": "3c80d7cb4658b49c2429ccdb4da561bb803ba77eef17d32cad0e7d2fa2283a2a"
+  }
+}

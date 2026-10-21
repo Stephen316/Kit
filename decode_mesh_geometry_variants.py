@@ -102,7 +102,12 @@ def decode_geometry_layout(framing, raw_buffers):
 
 def native_layout(stage, payload, context):
     if stage == 'MeshPrefix':
-        _require(len(payload) == 22 and payload[:2] == bytes(2) and payload[10:] == bytes.fromhex('000101010000000000000000'), 'Unobserved opt-in native mesh prefix')
+        ordinary_prefix = (len(payload) == 22 and payload[:2] == bytes(2)
+                           and payload[10:] == bytes.fromhex('000101010000000000000000'))
+        if not ordinary_prefix:
+            _require('data' in context and 'records' in context, 'Unobserved opt-in native mesh prefix')
+            from decode_mesh_current_prefix import decode_mesh_current_prefix
+            return decode_mesh_current_prefix(context['data'], context['records'], context['mesh_object_id'], payload)
         index = struct.unpack_from('<Q', payload, 2)[0]
         _require(index in (1, 2, 3), 'Unobserved native mesh stored index')
         return {'stored_mesh_index': index, 'stored_prefix_11_22_hex': payload[11:].hex(),

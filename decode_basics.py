@@ -73,6 +73,8 @@ from decode_mesh_plane_cuts import decode_mesh_plane_cuts
 from decode_mesh_reduce import decode_mesh_reduce
 from decode_mesh_remesh import decode_mesh_remesh
 from decode_mesh_convert import decode_mesh_convert
+from decode_mesh_convert_inputs import decode_mesh_convert_inputs
+from decode_mesh_convert_result_bodies import decode_mesh_convert_result_bodies
 from decode_mesh_combine import decode_mesh_combine
 from decode_mesh_smooth import decode_mesh_smooth
 from decode_mesh_reverse_normals import decode_mesh_reverse_normals
@@ -85,6 +87,7 @@ from decode_mesh_repair import decode_mesh_repair
 from decode_mesh_face_group_caches import decode_mesh_face_group_caches
 from decode_mesh_normals import decode_mesh_normal_pools
 from decode_base_feature_empty_lists import decode_base_feature_empty_lists
+from decode_base_feature_single_lists import decode_base_feature_single_lists
 from decode_split_face_metadata_variants import decode_split_face_metadata_variants
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -663,6 +666,19 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         for partial in base_empty_summary['partial']:
             feature = next(f for f in features if f['object_id'] == partial['feature_object_id'])
             feature['base_feature_empty_list_definition'] = partial
+        base_single_summary = decode_base_feature_single_lists(data, records, features)
+        base_single_results = dict(decoded=[], unresolved=[], scope=
+            'Observed singleton BaseFeature result anchor/native BODY/ASM routes only; feature classification, table-body correspondence and lifecycle unresolved')
+        for partial in base_single_summary['partial']:
+            feature = next(f for f in features if f['object_id'] == partial['feature_object_id'])
+            feature['base_feature_single_list_definition'] = partial
+            try:
+                routes = decode_mesh_convert_result_bodies(data, records, name, members,
+                    partial['feature_object_id'], partial['result_anchor_object_ids'], None)
+                feature['base_feature_single_list_result_routes'] = routes
+                base_single_results['decoded'].append(dict(feature_object_id=partial['feature_object_id'], result_routes=routes))
+            except (ValueError, KeyError, IndexError, TypeError, struct.error) as error:
+                base_single_results['unresolved'].append(dict(feature_object_id=partial['feature_object_id'], reason=str(error)))
         mesh_feature_ids = set()
         for mesh in mesh_summary['decoded']:
             if mesh['feature_object_id'] is None:
@@ -682,6 +698,19 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         mesh_reduce_summary = decode_mesh_reduce(data, records, features, name, members, mesh_summary)
         mesh_remesh_summary = decode_mesh_remesh(data, records, features, name, members, mesh_summary)
         mesh_convert_summary = decode_mesh_convert(data, records, features, name, members)
+        mesh_convert_inputs = decode_mesh_convert_inputs(data, records, features, name, members)
+        if mesh_convert_inputs['decoded']:
+            recovered_convert_ids = {row['feature_object_id'] for row in mesh_convert_inputs['decoded']}
+            eligible_convert_ids = {row['feature_object_id'] for row in mesh_convert_summary['unresolved']
+                if row['reason'] == 'Only captured Faceted parametric Convert header supported'}
+            if not recovered_convert_ids <= eligible_convert_ids:
+                raise ValueError('Qualified multi-input Convert does not match the prior singleton-header frontier')
+            mesh_convert_summary['decoded'].extend(mesh_convert_inputs['decoded'])
+            mesh_convert_summary['unresolved'] = [row for row in mesh_convert_summary['unresolved']
+                if row['feature_object_id'] not in recovered_convert_ids]
+            mesh_convert_summary['multi_input_variant_scope'] = mesh_convert_inputs['scope']
+        if mesh_convert_inputs['unresolved']:
+            mesh_convert_summary['multi_input_variants'] = mesh_convert_inputs
         mesh_combine_summary = decode_mesh_combine(data, records, features, name, members, mesh_summary)
         mesh_smooth_summary = decode_mesh_smooth(data, records, features, name, members, mesh_summary)
         mesh_reverse_normal_summary = decode_mesh_reverse_normals(data, records, features, name, members, mesh_summary)
@@ -1420,6 +1449,10 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 streams[-1][key] = summary
         if base_empty_summary['partial'] or base_empty_summary['unresolved']:
             streams[-1]['base_feature_empty_lists'] = base_empty_summary
+        if base_single_summary['partial'] or base_single_summary['unresolved']:
+            streams[-1]['base_feature_single_lists'] = base_single_summary
+        if base_single_results['decoded'] or base_single_results['unresolved']:
+            streams[-1]['base_feature_single_list_results'] = base_single_results
         if named_vertex_summary['associations'] or named_vertex_summary['unresolved']:
             streams[-1]['named_vertex_selections'] = named_vertex_summary
         if any(circular_symmetric_summary[key] for key in ('decoded', 'partial', 'unresolved')):
