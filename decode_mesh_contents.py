@@ -123,9 +123,12 @@ def decode_paramesh_header(blob):
              'stored_metadata_hex': metadata.hex()}, dictionary_end)
 
 
-def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False, allow_index_zero_suffix=False):
+def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False, allow_index_zero_suffix=False,
+                            max_uncompressed_buffer_size=65536):
     """Common exact six-buffer container framing; no geometry shape assumptions."""
     framing, dictionary_end = decode_paramesh_header(blob)
+    _require(isinstance(max_uncompressed_buffer_size, int) and
+             1 <= max_uncompressed_buffer_size <= 131072, 'Invalid bounded mesh buffer limit')
     cursor = dictionary_end
     blocks, raw_buffers = [], []
     for ordinal, descriptor in enumerate(DESCRIPTORS):
@@ -139,14 +142,14 @@ def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False, allow_index_z
         size_offset = descriptor_start+descriptor_length
         uncompressed_size = struct.unpack_from('<I', blob, size_offset)[0]
         compressed = blob[size_offset+4:end]
-        _require(0 < uncompressed_size <= 65536 and compressed[:2] == b'\x5d\x14', 'Unobserved mesh LZMA properties/size')
+        _require(0 < uncompressed_size <= max_uncompressed_buffer_size and compressed[:2] == b'\x5d\x14', 'Unobserved mesh LZMA properties/size')
         decoder = lzma.LZMADecompressor(format=lzma.FORMAT_RAW, filters=[{
             'id': lzma.FILTER_LZMA1, 'dict_size': 1 << 20, 'lc': 3, 'lp': 0, 'pb': 2}])
         raw = decoder.decompress(compressed[2:], max_length=uncompressed_size+1)
         strict_extent = len(raw) == uncompressed_size and not decoder.eof and decoder.needs_input and not decoder.unused_data
         auxiliary_evidence = {}
-        if not strict_extent and allow_index_zero_suffix and ordinal == 1 and uncompressed_size == 576:
-            _require(len(raw) == 577 and raw[-1:] == b'\0' and not decoder.eof and
+        if not strict_extent and allow_index_zero_suffix and ordinal == 1 and uncompressed_size in (96, 576):
+            _require(len(raw) == uncompressed_size+1 and raw[-1:] == b'\0' and not decoder.eof and
                      not decoder.needs_input and not decoder.unused_data,
                      'Unobserved index zero-suffix probe state')
             drained = decoder.decompress(b'', max_length=1)
@@ -180,10 +183,11 @@ def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False, allow_index_z
     return framing, raw_buffers
 
 
-def decode_paramesh_geometry(blob, *, geometry_decoder=None, allow_index_zero_suffix=False):
+def decode_paramesh_geometry(blob, *, geometry_decoder=None, allow_index_zero_suffix=False,
+                             max_uncompressed_buffer_size=65536):
     """Strict default tetra layout; explicitly supplied geometry decoder is opt-in."""
     framing, raw_buffers = decode_paramesh_framing(blob, allow_auxiliary_prefix=geometry_decoder is not None,
-        allow_index_zero_suffix=allow_index_zero_suffix)
+        allow_index_zero_suffix=allow_index_zero_suffix, max_uncompressed_buffer_size=max_uncompressed_buffer_size)
     if geometry_decoder is not None:
         return geometry_decoder(framing, raw_buffers)
     _require([len(r) for r in raw_buffers] == [48, 48, 96, 32, 48, 16], 'Only observed four-node/four-triangle buffer dimensions are supported')
@@ -208,7 +212,7 @@ def replay_paramesh_geometry(asset):
 
 
 def decode_mesh_contents(data, records, member, members, *, geometry_decoder=None, native_layout_decoder=None,
-                         metadata_only=False, allow_index_zero_suffix=False):
+                         metadata_only=False, allow_index_zero_suffix=False, max_uncompressed_buffer_size=65536):
     """Read native mesh rows; metadata-only mode never supplies geometry or suppresses a geometry failure."""
     scope = ('Typed native mesh/collection/component and same-asset UUID/filename routes only; '
              'embedded header metadata is checked, compressed-buffer validity and geometry are not examined'
@@ -326,7 +330,8 @@ def decode_mesh_contents(data, records, member, members, *, geometry_decoder=Non
                             'geometry_status': 'Not decoded: explicit metadata-only route; compressed-buffer validity and geometry remain unqualified'}
                     else:
                         geometry = decode_paramesh_geometry(members[asset_member], geometry_decoder=geometry_decoder,
-                            allow_index_zero_suffix=allow_index_zero_suffix)
+                            allow_index_zero_suffix=allow_index_zero_suffix,
+                            max_uncompressed_buffer_size=max_uncompressed_buffer_size)
                         _require(geometry['fusion_uuid'] == uuid, 'Native mesh UUID disagrees with stored asset fusion_uuid')
                         component_points = [transform_point(matrices[0], p) for p in geometry['stored_node_coordinates_float32']]
                         geometry['component_node_coordinates_cm'] = component_points

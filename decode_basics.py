@@ -76,6 +76,10 @@ from decode_mesh_convert import decode_mesh_convert
 from decode_mesh_combine import decode_mesh_combine
 from decode_mesh_smooth import decode_mesh_smooth
 from decode_mesh_reverse_normals import decode_mesh_reverse_normals
+from decode_mesh_shell import decode_mesh_shell
+from decode_mesh_face_groups import decode_mesh_face_groups
+from decode_mesh_separate import decode_mesh_separate
+from decode_mesh_face_group_caches import decode_mesh_face_group_caches
 from decode_mesh_normals import decode_mesh_normal_pools
 from decode_base_feature_empty_lists import decode_base_feature_empty_lists
 from decode_split_face_metadata_variants import decode_split_face_metadata_variants
@@ -651,6 +655,7 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
             discovery_summary['class_decoded_rigid_group_definition_count'] = len(resolved_rigid_group_definitions)
         mesh_summary = decode_mesh_contents_variants(data, records, name, members)
         mesh_normal_summary = decode_mesh_normal_pools(mesh_summary)
+        mesh_face_group_cache_summary = decode_mesh_face_group_caches(mesh_summary)
         base_empty_summary = decode_base_feature_empty_lists(data, records, features)
         for partial in base_empty_summary['partial']:
             feature = next(f for f in features if f['object_id'] == partial['feature_object_id'])
@@ -677,6 +682,9 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         mesh_combine_summary = decode_mesh_combine(data, records, features, name, members, mesh_summary)
         mesh_smooth_summary = decode_mesh_smooth(data, records, features, name, members, mesh_summary)
         mesh_reverse_normal_summary = decode_mesh_reverse_normals(data, records, features, name, members, mesh_summary)
+        mesh_shell_summary = decode_mesh_shell(data, records, features, name, members, mesh_summary)
+        mesh_face_group_summary = decode_mesh_face_groups(data, records, features, name, members, mesh_summary)
+        mesh_separate_summary = decode_mesh_separate(data, records, features, name, members, mesh_summary)
         for operation_summary, counter_key, level in (
                 (mesh_plane_cut_summary, 'class_decoded_mesh_plane_cut_count',
                  'Observed MeshPlaneCut controls, selected plane and owned mesh/asset routes; flip encoding, historical lifecycle and regeneration unresolved'),
@@ -691,7 +699,13 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 (mesh_smooth_summary, 'class_decoded_mesh_smooth_count',
                  'Observed MeshSmooth strength and owned parameter/mesh/asset routes; algorithm, lifecycle and regeneration unresolved'),
                 (mesh_reverse_normal_summary, 'class_decoded_mesh_reverse_normal_count',
-                 'Observed MeshReverseNormal selected mesh and stored asset links; general lifecycle and regeneration unresolved')):
+                 'Observed MeshReverseNormal selected mesh and stored asset links; general lifecycle and regeneration unresolved'),
+                (mesh_shell_summary, 'class_decoded_mesh_shell_count',
+                 'Observed MeshShell thickness and owned parameter/mesh/asset routes; algorithm, lifecycle and regeneration unresolved'),
+                (mesh_face_group_summary, 'class_decoded_mesh_face_group_count',
+                 'Observed MeshGenerateFaceGroups method, owned parameters and triangle group cache; general partitions and regeneration unresolved'),
+                (mesh_separate_summary, 'class_decoded_mesh_separate_count',
+                 'Observed MeshSeparate method and typed source/output membership; flag encodings, lifecycle and regeneration unresolved')):
             operation_ids = set()
             for operation in operation_summary['decoded']:
                 feature = next(f for f in features if f['object_id'] == operation['feature_object_id'])
@@ -1373,7 +1387,11 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('mesh_combinations', mesh_combine_summary),
                              ('mesh_smooths', mesh_smooth_summary),
                              ('mesh_reverse_normals', mesh_reverse_normal_summary),
+                             ('mesh_shells', mesh_shell_summary),
+                             ('mesh_face_groups', mesh_face_group_summary),
+                             ('mesh_separations', mesh_separate_summary),
                              ('mesh_normal_pools', mesh_normal_summary),
+                             ('mesh_face_group_caches', mesh_face_group_cache_summary),
                              ('circular_placement_evidence', circular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
                              ('boundary_face_correspondences', boundary_face_summary),

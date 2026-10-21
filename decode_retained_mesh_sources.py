@@ -65,8 +65,8 @@ def decode_retained_mesh_source(data, records, mesh_id, selection, member, membe
     _require(len(collection_bases) == 1, 'Retained source mesh collection base ambiguous')
     retained_collection = data[collection_bases[0].body:collection_bases[0].end]
     count = struct.unpack_from('<I', retained_collection, 1)[0]
-    _require(retained_collection[:1] == bytes(1) and count in (0, 1) and len(retained_collection) == 16+11*count,
-             'Only captured empty/singleton retained-owner current mesh collection supported')
+    _require(retained_collection[:1] == bytes(1) and count in (0, 1, 2) and len(retained_collection) == 16+11*count,
+             'Only captured zero/one/two-member retained-owner current mesh collection supported')
     counted_members = [reference(retained_collection, 5+11*i) for i in range(count)]
     _require(source_mesh_id not in counted_members, 'Retained source is actually in current counted members')
     for identity in counted_members:

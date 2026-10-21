@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 649,
+  "file_count": 658,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -213,6 +213,9 @@
     "meshconverts-4b42d39fb1d5/faceted_closed.f3d",
     "meshconverts-4b42d39fb1d5/faceted_open.f3d",
     "meshconverts-4b42d39fb1d5/prismatic_closed.f3d",
+    "meshfacegroups-0b682fa7d749/accurate_boundary_point_zero_zero_one.f3d",
+    "meshfacegroups-0b682fa7d749/fast_eighty_degrees.f3d",
+    "meshfacegroups-0b682fa7d749/fast_twenty_degrees.f3d",
     "meshplanecuts-18f2683c83f5/split_body_minimal_fill.f3d",
     "meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
     "meshplanecuts-18f2683c83f5/trim_no_fill.f3d",
@@ -226,6 +229,12 @@
     "meshreversenormals-2bc2dd3780cc/closed_once.f3d",
     "meshreversenormals-2bc2dd3780cc/closed_twice.f3d",
     "meshreversenormals-2bc2dd3780cc/open_once.f3d",
+    "meshseparates-41126250c03f/connected_shell_control.f3d",
+    "meshseparates-41126250c03f/two_face_groups.f3d",
+    "meshseparates-41126250c03f/two_shells.f3d",
+    "meshshells-f5a2d6730f62/closed_thickness_point_one.f3d",
+    "meshshells-f5a2d6730f62/open_thickness_point_one.f3d",
+    "meshshells-f5a2d6730f62/open_thickness_point_two.f3d",
     "meshsmooths-56f38f13430a/smooth_default_point_zero_two.f3d",
     "meshsmooths-56f38f13430a/smooth_point_one.f3d",
     "meshsmooths-56f38f13430a/smooth_point_two_five.f3d",
@@ -652,8 +661,8 @@
     "variablefillets-a5080b076434/one_three_quarters.f3d",
     "variablefillets-a5080b076434/two_intermediates.f3d"
   ],
-  "class_count": 396,
-  "classes_with_observed_semantics": 70,
+  "class_count": 399,
+  "classes_with_observed_semantics": 73,
   "classes": [
     {
       "class_guid": "00D157C2-2332-4BD5-BB53-048C4081D1C3",
@@ -1046,6 +1055,26 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "1514CDB8-BB81-4895-A953-7B12F4504F99",
+      "base_class_guids": [
+        "90B8D2C6-05BB-4D0F-89EF-83AAC46CA1FF"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Named feature: MeshShell"
+      ],
+      "example_files": [
+        "meshshells-f5a2d6730f62/closed_thickness_point_one.f3d",
+        "meshshells-f5a2d6730f62/open_thickness_point_one.f3d",
+        "meshshells-f5a2d6730f62/open_thickness_point_two.f3d"
+      ]
     },
     {
       "class_guid": "1589BC73-D484-4A6E-8E69-2A1531E845F5",
@@ -3248,6 +3277,26 @@
         "bodymodes-d696a14d5f0b/scale_holdout.f3d",
         "bodymodes-df9b7113539f/scale_nonuniform.f3d",
         "bodymodes-df9b7113539f/scale_uniform.f3d"
+      ]
+    },
+    {
+      "class_guid": "6B6FDE2E-D9B9-4866-9D07-3123C919B0D2",
+      "base_class_guids": [
+        "90B8D2C6-05BB-4D0F-89EF-83AAC46CA1FF"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Named feature: MeshSeparate"
+      ],
+      "example_files": [
+        "meshseparates-41126250c03f/connected_shell_control.f3d",
+        "meshseparates-41126250c03f/two_face_groups.f3d",
+        "meshseparates-41126250c03f/two_shells.f3d"
       ]
     },
     {
@@ -5759,6 +5808,26 @@
       ],
       "observed_semantics": [],
       "example_files": []
+    },
+    {
+      "class_guid": "CA2AE956-FD81-4EBD-A601-F93A0F335722",
+      "base_class_guids": [
+        "90B8D2C6-05BB-4D0F-89EF-83AAC46CA1FF"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        3
+      ],
+      "observed_semantics": [
+        "Named feature: MeshGenerateFaceGroups"
+      ],
+      "example_files": [
+        "meshfacegroups-0b682fa7d749/accurate_boundary_point_zero_zero_one.f3d",
+        "meshfacegroups-0b682fa7d749/fast_eighty_degrees.f3d",
+        "meshfacegroups-0b682fa7d749/fast_twenty_degrees.f3d"
+      ]
     },
     {
       "class_guid": "CA4D1989-5940-421E-9472-6EC13C9655A9",
