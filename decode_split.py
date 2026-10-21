@@ -6,7 +6,7 @@ from decode_selection import native_proxy_references, resolve_native_selection
 from decode_sketch import reference
 
 
-def decode_split(data, records, body, feature, known):
+def decode_split(data, records, body, feature, known, *, tool_resolver=None):
     if body[:6] != bytes.fromhex("000100000000") or body[6] not in (0, 1):
         raise ValueError("Unsupported split-body prefix")
     if struct.unpack_from("<I", body, 7)[0] != 1 or body[20] != 0:
@@ -44,7 +44,12 @@ def decode_split(data, records, body, feature, known):
         raise ValueError("Split tool operation flag disagrees with feature")
     if len(target_descriptors) != count:
         raise ValueError("Split target and per-target record counts disagree")
-    tool = resolve_native_selection(data, records, tool_id, known)
+    tool = (resolve_native_selection(data, records, tool_id, known) if tool_resolver is None else
+            tool_resolver(data, records, tool_id, feature, known))
+    if tool_resolver is not None and (not isinstance(tool, dict)
+            or tool.get("entity", {}).get("kind") not in ("BRepFace", "BRepBody")
+            or not isinstance(tool.get("native_evidence"), dict)):
+        raise ValueError("Split tool resolver did not qualify an observed BRep tool")
     settings = {"is_tool_extended": bool(body[6]), "input_body_count": count,
                 "split_definition_record_object_id": definition_id,
                 "tool_selection_record_object_id": tool_id, "tool": tool,
@@ -54,6 +59,6 @@ def decode_split(data, records, body, feature, known):
                 "target_selection_status": "Explicit target descriptors retained; body topology unresolved"}
     if tool is None:
         settings["tool_selection_status"] = "Split tool reference unresolved"
-    elif tool["entity"]["kind"] != "ConstructionPlane":
+    elif tool_resolver is None and tool["entity"]["kind"] != "ConstructionPlane":
         raise ValueError("Split tool resolved outside observed planar layout")
     return settings

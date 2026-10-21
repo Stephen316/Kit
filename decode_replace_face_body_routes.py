@@ -3,16 +3,12 @@ import struct
 
 from decode_assembly import decode_assembly
 from decode_body_properties import BODY,COLLECTION,decode_body_properties
-from decode_body_selections import decode_body_selections,CONTEXT
 from decode_body_bindings import decode_body_bindings
 from decode_body_asm_identifiers import decode_body_asm_identifiers
-from decode_brep_recipes import decode_recipe
-from decode_face_selections import resolve_native_faces
-from decode_selection_context_recipes import decode_selection_context_recipes
-from decode_selection import native_proxy_references
 from decode_parameters import read_string
 from decode_sketch import reference
 from decode_mesh_contents import _require
+from decode_owned_surface_selection import decode_owned_surface_selection
 
 REPLACE='8BD31492-18F4-45C9-8512-D720CCFC2450'
 FACE='5662F619-2281-4AD9-93DC-1FCFDA1062E7'
@@ -38,48 +34,12 @@ def resolve_replace_face_target(data,records,target_id,feature,known):
              and reference(body,7)==target_id,'ReplaceFace source/target header or feature identity differs')
     source_id=reference(body,22)
     _require(target_id!=source_id,'ReplaceFace source/target proxies alias')
-    selections=decode_body_selections(data,records)
-    contexts=decode_selection_context_recipes(data,records,selections)
-    primary={identity:rows[0] for identity,rows in grouped.items() if len(rows)==1}
-    def face_route(proxy_id,expected_kind):
-        resolved=resolve_native_faces(data,records,proxy_id,fid,selections)
-        _require(not resolved['attributes'] and len(resolved['faces'])==1,'ReplaceFace captured singleton face route differs')
-        face=resolved['faces'][0];matches=[c for c in contexts['contexts'] if c['descriptor_object_id']==face['descriptor_object_id'] and c['owner_object_id']==fid]
-        _require(len(matches)==1 and matches[0]['descriptor_recipe']==face['recipe'] and face['recipe']['payload_kind']==expected_kind
-                 and matches[0]['native_body_object_id']==face['native_body_object_id'],'ReplaceFace face recipe/context route unresolved')
-        return dict(kind='Face',selection=resolved,face=face,typed_context=matches[0])
-    source=face_route(source_id,'bounded_face_recipe_data')
-    _,proxy=typed(target_id,'2CA5A1CD-C99B-4C9B-91AF-57989148E841')
-    descriptor_ids,attributes=native_proxy_references(data,primary[target_id])
-    _require(not attributes and len(descriptor_ids)==1 and reference(proxy,len(proxy)-11)==fid,'ReplaceFace target owned singleton proxy differs')
-    descriptor_id=descriptor_ids[0]
-    _require(descriptor_id in primary and primary[descriptor_id].class_guid in (FACE,BODY_DESCRIPTOR),'ReplaceFace target descriptor kind unsupported')
-    target_guid=primary[descriptor_id].class_guid
-    if target_guid==FACE:
-        target=face_route(target_id,'face_recipe_data');target_body_id=target['face']['native_body_object_id'];target_owner=target['face']['source_owner_object_id']
-    else:
-        candidates=[s for s in selections['selection_proxies'] if s['selection_record_object_id']==target_id and s['owner_object_id']==fid]
-        ds=[d for d in selections['body_descriptors'] if d['object_id']==descriptor_id and d['owner_object_id']==fid]
-        _require(len(candidates)==len(ds)==1 and candidates[0]['descriptor_object_ids']==descriptor_ids,'ReplaceFace owned body target unresolved')
-        descriptor=ds[0];target_body_id=descriptor['native_body_object_id'];target_owner=descriptor['source_owner_object_id']
-        recipe=decode_recipe(data,primary[descriptor['recipe_record_object_id']],primary)
-        _require(recipe['payload_kind']=='body_recipe_data' and len(descriptor['context_record_object_ids'])==1,'ReplaceFace body target recipe/context count differs')
-        context_id=descriptor['context_record_object_ids'][0];_,context=typed(context_id,CONTEXT)
-        _require(len(context)==181 and context[:2]==bytes(2) and context[6:10]==bytes(4),'ReplaceFace body naming context frame differs')
-        namespace,cursor=read_string(context,10);entity,cursor=read_string(context,cursor)
-        _require(cursor==162 and namespace==descriptor['namespace_text'] and entity==descriptor['entity_uuid_text']
-                 and context[162:170]==struct.pack('<Q',2),'ReplaceFace body descriptor/context namespace differs')
-        link_id=reference(context,170);_,link=typed(link_id,'CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C')
-        _require(len(link)==14 and link[:2]==bytes(2) and link[-1]==0,'ReplaceFace body naming link frame differs')
-        leaf_id=reference(link,2);_,leaf=typed(leaf_id,'90055C05-546C-4EE7-B3C9-3DD922AD0C9C')
-        _require(len(leaf)==10 and leaf[:2]==bytes(2),'ReplaceFace body context identity leaf differs')
-        leaf_body_id=struct.unpack_from('<Q',leaf,2)[0];typed(leaf_body_id,BODY)
-        _require(leaf_body_id==target_body_id,'ReplaceFace context identity leaf and anchored BODY disagree')
-        target=dict(kind='Body',selection=candidates[0],descriptor=descriptor,recipe=recipe,
-            typed_context=dict(context_object_id=context_id,stored_index_field=struct.unpack_from('<I',context,2)[0],
-                namespace_text=namespace,entity_guid_text=entity,stored_context_payload_hex=context.hex(),
-                body_identity_link_object_id=link_id,body_identity_leaf_object_id=leaf_id,
-                leaf_native_body_object_id=leaf_body_id,stored_leaf_payload_hex=leaf.hex()))
+    source=decode_owned_surface_selection(data,records,source_id,fid,face_recipe_kind='bounded_face_recipe_data')
+    _require(source['kind']=='Face','ReplaceFace source must be an owned face')
+    target=decode_owned_surface_selection(data,records,target_id,fid,face_recipe_kind='face_recipe_data')
+    target_guid=FACE if target['kind']=='Face' else BODY_DESCRIPTOR
+    target_identity=target['face'] if target['kind']=='Face' else target['descriptor']
+    target_body_id=target_identity['native_body_object_id'];target_owner=target_identity['source_owner_object_id']
     typed(source['face']['source_owner_object_id'],'DD405BC2-D673-44F0-8833-5CB2A1C186C7')
     typed(target_owner,'BF77AE1A-E8F6-43AB-A325-A2C984AF1C6B')
     source_body_id=source['face']['native_body_object_id']
