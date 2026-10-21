@@ -40,6 +40,8 @@ from decode_selection import decode_selections, known_construction_entities
 from decode_revolve_axes import decode_revolve_axes
 from decode_tools import decode_tools
 from decode_hole_point_sources import decode_hole_point_sources
+from decode_hole_supports import decode_hole_supports
+from decode_boundary_fill_results import decode_boundary_fill_results
 from decode_pipe_paths import inspect_pipe_edge_path
 from decode_pattern_placements import decode_pattern_placements
 from fusion_archive import read_members
@@ -48,6 +50,7 @@ from fusion_metadata import design_records
 from discover_features import discover_features
 from decode_construction import decode_construction
 from decode_plane_definitions import decode_plane_definitions
+from decode_path_planes import decode_path_planes
 from decode_construction_definitions import decode_construction_definitions
 from decode_construction_modes import decode_construction_modes
 from decode_construction_vertex_points import decode_construction_vertex_points
@@ -56,6 +59,7 @@ from decode_profiles import decode_profiles
 from decode_timeline import decode_timeline
 from decode_timeline_state_details import decode_timeline_state_details
 from decode_assembly import decode_assembly
+from decode_occurrence_gate_attributes import occurrence_with_gate_attributes
 from decode_dependencies import decode_dependencies
 from asm_records import inspect_asm_members
 from decode_body_bindings import decode_body_bindings
@@ -390,6 +394,19 @@ def decode_basics(path, zstd_library=None):
         placement_summary = decode_placement(data, records, features)
         construction_summary = decode_construction(data, records, features)
         plane_definition_summary = decode_plane_definitions(data, records, features)
+        path_plane_summary = decode_path_planes(data, records, features)
+        recovered_path_planes = {item["feature_object_id"] for item in path_plane_summary["definitions"]}
+        for definition in path_plane_summary["definitions"]:
+            plane = next(f for f in features if f["object_id"] == definition["feature_object_id"])
+            plane.update(definition["cached_geometry"], plane_definition_details=definition,
+                         decode_level="Observed endpoint PathDistance plane definition and explicit fitted-spline source",
+                         selection_status="Explicit sketch-ID/curve-tag path source with reciprocal supports",
+                         unresolved_inputs=["General path-distance mapping, offsets and construction regeneration"])
+        plane_definition_summary["definitions"].extend(path_plane_summary["definitions"])
+        plane_definition_summary["unresolved"] = [item for item in plane_definition_summary["unresolved"]
+                                                     if item["feature_object_id"] not in recovered_path_planes]
+        if recovered_path_planes:
+            plane_definition_summary["scope"] += "; "+path_plane_summary["scope"]
         construction_definition_summary = decode_construction_definitions(data, records, features)
         construction_mode_summary = decode_construction_modes(data, records, features)
         construction_vertex_summary = decode_construction_vertex_points(data, records, features)
@@ -464,7 +481,7 @@ def decode_basics(path, zstd_library=None):
             except (ValueError, KeyError, IndexError, struct.error) as error:
                 pipe_provenance_summary["unresolved"].append({"feature_object_id": pipe["object_id"], "reason": str(error)})
         pattern_placement_summary = decode_pattern_placements(data, records, features)
-        assembly_summary = decode_assembly(data, records, features)
+        assembly_summary = decode_assembly(data, records, features, occurrence_decoder=occurrence_with_gate_attributes)
         joint_summary = decode_joints(data, records, assembly_summary, features)
         resolved_joint_definitions = set()
         for joint in joint_summary["decoded"]:
@@ -551,6 +568,25 @@ def decode_basics(path, zstd_library=None):
                                                 or item["object_id"] not in resolved_component_proxies]
         body_selection_summary["unresolved"].extend(component_body_summary["unresolved"])
         body_selection_summary["component_context_scope"] = component_body_summary["scope"]
+        hole_support_summary = decode_hole_supports(data, records, features, body_selection_summary)
+        for inputs in hole_support_summary["decoded"]:
+            hole = feature_by_id[inputs["feature_object_id"]]
+            settings = hole.get("tool_settings")
+            if settings is not None:
+                settings.update(support_selection=inputs["support"],
+                                position_support_inputs=inputs["position_support_inputs"],
+                                center_edge_selection=inputs["center_edge_input"],
+                                native_body_input=inputs["native_body_input"],
+                                core_input_provenance=inputs["core_input"],
+                                support_selection_status=inputs["support_selection_status"])
+                settings["extent"].update(inputs["extent_inputs"])
+        boundary_result_summary = decode_boundary_fill_results(data, records)
+        for results in boundary_result_summary["decoded"]:
+            boundary = feature_by_id.get(results["feature_object_id"])
+            if boundary is not None and "tool_settings" in boundary:
+                boundary["tool_settings"].update({key: results[key] for key in (
+                    "owned_result_body_count", "owned_result_bodies", "result_selection_bodies",
+                    "explicit_result_body_count", "result_selection_proxy_object_ids", "result_selection_scope")})
         special_fillet_summary = decode_special_fillets(data, records, features, body_selection_summary)
         original_tool_ids = {item["object_id"] for item in tool_summary["decoded"]}
         special_fillet_summary["unresolved"] = [item for item in special_fillet_summary["unresolved"]
@@ -747,6 +783,7 @@ def decode_basics(path, zstd_library=None):
             "placement_decoding": placement_summary,
             "construction_decoding": construction_summary,
             "plane_definitions": plane_definition_summary,
+            "path_planes": path_plane_summary,
             "construction_definitions": construction_definition_summary,
             "construction_modes": construction_mode_summary,
             "construction_vertex_points": construction_vertex_summary,
@@ -754,6 +791,8 @@ def decode_basics(path, zstd_library=None):
             "revolve_axes": revolve_axis_summary,
             "tool_decoding": tool_summary,
             "hole_point_sources": hole_point_summary,
+            "hole_supports": hole_support_summary,
+            "boundary_fill_results": boundary_result_summary,
             "pipe_path_provenance": pipe_provenance_summary,
             "pipe_vertex_contexts": pipe_vertex_summary,
             "pattern_placements": pattern_placement_summary,

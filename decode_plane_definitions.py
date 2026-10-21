@@ -30,7 +30,8 @@ METHODS = {
 }
 
 
-def decode_plane_definitions(data, records, features):
+def decode_plane_definitions(data, records, features, *, method_schemas=None, support_resolver=None):
+    methods = METHODS if method_schemas is None else {**METHODS, **method_schemas}
     grouped = {}
     for record in records:
         if record.is_primary:
@@ -91,7 +92,7 @@ def decode_plane_definitions(data, records, features):
         geometry_size = 43 if variant == 7 else 171
         method_position = start+geometry_size
         method = struct.unpack_from("<I", payload, method_position)[0]
-        schema = METHODS.get(method)
+        schema = methods.get(method)
         if (schema is None or schema[1] != variant or schema[2] != cached_mode or schema[5] != geometry_size
                 or payload[method_position+4] != 0):
             raise ValueError("Unobserved plane backend/feature/cache method combination")
@@ -153,6 +154,10 @@ def decode_plane_definitions(data, records, features):
                 "geometry_status": "Persistent face recipe and native historical body retained; exact ASM face unresolved"}
 
     def support(identity, role, owner_id):
+        if support_resolver is not None:
+            resolved = support_resolver(identity, role, owner_id)
+            if resolved is not None:
+                return resolved
         record = primary.get(identity)
         if record is None:
             raise ValueError("Plane support missing or ambiguous")

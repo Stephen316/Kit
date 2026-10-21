@@ -136,7 +136,7 @@ def world_sketch(sketch, matrix):
             "scope": "Root-component world coordinates through this occurrence path"}
 
 
-def decode_assembly(data, records, features):
+def decode_assembly(data, records, features, *, occurrence_decoder=None):
     components, occurrences, collections, unresolved = {}, {}, {}, []
     for record in records:
         try:
@@ -146,7 +146,8 @@ def decode_assembly(data, records, features):
             elif record.class_guid == OCCURRENCE_GUID:
                 if record.payload_start is None:
                     raise ValueError("Occurrence requires a complete indexed payload")
-                occurrences[record.object_id] = occurrence(data[record.payload_start:record.end], record.object_id)
+                reader = occurrence_decoder if occurrence_decoder is not None else occurrence
+                occurrences[record.object_id] = reader(data[record.payload_start:record.end], record.object_id)
             elif record.class_guid == OCCURRENCE_COLLECTION_GUID:
                 collections[record.object_id] = collection(body, record.object_id)
         except (ValueError, UnicodeError, IndexError, struct.error) as error:
