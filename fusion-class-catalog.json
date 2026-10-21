@@ -1,6 +1,6 @@
 {
   "scope": "Observed native class identities across a local Fusion corpus; not a field schema",
-  "file_count": 643,
+  "file_count": 649,
   "files": [
     "advanced-627f7fe095f4/advanced.f3d",
     "analytic-86a12b291d0a/analytic.f3d",
@@ -223,6 +223,12 @@
     "meshremeshes-f07f97514069/adaptive_edge_one_point_five.f3d",
     "meshremeshes-f07f97514069/adaptive_edge_two.f3d",
     "meshremeshes-f07f97514069/uniform_edge_two.f3d",
+    "meshreversenormals-2bc2dd3780cc/closed_once.f3d",
+    "meshreversenormals-2bc2dd3780cc/closed_twice.f3d",
+    "meshreversenormals-2bc2dd3780cc/open_once.f3d",
+    "meshsmooths-56f38f13430a/smooth_default_point_zero_two.f3d",
+    "meshsmooths-56f38f13430a/smooth_point_one.f3d",
+    "meshsmooths-56f38f13430a/smooth_point_two_five.f3d",
     "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
     "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
     "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
@@ -646,8 +652,8 @@
     "variablefillets-a5080b076434/one_three_quarters.f3d",
     "variablefillets-a5080b076434/two_intermediates.f3d"
   ],
-  "class_count": 394,
-  "classes_with_observed_semantics": 68,
+  "class_count": 396,
+  "classes_with_observed_semantics": 70,
   "classes": [
     {
       "class_guid": "00D157C2-2332-4BD5-BB53-048C4081D1C3",
@@ -2437,6 +2443,26 @@
       "example_files": [
         "boundaryfills-a0953038318b/new_middle_remove.f3d",
         "removecontrasts-9c5f83456a0e/root_body.f3d"
+      ]
+    },
+    {
+      "class_guid": "4AB7A6BD-C40C-4C44-B7CA-0D415B6E4412",
+      "base_class_guids": [
+        "90B8D2C6-05BB-4D0F-89EF-83AAC46CA1FF"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        0
+      ],
+      "observed_semantics": [
+        "Named feature: MeshReverseNormal"
+      ],
+      "example_files": [
+        "meshreversenormals-2bc2dd3780cc/closed_once.f3d",
+        "meshreversenormals-2bc2dd3780cc/closed_twice.f3d",
+        "meshreversenormals-2bc2dd3780cc/open_once.f3d"
       ]
     },
     {
@@ -7055,6 +7081,26 @@
         "dimensions-f83a2edd2f72/dimensions.f3d",
         "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
         "pathpatterncomposites-b6b4cf615504/spline_along.f3d"
+      ]
+    },
+    {
+      "class_guid": "F84CD988-9696-458D-8AF3-795D12E6B9EF",
+      "base_class_guids": [
+        "90B8D2C6-05BB-4D0F-89EF-83AAC46CA1FF"
+      ],
+      "namespaces": [
+        "Fusion"
+      ],
+      "stored_versions_or_flags": [
+        2
+      ],
+      "observed_semantics": [
+        "Named feature: MeshSmooth"
+      ],
+      "example_files": [
+        "meshsmooths-56f38f13430a/smooth_default_point_zero_two.f3d",
+        "meshsmooths-56f38f13430a/smooth_point_one.f3d",
+        "meshsmooths-56f38f13430a/smooth_point_two_five.f3d"
       ]
     },
     {

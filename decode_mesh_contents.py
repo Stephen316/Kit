@@ -123,7 +123,7 @@ def decode_paramesh_header(blob):
              'stored_metadata_hex': metadata.hex()}, dictionary_end)
 
 
-def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False):
+def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False, allow_index_zero_suffix=False):
     """Common exact six-buffer container framing; no geometry shape assumptions."""
     framing, dictionary_end = decode_paramesh_header(blob)
     cursor = dictionary_end
@@ -145,7 +145,21 @@ def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False):
         raw = decoder.decompress(compressed[2:], max_length=uncompressed_size+1)
         strict_extent = len(raw) == uncompressed_size and not decoder.eof and decoder.needs_input and not decoder.unused_data
         auxiliary_evidence = {}
-        if not strict_extent and allow_auxiliary_prefix and ordinal >= 2:
+        if not strict_extent and allow_index_zero_suffix and ordinal == 1 and uncompressed_size == 576:
+            _require(len(raw) == 577 and raw[-1:] == b'\0' and not decoder.eof and
+                     not decoder.needs_input and not decoder.unused_data,
+                     'Unobserved index zero-suffix probe state')
+            drained = decoder.decompress(b'', max_length=1)
+            _require(drained == b'' and decoder.needs_input and not decoder.eof and not decoder.unused_data,
+                     'Index stream continues beyond the observed single zero suffix')
+            auxiliary_evidence = {'decompression_scope': 'Declared-size index payload plus one emitted zero byte; surplus meaning unresolved',
+                'declared_size_bytes': uncompressed_size, 'bounded_plus_one_probe_size_bytes': len(raw),
+                'bounded_plus_one_probe_needs_input': False, 'bounded_plus_one_probe_eof': False,
+                'emitted_suffix_hex': raw[-1:].hex(), 'bounded_empty_drain_hex': drained.hex(),
+                'bounded_empty_drain_needs_input': decoder.needs_input,
+                'bounded_empty_drain_eof': decoder.eof}
+            raw = raw[:uncompressed_size]
+        elif not strict_extent and allow_auxiliary_prefix and ordinal >= 2:
             _require(len(raw) == uncompressed_size+1 and not decoder.eof and not decoder.unused_data,
                      'Unobserved auxiliary LZMA continuation state')
             auxiliary_evidence = {'decompression_scope': 'Declared-size prefix only; opaque auxiliary continuation unresolved',
@@ -166,9 +180,10 @@ def decode_paramesh_framing(blob, *, allow_auxiliary_prefix=False):
     return framing, raw_buffers
 
 
-def decode_paramesh_geometry(blob, *, geometry_decoder=None):
+def decode_paramesh_geometry(blob, *, geometry_decoder=None, allow_index_zero_suffix=False):
     """Strict default tetra layout; explicitly supplied geometry decoder is opt-in."""
-    framing, raw_buffers = decode_paramesh_framing(blob, allow_auxiliary_prefix=geometry_decoder is not None)
+    framing, raw_buffers = decode_paramesh_framing(blob, allow_auxiliary_prefix=geometry_decoder is not None,
+        allow_index_zero_suffix=allow_index_zero_suffix)
     if geometry_decoder is not None:
         return geometry_decoder(framing, raw_buffers)
     _require([len(r) for r in raw_buffers] == [48, 48, 96, 32, 48, 16], 'Only observed four-node/four-triangle buffer dimensions are supported')
@@ -193,7 +208,7 @@ def replay_paramesh_geometry(asset):
 
 
 def decode_mesh_contents(data, records, member, members, *, geometry_decoder=None, native_layout_decoder=None,
-                         metadata_only=False):
+                         metadata_only=False, allow_index_zero_suffix=False):
     """Read native mesh rows; metadata-only mode never supplies geometry or suppresses a geometry failure."""
     scope = ('Typed native mesh/collection/component and same-asset UUID/filename routes only; '
              'embedded header metadata is checked, compressed-buffer validity and geometry are not examined'
@@ -310,7 +325,8 @@ def decode_mesh_contents(data, records, member, members, *, geometry_decoder=Non
                         route_extras = {'asset_header': header,
                             'geometry_status': 'Not decoded: explicit metadata-only route; compressed-buffer validity and geometry remain unqualified'}
                     else:
-                        geometry = decode_paramesh_geometry(members[asset_member], geometry_decoder=geometry_decoder)
+                        geometry = decode_paramesh_geometry(members[asset_member], geometry_decoder=geometry_decoder,
+                            allow_index_zero_suffix=allow_index_zero_suffix)
                         _require(geometry['fusion_uuid'] == uuid, 'Native mesh UUID disagrees with stored asset fusion_uuid')
                         component_points = [transform_point(matrices[0], p) for p in geometry['stored_node_coordinates_float32']]
                         geometry['component_node_coordinates_cm'] = component_points

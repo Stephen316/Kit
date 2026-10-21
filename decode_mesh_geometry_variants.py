@@ -1,4 +1,5 @@
 """Opt-in observed mesh operation layouts; old successful outputs exact."""
+import lzma
 import math
 import re
 import struct
@@ -18,10 +19,14 @@ SHAPES = {(48, 36, 72, 20, 24, 12), (48, 48, 96, 32, 48, 16),
           (72, 96, 176, 64, 72, 32), (72, 96, 192, 72, 96, 32)}
 REMESH_SHAPES = {(108, 168, 248, 88, 88, 56), (192, 336, 432, 152, 120, 112)}
 COMBINE_SHAPES = {(792, 1536, 1440, 456, 400, 512), (492, 936, 992, 332, 232, 312)}
-OPERATION_SHAPES = REMESH_SHAPES | COMBINE_SHAPES
+CUT_SHAPE = (312, 576, 744, 268, 208, 192)
+OPERATION_SHAPES = REMESH_SHAPES | COMBINE_SHAPES | {CUT_SHAPE}
 OPERATION_SCOPE = ('Observed size-delimited UDPMESH v2 triangle layouts including9/14,16/28,66/128 and41/78 nodes/faces; '
                 'typed native mesh/component/asset routes and positive uniform matrices. Counts derive from exact '
                 'coordinate/index buffer extents. Normal/auxiliary buffers, arbitrary layouts, lifecycle and regeneration remain unresolved.')
+CUT_SCOPE = ('Observed26-node/48-triangle Cut layout with exact declared-size index payload and separately retained '
+             'single emitted zero suffix. Typed native ownership/asset links and strict index replay qualify geometry; '
+             'surplus-byte meaning, auxiliary buffers, lifecycle and regeneration remain unresolved.')
 
 
 def triangle_properties(points, indices):
@@ -47,6 +52,9 @@ def triangle_properties(points, indices):
 def decode_geometry_layout(framing, raw_buffers):
     shape = tuple(map(len, raw_buffers))
     _require(shape in SHAPES | OPERATION_SHAPES, 'Unobserved opt-in mesh buffer dimensions')
+    suffix = framing['buffers'][1].get('emitted_suffix_hex')
+    _require((shape == CUT_SHAPE and suffix == '00') or (shape != CUT_SHAPE and suffix is None),
+             'Index surplus evidence outside captured Cut layout')
     node_count, face_count = shape[0]//12, shape[1]//12
     coordinates = list(struct.unpack('<'+'f'*(node_count*3), raw_buffers[0]))
     _require(all(math.isfinite(v) for v in coordinates), 'Nonfinite stored mesh coordinates')
@@ -81,7 +89,7 @@ def native_layout(stage, payload, context):
     if stage == 'AssetPrefix':
         _require(len(payload) == 13 and payload[:2] == bytes(2) and payload[10] in (0, 1) and payload[11:] == b'\1\0', 'Unobserved mesh asset prefix')
         scalar = struct.unpack_from('<d', payload, 2)[0]
-        _require(math.isfinite(scalar) and scalar >= 0, 'Invalid mesh asset header scalar')
+        _require(math.isfinite(scalar), 'Invalid mesh asset header scalar')
         return {'stored_asset_header_scalar': scalar, 'stored_asset_header_flag': payload[10], 'asset_header_scalar_scope': 'Literal finite native header value; semantic meaning unresolved'}
     if stage == 'ComponentProperties':
         return triangle_properties(payload, context['indices'])
@@ -118,7 +126,11 @@ def decode_mesh_asset(data, records, asset_object_id, member, members):
     _require(end == len(filename_body) and re.fullmatch(r'ParaMeshGeometry\.[0-9a-f-]{36}\.paramesh', filename) is not None, 'Invalid native mesh asset filename')
     path = member.split('/FusionDesignSegmentType1/')[0]+'/ParaMeshGeometry.BlobParts/'+filename
     _require(path in members, 'Mesh asset file absent from same asset')
-    geometry = decode_paramesh_geometry(members[path], geometry_decoder=decode_geometry_layout)
+    try:
+        geometry = decode_paramesh_geometry(members[path], geometry_decoder=decode_geometry_layout,
+            allow_index_zero_suffix=True)
+    except lzma.LZMAError as error:
+        raise ValueError(str(error)) from error
     _require(geometry['fusion_uuid'] == uuid, 'Native mesh asset UUID does not match embedded fusion_uuid')
     return {'asset_object_id': asset_object_id, 'asset_record_offset': record.start,
             'asset_filename_object_id': filename_id, 'asset_filename_record_offset': filename_record.start,
@@ -130,7 +142,8 @@ def decode_mesh_contents_variants(data, records, member, members):
     if not strict['unresolved']:
         return strict
     result = decode_mesh_contents(data, records, member, members,
-        geometry_decoder=decode_geometry_layout, native_layout_decoder=native_layout)
-    result['scope'] = (OPERATION_SCOPE if any(tuple(b['uncompressed_size'] for b in row['geometry']['buffers']) in OPERATION_SHAPES
-                                        for row in result['decoded']) else SCOPE)
+        geometry_decoder=decode_geometry_layout, native_layout_decoder=native_layout, allow_index_zero_suffix=True)
+    shapes = [tuple(b['uncompressed_size'] for b in row['geometry']['buffers']) for row in result['decoded']]
+    result['scope'] = (CUT_SCOPE if CUT_SHAPE in shapes else OPERATION_SCOPE if any(shape in OPERATION_SHAPES
+                                        for shape in shapes) else SCOPE)
     return result

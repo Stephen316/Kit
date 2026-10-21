@@ -74,6 +74,8 @@ from decode_mesh_reduce import decode_mesh_reduce
 from decode_mesh_remesh import decode_mesh_remesh
 from decode_mesh_convert import decode_mesh_convert
 from decode_mesh_combine import decode_mesh_combine
+from decode_mesh_smooth import decode_mesh_smooth
+from decode_mesh_reverse_normals import decode_mesh_reverse_normals
 from decode_mesh_normals import decode_mesh_normal_pools
 from decode_base_feature_empty_lists import decode_base_feature_empty_lists
 from decode_split_face_metadata_variants import decode_split_face_metadata_variants
@@ -673,6 +675,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         mesh_remesh_summary = decode_mesh_remesh(data, records, features, name, members, mesh_summary)
         mesh_convert_summary = decode_mesh_convert(data, records, features, name, members)
         mesh_combine_summary = decode_mesh_combine(data, records, features, name, members, mesh_summary)
+        mesh_smooth_summary = decode_mesh_smooth(data, records, features, name, members, mesh_summary)
+        mesh_reverse_normal_summary = decode_mesh_reverse_normals(data, records, features, name, members, mesh_summary)
         for operation_summary, counter_key, level in (
                 (mesh_plane_cut_summary, 'class_decoded_mesh_plane_cut_count',
                  'Observed MeshPlaneCut controls, selected plane and owned mesh/asset routes; flip encoding, historical lifecycle and regeneration unresolved'),
@@ -683,7 +687,11 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                 (mesh_convert_summary, 'class_decoded_mesh_convert_count',
                  'Observed Faceted MeshConvert source and owned BRep result/history routes; alternative methods, lifecycle and regeneration unresolved'),
                 (mesh_combine_summary, 'class_decoded_mesh_combine_count',
-                 'Observed MeshCombine operation and selected target/tool asset routes; flags, historical lifecycle and regeneration unresolved')):
+                 'Observed MeshCombine operation and selected target/tool asset routes; flags, historical lifecycle and regeneration unresolved'),
+                (mesh_smooth_summary, 'class_decoded_mesh_smooth_count',
+                 'Observed MeshSmooth strength and owned parameter/mesh/asset routes; algorithm, lifecycle and regeneration unresolved'),
+                (mesh_reverse_normal_summary, 'class_decoded_mesh_reverse_normal_count',
+                 'Observed MeshReverseNormal selected mesh and stored asset links; general lifecycle and regeneration unresolved')):
             operation_ids = set()
             for operation in operation_summary['decoded']:
                 feature = next(f for f in features if f['object_id'] == operation['feature_object_id'])
@@ -1363,6 +1371,8 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
                              ('mesh_remeshes', mesh_remesh_summary),
                              ('mesh_conversions', mesh_convert_summary),
                              ('mesh_combinations', mesh_combine_summary),
+                             ('mesh_smooths', mesh_smooth_summary),
+                             ('mesh_reverse_normals', mesh_reverse_normal_summary),
                              ('mesh_normal_pools', mesh_normal_summary),
                              ('circular_placement_evidence', circular_cache_summary),
                              ('dimension_measurement_caches', dimension_measurement_summary),
