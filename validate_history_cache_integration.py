@@ -34,9 +34,9 @@ def differences(before, after, path=''):
     return [] if before == after else [path]
 
 
-def baseline_outputs(files, zstd):
+def baseline_outputs(files, zstd, *, revision=BASELINE):
     """Use only trusted Python sources from the recorded local Git baseline."""
-    payload = subprocess.check_output(['git', 'archive', BASELINE, '--', '*.py'], cwd=ROOT)
+    payload = subprocess.check_output(['git', 'archive', revision, '--', '*.py'], cwd=ROOT)
     with tempfile.TemporaryDirectory(prefix='fusion-history-baseline-') as folder:
         with tarfile.open(fileobj=io.BytesIO(payload)) as archive:
             for item in archive:
@@ -59,6 +59,7 @@ def validate(zstd):
     old_outputs = baseline_outputs(files, zstd)
     report = {'scope': 'Nine saved archives; main-reader integration of qualified alternate-cache correspondences and stored spline geometry, without live Fusion access or exact historical source claims',
               'baseline_commit': BASELINE, 'samples': [],
+              'followup_scope': 'Allows the separately validated FPM context summary and completed Asymmetric/Chord cached geometry; original selected-source failures remain present.',
               'limitations': ['No complete-format percentage, native writer or history regeneration.',
                               'Alternative views remain separately scoped; initial geometry is not replaced.',
                               'Approximation cache evaluations are not direct Fusion API evaluator comparisons.']}
@@ -78,23 +79,23 @@ def validate(zstd):
             qualified += 1
         paths = differences(before, current)
         for path in paths:
-            if path == '/streams/0/fpm_selection_tracking':
+            if path in ('/streams/0/fpm_selection_tracking', '/streams/0/fpm_context_line_caches'):
                 continue
             if filename in GEOMETRY_TARGETS:
                 # Admit only the newly decoded caches and their geometry-only
                 # status/UV closure fields. Structural graph fields stay exact.
                 if re.fullmatch(r'/asm_decoding/streams/\d+/topology/(?:unresolved\(length\)|body_graphs/0/(?:spline_curves\(length\)|spline_surfaces\(length\)|analytic_surfaces/0/geometry_status|face_trim_loops/0/(?:uv_endpoints_close_in_this_chart|trims/\d+/uv_curve)))', path):
                     continue
-                if (filename.endswith('/fillet_curvature.f3d') and path in (
+                if path in (
                         '/streams/0/selection_recipe_incidence/unresolved/0/bounded_operand_evidence',
-                        '/streams/0/selection_recipe_incidence/unresolved/0/reason')):
+                        '/streams/0/selection_recipe_incidence/unresolved/0/reason'):
                     continue
             raise AssertionError((filename, 'Unexpected prior-output change', path))
         initial = before['streams'][0]['selection_recipe_incidence']
         actual = stream['selection_recipe_incidence']
         assert actual['associations'] == initial['associations']
         assert len(actual['unresolved']) == len(initial['unresolved'])
-        if filename.endswith('/fillet_curvature.f3d'):
+        if filename in GEOMETRY_TARGETS:
             assert not next(s for s in current['asm_decoding']['streams'] if s['member'].endswith('.smbh'))['topology']['unresolved']
             assert actual['unresolved'], 'A decoded cache must not clear source-selection failure'
         report['samples'].append({'file': filename, 'tracks': len(summary['tracks']),

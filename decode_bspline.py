@@ -56,6 +56,12 @@ def decode_bspline(record):
         if name == "intcurve-curve" and tokens[5]["value"] == "int_int_cur":
             from decode_fillet_spline_caches import decode_intersection_curve_cache
             return decode_intersection_curve_cache(record)
+        if name == "spline-surface" and tokens[5]["value"] == "srf_srf_v_bl_spl_sur":
+            from decode_variable_blend_cache import decode_variable_blend_cache
+            return decode_variable_blend_cache(record)
+        if name == "intcurve-curve" and tokens[5]["value"] == "spring_int_cur":
+            from decode_spring_curve_cache import decode_spring_curve_cache
+            return decode_spring_curve_cache(record)
     if read_token(tokens, 3, "boolean_token") or tokens[4]["kind"] != "subtype_start":
         raise ValueError("Unsupported spline wrapper")
     procedural = read_token(tokens, 5, "entity_name")

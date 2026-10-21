@@ -133,7 +133,14 @@ def decode_topology(parsed):
                 node["raw_origin"] = token(record, 3, ("position_vector",))
                 if name != "point":
                     direction = token(record, 4, ("direction_vector",))
-                    if not math.isclose(sum(v*v for v in direction), 1., abs_tol=1e-9):
+                    if name == "straight-curve":
+                        magnitude = math.hypot(*direction)
+                        if len(direction) != 3 or not math.isfinite(magnitude) or magnitude <= 0:
+                            raise ValueError("Invalid straight-curve parameter direction")
+                        if not math.isclose(sum(v*v for v in direction), 1., abs_tol=1e-9):
+                            node.update(stored_direction_magnitude=magnitude,
+                                        parameterization_scope="Stored non-unit direction retained: P(t)=origin+t*direction; parameter is not assumed to be arc length")
+                    elif not math.isclose(sum(v*v for v in direction), 1., abs_tol=1e-9):
                         raise ValueError("Non-unit primitive direction/normal")
                     node["direction" if name == "straight-curve" else "normal"] = direction
                 if name in ("ellipse-curve", "plane-surface"):
