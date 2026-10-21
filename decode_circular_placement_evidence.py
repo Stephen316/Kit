@@ -132,7 +132,8 @@ def _fit(source, target):
             'basis_selection': 'First noncoplanar triple in sorted identity-signature order; coordinates fit the matrix only after all vertex identities are fixed'}
 
 
-def decode_circular_placement_evidence(data, records, features, member, members, body_blob_bindings):
+def decode_circular_placement_evidence(data, records, features, member, members, body_blob_bindings,
+                                     *, feature_source_resolver=None, face_name_resolver=None):
     """Return separately labeled cache evidence; never mutate existing placements."""
     grouped = {}
     for record in records:
@@ -162,7 +163,7 @@ def decode_circular_placement_evidence(data, records, features, member, members,
             if body[:6] != bytes.fromhex('000100000000') or control[:2] != bytes(2) or control[2] not in (0, 1):
                 raise ValueError('Unobserved circular feature/controller prefix')
             compute, entity_type = struct.unpack_from('<II', control, 37)
-            if entity_type != 2:
+            if entity_type != 2 and (entity_type != 1 or feature_source_resolver is None):
                 raise ValueError('Circular naming/cache evidence currently supports explicit body inputs only')
             pair_count = struct.unpack_from('<I', control, 50)[0]
             if not 1 <= pair_count <= 1023:
@@ -185,14 +186,51 @@ def decode_circular_placement_evidence(data, records, features, member, members,
             if reference(control, cursor+11) != fid or set(elements) != set(range(1, quantity+1)):
                 raise ValueError('Circular controller owner/element ordinal coverage disagrees')
             proxy_id = reference(control, cursor+22)
-            proxy = proxies.get(proxy_id)
-            if proxy is None or proxy['owner_object_id'] != fid:
-                raise ValueError('Explicit circular body input proxy/owner unresolved')
+            source_feature_ids, source_provenance = None, None
+            if entity_type == 2:
+                proxy = proxies.get(proxy_id)
+                if proxy is None or proxy['owner_object_id'] != fid:
+                    raise ValueError('Explicit circular body input proxy/owner unresolved')
+                descriptor_ids = proxy['descriptor_object_ids']
+                source_native_ids = proxy['native_body_object_ids']
+            else:
+                source = feature_source_resolver(data, records, feature, proxy_id, reference(body, 17))
+                required = {'descriptor_object_ids', 'source_feature_object_ids',
+                            'source_native_body_object_ids', 'provenance'}
+                if not isinstance(source, dict) or set(source) != required:
+                    raise ValueError('Circular feature-source resolver returned an unobserved schema')
+                descriptor_ids = source['descriptor_object_ids']
+                source_feature_ids = source['source_feature_object_ids']
+                source_native_ids = source['source_native_body_object_ids']
+                source_provenance = source['provenance']
+                lists = (descriptor_ids, source_feature_ids, source_native_ids)
+                if (any(not isinstance(values, list) or not 1 <= len(values) <= 1024
+                        or any(type(value) is not int or value <= 0 for value in values)
+                        or len(set(values)) != len(values) for values in lists)
+                        or len({len(values) for values in lists}) != 1
+                        or not isinstance(source_provenance, dict) or not source_provenance):
+                    raise ValueError('Circular feature-source resolver count/identity/provenance is invalid')
+                from decode_selection import native_proxy_references
+                proxy_record, proxy_body = typed(proxy_id, '2CA5A1CD-C99B-4C9B-91AF-57989148E841')
+                proxy_descriptors, _ = native_proxy_references(data, proxy_record)
+                if reference(proxy_body, len(proxy_body)-11) != fid or proxy_descriptors != descriptor_ids:
+                    raise ValueError('Circular feature-source descriptor/proxy ownership disagrees')
+                for descriptor_id, source_id, native_id in zip(descriptor_ids, source_feature_ids, source_native_ids):
+                    _, descriptor = typed(descriptor_id, '5A1BF548-241F-46FD-9FB5-E4B05126EB9D')
+                    if (len(descriptor) != 263 or reference(descriptor, 252) != fid
+                            or source_id == fid or source_id not in primary):
+                        raise ValueError('Circular feature-source descriptor/source owner is missing or ambiguous')
+                    _, leaf = typed(reference(descriptor, 2), '90055C05-546C-4EE7-B3C9-3DD922AD0C9C')
+                    if len(leaf) != 10 or leaf[:2] != bytes(2) or struct.unpack_from('<Q', leaf, 2)[0] != source_id:
+                        raise ValueError('Circular feature-source resolver identity differs from explicit descriptor leaf')
+                    owned = [a for a in selections['body_anchors'] if a['source_owner_object_id'] == source_id]
+                    if len(owned) != 1 or owned[0]['native_body_object_id'] != native_id:
+                        raise ValueError('Circular feature source does not own exactly one selected native BODY anchor')
             collection_id = reference(body, 17); _, collection = typed(collection_id, COLLECTION)
             count = struct.unpack_from('<I', collection, 6)[0]
-            if (count != len(proxy['descriptor_object_ids']) or collection[:6] != bytes(6)
+            if (count != len(descriptor_ids) or collection[:6] != bytes(6)
                     or len(collection) != 74+26*count
-                    or [reference(collection, 10+26*i) for i in range(count)] != proxy['descriptor_object_ids']
+                    or [reference(collection, 10+26*i) for i in range(count)] != descriptor_ids
                     or reference(collection, 10+26*count) != fid or reference(collection, len(collection)-11) != fid):
                 raise ValueError('Circular input collection/proxy membership or ownership disagrees')
             cursor += 33; suppressed_count = struct.unpack_from('<I', control, cursor)[0]
@@ -211,7 +249,7 @@ def decode_circular_placement_evidence(data, records, features, member, members,
                 if anchor is None or anchor['source_owner_object_id'] != fid:
                     raise ValueError('Circular result anchor/body/feature ownership disagrees')
                 results.append((aid, anchor['native_body_object_id']))
-            native_ids = proxy['native_body_object_ids']+[b for _, b in results]
+            native_ids = source_native_ids+[b for _, b in results]
             if len(set(native_ids)) != len(native_ids) or any(len(bindings.get(i, [])) != 1 for i in native_ids):
                 raise ValueError('Circular source/result BODY cache join is missing or ambiguous')
             mapping_ids = {bindings[i][0][0]['mapping_record_object_id'] for i in native_ids}
@@ -220,19 +258,62 @@ def decode_circular_placement_evidence(data, records, features, member, members,
             mapping = bindings[native_ids[0]][0][0]; blob_member = mapping['history_blob_member']; blob = members[blob_member]
             parsed = inspect_asm(blob); topology = decode_topology(parsed)
             graphs = {g['body_index']: g for g in topology['body_graphs']}; nodes = {n['index']: n for n in topology['nodes']}
-            body_data = {}
+            body_data, feature_name_proofs = {}, []
             for nid in native_ids:
                 entry = bindings[nid][0][1]; graph = graphs.get(entry['asm_body_index'])
                 if graph is None:
                     raise ValueError('Circular keyed BODY lacks bounded typed topology')
-                names = _face_names(blob, parsed, graph)
+                if entity_type == 1 and face_name_resolver is not None:
+                    named = face_name_resolver(blob, parsed, graph)
+                    if (not isinstance(named, dict) or set(named) != {'names', 'proof'}
+                            or not isinstance(named['names'], dict)
+                            or not isinstance(named['proof'], dict) or not named['proof']):
+                        raise ValueError('Circular face-name resolver returned an unobserved schema')
+                    names = named['names']
+                    if set(names) != set(graph['face_indices']) or len(names) != 6:
+                        raise ValueError('Circular face-name resolver does not cover exactly the six owned faces')
+                    from decode_counted_asm_names import decode_counted_asm_name
+                    for face_id, name in names.items():
+                        if (not isinstance(name, dict) or set(name) != {'name_key', 'components', 'attribute_indices'}
+                                or not isinstance(name['name_key'], (tuple, list)) or len(name['name_key']) != 2):
+                            raise ValueError('Circular face-name resolver tuple schema is invalid')
+                        text, index = name['name_key']
+                        components, attributes = name['components'], name['attribute_indices']
+                        if (not isinstance(text, str) or not 1 <= len(text) <= 32
+                                or not text.lstrip('-').isascii() or not text.lstrip('-').isdigit()
+                                or type(index) is not int or not 0 <= index <= 0xffffffff
+                                or not isinstance(components, (list, tuple)) or len(components) not in (1, 3)
+                                or any(type(v) is not int or not 1 <= v <= 0x7fffffff for v in components)
+                                or not isinstance(attributes, list) or not attributes
+                                or any(type(a) is not int or not 0 <= a < len(parsed['records']) for a in attributes)
+                                or len(set(attributes)) != len(attributes)):
+                            raise ValueError('Circular face-name resolver name/components/attribute identities are invalid')
+                        for attribute_id in attributes:
+                            attribute = parsed['records'][attribute_id]
+                            if (attribute['section'] != 'geometry' or attribute['name'] != 'ATTRIB_CUSTOM-attrib'
+                                    or len(attribute['tokens']) < 5 or attribute['tokens'][4]['tag'] != 12
+                                    or attribute['tokens'][4]['value'] != face_id):
+                                raise ValueError('Circular resolved generic face attribute has a different typed owner')
+                            payload = decode_counted_asm_name(attribute)
+                            expected = dict(name=text, stored_index=index, stored_reference_components_int32=list(components))
+                            if (len(payload['terms']) != 1 or any(payload['terms'][0][k] != v for k, v in expected.items())
+                                    or encode_generic_tag_payload(payload) != blob[attribute['tokens'][5]['offset']:attribute['end_offset']-1]):
+                                raise ValueError('Circular resolved complete face tuple differs from serialized payload')
+                    if len({tuple(n['name_key']) for n in names.values()}) != 6:
+                        raise ValueError('Circular resolved face-name keys are not unique')
+                    names = {face_id: dict(name_key=tuple(name['name_key']), components=tuple(name['components']),
+                        attribute_indices=list(name['attribute_indices'])) for face_id, name in names.items()}
+                    feature_name_proofs.append(dict(native_body_object_id=nid,
+                        asm_body_index=entry['asm_body_index'], binding=entry, proof=named['proof']))
+                else:
+                    names = _face_names(blob, parsed, graph)
                 components = {v['components'] for v in names.values()}
                 if len(components) != 1:
                     raise ValueError('Circular BODY face naming components disagree')
                 body_data[nid] = {'binding': entry, 'graph': graph, 'names': names,
                                   'components': next(iter(components)), 'vertices': _vertices(graph, nodes, names)}
             seeds = {}
-            for nid in proxy['native_body_object_ids']:
+            for nid in source_native_ids:
                 components = body_data[nid]['components']
                 if len(components) != 1 or components[0] in seeds:
                     raise ValueError('Circular source face-naming component missing or ambiguous')
@@ -254,7 +335,7 @@ def decode_circular_placement_evidence(data, records, features, member, members,
                 raise ValueError('Circular active element/source naming groups are not an exact bijection')
             evidence = {'feature_object_id': fid, 'control_record_object_id': control_id,
                         'history_blob_member': blob_member, 'mapping_record_object_id': mapping['mapping_record_object_id'],
-                        'source_native_body_object_ids': proxy['native_body_object_ids'],
+                        'source_native_body_object_ids': source_native_ids,
                         'uninterpreted_common_feature_naming_component': next(iter(middle)),
                         'element_cache_groups': [], 'suppressed_elements_without_generated_cache_group': [],
                         'identity_scope': 'Exact bounded serialized controller-key/count3 face-naming correspondence within explicitly owned result BODYs; not a universal persistent topology naming rule',
@@ -262,6 +343,11 @@ def decode_circular_placement_evidence(data, records, features, member, members,
                         'coordinate_scope': 'One mapped initial ASM cache frame; source/result BODY transforms absent or identity; no world/current/final placement claim',
                         'api_getter_status': 'Existing circular transform getter disagreement remains unresolved; these matrices do not correct or reinterpret the API getters',
                         'cache_application': 'Evidence only; not applied again to the already placed cache geometry'}
+            if entity_type == 1:
+                evidence.update(pattern_entity_type='Features', pattern_entity_type_code=1,
+                    source_feature_object_ids=source_feature_ids,
+                    source_feature_input_provenance=source_provenance,
+                    source_feature_face_naming_proofs=feature_name_proofs)
             for ordinal, key in pairs:
                 if ordinal in suppressed:
                     evidence['suppressed_elements_without_generated_cache_group'].append({'element_object_id': elements[ordinal], 'stored_ordinal': ordinal, 'stored_naming_key': key})
@@ -283,5 +369,7 @@ def decode_circular_placement_evidence(data, records, features, member, members,
             decoded.append(evidence)
         except (ValueError, KeyError, IndexError, TypeError, struct.error) as error:
             unresolved.append({'feature_object_id': feature['object_id'], 'reason': str(error)})
-    return {'decoded': decoded, 'unresolved': unresolved,
-            'scope': 'Bounded circular body-pattern native naming/cache evidence and measured relative matrices; existing getter/placement warnings preserved'}
+    scope = 'Bounded circular body-pattern native naming/cache evidence and measured relative matrices; existing getter/placement warnings preserved'
+    if any(row.get('pattern_entity_type_code') == 1 for row in decoded):
+        scope = 'Bounded circular body/feature-input native naming/cache evidence and measured relative matrices; existing getter/placement warnings preserved'
+    return {'decoded': decoded, 'unresolved': unresolved, 'scope': scope}
