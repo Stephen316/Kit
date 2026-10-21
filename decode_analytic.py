@@ -66,11 +66,16 @@ def decode_analytic_surface(record):
         if read(7, "boolean_token") or read(8, "boolean_token"):
             raise ValueError("Unsupported cone prefix flags")
         sine, cosine = read(9, "double"), read(10, "double")
-        if cosine <= 0 or not math.isclose(sine*sine+cosine*cosine, 1., abs_tol=1e-9):
-            raise ValueError("Invalid cone angular pair")
         kind = "Cylinder" if math.isclose(sine, 0., abs_tol=1e-12) else "Cone"
+        negative_cylinder_pair = (kind == "Cylinder" and math.isclose(cosine, -1., abs_tol=1e-9))
+        if (not math.isclose(sine*sine+cosine*cosine, 1., abs_tol=1e-9)
+                or (cosine <= 0 and not negative_cylinder_pair)):
+            raise ValueError("Invalid cone angular pair")
         result.update(kind=kind, axis=axis, raw_radius=radius, stored_reference_axis=reference,
                       stored_axis_ratio=ratio, is_v_reversed=read(12, "boolean_token"))
+        if negative_cylinder_pair:
+            result.update(stored_cone_angular_pair=[sine, cosine],
+                          parameterization_scope="Observed zero-slope negative-cosine cylinder; stored axis retained, signed parameter direction unresolved")
         if kind == "Cone":
             signed = math.atan2(sine, cosine)
             result.update(half_angle_radians=abs(signed), stored_signed_half_angle_radians=signed,

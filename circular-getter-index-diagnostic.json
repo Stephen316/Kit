@@ -1,0 +1,799 @@
+{
+  "stage": "Circular getter indexing and suppression discrepancy investigation",
+  "status": "New saved evidence isolates non-seed getter shift and disproves simple context/permutation explanation; no production resolver",
+  "not_repeated": "Prior circular-cache-rotation-audit established only unordered unsuppressed body-cache corroboration. New evidence tests every saved q4 getter index, frame-invariant traces, exact incoming element references and previously unaudited suppression physics.",
+  "findings": [
+    {
+      "claim": "In all seven current non-symmetric quantity-four cases, getter 0 is identity and getter positive ID i equals rotation ((i + 1) * step), including offset-axis translations and three feature compute modes.",
+      "limit": "Observed diagnostic agreement only. It is not proof of an SDK implementation bug, a universal fix or an ID/body mapping."
+    },
+    {
+      "claim": "Negative210deg capture includes getter angle-280deg(80deg), outside logical0,-70,-140,-210deg set. Rotation trace multisets also differ.",
+      "consequence": "A mere permutation, axis-origin translation or one common coordinate-basis/context conjugation cannot explain the mismatch."
+    },
+    {
+      "claim": "Suppressed API ID 1/native ordinal 2 removes the 90-degree physical cache, while that suppressed getter reports 180 degrees and the 180-degree physical cache remains.",
+      "consequence": "The getter discrepancy concerns the selected physical copy, not just the prior unordered matrix-set comparison. Body/element identity association remains indirect."
+    },
+    {
+      "claim": "Each AD719 native element remains an exact 17-byte key/controller record and has exactly one incoming explicit reference from its controller in each examined Design stream.",
+      "consequence": "No direct per-element body or transform reference was found; raw pair integers must not be coerced into arbitrary design-object references."
+    }
+  ],
+  "generator_review": {
+    "source": "GenerateCircularPatternModes.py",
+    "capture_lines": [
+      73,
+      74,
+      75,
+      76
+    ],
+    "indexing": "range(patternElements.count) and item(i) follow installed zero-based API documentation. No Python i+1 is present.",
+    "repeated_access": "Each row reacquires feature.patternElements.item(i) separately for id, isSuppressed and transform; getter results are copied via asArray. Captures do not compare a retained collection/handle, repeated same-handle reads, reversed query order or readback after import.",
+    "context": "Controlled root-component body/feature patterns, +Z axes, optional offset-axis origin; no occurrence pattern or nested assembly context in this batch.",
+    "unsupported_explanation": "SDK collection/wrapper access side effects versus native transform computation/indexing cannot be distinguished offline from these one-pass captures."
+  },
+  "validation": {
+    "checks": 111,
+    "non_symmetric_files": 7,
+    "symmetric_files": 1,
+    "scope": "Only saved corpus and API truth; no new calls or synthetic exported evidence"
+  },
+  "non_symmetric_cases": [
+    {
+      "file": "circularmodes-45f859c1f1b6/body_full.f3d",
+      "quantity": 4,
+      "axis_origin_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "angle_radians": 6.283185307179586,
+      "compute_mode": "Adjust",
+      "input_kind": "Bodies",
+      "suppressed_API_ids": [],
+      "actual_API_angles_degrees": [
+        0.0,
+        180.0,
+        -90.00000000000001,
+        -1.4033418597069752e-14
+      ],
+      "logical_step_angles_degrees": [
+        0.0,
+        90.0,
+        180.0,
+        270.0
+      ],
+      "diagnostic_angle_arguments_for_actual_getters_degrees": [
+        0.0,
+        180.0,
+        270.0,
+        360.0
+      ],
+      "full_matrix_rule_matches_saved_getters": true,
+      "logical_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        1.0,
+        3.0
+      ],
+      "getter_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        3.0,
+        3.0
+      ],
+      "scope": "Observed q4 nonsymmetric getter discrepancy only, not a native edge/matrix decoder or correction resolver",
+      "native_element_reference_inventory": [
+        {
+          "element_object_id": 310,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 311,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 312,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 313,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        }
+      ],
+      "stored_element_ordinals_in_controller_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw_instance_pair_second_word_collisions": [
+        {
+          "raw_word": 304,
+          "same_number_design_object_class": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 305,
+          "same_number_design_object_class": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 306,
+          "same_number_design_object_class": "5A1BF548-241F-46FD-9FB5-E4B05126EB9D",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        }
+      ]
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/body_negative.f3d",
+      "quantity": 4,
+      "axis_origin_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "angle_radians": -3.6651914291880923,
+      "compute_mode": "Adjust",
+      "input_kind": "Bodies",
+      "suppressed_API_ids": [],
+      "actual_API_angles_degrees": [
+        0.0,
+        -140.00000000000003,
+        150.0,
+        79.99999999999997
+      ],
+      "logical_step_angles_degrees": [
+        -0.0,
+        -70.00000000000001,
+        -140.00000000000003,
+        -210.00000000000003
+      ],
+      "diagnostic_angle_arguments_for_actual_getters_degrees": [
+        -0.0,
+        -140.00000000000003,
+        -210.00000000000003,
+        -280.00000000000006
+      ],
+      "full_matrix_rule_matches_saved_getters": true,
+      "logical_rotation_trace_multiset": [
+        -0.73205081,
+        -0.53208889,
+        1.68404029,
+        3.0
+      ],
+      "getter_rotation_trace_multiset": [
+        -0.73205081,
+        -0.53208889,
+        1.34729636,
+        3.0
+      ],
+      "scope": "Observed q4 nonsymmetric getter discrepancy only, not a native edge/matrix decoder or correction resolver",
+      "native_element_reference_inventory": [
+        {
+          "element_object_id": 310,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 311,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 312,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 313,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        }
+      ],
+      "stored_element_ordinals_in_controller_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw_instance_pair_second_word_collisions": [
+        {
+          "raw_word": 304,
+          "same_number_design_object_class": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 305,
+          "same_number_design_object_class": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 306,
+          "same_number_design_object_class": "5A1BF548-241F-46FD-9FB5-E4B05126EB9D",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        }
+      ]
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/body_suppressed.f3d",
+      "quantity": 4,
+      "axis_origin_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "angle_radians": 6.283185307179586,
+      "compute_mode": "Adjust",
+      "input_kind": "Bodies",
+      "suppressed_API_ids": [
+        1
+      ],
+      "actual_API_angles_degrees": [
+        0.0,
+        180.0,
+        -90.00000000000001,
+        -1.4033418597069752e-14
+      ],
+      "logical_step_angles_degrees": [
+        0.0,
+        90.0,
+        180.0,
+        270.0
+      ],
+      "diagnostic_angle_arguments_for_actual_getters_degrees": [
+        0.0,
+        180.0,
+        270.0,
+        360.0
+      ],
+      "full_matrix_rule_matches_saved_getters": true,
+      "logical_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        1.0,
+        3.0
+      ],
+      "getter_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        3.0,
+        3.0
+      ],
+      "scope": "Observed q4 nonsymmetric getter discrepancy only, not a native edge/matrix decoder or correction resolver",
+      "native_element_reference_inventory": [
+        {
+          "element_object_id": 310,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 311,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 312,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 313,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        }
+      ],
+      "stored_element_ordinals_in_controller_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw_instance_pair_second_word_collisions": [
+        {
+          "raw_word": 304,
+          "same_number_design_object_class": null,
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 305,
+          "same_number_design_object_class": null,
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 306,
+          "same_number_design_object_class": null,
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        }
+      ]
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/multiple_customaxis.f3d",
+      "quantity": 4,
+      "axis_origin_cm": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "angle_radians": 6.283185307179586,
+      "compute_mode": "Adjust",
+      "input_kind": "Bodies",
+      "suppressed_API_ids": [],
+      "actual_API_angles_degrees": [
+        0.0,
+        180.0,
+        -90.00000000000001,
+        -1.4033418597069752e-14
+      ],
+      "logical_step_angles_degrees": [
+        0.0,
+        90.0,
+        180.0,
+        270.0
+      ],
+      "diagnostic_angle_arguments_for_actual_getters_degrees": [
+        0.0,
+        180.0,
+        270.0,
+        360.0
+      ],
+      "full_matrix_rule_matches_saved_getters": true,
+      "logical_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        1.0,
+        3.0
+      ],
+      "getter_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        3.0,
+        3.0
+      ],
+      "scope": "Observed q4 nonsymmetric getter discrepancy only, not a native edge/matrix decoder or correction resolver",
+      "native_element_reference_inventory": [
+        {
+          "element_object_id": 436,
+          "only_explicit_referrer": 411,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 437,
+          "only_explicit_referrer": 411,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 438,
+          "only_explicit_referrer": 411,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 439,
+          "only_explicit_referrer": 411,
+          "payload_length": 17
+        }
+      ],
+      "stored_element_ordinals_in_controller_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw_instance_pair_second_word_collisions": [
+        {
+          "raw_word": 309,
+          "same_number_design_object_class": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 310,
+          "same_number_design_object_class": "362B7EC3-0F09-47C8-A3BE-DC066715CDAE",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 311,
+          "same_number_design_object_class": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        }
+      ]
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/feature_optimized.f3d",
+      "quantity": 4,
+      "axis_origin_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "angle_radians": 6.283185307179586,
+      "compute_mode": "Optimized",
+      "input_kind": "Features",
+      "suppressed_API_ids": [],
+      "actual_API_angles_degrees": [
+        0.0,
+        180.0,
+        -90.00000000000001,
+        -1.4033418597069752e-14
+      ],
+      "logical_step_angles_degrees": [
+        0.0,
+        90.0,
+        180.0,
+        270.0
+      ],
+      "diagnostic_angle_arguments_for_actual_getters_degrees": [
+        0.0,
+        180.0,
+        270.0,
+        360.0
+      ],
+      "full_matrix_rule_matches_saved_getters": true,
+      "logical_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        1.0,
+        3.0
+      ],
+      "getter_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        3.0,
+        3.0
+      ],
+      "scope": "Observed q4 nonsymmetric getter discrepancy only, not a native edge/matrix decoder or correction resolver",
+      "native_element_reference_inventory": [
+        {
+          "element_object_id": 310,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 311,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 312,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 313,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        }
+      ],
+      "stored_element_ordinals_in_controller_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw_instance_pair_second_word_collisions": [
+        {
+          "raw_word": 304,
+          "same_number_design_object_class": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 305,
+          "same_number_design_object_class": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 306,
+          "same_number_design_object_class": "5A1BF548-241F-46FD-9FB5-E4B05126EB9D",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        }
+      ]
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/feature_identical.f3d",
+      "quantity": 4,
+      "axis_origin_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "angle_radians": 6.283185307179586,
+      "compute_mode": "Identical",
+      "input_kind": "Features",
+      "suppressed_API_ids": [],
+      "actual_API_angles_degrees": [
+        0.0,
+        180.0,
+        -90.00000000000001,
+        -1.4033418597069752e-14
+      ],
+      "logical_step_angles_degrees": [
+        0.0,
+        90.0,
+        180.0,
+        270.0
+      ],
+      "diagnostic_angle_arguments_for_actual_getters_degrees": [
+        0.0,
+        180.0,
+        270.0,
+        360.0
+      ],
+      "full_matrix_rule_matches_saved_getters": true,
+      "logical_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        1.0,
+        3.0
+      ],
+      "getter_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        3.0,
+        3.0
+      ],
+      "scope": "Observed q4 nonsymmetric getter discrepancy only, not a native edge/matrix decoder or correction resolver",
+      "native_element_reference_inventory": [
+        {
+          "element_object_id": 310,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 311,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 312,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 313,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        }
+      ],
+      "stored_element_ordinals_in_controller_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw_instance_pair_second_word_collisions": [
+        {
+          "raw_word": 304,
+          "same_number_design_object_class": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 305,
+          "same_number_design_object_class": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 306,
+          "same_number_design_object_class": "5A1BF548-241F-46FD-9FB5-E4B05126EB9D",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        }
+      ]
+    },
+    {
+      "file": "circularmodes-45f859c1f1b6/feature_adjust.f3d",
+      "quantity": 4,
+      "axis_origin_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "angle_radians": 6.283185307179586,
+      "compute_mode": "Adjust",
+      "input_kind": "Features",
+      "suppressed_API_ids": [],
+      "actual_API_angles_degrees": [
+        0.0,
+        180.0,
+        -90.00000000000001,
+        -1.4033418597069752e-14
+      ],
+      "logical_step_angles_degrees": [
+        0.0,
+        90.0,
+        180.0,
+        270.0
+      ],
+      "diagnostic_angle_arguments_for_actual_getters_degrees": [
+        0.0,
+        180.0,
+        270.0,
+        360.0
+      ],
+      "full_matrix_rule_matches_saved_getters": true,
+      "logical_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        1.0,
+        3.0
+      ],
+      "getter_rotation_trace_multiset": [
+        -1.0,
+        1.0,
+        3.0,
+        3.0
+      ],
+      "scope": "Observed q4 nonsymmetric getter discrepancy only, not a native edge/matrix decoder or correction resolver",
+      "native_element_reference_inventory": [
+        {
+          "element_object_id": 310,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 311,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 312,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        },
+        {
+          "element_object_id": 313,
+          "only_explicit_referrer": 289,
+          "payload_length": 17
+        }
+      ],
+      "stored_element_ordinals_in_controller_order": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "raw_instance_pair_second_word_collisions": [
+        {
+          "raw_word": 304,
+          "same_number_design_object_class": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 305,
+          "same_number_design_object_class": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        },
+        {
+          "raw_word": 306,
+          "same_number_design_object_class": "5A1BF548-241F-46FD-9FB5-E4B05126EB9D",
+          "interpretation": "Raw integer only; coincident design-object ID is not an explicit native reference."
+        }
+      ]
+    }
+  ],
+  "symmetric_case_kept_unresolved": {
+    "file": "circularmodes-45f859c1f1b6/body_symmetric.f3d",
+    "native_element_ordinals_in_controller_order": [
+      4,
+      2,
+      1,
+      3,
+      5
+    ],
+    "actual_API_ids": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "actual_API_angles_degrees": [
+      89.99999999999999,
+      0.0,
+      0.0,
+      45.00000000000001,
+      135.0
+    ],
+    "scope": "Non-symmetric skip-one rule is not applied; native array order differs from API ids and no explicit order bridge was found.",
+    "native_element_reference_inventory": [
+      {
+        "element_object_id": 310,
+        "only_explicit_referrer": 289,
+        "payload_length": 17
+      },
+      {
+        "element_object_id": 311,
+        "only_explicit_referrer": 289,
+        "payload_length": 17
+      },
+      {
+        "element_object_id": 312,
+        "only_explicit_referrer": 289,
+        "payload_length": 17
+      },
+      {
+        "element_object_id": 313,
+        "only_explicit_referrer": 289,
+        "payload_length": 17
+      },
+      {
+        "element_object_id": 314,
+        "only_explicit_referrer": 289,
+        "payload_length": 17
+      }
+    ]
+  },
+  "suppression_physical_contrast": {
+    "baseline_file": "circularmodes-45f859c1f1b6/body_full.f3d",
+    "suppressed_file": "circularmodes-45f859c1f1b6/body_suppressed.f3d",
+    "explicit_seed_native_body_object_id": 275,
+    "seed_vertex_multisets_identical": true,
+    "typed_mapped_body_counts": [
+      4,
+      3
+    ],
+    "actual_API_body_counts": [
+      4,
+      3
+    ],
+    "stored_suppressed_ordinal": 2,
+    "actual_suppressed_API_id": 1,
+    "actual_suppressed_getter_matrix": [
+      -1.0,
+      -1.2246467991473532e-16,
+      0.0,
+      0.0,
+      1.2246467991473532e-16,
+      -1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "suppressed_getter_rotation_degrees": 180,
+    "unique_missing_logical_rotation_degrees": 90,
+    "physical180degree_cache_remains_present": true,
+    "scope": "Suppression getter/controls are explicit; missing physical rotation is a bounded geometric multiset contrast, not an explicit element-to-body identity link. No native body is assigned to a pattern element by coordinate matching."
+  },
+  "next_capture_proposal": {
+    "status": "Plan only; no generator dispatched or capture made",
+    "minimal_cases": [
+      "One root q4 full-circle asymmetric body pattern",
+      "One q4 negative partial-angle pattern"
+    ],
+    "controls": [
+      "Retain one PatternElements collection and one item(i) handle per row; record access order and actual id/name/parentFeature.",
+      "Copy transform.asArray to plain lists twice on the same handle; repeat same item twice; retain both snapshots and any changes.",
+      "Reproduce original fresh-per-property access separately, then query elements in reverse order keyed by actual getter ID.",
+      "Capture PatternElement.faces and each face.body identity/name/bounds via actual getters, plus source geometry and suppression status; opaque tokens remain opaque.",
+      "Export each owned document, optionally reimport the same owned archive in a later serial step and repeat getters without editing; preserve request versus actual evidence."
+    ],
+    "discrimination": "Stable skipped matrices under cached and fresh/reversed access suggests transform lookup/index semantics; changing reads exposes SDK wrapper/cache access behavior. Actual per-element face/body getters test physical correspondence independently. No corrective native resolver until these controls and explicit native links agree."
+  },
+  "source_evidence": {
+    "SDK_file": "/Users/stephenh/Library/Application Support/Autodesk/Autodesk Fusion 360/API/Python/defs/adsk/fusion.py",
+    "SDK_classes": [
+      "PatternElements.item: documented zero-based collection access",
+      "PatternElement.transform: relative placement; first element documented identity",
+      "PatternElement.faces: generated faces for a particular element"
+    ],
+    "generator_SHA256": "01fd379d562dcdce630b759c1613191eb9e6bdb5e3be8307657dd06d233d0c6d",
+    "saved_truth_SHA256": "9446b81a0490158f37526bfd28966f41ac9aed2788949f1aaf91f57a0b052d1d",
+    "prior_audit": "circular-cache-rotation-audit.json"
+  },
+  "integration": "No shared production changes or graph/placement helper added. Existing circular placement unresolved status remains valid.",
+  "limitations": [
+    "The non-symmetric diagnostic has only q4 evidence; symmetric q5 has different ordering/behavior and remains unresolved.",
+    "Body-cache multiset comparison is geometric corroboration, not native element/body topology association or current final lifecycle proof.",
+    "Names/tokens/coordinates are not used to fabricate native identities.",
+    "No Fusion/API/live calls, shared source edits, Git mutations or export generation."
+  ]
+}

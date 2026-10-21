@@ -399,7 +399,7 @@ def validate_auxiliary(zstd_library, classification):
               }, 'limitations': [
                   'Multiple BODY roots with ID=-1 remain distinct auxiliary record indices; they are never aliases of each other or of a named native body.',
                   'All initial BODY roots must be declared; every nonnegative ID is unique and the key set is exactly the explicit native handle set.',
-                  'Auxiliary BODYs require decoded reciprocal initial body graphs; shell/wire variants currently fail this requirement and remain rejected.',
+                  'Auxiliary BODYs require decoded reciprocal initial body graphs; only the observed shell-owned single-line wire layout is additionally supported.',
                   'Detached FACE support is bounded to a planar face, one reciprocal loop/self-coedge/closed ellipse edge and endpoint vertex/point chain.',
                   'API plane/curve/cylinder comparisons corroborate cached geometry only; they do not assign ownership to auxiliary entities.',
                   'A validated complete initial section does not make later history complete; raw tag23 failure remains untouched and public.',
@@ -419,14 +419,10 @@ def validate_auxiliary(zstd_library, classification):
         result = decode_body_asm_identifiers(data, records, member, members, {'decoded': [mapping]})
         report['target_results'].append({'file': target['file'], 'decoded': result['decoded'], 'unresolved': result['unresolved']})
         contexts[target['file']] = data, records, member, members, mapping, parsed, result
-    expected_remaining = {'splitfacemodes-4fc4adf2a868/along_vector.f3d', 'splitfacemodes-4fc4adf2a868/closest_point.f3d'}
+    # Bounded shell-owned single-line wire topology now accounts for the two
+    # former SplitFace auxiliary graphs; all classified native joins validate.
+    expected_remaining = set()
     assert {r['file'] for r in report['target_results'] if r['unresolved']} == expected_remaining
-    for relative in expected_remaining:
-        parsed = contexts[relative][5]
-        topology = decode_topology(parsed)
-        result = next(r for r in report['target_results'] if r['file'] == relative)
-        result['retained_topology_diagnostics'] = topology['unresolved']
-        result['keyed_body_graphs_present_but_auxiliary_wire_graph_unresolved'] = [g['body_index'] for g in topology['body_graphs']]
 
     api_files = [
         'planedefinitions-6cd0820a832e/tangent.f3d',

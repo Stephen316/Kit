@@ -20,6 +20,8 @@ LINKS = {
     "face": {"next_face": (3, "face"), "first_loop": (4, "loop"), "shell": (5, "shell"),
              "subshell": (6, "subshell"), "surface": (7, "surface")},
     "loop": {"next_loop": (3, "loop"), "first_coedge": (4, "coedge"), "face": (5, "face")},
+    "wire": {"next_wire": (3, "wire"), "first_coedge": (4, "coedge"),
+             "shell": (5, "shell"), "uninterpreted_reference_6": (6, None)},
     "coedge": {"next_coedge": (3, "coedge"), "previous_coedge": (4, "coedge"),
                "partner": (5, "coedge"), "edge": (6, "edge"), "loop": (8, "loop"), "pcurve": (10, "pcurve")},
     "edge": {"start_vertex": (3, "vertex"), "end_vertex": (5, "vertex"),
@@ -66,7 +68,7 @@ def decode_topology(parsed):
 
     geometry = {"point", "straight-curve", "ellipse-curve", "plane-surface", "transform",
                 "cone-surface", "sphere-surface", "torus-surface", "spline-surface", "intcurve-curve", "pcurve"}
-    sizes = {"body": (6,), "lump": (6,), "shell": (8,), "face": (10, 11), "loop": (6,),
+    sizes = {"body": (6,), "lump": (6,), "shell": (8,), "face": (10, 11), "loop": (6,), "wire": (8,),
              "coedge": (11,), "edge": (11,), "vertex": (6,), "point": (4,), "straight-curve": (7, 8, 9),
              "ellipse-curve": (9, 10, 11)}
     for record in records[:geometry_limit]:
@@ -95,6 +97,12 @@ def decode_topology(parsed):
                     "attribute_index": link(record, 0), "stored_entity_id": token(record, 1, ("integer",)),
                     "pattern_index": link(record, 2, "pattern")}
             for field, (index, expected) in LINKS.get(name, {}).items():
+                if name == "coedge" and field == "loop":
+                    container = link(record, index)
+                    if container is not None and records[container]["name"] == "wire":
+                        node["loop_index"] = None
+                        node["wire_index"] = link(record, index, "wire")
+                        continue
                 node[field+"_index"] = link(record, index, expected)
             if name == "face":
                 node["is_reversed"] = token(record, 8, ("boolean_token",))
@@ -106,6 +114,8 @@ def decode_topology(parsed):
             elif name == "coedge":
                 node["is_reversed"] = token(record, 7, ("boolean_token",))
                 node["uninterpreted_field_9"] = token(record, 9, ("integer",))
+            elif name == "wire":
+                node["stored_flag_7"] = token(record, 7, ("boolean_token",))
             elif name == "edge":
                 node.update(start_parameter=token(record, 4, ("double",)),
                             end_parameter=token(record, 6, ("double",)),
@@ -180,7 +190,7 @@ def decode_topology(parsed):
                 raise ValueError("Wire-body topology not implemented")
             lumps = chain(root["first_lump_index"], "lump", "next_lump")
             shells, faces, loops, coedges, edges, vertices = [], [], [], [], set(), set()
-            loop_rings = []
+            loop_rings, wires, wire_rings = [], [], []
             for lump_id in lumps:
                 lump = get(lump_id, "lump")
                 if lump["body_index"] != root["index"]:
@@ -189,8 +199,46 @@ def decode_topology(parsed):
                 shells.extend(lump_shells)
                 for shell_id in lump_shells:
                     shell = get(shell_id, "shell")
-                    if shell["lump_index"] != lump_id or shell["subshell_index"] is not None or shell["first_wire_index"] is not None:
-                        raise ValueError("Unsupported shell ownership/subshell/wire definition")
+                    if shell["lump_index"] != lump_id or shell["subshell_index"] is not None:
+                        raise ValueError("Unsupported shell ownership/subshell definition")
+                    if shell["first_wire_index"] is not None:
+                        if shell["first_face_index"] is not None:
+                            raise ValueError("Mixed face/wire shells are outside the observed wire variant")
+                        shell_wires = chain(shell["first_wire_index"], "wire", "next_wire")
+                        if len(shell_wires) != 1:
+                            raise ValueError("Only observed single-wire shells are supported")
+                        wire = get(shell_wires[0], "wire")
+                        if (wire["shell_index"] != shell_id or wire["uninterpreted_reference_6_index"] is not None
+                                or wire["stored_flag_7"] or wire["pattern_index"] is not None):
+                            raise ValueError("Wire/shell ownership or observed wire flags disagree")
+                        coedge = get(wire["first_coedge_index"], "coedge")
+                        if (coedge.get("wire_index") != wire["index"] or coedge["loop_index"] is not None
+                                or coedge["next_coedge_index"] != coedge["index"]
+                                or coedge["previous_coedge_index"] != coedge["index"]
+                                or coedge["partner_index"] is not None or coedge["pcurve_index"] is not None):
+                            raise ValueError("Unsupported wire single-coedge ring or reciprocal ownership")
+                        edge = get(coedge["edge_index"], "edge")
+                        if edge["first_coedge_index"] != coedge["index"]:
+                            raise ValueError("Wire edge/coedge ownership is not reciprocal")
+                        curve = nodes.get(edge["curve_index"])
+                        if curve is None or curve["kind"] != "straight-curve":
+                            raise ValueError("Only observed decoded straight-curve wire edges are supported")
+                        endpoint_ids = [edge["start_vertex_index"], edge["end_vertex_index"]]
+                        if None in endpoint_ids or endpoint_ids[0] == endpoint_ids[1]:
+                            raise ValueError("Only observed two-vertex open line wires are supported")
+                        for vertex_id in endpoint_ids:
+                            vertex = get(vertex_id, "vertex")
+                            if vertex["first_edge_index"] != edge["index"]:
+                                raise ValueError("Wire edge/vertex ownership is not reciprocal")
+                            get(vertex["point_index"], "point")
+                            vertices.add(vertex_id)
+                        wires.append(wire["index"])
+                        coedges.append(coedge["index"])
+                        edges.add(edge["index"])
+                        wire_rings.append({"wire_index": wire["index"], "shell_index": shell_id,
+                                           "coedge_indices": [coedge["index"]], "edge_indices": [edge["index"]],
+                                           "endpoint_vertex_indices": endpoint_ids, "curve_index": edge["curve_index"],
+                                           "scope": "Observed shell-owned open single-line wire; self-linked coedge list does not imply geometric closure"})
                     shell_faces = chain(shell["first_face_index"], "face", "next_face")
                     faces.extend(shell_faces)
                     for face_id in shell_faces:
@@ -243,12 +291,14 @@ def decode_topology(parsed):
                                                "surface_index": face["surface_index"], "trims": trims,
                                                "uv_endpoints_close_in_this_chart": closed,
                                                "scope": "Observed stored UV boundaries; periodic chart changes and general trimming remain partial"})
+            if wires and (faces or loops or len(lumps) != 1 or len(shells) != 1 or len(wires) != 1):
+                raise ValueError("Only observed standalone single-lump/shell/line-wire bodies are supported")
             raw_positions = [get(get(v, "vertex")["point_index"], "point")["raw_origin"] for v in sorted(vertices)]
             counts = {"lump": len(lumps), "shell": len(shells), "face": len(faces), "loop": len(loops),
                       "coedge": len(coedges), "edge": len(edges), "vertex": len(vertices)}
             transform = nodes.get(root["transform_index"])
             identity = root["transform_index"] is None or (transform is not None and transform.get("is_observed_identity"))
-            graphs.append({"body_index": root["index"], "counts": counts, "lump_indices": lumps,
+            graph = {"body_index": root["index"], "counts": counts, "lump_indices": lumps,
                            "shell_indices": shells, "face_indices": faces, "loop_indices": loops,
                            "coedge_indices": coedges, "edge_indices": sorted(edges), "vertex_indices": sorted(vertices),
                            "pcurve_indices": sorted({nodes[c]["pcurve_index"] for c in coedges if nodes[c]["pcurve_index"] is not None}),
@@ -275,7 +325,13 @@ def decode_topology(parsed):
                                              for e in sorted(edges) if nodes.get(nodes[e]["curve_index"], {}).get("bspline_curve")],
                            "all_coedges_have_partners": bool(coedges) and all(nodes[c]["partner_index"] is not None for c in coedges),
                            "identity_status": "Stored body graph; final visible body mapping unresolved",
-                           "coordinate_scope": "Raw ASM points; body transform and units/context not applied"})
+                           "coordinate_scope": "Raw ASM points; body transform and units/context not applied"}
+            if wires:
+                counts["wire"] = len(wires)
+                graph.update(wire_indices=wires, wire_coedge_rings=wire_rings,
+                             topology_kind="Observed shell-owned open single-line wire",
+                             wire_scope="Explicit initial ASM links only; native body/source identity and final lifecycle are not inferred")
+            graphs.append(graph)
         except (ValueError, KeyError, IndexError) as error:
             unresolved.append({"index": root["index"], "kind": "body_graph", "reason": str(error)})
     return {"nodes": list(nodes.values()), "body_graphs": graphs, "unresolved": unresolved,

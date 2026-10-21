@@ -65,6 +65,7 @@ from asm_records import inspect_asm_members
 from decode_body_bindings import decode_body_bindings
 from decode_body_asm_identifiers import decode_body_asm_identifiers
 from decode_asm_recipe_tags import inspect_pipe_recipe_tags
+from decode_pipe_recipe_incidence import inspect_pipe_recipe_incidence
 from decode_body_properties import decode_body_properties
 from decode_body_selections import decode_body_selections
 from decode_body_tool_selections import decode_body_tool_selections
@@ -459,7 +460,7 @@ def decode_basics(path, zstd_library=None):
             hole = next(f for f in features if f["object_id"] == sources["feature_object_id"])
             hole["tool_settings"].update(point_sources=sources["point_sources"], association_status=sources["association"])
         pipe_provenance_summary = {"partial": [], "unresolved": [],
-                                   "scope": "Separate source provenance and observed edge Pipe controls without full decoded settings; closure and geometry stay unresolved"}
+                                   "scope": "Separate source provenance and observed edge Pipe controls; bounded cached source geometry may decode through serialized recipe incidence, full settings remain partial"}
         pipe_vertex_summary = {"decoded": [], "unresolved": [],
                                "scope": "Typed auxiliary vertex contexts only; Pipe closure, geometry and full settings unresolved"}
         for pipe in features:
@@ -756,6 +757,8 @@ def decode_basics(path, zstd_library=None):
         body_binding_summary["scope"] = "Native body/blob mapping and observed typed per-blob BODY identifiers; final-body lifecycle unresolved"
         pipe_tag_summary = {"decoded": [], "unresolved": [],
                             "scope": "Explicit same-asset native recipe/ASM naming candidates; duplicate owners and whole-recipe semantics stay unresolved"}
+        pipe_incidence_summary = {"decoded": [], "unresolved": [],
+                                  "scope": "Observed named-face recipe operands and reciprocal topology identify cached source edges; complete Pipe operation and path direction remain unresolved"}
         for source in pipe_provenance_summary["partial"]:
             pipe = feature_by_id[source["feature_object_id"]]
             pipe_record = next(r for r in records if r.start == pipe["record_offset"])
@@ -766,6 +769,16 @@ def decode_basics(path, zstd_library=None):
                 source["asm_recipe_naming_candidates"] = naming
             except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
                 pipe_tag_summary["unresolved"].append({"feature_object_id": pipe["object_id"], "reason": str(error)})
+                continue
+            try:
+                incidence = inspect_pipe_recipe_incidence(
+                    data, records, data[pipe_record.body:pipe_record.end], pipe, features,
+                    name, members, body_identifier_summary, source_evidence=source, tag_evidence=naming)
+                pipe_incidence_summary["decoded"].append(incidence)
+                source["cached_source_edge_incidence"] = incidence
+                pipe["pipe_cached_source_edge"] = incidence
+            except (ValueError, KeyError, IndexError, UnicodeError, struct.error) as error:
+                pipe_incidence_summary["unresolved"].append({"feature_object_id": pipe["object_id"], "reason": str(error)})
         body_placement_summary = decode_body_placement(body_binding_summary, assembly_summary, asm_summary)
         if any(r.is_primary and r.class_guid == NATIVE_JOINT_GUID for r in records):
             label_joint_cache_placements(assembly_summary, body_placement_summary, features)
@@ -823,6 +836,7 @@ def decode_basics(path, zstd_library=None):
             "pipe_path_provenance": pipe_provenance_summary,
             "pipe_vertex_contexts": pipe_vertex_summary,
             "pipe_asm_recipe_tags": pipe_tag_summary,
+            "pipe_recipe_incidence": pipe_incidence_summary,
             "pattern_placements": pattern_placement_summary,
             "timeline_decoding": timeline_summary,
             "assembly_decoding": assembly_summary,
