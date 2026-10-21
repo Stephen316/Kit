@@ -1,5 +1,5 @@
 {
-  "observed_at_utc": "2026-10-21T19:55:05.060075+00:00",
+  "observed_at_utc": "2026-10-21T20:31:29.801606+00:00",
   "scope": "Reconciles saved native validation and later saved captures with read-only availability. No new live generator execution.",
   "observed_failure": "Both recent Trim crash stacks reach native transaction cleanup through SWIG TrimFeature deletion after the owned document closed.",
   "repair": "Release Trim feature/input/cell wrappers while rolled before the feature with the document open; collect capture/finalizer frames before close(False). Uncertain cleanup retains native handles and halts.",
@@ -48,7 +48,7 @@
   "current_readonly_observations": {
     "fusion_pid": 5619,
     "process_found": true,
-    "process_command": "pgrep -fl Autodesk Fusion.app/Contents/MacOS",
+    "process_command": "pgrep -fl 'Autodesk Fusion.app/Contents/MacOS'",
     "session_locked": true,
     "lock_command": "/usr/bin/python3 dispatch_fusion_script.py --session-state",
     "ui_events_sent": false,
