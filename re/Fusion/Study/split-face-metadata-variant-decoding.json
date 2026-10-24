@@ -1,0 +1,1087 @@
+{
+  "scope": "Three saved parting-line Draft setup SplitFace records; raw metadata 8/12 opt-in for the captured nonextended single-plane/single-target family",
+  "interface": "decode_split_face_metadata_variants(data,records,features)->decoded/unresolved/scope; rows feature_object_id/settings/stored_table_metadata/table_metadata_layout/source_feature_object_id",
+  "shared_hook": "decode_split_face(..., *, allowed_table_metadata=(4,)); default fields and errors unchanged; new wrapper opts into (8,12) only under further captured-family checks",
+  "integration": {
+    "summary_key": "split_face_metadata_variants",
+    "feature_settings": "row.settings; stored metadata remains a separate uninterpreted attachment",
+    "recover_only_old_tool_error": "Unsupported SplitFace table metadata or kind label",
+    "limits": "Do not clear target recipe, geometry, persistent identity or lifecycle warnings"
+  },
+  "provenance": {
+    "ground_truth": "partinglinedrafts-c4d07c76fcd5/ground_truth.json",
+    "ground_truth_sha256": "cf4d12bb94b220a3cc5e90f8021547ba010189bad5ce7f109539a27b6b03e560",
+    "executed_source_snapshot": "partinglinedrafts-c4d07c76fcd5/executed-generator-source.txt",
+    "executed_generator_sha256": "0ab31f579cdad5fe0f98cc1430f3afd76a96b58f399809d7f650b597841dede4",
+    "frozen_common_parser_commit": "e3b3c24",
+    "frozen_common_parser_sha256": "39cfb98f862a9353a2ee11b69a528ff197d9c3f8baaf5a0a804b0144b09676af"
+  },
+  "findings": [
+    "All existing frame/proxy/descriptor/recipe and ordered-table checks succeed before the old metadata gate.",
+    "fixed_three and fixed_seven store uint32 12; moving_both_three stores 8. Their setup SplitFace API requests are identical. No metadata enum or bit meaning is assigned.",
+    "The label remains SplitFace, and all three raw selection tables contain tool proxy/descriptor followed by target proxy/descriptor.",
+    "Actual saved setup evidence is add health and later wall-face/edge getters. SplitFace definition-property getters were not captured; setup tool/type/extension are source requests, corroborated by explicit native ownership and mode fields."
+  ],
+  "samples": [
+    {
+      "archive": "partinglinedrafts-c4d07c76fcd5/fixed_three.f3d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 316,
+            "settings": {
+              "split_type": "SurfaceIntersection",
+              "is_tool_extended": false,
+              "stored_extension_flag": 0,
+              "stored_mode_fields": [
+                1,
+                0
+              ],
+              "tool_selection_record_object_id": 320,
+              "tool": {
+                "entity": {
+                  "kind": "ConstructionPlane",
+                  "name": "PartingDraftMiddlePlane",
+                  "object_id": 294,
+                  "feature_object_id": 295,
+                  "origin_cm": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "selection_object_id": 320,
+                "descriptor_object_id": 323,
+                "terminal_object_id": 326,
+                "namespace_text": "038fd6b7-e3cc-4dfd-963d-cb6765f9a4ef",
+                "entity_guid_text": "ec0a3bfd-c76a-4484-885c-13b2c10cad28",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "target_selection_record_object_id": 328,
+              "target_faces": [
+                {
+                  "descriptor_object_id": 331,
+                  "body_anchor_object_id": 281,
+                  "native_body_object_id": 275,
+                  "source_owner_object_id": 243,
+                  "namespace_text": "038fd6b7-e3cc-4dfd-963d-cb6765f9a4ef",
+                  "entity_guid_text": "ec0a3bfd-c76a-4484-885c-13b2c10cad28",
+                  "context_record_object_ids": [
+                    492
+                  ],
+                  "recipe": {
+                    "object_id": 334,
+                    "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                    "record_offset": 40288,
+                    "stored_header_fields": [
+                      1,
+                      3
+                    ],
+                    "name_table": [
+                      {
+                        "table_index": 0,
+                        "terms": [
+                          {
+                            "name": "4",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 36899,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 1,
+                        "terms": [
+                          {
+                            "name": "1",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 36899,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 2,
+                        "terms": [
+                          {
+                            "name": "3",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 36899,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 3,
+                        "terms": [
+                          {
+                            "name": "5",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 36899,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 4,
+                        "terms": [
+                          {
+                            "name": "2",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 36899,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "payload_kind": "bounded_face_recipe_data",
+                    "payload_relative_offset": 171,
+                    "payload_length": 476,
+                    "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000000000000ffffffff03000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff04000000ffffffff00000000ffffffff0000000000000000ffffffffffffffffffffffff0200000000000000ffffffff04000000ffffffff02000000ffffffff0300000000000000ffffffff04000000ffffffff02000000ffffffff0000000000000000ffffffff0300000003000000ffffffff04000000ffffffff00000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000000000000ffffffff04000000ffffffff02000000ffffffff0000000000000000ffffffff",
+                    "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                    "uninterpreted_payload_int32": [
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      -1,
+                      2,
+                      0,
+                      -1,
+                      1,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      2,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      0,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      -1,
+                      -1,
+                      2,
+                      0,
+                      -1,
+                      3,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      0,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      4,
+                      -1,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      -1,
+                      -1,
+                      2,
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      2,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      4,
+                      -1,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      -1,
+                      -1,
+                      2,
+                      2,
+                      -1,
+                      0,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      2,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      2,
+                      -1,
+                      0,
+                      0,
+                      -1
+                    ]
+                  },
+                  "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                  "context_scope": "Context identities retained; no occurrence transform inferred"
+                }
+              ],
+              "target_face_count": 1,
+              "projection_direction": null,
+              "frame_record_object_id": 327,
+              "stored_operation_flag": 304,
+              "ordered_selection_reference_ids": [
+                320,
+                323,
+                328,
+                331
+              ],
+              "scope": "Observed surface/closest-point/axis-projection controls, a plane or sketch-line tool and owned target face recipes",
+              "geometry_status": "Explicit historical body/face recipes; exact selected/result faces and split geometry regeneration unresolved"
+            },
+            "stored_table_metadata": 12,
+            "table_metadata_layout": {
+              "body_relative_offset": 201,
+              "absolute_offset": 38258,
+              "metadata_and_label_hex": "0c00000009000000530070006c00690074004600610063006500",
+              "kind_label": "SplitFace",
+              "ordered_reference_count": 4,
+              "reference_table_body_relative_offset": 157,
+              "semantics": "Literal observed uint32 only; no enum, flag, mode or lifecycle meaning assigned"
+            },
+            "source_feature_object_id": 243,
+            "scope": "Observed SplitFace metadata 8/12 with nonextended SurfaceIntersection, one constructed plane and one owned historical face recipe; metadata meaning, exact selected/result faces, lifecycle and regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed SplitFace metadata 8/12 with nonextended SurfaceIntersection, one constructed plane and one owned historical face recipe; metadata meaning, exact selected/result faces, lifecycle and regeneration remain unresolved"
+      },
+      "exact_metadata_label_and_ordered_reference_byte_replays": true,
+      "default_and_frozen_parser_error": "Unsupported SplitFace table metadata or kind label",
+      "typed_source_body_name": "PartingDraftSeedBody",
+      "setup_evidence": {
+        "definition_getters_captured": false,
+        "executed_source_request": "splitFaceFeatures.createInput(one actual source wall face, constructed plane offset XY by10mm, False)",
+        "actual_setup_health": 0,
+        "actual_setup_warning": "",
+        "actual_later_wall_areas_cm2": [
+          3.0,
+          3.0
+        ],
+        "actual_later_wall_centroid_z_cm": [
+          0.5,
+          1.5
+        ],
+        "actual_parting_edge_length_cm": 3.0,
+        "scope": "API setup request plus healthy observed wall partition, not saved SplitFace definition getters or selected/result ASM identity"
+      },
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "partinglinedrafts-c4d07c76fcd5/fixed_seven.f3d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 316,
+            "settings": {
+              "split_type": "SurfaceIntersection",
+              "is_tool_extended": false,
+              "stored_extension_flag": 0,
+              "stored_mode_fields": [
+                1,
+                0
+              ],
+              "tool_selection_record_object_id": 320,
+              "tool": {
+                "entity": {
+                  "kind": "ConstructionPlane",
+                  "name": "PartingDraftMiddlePlane",
+                  "object_id": 294,
+                  "feature_object_id": 295,
+                  "origin_cm": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "selection_object_id": 320,
+                "descriptor_object_id": 323,
+                "terminal_object_id": 326,
+                "namespace_text": "244b71b3-caee-4547-a70e-0ae9b0ebb4fd",
+                "entity_guid_text": "7c38b162-c8bc-411d-9219-652f32a587c8",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "target_selection_record_object_id": 328,
+              "target_faces": [
+                {
+                  "descriptor_object_id": 331,
+                  "body_anchor_object_id": 281,
+                  "native_body_object_id": 275,
+                  "source_owner_object_id": 243,
+                  "namespace_text": "244b71b3-caee-4547-a70e-0ae9b0ebb4fd",
+                  "entity_guid_text": "7c38b162-c8bc-411d-9219-652f32a587c8",
+                  "context_record_object_ids": [
+                    492
+                  ],
+                  "recipe": {
+                    "object_id": 334,
+                    "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                    "record_offset": 40288,
+                    "stored_header_fields": [
+                      1,
+                      3
+                    ],
+                    "name_table": [
+                      {
+                        "table_index": 0,
+                        "terms": [
+                          {
+                            "name": "4",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 36899,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 1,
+                        "terms": [
+                          {
+                            "name": "1",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 36899,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 2,
+                        "terms": [
+                          {
+                            "name": "3",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 36899,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 3,
+                        "terms": [
+                          {
+                            "name": "5",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 36899,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 4,
+                        "terms": [
+                          {
+                            "name": "2",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 36899,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "payload_kind": "bounded_face_recipe_data",
+                    "payload_relative_offset": 171,
+                    "payload_length": 476,
+                    "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000000000000ffffffff03000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff04000000ffffffff00000000ffffffff0000000000000000ffffffffffffffffffffffff0200000000000000ffffffff04000000ffffffff02000000ffffffff0300000000000000ffffffff04000000ffffffff02000000ffffffff0000000000000000ffffffff0300000003000000ffffffff04000000ffffffff00000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000000000000ffffffff04000000ffffffff02000000ffffffff0000000000000000ffffffff",
+                    "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                    "uninterpreted_payload_int32": [
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      -1,
+                      2,
+                      0,
+                      -1,
+                      1,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      2,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      0,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      -1,
+                      -1,
+                      2,
+                      0,
+                      -1,
+                      3,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      0,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      4,
+                      -1,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      -1,
+                      -1,
+                      2,
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      2,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      4,
+                      -1,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      -1,
+                      -1,
+                      2,
+                      2,
+                      -1,
+                      0,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      2,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      2,
+                      -1,
+                      0,
+                      0,
+                      -1
+                    ]
+                  },
+                  "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                  "context_scope": "Context identities retained; no occurrence transform inferred"
+                }
+              ],
+              "target_face_count": 1,
+              "projection_direction": null,
+              "frame_record_object_id": 327,
+              "stored_operation_flag": 304,
+              "ordered_selection_reference_ids": [
+                320,
+                323,
+                328,
+                331
+              ],
+              "scope": "Observed surface/closest-point/axis-projection controls, a plane or sketch-line tool and owned target face recipes",
+              "geometry_status": "Explicit historical body/face recipes; exact selected/result faces and split geometry regeneration unresolved"
+            },
+            "stored_table_metadata": 12,
+            "table_metadata_layout": {
+              "body_relative_offset": 201,
+              "absolute_offset": 38258,
+              "metadata_and_label_hex": "0c00000009000000530070006c00690074004600610063006500",
+              "kind_label": "SplitFace",
+              "ordered_reference_count": 4,
+              "reference_table_body_relative_offset": 157,
+              "semantics": "Literal observed uint32 only; no enum, flag, mode or lifecycle meaning assigned"
+            },
+            "source_feature_object_id": 243,
+            "scope": "Observed SplitFace metadata 8/12 with nonextended SurfaceIntersection, one constructed plane and one owned historical face recipe; metadata meaning, exact selected/result faces, lifecycle and regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed SplitFace metadata 8/12 with nonextended SurfaceIntersection, one constructed plane and one owned historical face recipe; metadata meaning, exact selected/result faces, lifecycle and regeneration remain unresolved"
+      },
+      "exact_metadata_label_and_ordered_reference_byte_replays": true,
+      "default_and_frozen_parser_error": "Unsupported SplitFace table metadata or kind label",
+      "typed_source_body_name": "PartingDraftSeedBody",
+      "setup_evidence": {
+        "definition_getters_captured": false,
+        "executed_source_request": "splitFaceFeatures.createInput(one actual source wall face, constructed plane offset XY by10mm, False)",
+        "actual_setup_health": 0,
+        "actual_setup_warning": "",
+        "actual_later_wall_areas_cm2": [
+          3.0,
+          3.0
+        ],
+        "actual_later_wall_centroid_z_cm": [
+          0.5,
+          1.5
+        ],
+        "actual_parting_edge_length_cm": 3.0,
+        "scope": "API setup request plus healthy observed wall partition, not saved SplitFace definition getters or selected/result ASM identity"
+      },
+      "owned_document_closed_true": true
+    },
+    {
+      "archive": "partinglinedrafts-c4d07c76fcd5/moving_both_three.f3d",
+      "expected_decoded": {
+        "decoded": [
+          {
+            "feature_object_id": 316,
+            "settings": {
+              "split_type": "SurfaceIntersection",
+              "is_tool_extended": false,
+              "stored_extension_flag": 0,
+              "stored_mode_fields": [
+                1,
+                0
+              ],
+              "tool_selection_record_object_id": 320,
+              "tool": {
+                "entity": {
+                  "kind": "ConstructionPlane",
+                  "name": "PartingDraftMiddlePlane",
+                  "object_id": 294,
+                  "feature_object_id": 295,
+                  "origin_cm": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ],
+                  "normal": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                },
+                "selection_object_id": 320,
+                "descriptor_object_id": 323,
+                "terminal_object_id": 326,
+                "namespace_text": "cc5aa64a-ae44-4134-90e0-1badcdbd0ea7",
+                "entity_guid_text": "96729df1-352b-479e-bb74-a02db4300888",
+                "association": "Explicit selection -> descriptor -> native object reference chain"
+              },
+              "target_selection_record_object_id": 328,
+              "target_faces": [
+                {
+                  "descriptor_object_id": 331,
+                  "body_anchor_object_id": 281,
+                  "native_body_object_id": 275,
+                  "source_owner_object_id": 243,
+                  "namespace_text": "cc5aa64a-ae44-4134-90e0-1badcdbd0ea7",
+                  "entity_guid_text": "96729df1-352b-479e-bb74-a02db4300888",
+                  "context_record_object_ids": [
+                    578
+                  ],
+                  "recipe": {
+                    "object_id": 334,
+                    "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                    "record_offset": 40654,
+                    "stored_header_fields": [
+                      1,
+                      3
+                    ],
+                    "name_table": [
+                      {
+                        "table_index": 0,
+                        "terms": [
+                          {
+                            "name": "4",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 37265,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 1,
+                        "terms": [
+                          {
+                            "name": "1",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 37265,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 2,
+                        "terms": [
+                          {
+                            "name": "3",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 37265,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 3,
+                        "terms": [
+                          {
+                            "name": "5",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 37265,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "table_index": 4,
+                        "terms": [
+                          {
+                            "name": "2",
+                            "stored_index": 0,
+                            "stored_reference_tag": 1,
+                            "stored_reference_value": 301,
+                            "numeric_record_collision": {
+                              "object_id": 301,
+                              "class_guid": "5FBE538E-139B-46D4-BCAF-CC796D1E1F78",
+                              "record_offset": 37265,
+                              "scope": "Coincident numeric value only; no stored object-reference relationship or topology identity established"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "payload_kind": "bounded_face_recipe_data",
+                    "payload_relative_offset": 171,
+                    "payload_length": 476,
+                    "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000000000000ffffffff01000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000000000000ffffffff03000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000003000000ffffffff04000000ffffffff00000000ffffffff0000000000000000ffffffffffffffffffffffff0200000000000000ffffffff04000000ffffffff02000000ffffffff0300000000000000ffffffff04000000ffffffff02000000ffffffff0000000000000000ffffffff0300000003000000ffffffff04000000ffffffff00000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000000000000ffffffff02000000ffffffff01000000ffffffff0000000000000000ffffffff0300000000000000ffffffff04000000ffffffff02000000ffffffff0000000000000000ffffffff",
+                    "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                    "uninterpreted_payload_int32": [
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      -1,
+                      2,
+                      0,
+                      -1,
+                      1,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      2,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      0,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      -1,
+                      -1,
+                      2,
+                      0,
+                      -1,
+                      3,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      0,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      4,
+                      -1,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      -1,
+                      -1,
+                      2,
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      2,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      3,
+                      -1,
+                      4,
+                      -1,
+                      0,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      -1,
+                      -1,
+                      2,
+                      2,
+                      -1,
+                      0,
+                      -1,
+                      2,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      2,
+                      -1,
+                      1,
+                      -1,
+                      0,
+                      0,
+                      -1,
+                      3,
+                      0,
+                      -1,
+                      4,
+                      -1,
+                      2,
+                      -1,
+                      0,
+                      0,
+                      -1
+                    ]
+                  },
+                  "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                  "context_scope": "Context identities retained; no occurrence transform inferred"
+                }
+              ],
+              "target_face_count": 1,
+              "projection_direction": null,
+              "frame_record_object_id": 327,
+              "stored_operation_flag": 304,
+              "ordered_selection_reference_ids": [
+                320,
+                323,
+                328,
+                331
+              ],
+              "scope": "Observed surface/closest-point/axis-projection controls, a plane or sketch-line tool and owned target face recipes",
+              "geometry_status": "Explicit historical body/face recipes; exact selected/result faces and split geometry regeneration unresolved"
+            },
+            "stored_table_metadata": 8,
+            "table_metadata_layout": {
+              "body_relative_offset": 201,
+              "absolute_offset": 38624,
+              "metadata_and_label_hex": "0800000009000000530070006c00690074004600610063006500",
+              "kind_label": "SplitFace",
+              "ordered_reference_count": 4,
+              "reference_table_body_relative_offset": 157,
+              "semantics": "Literal observed uint32 only; no enum, flag, mode or lifecycle meaning assigned"
+            },
+            "source_feature_object_id": 243,
+            "scope": "Observed SplitFace metadata 8/12 with nonextended SurfaceIntersection, one constructed plane and one owned historical face recipe; metadata meaning, exact selected/result faces, lifecycle and regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed SplitFace metadata 8/12 with nonextended SurfaceIntersection, one constructed plane and one owned historical face recipe; metadata meaning, exact selected/result faces, lifecycle and regeneration remain unresolved"
+      },
+      "exact_metadata_label_and_ordered_reference_byte_replays": true,
+      "default_and_frozen_parser_error": "Unsupported SplitFace table metadata or kind label",
+      "typed_source_body_name": "PartingDraftSeedBody",
+      "setup_evidence": {
+        "definition_getters_captured": false,
+        "executed_source_request": "splitFaceFeatures.createInput(one actual source wall face, constructed plane offset XY by10mm, False)",
+        "actual_setup_health": 0,
+        "actual_setup_warning": "",
+        "actual_later_wall_areas_cm2": [
+          3.0,
+          3.0
+        ],
+        "actual_later_wall_centroid_z_cm": [
+          0.5,
+          1.5
+        ],
+        "actual_parting_edge_length_cm": 3.0,
+        "scope": "API setup request plus healthy observed wall partition, not saved SplitFace definition getters or selected/result ASM identity"
+      },
+      "owned_document_closed_true": true
+    }
+  ],
+  "malformed_guards": [
+    {
+      "case": "Unobserved table metadata",
+      "reason": "Unsupported SplitFace table metadata or kind label"
+    },
+    {
+      "case": "Kind label differs",
+      "reason": "Unsupported SplitFace table metadata or kind label"
+    },
+    {
+      "case": "Extended plane intersection not captured for metadata8/12",
+      "reason": "SplitFace metadata variant outside captured nonextended singleton plane-intersection family"
+    },
+    {
+      "case": "Repeated table count differs",
+      "reason": "SplitFace feature table does not repeat its ordered selections/descriptors"
+    },
+    {
+      "case": "Repeated descriptor reference differs",
+      "reason": "SplitFace feature table does not repeat its ordered selections/descriptors"
+    },
+    {
+      "case": "Tool proxy owner differs",
+      "reason": "SplitFace selection proxy owner disagrees"
+    },
+    {
+      "case": "Tool descriptor owner differs",
+      "reason": "Unsupported SplitFace native descriptor/owner"
+    },
+    {
+      "case": "Frame owner differs",
+      "reason": "Unsupported SplitFace frame layout/owner"
+    }
+  ],
+  "old_controls": [
+    {
+      "archive": "splitfacemodes-4fc4adf2a868/plane.f3d",
+      "default_common_settings_exact_against_frozen_parser": true,
+      "new_helper_has_no_rows_diagnostics_or_mutation": true,
+      "scope": "Frozen common parser with current selection/recipe dependencies; historical recipe-label corrections remain intact"
+    },
+    {
+      "archive": "splitfacemodes-4fc4adf2a868/along_vector.f3d",
+      "default_common_settings_exact_against_frozen_parser": true,
+      "new_helper_has_no_rows_diagnostics_or_mutation": true,
+      "scope": "Frozen common parser with current selection/recipe dependencies; historical recipe-label corrections remain intact"
+    },
+    {
+      "archive": "splitfacemodes-4fc4adf2a868/multiple_faces.f3d",
+      "default_common_settings_exact_against_frozen_parser": true,
+      "new_helper_has_no_rows_diagnostics_or_mutation": true,
+      "scope": "Frozen common parser with current selection/recipe dependencies; historical recipe-label corrections remain intact"
+    }
+  ],
+  "limitations": [
+    "Exact selected/result ASM face identities and split geometry regeneration remain unresolved.",
+    "An explicit historical native BODY anchor and its custom name do not establish current/final body visibility or persistent topology.",
+    "The newly admitted metadata integers remain literal; no role is inferred from later Draft mode, names or geometric coincidence.",
+    "Only nonextended singleton constructed-plane intersection and Extrude-owned bounded target recipes are qualified. Other input kinds, counts, directions and metadata values retain unsupported status."
+  ],
+  "summary": {
+    "actual_saved_exports": 3,
+    "metadata12_records": 2,
+    "metadata8_records": 1,
+    "qualified_settings": 3,
+    "exact_metadata_label_replays": 3,
+    "exact_ordered_reference_table_replays": 3,
+    "default_and_frozen_rejections_retained": 3,
+    "typed_source_body_name_corroborations": 3,
+    "healthy_observed_wall_partition_controls": 3,
+    "captured_SplitFace_definition_getters": 0,
+    "malformed_guards": 8,
+    "old_default_controls_exact": 3,
+    "feature_mutations": 0,
+    "live_calls": 0
+  }
+}

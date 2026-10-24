@@ -1,0 +1,1900 @@
+{
+  "stage": "Modeled thread encoded helix geometry",
+  "interface": {
+    "helper": "decode_helix_cache.decode_helix_cache(record)",
+    "curve_evaluator": "evaluate_helix_curve(cache, parameter)",
+    "surface_evaluator": "evaluate_helix_surface(cache,u,v)",
+    "integration": "Root routes helix_int_cur and helix_spl_line to separate node encoded_curve_geometry/encoded_surface_geometry and conditional graph encoded_curves/encoded_surfaces. These are not B-splines.",
+    "dispatch_kinds": "encoded_curve_kind=CircularHelix; encoded_surface_kind=HelicalLineSurface"
+  },
+  "framing": {
+    "curve": "24 typed tokens: finite interval, origin, cosine/sine radial vectors, per-turn advance vector, zero scalar, unit axis, null support markers, exact subtype end and two outer null bounds.",
+    "surface": "39 typed tokens: three stored finite interval pairs, helix frame, null support markers, line coefficient vector, subtype end and four finite outer UV bounds.",
+    "domain": "Only literal stored intervals and outer limits are used; no sampled or guessed domain is substituted."
+  },
+  "validation": {
+    "checks": 115,
+    "surfaces": 4,
+    "curves": 8,
+    "saved_files": 2,
+    "typed_curve_endpoint_positions": 16,
+    "typed_surface_UV_endpoint_positions": 16,
+    "maximum_curve_endpoint_error_raw": 1.485211199198368e-14,
+    "maximum_surface_UV_endpoint_error_raw": 1.4626319316035157e-14,
+    "malformed_or_unobserved_guards": [
+      {
+        "guard": "Nonunit helix axis",
+        "reason": "Unobserved noncircular/nonorthogonal helix frame"
+      },
+      {
+        "guard": "Unequal radial frame vector lengths",
+        "reason": "Unobserved noncircular/nonorthogonal helix frame"
+      },
+      {
+        "guard": "Unobserved nonzero scalar after advance vector",
+        "reason": "Unsupported procedural cache field 15"
+      },
+      {
+        "guard": "Encoded interval cannot be inverted",
+        "reason": "Encoded helix requires its observed increasing finite bounds"
+      },
+      {
+        "guard": "Populated transverse line coefficient is unsupported",
+        "reason": "Helical-line evaluator only supports captured Z-axis/+X-radial near-zero-Dy frames"
+      },
+      {
+        "guard": "Trailing token after encoded surface limits",
+        "reason": "Unobserved helical-line surface trailer/UV limits"
+      },
+      {
+        "guard": "Evaluator does not invent a wider parameter domain",
+        "reason": "Parameter outside encoded helix limits"
+      },
+      {
+        "guard": "Arbitrary axis frame is outside restricted surface evaluator evidence",
+        "reason": "Helical-line evaluator only supports captured Z-axis/+X-radial near-zero-Dy frames"
+      }
+    ],
+    "API_geometry_evaluator_getters_captured": false
+  },
+  "limitations": [
+    "Surface evaluator is limited to captured Z-axis/+X radial frames and numerical near-zero transverse line coefficient. General Dy/frame semantics remain unresolved and reject.",
+    "A nonzero transverse coefficient is retained as unsupported rather than assigned an invented geometric term.",
+    "Thread handedness labels and literal helix axis signs are not generalized into a conversion rule.",
+    "Typed UV endpoint sets corroborate surface geometry; edge/pcurve parameter mappings remain unassigned.",
+    "Finite sampled grids and endpoint/API scalar agreement do not establish an external evaluator equivalence or global error bound.",
+    "Raw geometry carries no current visibility, final-state lifecycle, placement or native persistent topology claims."
+  ],
+  "samples": [
+    {
+      "file": "tappedholes-409e96788503/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2c6df07f-81b0-495a-ba58-9dd21c84b060.smbh",
+      "actual_API_settings": {
+        "tap_type": 2,
+        "hole_diameter_cm": 0.6000000000000001,
+        "position_cm": [
+          2.0,
+          1.5,
+          2.0
+        ],
+        "thread_name": "ProbeTappedHole-Thread1",
+        "thread_hole_name": "ProbeTappedHole",
+        "is_modeled": true,
+        "is_full_length": false,
+        "thread_length_cm": 1.0,
+        "thread_offset_cm": 0.0,
+        "thread_designation": "M12x1.75",
+        "thread_class": "6H",
+        "is_internal": true
+      },
+      "encoded_geometries": [
+        {
+          "record_index": 21,
+          "geometry": {
+            "raw_origin": [
+              2.0,
+              1.5,
+              2.3300958494696875
+            ],
+            "raw_radial_cos_vector": [
+              0.513675000000001,
+              -1.3322676295501878e-15,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -1.3322676295501878e-15,
+              -0.513675000000001,
+              -0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              0.0,
+              0.0,
+              -0.17500000000000002
+            ],
+            "raw_axis": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "derived_radius_raw": 0.513675000000001,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_spl_line",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                0.0,
+                0.11275650757273377
+              ],
+              [
+                0.0,
+                56.548667764616276
+              ],
+              [
+                0.0,
+                56.548667764616276
+              ]
+            ],
+            "stored_zero_scalar": 0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_surface_kind": "HelicalLineSurface",
+            "stored_line_coefficient_vector": [
+              1.6859403392893137,
+              -7.584192702850758e-16,
+              -0.4999999999999978
+            ],
+            "parameter_domain_u": [
+              0.0,
+              0.11275650757273377
+            ],
+            "parameter_domain_v": [
+              11.851733664850883,
+              49.77984979636246
+            ],
+            "stored_outer_uv_limits": [
+              0.0,
+              0.11275650757273377,
+              11.851733664850883,
+              49.77984979636246
+            ],
+            "representation": "Observed encoded helical-line surface; restricted evaluator, no B-spline grid",
+            "evaluation_formula": "O + (1+Dx*u)*(A*cos(v)+B*sin(v)) + advance_per_turn*v/(2*pi) + axis*Dz*u",
+            "evaluation_scope": "Only captured Z-axis/+X-radial frames and numerical near-zero Dy admitted. General transverse coefficient semantics remain unresolved.",
+            "domain_scope": "Stored outer UV limits used literally; the three definition interval-pair roles remain partially unqualified"
+          }
+        },
+        {
+          "record_index": 31,
+          "geometry": {
+            "raw_origin": [
+              2.0,
+              1.5,
+              2.401025896743945
+            ],
+            "raw_radial_cos_vector": [
+              0.6113250000000008,
+              -1.5543122344752192e-15,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -1.5543122344752192e-15,
+              -0.6113250000000008,
+              -0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              0.0,
+              0.0,
+              -0.17500000000000002
+            ],
+            "raw_axis": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "derived_radius_raw": 0.6113250000000008,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_spl_line",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                0.0,
+                0.11275650757273398
+              ],
+              [
+                0.0,
+                56.548667764616276
+              ],
+              [
+                0.0,
+                56.548667764616276
+              ]
+            ],
+            "stored_zero_scalar": 0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_surface_kind": "HelicalLineSurface",
+            "stored_line_coefficient_vector": [
+              -1.4166366560903565,
+              5.649253108297246e-16,
+              -0.5000000000000008
+            ],
+            "parameter_domain_u": [
+              0.0,
+              0.11275650757273398
+            ],
+            "parameter_domain_v": [
+              14.39840012697184,
+              52.32651625848345
+            ],
+            "stored_outer_uv_limits": [
+              0.0,
+              0.11275650757273398,
+              14.39840012697184,
+              52.32651625848345
+            ],
+            "representation": "Observed encoded helical-line surface; restricted evaluator, no B-spline grid",
+            "evaluation_formula": "O + (1+Dx*u)*(A*cos(v)+B*sin(v)) + advance_per_turn*v/(2*pi) + axis*Dz*u",
+            "evaluation_scope": "Only captured Z-axis/+X-radial frames and numerical near-zero Dy admitted. General transverse coefficient semantics remain unresolved.",
+            "domain_scope": "Stored outer UV limits used literally; the three definition interval-pair roles remain partially unqualified"
+          }
+        },
+        {
+          "record_index": 84,
+          "geometry": {
+            "raw_origin": [
+              2.0,
+              1.5,
+              2.401025896743945
+            ],
+            "raw_radial_cos_vector": [
+              0.6113250000000008,
+              -1.5543122344752192e-15,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -1.5543122344752192e-15,
+              -0.6113250000000008,
+              -0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              0.0,
+              0.0,
+              -0.17500000000000002
+            ],
+            "raw_axis": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "derived_radius_raw": 0.6113250000000008,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_int_cur",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                14.398400126971847,
+                50.30231616799805
+              ]
+            ],
+            "stored_zero_scalar": 0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_curve_kind": "CircularHelix",
+            "parameter_domain": [
+              14.398400126971847,
+              50.30231616799805
+            ],
+            "stored_outer_interval": [
+              null,
+              null
+            ],
+            "evaluation_formula": "O + A*cos(t) + B*sin(t) + advance_per_turn*t/(2*pi)",
+            "representation": "Observed explicit circular helix fields and encoded finite parameter interval; no B-spline grid",
+            "evaluation_scope": "Direct encoded parameter formula corroborated by typed edge endpoints; no external API evaluator comparison"
+          }
+        },
+        {
+          "record_index": 86,
+          "geometry": {
+            "raw_origin": [
+              2.0,
+              1.5,
+              2.386474103256054
+            ],
+            "raw_radial_cos_vector": [
+              0.611325000000001,
+              -1.5855326979797894e-15,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -1.5855326979797894e-15,
+              -0.611325000000001,
+              -0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              0.0,
+              0.0,
+              -0.17500000000000002
+            ],
+            "raw_axis": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "derived_radius_raw": 0.611325000000001,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_int_cur",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                13.87593375533626,
+                49.77984979636246
+              ]
+            ],
+            "stored_zero_scalar": 0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_curve_kind": "CircularHelix",
+            "parameter_domain": [
+              13.87593375533626,
+              49.77984979636246
+            ],
+            "stored_outer_interval": [
+              null,
+              null
+            ],
+            "evaluation_formula": "O + A*cos(t) + B*sin(t) + advance_per_turn*t/(2*pi)",
+            "representation": "Observed explicit circular helix fields and encoded finite parameter interval; no B-spline grid",
+            "evaluation_scope": "Direct encoded parameter formula corroborated by typed edge endpoints; no external API evaluator comparison"
+          }
+        },
+        {
+          "record_index": 93,
+          "geometry": {
+            "raw_origin": [
+              2.0,
+              1.5,
+              1.9999999999999993
+            ],
+            "raw_radial_cos_vector": [
+              0.3879947611814494,
+              0.3366334370212649,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -0.3366334370212649,
+              0.3879947611814494,
+              -0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              -0.0,
+              -0.0,
+              0.17500000000000002
+            ],
+            "raw_axis": [
+              -0.0,
+              -0.0,
+              1.0
+            ],
+            "derived_radius_raw": 0.5136749999999999,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_int_cur",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                -35.90391604102618,
+                -0.0
+              ]
+            ],
+            "stored_zero_scalar": -0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_curve_kind": "CircularHelix",
+            "parameter_domain": [
+              -35.90391604102618,
+              -0.0
+            ],
+            "stored_outer_interval": [
+              null,
+              null
+            ],
+            "evaluation_formula": "O + A*cos(t) + B*sin(t) + advance_per_turn*t/(2*pi)",
+            "representation": "Observed explicit circular helix fields and encoded finite parameter interval; no B-spline grid",
+            "evaluation_scope": "Direct encoded parameter formula corroborated by typed edge endpoints; no external API evaluator comparison"
+          }
+        },
+        {
+          "record_index": 95,
+          "geometry": {
+            "raw_origin": [
+              2.0,
+              1.5,
+              2.0563782537863675
+            ],
+            "raw_radial_cos_vector": [
+              -0.13266791815683732,
+              -0.4962471451977639,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -0.4962471451977639,
+              0.13266791815683732,
+              0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              0.0,
+              0.0,
+              -0.17500000000000002
+            ],
+            "raw_axis": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "derived_radius_raw": 0.5136749999999999,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_int_cur",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                2.0242000904854067,
+                37.9281161315116
+              ]
+            ],
+            "stored_zero_scalar": 0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_curve_kind": "CircularHelix",
+            "parameter_domain": [
+              2.0242000904854067,
+              37.9281161315116
+            ],
+            "stored_outer_interval": [
+              null,
+              null
+            ],
+            "evaluation_formula": "O + A*cos(t) + B*sin(t) + advance_per_turn*t/(2*pi)",
+            "representation": "Observed explicit circular helix fields and encoded finite parameter interval; no B-spline grid",
+            "evaluation_scope": "Direct encoded parameter formula corroborated by typed edge endpoints; no external API evaluator comparison"
+          }
+        }
+      ],
+      "typed_curve_endpoint_checks": [
+        {
+          "curve_record_index": 84,
+          "edge_record_index": 56,
+          "endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 83,
+              "point_index": 112,
+              "literal_edge_parameter": 14.398400126971847,
+              "evaluated_position": [
+                1.8421118118124673,
+                0.9094159029775191,
+                2.0
+              ],
+              "stored_point": [
+                1.8421118118124673,
+                0.9094159029775191,
+                2.0
+              ],
+              "error_raw": 0.0
+            },
+            {
+              "which": "end",
+              "vertex_index": 58,
+              "point_index": 87,
+              "literal_edge_parameter": 50.30231616799805,
+              "evaluated_position": [
+                2.6109103477740754,
+                1.47748772318135,
+                1.0
+              ],
+              "stored_point": [
+                2.610910347774075,
+                1.47748772318135,
+                1.0
+              ],
+              "error_raw": 4.440892098500626e-16
+            }
+          ],
+          "finite_grid_samples": [
+            [
+              1.8421118118124673,
+              0.9094159029775191,
+              2.0
+            ],
+            [
+              2.610910347774075,
+              1.477487723181347,
+              1.875
+            ],
+            [
+              1.8860075058870045,
+              2.1006030027488203,
+              1.75
+            ],
+            [
+              1.4398210847339918,
+              1.2552187946013837,
+              1.625
+            ],
+            [
+              2.3632955649282485,
+              1.0083348821316833,
+              1.5
+            ],
+            [
+              2.398497178445964,
+              1.9635927678422154,
+              1.375
+            ],
+            [
+              1.4593565064182459,
+              1.7853469265170325,
+              1.25
+            ],
+            [
+              1.84211181181247,
+              0.9094159029775183,
+              1.125
+            ],
+            [
+              2.6109103477740754,
+              1.47748772318135,
+              1.0
+            ]
+          ],
+          "parameter_scope": "Literal stored edge parameters used directly, including negative domains; no sign/phase remapping"
+        },
+        {
+          "curve_record_index": 86,
+          "edge_record_index": 57,
+          "endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 85,
+              "point_index": 113,
+              "literal_edge_parameter": 13.87593375533626,
+              "evaluated_position": [
+                2.1578881881875493,
+                0.9094159029775232,
+                2.0
+              ],
+              "stored_point": [
+                2.1578881881875493,
+                0.9094159029775232,
+                2.0
+              ],
+              "error_raw": 0.0
+            },
+            {
+              "which": "end",
+              "vertex_index": 59,
+              "point_index": 88,
+              "literal_edge_parameter": 49.77984979636246,
+              "evaluated_position": [
+                2.540643493581746,
+                1.7853469265170492,
+                1.0
+              ],
+              "stored_point": [
+                2.5406434935817455,
+                1.785346926517049,
+                1.0
+              ],
+              "error_raw": 4.965068306494546e-16
+            }
+          ],
+          "finite_grid_samples": [
+            [
+              2.1578881881875493,
+              0.9094159029775232,
+              2.0
+            ],
+            [
+              2.5406434935817472,
+              1.7853469265170465,
+              1.875
+            ],
+            [
+              1.6015028215540206,
+              1.9635927678422027,
+              1.75
+            ],
+            [
+              1.6367044350717639,
+              1.0083348821316738,
+              1.625
+            ],
+            [
+              2.5601789152660155,
+              1.2552187946014002,
+              1.5
+            ],
+            [
+              2.113992494112976,
+              2.1006030027488247,
+              1.375
+            ],
+            [
+              1.3890896522259255,
+              1.4774877231813315,
+              1.2499999999999998
+            ],
+            [
+              2.1578881881875525,
+              0.909415902977524,
+              1.125
+            ],
+            [
+              2.540643493581746,
+              1.7853469265170492,
+              1.0
+            ]
+          ],
+          "parameter_scope": "Literal stored edge parameters used directly, including negative domains; no sign/phase remapping"
+        },
+        {
+          "curve_record_index": 93,
+          "edge_record_index": 66,
+          "endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 44,
+              "point_index": 69,
+              "literal_edge_parameter": -35.90391604102618,
+              "evaluated_position": [
+                1.5854697094460044,
+                1.8033589356492072,
+                1.0
+              ],
+              "stored_point": [
+                1.5854697094460122,
+                1.80335893564922,
+                1.0
+              ],
+              "error_raw": 1.485211199198368e-14
+            },
+            {
+              "which": "end",
+              "vertex_index": 92,
+              "point_index": 115,
+              "literal_edge_parameter": -0.0,
+              "evaluated_position": [
+                2.3879947611814494,
+                1.836633437021265,
+                1.9999999999999993
+              ],
+              "stored_point": [
+                2.387994761181451,
+                1.836633437021265,
+                2.0
+              ],
+              "error_raw": 1.897149936107019e-15
+            }
+          ],
+          "finite_grid_samples": [
+            [
+              1.5854697094460044,
+              1.8033589356492072,
+              1.0
+            ],
+            [
+              2.3879947611814405,
+              1.8366334370212751,
+              1.125
+            ],
+            [
+              2.24185637729749,
+              1.0468250907369936,
+              1.25
+            ],
+            [
+              1.5043690248995012,
+              1.3650483710882728,
+              1.3749999999999998
+            ],
+            [
+              1.9787201576565971,
+              2.013234034271734,
+              1.4999999999999996
+            ],
+            [
+              2.5051013958858936,
+              1.4065409956230968,
+              1.6249999999999996
+            ],
+            [
+              1.7964885736330651,
+              1.0283591356094177,
+              1.7499999999999996
+            ],
+            [
+              1.5854697094460124,
+              1.8033589356492183,
+              1.8749999999999993
+            ],
+            [
+              2.3879947611814494,
+              1.836633437021265,
+              1.9999999999999993
+            ]
+          ],
+          "parameter_scope": "Literal stored edge parameters used directly, including negative domains; no sign/phase remapping"
+        },
+        {
+          "curve_record_index": 95,
+          "edge_record_index": 67,
+          "endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 94,
+              "point_index": 116,
+              "literal_edge_parameter": 2.0242000904854067,
+              "evaluated_position": [
+                1.6120052388185493,
+                1.8366334370212631,
+                2.0
+              ],
+              "stored_point": [
+                1.6120052388185453,
+                1.83663343702126,
+                2.0
+              ],
+              "error_raw": 5.063396036227354e-15
+            },
+            {
+              "which": "end",
+              "vertex_index": 43,
+              "point_index": 68,
+              "literal_edge_parameter": 37.9281161315116,
+              "evaluated_position": [
+                1.7581436227025287,
+                1.0468250907369836,
+                1.0000000000000002
+              ],
+              "stored_point": [
+                1.7581436227025267,
+                1.0468250907369838,
+                1.0
+              ],
+              "error_raw": 2.022922624776835e-15
+            }
+          ],
+          "finite_grid_samples": [
+            [
+              1.6120052388185493,
+              1.8366334370212631,
+              2.0
+            ],
+            [
+              1.7581436227025233,
+              1.0468250907369865,
+              1.875
+            ],
+            [
+              2.495630975100503,
+              1.3650483710882864,
+              1.75
+            ],
+            [
+              2.0212798423433895,
+              2.013234034271735,
+              1.625
+            ],
+            [
+              1.494898604114109,
+              1.4065409956230854,
+              1.5
+            ],
+            [
+              2.203511426366944,
+              1.0283591356094217,
+              1.375
+            ],
+            [
+              2.4145302905539823,
+              1.803358935649226,
+              1.2500000000000002
+            ],
+            [
+              1.6120052388185444,
+              1.8366334370212578,
+              1.1250000000000004
+            ],
+            [
+              1.7581436227025287,
+              1.0468250907369836,
+              1.0000000000000002
+            ]
+          ],
+          "parameter_scope": "Literal stored edge parameters used directly, including negative domains; no sign/phase remapping"
+        }
+      ],
+      "typed_surface_UV_endpoint_checks": [
+        {
+          "coedge_record_index": 51,
+          "pcurve_record_index": 77,
+          "loop_record_index": 20,
+          "face_record_index": 13,
+          "surface_record_index": 21,
+          "edge_record_index": 57,
+          "evaluations": [
+            {
+              "pcurve_parameter": 13.87593375533626,
+              "literal_UV": [
+                0.11275650757273378,
+                13.87593375533626
+              ],
+              "surface_position": [
+                2.1578881881875493,
+                0.9094159029775233,
+                2.0
+              ],
+              "typed_endpoint_set_error_raw": 1.1102230246251565e-16
+            },
+            {
+              "pcurve_parameter": 49.77984979636246,
+              "literal_UV": [
+                0.11275650757273366,
+                49.77984979636246
+              ],
+              "surface_position": [
+                2.5406434935817455,
+                1.785346926517049,
+                1.0
+              ],
+              "typed_endpoint_set_error_raw": 0.0
+            }
+          ],
+          "scope": "Typed incidence establishes membership. Unordered endpoint corroboration does not define an edge/pcurve parameter map or vertex identity."
+        },
+        {
+          "coedge_record_index": 52,
+          "pcurve_record_index": 78,
+          "loop_record_index": 20,
+          "face_record_index": 13,
+          "surface_record_index": 21,
+          "edge_record_index": 66,
+          "evaluations": [
+            {
+              "pcurve_parameter": 0.0,
+              "literal_UV": [
+                0.0,
+                11.851733664850883
+              ],
+              "surface_position": [
+                2.3879947611814503,
+                1.8366334370212656,
+                2.0
+              ],
+              "typed_endpoint_set_error_raw": 1.1102230246251565e-15
+            },
+            {
+              "pcurve_parameter": 35.90391604102618,
+              "literal_UV": [
+                0.0,
+                47.75564970587706
+              ],
+              "surface_position": [
+                1.5854697094460035,
+                1.8033589356492081,
+                1.0000000000000007
+              ],
+              "typed_endpoint_set_error_raw": 1.4626319316035157e-14
+            }
+          ],
+          "scope": "Typed incidence establishes membership. Unordered endpoint corroboration does not define an edge/pcurve parameter map or vertex identity."
+        },
+        {
+          "coedge_record_index": 55,
+          "pcurve_record_index": 82,
+          "loop_record_index": 30,
+          "face_record_index": 19,
+          "surface_record_index": 31,
+          "edge_record_index": 56,
+          "evaluations": [
+            {
+              "pcurve_parameter": -50.30231616799805,
+              "literal_UV": [
+                2.3511103285068683e-16,
+                50.30231616799805
+              ],
+              "surface_position": [
+                2.610910347774075,
+                1.47748772318135,
+                1.0000000000000002
+              ],
+              "typed_endpoint_set_error_raw": 2.220446049250313e-16
+            },
+            {
+              "pcurve_parameter": -14.398400126971847,
+              "literal_UV": [
+                0.0,
+                14.39840012697184
+              ],
+              "surface_position": [
+                1.8421118118124715,
+                0.909415902977518,
+                2.0
+              ],
+              "typed_endpoint_set_error_raw": 4.362484308104375e-15
+            }
+          ],
+          "scope": "Typed incidence establishes membership. Unordered endpoint corroboration does not define an edge/pcurve parameter map or vertex identity."
+        },
+        {
+          "coedge_record_index": 61,
+          "pcurve_record_index": 89,
+          "loop_record_index": 30,
+          "face_record_index": 19,
+          "surface_record_index": 31,
+          "edge_record_index": 67,
+          "evaluations": [
+            {
+              "pcurve_parameter": -37.9281161315116,
+              "literal_UV": [
+                0.11275650757273398,
+                52.326516258483444
+              ],
+              "surface_position": [
+                1.7581436227025267,
+                1.0468250907369838,
+                1.0
+              ],
+              "typed_endpoint_set_error_raw": 0.0
+            },
+            {
+              "pcurve_parameter": -2.0242000904854067,
+              "literal_UV": [
+                0.11275650757273398,
+                16.422600217457248
+              ],
+              "surface_position": [
+                1.6120052388185488,
+                1.8366334370212642,
+                1.9999999999999998
+              ],
+              "typed_endpoint_set_error_raw": 5.5199413460798276e-15
+            }
+          ],
+          "scope": "Typed incidence establishes membership. Unordered endpoint corroboration does not define an edge/pcurve parameter map or vertex identity."
+        }
+      ],
+      "finite_surface_grids": [
+        {
+          "surface_record_index": 21,
+          "finite_grid_sample_count": 25
+        },
+        {
+          "surface_record_index": 31,
+          "finite_grid_sample_count": 25
+        }
+      ],
+      "API_scope": "ThreadInfo pitch/radii/profile-angle getters exist in external Thread sample. Tapped-hole truth captures designation and settings only; no unrecorded diameter or evaluator getter is claimed."
+    },
+    {
+      "file": "threadmodes-d51d2ae60564/modeled_full.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7369d28b-2150-4279-8aaa-bcfbde1e1a33.smbh",
+      "actual_API_settings": {
+        "thread_type": "ISO Metric profile",
+        "thread_size": "12.0",
+        "thread_designation": "M12x1.75",
+        "thread_class": "6g",
+        "is_internal": false,
+        "is_right_handed": true,
+        "is_modeled": true,
+        "is_full_length": true,
+        "stored_length_cm": null,
+        "stored_offset_cm": null,
+        "thread_location": 0,
+        "pitch_cm": 0.17500000000000002,
+        "major_diameter_cm": 1.1833500000000001,
+        "minor_diameter_cm": 0.9836499999999999,
+        "pitch_diameter_cm": 1.0754,
+        "thread_angle_degrees": 60.0
+      },
+      "encoded_geometries": [
+        {
+          "record_index": 10,
+          "geometry": {
+            "raw_origin": [
+              0.0,
+              0.0,
+              -0.28898594359907276
+            ],
+            "raw_radial_cos_vector": [
+              0.49182499999999985,
+              2.852261876868497e-14,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -2.852261876868497e-14,
+              0.49182499999999985,
+              0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              0.0,
+              0.0,
+              0.17500000000000002
+            ],
+            "raw_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "derived_radius_raw": 0.49182499999999985,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_spl_line",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                0.0,
+                0.11529684875716838
+              ],
+              [
+                0.0,
+                94.24777960769379
+              ],
+              [
+                0.0,
+                94.24777960769379
+              ]
+            ],
+            "stored_zero_scalar": 0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_surface_kind": "HelicalLineSurface",
+            "stored_line_coefficient_vector": [
+              1.760840550570709,
+              -1.0211718342168392e-13,
+              0.49999999999999994
+            ],
+            "parameter_domain_u": [
+              0.0,
+              0.11529684875716838
+            ],
+            "parameter_domain_v": [
+              8.305922867231708,
+              82.18355913807027
+            ],
+            "stored_outer_uv_limits": [
+              0.0,
+              0.11529684875716838,
+              8.305922867231708,
+              82.18355913807027
+            ],
+            "representation": "Observed encoded helical-line surface; restricted evaluator, no B-spline grid",
+            "evaluation_formula": "O + (1+Dx*u)*(A*cos(v)+B*sin(v)) + advance_per_turn*v/(2*pi) + axis*Dz*u",
+            "evaluation_scope": "Only captured Z-axis/+X-radial frames and numerical near-zero Dy admitted. General transverse coefficient semantics remain unresolved.",
+            "domain_scope": "Stored outer UV limits used literally; the three definition interval-pair roles remain partially unqualified"
+          }
+        },
+        {
+          "record_index": 21,
+          "geometry": {
+            "raw_origin": [
+              0.0,
+              0.0,
+              -0.3811624807795088
+            ],
+            "raw_radial_cos_vector": [
+              0.591675,
+              2.852261876868497e-14,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -2.852261876868497e-14,
+              0.591675,
+              0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              0.0,
+              0.0,
+              0.17500000000000002
+            ],
+            "raw_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "derived_radius_raw": 0.591675,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_spl_line",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                0.0,
+                0.11529684875716839
+              ],
+              [
+                0.0,
+                94.24777960769379
+              ],
+              [
+                0.0,
+                94.24777960769379
+              ]
+            ],
+            "stored_zero_scalar": 0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_surface_kind": "HelicalLineSurface",
+            "stored_line_coefficient_vector": [
+              -1.4636842925329594,
+              7.055919055838083e-14,
+              0.5000000000000001
+            ],
+            "parameter_domain_u": [
+              0.0,
+              0.11529684875716839
+            ],
+            "parameter_domain_v": [
+              11.615421519110605,
+              85.49305778994918
+            ],
+            "stored_outer_uv_limits": [
+              0.0,
+              0.11529684875716839,
+              11.615421519110605,
+              85.49305778994918
+            ],
+            "representation": "Observed encoded helical-line surface; restricted evaluator, no B-spline grid",
+            "evaluation_formula": "O + (1+Dx*u)*(A*cos(v)+B*sin(v)) + advance_per_turn*v/(2*pi) + axis*Dz*u",
+            "evaluation_scope": "Only captured Z-axis/+X-radial frames and numerical near-zero Dy admitted. General transverse coefficient semantics remain unresolved.",
+            "domain_scope": "Stored outer UV limits used literally; the three definition interval-pair roles remain partially unqualified"
+          }
+        },
+        {
+          "record_index": 67,
+          "geometry": {
+            "raw_origin": [
+              0.0,
+              0.0,
+              5.551115123125783e-17
+            ],
+            "raw_radial_cos_vector": [
+              -0.2583919816344059,
+              0.5322714433933544,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -0.5322714433933544,
+              -0.2583919816344059,
+              0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              0.0,
+              0.0,
+              0.17500000000000002
+            ],
+            "raw_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "derived_radius_raw": 0.5916750000000001,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_int_cur",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                0.0,
+                71.80783208205241
+              ]
+            ],
+            "stored_zero_scalar": 0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_curve_kind": "CircularHelix",
+            "parameter_domain": [
+              0.0,
+              71.80783208205241
+            ],
+            "stored_outer_interval": [
+              null,
+              null
+            ],
+            "evaluation_formula": "O + A*cos(t) + B*sin(t) + advance_per_turn*t/(2*pi)",
+            "representation": "Observed explicit circular helix fields and encoded finite parameter interval; no B-spline grid",
+            "evaluation_scope": "Direct encoded parameter formula corroborated by typed edge endpoints; no external API evaluator comparison"
+          }
+        },
+        {
+          "record_index": 69,
+          "geometry": {
+            "raw_origin": [
+              0.0,
+              0.0,
+              -0.28898594359907276
+            ],
+            "raw_radial_cos_vector": [
+              0.49182499999999985,
+              2.852261876868497e-14,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -2.852261876868497e-14,
+              0.49182499999999985,
+              0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              0.0,
+              0.0,
+              0.17500000000000002
+            ],
+            "raw_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "derived_radius_raw": 0.49182499999999985,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_int_cur",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                10.375727056017842,
+                82.18355913807027
+              ]
+            ],
+            "stored_zero_scalar": 0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_curve_kind": "CircularHelix",
+            "parameter_domain": [
+              10.375727056017842,
+              82.18355913807027
+            ],
+            "stored_outer_interval": [
+              null,
+              null
+            ],
+            "evaluation_formula": "O + A*cos(t) + B*sin(t) + advance_per_turn*t/(2*pi)",
+            "representation": "Observed explicit circular helix fields and encoded finite parameter interval; no B-spline grid",
+            "evaluation_scope": "Direct encoded parameter formula corroborated by typed edge endpoints; no external API evaluator comparison"
+          }
+        },
+        {
+          "record_index": 87,
+          "geometry": {
+            "raw_origin": [
+              0.0,
+              0.0,
+              -0.3235140564009246
+            ],
+            "raw_radial_cos_vector": [
+              0.49182499999999985,
+              2.3709193350924885e-14,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -2.3709193350924885e-14,
+              0.49182499999999985,
+              0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              0.0,
+              0.0,
+              0.17500000000000002
+            ],
+            "raw_axis": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "derived_radius_raw": 0.49182499999999985,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_int_cur",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                11.615421519110614,
+                83.42325360116303
+              ]
+            ],
+            "stored_zero_scalar": 0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_curve_kind": "CircularHelix",
+            "parameter_domain": [
+              11.615421519110614,
+              83.42325360116303
+            ],
+            "stored_outer_interval": [
+              null,
+              null
+            ],
+            "evaluation_formula": "O + A*cos(t) + B*sin(t) + advance_per_turn*t/(2*pi)",
+            "representation": "Observed explicit circular helix fields and encoded finite parameter interval; no B-spline grid",
+            "evaluation_scope": "Direct encoded parameter formula corroborated by typed edge endpoints; no external API evaluator comparison"
+          }
+        },
+        {
+          "record_index": 101,
+          "geometry": {
+            "raw_origin": [
+              0.0,
+              0.0,
+              -0.05764842437858453
+            ],
+            "raw_radial_cos_vector": [
+              0.34371040871607533,
+              -0.4816040495731203,
+              0.0
+            ],
+            "raw_radial_sin_vector": [
+              -0.4816040495731203,
+              -0.34371040871607533,
+              0.0
+            ],
+            "raw_advance_per_turn_vector": [
+              -0.0,
+              -0.0,
+              -0.17500000000000002
+            ],
+            "raw_axis": [
+              -0.0,
+              -0.0,
+              -1.0
+            ],
+            "derived_radius_raw": 0.5916750000000001,
+            "derived_advance_per_turn_magnitude_raw": 0.17500000000000002,
+            "procedural_subtype": "helix_int_cur",
+            "stored_wrapper_flag": false,
+            "stored_definition_intervals": [
+              [
+                -73.87763627083858,
+                -2.069804188786147
+              ]
+            ],
+            "stored_zero_scalar": -0.0,
+            "coordinate_scope": "Raw ASM coordinates; body transforms and units/context not applied",
+            "identity_scope": "Encoded geometry only; native topology identity and current/final lifecycle not inferred",
+            "handedness_scope": "Literal axis/radial/advance vectors retained; no API handedness/sign conversion inferred",
+            "encoded_curve_kind": "CircularHelix",
+            "parameter_domain": [
+              -73.87763627083858,
+              -2.069804188786147
+            ],
+            "stored_outer_interval": [
+              null,
+              null
+            ],
+            "evaluation_formula": "O + A*cos(t) + B*sin(t) + advance_per_turn*t/(2*pi)",
+            "representation": "Observed explicit circular helix fields and encoded finite parameter interval; no B-spline grid",
+            "evaluation_scope": "Direct encoded parameter formula corroborated by typed edge endpoints; no external API evaluator comparison"
+          }
+        }
+      ],
+      "typed_curve_endpoint_checks": [
+        {
+          "curve_record_index": 67,
+          "edge_record_index": 40,
+          "endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 66,
+              "point_index": 93,
+              "literal_edge_parameter": 0.0,
+              "evaluated_position": [
+                -0.2583919816344059,
+                0.5322714433933544,
+                5.551115123125783e-17
+              ],
+              "stored_point": [
+                -0.2583919816344058,
+                0.5322714433933543,
+                0.0
+              ],
+              "error_raw": 1.6653345369377348e-16
+            },
+            {
+              "which": "end",
+              "vertex_index": 45,
+              "point_index": 71,
+              "literal_edge_parameter": 71.80783208205241,
+              "evaluated_position": [
+                0.001859207083203418,
+                -0.5916720789204286,
+                2.0000000000000004
+              ],
+              "stored_point": [
+                0.0018592070832075687,
+                -0.5916720789204284,
+                2.0
+              ],
+              "error_raw": 4.180349777968403e-15
+            }
+          ],
+          "finite_grid_samples": [
+            [
+              -0.2583919816344059,
+              0.5322714433933544,
+              5.551115123125783e-17
+            ],
+            [
+              0.0018592070832048335,
+              -0.5916720789204285,
+              0.2500000000000001
+            ],
+            [
+              0.2550418062325034,
+              0.5338848028354639,
+              0.5000000000000002
+            ],
+            [
+              -0.4614286619413783,
+              -0.37035509388151977,
+              0.7500000000000002
+            ],
+            [
+              0.5764239121015998,
+              0.13347201647718987,
+              1.0000000000000002
+            ],
+            [
+              -0.5772513370947453,
+              0.12984683071730616,
+              1.2500000000000002
+            ],
+            [
+              0.4637470552532209,
+              -0.3674479206213666,
+              1.5000000000000002
+            ],
+            [
+              -0.25839198163440463,
+              0.5322714433933551,
+              1.7500000000000002
+            ],
+            [
+              0.001859207083203418,
+              -0.5916720789204286,
+              2.0000000000000004
+            ]
+          ],
+          "parameter_scope": "Literal stored edge parameters used directly, including negative domains; no sign/phase remapping"
+        },
+        {
+          "curve_record_index": 69,
+          "edge_record_index": 42,
+          "endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 68,
+              "point_index": 94,
+              "literal_edge_parameter": 10.375727056017842,
+              "evaluated_position": [
+                -0.2857064634584587,
+                -0.4003294235539779,
+                0.0
+              ],
+              "stored_point": [
+                -0.2857064634584587,
+                -0.4003294235539779,
+                0.0
+              ],
+              "error_raw": 0.0
+            },
+            {
+              "which": "end",
+              "vertex_index": 46,
+              "point_index": 72,
+              "literal_edge_parameter": 82.18355913807027,
+              "evaluated_position": [
+                0.4311090561049466,
+                0.2367209588720481,
+                2.0000000000000004
+              ],
+              "stored_point": [
+                0.43110905610494993,
+                0.23672095887204198,
+                2.0
+              ],
+              "error_raw": 6.994019550408944e-15
+            }
+          ],
+          "finite_grid_samples": [
+            [
+              -0.2857064634584587,
+              -0.4003294235539779,
+              0.0
+            ],
+            [
+              0.43110905610494765,
+              0.2367209588720461,
+              0.25000000000000006
+            ],
+            [
+              -0.49112521298425227,
+              -0.026227005093466475,
+              0.5000000000000002
+            ],
+            [
+              0.453867998176566,
+              -0.18946152869697994,
+              0.7500000000000004
+            ],
+            [
+              -0.32671666000430355,
+              0.3676248831358293,
+              1.0000000000000004
+            ],
+            [
+              0.1348550804013078,
+              -0.4729756208463145,
+              1.2500000000000004
+            ],
+            [
+              0.08371620176419155,
+              0.4846477361828661,
+              1.5000000000000004
+            ],
+            [
+              -0.28570646345845613,
+              -0.40032942355397977,
+              1.7500000000000002
+            ],
+            [
+              0.4311090561049466,
+              0.2367209588720481,
+              2.0000000000000004
+            ]
+          ],
+          "parameter_scope": "Literal stored edge parameters used directly, including negative domains; no sign/phase remapping"
+        },
+        {
+          "curve_record_index": 87,
+          "edge_record_index": 58,
+          "endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 86,
+              "point_index": 104,
+              "literal_edge_parameter": 11.615421519110614,
+              "evaluated_position": [
+                0.2857064634584625,
+                -0.4003294235539752,
+                0.0
+              ],
+              "stored_point": [
+                0.2857064634584625,
+                -0.4003294235539752,
+                0.0
+              ],
+              "error_raw": 0.0
+            },
+            {
+              "which": "end",
+              "vertex_index": 59,
+              "point_index": 88,
+              "literal_edge_parameter": 83.42325360116303,
+              "evaluated_position": [
+                -0.08371620176419717,
+                0.48464773618286516,
+                2.0
+              ],
+              "stored_point": [
+                -0.08371620176419717,
+                0.48464773618286516,
+                2.0
+              ],
+              "error_raw": 0.0
+            }
+          ],
+          "finite_grid_samples": [
+            [
+              0.2857064634584625,
+              -0.4003294235539752,
+              0.0
+            ],
+            [
+              -0.08371620176419836,
+              0.48464773618286494,
+              0.25000000000000006
+            ],
+            [
+              -0.13485508040130118,
+              -0.4729756208463164,
+              0.5
+            ],
+            [
+              0.3267166600042984,
+              0.3676248831358339,
+              0.75
+            ],
+            [
+              -0.4538679981765633,
+              -0.1894615286969863,
+              1.0
+            ],
+            [
+              0.49112521298425243,
+              -0.026227005093463054,
+              1.25
+            ],
+            [
+              -0.4311090561049493,
+              0.23672095887204309,
+              1.5
+            ],
+            [
+              0.2857064634584608,
+              -0.40032942355397644,
+              1.75
+            ],
+            [
+              -0.08371620176419717,
+              0.48464773618286516,
+              2.0
+            ]
+          ],
+          "parameter_scope": "Literal stored edge parameters used directly, including negative domains; no sign/phase remapping"
+        },
+        {
+          "curve_record_index": 101,
+          "edge_record_index": 80,
+          "endpoints": [
+            {
+              "which": "start",
+              "vertex_index": 82,
+              "point_index": 102,
+              "literal_edge_parameter": -73.87763627083855,
+              "evaluated_position": [
+                -0.46374705525322185,
+                -0.3674479206213655,
+                1.9999999999999996
+              ],
+              "stored_point": [
+                -0.46374705525321913,
+                -0.3674479206213688,
+                2.0
+              ],
+              "error_raw": 4.280482112907658e-15
+            },
+            {
+              "which": "end",
+              "vertex_index": 100,
+              "point_index": 109,
+              "literal_edge_parameter": -2.069804188786147,
+              "evaluated_position": [
+                0.258391981634399,
+                0.5322714433933577,
+                0.0
+              ],
+              "stored_point": [
+                0.2583919816344008,
+                0.5322714433933567,
+                0.0
+              ],
+              "error_raw": 2.0380985511143445e-15
+            }
+          ],
+          "finite_grid_samples": [
+            [
+              -0.46374705525321136,
+              -0.36744792062137865,
+              2.0000000000000004
+            ],
+            [
+              0.2583919816343908,
+              0.5322714433933617,
+              1.7500000000000004
+            ],
+            [
+              -0.001859207083188097,
+              -0.5916720789204286,
+              1.5000000000000004
+            ],
+            [
+              -0.25504180623251477,
+              0.5338848028354586,
+              1.2500000000000004
+            ],
+            [
+              0.46142866194138615,
+              -0.37035509388150994,
+              1.0000000000000004
+            ],
+            [
+              -0.5764239121016026,
+              0.13347201647717766,
+              0.7500000000000003
+            ],
+            [
+              0.5772513370947435,
+              0.12984683071731432,
+              0.5000000000000001
+            ],
+            [
+              -0.4637470552532157,
+              -0.3674479206213732,
+              0.2500000000000001
+            ],
+            [
+              0.25839198163439714,
+              0.5322714433933587,
+              1.0408340855860843e-16
+            ]
+          ],
+          "parameter_scope": "Literal stored edge parameters used directly, including negative domains; no sign/phase remapping"
+        }
+      ],
+      "typed_surface_UV_endpoint_checks": [
+        {
+          "coedge_record_index": 23,
+          "pcurve_record_index": 41,
+          "loop_record_index": 9,
+          "face_record_index": 6,
+          "surface_record_index": 10,
+          "edge_record_index": 40,
+          "evaluations": [
+            {
+              "pcurve_parameter": -71.80783208205241,
+              "literal_UV": [
+                0.11529684875716838,
+                80.11375494928413
+              ],
+              "surface_position": [
+                0.0018592070832075685,
+                -0.5916720789204283,
+                2.0000000000000004
+              ],
+              "typed_endpoint_set_error_raw": 4.577567312111372e-16
+            },
+            {
+              "pcurve_parameter": -0.0,
+              "literal_UV": [
+                0.11529684875716834,
+                8.305922867231718
+              ],
+              "surface_position": [
+                -0.25839198163441146,
+                0.5322714433933516,
+                2.706168622523819e-16
+              ],
+              "typed_endpoint_set_error_raw": 6.2636077351133755e-15
+            }
+          ],
+          "scope": "Typed incidence establishes membership. Unordered endpoint corroboration does not define an edge/pcurve parameter map or vertex identity."
+        },
+        {
+          "coedge_record_index": 24,
+          "pcurve_record_index": 43,
+          "loop_record_index": 9,
+          "face_record_index": 6,
+          "surface_record_index": 10,
+          "edge_record_index": 42,
+          "evaluations": [
+            {
+              "pcurve_parameter": -82.18355913807027,
+              "literal_UV": [
+                0.0,
+                82.18355913807027
+              ],
+              "surface_position": [
+                0.4311090561049466,
+                0.2367209588720481,
+                2.0000000000000004
+              ],
+              "typed_endpoint_set_error_raw": 6.994019550408944e-15
+            },
+            {
+              "pcurve_parameter": -10.375727056017842,
+              "literal_UV": [
+                0.0,
+                10.375727056017832
+              ],
+              "surface_position": [
+                -0.28570646345846296,
+                -0.40032942355397483,
+                -2.7755575615628914e-16
+              ],
+              "typed_endpoint_set_error_raw": 5.260102656131797e-15
+            }
+          ],
+          "scope": "Typed incidence establishes membership. Unordered endpoint corroboration does not define an edge/pcurve parameter map or vertex identity."
+        },
+        {
+          "coedge_record_index": 52,
+          "pcurve_record_index": 78,
+          "loop_record_index": 20,
+          "face_record_index": 13,
+          "surface_record_index": 21,
+          "edge_record_index": 58,
+          "evaluations": [
+            {
+              "pcurve_parameter": 11.615421519110614,
+              "literal_UV": [
+                0.1152968487571684,
+                11.615421519110614
+              ],
+              "surface_position": [
+                0.28570646345846246,
+                -0.4003294235539752,
+                1.3877787807814457e-17
+              ],
+              "typed_endpoint_set_error_raw": 5.721958498152797e-17
+            },
+            {
+              "pcurve_parameter": 83.42325360116303,
+              "literal_UV": [
+                0.11529684875716842,
+                83.42325360116304
+              ],
+              "surface_position": [
+                -0.08371620176420407,
+                0.48464773618286394,
+                2.0000000000000004
+              ],
+              "typed_endpoint_set_error_raw": 7.018608005762496e-15
+            }
+          ],
+          "scope": "Typed incidence establishes membership. Unordered endpoint corroboration does not define an edge/pcurve parameter map or vertex identity."
+        },
+        {
+          "coedge_record_index": 53,
+          "pcurve_record_index": 81,
+          "loop_record_index": 20,
+          "face_record_index": 13,
+          "surface_record_index": 21,
+          "edge_record_index": 80,
+          "evaluations": [
+            {
+              "pcurve_parameter": 2.069804188786147,
+              "literal_UV": [
+                0.0,
+                13.685225707896752
+              ],
+              "surface_position": [
+                0.2583919816343989,
+                0.5322714433933576,
+                5.551115123125783e-17
+              ],
+              "typed_endpoint_set_error_raw": 2.086658193924118e-15
+            },
+            {
+              "pcurve_parameter": 73.87763627083858,
+              "literal_UV": [
+                0.0,
+                85.49305778994918
+              ],
+              "surface_position": [
+                -0.4637470552532139,
+                -0.3674479206213753,
+                2.0000000000000004
+              ],
+              "typed_endpoint_set_error_raw": 8.386410440773266e-15
+            }
+          ],
+          "scope": "Typed incidence establishes membership. Unordered endpoint corroboration does not define an edge/pcurve parameter map or vertex identity."
+        }
+      ],
+      "finite_surface_grids": [
+        {
+          "surface_record_index": 10,
+          "finite_grid_sample_count": 25
+        },
+        {
+          "surface_record_index": 21,
+          "finite_grid_sample_count": 25
+        }
+      ],
+      "API_scope": "ThreadInfo pitch/radii/profile-angle getters exist in external Thread sample. Tapped-hole truth captures designation and settings only; no unrecorded diameter or evaluator getter is claimed."
+    }
+  ]
+}

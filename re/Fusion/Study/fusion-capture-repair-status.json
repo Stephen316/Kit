@@ -1,0 +1,108 @@
+{
+  "observed_at_utc": "2026-10-21T20:51:15.474963+00:00",
+  "scope": "Original Trim lifecycle evidence plus actual Rule witness equality correction, bounded owned recovery and completed controlled capture; historical native reports remain unchanged.",
+  "observed_failure": "Both recent Trim crash stacks reach native transaction cleanup through SWIG TrimFeature deletion after the owned document closed.",
+  "repair": "Release Trim feature/input/cell wrappers while rolled before the feature with the document open; collect capture/finalizer frames before close(False). Uncertain cleanup retains native handles and halts.",
+  "initial_native_validation": {
+    "report": "fusion-trim-native-lifecycle-validation.json",
+    "sha256": "1864f6e7a91c9157bdc76f7bba3ca37ee6f852aa11bd97a57ac023e4fe31366d",
+    "completed_batches": 2,
+    "healthy_exports": 3,
+    "successful_owned_closes": 3,
+    "rolled_cell_reads": 3,
+    "case_errors": 0
+  },
+  "subsequent_native_capture": {
+    "directory": "surfacetrimtools-650ca09579b1",
+    "samples": [
+      {
+        "case": "sketch_line_offset_positive",
+        "archive": "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d",
+        "archive_sha256": "33dd68a8450ea918eb1b7df071128a369beae72bf659891a5e7e999845a9f45a",
+        "health_state": 0,
+        "trim_wrappers_released_before_timeline_restore": true,
+        "owned_document_close_returned": true
+      },
+      {
+        "case": "sketch_line_reversed_negative",
+        "archive": "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d",
+        "archive_sha256": "bc70972980d63d3b9511d4f4a8db22b31a94f43e337f1e9538494d6e8da2731b",
+        "health_state": 0,
+        "trim_wrappers_released_before_timeline_restore": true,
+        "owned_document_close_returned": true
+      }
+    ],
+    "evidence_sha256": {
+      "ground_truth.json": "bcc4bdfa5967ec51008e5ae89c29069b6dab4854a1eaa68f639e5205bd5203e8",
+      "journal.jsonl": "77760bb2e359cbc4dd782ee84e542a06a882a38a608c9cd09a01303eba5d2d4d",
+      "complete.txt": "925b8de1eb26ca3efd0e0615fa62ddee072035148fa274c965f59c5bc26299b4",
+      "executed-generator-source.txt": "b0e7530fda80da9b961ff55271d5ec9487a665838ef5feb6dca4f4cfc283f2b3",
+      "executed-entrypoint-source.txt": "c6250ed49ce80851f6eabee406a6a2c6b101b075f20ad1cdd7fae3c2994a00c0"
+    }
+  },
+  "total_saved_native_evidence": {
+    "completed_batches": 3,
+    "healthy_exports": 5,
+    "successful_owned_closes": 5
+  },
+  "current_readonly_observations": {
+    "fusion_pid": 5619,
+    "process_found": true,
+    "process_command": "pgrep -fl 'Autodesk Fusion.app/Contents/MacOS'",
+    "latest_local_CER_modified_utc": "2026-10-21T15:45:56.642221+00:00",
+    "new_local_CER_after_native_validation": false,
+    "ui_events_sent_by_these_readonly_checks": false
+  },
+  "live_resume": "User unlocked Fusion; command-field access and controlled execution succeeded. Reviewed captures may continue with the repaired lifecycle; suspend on new process loss or uncertain transaction.",
+  "limitations": [
+    "The original five Trim captures and two completed Rule cases support their specific capture paths; every Fusion crash is not proved fixed.",
+    "The earlier failed Rule source export, failed cleanup precheck and two read-only diagnostics remain separate immutable evidence.",
+    "Native VBL XYZ evaluators and API-to-ASM face associations remain unproved."
+  ],
+  "earlier_locked_session_observation": {
+    "observed_at_utc": "2026-10-21T20:31:29.801606+00:00",
+    "fusion_pid": 5619,
+    "process_found": true,
+    "process_command": "pgrep -fl 'Autodesk Fusion.app/Contents/MacOS'",
+    "session_locked": true,
+    "lock_command": "/usr/bin/python3 dispatch_fusion_script.py --session-state",
+    "ui_events_sent": false,
+    "new_capture_dispatched": false,
+    "latest_local_CER_modified_utc": "2026-10-21T15:45:56.642221+00:00",
+    "new_local_CER_after_native_validation": false
+  },
+  "latest_rule_capture": {
+    "directory": "rulefilletsurfaces-7b26b40f98f7",
+    "status": "Complete",
+    "executed_generator_sha256": "848bc2487eab060005b1b0c7fe349fa854c30e6da03dad2051f6cc20999eb984",
+    "ground_truth_sha256": "3a4c0ffeda19e6189aaf2538aa1c0517d3bfc56a95a4f501ad31d03e80307376",
+    "journal_sha256": "cf53b92605c055042665b9b723cde0083e10e4cdd735b66f9f57e8ec3e9616f0",
+    "complete_marker_sha256": "f8c8c6d012d1c79f4842f086df4fc918f59c28a628be559c07c25395ed22cf9a",
+    "healthy_source_exports": 2,
+    "witness_archives": 2,
+    "witness_features_created": 16,
+    "successful_owned_closes": 2,
+    "case_errors": 0,
+    "same_Fusion_pid_alive": 5619,
+    "latest_local_CER_modified_utc": "2026-10-21T15:45:56.642221+00:00",
+    "API_native_entity_readbacks_verified": true,
+    "native_ASM_FACE_binding": "UNPROVEN"
+  },
+  "rule_owned_recovery": {
+    "directory": "recoverrulesurfacewitness-f013800ce846",
+    "status": "RecoveredClosed",
+    "report_sha256": "72169cd461be1f84af9163e2433caceb9581815a8de63787a58342a9cbf8fe45",
+    "owned_close_returned": true,
+    "both_alias_quarantines_released_while_document_open": true,
+    "unrelated_documents_touched": false
+  },
+  "rule_witness_native_validation": {
+    "report": "rule-surface-witness-native-validation.json",
+    "sha256": "af15200c2f3a17b5292eecf3079772b6c7b4e30a7bd70656126c1628aef07211",
+    "healthy_owned_captures": 2,
+    "witnesses": 16,
+    "actual_exports": 4,
+    "focused_saved_trace_checks": 93,
+    "native_ASM_FACE_binding": "UNPROVEN"
+  }
+}

@@ -1,0 +1,389 @@
+{
+  "status": "InspectionComplete",
+  "time_utc": "2026-10-21T20:46:56.760211+00:00",
+  "executed_inspection_sha256": "97d6ff506c14892ca49dbb7885afa600cbfbfddb12cc4b4de3bca318eaa731fb",
+  "scope": "Read-only exact original and failed recovery quarantines; comparison outcomes are observations, not approval to release or close",
+  "prohibited_actions": "No quarantine edits/clears, GC, close, feature/timeline/compute/export operations, unrelated documents or opaque token equality",
+  "inspection": {
+    "counts": {
+      "witness": 1,
+      "documents": 1,
+      "recovery": 1
+    },
+    "witness_phase": "create_witness",
+    "recovery_phase": "release_known_handles",
+    "witness_handle_keys": [
+      "design",
+      "distance",
+      "entities",
+      "feature",
+      "input_distance",
+      "input_entities",
+      "input_face",
+      "inputs",
+      "looked_up_feature",
+      "offsets",
+      "parameter",
+      "previous",
+      "root",
+      "source_body",
+      "source_face"
+    ],
+    "witness_non_none_handles": {
+      "design": {
+        "python_type": "adsk.fusion.Design",
+        "object_type": "adsk::fusion::Design",
+        "is_valid": true
+      },
+      "root": {
+        "python_type": "adsk.fusion.Component",
+        "object_type": "adsk::fusion::Component",
+        "is_valid": true
+      },
+      "offsets": {
+        "python_type": "adsk.fusion.OffsetFeatures",
+        "object_type": "adsk::fusion::OffsetFeatures",
+        "is_valid": true
+      },
+      "source_face": {
+        "python_type": "adsk.fusion.BRepFace",
+        "object_type": "adsk::fusion::BRepFace",
+        "is_valid": true
+      },
+      "source_body": {
+        "python_type": "adsk.fusion.BRepBody",
+        "object_type": "adsk::fusion::BRepBody",
+        "is_valid": true
+      },
+      "entities": {
+        "python_type": "adsk.core.ObjectCollection",
+        "object_type": "adsk::core::ObjectCollection",
+        "is_valid": false
+      },
+      "distance": {
+        "python_type": "adsk.core.ValueInput",
+        "object_type": "adsk::core::ValueInput",
+        "is_valid": true
+      },
+      "inputs": {
+        "python_type": "adsk.fusion.OffsetFeatureInput",
+        "object_type": "adsk::fusion::OffsetFeatureInput",
+        "is_valid": true
+      },
+      "input_entities": {
+        "python_type": "adsk.core.ObjectCollection",
+        "object_type": "adsk::core::ObjectCollection",
+        "is_valid": false
+      },
+      "input_face": {
+        "python_type": "adsk.fusion.BRepFace",
+        "object_type": "adsk::fusion::BRepFace",
+        "is_valid": true
+      },
+      "input_distance": {
+        "python_type": "adsk.core.ValueInput",
+        "object_type": "adsk::core::ValueInput",
+        "is_valid": true
+      }
+    },
+    "recovery_handle_keys": [
+      "design",
+      "input_faces",
+      "native_handles",
+      "offsets",
+      "quarantine_entry",
+      "quarantine_rows",
+      "resolved",
+      "root"
+    ],
+    "recovery_non_none_handle_types": {
+      "design": "adsk.fusion.Design",
+      "root": "adsk.fusion.Component",
+      "offsets": "adsk.fusion.OffsetFeatures",
+      "quarantine_rows": "builtins.list",
+      "quarantine_entry": "builtins.dict",
+      "native_handles": "builtins.dict"
+    },
+    "document": {
+      "python_type": "adsk.fusion.FusionDocument",
+      "object_type": "adsk::fusion::FusionDocument",
+      "is_valid": true
+    },
+    "comparisons": [
+      {
+        "label": "document_vs_outer.concrete_type",
+        "left": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.FusionDocument",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "document_vs_outer.core_Document",
+        "left": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.core.Document",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "document_vs_witness.concrete_type",
+        "left": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.FusionDocument",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "document_vs_witness.core_Document",
+        "left": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.core.Document",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "document_vs_recovery.concrete_type",
+        "left": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.FusionDocument",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "document_vs_recovery.core_Document",
+        "left": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.core.Document",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "fresh_vs_retained_Design",
+        "left": {
+          "python_type": "adsk.fusion.Design",
+          "object_type": "adsk::fusion::Design",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.Design",
+          "object_type": "adsk::fusion::Design",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.Design",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "document_vs_fresh_parent.concrete_type",
+        "left": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.FusionDocument",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "document_vs_fresh_parent.core_Document",
+        "left": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.core.Document",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "fresh_parent_vs_document.concrete_type",
+        "left": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.FusionDocument",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "fresh_parent_vs_document.core_Document",
+        "left": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.FusionDocument",
+          "object_type": "adsk::fusion::FusionDocument",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.core.Document",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "fresh_vs_retained_OffsetFeatures",
+        "left": {
+          "python_type": "adsk.fusion.OffsetFeatures",
+          "object_type": "adsk::fusion::OffsetFeatures",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.OffsetFeatures",
+          "object_type": "adsk::fusion::OffsetFeatures",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.OffsetFeatures",
+        "result_kind": "bool",
+        "boolean_value": false
+      },
+      {
+        "label": "resolved_vs_retained_source",
+        "left": {
+          "python_type": "adsk.fusion.BRepFace",
+          "object_type": "adsk::fusion::BRepFace",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.BRepFace",
+          "object_type": "adsk::fusion::BRepFace",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.BRepFace",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "input_collection_vs_retained_input_face",
+        "left": {
+          "python_type": "adsk.fusion.BRepFace",
+          "object_type": "adsk::fusion::BRepFace",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.BRepFace",
+          "object_type": "adsk::fusion::BRepFace",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.BRepFace",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "input_collection_vs_retained_source",
+        "left": {
+          "python_type": "adsk.fusion.BRepFace",
+          "object_type": "adsk::fusion::BRepFace",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.BRepFace",
+          "object_type": "adsk::fusion::BRepFace",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.BRepFace",
+        "result_kind": "bool",
+        "boolean_value": true
+      },
+      {
+        "label": "retained_input_face_vs_retained_source",
+        "left": {
+          "python_type": "adsk.fusion.BRepFace",
+          "object_type": "adsk::fusion::BRepFace",
+          "is_valid": true
+        },
+        "right": {
+          "python_type": "adsk.fusion.BRepFace",
+          "object_type": "adsk::fusion::BRepFace",
+          "is_valid": true
+        },
+        "dispatch_class": "adsk.fusion.BRepFace",
+        "result_kind": "bool",
+        "boolean_value": true
+      }
+    ],
+    "read_errors": [],
+    "saved_evidence": {
+      "capture": "rulefilletsurfaces-9dd46198ca8a",
+      "recovery_capture": "recoverrulesurfacewitness-b0a35766ba60",
+      "original_archive_sha256": "e4920ced5f952f99fe0bed8eda71ead47098afa4d26308fdd53dc3141f35fd52",
+      "original_executed_generator_sha256": "6acfc86ee89a9d811959db7218509dadc295b5f28f944e38a0587460da5eb305",
+      "executed_recovery_sha256": "6d8b0963db1caa7ac2050152b1ebd27528ed82b40a5201b3964ae7216491272a",
+      "recovery_report_sha256": "df282bfea4fc22061c24ea77fb1ae8b77d7a83c45d5e56d18967969657bf0dc9"
+    },
+    "quarantine_mutation_attempted": false,
+    "fresh_design_parent_document": {
+      "python_type": "adsk.fusion.FusionDocument",
+      "object_type": "adsk::fusion::FusionDocument",
+      "is_valid": true
+    },
+    "fresh_offset_count": 0,
+    "fresh_source_resolution_count": 1,
+    "fresh_input_entity_count": 1
+  }
+}

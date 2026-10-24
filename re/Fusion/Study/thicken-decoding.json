@@ -1,0 +1,2225 @@
+{
+  "status": "Observed Thicken controls, signed parameter binding and native face/body links",
+  "fixture_directories": [
+    "thickenmodes-552efbb83fca",
+    "thickenmodes-17612e4ff890"
+  ],
+  "checks": {
+    "thickness_matches_api": 8,
+    "symmetric_matches_api": 8,
+    "chain_matches_api": 8,
+    "type_matches_api": 8,
+    "operation_matches_api": 8,
+    "input_kind_matches_api": 8,
+    "input_native_body_name_matches_api": 8,
+    "result_anchor_lists_validated": 8,
+    "owned_result_anchor_count": 6,
+    "empty_result_anchor_lists": 2
+  },
+  "samples": [
+    {
+      "file": "thickenmodes-552efbb83fca/positive.f3d",
+      "feature_object_id": 267,
+      "settings": {
+        "thickness_cm": 0.15000000000000002,
+        "thickness_binding_object_id": 277,
+        "is_symmetric": false,
+        "is_chain_selection": true,
+        "thicken_type": "Sharp",
+        "stored_thicken_type_code": 0,
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "input_selections": [
+          {
+            "selection_record_object_id": 268,
+            "descriptor_count": 1,
+            "attributes": {},
+            "descriptors": [
+              {
+                "object_id": 271,
+                "kind": "Face",
+                "recipe": {
+                  "object_id": 274,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 32636,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "102",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "-102",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 126,
+                  "payload_length": 220,
+                  "payload_hex": "00000000ffffffff0200000001000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff02000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000002000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    2,
+                    2,
+                    2,
+                    1,
+                    0,
+                    1,
+                    -1,
+                    2,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    2,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    2,
+                    -1
+                  ]
+                },
+                "body_anchor_object_id": 266,
+                "native_body_object_id": 260,
+                "source_owner_object_id": 234,
+                "namespace_text": "14849ecc-d961-4d14-abd7-fcd4c2d25067",
+                "entity_guid_text": "8843c810-945e-4068-8e02-aefc83e34e5e",
+                "context_record_object_ids": [
+                  282
+                ],
+                "context_scope": "Explicit context record identities retained; occurrence transforms not inferred",
+                "face_identity_scope": "Owning native body and persistent face recipe retained; exact ASM face unresolved"
+              }
+            ]
+          }
+        ],
+        "result_body_anchors": [
+          {
+            "object_id": 295,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 291,
+            "source_owner_object_id": 267,
+            "native_uuid_text": "fba22308-3de8-4957-a7ed-991fc2b54b53",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 36025,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "thickness_scope": "Signed stored parameter retained; exact side offsets/regeneration are not inferred",
+        "input_count_scope": "Only one API input entity is sampled; counted native selection lists are retained",
+        "participant_scope": "Thickened sheet inputs resolved; Boolean participant body roles are not classified here",
+        "input_selection_status": "Owned typed descriptors and native-body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Observed controls and native input/result body identities decoded; thickened geometry is not regenerated"
+      },
+      "api_evidence": {
+        "file": "positive.f3d",
+        "requested": {
+          "thickness_expression": "1.5 mm",
+          "is_symmetric": false,
+          "is_chain_selection": true,
+          "thicken_type": 0,
+          "operation": 3,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "output_bodies": [
+          {
+            "name": "Body2",
+            "bounds": {
+              "min_cm": [
+                -1.15,
+                -1.15,
+                0.0
+              ],
+              "max_cm": [
+                1.15,
+                1.15,
+                2.0
+              ],
+              "volume_cm3": 2.026327261565503
+            }
+          },
+          {
+            "name": "SeedBody",
+            "bounds": {
+              "min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "max_cm": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "thickness_cm": 0.15000000000000002,
+          "is_symmetric": false,
+          "is_chain_selection": true,
+          "thicken_type": 0,
+          "operation": 3,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d3",
+            "role": "Thickness",
+            "value": 0.15000000000000002,
+            "unit": "mm",
+            "created_by": "ProbeThicken"
+          }
+        ]
+      }
+    },
+    {
+      "file": "thickenmodes-552efbb83fca/negative.f3d",
+      "feature_object_id": 267,
+      "settings": {
+        "thickness_cm": -0.11000000000000001,
+        "thickness_binding_object_id": 277,
+        "is_symmetric": false,
+        "is_chain_selection": false,
+        "thicken_type": "Sharp",
+        "stored_thicken_type_code": 0,
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "input_selections": [
+          {
+            "selection_record_object_id": 268,
+            "descriptor_count": 1,
+            "attributes": {},
+            "descriptors": [
+              {
+                "object_id": 271,
+                "kind": "Face",
+                "recipe": {
+                  "object_id": 274,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 32636,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "102",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "-102",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 126,
+                  "payload_length": 220,
+                  "payload_hex": "00000000ffffffff0200000001000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff02000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000002000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    2,
+                    2,
+                    2,
+                    1,
+                    0,
+                    1,
+                    -1,
+                    2,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    2,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    2,
+                    -1
+                  ]
+                },
+                "body_anchor_object_id": 266,
+                "native_body_object_id": 260,
+                "source_owner_object_id": 234,
+                "namespace_text": "4e24f696-5eba-4169-a536-02669810b2f6",
+                "entity_guid_text": "a2de5b9e-1481-4cf6-85da-31bf6079017b",
+                "context_record_object_ids": [
+                  282
+                ],
+                "context_scope": "Explicit context record identities retained; occurrence transforms not inferred",
+                "face_identity_scope": "Owning native body and persistent face recipe retained; exact ASM face unresolved"
+              }
+            ]
+          }
+        ],
+        "result_body_anchors": [
+          {
+            "object_id": 295,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 291,
+            "source_owner_object_id": 267,
+            "native_uuid_text": "e4dc2949-a0a4-4a77-a5a4-73629907ab90",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 36027,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "thickness_scope": "Signed stored parameter retained; exact side offsets/regeneration are not inferred",
+        "input_count_scope": "Only one API input entity is sampled; counted native selection lists are retained",
+        "participant_scope": "Thickened sheet inputs resolved; Boolean participant body roles are not classified here",
+        "input_selection_status": "Owned typed descriptors and native-body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Observed controls and native input/result body identities decoded; thickened geometry is not regenerated"
+      },
+      "api_evidence": {
+        "file": "negative.f3d",
+        "requested": {
+          "thickness_expression": "-1.1 mm",
+          "is_symmetric": false,
+          "is_chain_selection": false,
+          "thicken_type": 0,
+          "operation": 3,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "output_bodies": [
+          {
+            "name": "Body2",
+            "bounds": {
+              "min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "max_cm": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "volume_cm3": 1.3062742253625794
+            }
+          },
+          {
+            "name": "SeedBody",
+            "bounds": {
+              "min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "max_cm": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "thickness_cm": -0.11000000000000001,
+          "is_symmetric": false,
+          "is_chain_selection": false,
+          "thicken_type": 0,
+          "operation": 3,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d3",
+            "role": "Thickness",
+            "value": -0.11000000000000001,
+            "unit": "mm",
+            "created_by": "ProbeThicken"
+          }
+        ]
+      }
+    },
+    {
+      "file": "thickenmodes-552efbb83fca/symmetric.f3d",
+      "feature_object_id": 267,
+      "settings": {
+        "thickness_cm": 0.4,
+        "thickness_binding_object_id": 277,
+        "is_symmetric": true,
+        "is_chain_selection": false,
+        "thicken_type": "Sharp",
+        "stored_thicken_type_code": 0,
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "input_selections": [
+          {
+            "selection_record_object_id": 268,
+            "descriptor_count": 1,
+            "attributes": {},
+            "descriptors": [
+              {
+                "object_id": 271,
+                "kind": "Face",
+                "recipe": {
+                  "object_id": 274,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 32636,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "102",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "-102",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 126,
+                  "payload_length": 220,
+                  "payload_hex": "00000000ffffffff0200000001000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff02000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000002000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    2,
+                    2,
+                    2,
+                    1,
+                    0,
+                    1,
+                    -1,
+                    2,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    2,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    2,
+                    -1
+                  ]
+                },
+                "body_anchor_object_id": 266,
+                "native_body_object_id": 260,
+                "source_owner_object_id": 234,
+                "namespace_text": "67537c17-38bd-4ead-9882-7fc25cc518f8",
+                "entity_guid_text": "48a522b8-7a3f-4a8e-a078-c5f54fbdf289",
+                "context_record_object_ids": [
+                  282
+                ],
+                "context_scope": "Explicit context record identities retained; occurrence transforms not inferred",
+                "face_identity_scope": "Owning native body and persistent face recipe retained; exact ASM face unresolved"
+              }
+            ]
+          }
+        ],
+        "result_body_anchors": [
+          {
+            "object_id": 295,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 291,
+            "source_owner_object_id": 267,
+            "native_uuid_text": "b131a927-4b14-48db-8140-1514abb2e143",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 36027,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "thickness_scope": "Signed stored parameter retained; exact side offsets/regeneration are not inferred",
+        "input_count_scope": "Only one API input entity is sampled; counted native selection lists are retained",
+        "participant_scope": "Thickened sheet inputs resolved; Boolean participant body roles are not classified here",
+        "input_selection_status": "Owned typed descriptors and native-body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Observed controls and native input/result body identities decoded; thickened geometry is not regenerated"
+      },
+      "api_evidence": {
+        "file": "symmetric.f3d",
+        "requested": {
+          "thickness_expression": "2 mm",
+          "is_symmetric": true,
+          "is_chain_selection": false,
+          "thicken_type": 0,
+          "operation": 3,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "output_bodies": [
+          {
+            "name": "Body2",
+            "bounds": {
+              "min_cm": [
+                -1.4,
+                -1.4,
+                0.0
+              ],
+              "max_cm": [
+                1.4,
+                1.4,
+                2.0
+              ],
+              "volume_cm3": 10.053096491487771
+            }
+          },
+          {
+            "name": "SeedBody",
+            "bounds": {
+              "min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "max_cm": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "thickness_cm": 0.4,
+          "is_symmetric": true,
+          "is_chain_selection": false,
+          "thicken_type": 0,
+          "operation": 3,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d3",
+            "role": "Thickness",
+            "value": 0.4,
+            "unit": "mm",
+            "created_by": "ProbeThicken"
+          }
+        ]
+      }
+    },
+    {
+      "file": "thickenmodes-552efbb83fca/rounded.f3d",
+      "feature_object_id": 267,
+      "settings": {
+        "thickness_cm": 0.15000000000000002,
+        "thickness_binding_object_id": 277,
+        "is_symmetric": false,
+        "is_chain_selection": true,
+        "thicken_type": "Rounded",
+        "stored_thicken_type_code": 1,
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "input_selections": [
+          {
+            "selection_record_object_id": 268,
+            "descriptor_count": 1,
+            "attributes": {},
+            "descriptors": [
+              {
+                "object_id": 271,
+                "kind": "Face",
+                "recipe": {
+                  "object_id": 274,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 32636,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "102",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "-102",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 126,
+                  "payload_length": 220,
+                  "payload_hex": "00000000ffffffff0200000001000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff02000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000002000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    2,
+                    2,
+                    2,
+                    1,
+                    0,
+                    1,
+                    -1,
+                    2,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    2,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    2,
+                    -1
+                  ]
+                },
+                "body_anchor_object_id": 266,
+                "native_body_object_id": 260,
+                "source_owner_object_id": 234,
+                "namespace_text": "b3e0ab4a-a571-4304-bc96-84fab1a2e8c9",
+                "entity_guid_text": "0ece6e40-3ddd-47e7-ac9f-e8391c9ce175",
+                "context_record_object_ids": [
+                  282
+                ],
+                "context_scope": "Explicit context record identities retained; occurrence transforms not inferred",
+                "face_identity_scope": "Owning native body and persistent face recipe retained; exact ASM face unresolved"
+              }
+            ]
+          }
+        ],
+        "result_body_anchors": [
+          {
+            "object_id": 297,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 293,
+            "source_owner_object_id": 267,
+            "native_uuid_text": "d5df5b3d-089c-4dce-9d56-f721b0d1d32e",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 36167,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "thickness_scope": "Signed stored parameter retained; exact side offsets/regeneration are not inferred",
+        "input_count_scope": "Only one API input entity is sampled; counted native selection lists are retained",
+        "participant_scope": "Thickened sheet inputs resolved; Boolean participant body roles are not classified here",
+        "input_selection_status": "Owned typed descriptors and native-body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Observed controls and native input/result body identities decoded; thickened geometry is not regenerated"
+      },
+      "api_evidence": {
+        "file": "rounded.f3d",
+        "requested": {
+          "thickness_expression": "1.5 mm",
+          "is_symmetric": false,
+          "is_chain_selection": true,
+          "thicken_type": 1,
+          "operation": 3,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "output_bodies": [
+          {
+            "name": "Body2",
+            "bounds": {
+              "min_cm": [
+                -1.15,
+                -1.15,
+                0.0
+              ],
+              "max_cm": [
+                1.15,
+                1.15,
+                2.0
+              ],
+              "volume_cm3": 2.026327261565503
+            }
+          },
+          {
+            "name": "SeedBody",
+            "bounds": {
+              "min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "max_cm": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "thickness_cm": 0.15000000000000002,
+          "is_symmetric": false,
+          "is_chain_selection": true,
+          "thicken_type": 1,
+          "operation": 3,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d3",
+            "role": "Thickness",
+            "value": 0.15000000000000002,
+            "unit": "mm",
+            "created_by": "ProbeThicken"
+          }
+        ]
+      }
+    },
+    {
+      "file": "thickenmodes-552efbb83fca/body_input.f3d",
+      "feature_object_id": 267,
+      "settings": {
+        "thickness_cm": 0.17,
+        "thickness_binding_object_id": 276,
+        "is_symmetric": false,
+        "is_chain_selection": false,
+        "thicken_type": "Sharp",
+        "stored_thicken_type_code": 0,
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "input_selections": [
+          {
+            "selection_record_object_id": 268,
+            "descriptor_count": 1,
+            "attributes": {},
+            "descriptors": [
+              {
+                "object_id": 271,
+                "kind": "Body",
+                "body_selection": {
+                  "object_id": 271,
+                  "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                  "owner_object_id": 267,
+                  "body_anchor_object_id": 266,
+                  "native_body_object_id": 260,
+                  "body_properties": {},
+                  "source_owner_object_id": 234,
+                  "recipe_record_object_id": 274,
+                  "stored_identifier": 301,
+                  "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                  "stored_kind_field": 33,
+                  "namespace_text": "26d3e807-b1ab-49cc-8cb3-4d097ee71f99",
+                  "entity_uuid_text": "84dccb7f-5f1a-4395-90b5-ad05ea48d8c0",
+                  "context_record_object_ids": [
+                    281
+                  ],
+                  "stored_trailer_kind_field": 9,
+                  "uninterpreted_trailer_field_hex": "00000000000000000000",
+                  "uninterpreted_cached_scalar": 9.1625e-05,
+                  "helper_record_object_id": 273,
+                  "support_record_object_id": 272,
+                  "support_reference_object_ids": [
+                    234
+                  ],
+                  "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                  "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+                }
+              }
+            ]
+          }
+        ],
+        "result_body_anchors": [
+          {
+            "object_id": 294,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 290,
+            "source_owner_object_id": 267,
+            "native_uuid_text": "38348ec0-64c6-4e6a-9b66-d41577f222cf",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 35806,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "thickness_scope": "Signed stored parameter retained; exact side offsets/regeneration are not inferred",
+        "input_count_scope": "Only one API input entity is sampled; counted native selection lists are retained",
+        "participant_scope": "Thickened sheet inputs resolved; Boolean participant body roles are not classified here",
+        "input_selection_status": "Owned typed descriptors and native-body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Observed controls and native input/result body identities decoded; thickened geometry is not regenerated"
+      },
+      "api_evidence": {
+        "file": "body_input.f3d",
+        "requested": {
+          "thickness_expression": "1.7 mm",
+          "is_symmetric": false,
+          "is_chain_selection": false,
+          "thicken_type": 0,
+          "operation": 3,
+          "input_entities": [
+            {
+              "kind": "Body",
+              "name": "SeedBody",
+              "face_count": 1,
+              "bounds": {
+                "min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "max_cm": [
+                  1.0,
+                  1.0,
+                  2.0
+                ],
+                "volume_cm3": 0.0
+              }
+            }
+          ]
+        },
+        "output_bodies": [
+          {
+            "name": "Body2",
+            "bounds": {
+              "min_cm": [
+                -1.17,
+                -1.17,
+                0.0
+              ],
+              "max_cm": [
+                1.17,
+                1.17,
+                2.0
+              ],
+              "volume_cm3": 2.3178670598186484
+            }
+          },
+          {
+            "name": "SeedBody",
+            "bounds": {
+              "min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "max_cm": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "thickness_cm": 0.17,
+          "is_symmetric": false,
+          "is_chain_selection": false,
+          "thicken_type": 0,
+          "operation": 3,
+          "input_entities": [
+            {
+              "kind": "Body",
+              "name": "SeedBody",
+              "face_count": 1,
+              "bounds": {
+                "min_cm": [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                "max_cm": [
+                  1.0,
+                  1.0,
+                  2.0
+                ],
+                "volume_cm3": 0.0
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d3",
+            "role": "Thickness",
+            "value": 0.17,
+            "unit": "mm",
+            "created_by": "ProbeThicken"
+          }
+        ]
+      }
+    },
+    {
+      "file": "thickenmodes-17612e4ff890/join.f3d",
+      "feature_object_id": 344,
+      "settings": {
+        "thickness_cm": 0.15000000000000002,
+        "thickness_binding_object_id": 361,
+        "is_symmetric": false,
+        "is_chain_selection": false,
+        "thicken_type": "Sharp",
+        "stored_thicken_type_code": 0,
+        "operation": "Join",
+        "stored_operation_code": 1,
+        "input_selections": [
+          {
+            "selection_record_object_id": 345,
+            "descriptor_count": 1,
+            "attributes": {},
+            "descriptors": [
+              {
+                "object_id": 348,
+                "kind": "Face",
+                "recipe": {
+                  "object_id": 351,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 43865,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 304
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "111",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 304
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "-111",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 304
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 126,
+                  "payload_length": 220,
+                  "payload_hex": "00000000ffffffff0200000001000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff02000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000002000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    2,
+                    2,
+                    2,
+                    1,
+                    0,
+                    1,
+                    -1,
+                    2,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    2,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    2,
+                    -1
+                  ]
+                },
+                "body_anchor_object_id": 343,
+                "native_body_object_id": 339,
+                "source_owner_object_id": 313,
+                "namespace_text": "a0e9fd10-2797-49b6-a661-efa918c02cd5",
+                "entity_guid_text": "b15fa330-908e-4f6e-b417-f1870f1e9bc6",
+                "context_record_object_ids": [
+                  366
+                ],
+                "context_scope": "Explicit context record identities retained; occurrence transforms not inferred",
+                "face_identity_scope": "Owning native body and persistent face recipe retained; exact ASM face unresolved"
+              }
+            ]
+          }
+        ],
+        "result_body_anchors": [],
+        "thickness_scope": "Signed stored parameter retained; exact side offsets/regeneration are not inferred",
+        "input_count_scope": "Only one API input entity is sampled; counted native selection lists are retained",
+        "participant_scope": "Thickened sheet inputs resolved; Boolean participant body roles are not classified here",
+        "input_selection_status": "Owned typed descriptors and native-body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Observed controls and native input/result body identities decoded; thickened geometry is not regenerated"
+      },
+      "api_evidence": {
+        "file": "join.f3d",
+        "requested": {
+          "thickness_expression": "1.5 mm",
+          "is_symmetric": false,
+          "is_chain_selection": false,
+          "thicken_type": 0,
+          "operation": 0,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "participant_body_before_thicken": {
+          "min_cm": [
+            0.0,
+            -1.5,
+            0.0
+          ],
+          "max_cm": [
+            1.5,
+            1.5,
+            2.0
+          ],
+          "volume_cm3": 9.0
+        },
+        "output_bodies": [
+          {
+            "name": "ParticipantBody",
+            "bounds": {
+              "min_cm": [
+                -1.15,
+                -1.5,
+                0.0
+              ],
+              "max_cm": [
+                1.5,
+                1.5,
+                2.0
+              ],
+              "volume_cm3": 10.013163630782708
+            }
+          },
+          {
+            "name": "SeedBody",
+            "bounds": {
+              "min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "max_cm": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "thickness_cm": 0.15000000000000002,
+          "is_symmetric": false,
+          "is_chain_selection": false,
+          "thicken_type": 0,
+          "operation": 0,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d3",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d4",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d5",
+            "role": "Thickness",
+            "value": 0.15000000000000002,
+            "unit": "mm",
+            "created_by": "ProbeThicken"
+          }
+        ]
+      }
+    },
+    {
+      "file": "thickenmodes-17612e4ff890/cut.f3d",
+      "feature_object_id": 344,
+      "settings": {
+        "thickness_cm": -0.15000000000000002,
+        "thickness_binding_object_id": 361,
+        "is_symmetric": false,
+        "is_chain_selection": true,
+        "thicken_type": "Sharp",
+        "stored_thicken_type_code": 0,
+        "operation": "Cut",
+        "stored_operation_code": 2,
+        "input_selections": [
+          {
+            "selection_record_object_id": 345,
+            "descriptor_count": 1,
+            "attributes": {},
+            "descriptors": [
+              {
+                "object_id": 348,
+                "kind": "Face",
+                "recipe": {
+                  "object_id": 351,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 43956,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 304
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "111",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 304
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "-111",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 304
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 126,
+                  "payload_length": 220,
+                  "payload_hex": "00000000ffffffff0200000001000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff02000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000002000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    2,
+                    2,
+                    2,
+                    1,
+                    0,
+                    1,
+                    -1,
+                    2,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    2,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    2,
+                    -1
+                  ]
+                },
+                "body_anchor_object_id": 343,
+                "native_body_object_id": 339,
+                "source_owner_object_id": 313,
+                "namespace_text": "1daca642-a659-4830-b931-68d69b578dee",
+                "entity_guid_text": "b2d28ded-3ea6-4aef-a42f-f9aaea96592c",
+                "context_record_object_ids": [
+                  366
+                ],
+                "context_scope": "Explicit context record identities retained; occurrence transforms not inferred",
+                "face_identity_scope": "Owning native body and persistent face recipe retained; exact ASM face unresolved"
+              }
+            ]
+          }
+        ],
+        "result_body_anchors": [
+          {
+            "object_id": 381,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 377,
+            "source_owner_object_id": 344,
+            "native_uuid_text": "8f7ffefd-965e-4be9-94d9-9d29e4b0cab9",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 48545,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "thickness_scope": "Signed stored parameter retained; exact side offsets/regeneration are not inferred",
+        "input_count_scope": "Only one API input entity is sampled; counted native selection lists are retained",
+        "participant_scope": "Thickened sheet inputs resolved; Boolean participant body roles are not classified here",
+        "input_selection_status": "Owned typed descriptors and native-body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Observed controls and native input/result body identities decoded; thickened geometry is not regenerated"
+      },
+      "api_evidence": {
+        "file": "cut.f3d",
+        "requested": {
+          "thickness_expression": "-1.5 mm",
+          "is_symmetric": false,
+          "is_chain_selection": true,
+          "thicken_type": 0,
+          "operation": 1,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "participant_body_before_thicken": {
+          "min_cm": [
+            0.0,
+            -1.5,
+            0.0
+          ],
+          "max_cm": [
+            1.5,
+            1.5,
+            2.0
+          ],
+          "volume_cm3": 9.0
+        },
+        "output_bodies": [
+          {
+            "name": "ParticipantBody",
+            "bounds": {
+              "min_cm": [
+                0.0,
+                -0.85,
+                0.0
+              ],
+              "max_cm": [
+                0.85,
+                0.85,
+                2.0
+              ],
+              "volume_cm3": 2.269800692218625
+            }
+          },
+          {
+            "name": "Body3",
+            "bounds": {
+              "min_cm": [
+                0.0,
+                -1.5,
+                0.0
+              ],
+              "max_cm": [
+                1.5,
+                1.5,
+                2.0
+              ],
+              "volume_cm3": 5.858407346410207
+            }
+          },
+          {
+            "name": "SeedBody",
+            "bounds": {
+              "min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "max_cm": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "thickness_cm": -0.15000000000000002,
+          "is_symmetric": false,
+          "is_chain_selection": true,
+          "thicken_type": 0,
+          "operation": 1,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d3",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d4",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d5",
+            "role": "Thickness",
+            "value": -0.15000000000000002,
+            "unit": "mm",
+            "created_by": "ProbeThicken"
+          }
+        ]
+      }
+    },
+    {
+      "file": "thickenmodes-17612e4ff890/intersect.f3d",
+      "feature_object_id": 344,
+      "settings": {
+        "thickness_cm": -0.5,
+        "thickness_binding_object_id": 361,
+        "is_symmetric": false,
+        "is_chain_selection": false,
+        "thicken_type": "Sharp",
+        "stored_thicken_type_code": 0,
+        "operation": "Intersect",
+        "stored_operation_code": 3,
+        "input_selections": [
+          {
+            "selection_record_object_id": 345,
+            "descriptor_count": 1,
+            "attributes": {},
+            "descriptors": [
+              {
+                "object_id": 348,
+                "kind": "Face",
+                "recipe": {
+                  "object_id": 351,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 43737,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 304
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "111",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 304
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "-111",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 304
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 126,
+                  "payload_length": 220,
+                  "payload_hex": "00000000ffffffff0200000001000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000001000000ffffffff0000000000000000ffffffff010000000000000002000000020000000200000002000000010000000000000001000000ffffffff02000000ffffffff0100000000000000ffffffff01000000ffffffff0100000000000000ffffffff0100000002000000ffffffff0000000000000000ffffffff010000000000000002000000010000000100000001000000020000000100000002000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    2,
+                    2,
+                    2,
+                    1,
+                    0,
+                    1,
+                    -1,
+                    2,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    1,
+                    0,
+                    -1,
+                    1,
+                    2,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    1,
+                    0,
+                    2,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    2,
+                    -1
+                  ]
+                },
+                "body_anchor_object_id": 343,
+                "native_body_object_id": 339,
+                "source_owner_object_id": 313,
+                "namespace_text": "bbe72aeb-0dc8-498a-852d-7643cf606720",
+                "entity_guid_text": "69755835-a458-4d6e-904c-047135deba5f",
+                "context_record_object_ids": [
+                  366
+                ],
+                "context_scope": "Explicit context record identities retained; occurrence transforms not inferred",
+                "face_identity_scope": "Owning native body and persistent face recipe retained; exact ASM face unresolved"
+              }
+            ]
+          }
+        ],
+        "result_body_anchors": [],
+        "thickness_scope": "Signed stored parameter retained; exact side offsets/regeneration are not inferred",
+        "input_count_scope": "Only one API input entity is sampled; counted native selection lists are retained",
+        "participant_scope": "Thickened sheet inputs resolved; Boolean participant body roles are not classified here",
+        "input_selection_status": "Owned typed descriptors and native-body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Observed controls and native input/result body identities decoded; thickened geometry is not regenerated"
+      },
+      "api_evidence": {
+        "file": "intersect.f3d",
+        "requested": {
+          "thickness_expression": "-5 mm",
+          "is_symmetric": false,
+          "is_chain_selection": false,
+          "thicken_type": 0,
+          "operation": 2,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "participant_body_before_thicken": {
+          "min_cm": [
+            0.0,
+            -1.5,
+            0.0
+          ],
+          "max_cm": [
+            1.5,
+            1.5,
+            2.0
+          ],
+          "volume_cm3": 9.0
+        },
+        "output_bodies": [
+          {
+            "name": "ParticipantBody",
+            "bounds": {
+              "min_cm": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "max_cm": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "volume_cm3": 2.356194490192345
+            }
+          },
+          {
+            "name": "SeedBody",
+            "bounds": {
+              "min_cm": [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              "max_cm": [
+                1.0,
+                1.0,
+                2.0
+              ],
+              "volume_cm3": 0.0
+            }
+          }
+        ],
+        "health_state": 0,
+        "warning": "",
+        "settings": {
+          "thickness_cm": -0.5,
+          "is_symmetric": false,
+          "is_chain_selection": false,
+          "thicken_type": 0,
+          "operation": 2,
+          "input_entities": [
+            {
+              "kind": "Face",
+              "body_name": "SeedBody",
+              "geometry_type": "Cylinder",
+              "point_on_face_cm": [
+                6.123233995736766e-17,
+                1.0,
+                1.0
+              ],
+              "area_cm2": 12.566370614359172
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "d1",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d2",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "Extrude1"
+          },
+          {
+            "name": "d3",
+            "role": "AlongDistance",
+            "value": 2.0,
+            "unit": "mm",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d4",
+            "role": "TaperAngle",
+            "value": 0.0,
+            "unit": "deg",
+            "created_by": "SeedExtrusion"
+          },
+          {
+            "name": "d5",
+            "role": "Thickness",
+            "value": -0.5,
+            "unit": "mm",
+            "created_by": "ProbeThicken"
+          }
+        ]
+      }
+    }
+  ],
+  "initial_failures": {
+    "directory": "thickenmodes-552efbb83fca",
+    "cases": [
+      "join",
+      "cut",
+      "intersect"
+    ],
+    "reason": "Thicken API rejected source faces from solid bodies. Retry uses a sheet input and separate overlapping solid participant."
+  },
+  "limitations": [
+    "Only single API input entities are sampled, including one whole-sheet-body input.",
+    "Tangent chaining and Rounded/Sharp controls are verified; their effects on more complex face networks remain untested.",
+    "Face/body descriptors expose explicit native historical body IDs; persistent face recipes do not yet resolve exact ASM faces.",
+    "Source/output native body identities do not by themselves prove final visibility or current body lifecycle.",
+    "Boolean participant body roles are outside this decoder.",
+    "Symmetric API input normalization is unresolved; parameter values are retained without converting them to side offsets.",
+    "Thickened geometry and native files are not regenerated."
+  ],
+  "symmetric_normalization_observation": {
+    "requested_expression": "2 mm",
+    "api_parameter_cm": 0.4,
+    "native_parameter_cm": 0.4,
+    "output_api_evidence": [
+      {
+        "name": "Body2",
+        "bounds": {
+          "min_cm": [
+            -1.4,
+            -1.4,
+            0.0
+          ],
+          "max_cm": [
+            1.4,
+            1.4,
+            2.0
+          ],
+          "volume_cm3": 10.053096491487771
+        }
+      },
+      {
+        "name": "SeedBody",
+        "bounds": {
+          "min_cm": [
+            -1.0,
+            -1.0,
+            0.0
+          ],
+          "max_cm": [
+            1.0,
+            1.0,
+            2.0
+          ],
+          "volume_cm3": 0.0
+        }
+      }
+    ],
+    "scope": "Requested2mm normalizes to0.4cm parameter in this run. Output bounding radius1.4cm and volume10.05309649cm3 are retained separately; no general conversion to physical side offsets is claimed."
+  },
+  "guard_rejections": [
+    {
+      "case": "Nonboolean symmetric flag",
+      "reason": "Unsupported Thicken input/side flags"
+    },
+    {
+      "case": "Thickness binding points to unknown object",
+      "reason": "Thicken thickness binding unresolved or zero"
+    },
+    {
+      "case": "Input proxy owner disagrees",
+      "reason": "Thicken input proxy owner disagrees"
+    }
+  ],
+  "earlier_fixture_compatibility": {
+    "file": "moretools-88a2cd6cad0b/Thicken.f3d",
+    "passed": true,
+    "scope": "Existing1.5mm surface-face NewBody Thicken remains decoded"
+  }
+}

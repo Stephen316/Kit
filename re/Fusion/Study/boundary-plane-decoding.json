@@ -1,0 +1,86 @@
+{
+  "status": "Observed 252-byte Boundary Fill plane descriptor resolved",
+  "fixture": "boundaryfills-a0953038318b/plane_first.f3d",
+  "selection": {
+    "entity": {
+      "kind": "ConstructionPlane",
+      "name": "ToolPlane",
+      "object_id": 282,
+      "feature_object_id": 283,
+      "origin_cm": [
+        1.2000000000000002,
+        0.0,
+        0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    "selection_object_id": 312,
+    "descriptor_object_id": 315,
+    "terminal_object_id": 318,
+    "namespace_text": "002a250d-83a3-4da6-84be-89d18be5d1f4",
+    "entity_guid_text": "4ca7157e-88e5-40f2-8062-8f57c559dc26",
+    "association": "Explicit owned proxy -> plane descriptor -> typed native-plane terminal reference chain",
+    "descriptor_metadata_hex": "0200000000000000000000000000000004000000000000000000000000000101000080a0561084dde03e01010000013d010000000000000000010000013c01000000000000000000",
+    "descriptor_metadata_scope": "Stored metadata retained; flags/context semantics are unresolved",
+    "coordinate_scope": "Native component geometry; occurrence transforms are not inferred",
+    "cell_side_scope": "Plane selection resolved; selected-cell side semantics remain unresolved"
+  },
+  "checks": {
+    "explicit_proxy_descriptor_terminal_plane_chain": true,
+    "reciprocal_proxy_descriptor_owner": true,
+    "independent_native_plane_geometry": true,
+    "generator_yz_offset_12_mm_matches_native_origin": true,
+    "selected_api_cell_boundary_matches_native_plane": true
+  },
+  "guard_rejections": [
+    {
+      "case": "Incorrect proxy owner",
+      "reason": "Boundary Fill plane proxy owner disagrees"
+    },
+    {
+      "case": "Body tool supplied as plane",
+      "reason": "Boundary Fill plane typed reference unresolved: 5A1BF548-241F-46FD-9FB5-E4B05126EB9D"
+    },
+    {
+      "case": "Native plane absent from independently decoded geometry",
+      "reason": "Boundary Fill plane terminal does not resolve to known native plane geometry"
+    }
+  ],
+  "api_selected_cell_evidence": {
+    "index": 0,
+    "selected": true,
+    "source_tools": [
+      "ToolA",
+      "ToolPlane"
+    ],
+    "geometry": {
+      "min_cm": [
+        1.2000000000000002,
+        0.0,
+        0.0
+      ],
+      "max_cm": [
+        3.0,
+        2.0,
+        2.0
+      ],
+      "volume_cm3": 0.0
+    }
+  },
+  "side_observation": {
+    "plane_recipe_object_id": 324,
+    "stored_side_flag": 0,
+    "observed_selected_halfspace": "Positive relative to decoded plane normal for this sample",
+    "general_side_semantics": "Unresolved: opposite side and changed normal/orientation not sampled"
+  },
+  "limitations": [
+    "Only one 252-byte Boundary Fill plane descriptor is sampled.",
+    "Descriptor metadata remains opaque; no occurrence transform is inferred.",
+    "Existing shared selection resolver handles other descriptor variants; this helper accepts only the observed fallback.",
+    "Plane identity and geometry are resolved; cell boundary reconstruction and general side semantics remain unimplemented."
+  ]
+}

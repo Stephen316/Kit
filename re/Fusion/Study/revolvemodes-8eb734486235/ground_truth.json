@@ -1,0 +1,275 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "positive.f3d",
+      "settings": {
+        "operation": 3,
+        "is_solid": true,
+        "is_project_axis": false,
+        "axis_name": "Y",
+        "axis_direction": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "extent_kind": "AngleExtentDefinition",
+        "angle": 1.1344640137963142,
+        "is_symmetric": false
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 1.1344640137963142,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    },
+    {
+      "file": "negative.f3d",
+      "settings": {
+        "operation": 3,
+        "is_solid": true,
+        "is_project_axis": false,
+        "axis_name": "Y",
+        "axis_direction": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "extent_kind": "AngleExtentDefinition",
+        "angle": -1.3089969389957472,
+        "is_symmetric": false
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": -1.3089969389957472,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    },
+    {
+      "file": "symmetric.f3d",
+      "settings": {
+        "operation": 3,
+        "is_solid": true,
+        "is_project_axis": false,
+        "axis_name": "Y",
+        "axis_direction": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "extent_kind": "AngleExtentDefinition",
+        "angle": 1.1344640137963142,
+        "is_symmetric": true
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 1.1344640137963142,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        },
+        {
+          "name": "d2",
+          "role": "AgainstAngle",
+          "value": 1.1344640137963142,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    },
+    {
+      "file": "two_sided.f3d",
+      "settings": {
+        "operation": 3,
+        "is_solid": true,
+        "is_project_axis": false,
+        "axis_name": "Y",
+        "axis_direction": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "extent_kind": "TwoSidesAngleExtentDefinition",
+        "angleOne": 1.0471975511965976,
+        "angleTwo": 0.4363323129985824
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 1.0471975511965976,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        },
+        {
+          "name": "d2",
+          "role": "AgainstAngle",
+          "value": 0.4363323129985824,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    },
+    {
+      "file": "join.f3d",
+      "settings": {
+        "operation": 0,
+        "is_solid": true,
+        "is_project_axis": false,
+        "axis_name": "Y",
+        "axis_direction": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "extent_kind": "AngleExtentDefinition",
+        "angle": 1.1344640137963142,
+        "is_symmetric": false
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 6.283185307179586,
+          "unit": "deg",
+          "created_by": "Revolve1"
+        },
+        {
+          "name": "d2",
+          "role": "AlongAngle",
+          "value": 1.1344640137963142,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    },
+    {
+      "file": "cut.f3d",
+      "settings": {
+        "operation": 1,
+        "is_solid": true,
+        "is_project_axis": false,
+        "axis_name": "Y",
+        "axis_direction": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "extent_kind": "AngleExtentDefinition",
+        "angle": 1.1344640137963142,
+        "is_symmetric": false
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 6.283185307179586,
+          "unit": "deg",
+          "created_by": "Revolve1"
+        },
+        {
+          "name": "d2",
+          "role": "AlongAngle",
+          "value": 1.1344640137963142,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    },
+    {
+      "file": "intersect.f3d",
+      "settings": {
+        "operation": 2,
+        "is_solid": true,
+        "is_project_axis": false,
+        "axis_name": "Y",
+        "axis_direction": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "extent_kind": "AngleExtentDefinition",
+        "angle": 1.1344640137963142,
+        "is_symmetric": false
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 6.283185307179586,
+          "unit": "deg",
+          "created_by": "Revolve1"
+        },
+        {
+          "name": "d2",
+          "role": "AlongAngle",
+          "value": 1.1344640137963142,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    },
+    {
+      "file": "surface.f3d",
+      "settings": {
+        "operation": 3,
+        "is_solid": false,
+        "is_project_axis": false,
+        "axis_name": "Y",
+        "axis_direction": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "extent_kind": "AngleExtentDefinition",
+        "angle": 1.1344640137963142,
+        "is_symmetric": false
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 1.1344640137963142,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    },
+    {
+      "file": "axis_x.f3d",
+      "settings": {
+        "operation": 3,
+        "is_solid": true,
+        "is_project_axis": false,
+        "axis_name": "X",
+        "axis_direction": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "extent_kind": "AngleExtentDefinition",
+        "angle": 1.1344640137963142,
+        "is_symmetric": false
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongAngle",
+          "value": 1.1344640137963142,
+          "unit": "deg",
+          "created_by": "ProbeRevolve"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

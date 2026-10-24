@@ -1,0 +1,530 @@
+{
+  "scope": "Independent native mixed BODY ownership, explicit same-blob BODY identifier and stored root-component placement chains; no API identity or current lifecycle inference",
+  "derivation": "Fresh raw assembly, body properties and ASM inspections; direct helper composition only. Current main output is neither read nor used as a golden.",
+  "ground_truth_sha256": "23966d4c0b8d3d6822c7822c7991f69f9cbffb1edda3bd33ea3fd0ad57a7dc03",
+  "samples": [
+    {
+      "archive": "meshconvertoperations-5af73924aa60/base_feature_closed.f3d",
+      "archive_sha256": "6a0447aa65c79e5d0661d770e5545ebab3e1149d853261c5665c17c9e7657e06",
+      "expected_body_selections": {
+        "body_anchors": [
+          {
+            "object_id": 317,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 312,
+            "source_owner_object_id": 300,
+            "native_uuid_text": "1a074ace-bf4e-4de7-a57d-2001472d56b5",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 30399,
+            "body_properties": {
+              "name": null,
+              "name_status": "Stored name empty; default UI label not inferred",
+              "stored_body_tag": "0_312",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Typed BODY tail equals BODY subset of mixed stored membership; reciprocal native BODY/CD57 and framed native component references agree"
+            },
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "body_descriptors": [],
+        "selection_proxies": [],
+        "unresolved": [],
+        "scope": "Observed explicit native body identities and owned body descriptors; face/edge topology, context semantics and current body lifecycle remain unresolved",
+        "component_context_scope": "Observed two populated component-context body proxy slots; occurrence UUID association only, without transform or lifecycle interpretation"
+      },
+      "expected_body_blob_bindings": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.009e2294-ae4b-4439-a2dd-6adcd9afbef5.smbh",
+            "body_count": 1,
+            "bindings": [
+              {
+                "stored_handle": 30,
+                "native_body_object_id": 312,
+                "stored_body_tag": "0_312",
+                "native_body_record_offset": 28905,
+                "mapping_entry_ordinal": 0,
+                "handle_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                "name": null,
+                "name_status": "Stored name empty; default UI label not inferred",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                "asm_body_index": 1,
+                "asm_stored_entity_id": 30,
+                "asm_body_record_offset": 186,
+                "asm_identifier_token_offset": 201,
+                "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                "previous_ordinal_candidate": 1,
+                "ordinal_candidate_conflict": false
+              }
+            ],
+            "scope": "Explicit native body/blob mapping; only validated same-blob typed BODY identifier joins supply ASM roots"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Native body/blob mapping and observed typed per-blob BODY identifiers; final-body lifecycle unresolved"
+      },
+      "expected_historical_body_components": {
+        "decoded": [],
+        "unresolved": [],
+        "already_owned_body_bindings_unchanged": 1,
+        "scope": "Historical component context corroborated by retained native collection/context and reciprocal creator/dependency references; stored membership, current visibility and final lifecycle are unchanged"
+      },
+      "expected_body_placement": {
+        "bodies": [
+          {
+            "native_body_object_id": 312,
+            "name": null,
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.009e2294-ae4b-4439-a2dd-6adcd9afbef5.smbh",
+            "asm_body_index": 1,
+            "asm_stored_entity_id": 30,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "component_vertex_positions_cm": [
+              [
+                0.0,
+                3.0,
+                0.0
+              ],
+              [
+                2.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                4.0
+              ]
+            ],
+            "placements": [
+              {
+                "path": "",
+                "component_to_world_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "world_vertex_positions_cm": [
+                  [
+                    0.0,
+                    3.0,
+                    0.0
+                  ],
+                  [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    4.0
+                  ]
+                ]
+              }
+            ],
+            "coordinate_scope": "Observed Fusion component-coordinate convention; ASM header scale not applied",
+            "geometry_scope": "Vertices only; curved extrema, full trimmed surfaces and body regeneration not covered"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Typed same-blob BODY identifier joins composed through stored occurrence caches; current body lifecycle unresolved"
+      },
+      "exact_A_ownership_patches": [
+        {
+          "object_id": 312,
+          "collection_object_id": 7,
+          "component_object_id": 3,
+          "component_name": "(Unsaved)",
+          "ownership_evidence": "Typed BODY tail equals BODY subset of mixed stored membership; reciprocal native BODY/CD57 and framed native component references agree"
+        },
+        {
+          "object_id": 306,
+          "collection_object_id": 22,
+          "component_object_id": 3,
+          "component_name": "(Unsaved)",
+          "ownership_evidence": "Typed BODY tail equals BODY subset of mixed stored membership; reciprocal native BODY/CD57 and framed native component references agree"
+        }
+      ],
+      "unchanged_name_fields": [
+        {
+          "object_id": 306,
+          "name": "OwnedTetraSource_base_feature_closed (1)",
+          "name_status": "Stored custom name recovered"
+        },
+        {
+          "object_id": 312,
+          "name": null,
+          "name_status": "Stored name empty; default UI label not inferred"
+        }
+      ],
+      "native_route": {
+        "anchor_object_id": 317,
+        "owner_feature_object_id": 300,
+        "selected_result_BODY": 312,
+        "ordinary_collection": 7,
+        "separate_table_BODY": 306,
+        "separate_table_collection": 22,
+        "component_object_id": 3,
+        "mapping_object_id": 8,
+        "stored_handle": 30,
+        "ASM_BODY_stored_entity_ID": 30,
+        "ASM_record_index": 1,
+        "body_transform_identity": true,
+        "stored_root_component_frame": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "API_geometry_corroboration": {
+        "native_API_identity_assignment": null,
+        "complete_vertex_set_exact": true,
+        "bounding_box_cm": {
+          "min": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            2.0,
+            3.0,
+            4.0
+          ]
+        },
+        "API_isSolid": true,
+        "derived_closed_tetra_volume_cm3": 4.0,
+        "actual_API_volume_cm3": 4.000000000000004,
+        "scope": "Unique result collection geometry corroboration; no API entity identity assigned"
+      }
+    },
+    {
+      "archive": "meshconvertoperations-5af73924aa60/base_feature_open.f3d",
+      "archive_sha256": "ddb933bc2332281547ce878bf626376b992610b36e29188c68d4d896bbc8bdf0",
+      "expected_body_selections": {
+        "body_anchors": [
+          {
+            "object_id": 317,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 312,
+            "source_owner_object_id": 300,
+            "native_uuid_text": "566f91d4-b0b2-444d-90b4-63e237fa4f10",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 30371,
+            "body_properties": {
+              "name": null,
+              "name_status": "Stored name empty; default UI label not inferred",
+              "stored_body_tag": "0_312",
+              "component_object_id": 3,
+              "component_name": "(Unsaved)",
+              "collection_object_id": 7,
+              "ownership_evidence": "Typed BODY tail equals BODY subset of mixed stored membership; reciprocal native BODY/CD57 and framed native component references agree"
+            },
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "body_descriptors": [],
+        "selection_proxies": [],
+        "unresolved": [],
+        "scope": "Observed explicit native body identities and owned body descriptors; face/edge topology, context semantics and current body lifecycle remain unresolved",
+        "component_context_scope": "Observed two populated component-context body proxy slots; occurrence UUID association only, without transform or lifecycle interpretation"
+      },
+      "expected_body_blob_bindings": {
+        "decoded": [
+          {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4d8ca507-238c-46a6-8dc9-70e433f70e73.smbh",
+            "body_count": 1,
+            "bindings": [
+              {
+                "stored_handle": 25,
+                "native_body_object_id": 312,
+                "stored_body_tag": "0_312",
+                "native_body_record_offset": 28885,
+                "mapping_entry_ordinal": 0,
+                "handle_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                "name": null,
+                "name_status": "Stored name empty; default UI label not inferred",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                "asm_body_index": 1,
+                "asm_stored_entity_id": 25,
+                "asm_body_record_offset": 186,
+                "asm_identifier_token_offset": 201,
+                "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                "previous_ordinal_candidate": 1,
+                "ordinal_candidate_conflict": false
+              }
+            ],
+            "scope": "Explicit native body/blob mapping; only validated same-blob typed BODY identifier joins supply ASM roots"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Native body/blob mapping and observed typed per-blob BODY identifiers; final-body lifecycle unresolved"
+      },
+      "expected_historical_body_components": {
+        "decoded": [],
+        "unresolved": [],
+        "already_owned_body_bindings_unchanged": 1,
+        "scope": "Historical component context corroborated by retained native collection/context and reciprocal creator/dependency references; stored membership, current visibility and final lifecycle are unchanged"
+      },
+      "expected_body_placement": {
+        "bodies": [
+          {
+            "native_body_object_id": 312,
+            "name": null,
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4d8ca507-238c-46a6-8dc9-70e433f70e73.smbh",
+            "asm_body_index": 1,
+            "asm_stored_entity_id": 25,
+            "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+            "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+            "component_vertex_positions_cm": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                4.0
+              ],
+              [
+                2.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                3.0,
+                0.0
+              ]
+            ],
+            "placements": [
+              {
+                "path": "",
+                "component_to_world_matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "world_vertex_positions_cm": [
+                  [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    4.0
+                  ],
+                  [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    3.0,
+                    0.0
+                  ]
+                ]
+              }
+            ],
+            "coordinate_scope": "Observed Fusion component-coordinate convention; ASM header scale not applied",
+            "geometry_scope": "Vertices only; curved extrema, full trimmed surfaces and body regeneration not covered"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Typed same-blob BODY identifier joins composed through stored occurrence caches; current body lifecycle unresolved"
+      },
+      "exact_A_ownership_patches": [
+        {
+          "object_id": 312,
+          "collection_object_id": 7,
+          "component_object_id": 3,
+          "component_name": "(Unsaved)",
+          "ownership_evidence": "Typed BODY tail equals BODY subset of mixed stored membership; reciprocal native BODY/CD57 and framed native component references agree"
+        },
+        {
+          "object_id": 306,
+          "collection_object_id": 22,
+          "component_object_id": 3,
+          "component_name": "(Unsaved)",
+          "ownership_evidence": "Typed BODY tail equals BODY subset of mixed stored membership; reciprocal native BODY/CD57 and framed native component references agree"
+        }
+      ],
+      "unchanged_name_fields": [
+        {
+          "object_id": 306,
+          "name": "OwnedTetraSource_base_feature_open (1)",
+          "name_status": "Stored custom name recovered"
+        },
+        {
+          "object_id": 312,
+          "name": null,
+          "name_status": "Stored name empty; default UI label not inferred"
+        }
+      ],
+      "native_route": {
+        "anchor_object_id": 317,
+        "owner_feature_object_id": 300,
+        "selected_result_BODY": 312,
+        "ordinary_collection": 7,
+        "separate_table_BODY": 306,
+        "separate_table_collection": 22,
+        "component_object_id": 3,
+        "mapping_object_id": 8,
+        "stored_handle": 25,
+        "ASM_BODY_stored_entity_ID": 25,
+        "ASM_record_index": 1,
+        "body_transform_identity": true,
+        "stored_root_component_frame": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "API_geometry_corroboration": {
+        "native_API_identity_assignment": null,
+        "complete_vertex_set_exact": true,
+        "bounding_box_cm": {
+          "min": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max": [
+            2.0,
+            3.0,
+            4.0
+          ]
+        },
+        "API_isSolid": false,
+        "derived_closed_tetra_volume_cm3": null,
+        "actual_API_volume_cm3": null,
+        "scope": "Unique result collection geometry corroboration; no API entity identity assigned"
+      }
+    }
+  ],
+  "reused_guard_evidence": [
+    {
+      "report": "body-asm-identifier-decoding.json",
+      "sha256": "e18bffd35f6be86f92b28a2cd4f891a8d634b9de0dff7411460b3042e5d60f63",
+      "scope": "Existing recorded malformed-reference controls; not rerun by this two-file positive derivation"
+    },
+    {
+      "report": "mixed-empty-body-mapping-decoding.json",
+      "sha256": "5a5d90792906cf07f10e8ba4563de56add9a2d5e8453da2ff0bc8ee1c9bb9b4f",
+      "scope": "Existing recorded malformed-reference controls; not rerun by this two-file positive derivation"
+    }
+  ],
+  "source_sha256": {
+    "decode_assembly.py": "aa12c1822e5b4c5fed868738b1e8af487e3a3a61ffffdf492a2dd478c587db34",
+    "decode_body_properties.py": "d51ddfbd067f7f84296e2966de179b40e0dfe8f011debf6a6b067cb1232c237a",
+    "decode_mixed_body_collections.py": "01c07b4ffd2dcb4801f8a5ada699ea36961aa4fee16849ea7a21c1cd016b55a2",
+    "decode_body_selections.py": "8b9b8047009257f7cdba791e3610b6995c481950cf5087224a0190874475544a",
+    "decode_component_body_proxies.py": "a543f9581a7a5cd39d8cfc2b050d18a5fdb491f45dea4d0759a1e2c49157e049",
+    "decode_body_bindings.py": "220539d9a4c740a4752ac86c6dafe2c3339928d266139398ab684167e1452819",
+    "decode_body_asm_identifiers.py": "3c80d7cb4658b49c2429ccdb4da561bb803ba77eef17d32cad0e7d2fa2283a2a",
+    "decode_historical_body_components.py": "adabb41df591fd530a75fc70f345671c35d32a6357b14664df5d357b2c457e0f",
+    "decode_body_placement.py": "39ae2eba3e0a5d2afc39d420c5594d18b97da9c3f7901ad94adceb8810adfe8b",
+    "asm_records.py": "15ed6458f05377799e9a5d6e3885f518206d75006ebc83fa7f3bd67d8dc38094",
+    "decode_brep.py": "f156b9d97fc4de43febe5635874ef4de7f42c4bc9040eb45f208d515325c27e0",
+    "validate_mixed_body_ownership_downstream.py": "a246bdabebdd1b267848c408daf2a55e99a41e5b263bd222a76945beb41241e8"
+  },
+  "summary": {
+    "focused_files": 2,
+    "typed_BODY_ownership_patches": 4,
+    "qualified_anchor_binding_placement_chains": 2,
+    "API_geometry_corroborations": 2,
+    "main_runs": 0,
+    "live_calls": 0,
+    "current_main_used_as_golden": false
+  }
+}

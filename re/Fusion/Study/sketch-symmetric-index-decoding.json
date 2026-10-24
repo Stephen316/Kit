@@ -1,0 +1,2140 @@
+{
+  "scope": "Observed symmetric lattice-index to API-ordinal rule, with original/revised hypotheses distinguished by independent boundary probes; no fixture-index lookup table",
+  "validation": {
+    "discovery": 4,
+    "initial_holdouts": 2,
+    "discriminating_boundary_holdouts": 2,
+    "api_and_structure_comparisons": 229,
+    "all_passed": true,
+    "prior_default_exact": 5,
+    "prior_expanded_roles_masks_preserved": 5,
+    "malformed_and_mode_guards": [
+      {
+        "case": "suppress source lattice index2",
+        "passed": true,
+        "reason": "Symmetric suppression native index is duplicated, outside its lattice, or names the unsuppressible seed"
+      },
+      {
+        "case": "native index equal to quantity is outside lattice",
+        "passed": true,
+        "reason": "Symmetric suppression native index is duplicated, outside its lattice, or names the unsuppressible seed"
+      },
+      {
+        "case": "duplicate native suppression indices",
+        "passed": true,
+        "reason": "Duplicate sketch pattern suppressed ordinals"
+      },
+      {
+        "case": "suppress rectangular source lattice index4",
+        "passed": true,
+        "reason": "Symmetric suppression native index is duplicated, outside its lattice, or names the unsuppressible seed"
+      },
+      {
+        "case": "uncaptured circular angle mode",
+        "passed": true,
+        "reason": "Symmetric circular index rule is bounded to positive180-degree patterns"
+      }
+    ],
+    "syntax": true
+  },
+  "frozen_candidate": {
+    "file": "sketch-symmetric-index-candidate.json",
+    "sha256": "47b06947d9dd75288f2072c11a9d0843d3415633d5e76d22f04d8a1085e5a527",
+    "contents": {
+      "status": "Candidate frozen before holdout exports are read",
+      "frozen_utc": "2026-10-20T22:51:24.382494+00:00",
+      "formula": {
+        "circular_symmetric_seed_index": "quantity // 2",
+        "rectangular_seed_index": "(qOne//2 if symmetricOne else0) + qOne*(qTwo//2 if symmetricTwo else0)",
+        "native_to_api_ordinal": "r+1 if r<seed_index; r if r>seed_index; reject r==seed_index",
+        "API_mask_index": "API ordinal - 1; source is ordinal0 and cannot be suppressed"
+      },
+      "scope_candidate": [
+        "Single Circle seed",
+        "Circular symmetric positive180-degree partial patterns",
+        "Rectangular symmetric default-axis positive Spacing patterns",
+        "Existing native dependency-count bound remains"
+      ],
+      "discovery": [
+        {
+          "file": "sketchsymmetricindices-2ba1d336c9cf/circular_odd_low.f3d",
+          "sha256": "a31c6de0982cbb56bbf3ede1b1c7035420e451ae84fbe6429e77a23aa78bd8d1",
+          "native_indices": [
+            0
+          ],
+          "candidate_seed_index": 2,
+          "predicted_api_ordinals": [
+            1
+          ],
+          "actual_api_ordinals": [
+            1
+          ],
+          "agrees": true
+        },
+        {
+          "file": "sketchsymmetricindices-2ba1d336c9cf/circular_even_high.f3d",
+          "sha256": "e4c3e663df999cac119b84ca16e3fc38323b94b32396abf61fd0a2a95e92d505",
+          "native_indices": [
+            5
+          ],
+          "candidate_seed_index": 3,
+          "predicted_api_ordinals": [
+            5
+          ],
+          "actual_api_ordinals": [
+            5
+          ],
+          "agrees": true
+        },
+        {
+          "file": "sketchsymmetricindices-2ba1d336c9cf/rectangular_first_even.f3d",
+          "sha256": "81e783d1ff75f99c106712246117cc5262a3c5272b32dc7d572a10697f9b5a39",
+          "native_indices": [
+            0
+          ],
+          "candidate_seed_index": 2,
+          "predicted_api_ordinals": [
+            1
+          ],
+          "actual_api_ordinals": [
+            1
+          ],
+          "agrees": true
+        },
+        {
+          "file": "sketchsymmetricindices-2ba1d336c9cf/rectangular_second_odd.f3d",
+          "sha256": "d1cd07b69c9ab0dd568f8c34b31c8f581e6405a697fe7fac0ffd4a968ccb83d7",
+          "native_indices": [
+            1
+          ],
+          "candidate_seed_index": 2,
+          "predicted_api_ordinals": [
+            2
+          ],
+          "actual_api_ordinals": [
+            2
+          ],
+          "agrees": true
+        }
+      ],
+      "holdout_predictions_before_capture_read": {
+        "circular_odd_holdout": {
+          "quantity": 7,
+          "seed_index": 3,
+          "expected_native_indices": [
+            5
+          ],
+          "expected_api_ordinals": [
+            5
+          ]
+        },
+        "rectangular_both_holdout": {
+          "qOne": 3,
+          "qTwo": 4,
+          "seed_index": 7,
+          "expected_native_indices": [
+            0,
+            11
+          ],
+          "expected_api_ordinals": [
+            1,
+            11
+          ]
+        }
+      },
+      "identity_scope": "No native IDs assigned from coordinates; native explicit role lists and API mask indices provide identity/order evidence",
+      "limitations": [
+        "The holdouts test new quantities/both axes/multiple suppression, not every symmetry/angle/type combination",
+        "Full-circle/negative-angle/mixed-curved or Point suppression rules are unproven"
+      ]
+    },
+    "assessment": "Historical hypothesis preserved. Its circular part is consistent; rectangular q//2 seed rounding was rejected by the two boundary probes."
+  },
+  "frozen_revision": {
+    "file": "sketch-symmetric-index-revision.json",
+    "sha256": "cf185817f479abcdd87c4eff316fb81660fb94b9d10175b8907b333ffa8ae354",
+    "contents": {
+      "status": "Revised rectangular seed-rounding candidate; not proven by new boundary captures yet",
+      "recorded_utc": "2026-10-20T22:54:27.361680+00:00",
+      "original_frozen_candidate": "sketch-symmetric-index-candidate.json",
+      "reason": "All masks matched original candidate but API pre-array layout disproved its even rectangular source location. Edge-index holdouts did not distinguish the rounding hypotheses.",
+      "revised_rule": {
+        "circular_seed": "quantity//2, unchanged",
+        "rectangular_seed": "((qOne-1)//2 if symmetricOne else0) + qOne*((qTwo-1)//2 if symmetricTwo else0)",
+        "normalization": "r+1 if r<seed, r if r>seed, reject r==seed; unchanged"
+      },
+      "boundary_predictions_before_capture_read": {
+        "rectangular_first_even_boundary": {
+          "qOne": 4,
+          "qTwo": 2,
+          "symmetry": [
+            true,
+            false
+          ],
+          "revised_seed_index": 1,
+          "requested_api_indices": [
+            1
+          ],
+          "revised_expected_native_indices": [
+            2
+          ],
+          "original_expected_native_indices": [
+            1
+          ]
+        },
+        "rectangular_both_boundary": {
+          "qOne": 3,
+          "qTwo": 4,
+          "symmetry": [
+            true,
+            true
+          ],
+          "revised_seed_index": 4,
+          "requested_api_indices": [
+            4
+          ],
+          "revised_expected_native_indices": [
+            5
+          ],
+          "original_expected_native_indices": [
+            4
+          ]
+        }
+      },
+      "identity_scope": "Native IDs remain taken only from exported role lists. API layout checks challenge the seed-position model; they do not assign native identities."
+    },
+    "assessment": "Revised rectangular (q-1)//2 seed rounding predicted both new native boundary indices before capture read and matched both."
+  },
+  "integration": {
+    "wrapper": "decode_sketch_symmetric_indices(data, records, features)",
+    "shared_hook": "decode_sketch_pattern_coverage(...,*,symmetric_suppression_mapper=captured_symmetric_suppression); default unchanged",
+    "merge": "Replace the prior coverage call with this wrapper, same patterns/additional_geometry/unresolved interface and precoverage merge order. Point and one-direction results pass through exactly; only symmetric results receive new metadata.",
+    "feature_mutation": false,
+    "geometry_additions": 0
+  },
+  "rule": {
+    "circular_seed_index": "quantity//2 when symmetric",
+    "rectangular_seed_index": "((qOne-1)//2 if symmetricOne else0) + qOne*((qTwo-1)//2 if symmetricTwo else0)",
+    "native_index_to_API_ordinal": "r+1 if r<seed; r if r>seed; reject r==seed",
+    "API_mask_index": "normalized ordinal minus1",
+    "instance_group_inverse": "source API ordinal0 -> seed; otherwise ordinal-1 when ordinal<=seed, else ordinal"
+  },
+  "evidence": {
+    "discovery": "Odd/even circular quantities5/6; first-axis rectangular4\u00d72; second-axis rectangular2\u00d73. Native indices and API masks agree with one centered lattice rule.",
+    "holdouts": "Initial edge predictions matched but did not distinguish even rectangular seed rounding. Two revised boundary predictions then distinguished the hypotheses:4\u00d72 first symmetric/API index1 exported native[2], not original[1];3\u00d74 both symmetric/API index4 exported native[5], not original[4]. Revised model matches actual pre-suppression layout as well.",
+    "layout_corroboration": "Actual pre-suppression API arrays independently match the control-derived lattice ordering, including seed position. This validates layout; it never selects native identities.",
+    "identity": "Every source/created ID still comes from common native counted role lists and explicit seed associations. Raw indices, normalized ordinals and derived seed/group lattice indices remain separate."
+  },
+  "domain": [
+    "Single Circle seed",
+    "Symmetric circular180-degree positive partial patterns",
+    "Default-axis rectangular positive Spacing patterns, each count>=2, first/second/both symmetric",
+    "Existing native quantity and16-dependency parser bounds unchanged"
+  ],
+  "unsupported": [
+    "Full-circle or negative/other-angle circular modes",
+    "Explicit-direction or negative/Extent rectangular symmetric suppression",
+    "Point/Line/curved/mixed seeds combined with symmetric suppression",
+    "No generic native writer or regeneration"
+  ],
+  "samples": [
+    {
+      "file": "sketchsymmetricindices-2ba1d336c9cf/circular_odd_low.f3d",
+      "sha256": "a31c6de0982cbb56bbf3ede1b1c7035420e451ae84fbe6429e77a23aa78bd8d1",
+      "stage": "discovery",
+      "decoded": {
+        "kind": "SketchCircularPattern",
+        "quantity": 5,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": true,
+        "center_entity_id": 205,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "object_id": 264,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          257,
+          260,
+          263
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 5,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 2
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": [],
+            "derived_native_lattice_index": 0
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 1
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              260
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 260,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 3
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              263
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 263,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 4
+          }
+        ],
+        "suppressed_instance_ordinals": [
+          1
+        ],
+        "is_suppressed": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Native lattice indices normalized around the derived symmetric seed position; raw indices and normalized API ordinals retained",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 27388,
+        "class_guid": "8269E861-0BB7-47E0-9911-5AE3EC475058",
+        "native_suppressed_indices": [
+          0
+        ],
+        "suppression_mapping_status": "Control-derived index rule checked against quantity/axis and discriminating boundary holdouts; no coordinate-based identity assignment",
+        "sketch_object_id": 202,
+        "captured_coverage_variants": [
+          "ObservedSymmetricLatticeSuppression"
+        ],
+        "derived_seed_lattice_index": 2,
+        "native_to_api_suppression_mapping": [
+          {
+            "native_lattice_index": 0,
+            "api_instance_ordinal": 1,
+            "api_mask_index": 0
+          }
+        ]
+      },
+      "checks": {
+        "no_mutation": true,
+        "source_count": true,
+        "created_count": true,
+        "api_mask": true,
+        "api_ordinals": true,
+        "seed_rejected_from_suppression": true,
+        "native_lattice_bijection": true,
+        "raw_indices_match_suppressed_groups": true,
+        "entities0.center": true,
+        "entities0.radius": true,
+        "created_entities0.center": true,
+        "created_entities0.radius": true,
+        "created_entities1.center": true,
+        "created_entities1.radius": true,
+        "created_entities2.center": true,
+        "created_entities2.radius": true,
+        "API_pre_array_matches_derived_lattice_order": true,
+        "pre_post_removed_count": true,
+        "quantity": true,
+        "angle": true,
+        "symmetric": true
+      },
+      "api_mask": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "getter_errors": [],
+      "main_reader_output_exact": true
+    },
+    {
+      "file": "sketchsymmetricindices-2ba1d336c9cf/circular_even_high.f3d",
+      "sha256": "e4c3e663df999cac119b84ca16e3fc38323b94b32396abf61fd0a2a95e92d505",
+      "stage": "discovery",
+      "decoded": {
+        "kind": "SketchCircularPattern",
+        "quantity": 6,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": true,
+        "center_entity_id": 205,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "object_id": 267,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          254,
+          257,
+          260,
+          263
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 6,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 3
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 254,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 0
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 1
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              260
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 260,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 2
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              263
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 263,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 4
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": [],
+            "derived_native_lattice_index": 5
+          }
+        ],
+        "suppressed_instance_ordinals": [
+          5
+        ],
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "suppression_status": "Native lattice indices normalized around the derived symmetric seed position; raw indices and normalized API ordinals retained",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 28026,
+        "class_guid": "8269E861-0BB7-47E0-9911-5AE3EC475058",
+        "native_suppressed_indices": [
+          5
+        ],
+        "suppression_mapping_status": "Control-derived index rule checked against quantity/axis and discriminating boundary holdouts; no coordinate-based identity assignment",
+        "sketch_object_id": 202,
+        "captured_coverage_variants": [
+          "ObservedSymmetricLatticeSuppression"
+        ],
+        "derived_seed_lattice_index": 3,
+        "native_to_api_suppression_mapping": [
+          {
+            "native_lattice_index": 5,
+            "api_instance_ordinal": 5,
+            "api_mask_index": 4
+          }
+        ]
+      },
+      "checks": {
+        "no_mutation": true,
+        "source_count": true,
+        "created_count": true,
+        "api_mask": true,
+        "api_ordinals": true,
+        "seed_rejected_from_suppression": true,
+        "native_lattice_bijection": true,
+        "raw_indices_match_suppressed_groups": true,
+        "entities0.center": true,
+        "entities0.radius": true,
+        "created_entities0.center": true,
+        "created_entities0.radius": true,
+        "created_entities1.center": true,
+        "created_entities1.radius": true,
+        "created_entities2.center": true,
+        "created_entities2.radius": true,
+        "created_entities3.center": true,
+        "created_entities3.radius": true,
+        "API_pre_array_matches_derived_lattice_order": true,
+        "pre_post_removed_count": true,
+        "quantity": true,
+        "angle": true,
+        "symmetric": true
+      },
+      "api_mask": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "getter_errors": [],
+      "main_reader_output_exact": true
+    },
+    {
+      "file": "sketchsymmetricindices-2ba1d336c9cf/rectangular_first_even.f3d",
+      "sha256": "81e783d1ff75f99c106712246117cc5262a3c5272b32dc7d572a10697f9b5a39",
+      "stage": "discovery",
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": true,
+        "symmetric_two": false,
+        "quantity_one": 4,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "quantity_two": 2,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_selections": [],
+        "object_id": 267,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          251,
+          254,
+          257,
+          260,
+          263,
+          266
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 8,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 1
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": [],
+            "derived_native_lattice_index": 0
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              251
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 251,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 2
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 254,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 3
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 4
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              260
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 260,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 5
+          },
+          {
+            "instance_ordinal": 6,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              263
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 263,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 6
+          },
+          {
+            "instance_ordinal": 7,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              266
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 266,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 7
+          }
+        ],
+        "suppressed_instance_ordinals": [
+          1
+        ],
+        "is_suppressed": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Native lattice indices normalized around the derived symmetric seed position; raw indices and normalized API ordinals retained",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 29608,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C",
+        "native_suppressed_indices": [
+          0
+        ],
+        "suppression_mapping_status": "Control-derived index rule checked against quantity/axis and discriminating boundary holdouts; no coordinate-based identity assignment",
+        "sketch_object_id": 202,
+        "captured_coverage_variants": [
+          "ObservedSymmetricLatticeSuppression"
+        ],
+        "derived_seed_lattice_index": 1,
+        "native_to_api_suppression_mapping": [
+          {
+            "native_lattice_index": 0,
+            "api_instance_ordinal": 1,
+            "api_mask_index": 0
+          }
+        ],
+        "derived_seed_lattice_row": 0,
+        "derived_seed_lattice_column": 1
+      },
+      "checks": {
+        "no_mutation": true,
+        "source_count": true,
+        "created_count": true,
+        "api_mask": true,
+        "api_ordinals": true,
+        "seed_rejected_from_suppression": true,
+        "native_lattice_bijection": true,
+        "raw_indices_match_suppressed_groups": true,
+        "entities0.center": true,
+        "entities0.radius": true,
+        "created_entities0.center": true,
+        "created_entities0.radius": true,
+        "created_entities1.center": true,
+        "created_entities1.radius": true,
+        "created_entities2.center": true,
+        "created_entities2.radius": true,
+        "created_entities3.center": true,
+        "created_entities3.radius": true,
+        "created_entities4.center": true,
+        "created_entities4.radius": true,
+        "created_entities5.center": true,
+        "created_entities5.radius": true,
+        "API_pre_array_matches_derived_lattice_order": true,
+        "pre_post_removed_count": true,
+        "quantity_one": true,
+        "quantity_two": true,
+        "distance_one_cm": true,
+        "distance_two_cm": true,
+        "symmetric_one": true,
+        "symmetric_two": true
+      },
+      "api_mask": [
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "getter_errors": [],
+      "main_reader_output_exact": true
+    },
+    {
+      "file": "sketchsymmetricindices-2ba1d336c9cf/rectangular_second_odd.f3d",
+      "sha256": "d1cd07b69c9ab0dd568f8c34b31c8f581e6405a697fe7fac0ffd4a968ccb83d7",
+      "stage": "discovery",
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": false,
+        "symmetric_two": true,
+        "quantity_one": 2,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "quantity_two": 3,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_selections": [],
+        "object_id": 261,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          248,
+          254,
+          257,
+          260
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 6,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 2
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              248
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 248,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 0
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": [],
+            "derived_native_lattice_index": 1
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 254,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 3
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 4
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              260
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 260,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 5
+          }
+        ],
+        "suppressed_instance_ordinals": [
+          2
+        ],
+        "is_suppressed": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Native lattice indices normalized around the derived symmetric seed position; raw indices and normalized API ordinals retained",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 28332,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C",
+        "native_suppressed_indices": [
+          1
+        ],
+        "suppression_mapping_status": "Control-derived index rule checked against quantity/axis and discriminating boundary holdouts; no coordinate-based identity assignment",
+        "sketch_object_id": 202,
+        "captured_coverage_variants": [
+          "ObservedSymmetricLatticeSuppression"
+        ],
+        "derived_seed_lattice_index": 2,
+        "native_to_api_suppression_mapping": [
+          {
+            "native_lattice_index": 1,
+            "api_instance_ordinal": 2,
+            "api_mask_index": 1
+          }
+        ],
+        "derived_seed_lattice_row": 1,
+        "derived_seed_lattice_column": 0
+      },
+      "checks": {
+        "no_mutation": true,
+        "source_count": true,
+        "created_count": true,
+        "api_mask": true,
+        "api_ordinals": true,
+        "seed_rejected_from_suppression": true,
+        "native_lattice_bijection": true,
+        "raw_indices_match_suppressed_groups": true,
+        "entities0.center": true,
+        "entities0.radius": true,
+        "created_entities0.center": true,
+        "created_entities0.radius": true,
+        "created_entities1.center": true,
+        "created_entities1.radius": true,
+        "created_entities2.center": true,
+        "created_entities2.radius": true,
+        "created_entities3.center": true,
+        "created_entities3.radius": true,
+        "API_pre_array_matches_derived_lattice_order": true,
+        "pre_post_removed_count": true,
+        "quantity_one": true,
+        "quantity_two": true,
+        "distance_one_cm": true,
+        "distance_two_cm": true,
+        "symmetric_one": true,
+        "symmetric_two": true
+      },
+      "api_mask": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "getter_errors": [],
+      "main_reader_output_exact": true
+    },
+    {
+      "file": "sketchsymmetricindices-bde2c81eaa4a/circular_odd_holdout.f3d",
+      "sha256": "925574a9f2c9eebd2c1e231e948d189705ccc3817cce65ceb04a1037c398b134",
+      "stage": "holdout",
+      "decoded": {
+        "kind": "SketchCircularPattern",
+        "quantity": 7,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": true,
+        "center_entity_id": 205,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "object_id": 270,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          254,
+          257,
+          260,
+          263,
+          269
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 7,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 3
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 254,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 0
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 1
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              260
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 260,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 2
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              263
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 263,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 4
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": [],
+            "derived_native_lattice_index": 5
+          },
+          {
+            "instance_ordinal": 6,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              269
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 269,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 6
+          }
+        ],
+        "suppressed_instance_ordinals": [
+          5
+        ],
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "suppression_status": "Native lattice indices normalized around the derived symmetric seed position; raw indices and normalized API ordinals retained",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 28664,
+        "class_guid": "8269E861-0BB7-47E0-9911-5AE3EC475058",
+        "native_suppressed_indices": [
+          5
+        ],
+        "suppression_mapping_status": "Control-derived index rule checked against quantity/axis and discriminating boundary holdouts; no coordinate-based identity assignment",
+        "sketch_object_id": 202,
+        "captured_coverage_variants": [
+          "ObservedSymmetricLatticeSuppression"
+        ],
+        "derived_seed_lattice_index": 3,
+        "native_to_api_suppression_mapping": [
+          {
+            "native_lattice_index": 5,
+            "api_instance_ordinal": 5,
+            "api_mask_index": 4
+          }
+        ]
+      },
+      "checks": {
+        "no_mutation": true,
+        "source_count": true,
+        "created_count": true,
+        "api_mask": true,
+        "api_ordinals": true,
+        "seed_rejected_from_suppression": true,
+        "native_lattice_bijection": true,
+        "raw_indices_match_suppressed_groups": true,
+        "entities0.center": true,
+        "entities0.radius": true,
+        "created_entities0.center": true,
+        "created_entities0.radius": true,
+        "created_entities1.center": true,
+        "created_entities1.radius": true,
+        "created_entities2.center": true,
+        "created_entities2.radius": true,
+        "created_entities3.center": true,
+        "created_entities3.radius": true,
+        "created_entities4.center": true,
+        "created_entities4.radius": true,
+        "API_pre_array_matches_derived_lattice_order": true,
+        "pre_post_removed_count": true,
+        "quantity": true,
+        "angle": true,
+        "symmetric": true
+      },
+      "api_mask": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "getter_errors": [],
+      "main_reader_output_exact": true
+    },
+    {
+      "file": "sketchsymmetricindices-bde2c81eaa4a/rectangular_both_holdout.f3d",
+      "sha256": "a45a81d7ece0a9e5df61b6b337e07d0fb7eead4fddf4ba1377b9d39ce85e4619",
+      "stage": "holdout",
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": true,
+        "symmetric_two": true,
+        "quantity_one": 3,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "quantity_two": 4,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_selections": [],
+        "object_id": 279,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          251,
+          254,
+          257,
+          260,
+          263,
+          266,
+          269,
+          272,
+          275
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 12,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 4
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": [],
+            "derived_native_lattice_index": 0
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              251
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 251,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 1
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 254,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 2
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 3
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              260
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 260,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 5
+          },
+          {
+            "instance_ordinal": 6,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              263
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 263,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 6
+          },
+          {
+            "instance_ordinal": 7,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              266
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 266,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 7
+          },
+          {
+            "instance_ordinal": 8,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              269
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 269,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 8
+          },
+          {
+            "instance_ordinal": 9,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              272
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 272,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 9
+          },
+          {
+            "instance_ordinal": 10,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              275
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 275,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 10
+          },
+          {
+            "instance_ordinal": 11,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": [],
+            "derived_native_lattice_index": 11
+          }
+        ],
+        "suppressed_instance_ordinals": [
+          1,
+          11
+        ],
+        "is_suppressed": [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "suppression_status": "Native lattice indices normalized around the derived symmetric seed position; raw indices and normalized API ordinals retained",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 31522,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C",
+        "native_suppressed_indices": [
+          0,
+          11
+        ],
+        "suppression_mapping_status": "Control-derived index rule checked against quantity/axis and discriminating boundary holdouts; no coordinate-based identity assignment",
+        "sketch_object_id": 202,
+        "captured_coverage_variants": [
+          "ObservedSymmetricLatticeSuppression"
+        ],
+        "derived_seed_lattice_index": 4,
+        "native_to_api_suppression_mapping": [
+          {
+            "native_lattice_index": 0,
+            "api_instance_ordinal": 1,
+            "api_mask_index": 0
+          },
+          {
+            "native_lattice_index": 11,
+            "api_instance_ordinal": 11,
+            "api_mask_index": 10
+          }
+        ],
+        "derived_seed_lattice_row": 1,
+        "derived_seed_lattice_column": 1
+      },
+      "checks": {
+        "no_mutation": true,
+        "source_count": true,
+        "created_count": true,
+        "api_mask": true,
+        "api_ordinals": true,
+        "seed_rejected_from_suppression": true,
+        "native_lattice_bijection": true,
+        "raw_indices_match_suppressed_groups": true,
+        "entities0.center": true,
+        "entities0.radius": true,
+        "created_entities0.center": true,
+        "created_entities0.radius": true,
+        "created_entities1.center": true,
+        "created_entities1.radius": true,
+        "created_entities2.center": true,
+        "created_entities2.radius": true,
+        "created_entities3.center": true,
+        "created_entities3.radius": true,
+        "created_entities4.center": true,
+        "created_entities4.radius": true,
+        "created_entities5.center": true,
+        "created_entities5.radius": true,
+        "created_entities6.center": true,
+        "created_entities6.radius": true,
+        "created_entities7.center": true,
+        "created_entities7.radius": true,
+        "created_entities8.center": true,
+        "created_entities8.radius": true,
+        "API_pre_array_matches_derived_lattice_order": true,
+        "pre_post_removed_count": true,
+        "quantity_one": true,
+        "quantity_two": true,
+        "distance_one_cm": true,
+        "distance_two_cm": true,
+        "symmetric_one": true,
+        "symmetric_two": true
+      },
+      "api_mask": [
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "getter_errors": [],
+      "main_reader_output_exact": true
+    },
+    {
+      "file": "sketchsymmetricindices-daa09c9428a1/rectangular_first_even_boundary.f3d",
+      "sha256": "ee225b33ebf6179a96659bbc7b4069cffe3f6b61ca45699eae356027d2146a7a",
+      "stage": "boundary_holdout",
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": true,
+        "symmetric_two": false,
+        "quantity_one": 4,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "quantity_two": 2,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_selections": [],
+        "object_id": 267,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          248,
+          254,
+          257,
+          260,
+          263,
+          266
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 8,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 1
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              248
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 248,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 0
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": [],
+            "derived_native_lattice_index": 2
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 254,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 3
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 4
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              260
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 260,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 5
+          },
+          {
+            "instance_ordinal": 6,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              263
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 263,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 6
+          },
+          {
+            "instance_ordinal": 7,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              266
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 266,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 7
+          }
+        ],
+        "suppressed_instance_ordinals": [
+          2
+        ],
+        "is_suppressed": [
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Native lattice indices normalized around the derived symmetric seed position; raw indices and normalized API ordinals retained",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 29608,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C",
+        "native_suppressed_indices": [
+          2
+        ],
+        "suppression_mapping_status": "Control-derived index rule checked against quantity/axis and discriminating boundary holdouts; no coordinate-based identity assignment",
+        "sketch_object_id": 202,
+        "captured_coverage_variants": [
+          "ObservedSymmetricLatticeSuppression"
+        ],
+        "derived_seed_lattice_index": 1,
+        "native_to_api_suppression_mapping": [
+          {
+            "native_lattice_index": 2,
+            "api_instance_ordinal": 2,
+            "api_mask_index": 1
+          }
+        ],
+        "derived_seed_lattice_row": 0,
+        "derived_seed_lattice_column": 1
+      },
+      "checks": {
+        "no_mutation": true,
+        "source_count": true,
+        "created_count": true,
+        "api_mask": true,
+        "api_ordinals": true,
+        "seed_rejected_from_suppression": true,
+        "native_lattice_bijection": true,
+        "raw_indices_match_suppressed_groups": true,
+        "entities0.center": true,
+        "entities0.radius": true,
+        "created_entities0.center": true,
+        "created_entities0.radius": true,
+        "created_entities1.center": true,
+        "created_entities1.radius": true,
+        "created_entities2.center": true,
+        "created_entities2.radius": true,
+        "created_entities3.center": true,
+        "created_entities3.radius": true,
+        "created_entities4.center": true,
+        "created_entities4.radius": true,
+        "created_entities5.center": true,
+        "created_entities5.radius": true,
+        "API_pre_array_matches_derived_lattice_order": true,
+        "pre_post_removed_count": true,
+        "quantity_one": true,
+        "quantity_two": true,
+        "distance_one_cm": true,
+        "distance_two_cm": true,
+        "symmetric_one": true,
+        "symmetric_two": true
+      },
+      "api_mask": [
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "getter_errors": [],
+      "main_reader_output_exact": true
+    },
+    {
+      "file": "sketchsymmetricindices-daa09c9428a1/rectangular_both_boundary.f3d",
+      "sha256": "849207052522adde426cca43b8d1b095a7acfc3bca5f2c758e4a787e40bba9b7",
+      "stage": "boundary_holdout",
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": true,
+        "symmetric_two": true,
+        "quantity_one": 3,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "quantity_two": 4,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_selections": [],
+        "object_id": 279,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          248,
+          251,
+          254,
+          257,
+          263,
+          266,
+          269,
+          272,
+          275,
+          278
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 12,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 4
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              248
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 248,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 0
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              251
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 251,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 1
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 254,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 2
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 3
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": [],
+            "derived_native_lattice_index": 5
+          },
+          {
+            "instance_ordinal": 6,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              263
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 263,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 6
+          },
+          {
+            "instance_ordinal": 7,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              266
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 266,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 7
+          },
+          {
+            "instance_ordinal": 8,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              269
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 269,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 8
+          },
+          {
+            "instance_ordinal": 9,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              272
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 272,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 9
+          },
+          {
+            "instance_ordinal": 10,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              275
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 275,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 10
+          },
+          {
+            "instance_ordinal": 11,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              278
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 278,
+                "kind": "Circle"
+              }
+            ],
+            "derived_native_lattice_index": 11
+          }
+        ],
+        "suppressed_instance_ordinals": [
+          5
+        ],
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Native lattice indices normalized around the derived symmetric seed position; raw indices and normalized API ordinals retained",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 32160,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C",
+        "native_suppressed_indices": [
+          5
+        ],
+        "suppression_mapping_status": "Control-derived index rule checked against quantity/axis and discriminating boundary holdouts; no coordinate-based identity assignment",
+        "sketch_object_id": 202,
+        "captured_coverage_variants": [
+          "ObservedSymmetricLatticeSuppression"
+        ],
+        "derived_seed_lattice_index": 4,
+        "native_to_api_suppression_mapping": [
+          {
+            "native_lattice_index": 5,
+            "api_instance_ordinal": 5,
+            "api_mask_index": 4
+          }
+        ],
+        "derived_seed_lattice_row": 1,
+        "derived_seed_lattice_column": 1
+      },
+      "checks": {
+        "no_mutation": true,
+        "source_count": true,
+        "created_count": true,
+        "api_mask": true,
+        "api_ordinals": true,
+        "seed_rejected_from_suppression": true,
+        "native_lattice_bijection": true,
+        "raw_indices_match_suppressed_groups": true,
+        "entities0.center": true,
+        "entities0.radius": true,
+        "created_entities0.center": true,
+        "created_entities0.radius": true,
+        "created_entities1.center": true,
+        "created_entities1.radius": true,
+        "created_entities2.center": true,
+        "created_entities2.radius": true,
+        "created_entities3.center": true,
+        "created_entities3.radius": true,
+        "created_entities4.center": true,
+        "created_entities4.radius": true,
+        "created_entities5.center": true,
+        "created_entities5.radius": true,
+        "created_entities6.center": true,
+        "created_entities6.radius": true,
+        "created_entities7.center": true,
+        "created_entities7.radius": true,
+        "created_entities8.center": true,
+        "created_entities8.radius": true,
+        "created_entities9.center": true,
+        "created_entities9.radius": true,
+        "API_pre_array_matches_derived_lattice_order": true,
+        "pre_post_removed_count": true,
+        "quantity_one": true,
+        "quantity_two": true,
+        "distance_one_cm": true,
+        "distance_two_cm": true,
+        "symmetric_one": true,
+        "symmetric_two": true
+      },
+      "api_mask": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "getter_errors": [],
+      "main_reader_output_exact": true
+    }
+  ],
+  "prior_samples": [
+    {
+      "file": "sketchpatterngaps-330282788fce/circular_symmetric_suppressed.f3d",
+      "default_exact": true,
+      "expanded_core_roles_masks_exact": true,
+      "non_symmetric_output_exact": "symmetric metadata intentionally extended"
+    },
+    {
+      "file": "sketchpatterngaps-330282788fce/rectangular_symmetric_suppressed.f3d",
+      "default_exact": true,
+      "expanded_core_roles_masks_exact": true,
+      "non_symmetric_output_exact": "symmetric metadata intentionally extended"
+    },
+    {
+      "file": "sketchpatterngaps-330282788fce/rectangular_direction_one.f3d",
+      "default_exact": true,
+      "expanded_core_roles_masks_exact": true,
+      "non_symmetric_output_exact": true
+    },
+    {
+      "file": "sketchpatterngaps-330282788fce/circular_point.f3d",
+      "default_exact": true,
+      "expanded_core_roles_masks_exact": true,
+      "non_symmetric_output_exact": true
+    },
+    {
+      "file": "sketchpatterngaps-330282788fce/rectangular_point.f3d",
+      "default_exact": true,
+      "expanded_core_roles_masks_exact": true,
+      "non_symmetric_output_exact": true
+    }
+  ]
+}

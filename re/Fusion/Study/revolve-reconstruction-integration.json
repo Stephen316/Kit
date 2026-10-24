@@ -1,0 +1,3477 @@
+{
+  "scope": "Native source-profile/axis/angular Revolve reconstruction; source-only orientation and analytic integral/extrema checks, bounded same-asset native topology/geometry and saved API controls; all prior whole outputs preserved",
+  "baseline_commit": "676607d",
+  "files": [
+    "models-97a5e41e2ba7/revolve_partial.f3d",
+    "models-97a5e41e2ba7/revolve_full.f3d",
+    "revolvemodes-8eb734486235/positive.f3d",
+    "revolvemodes-8eb734486235/negative.f3d",
+    "revolvemodes-8eb734486235/symmetric.f3d",
+    "revolvemodes-8eb734486235/two_sided.f3d",
+    "revolvemodes-8eb734486235/axis_x.f3d",
+    "revolveaxes-36bd04ac77e1/custom_two_points.f3d",
+    "revolveaxes-a83b542c4a07/sketch_line.f3d",
+    "revolveaxes-a83b542c4a07/sketch_line_reversed.f3d",
+    "revolveaxes-a83b542c4a07/brep_edge.f3d",
+    "revolveaxes-14700158dba9/brep_edge_offset_x.f3d",
+    "analytic-86a12b291d0a/analytic.f3d",
+    "revolvemodes-8eb734486235/join.f3d",
+    "revolvemodes-8eb734486235/cut.f3d",
+    "revolvemodes-8eb734486235/intersect.f3d",
+    "revolvemodes-8eb734486235/surface.f3d",
+    "revolvemodes-b9796d532f94/project_axis.f3d",
+    "revolveto-b1d196f65c46/positive_plane.f3d",
+    "revolveto-b1d196f65c46/negative_plane.f3d",
+    "revolveto-b1d196f65c46/two_planes.f3d",
+    "extents-f0f33a9a605f/distance_positive.f3d",
+    "placement-c6ad25e75d60/placement.f3d"
+  ],
+  "summary": {
+    "saved_files": 23,
+    "decoded_Revolves": 15,
+    "source_qualified_Revolves": 18,
+    "explicit_unresolved_Revolves": 11,
+    "new_summaries": 21,
+    "receiving_feature_annotations": 15,
+    "independent_rectangle_sector_constructions": 12,
+    "independent_full_turn_analytic_constructions": 3,
+    "raw_native_provenance_records": 349,
+    "native_cache_counts": {
+      "lump": 15,
+      "shell": 15,
+      "face": 74,
+      "loop": 77,
+      "coedge": 275,
+      "edge": 138,
+      "vertex": 94
+    },
+    "finite_native_endpoint_evaluations": 274,
+    "null_curve_singular_EDGE_count": 1,
+    "saved_API_source_axis_angle_numerical_checks": 35,
+    "saved_API_analytic_body_bundles": 3,
+    "saved_API_analytic_vertex_positions": 2,
+    "saved_API_result_bounds_controls": 0,
+    "saved_API_result_volume_controls": 0,
+    "whole_output_unchanged_controls": 2,
+    "unexpected_changes": 0,
+    "comparator_baseline_main_calls": 0,
+    "comparator_current_main_calls": 0,
+    "live_API_calls": 0
+  },
+  "samples": [
+    {
+      "archive": "models-97a5e41e2ba7/revolve_partial.f3d",
+      "archive_sha256": "944b6e509e80739f63a0fce795d9f5ba1c9291e3231ef50f7d25b2036169f83f",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 243,
+          "source_reference": {
+            "feature_object_id": 243,
+            "native_sketch_object_id": 202,
+            "native_profile_descriptor_object_id": 247,
+            "native_profile_loop_definition_object_id": 250,
+            "native_profile_Line_ids": [
+              237,
+              238,
+              236,
+              239
+            ],
+            "native_profile_POINT_ids": [
+              230,
+              232,
+              234,
+              228
+            ],
+            "native_component_points_cm": [
+              [
+                2.0,
+                0.0,
+                0.0
+              ],
+              [
+                2.0,
+                1.5,
+                0.0
+              ],
+              [
+                1.0,
+                1.5,
+                0.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 251,
+            "native_axis_kind": "ConstructionAxis",
+            "native_axis_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": -1.5,
+            "effective_axis_direction": [
+              -0.0,
+              -1.0,
+              -0.0
+            ],
+            "radial_reference": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              0.0,
+              1.1344640137963142
+            ],
+            "axial_interval_cm": [
+              -1.5,
+              0.0
+            ],
+            "radial_interval_cm": [
+              1.0,
+              2.0
+            ],
+            "independently_derived_volume_cm3": 2.552544031041707,
+            "independently_derived_bounds_cm": [
+              [
+                0.42261826174069944,
+                0.0,
+                0.0
+              ],
+              [
+                2.0,
+                1.5,
+                1.8126155740732999
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 23,
+          "native_source_provenance_sha256": "d38f38822b300046baebdd02c243a8dac923b5ad48991c6e16643c1d89140267",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 2.482534153247273e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "models-97a5e41e2ba7/ground_truth.json",
+            "actual_numerical_control_checks": 1,
+            "actual_axis": null,
+            "actual_settings": {},
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "ea00f782560d18e7f7f1e15fea7b59b901a21536d1f3dfe407cda6edb720229d",
+      "current_output_sha256": "3809e09a12361bfdfce39d8cf53e256e1a759d2da9d5e1d10901107b6b146527",
+      "qualified_difference_paths": [
+        "/streams/0/features/1/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "models-97a5e41e2ba7/revolve_full.f3d",
+      "archive_sha256": "7dd1b3b4db6a0086e6891cffef62f20026b530c7dd37c43fb5d96b74f3049806",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 243,
+          "source_reference": {
+            "feature_object_id": 243,
+            "native_sketch_object_id": 202,
+            "native_profile_descriptor_object_id": 247,
+            "native_profile_loop_definition_object_id": 250,
+            "native_profile_Line_ids": [
+              236,
+              238,
+              237,
+              239
+            ],
+            "native_profile_POINT_ids": [
+              228,
+              230,
+              232,
+              234
+            ],
+            "native_component_points_cm": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                2.0,
+                0.0,
+                0.0
+              ],
+              [
+                2.0,
+                1.5,
+                0.0
+              ],
+              [
+                1.0,
+                1.5,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 251,
+            "native_axis_kind": "ConstructionAxis",
+            "native_axis_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": -1.5,
+            "effective_axis_direction": [
+              -0.0,
+              -1.0,
+              -0.0
+            ],
+            "radial_reference": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              0.0,
+              6.283185307179586
+            ],
+            "axial_interval_cm": [
+              -1.5,
+              0.0
+            ],
+            "radial_interval_cm": [
+              1.0,
+              2.0
+            ],
+            "independently_derived_volume_cm3": 14.137166941154069,
+            "independently_derived_bounds_cm": [
+              [
+                -2.0,
+                0.0,
+                -2.0
+              ],
+              [
+                2.0,
+                1.5,
+                2.0
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 23,
+          "native_source_provenance_sha256": "8ddf03802bb7092baf372436f3b9dcbe710596eec6ecb023c3d1919adebc8b89",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 4,
+              "loop": 8,
+              "coedge": 8,
+              "edge": 4,
+              "vertex": 4
+            },
+            "independently_evaluated_finite_native_endpoints": 8,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 8,
+            "literal_EDGE_reversal_flags": {
+              "False": 4
+            },
+            "maximum_native_endpoint_residual_raw": 4.898587196589413e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "models-97a5e41e2ba7/ground_truth.json",
+            "actual_numerical_control_checks": 1,
+            "actual_axis": null,
+            "actual_settings": {},
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "9ab30f345b12bd93c56caaa30b4782ab230dc760aecc0079fbfacbd98f8e2a45",
+      "current_output_sha256": "fb36858f8a67cb60e8d67d5fdfc9fee6fa2cc3877541b8ff8a123ae066f3fc20",
+      "qualified_difference_paths": [
+        "/streams/0/features/1/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolvemodes-8eb734486235/positive.f3d",
+      "archive_sha256": "13a3a5d683b98a7ee003b50d4cba6d7dbae68f25010a17bf0051692b105f3a3d",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 243,
+          "source_reference": {
+            "feature_object_id": 243,
+            "native_sketch_object_id": 202,
+            "native_profile_descriptor_object_id": 247,
+            "native_profile_loop_definition_object_id": 250,
+            "native_profile_Line_ids": [
+              237,
+              239,
+              238,
+              236
+            ],
+            "native_profile_POINT_ids": [
+              230,
+              232,
+              234,
+              228
+            ],
+            "native_component_points_cm": [
+              [
+                3.0,
+                1.0,
+                0.0
+              ],
+              [
+                3.0,
+                4.0,
+                0.0
+              ],
+              [
+                1.0,
+                4.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 251,
+            "native_axis_kind": "ConstructionAxis",
+            "native_axis_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": -2.0,
+            "effective_axis_direction": [
+              -0.0,
+              -1.0,
+              -0.0
+            ],
+            "radial_reference": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              0.0,
+              1.1344640137963142
+            ],
+            "axial_interval_cm": [
+              -4.0,
+              -1.0
+            ],
+            "radial_interval_cm": [
+              1.0,
+              3.0
+            ],
+            "independently_derived_volume_cm3": 13.61356816555577,
+            "independently_derived_bounds_cm": [
+              [
+                0.42261826174069944,
+                1.0,
+                0.0
+              ],
+              [
+                3.0,
+                4.0,
+                2.7189233611099497
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 23,
+          "native_source_provenance_sha256": "d1a1e70299262056dae8275c8560feabe7009457a1096aed8cfc0d933f5a8e12",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 9.155133597044475e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "revolvemodes-8eb734486235/ground_truth.json",
+            "actual_numerical_control_checks": 2,
+            "actual_axis": null,
+            "actual_settings": {
+              "operation": 3,
+              "is_solid": true,
+              "is_project_axis": false,
+              "axis_name": "Y",
+              "axis_direction": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "extent_kind": "AngleExtentDefinition",
+              "angle": 1.1344640137963142,
+              "is_symmetric": false
+            },
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "6fb6437cee2f498a4af6932db81f5d3ca1f5a73f81e44047334f441b0ec37a44",
+      "current_output_sha256": "7768f6f3645fd80bcc242f67661663a924815ef3f36443ee91d712474df06266",
+      "qualified_difference_paths": [
+        "/streams/0/features/1/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolvemodes-8eb734486235/negative.f3d",
+      "archive_sha256": "c5a3445d8b95cdc420e4e558a115431b9c4890f8c72c25a70ca547c72dedd655",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 243,
+          "source_reference": {
+            "feature_object_id": 243,
+            "native_sketch_object_id": 202,
+            "native_profile_descriptor_object_id": 247,
+            "native_profile_loop_definition_object_id": 250,
+            "native_profile_Line_ids": [
+              239,
+              236,
+              237,
+              238
+            ],
+            "native_profile_POINT_ids": [
+              234,
+              228,
+              230,
+              232
+            ],
+            "native_component_points_cm": [
+              [
+                1.0,
+                4.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                0.0
+              ],
+              [
+                3.0,
+                1.0,
+                0.0
+              ],
+              [
+                3.0,
+                4.0,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 251,
+            "native_axis_kind": "ConstructionAxis",
+            "native_axis_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": -2.0,
+            "effective_axis_direction": [
+              -0.0,
+              -1.0,
+              -0.0
+            ],
+            "radial_reference": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              -1.3089969389957472,
+              0.0
+            ],
+            "axial_interval_cm": [
+              -4.0,
+              -1.0
+            ],
+            "radial_interval_cm": [
+              1.0,
+              3.0
+            ],
+            "independently_derived_volume_cm3": 15.707963267948966,
+            "independently_derived_bounds_cm": [
+              [
+                0.25881904510252074,
+                1.0,
+                -2.897777478867205
+              ],
+              [
+                3.0,
+                4.0,
+                0.0
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 23,
+          "native_source_provenance_sha256": "1784cda8719c52a2fb3a02b237ac18384adda28116d1dea951b5dfe0f29e0b0f",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 1.1102230246251565e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "revolvemodes-8eb734486235/ground_truth.json",
+            "actual_numerical_control_checks": 2,
+            "actual_axis": null,
+            "actual_settings": {
+              "operation": 3,
+              "is_solid": true,
+              "is_project_axis": false,
+              "axis_name": "Y",
+              "axis_direction": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "extent_kind": "AngleExtentDefinition",
+              "angle": -1.3089969389957472,
+              "is_symmetric": false
+            },
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "740d791f5a61957128e6d9fec2b69060ee58d61a04e8ea453571f88a4142567f",
+      "current_output_sha256": "6fe26ee276ff780da4556c52db2cb0289c3525d3482cd5427a749c6628552c9d",
+      "qualified_difference_paths": [
+        "/streams/0/features/1/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolvemodes-8eb734486235/symmetric.f3d",
+      "archive_sha256": "6fc6806d2d16a0d35f2d789620a1e129c52e0dc23c2d7705ff01d1ac498fbb44",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 243,
+          "source_reference": {
+            "feature_object_id": 243,
+            "native_sketch_object_id": 202,
+            "native_profile_descriptor_object_id": 247,
+            "native_profile_loop_definition_object_id": 250,
+            "native_profile_Line_ids": [
+              238,
+              239,
+              236,
+              237
+            ],
+            "native_profile_POINT_ids": [
+              232,
+              234,
+              228,
+              230
+            ],
+            "native_component_points_cm": [
+              [
+                3.0,
+                4.0,
+                0.0
+              ],
+              [
+                1.0,
+                4.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                0.0
+              ],
+              [
+                3.0,
+                1.0,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 251,
+            "native_axis_kind": "ConstructionAxis",
+            "native_axis_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": -2.0,
+            "effective_axis_direction": [
+              -0.0,
+              -1.0,
+              -0.0
+            ],
+            "radial_reference": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              -1.1344640137963142,
+              1.1344640137963142
+            ],
+            "axial_interval_cm": [
+              -4.0,
+              -1.0
+            ],
+            "radial_interval_cm": [
+              1.0,
+              3.0
+            ],
+            "independently_derived_volume_cm3": 27.22713633111154,
+            "independently_derived_bounds_cm": [
+              [
+                0.42261826174069944,
+                1.0,
+                -2.7189233611099497
+              ],
+              [
+                3.0,
+                4.0,
+                2.7189233611099497
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 23,
+          "native_source_provenance_sha256": "84b4ead4c3b11450171664ce694c76461c7b7421bb252727745a8265029a09e7",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 9.155133597044475e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "revolvemodes-8eb734486235/ground_truth.json",
+            "actual_numerical_control_checks": 3,
+            "actual_axis": null,
+            "actual_settings": {
+              "operation": 3,
+              "is_solid": true,
+              "is_project_axis": false,
+              "axis_name": "Y",
+              "axis_direction": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "extent_kind": "AngleExtentDefinition",
+              "angle": 1.1344640137963142,
+              "is_symmetric": true
+            },
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "8a5e2b5d6c72ddf855ec8d017970565d165519cb4d0a34725dc5a759f1b3620f",
+      "current_output_sha256": "875c9cf7d9eed3ae6878d2524041b62b1a1c2f16e8f65ca5046e8ed324eb6740",
+      "qualified_difference_paths": [
+        "/streams/0/features/1/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolvemodes-8eb734486235/two_sided.f3d",
+      "archive_sha256": "e695b0a9cc3a97eb502937e4bffe18b9967dda56f14ed11a9c3bbdb5275f7e30",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 243,
+          "source_reference": {
+            "feature_object_id": 243,
+            "native_sketch_object_id": 202,
+            "native_profile_descriptor_object_id": 247,
+            "native_profile_loop_definition_object_id": 250,
+            "native_profile_Line_ids": [
+              237,
+              236,
+              239,
+              238
+            ],
+            "native_profile_POINT_ids": [
+              230,
+              232,
+              228,
+              234
+            ],
+            "native_component_points_cm": [
+              [
+                3.0,
+                1.0,
+                0.0
+              ],
+              [
+                3.0,
+                4.0,
+                0.0
+              ],
+              [
+                1.0,
+                1.0,
+                0.0
+              ],
+              [
+                1.0,
+                4.0,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 251,
+            "native_axis_kind": "ConstructionAxis",
+            "native_axis_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": -2.0,
+            "effective_axis_direction": [
+              -0.0,
+              -1.0,
+              -0.0
+            ],
+            "radial_reference": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              -0.4363323129985824,
+              1.0471975511965976
+            ],
+            "axial_interval_cm": [
+              -4.0,
+              -1.0
+            ],
+            "radial_interval_cm": [
+              1.0,
+              3.0
+            ],
+            "independently_derived_volume_cm3": 17.80235837034216,
+            "independently_derived_bounds_cm": [
+              [
+                0.5000000000000001,
+                1.0,
+                -1.2678547852220983
+              ],
+              [
+                3.0,
+                4.0,
+                2.598076211353316
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 23,
+          "native_source_provenance_sha256": "428fe76e0e01d0a3ea40e2d5d76f7f84d641534a675a9264efb86711261f0b7a",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 2.0471501066083613e-15,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "revolvemodes-8eb734486235/ground_truth.json",
+            "actual_numerical_control_checks": 4,
+            "actual_axis": null,
+            "actual_settings": {
+              "operation": 3,
+              "is_solid": true,
+              "is_project_axis": false,
+              "axis_name": "Y",
+              "axis_direction": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "extent_kind": "TwoSidesAngleExtentDefinition",
+              "angleOne": 1.0471975511965976,
+              "angleTwo": 0.4363323129985824
+            },
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "4f8fae7cd611075d9bf8204e3e3bfcdeeaed6bab01295517b87ebb715e98c696",
+      "current_output_sha256": "58cea6eb2fd74e189352b10ad05ad7d0b116c8f33b8104399c32434cacf44d41",
+      "qualified_difference_paths": [
+        "/streams/0/features/1/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolvemodes-8eb734486235/axis_x.f3d",
+      "archive_sha256": "4ac1aa16fc392b0f23618dc1bdc9085f4f21e087a31868c179d7b9bd72ef2e36",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 243,
+          "source_reference": {
+            "feature_object_id": 243,
+            "native_sketch_object_id": 202,
+            "native_profile_descriptor_object_id": 247,
+            "native_profile_loop_definition_object_id": 250,
+            "native_profile_Line_ids": [
+              236,
+              238,
+              237,
+              239
+            ],
+            "native_profile_POINT_ids": [
+              228,
+              230,
+              232,
+              234
+            ],
+            "native_component_points_cm": [
+              [
+                1.0,
+                1.0,
+                0.0
+              ],
+              [
+                3.0,
+                1.0,
+                0.0
+              ],
+              [
+                3.0,
+                4.0,
+                0.0
+              ],
+              [
+                1.0,
+                4.0,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 251,
+            "native_axis_kind": "ConstructionAxis",
+            "native_axis_origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": 2.5,
+            "effective_axis_direction": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "radial_reference": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              0.0,
+              1.1344640137963142
+            ],
+            "axial_interval_cm": [
+              1.0,
+              3.0
+            ],
+            "radial_interval_cm": [
+              1.0,
+              4.0
+            ],
+            "independently_derived_volume_cm3": 17.016960206944713,
+            "independently_derived_bounds_cm": [
+              [
+                1.0,
+                0.42261826174069944,
+                0.0
+              ],
+              [
+                3.0,
+                4.0,
+                3.6252311481465997
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 23,
+          "native_source_provenance_sha256": "bfb0f734a852b1cdeabe6f2e268f95640e56cc22ff817708a96b8c6004d246dd",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 4.965068306494546e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "revolvemodes-8eb734486235/ground_truth.json",
+            "actual_numerical_control_checks": 2,
+            "actual_axis": null,
+            "actual_settings": {
+              "operation": 3,
+              "is_solid": true,
+              "is_project_axis": false,
+              "axis_name": "X",
+              "axis_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "extent_kind": "AngleExtentDefinition",
+              "angle": 1.1344640137963142,
+              "is_symmetric": false
+            },
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "7fb42c71480a18a524af4c4d945f1d05e4adb150e66e4b4184762a1c8b846de6",
+      "current_output_sha256": "f094b645af7c3b8f986bacd584dcbaeb2f3e0bc88f63ab08b50df2310d0ab1b2",
+      "qualified_difference_paths": [
+        "/streams/0/features/1/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolveaxes-36bd04ac77e1/custom_two_points.f3d",
+      "archive_sha256": "db516e24d877f32d8a96c84f14d1d971d7f009758474bf9bde4de850c7f1789d",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 326,
+          "source_reference": {
+            "feature_object_id": 326,
+            "native_sketch_object_id": 269,
+            "native_profile_descriptor_object_id": 330,
+            "native_profile_loop_definition_object_id": 333,
+            "native_profile_Line_ids": [
+              298,
+              306,
+              314,
+              322
+            ],
+            "native_profile_POINT_ids": [
+              294,
+              296,
+              302,
+              304,
+              310,
+              312,
+              318,
+              320
+            ],
+            "native_component_points_cm": [
+              [
+                0.7316718427000252,
+                0.2521980673998822,
+                0.0
+              ],
+              [
+                1.6260990336999415,
+                2.041052449399714,
+                0.0
+              ],
+              [
+                1.6260990336999415,
+                2.041052449399714,
+                0.0
+              ],
+              [
+                0.9105572809000086,
+                2.3988233257996803,
+                0.0
+              ],
+              [
+                0.9105572809000086,
+                2.3988233257996803,
+                0.0
+              ],
+              [
+                0.01613008990009246,
+                0.6099689437998486,
+                0.0
+              ],
+              [
+                0.01613008990009246,
+                0.6099689437998486,
+                0.0
+              ],
+              [
+                0.7316718427000252,
+                0.2521980673998822,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 334,
+            "native_axis_kind": "ConstructionAxis",
+            "native_axis_origin_cm": [
+              1.0,
+              -1.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              0.4472135954999579,
+              0.894427190999916,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": 1.0583592135001263,
+            "effective_axis_direction": [
+              0.4472135954999579,
+              0.894427190999916,
+              0.0
+            ],
+            "radial_reference": [
+              -0.894427190999916,
+              0.44721359549995765,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              0.0,
+              1.2740903539558606
+            ],
+            "axial_interval_cm": [
+              1.0,
+              3.0000000000000004
+            ],
+            "radial_interval_cm": [
+              0.7999999999999997,
+              1.5999999999999999
+            ],
+            "independently_derived_volume_cm3": 2.446253479595253,
+            "independently_derived_bounds_cm": [
+              [
+                0.01613008990009246,
+                -0.0009707279668784152,
+                0.0
+              ],
+              [
+                2.1324366244334625,
+                2.3988233257996803,
+                1.5300876095408567
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 30,
+          "native_source_provenance_sha256": "eecd1473a8d79464d134db7a9e2fbe9d62e05abb441a254259a32e5f39655192",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 6.280369834735101e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "revolveaxes-36bd04ac77e1/ground_truth.json",
+            "actual_numerical_control_checks": 4,
+            "actual_axis": {
+              "entity_type": "adsk::fusion::ConstructionAxis",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwtX9ByPaEx3CF778KmwiZFgLVGGkYGwGlEpKMkhNSdJNNDZP1DUxM7LUtTRJM9dNTTNNSkw1NLQ0tUgEqwWawYAGwPYZKICtA1lvZGwBAMuJUnaIAAAA",
+              "name": "ProbeCustomAxis",
+              "origin_cm": [
+                1.0,
+                -1.0,
+                0.0
+              ],
+              "direction": [
+                0.447213595499958,
+                0.8944271909999161,
+                0.0
+              ]
+            },
+            "actual_settings": {
+              "operation": 3,
+              "is_solid": true,
+              "is_project_axis": false,
+              "angle_radians": 1.2740903539558606,
+              "result_body_count": 1
+            },
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "5907b2dc3defd56137457506489a6198c017c8ff3e6a0874f3618968d862474e",
+      "current_output_sha256": "f09de7215ad457a74b8d0f2279728218e8b4bde732e32f3149286da79e027318",
+      "qualified_difference_paths": [
+        "/streams/0/features/3/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolveaxes-a83b542c4a07/sketch_line.f3d",
+      "archive_sha256": "b57b9ac7e4e5ab58bcfb41e30c294ab00152e1a1833e90403a263fcdabbf3f49",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 296,
+          "source_reference": {
+            "feature_object_id": 296,
+            "native_sketch_object_id": 239,
+            "native_profile_descriptor_object_id": 300,
+            "native_profile_loop_definition_object_id": 303,
+            "native_profile_Line_ids": [
+              276,
+              268,
+              292,
+              284
+            ],
+            "native_profile_POINT_ids": [
+              272,
+              274,
+              264,
+              266,
+              288,
+              290,
+              280,
+              282
+            ],
+            "native_component_points_cm": [
+              [
+                1.6260990336999415,
+                2.041052449399714,
+                0.0
+              ],
+              [
+                0.9105572809000086,
+                2.3988233257996803,
+                0.0
+              ],
+              [
+                0.7316718427000252,
+                0.2521980673998822,
+                0.0
+              ],
+              [
+                1.6260990336999415,
+                2.041052449399714,
+                0.0
+              ],
+              [
+                0.01613008990009246,
+                0.6099689437998486,
+                0.0
+              ],
+              [
+                0.7316718427000252,
+                0.2521980673998822,
+                0.0
+              ],
+              [
+                0.9105572809000086,
+                2.3988233257996803,
+                0.0
+              ],
+              [
+                0.01613008990009246,
+                0.6099689437998486,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 304,
+            "native_axis_kind": "SketchLine",
+            "native_axis_origin_cm": [
+              1.0,
+              -1.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              0.4472135954999579,
+              0.894427190999916,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": 1.058359213500126,
+            "effective_axis_direction": [
+              0.4472135954999579,
+              0.894427190999916,
+              0.0
+            ],
+            "radial_reference": [
+              -0.8944271909999161,
+              0.4472135954999573,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              0.0,
+              1.2740903539558606
+            ],
+            "axial_interval_cm": [
+              1.0,
+              3.0000000000000004
+            ],
+            "radial_interval_cm": [
+              0.7999999999999996,
+              1.5999999999999999
+            ],
+            "independently_derived_volume_cm3": 2.4462534795952533,
+            "independently_derived_bounds_cm": [
+              [
+                0.016130089900092237,
+                -0.0009707279668785262,
+                0.0
+              ],
+              [
+                2.1324366244334625,
+                2.39882332579968,
+                1.5300876095408567
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 29,
+          "native_source_provenance_sha256": "99adec5a745fad624671794620bee6462fa255f23d5ee3cf8bf3a0beb1ba428f",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 6.377745716588144e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "revolveaxes-a83b542c4a07/ground_truth.json",
+            "actual_numerical_control_checks": 4,
+            "actual_axis": {
+              "entity_type": "adsk::fusion::SketchLine",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtM94/Z5Hm4Fk5V9v8n/yJ8CVGGkYGymYJiSamSRYmyqa2yeYqprYmaQpGuZaJGka2xokGhgmGaUZGxgAFYLNIMBDYDtM1AAW2dqaASmjQyASg2MFQwAPpzquZIAAAA=",
+              "sketch_name": "AxisSupportSketch",
+              "start_cm": [
+                1.0,
+                -1.0,
+                0.0
+              ],
+              "end_cm": [
+                2.7888543819998315,
+                2.5777087639996634,
+                0.0
+              ]
+            },
+            "actual_settings": {
+              "operation": 3,
+              "is_solid": true,
+              "is_project_axis": false,
+              "angle_radians": 1.2740903539558606,
+              "result_body_count": 1
+            },
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "488324595a1065002368aa5062bd65481d1059e1fb00118a984693f765341f8e",
+      "current_output_sha256": "0f99eb48e4f914f8755868ec9ce6d4313d6dc5576b7fc4303fc96a28f5b4da1a",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolveaxes-a83b542c4a07/sketch_line_reversed.f3d",
+      "archive_sha256": "4e4dcdf120b8f52478dda31bc2418f373bda8a5d774b8675eeb835212f44d438",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 296,
+          "source_reference": {
+            "feature_object_id": 296,
+            "native_sketch_object_id": 239,
+            "native_profile_descriptor_object_id": 300,
+            "native_profile_loop_definition_object_id": 303,
+            "native_profile_Line_ids": [
+              284,
+              276,
+              268,
+              292
+            ],
+            "native_profile_POINT_ids": [
+              280,
+              282,
+              272,
+              274,
+              264,
+              266,
+              288,
+              290
+            ],
+            "native_component_points_cm": [
+              [
+                0.9105572809000086,
+                2.3988233257996803,
+                0.0
+              ],
+              [
+                0.01613008990009246,
+                0.6099689437998486,
+                0.0
+              ],
+              [
+                1.6260990336999415,
+                2.041052449399714,
+                0.0
+              ],
+              [
+                0.9105572809000086,
+                2.3988233257996803,
+                0.0
+              ],
+              [
+                0.7316718427000252,
+                0.2521980673998822,
+                0.0
+              ],
+              [
+                1.6260990336999415,
+                2.041052449399714,
+                0.0
+              ],
+              [
+                0.01613008990009246,
+                0.6099689437998486,
+                0.0
+              ],
+              [
+                0.7316718427000252,
+                0.2521980673998822,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 304,
+            "native_axis_kind": "SketchLine",
+            "native_axis_origin_cm": [
+              2.7888543819998315,
+              2.5777087639996634,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              -0.4472135954999579,
+              -0.894427190999916,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": -1.058359213500126,
+            "effective_axis_direction": [
+              0.4472135954999579,
+              0.894427190999916,
+              -0.0
+            ],
+            "radial_reference": [
+              -0.894427190999916,
+              0.4472135954999579,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              0.0,
+              1.2740903539558606
+            ],
+            "axial_interval_cm": [
+              -3.0,
+              -0.9999999999999997
+            ],
+            "radial_interval_cm": [
+              0.7999999999999996,
+              1.6000000000000003
+            ],
+            "independently_derived_volume_cm3": 2.446253479595255,
+            "independently_derived_bounds_cm": [
+              [
+                0.016130089900091793,
+                -0.0009707279668790397,
+                0.0
+              ],
+              [
+                2.1324366244334625,
+                2.3988233257996807,
+                1.5300876095408573
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 29,
+          "native_source_provenance_sha256": "63da9d0e9fbc182cb093072340048409e11697371030e70416da3e1aa5b7247f",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 6.377745716588144e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "revolveaxes-a83b542c4a07/ground_truth.json",
+            "actual_numerical_control_checks": 4,
+            "actual_axis": {
+              "entity_type": "adsk::fusion::SketchLine",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvHGkseLX/o3Lv296+q9No5EoAojBWMzhRRLg0Rjs1QTXTPLtERdkzQTM12LJONU3cREE1NTQxOzlJTkZLBaoBkMaABsn4EC2DpTQyMwbWQAVGpgrGAAALWYhOOSAAAA",
+              "sketch_name": "AxisSupportSketch",
+              "start_cm": [
+                2.7888543819998315,
+                2.5777087639996634,
+                0.0
+              ],
+              "end_cm": [
+                1.0,
+                -1.0,
+                0.0
+              ]
+            },
+            "actual_settings": {
+              "operation": 3,
+              "is_solid": true,
+              "is_project_axis": false,
+              "angle_radians": 1.2740903539558606,
+              "result_body_count": 1
+            },
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "3dc0c9a6ff4b9fefae43379c06d5c5b1be5b74b7469dad344bf436cb6d950678",
+      "current_output_sha256": "05c4dbab5343e14c967cb7493fb5c83e91992946810b04ccdc1e34d8bbdc58cc",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolveaxes-a83b542c4a07/brep_edge.f3d",
+      "archive_sha256": "00a07449a6a3ab31ff1653f977b652e8c987aa37e7a8d538ed6778db8241941f",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 339,
+          "source_reference": {
+            "feature_object_id": 339,
+            "native_sketch_object_id": 282,
+            "native_profile_descriptor_object_id": 343,
+            "native_profile_loop_definition_object_id": 346,
+            "native_profile_Line_ids": [
+              311,
+              319,
+              327,
+              335
+            ],
+            "native_profile_POINT_ids": [
+              307,
+              309,
+              315,
+              317,
+              323,
+              325,
+              331,
+              333
+            ],
+            "native_component_points_cm": [
+              [
+                -0.8,
+                1.0,
+                0.0
+              ],
+              [
+                -0.8,
+                3.0,
+                0.0
+              ],
+              [
+                -0.8,
+                3.0,
+                0.0
+              ],
+              [
+                -1.6,
+                3.0,
+                0.0
+              ],
+              [
+                -1.6,
+                3.0,
+                0.0
+              ],
+              [
+                -1.6,
+                1.0,
+                0.0
+              ],
+              [
+                -1.6,
+                1.0,
+                0.0
+              ],
+              [
+                -0.8,
+                1.0,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 347,
+            "native_axis_kind": "BRepEdge",
+            "native_axis_origin_cm": [
+              0.0,
+              3.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              0.0,
+              -1.0,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": -2.4,
+            "effective_axis_direction": [
+              -0.0,
+              1.0,
+              -0.0
+            ],
+            "radial_reference": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              0.0,
+              1.2740903539558606
+            ],
+            "axial_interval_cm": [
+              -2.0,
+              0.0
+            ],
+            "radial_interval_cm": [
+              0.8,
+              1.6
+            ],
+            "independently_derived_volume_cm3": 2.446253479595253,
+            "independently_derived_bounds_cm": [
+              [
+                -1.6,
+                1.0,
+                0.0
+              ],
+              [
+                -0.23389736377818943,
+                3.0,
+                1.5300876095408569
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 21,
+          "native_source_provenance_sha256": "83e65ad9a65712bf55a29ab45e147b44514335f08b4f2e4ac0ca7a0ae5f6938d",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 3.1401849173675503e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "revolveaxes-a83b542c4a07/ground_truth.json",
+            "actual_numerical_control_checks": 4,
+            "actual_axis": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OMW5CMQyGexRLwGjJsR2TzFU5QrcKPfKSiq1CXKFH6NitAzsrx+AgPUKTgFDfiyL5z+8vv03A4EAMXPISkyrmYgOqLwlDkIRl9Ewx5miegCrb+K44VOVAm2OwuCx+r1/P5894+n77WS0rwS3XNAnvUkDKyaMGLhiEHZrP47rorpiWztaMp9np8wj6OAUBJoNatLpt6d4Wcr32XWaGzQ39ZxDk8T1vDzntP/J2HI4DvEAAdPfLsKlParKJu/d6Q6R7PGk+8JY94WTSfnyo3B9wIYODfwEAAA==",
+              "body_name": "AxisSeedBody",
+              "start_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "geometry_type": "adsk::core::Line3D"
+            },
+            "actual_settings": {
+              "operation": 3,
+              "is_solid": true,
+              "is_project_axis": false,
+              "angle_radians": 1.2740903539558606,
+              "result_body_count": 1
+            },
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "617bd3a00021f0290a979b6603fbd1bc23b72098f4e1e59aea72a2e46eca65ae",
+      "current_output_sha256": "9002b0f059666f7ef1b33ecc46500857a1178de66c98ef23f0213117c98c9bcb",
+      "qualified_difference_paths": [
+        "/streams/0/features/3/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolveaxes-14700158dba9/brep_edge_offset_x.f3d",
+      "archive_sha256": "35ddeaf96652d5c9c0b56a2a54dc3ded33367cc963deb3b8d5d2496c37e825e9",
+      "decoded_Revolves": 1,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 1,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 339,
+          "source_reference": {
+            "feature_object_id": 339,
+            "native_sketch_object_id": 282,
+            "native_profile_descriptor_object_id": 343,
+            "native_profile_loop_definition_object_id": 346,
+            "native_profile_Line_ids": [
+              327,
+              335,
+              319,
+              311
+            ],
+            "native_profile_POINT_ids": [
+              323,
+              325,
+              331,
+              333,
+              315,
+              317,
+              307,
+              309
+            ],
+            "native_component_points_cm": [
+              [
+                4.1,
+                1.6,
+                0.0
+              ],
+              [
+                2.1,
+                1.6,
+                0.0
+              ],
+              [
+                2.1,
+                1.6,
+                0.0
+              ],
+              [
+                2.1,
+                0.8,
+                0.0
+              ],
+              [
+                4.1,
+                0.8,
+                0.0
+              ],
+              [
+                4.1,
+                1.6,
+                0.0
+              ],
+              [
+                2.1,
+                0.8,
+                0.0
+              ],
+              [
+                4.1,
+                0.8,
+                0.0
+              ]
+            ],
+            "native_axis_selection_record_object_id": 347,
+            "native_axis_kind": "BRepEdge",
+            "native_axis_origin_cm": [
+              4.8,
+              0.0,
+              0.0
+            ],
+            "native_raw_axis_direction": [
+              -1.0,
+              0.0,
+              0.0
+            ],
+            "native_sketch_normal": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "source_only_orientation_triple_product": -2.4000000000000004,
+            "effective_axis_direction": [
+              1.0,
+              -0.0,
+              -0.0
+            ],
+            "radial_reference": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "independently_derived_angular_interval_radians": [
+              0.0,
+              1.2740903539558606
+            ],
+            "axial_interval_cm": [
+              -2.6999999999999997,
+              -0.7000000000000002
+            ],
+            "radial_interval_cm": [
+              0.8,
+              1.6
+            ],
+            "independently_derived_volume_cm3": 2.4462534795952524,
+            "independently_derived_bounds_cm": [
+              [
+                2.1,
+                0.23389736377818943,
+                0.0
+              ],
+              [
+                4.1,
+                1.6,
+                1.5300876095408569
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Native profile/Sketch/axis joins precede source-only right-handed orientation, ring-sector integral and bounded angular extrema; no cached axis/vertices fit the sign"
+          },
+          "raw_native_provenance_records": 21,
+          "native_source_provenance_sha256": "cd3168fcf60f0f31f9edbaa7d36abd9d18658a3749aeff6cb5169860f5aa9a57",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 6,
+              "loop": 6,
+              "coedge": 24,
+              "edge": 12,
+              "vertex": 8
+            },
+            "independently_evaluated_finite_native_endpoints": 24,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 32,
+            "literal_EDGE_reversal_flags": {
+              "False": 12
+            },
+            "maximum_native_endpoint_residual_raw": 3.1401849173675503e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "revolveaxes-14700158dba9/ground_truth.json",
+            "actual_numerical_control_checks": 4,
+            "actual_axis": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/22OTUoEQQyFPYCHyMJtJH9TXXUABRG3sx26q9LibhDP4h3mDHoeh7mEWFXTgtMYAnm8fLyEQIBBA9gcZ1dmnAYxtLwpGJlHLDmrRE+zlgRU2cZTUxKrYrDmBDiePq6Hw9P359fh4fb95rES0nKVZp+UEpKEiFY8Y0yc0E3ZPJWJhtjZmnG1qn6PoJ8zUBAKUIdVt3boayXus/+yMjZrQ/8YBF6efffq+WXvuzK+jXAHEZCXFriH9lmVTSze9ozo5VIuqJb9P8e/QhfuB183GPd/AQAA",
+              "body_name": "AxisSeedBody",
+              "start_cm": [
+                4.8,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.1,
+                0.0,
+                0.0
+              ],
+              "geometry_type": "adsk::core::Line3D"
+            },
+            "actual_settings": {
+              "operation": 3,
+              "is_solid": true,
+              "is_project_axis": false,
+              "angle_radians": 1.2740903539558606,
+              "result_body_count": 1
+            },
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "saved_API_result_vertex_set": null,
+            "API_ENTITY_assignment": null,
+            "scope": "Saved API source-axis/angle controls corroborate after native source joins; these twelve captures contain no saved numerical result bounds, volume or vertex set"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "e09d376847e9c7996b05023e3e2f313c87617beca45f15a1a2660ac8f17bf2ac",
+      "current_output_sha256": "128c0bc96ea178f539c352d844487fa1eb7053b6fb732d3273f2ae24ac73281c",
+      "qualified_difference_paths": [
+        "/streams/0/features/3/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "analytic-86a12b291d0a/analytic.f3d",
+      "archive_sha256": "112a306c4cdda76c99fcdd3beec459bdc83cb4aaa91289a5830ceea8982a0288",
+      "decoded_Revolves": 3,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 3,
+      "independent_geometry_proofs": [
+        {
+          "feature_object_id": 242,
+          "source_reference": {
+            "feature_object_id": 242,
+            "native_sketch_object_id": 202,
+            "native_profile_descriptor_object_id": 246,
+            "native_profile_loop_definition_object_id": 249,
+            "native_profile_primitive_ids": [
+              234,
+              238
+            ],
+            "native_profile_kind": "Sphere",
+            "native_axis_selection_record_object_id": 250,
+            "independently_derived_coefficients": {
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "radius_cm": 2.0
+            },
+            "independently_derived_volume_cm3": 33.510321638291124,
+            "independently_derived_bounds_cm": [
+              [
+                -2.0,
+                -2.0,
+                -2.0
+              ],
+              [
+                2.0,
+                2.0,
+                2.0
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Typed native selected profile and axis establish full-turn analytic equations before cache or API comparison; source mathematical roles assign no result ENTITY"
+          },
+          "raw_native_provenance_records": 20,
+          "native_source_provenance_sha256": "5b2d312910841320537cfd0273d27fb70bb64c3ef0847ff7b8a993ad28b8c4c9",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 1,
+              "loop": 0,
+              "coedge": 0,
+              "edge": 0,
+              "vertex": 0
+            },
+            "independently_evaluated_finite_native_endpoints": 0,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 0,
+            "literal_EDGE_reversal_flags": {},
+            "maximum_native_endpoint_residual_raw": 0.0,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "analytic-86a12b291d0a/ground_truth.json",
+            "native_body_object_id": 276,
+            "explicit_stored_BODY_name": "Sphere",
+            "actual_API_body_geometry": {
+              "name": "Sphere",
+              "face_count": 1,
+              "edge_count": 0,
+              "vertex_count": 0,
+              "vertex_positions_cm": [],
+              "surfaces": [
+                {
+                  "kind": "Sphere",
+                  "origin": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "radius": 2.0
+                }
+              ]
+            },
+            "complete_unordered_native_vertex_positions_cm": [],
+            "API_ENTITY_assignment": null,
+            "geometry_selects_native_or_API_identity": false,
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "scope": "Native owned anchor/BODY/name/same-asset stored-ID mapping precedes uniquely named complete API analytic coefficients/counts and unordered vertex-bundle corroboration; no ordinal or coordinate ENTITY mapping"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        },
+        {
+          "feature_object_id": 314,
+          "source_reference": {
+            "feature_object_id": 314,
+            "native_sketch_object_id": 283,
+            "native_profile_descriptor_object_id": 318,
+            "native_profile_loop_definition_object_id": 321,
+            "native_profile_primitive_ids": [
+              310
+            ],
+            "native_profile_kind": "Torus",
+            "native_axis_selection_record_object_id": 322,
+            "independently_derived_coefficients": {
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "unit_axis": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "major_radius_cm": 4.0,
+              "minor_radius_cm": 0.75
+            },
+            "independently_derived_volume_cm3": 44.41321980490211,
+            "independently_derived_bounds_cm": [
+              [
+                -4.75,
+                -0.75,
+                -4.75
+              ],
+              [
+                4.75,
+                0.75,
+                4.75
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Typed native selected profile and axis establish full-turn analytic equations before cache or API comparison; source mathematical roles assign no result ENTITY"
+          },
+          "raw_native_provenance_records": 17,
+          "native_source_provenance_sha256": "3f705bf14083d1cee7c7bd7a06a804a09763bd115b5c8711e415de7cdbc2fce3",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 1,
+              "loop": 0,
+              "coedge": 0,
+              "edge": 0,
+              "vertex": 0
+            },
+            "independently_evaluated_finite_native_endpoints": 0,
+            "null_curve_singular_EDGE_count": 0,
+            "incident_planar_FACE_endpoint_checks": 0,
+            "literal_EDGE_reversal_flags": {},
+            "maximum_native_endpoint_residual_raw": 0.0,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "analytic-86a12b291d0a/ground_truth.json",
+            "native_body_object_id": 348,
+            "explicit_stored_BODY_name": "Torus",
+            "actual_API_body_geometry": {
+              "name": "Torus",
+              "face_count": 1,
+              "edge_count": 0,
+              "vertex_count": 0,
+              "vertex_positions_cm": [],
+              "surfaces": [
+                {
+                  "kind": "Torus",
+                  "origin": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "axis": [
+                    -0.0,
+                    -1.0,
+                    -0.0
+                  ],
+                  "majorRadius": 4.0,
+                  "minorRadius": 0.75
+                }
+              ]
+            },
+            "complete_unordered_native_vertex_positions_cm": [],
+            "API_ENTITY_assignment": null,
+            "geometry_selects_native_or_API_identity": false,
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "scope": "Native owned anchor/BODY/name/same-asset stored-ID mapping precedes uniquely named complete API analytic coefficients/counts and unordered vertex-bundle corroboration; no ordinal or coordinate ENTITY mapping"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        },
+        {
+          "feature_object_id": 396,
+          "source_reference": {
+            "feature_object_id": 396,
+            "native_sketch_object_id": 353,
+            "native_profile_descriptor_object_id": 400,
+            "native_profile_loop_definition_object_id": 403,
+            "native_profile_primitive_ids": [
+              392,
+              388,
+              382
+            ],
+            "native_profile_kind": "Cone",
+            "native_axis_selection_record_object_id": 404,
+            "independently_derived_coefficients": {
+              "base_center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "apex_cm": [
+                0.0,
+                3.0,
+                0.0
+              ],
+              "unit_axis_toward_apex": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "base_radius_cm": 2.0,
+              "axial_height_cm": 3.0,
+              "half_angle_radians": 0.5880026035475675
+            },
+            "independently_derived_volume_cm3": 12.566370614359172,
+            "independently_derived_bounds_cm": [
+              [
+                -2.0,
+                0.0,
+                -2.0
+              ],
+              [
+                2.0,
+                3.0,
+                2.0
+              ]
+            ],
+            "native_ENTITY_assignment_by_coordinates": null,
+            "scope": "Typed native selected profile and axis establish full-turn analytic equations before cache or API comparison; source mathematical roles assign no result ENTITY"
+          },
+          "raw_native_provenance_records": 21,
+          "native_source_provenance_sha256": "658fd410ceb9e6000d5e7758f9bbedc10f5c22148c90ae22a59b45d45d3b4595",
+          "independent_native_cache_geometry": {
+            "native_cache_counts": {
+              "lump": 1,
+              "shell": 1,
+              "face": 2,
+              "loop": 3,
+              "coedge": 3,
+              "edge": 2,
+              "vertex": 2
+            },
+            "independently_evaluated_finite_native_endpoints": 2,
+            "null_curve_singular_EDGE_count": 1,
+            "incident_planar_FACE_endpoint_checks": 2,
+            "literal_EDGE_reversal_flags": {
+              "False": 2
+            },
+            "maximum_native_endpoint_residual_raw": 4.898587196589413e-16,
+            "mathematical_role_to_native_ENTITY_mapping": null,
+            "scope": "Fresh typed mapped BODY topology and full literal node copies; reciprocal FACE/LOOP/COEDGE ownership plus independently evaluated raw finite Line/Circle domains, preserving singular edges and zero-edge smooth surfaces"
+          },
+          "saved_API_corroboration": {
+            "truth_file": "analytic-86a12b291d0a/ground_truth.json",
+            "native_body_object_id": 432,
+            "explicit_stored_BODY_name": "Cone",
+            "actual_API_body_geometry": {
+              "name": "Cone",
+              "face_count": 2,
+              "edge_count": 2,
+              "vertex_count": 2,
+              "vertex_positions_cm": [
+                [
+                  0.0,
+                  3.0,
+                  0.0
+                ],
+                [
+                  2.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              "surfaces": [
+                {
+                  "kind": "Cone",
+                  "origin": [
+                    0.0,
+                    1.5,
+                    0.0
+                  ],
+                  "axis": [
+                    -0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "radius": 1.0,
+                  "halfAngle": 0.5880026035475676
+                },
+                {
+                  "kind": "Plane",
+                  "origin": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal": [
+                    -0.0,
+                    -1.0,
+                    0.0
+                  ],
+                  "uDirection": [
+                    1.0,
+                    -0.0,
+                    0.0
+                  ],
+                  "vDirection": [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                }
+              ]
+            },
+            "complete_unordered_native_vertex_positions_cm": [
+              [
+                0.0,
+                3.0,
+                0.0
+              ],
+              [
+                2.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "API_ENTITY_assignment": null,
+            "geometry_selects_native_or_API_identity": false,
+            "saved_API_result_bounds": null,
+            "saved_API_result_volume": null,
+            "scope": "Native owned anchor/BODY/name/same-asset stored-ID mapping precedes uniquely named complete API analytic coefficients/counts and unordered vertex-bundle corroboration; no ordinal or coordinate ENTITY mapping"
+          },
+          "scope": "Native selected profile/axis/component/owned anchor/BODY/same-asset IDs and literal frames precede independent equations; no target-axis fitting or coordinate ENTITY assignment"
+        }
+      ],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "7537c8b53eb162c4d33e7ab9822a7aa7e49cbf576a16450498bb76734c58325b",
+      "current_output_sha256": "3d511df39931358a00417ec83f0a65dcdc6de82b346155988c13eab81176acc7",
+      "qualified_difference_paths": [
+        "/streams/0/features/1/revolve_reconstruction",
+        "/streams/0/features/3/revolve_reconstruction",
+        "/streams/0/features/5/revolve_reconstruction",
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolvemodes-8eb734486235/join.f3d",
+      "archive_sha256": "0c6c9554369108cf27e345692d8af4ea995d25cf0411f8f447cba7ae04884236",
+      "decoded_Revolves": 0,
+      "explicit_unresolved_Revolves": 2,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "4d5df801fa309cd856a27d5f49c1b5276886128caa21e9038db562cc70905507",
+      "current_output_sha256": "0a1b69afc037f0503faec25a24780e760d8d85f74f7a79520f016930363569fc",
+      "qualified_difference_paths": [
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolvemodes-8eb734486235/cut.f3d",
+      "archive_sha256": "376b2508c110a33f8b53d8eed041cd0ab69f1d4e8f37daecfecfb31b87d819c6",
+      "decoded_Revolves": 0,
+      "explicit_unresolved_Revolves": 2,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "9a4d388edb62a72989e34e26f9858072d567744c018721cc8c611089a6cd22ff",
+      "current_output_sha256": "3337c820759aa77fd5d3aac0bb269b3876f623880286cf5c5cb9083a98af6d19",
+      "qualified_difference_paths": [
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolvemodes-8eb734486235/intersect.f3d",
+      "archive_sha256": "e7fa841a95c040d5b4bc1162a59d8eaf99a66b6b042ed11ea9039a0d8293791e",
+      "decoded_Revolves": 0,
+      "explicit_unresolved_Revolves": 2,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "311e174451f7338c7b284404e9fe629a1a8fe1e8e4300403a5af9b902cc99b38",
+      "current_output_sha256": "83c718219710000fd9493c1b627a89e2ebe2c1b590ac6dd9f24a19adb534e0ed",
+      "qualified_difference_paths": [
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolvemodes-8eb734486235/surface.f3d",
+      "archive_sha256": "2fb694e3a726305dd9477fbbaa9892787e9663cdc9582e43559c025350c50014",
+      "decoded_Revolves": 0,
+      "explicit_unresolved_Revolves": 1,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "c1c3b7365eb12856a1b8e96c34e1f6d87de1ab17b1b6b9d938804518234d145f",
+      "current_output_sha256": "4ff099435b0d654fdfcaa32a634ea55883381823bc955ca1ca1d6b2748899493",
+      "qualified_difference_paths": [
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolvemodes-b9796d532f94/project_axis.f3d",
+      "archive_sha256": "2ee5e9276515b0fa3e7ebb77e3862640c4337f7d260249fd85ac6df67c66e2b2",
+      "decoded_Revolves": 0,
+      "explicit_unresolved_Revolves": 1,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "5b94363678604093890a09c425d6ed1e656a1d616af944a5d843c8f889cd6024",
+      "current_output_sha256": "dbbb137658fa79c427d6bc7f18382b8372c27ca2318816ce438ce4d5515b0db5",
+      "qualified_difference_paths": [
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolveto-b1d196f65c46/positive_plane.f3d",
+      "archive_sha256": "299bf66259bcb9ab26ee67f95f02a5f220756817056ca9072fb51b847b8ea76a",
+      "decoded_Revolves": 0,
+      "explicit_unresolved_Revolves": 1,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "572969c37f65495429fb8fac74bbc59eb6c0ae7f77bcdf8f4aec2113259fbf1c",
+      "current_output_sha256": "42289c291babe7dec36104355182a04625f9853308ff318be915727c3acfcd51",
+      "qualified_difference_paths": [
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolveto-b1d196f65c46/negative_plane.f3d",
+      "archive_sha256": "a9cec752cb0b358b5505fb822a2964f7e5781436065237d15be9ed03ffc7e3ab",
+      "decoded_Revolves": 0,
+      "explicit_unresolved_Revolves": 1,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "d92c5ebaac13102cf235242ce4c87aa33067151932e4d93183da108aedddfa64",
+      "current_output_sha256": "3a98dac4c1bdae430960f430e370d81e9561469928b0c5cd4aa9d1bf79c09a89",
+      "qualified_difference_paths": [
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "revolveto-b1d196f65c46/two_planes.f3d",
+      "archive_sha256": "241cae4afc972dca05add63dcce6f515ab3a9e7c6b31cbf9ce54dda03e40a492",
+      "decoded_Revolves": 0,
+      "explicit_unresolved_Revolves": 1,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "9294f3824b28b1fffbef8b3a95ca38d6101d6b9e84a0cab73c67525ce54e8200",
+      "current_output_sha256": "549358b440764d5df307402f3b01674b4887b72a84b087809a7b0cda92663edd",
+      "qualified_difference_paths": [
+        "/streams/0/revolve_reconstruction"
+      ]
+    },
+    {
+      "archive": "extents-f0f33a9a605f/distance_positive.f3d",
+      "archive_sha256": "dd9067920bccc513668d479ae4e32c88456aac037c2dcf976e5d9d7dc310ffe0",
+      "decoded_Revolves": 0,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "4b5e4dc946f38d136459a5001f2a7ac1eec850d93f6baabfd2804b7043a5d844",
+      "current_output_sha256": "4b5e4dc946f38d136459a5001f2a7ac1eec850d93f6baabfd2804b7043a5d844",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "placement-c6ad25e75d60/placement.f3d",
+      "archive_sha256": "bbc9669c1767727dc5f3a1aefe955338608caa4a87a221d61f70a5bd189b38be",
+      "decoded_Revolves": 0,
+      "explicit_unresolved_Revolves": 0,
+      "receiving_feature_annotations": 0,
+      "independent_geometry_proofs": [],
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_new_summary_and_successful_owner_annotations": true,
+      "all_previous_profile_settings_warnings_kinds_timeline_ASM_geometry_topology_and_placement_exact": true,
+      "baseline_output_sha256": "f0a87b2ae735aa0036d65e1a2701d6fd1ae9081f0c552ed4d1dce887e3ca4ba3",
+      "current_output_sha256": "f0a87b2ae735aa0036d65e1a2701d6fd1ae9081f0c552ed4d1dce887e3ca4ba3",
+      "qualified_difference_paths": []
+    }
+  ],
+  "fixed_manifest_acquisition": {
+    "baseline_main_calls": 23,
+    "current_main_calls": 23,
+    "baseline_passes": 1,
+    "current_passes": 1,
+    "interpreter": "/usr/bin/python3",
+    "entrypoint": "decode_basics.decode_basics(ROOT / filename, zstd_library)",
+    "fixed_order": [
+      "models-97a5e41e2ba7/revolve_partial.f3d",
+      "models-97a5e41e2ba7/revolve_full.f3d",
+      "revolvemodes-8eb734486235/positive.f3d",
+      "revolvemodes-8eb734486235/negative.f3d",
+      "revolvemodes-8eb734486235/symmetric.f3d",
+      "revolvemodes-8eb734486235/two_sided.f3d",
+      "revolvemodes-8eb734486235/axis_x.f3d",
+      "revolveaxes-36bd04ac77e1/custom_two_points.f3d",
+      "revolveaxes-a83b542c4a07/sketch_line.f3d",
+      "revolveaxes-a83b542c4a07/sketch_line_reversed.f3d",
+      "revolveaxes-a83b542c4a07/brep_edge.f3d",
+      "revolveaxes-14700158dba9/brep_edge_offset_x.f3d",
+      "analytic-86a12b291d0a/analytic.f3d",
+      "revolvemodes-8eb734486235/join.f3d",
+      "revolvemodes-8eb734486235/cut.f3d",
+      "revolvemodes-8eb734486235/intersect.f3d",
+      "revolvemodes-8eb734486235/surface.f3d",
+      "revolvemodes-b9796d532f94/project_axis.f3d",
+      "revolveto-b1d196f65c46/positive_plane.f3d",
+      "revolveto-b1d196f65c46/negative_plane.f3d",
+      "revolveto-b1d196f65c46/two_planes.f3d",
+      "extents-f0f33a9a605f/distance_positive.f3d",
+      "placement-c6ad25e75d60/placement.f3d"
+    ],
+    "scope": "Original fixed acquisition; separate from this cached comparator with zero main-reader calls"
+  },
+  "baseline_snapshot_provenance": {
+    "reproducible_git_archive_sha256": "cc6527519f6c426bd2f40b3523e822e7ab38610f5c1c145d7d3735f9eb956b9e",
+    "archived_Python_source_sha256": {
+      "CaptureSurfaceEvidence.py": "bc0bd0e65a37fb05d50987413803e8b2bf5f1232574264bb556c2cce4771b9f0",
+      "ExpandTimelineSample.py": "23590b1a5a172122f0656d7233b4d2eb32be07986f4bcc197e95b460a1d93c52",
+      "FusionFileStudy.py": "fb2ddea5438ecf33398655d86db137eaff99d9b36dcf2086eb9d1101ec42cf6e",
+      "GenerateAnalyticBodies.py": "d4afd4804675f4010b4cde1e9e5202bea1038993f9add7e42b3c2eebb629cd84",
+      "GenerateApiExecutionStatus.py": "eb4dd4b428bb41df6881d07a9a2f6f083d6962ce5ad8f99e0e8112103ff76d3f",
+      "GenerateAsBuiltJointContrasts.py": "2eacf662cacf751b4d163273ab36e2e8c34449e6bfff37ce47500c245a9df81e",
+      "GenerateAssemblySamples.py": "63ac9a387d664670abdd262cbbbfac0da89234d3a6da155377e614df11c81cc1",
+      "GenerateAsymmetricFilletFlipContrasts.py": "70f04b5e428aaf7f2286f9ca5c49c5e4dac0f1c57003c230ab406af6de5f5088",
+      "GenerateBodySelectionModes.py": "472df8d6596afdd6c2c203488f90d46ece67c635247480d12b89402656e8d51a",
+      "GenerateBodyToolHoldouts.py": "e19c727ff1010df12d6d23997af4243233e6436bf082c7b309fc0aec054128ea",
+      "GenerateBodyToolModes.py": "dc361c44166e6a0b11ac320d5d7834b1d290406857b94836d9cb98766a84846c",
+      "GenerateBossContrasts.py": "e16a320e593a69475350d93ef110c2bdaf5c2e389db3d1f438d375aea1443171",
+      "GenerateBoundaryFillSamples.py": "7945793f81bf0401944bf4fb71b48405849d004db13c176f1f87a66f422045cc",
+      "GenerateCircularGetterHandleProbe.py": "fda5bae0e18fb707d60aa53583e321a5f224bef69dafc31b7246d6141df70dee",
+      "GenerateCircularPatternModes.py": "01fd379d562dcdce630b759c1613191eb9e6bdb5e3be8307657dd06d233d0c6d",
+      "GenerateCircularSymmetricSuppressionContrasts.py": "971c83cc9a5c6218fb6bf809f427f686d3837580d627cbd69265c11caffdf86b",
+      "GenerateCircularSymmetricSuppressionHoldouts.py": "164e48bc0f826ecc58ddb118104c703d313f148ced28d0ad1e657711a9aa4ee5",
+      "GenerateCombineModes.py": "d43eb70530bd4862b738f80053937cee8f8e7678f9796ade1984e438d7274c22",
+      "GenerateCommandDefinitionInventory.py": "348079e27d2bb0092354df8a7216bada21406b631b8914cb986571befe69aa89",
+      "GenerateComponentColorContrast.py": "9f9510b298d53331d501aad9abe24ceea11e7e48e614247e24f37e67fd5cb9f5",
+      "GenerateConstructionHoldouts.py": "55ce4170e16420060d97b803ea82ded4108bfe69d9b0a60e616260d8b1f7fc7b",
+      "GenerateConstructionModes.py": "88261346948bd9ea1a7a7f5a520a0f1936c43ac8c8ab867207193c287d3dbb02",
+      "GenerateDatumMirrorSupportContrasts.py": "18f1fdd4b40d81fe70c31cd2cbc69e782782d542e515155c41695888491c6356",
+      "GenerateDimensionControlModes.py": "0ad1ee987f10771e3515154943fb56f8b9d244480eda316d129d680a44f8ac2b",
+      "GenerateDimensionSamples.py": "5a3ff59d21b82d6061fa7317bbd0218091efad901a76908b6e0e534f011088f4",
+      "GenerateDiscoverySamples.py": "6aa5b9b7cb10337df4035c8602a8b2c3f3dbeaee44032fcbb788456e1f7c62e6",
+      "GenerateDraftModes.py": "83398017870668a0960c417dbb346c22f4de10976a5690ee13b13ceeff742458",
+      "GenerateEdgeToolHoldouts.py": "0cdd75f9f1e7cb43dc8a4f237d99fd63f8ce45f14d6a9398cf7375b5a847ab54",
+      "GenerateEdgeToolModes.py": "7e18aeffd417f47b27e33456c0c3be72402b3d72c2ebd66f69a9788c645310da",
+      "GenerateEmbossModes.py": "b7b60acd0aa8363345aae377f8d905f96ef99d64c146db5ec7dbad12c118e0d2",
+      "GenerateEmbossTextModes.py": "2d7db1a787bb82c87a7d36098ed0284414c2f6ce88d829936a085ca1bad88edc",
+      "GenerateExtentSamples.py": "f4a5482d4f63f398048871954db0b2f276939e11ec3003c361afbe6242505f9d",
+      "GenerateFaceEdits.py": "1e6cc740bb6f0a498149d3ddd43374040f6873a4355f739adff27087da5ed1c8",
+      "GenerateHoldouts.py": "decca5f0cf149ea451f85a77946c22cadeb03ac24490f4d071730f38a55d92f4",
+      "GenerateHolePlacements.py": "d3ff18166e58d93c63f675e422e74ac19590dd14cb3a07f58c140d6b53d13c25",
+      "GenerateHoleSamples.py": "7e8457fc42c8c76dd1fb5ce1b5771b1c8fe3e6582b06b3a05f860d461d258495",
+      "GenerateInspectRuleWitnessQuarantine.py": "4c439d64a7cca48e20ce8919f820056aa9ea01b4f476e0c00b5eff85029af10c",
+      "GenerateJointModes.py": "99dbbecd559b8a9c9b657f37acb1f831eb0ac64f0e031d2d32556fda368b8376",
+      "GenerateLineTrimHoldouts.py": "19bd363908ea2872f69a9436b9aa2609e367b74d5bebfd2f543f2b9e2b41be97",
+      "GenerateLoftBrepEndModes.py": "efd1a5c5dc90a2d0effc0117c621ad66e1d5c0970ca1eba5472cc5c40c81e3b3",
+      "GenerateLoftCompositeGuideModes.py": "37e4f7946d44022d0a326fcbb68c5306b116e8aa85b58862250fcdeee798bd18",
+      "GenerateLoftCurvedGuideModes.py": "a31fb065dde3c304587f8c1af69ebf58b0a203d0808a217cd3308cf6537de8eb",
+      "GenerateLoftFaceModes.py": "8846317fce3c46eebfaf4df702cb60a6d5f027c98939704862e51bd044737838",
+      "GenerateLoftGuideModes.py": "7c8e6783f76bcbc4c3adc66e6397e55c3019b96d61d69e8fde23d78ad1f542cf",
+      "GenerateLoftHoldouts.py": "c951ca556c4babfb9d9718f103b699b8ddb1e061715e74a31d77fe76a01b0fb7",
+      "GenerateLoftModes.py": "cebd8ffd7c7d8c70ec54aa5a9a3e1ebb90b64eb1ea872144e9720c6d2349a746",
+      "GenerateLoftOperationModes.py": "3c9d20ae14c056fde58e37b5e63a54469d242d3eeed24c9be6a7bd924cbef0df",
+      "GenerateLoftPointHoldouts.py": "1623d645e228cd66822f0e7f63c0fb9bbd8cce6b413ae0dd9a1eed03ac15e2af",
+      "GenerateLoftPointModes.py": "575739b72f0fa50f63da40f46330579bed6ed20b05e38d67595f708f0e69553a",
+      "GenerateLoftPointWeightHoldout.py": "b12d7b829a340616cf0e42b272e74deebe33f607f7f45108b292e3271d971e81",
+      "GenerateMeshCombineContrasts.py": "d381d456ed3b4ec9f037ff4ae965a7923f9a0e08ba71cff90ccbba7ddc9c68d2",
+      "GenerateMeshCombineFaceGroupContrasts.py": "ea09e12c5bc325d87b534e737001dd5c5176f447313064ee6a02b32b23e3fe79",
+      "GenerateMeshContrasts.py": "d03e939e7f39024d63c60f6e05ba9abef60068295c6b20184b739263096c1db1",
+      "GenerateMeshConvertContrasts.py": "c87bd48d7889bbc4951f59c2831a8782a620c46d9ef4b3c35c00ff64f5af810c",
+      "GenerateMeshConvertOperationContrasts.py": "76e24f2b3dbff14b9824ac1b17ef6390e248c82cc42c0b7dcee1fe41785c4571",
+      "GenerateMeshFaceGroupContrasts.py": "eaa429cf32de4afa70e0a0b7433012ed653555fcc5792cea8afed10245db0f30",
+      "GenerateMeshPlaneCutContrasts.py": "080392ce42cdacef2694add89c9d287e349a0557abfc1b06234c1d1d9056990e",
+      "GenerateMeshReduceContrasts.py": "a8664428f87f379a0618cd7d37dd4a2ba71208f4fb3a79db9cf97b04d50c5bee",
+      "GenerateMeshReduceDeviationContrasts.py": "7fe9812a92673fe8297dd497ef73fc76f3e0a972496c9ab12e35b3f55e7676a0",
+      "GenerateMeshReduceProportionHoldout.py": "13c3929d9d39778e3b7392a8446b354eefe07ce95907f12ef66ec7a63c88b18b",
+      "GenerateMeshRemeshContrasts.py": "0c1a6aac7b4f78727eec9838a2beb80f32b5656ffc40dc59ef29fc897036a7e0",
+      "GenerateMeshRemoveContrasts.py": "aa1420f1e704ef52e77fb177886d7b623fcb683790b3e99cdf1c6965c2988714",
+      "GenerateMeshRepairContrasts.py": "1d12f76ca197adae3dca065f8805b380e900a65b0fcdaaf50bd69acc056ae31a",
+      "GenerateMeshRepairRebuildContrasts.py": "cca5e46b9d7ca0ca92f3f02f4e0f2578ed7de6241d2f8d81fcdfacf0efa0e551",
+      "GenerateMeshReverseNormalContrasts.py": "8e28a57af3b12f2618009fe04fd8a1d12f75d7ba02be44116eb233849224f9a9",
+      "GenerateMeshSeparateContrasts.py": "287d88dba5ab72b8aec4e7698970aa29976a0a7fc69fe17a10acb3fafc6a58e6",
+      "GenerateMeshShellContrasts.py": "6f68b23ad57334e70432ee582f35231dfe182aa3760c0af4474cfd438a732a53",
+      "GenerateMeshSmoothContrasts.py": "e17f82a59f83a04eed005c7cb5d7d1ab3135a6cbdd1af17383cf446928d95454",
+      "GenerateMirrorAssemblyDatumHoldouts.py": "8d82dfc77e82cccf59417eb44cd3bf957a30388a803660780205f85a5b524f2f",
+      "GenerateMirrorFeatureModes.py": "016238a74177b1ebf7f42a09cebef79d58b684d47c2b534249191715b17fc02e",
+      "GenerateMirrorNestedOccurrenceRetry.py": "3679af69680169d3f5f60d3fd67b76d38da956e52590c1b529ef48a906aadb16",
+      "GenerateMixedProfileTrimContrasts.py": "71f4d9b198406d5dbac520e185b1753468b54ab8f57a29ddad81531824a8dac5",
+      "GenerateModelFeatures.py": "3c674c8fc06183d7e59c78615d763646e7ef098a4c078bc1e0446c41b8a7bb83",
+      "GenerateMoreSketches.py": "6fa350a028881cb5e1e66455dd6beff70342ef82a481cf1f2b4c9ed1f19dd18d",
+      "GenerateMoreToolSamples.py": "256aebc078e1842b44896b245a89a88428ed971c337be05f3f8fc9d7cfa97f39",
+      "GenerateMoveHoldouts.py": "ac64b4781afc2d18c6bf499575c45531f114030ad810b024ccb5e3e5de065cae",
+      "GenerateMoveModes.py": "3d3407832bc966e7974e574cb49cf8be1208508c0c239205551d438e14b74d2e",
+      "GenerateNamedBodyAssembly.py": "49129ea023188d843d0e5a99a43ecea8a6b025322e600d5c56f535e6e94901e8",
+      "GenerateNamedVertexSelectionProbe.py": "9ff2846dadcaa5da3ac5f20b8092b4fd316ad1a01a202cfc79b0374a7c849370",
+      "GenerateParameterExpressionModes.py": "ec43133a9663c7753f2011a6513772ac9b959db52c74fba1267aaac738e5710a",
+      "GenerateParameterFunctionModes.py": "f0828218f73949431d48e8b767b7ab289c52b8a14b23c3feb9e0e298a7674015",
+      "GenerateParameterIdentityContrasts.py": "92083898703057b868c31bbb6069edc08ae55e8edf01e68b2e3862bc5cfb4d34",
+      "GenerateParameterTextModes.py": "46dee9c36a836158b75f969dc105f84ee129f6d80a5c44a85d5154850e15d26d",
+      "GeneratePartingLineDraftContrasts.py": "0ab31f579cdad5fe0f98cc1430f3afd76a96b58f399809d7f650b597841dede4",
+      "GeneratePatchContinuityContrasts.py": "ec766b26e8865d86c5b05760c757220fe99a07ca43209629b498b956c0c45437",
+      "GeneratePathPatternCompositeModes.py": "bd460fc34af70467b2332091698b42b253f0599fe8cdde01f8af0f5b5c8cd2e3",
+      "GeneratePathPatternInputContrasts.py": "82547904202acc73ce6ae845583e14e8294098e2bfbdc4856cb1513e1061138c",
+      "GeneratePathPatterns.py": "6fa1911d0919eda30bfe0c2f5f96ce15bd3ca7588c7235e9f44138d2d3f08a69",
+      "GeneratePatternModes.py": "0cb2d5fc85c6a075e0254a13771b01847793cf7a0559cc565ed3006625c7bc5e",
+      "GeneratePipeEdgeModeContrasts.py": "a908540aa698e233e08e198918c2a672f854b55385efb70c99fd1f5fe9f36963",
+      "GeneratePipeModes.py": "eca3955db1f29fa61e162c118784f184daeca04b6168564a2dc30f34e8917181",
+      "GeneratePipeOperationContrasts.py": "83149cb97c00eebf9a1923e19a094fd5ad3eb91db6a691feb47a2c2f592c48cb",
+      "GeneratePipePathModes.py": "22d7dce049ba2d20120209367fd48cc726297e280cf78f143b210efdb78e4b6c",
+      "GeneratePlacedProfileTrimContrasts.py": "2af3cb8e959da8079c685ddf120fe838d930c7809b29e5f208ceadcb314470c1",
+      "GeneratePlacementSamples.py": "3492d753c519cd78304fefe58e2730674bf3db6dd5e5241e93edfc087aade0d1",
+      "GeneratePlaneDefinitions.py": "3b0ba8c3765352735808f668c74092340695a805dbcffee889e64facacad143f",
+      "GenerateProfileSamples.py": "ea92068b7bbc65dee891da2816e183df177af6e081831a1375ddbf0f903801d2",
+      "GenerateRecoverRuleSurfaceWitness.py": "9ae0631641f850da47b7e7cc7781d975cbfd0b69b71bc57a5b88b1aaad7f8b2f",
+      "GenerateRectangularPatternModes.py": "160822c84d1fa68060facfce49d2d134e049f2243565af3d86b877e971416b97",
+      "GenerateRectangularSuppressionHoldout.py": "940cda51099550d46921b45df38270c65f1ef1595c39c2c59be26d4adeb71c79",
+      "GenerateRectangularSymmetryHoldouts.py": "eeec835621bc5f6d398683a8e8821886270e8bdb9c0d163ca845ecffee6b57f1",
+      "GenerateRectangularSymmetryModes.py": "63a814c65f264cb57bba9afb7372586f49d968b8f52348dcb03bdd9da1aa4a3b",
+      "GenerateRemainingBodyInputModes.py": "c06a521afcb7313b75b6f18673813fc966d934ff7cb551861addf1d7a6abb002",
+      "GenerateRemoveContrasts.py": "750dd545c576a65493956808daf3494547070860a95c20ad6e51cde5bae57cff",
+      "GenerateReplaceFaceTargetContrasts.py": "d7fd8b478c9371e6953f1c74706584b0db7f4ea6066a44e2adea7f44298bf20a",
+      "GenerateRevolveAxisModes.py": "2237815d777026e042be5f7faaffbe7c52630681830772d31ac09a44555a9408",
+      "GenerateRevolveAxisRemaining.py": "1e4d1f26e6a79a1f6e98641a65c6feb5c1bbd486670a12f061055ed46017ca30",
+      "GenerateRevolveEdgeAxisHoldout.py": "be318e18e5e0aa5644290d473a19fb51caac4c0518d5e7d5c5bb744061860d73",
+      "GenerateRevolveHoldout.py": "6447f512ff172c46cfc324f781676acebd5357ab7bf2c963132a86489e431f12",
+      "GenerateRevolveModes.py": "49af8c99ac566f9f4f1189853ac293723269a72443e46405c0f0be6cd2ff4643",
+      "GenerateRevolveToPlanes.py": "aa8ef2918567867125ac0953e114aa76a5fc44299d02668d17a02ee4bfcc0ab9",
+      "GenerateRevolves.py": "de99f825e46a5091f35c09c8be511e515ec6ae4d05e2effc0b688e2f4c97e4eb",
+      "GenerateRigidGroupContrasts.py": "2ba18c7f04063704e6078876603980d57e57e21e9e0de90f7e511c11a74fed16",
+      "GenerateRuleFilletSurfaceContrasts.py": "848bc2487eab060005b1b0c7fe349fa854c30e6da03dad2051f6cc20999eb984",
+      "GenerateScaleShellInputModes.py": "6a1a03bacdea16d1ccdcaf488c92b603ad77b147099979453f676f4df6e09b42",
+      "GenerateSilhouetteDirectionModes.py": "6698b5e2373ceace552b26a718cf0351f4e058da704e5862d96e9b61566c9e49",
+      "GenerateSilhouetteShellHoldout.py": "77a0567f1c0a84735aad97a9542d7dcc534b9ca66c60111ed98c3af61e8a06c3",
+      "GenerateSilhouetteSplitModes.py": "076e1bee92c4c6a67649a79c403485a2f40d327cb8f8f1cf58921d1441949e99",
+      "GenerateSketchCurvedPatternModes.py": "dda979d71b47518e2adcd596dc0fbd129adcf631c2bb15c059e00875b82c0ed9",
+      "GenerateSketchCurvedSplineRetry.py": "7679f94ed21a333e4a12c9dd9e1ddc0c4b61317cf725ce8bf838b9d1cb91382b",
+      "GenerateSketchMixedPatternModes.py": "f2643ec4b354f0c1599db0a10da1bc8bfe03c709689fd35a5c717adb8f463485",
+      "GenerateSketchPatternCoverageModes.py": "8a643d9c9aef6c71fe8a8c84138bd053b24b8a7670b3844c089cd71134f73caa",
+      "GenerateSketchPatternHoldouts.py": "6be63e480dbb061f7bca334187b20aabef538ef432b3edb52ba6abb4afdaaad6",
+      "GenerateSketchPatternModes.py": "de59b315010e969cececf778504bf14ab877c14d89306f67730ab45e8d1d6f7f",
+      "GenerateSketchProjectionFamilies.py": "0198a17a3f5374e2341535e65efcdc736e64f9686bef7356ac87d4b6c25c8ae4",
+      "GenerateSketchProjectionHoldouts.py": "0e526842e05e001ecec8e870b3c140f1dd563f6763d25572152af0e68073b1bd",
+      "GenerateSketchProjections.py": "9cc58893341f14762f39876787f62c9b79d0b5ef27433547c367ee827b634fb2",
+      "GenerateSketchSamples.py": "6eab26f70b4cce546c0ef5c989344dea259917c107107a0471282c6cccc041d7",
+      "GenerateSketchSurfaceConstraintModes.py": "8478df1630790ec6a18bb4f6382dcf52cceb1dce693f24857faa1aed72ec5a41",
+      "GenerateSketchSymmetricIndexBoundaryHoldouts.py": "78d793d8559fb5687a41f534aafe839f66127ceb8e965fe04e312f6623cb28a0",
+      "GenerateSketchSymmetricIndexHoldouts.py": "d9ca10eeada5095235bcd488607d674159b608edfdf617c3f04a72fc04d63036",
+      "GenerateSketchSymmetricIndexModes.py": "979be6b10d2121ff1eaef92f4d8da15108f627f55330ee4e613724e4f365b627",
+      "GenerateSketchTextControlModes.py": "5e55ac89233d3749fe5f0d954afddd3472bd1792509c2c58922c701de58033fa",
+      "GenerateSketchTextModes.py": "69b2cf87070a85633e5df30d4da38154111068b55d7201ccf80c4c88eb044120",
+      "GenerateSketchTextPathModes.py": "b32e18f63157254a17c9802e0e494a975715f147f2b8617a63c68d9c1ae094e2",
+      "GenerateSketchToolModes.py": "2999818af31a321034ba5bb84a51b0bdebbd2bda978a62c68476a33ada7e4431",
+      "GenerateSolidSweepModes.py": "4320ed76db9bd0a9edff66b4247e5bcb041bb39a184cdf26516bb0a5abc24118",
+      "GenerateSolidSweepRoundtrip.py": "54790ac5e9ac8152e77d71ba4d30567d69c767189a0edb6bc5560eddcdd41bef",
+      "GenerateSolidSweepTwistHoldouts.py": "3c32241b5751f5e36b073a4bb301e78817c676311ae3b0233b0a56cfbf6f536a",
+      "GenerateSpecialFilletModes.py": "dd9bfa0247c81477fc8ffbb93558ad67d89a47ebba69f8862feb2143176b98ca",
+      "GenerateSpecialFilletRoleHoldouts.py": "e1628ed3adbc07d8fbdb558ffc66b57d66b23340a860fa159acf4f96043443d9",
+      "GenerateSplinePatches.py": "573c4c7ddee99085e0283569a5c489a7e75c4fb95a71c54b5ed679fffedc47ad",
+      "GenerateSplineSamples.py": "c5e5c2d31cdcda92e04dfaefc2c4676bc7f3757630c2f6707cf5cdf3a52dae9e",
+      "GenerateSplitBodyMultiSheetContrasts.py": "d68224607ec4fbc5219fb335c2c98d8ff58e36adbcd6bc06c2e3d13b5d86350a",
+      "GenerateSplitBodyProfileContrasts.py": "fb08f00bc51a0ffd9af7197e70756751d9c30f4fed5d6dfd28462267fb6cdf03",
+      "GenerateSplitBodySheetContrasts.py": "edcc6ba74f1ada47a4f718be95afa63f9f03ae68383593424458d30b039706d1",
+      "GenerateSplitFaceModes.py": "6d190ddaa3bf8540b064d0de370bb69c8232c6d18cc9e8822d8cc14b6321f11a",
+      "GenerateSplitModes.py": "edad46673f66b07f243646ffbc8959f10b5d83d9711886929dcb8e96dcf25306",
+      "GenerateSurfaceBoundaries.py": "6d94c3277ffc81f467ff0712be7b077477892f0ab4da7dd450154884fb8794a4",
+      "GenerateSurfaceBoundaryHoldouts.py": "20a7ebba8df7934738bb413f4a0a282dd329fe232fc27dad466d346a8d8d3211",
+      "GenerateSurfaceTools.py": "c4b403620101a8dbc43b30bb7f8fb07c0d106ef155b984f4dc9ffc3cef18b156",
+      "GenerateSurfaceTrimLifecycleValidation.py": "a5782ad1cee6ef81aa1f13cf48e3afea27725dd937499bd3d03ae7f7cc694553",
+      "GenerateSurfaceTrimLineContrasts.py": "c6250ed49ce80851f6eabee406a6a2c6b101b075f20ad1cdd7fae3c2994a00c0",
+      "GenerateSurfaceTrimRemainingContrasts.py": "032493682831598f112ebef768c61878109ac9a81cf2ca8349e99303058cbca8",
+      "GenerateSurfaceTrimToolContrasts.py": "b0e7530fda80da9b961ff55271d5ec9487a665838ef5feb6dca4f4cfc283f2b3",
+      "GenerateSweepGuideModes.py": "74dd14c13554bb30761c631ff43ce9d6abbef1805b8851e91e7a7ab25bf4a14d",
+      "GenerateSweepGuideRetry.py": "9372053973f5f32c6731fcc1967dad7db5743fadbabc8a052701c04274f693b3",
+      "GenerateSweepModes.py": "3f756ba0dc09137aea2f0a4bbef7898b0dc72489801f9e33cc2c5c895f1174cb",
+      "GenerateSweepNurbsPathContrasts.py": "e467b9119211d3f78aea830a6bf2b4b33e4e7669f835b8dbf5b460c2caaa43e0",
+      "GenerateSweepOperationModes.py": "2d84e2c5f1808db15d2854d727f206af879526021a9b72ec3f71d0a8b32f4c49",
+      "GenerateSweepProfileBranchModes.py": "7f72e117d7272abc5ac5011fe01c2ce1aa5c0794f7d65f355769a24d502135dd",
+      "GenerateSweepProfileHoldouts.py": "23402d978ead199f3266d73747d4e485812a9997b00d45673da5a0bcf70ebb1f",
+      "GenerateSweepProfileModes.py": "15b31e277ea93b364175c89fae08810d57498209747844a3bed027ba54c485ab",
+      "GenerateTappedHoles.py": "96c343590750b6db19b4b6c8bfb8ab4b0a51d7b20ea88ed84353db29868749a2",
+      "GenerateThickenHoldouts.py": "64f5b35e168dced6da1c7221b8ee36e8915e99d6f4bb97d74d07d30a2b8893ab",
+      "GenerateThickenModes.py": "019b4b2519c4a0158e1c0f737089c371fb5c63c95274f294b9daf96961b0a3ea",
+      "GenerateThinExtrudeContrasts.py": "b074d5241e9c570cc3904626d3ba7815890bb602425befa9f5d3b1091ffbd850",
+      "GenerateThinExtrudeOperationContrasts.py": "af0bd029dd98270586f0c60cba6a372b95dd75a654569a972d570e25dbd159ba",
+      "GenerateThinOpenProfileRetry.py": "eba9e3bae99690eb545a9b9e078d1d6593b19bca3e127b69b18ae585d1076080",
+      "GenerateThreadFamilyContrasts.py": "beb451faea7767d3c438a590a639a16457d8a81574b5626837403315d5f9b09f",
+      "GenerateThreadHoldout.py": "3315e25a981588144aec1a4eb487371b78a296627e3fde7f8c3c513bdf54e992",
+      "GenerateThreadModes.py": "7f4d1aa4dd7815ca43a2cc3055f70bc9c40167d7fc04bf28e69260af20872790",
+      "GenerateThreadMultiFaceContrasts.py": "4a993929f38af45a86bfd0fa1482bbb2f3b9e1a000f0462a938d50e8c4c327da",
+      "GenerateTimelineSamples.py": "529a39b59304b65753f183ffa22c883b5a4b1c301140a480cdcee0ca4c97ae4d",
+      "GenerateToolFeatures.py": "78b670f327c70476a953b3b9977a77872b43479d0528ede1af6c26aec247014f",
+      "GenerateToolHoldouts.py": "7d49a799a69c88cb5042f8a9a9112e781f912df74a88fc6609f7e548dbb9a905",
+      "GenerateTrimSelectorHoldouts.py": "8ef9859f16471db468761ff7d106df9853a5ed50b2c3729303c90af5218b1112",
+      "GenerateTrimmedProfileContrasts.py": "9b727c16ad7d216a5eb2fe1c08ddc5d1690b069c865cd71ba8381c5a5c8aacf7",
+      "GenerateUserParameterModes.py": "91c3dd8ac7513e5fdbd1c898992b36f0027e719c6f36f4a4f10c2d5a6231a36f",
+      "GenerateVariableFilletContrasts.py": "9431d92fb4d2d65eea5bdadcdc16cbb72ae8200e5e0db2a169fb078febe80e83",
+      "InspectBodyCoordinates.py": "edfbef97f1b6ddd27e7ea9a75cc555d2eb6fdeee7dbf7d4cc7243982a63a8389",
+      "InspectBrepReferences.py": "d820674a132b1104e17e03161c7d6067aeaae69f5b8888d441e10913dc818b09",
+      "InspectPatchTrims.py": "6bd3e260953ff30ea1f69ff1f8c2327f97d4c14de764f4aeec61846a46422c62",
+      "InspectSplineSurface.py": "9055fb5000915030042380283f1cee856f2216e7bd70e6027ebdf3813e5eaa62",
+      "InspectTrimCurves.py": "dbe3cd313967c3547d053a375a6599c8611ffccf007fde3133060a48a8776249",
+      "asm_records.py": "15ed6458f05377799e9a5d6e3885f518206d75006ebc83fa7f3bd67d8dc38094",
+      "audit_asm_attribute_frontier.py": "03ff46016d25c8dab20e6bc357cfe2e31268e1e8f14592c53724760705b1893b",
+      "audit_asm_geometry_frontier.py": "6884f4c1629a95a674776ade07bd848834fcfee6752bee66a92a0bf9a0f02588",
+      "audit_circular_cache_rotations.py": "576c4fff5b21bd9b4a397c2a16ac1717fe386367f536f1bbb3166dfa3b22e1f7",
+      "audit_native_naming_registry.py": "963eec24d15b680b12bb61bb6254e61a1d58aa34ccf18bd4eb8804f17b1366d5",
+      "build_class_catalog.py": "698044d41a461757144d8019484b8f50bac0677a8e193b9c3eccbf954ab0461a",
+      "decode_analytic.py": "a11f8a31ac9fcdc9151cb208999d08233fa2f3fd96d5348a419401779c9e7139",
+      "decode_asbuilt_joints.py": "b8b5ad3e7f2ab4414c8561f3fd88dccb55513e0f5a5c3d5d46cdaab61f9f0c2f",
+      "decode_asm_history.py": "9cee39bf459f2e4965f1993504d7a1a2f8ca77ebd9ea1bb9069626ac126ef154",
+      "decode_asm_name_versions.py": "2d53f84fd836ecefa1bdb0a0ef7e03cf8bb47ed9b879ce267de7fa667fb0c9b8",
+      "decode_asm_recipe_tags.py": "6b5570617fd92d99c44722d502198b18eaf81b0040d59ea73d6db1999638dde0",
+      "decode_asm_subtypes.py": "7724e91cd0e083be871784b38b81fa7dacf251f8219391352429100d2e488503",
+      "decode_assembly.py": "aa12c1822e5b4c5fed868738b1e8af487e3a3a61ffffdf492a2dd478c587db34",
+      "decode_asymmetric_fillet_flips.py": "ab63279b93568d671538570bc8b969e754d0a00eceada40990786858f1686cad",
+      "decode_base_feature_empty_lists.py": "1f4013a0ca41e4f5a1151b838f103b240e0eae497b551ff744f1b00cf95c7b1b",
+      "decode_base_feature_single_lists.py": "8bfc9cf8be772ae6da65592d6d1c9234d4fac179b16981439070bb6865fd6f72",
+      "decode_base_mesh_feature_definitions.py": "18ddf6a1e7e75304e974a7eb8da085567e82581db75bfb13a254cbf7172317d8",
+      "decode_base_mesh_sources.py": "1e6ffe0984bcfce77dcff36b3a38dd19fcadc8222a68d41202fe185604bd088b",
+      "decode_basics.py": "e2442a2d2a034b9f3eadb1c7ca7537a8224763378c54934e6cd2b846fdc0a1ba",
+      "decode_body_asm_identifiers.py": "3c80d7cb4658b49c2429ccdb4da561bb803ba77eef17d32cad0e7d2fa2283a2a",
+      "decode_body_bindings.py": "220539d9a4c740a4752ac86c6dafe2c3339928d266139398ab684167e1452819",
+      "decode_body_mapping_variants.py": "1899e41e6bff5c74f94ea57b2da21801ba6352be5a423033ba3f9f6d6670b1bf",
+      "decode_body_placement.py": "39ae2eba3e0a5d2afc39d420c5594d18b97da9c3f7901ad94adceb8810adfe8b",
+      "decode_body_properties.py": "d51ddfbd067f7f84296e2966de179b40e0dfe8f011debf6a6b067cb1232c237a",
+      "decode_body_property_variants.py": "fa763b29ab6cd9794a14c91dd283e7d81e076f95f9f5426634bbc212bdf210b9",
+      "decode_body_selections.py": "8b9b8047009257f7cdba791e3610b6995c481950cf5087224a0190874475544a",
+      "decode_body_tool_selections.py": "6feb7bf121efd5d82ee7f5b82d1a755ae96f2beca97cc8baedbe3efd7fdc4cd3",
+      "decode_body_tools.py": "67b1658257da07f40e02870b818753ae1facccae50330eeb4f8685aed8733b7a",
+      "decode_boundary_face_correspondences.py": "26e0469dacf24244b9d37d8b8521ff63d124650c480597101fcb7799d6eb58b8",
+      "decode_boundary_fill.py": "4131bcf0c45bfdfd22af51a04537cf134ae6b659f7ef1174518a8ee806e114e4",
+      "decode_boundary_fill_results.py": "d0920d5ebb3bda57efceab0faba285777c5a25936f797263e20709ed9f585532",
+      "decode_boundary_modifying_faces.py": "47cab41bfcdef17cb0604368555f4664985b6fc55a9cb12944570a8ef50d15a1",
+      "decode_boundary_planes.py": "d03ef8b4a240b353bc72bca6d4b386a1a3ffe28a678652073fcd3d423efeef94",
+      "decode_boundary_sculpt_provenance.py": "3a8a1009373410e830c016679b71fe7e32ef6aabc3897b3cdffabe2328af1bbd",
+      "decode_brep.py": "f156b9d97fc4de43febe5635874ef4de7f42c4bc9040eb45f208d515325c27e0",
+      "decode_brep_edge_axes.py": "b914d3c840870e7ddcfbbbc28e98624484c7c39dd4a95f9c63c0aff5dd66adc2",
+      "decode_brep_recipes.py": "9c3a501eebc04cd43620b5215360752c8254c99610c1e11e9a6384c050e0141b",
+      "decode_bspline.py": "73b524cd52b55545ac79374538bef402e02e70d5de4027e5e06a7429100d7e2c",
+      "decode_circular_extrusion_geometry.py": "77fe57a5a7b50cb7b2d3add0dd738b84b13b3501cf87893cd60205fc00ffe6d1",
+      "decode_circular_feature_caches.py": "c5d8bfcc1a3fff28655fe15da89d5b336c3dbdd35ebe8a172c4a6c8e0776fbea",
+      "decode_circular_patterns.py": "231278fab31cb6c5994ec98d42896fcad721b23e54bfd1e8de5f9452d95c54c1",
+      "decode_circular_placement_evidence.py": "9c351ddcf67d8ce17221a762db602e4763553007d6214acc936cb288459d6f26",
+      "decode_circular_symmetric_suppression.py": "706141a6ccc922ca445b4a439f6e1c1e41a81320d3f2f809848f1afd451e98e6",
+      "decode_closed_parameter_curve_cache.py": "9c7098b53e4a59fd6e675b99bf6e14756033dbc58124f0c60bffae528fff9fb6",
+      "decode_combine.py": "1d4c099e0a1f2da3c35bcf3bfb2b9a77e6ebfa84fbe1f115afccb66233f078be",
+      "decode_compact_pcurve_offsets.py": "f2a32fecbac016b0a728380697f4fa8097a7cfa6921c0ee80a18a7fa34f87041",
+      "decode_component_body_proxies.py": "a543f9581a7a5cd39d8cfc2b050d18a5fdb491f45dea4d0759a1e2c49157e049",
+      "decode_component_creation.py": "7c6e03521fbb101f348db04f34ef5023bc7d4933e1571d7408fe4b928f16cb7f",
+      "decode_component_display_colors.py": "d7b9c6b84000f932ebb60f9fdfe46ae4fd680248610f0661eea0ca53035e0f2b",
+      "decode_component_profile_selections.py": "e9beacda347a8b1d2c56d745b810bd970404628e133a9a64f18d139e00a03443",
+      "decode_construction.py": "4ce1b5bed9011b34f7818ccab746993fc22ce7f6ed2df0f737b7607e5d02d9f9",
+      "decode_construction_definitions.py": "bb03c25533797210ff5a36006d19d542321e8048db13ce7b7dd23f094af52178",
+      "decode_construction_modes.py": "f26c0bf7acb9e44984dc67a0214297c676f3e9dbb1ad7ff0199d6bcd38c27656",
+      "decode_construction_vertex_points.py": "ebc394d525880aa3c8e788377f818610d14079ffde1e431ae9b1994fa41535c9",
+      "decode_copy_paste_occurrences.py": "3641e714d42a00700616a40b31a59774da1ae19544626004526e91fd3b84d332",
+      "decode_counted_asm_names.py": "55455c4d215e95c88929e662dc98798fbc00866aa0b60f2dbd4a0f2ee4a79ada",
+      "decode_cylindrical_spline_cache.py": "01b79f68a1d836ebbc6319fd458ae1e6a9d8fb380d221eff1f5196f85c3b825c",
+      "decode_datum_mirror_supports.py": "59f967516bc4e47604918aeb4360bd7c6febed09b27eef7faf0ad72bcb9f50ba",
+      "decode_dependencies.py": "ef10c19427f61e7a69c001276dfee3f056e0ab0a39ff6ab3ca62f5311d2c59e7",
+      "decode_dimension_annotations.py": "4ba28023c72797c4090ea6efb2d11d983645424c4815a53af6fa6a5bbc88e803",
+      "decode_dimension_control_modes.py": "c26b9babd7c519635335d9c37735cbe978629a4ec78d5f59beca36ebc27a9a95",
+      "decode_dimension_controls.py": "4e086aa72670a2f2f07b34e30973f6034ec110b1e33b60d798a3a2021c8332ed",
+      "decode_direct_body_features.py": "aa3b69ce3c5f6d0ab44bb96b36e8539119bbe071a3eaba95fb0d2ea07706e769",
+      "decode_draft.py": "8d0f933a770a1df4d9bd4e0ac6f8f30c4b01ac87330bdaced534f74209d172f2",
+      "decode_edge_tools.py": "2156982df1266471e7a9cf92ff3be63a04e38f13de202629ae30d58840f602fd",
+      "decode_elliptic_cone.py": "aa847b67e56834e24670bef031f940f43cda6c0d8659931059073215f4edc1c1",
+      "decode_emboss.py": "cba5c6b58fa813161727b10deb63be388be082de4bf2a94448f355a3e9cefee4",
+      "decode_emboss_texts.py": "f034910ac5c5e692fa3f53fcd40e061fa43f804ad2fa97c0dfd3232e3ba8d4b7",
+      "decode_exact_curve_form_one.py": "0d61053890fd13dfa6968f412e54aa7a71bd747abe9b971c13803ca4898296af",
+      "decode_exact_curve_form_two.py": "1dcf5bf7f26c959c1226c1140c37b55ad2c35d96e1ea377b616eda5bc03637fc",
+      "decode_expression_dependencies.py": "db5bcf3cea4d5ad8d4e52e13e08302ae013605fd793da2e268da1fdf15d3e571",
+      "decode_extend_cache_sources.py": "f87fbcf49e9eaf0e3bc8cef2929f98274a026b5c964dead0dd659f0a9ddd9d47",
+      "decode_extend_edge_sources.py": "05031645c283981e08f2b3ae070a729ed73363df0a9a2882f5cc83f3def95213",
+      "decode_extrude.py": "031a652bfb45f630663cbc2182c5002d6f32ff720fcea74f71fd2f61c83f717d",
+      "decode_extrusion_plane_limits.py": "66a697e7cc88884caa68066252aa533d360d37d570cd257b1f494ea95ad43497",
+      "decode_extrusion_reconstruction.py": "4bcf4e5326fc2fafc9dcb17b7c870e6e39a97ea8fc8c86a4c26ad739779902f8",
+      "decode_extrusion_source_operands.py": "b3a58131c722402fcddf5a8e9dafb35ab78323e51c99adb08dea2378d16576ff",
+      "decode_face_boundary_projections.py": "b7254813125572e7ad9eee34b117ca1a09120d8695e6a98527b71103b732da0c",
+      "decode_face_selections.py": "ea013064db692779f2479b665e6219a024caf1ef812c5b9ff2258e64599416f0",
+      "decode_face_tools.py": "07b119db10651a08c392c5f3c8e875c3d5c73fb125832290264399159f86ee60",
+      "decode_face_tracking_contexts.py": "4762b867028801b18ab8529a4067e0f43eba489ba653fce74ca49162f5bc216e",
+      "decode_fdm_face_attributes.py": "e6d25333dcbf8c6875116f068fe6858ce87d7a83fa312ca041ea872f4d7ddd96",
+      "decode_fillet_spline_caches.py": "362718f3347df68116a5a2f26759d815f5ae78864368d98a6f38409ca36ad3bd",
+      "decode_fpm_context_cache.py": "0859546e7624824dbd97013251aebc90f04ca481d7cc937d8920a898e204b8fb",
+      "decode_fpm_partial_coverage.py": "3246dcd4f00fa643c6de2b6fce8e7d7cc0ff830ab53ece3ec7e25945d8409c46",
+      "decode_fpm_tracking.py": "526810968f0e82218835b82f2963775df41326401e38c70d3b25f9d6f040d860",
+      "decode_helix_cache.py": "5c92b466f41ad2cf0625430e03c15825585af01b62fc79fc97eae07452c2d4c9",
+      "decode_historical_body_components.py": "adabb41df591fd530a75fc70f345671c35d32a6357b14664df5d357b2c457e0f",
+      "decode_historical_mesh_face_groups.py": "12d38c027e9fad166136408583bd3aa48f60e35dcea93ab3161cdf198853af18",
+      "decode_hole_point_sources.py": "768d60bb1683bd315c6f8fba5e96ad59bf061a0ef7c65f6b22a04187296033c2",
+      "decode_hole_supports.py": "2e3b5fe4443621983372b6efda712d3e3fc72e1fd2d73def4e81d682f1f4e94a",
+      "decode_holes.py": "1b6086796c1d612ecbe0270ab6989ea323636007b2632f820149e80fa12bf1e6",
+      "decode_interp_blend_cache.py": "3f5a31bc92fbb727ed25fe517f24b50e5de1ebf0c86d698e88128f70e9f5daa8",
+      "decode_intersection_curve_variants.py": "9fd9ea855fd8ea2fd64c8e5cdd83f9f7e710df164f864046a3308dfeeb5dc38e",
+      "decode_joints.py": "652f9226ca9040c9ed463d631c2827d4b0371212360050ccd12d246836ef8a87",
+      "decode_loft.py": "e7111c5ad2f070ce74e57531099f9b0a2fc8d0ce88ba6ab80670ef5641a95138",
+      "decode_loft_brep_ends.py": "ac92e86d30c0ffd4e6ac9bbe2fd9ee49ea73bc49c5bb34db0445bf8939e6d7cd",
+      "decode_loft_composite_guides.py": "d74263f798e44ab8a18e366c63203e9e0f811affb4ba1dc2a8a37d8f25d7152d",
+      "decode_loft_curved_guides.py": "ffaad2da0ebc3c2503c147160888b627e85e063950e535362019d9e46e979063",
+      "decode_loft_faces.py": "ce001f64dbca019b03c73eac532275ec7efada0ba8c7fae220db93e8fd67b991",
+      "decode_loft_modes.py": "6944efb0c37cc0237bf1bd6f08adc18c396581f449dce783cabd20ac5167928d",
+      "decode_loft_operations.py": "1f6b7caef3951d9fdc41cd227e1ab92cd33abcc7cef8c0961605fb29612cac01",
+      "decode_loft_point_extensions.py": "8481e7034d2c7d5d50d67cb43ef88cedc9a464eaaa665020dd179b2b3e4875f1",
+      "decode_loft_points.py": "d32412d5fa462fd521c0aa42166b43b107e337152e340cb14d30006dc5e11a04",
+      "decode_mesh_combine.py": "c321cdd213a26b68769fd9af04677874cc994529625fc215330742981f9bc873",
+      "decode_mesh_combine_face_groups.py": "61c791a6d077b06894fd96d4af956d334a7476ee79cfa6e37f3a61039958c83a",
+      "decode_mesh_contents.py": "5a6efbe8963159ff35cad743c194fcd1291dc434690b765611e3cae8ed2a2be2",
+      "decode_mesh_convert.py": "cacd45ea5429c8a9b89ca81c8d231046b93919a7846222834d45ae0324bcb9d8",
+      "decode_mesh_convert_inputs.py": "d73c16e164dee79508540ae1deea50516c050202ec0834da7cfda9102d161bd4",
+      "decode_mesh_convert_result_bodies.py": "25b9a551f99adc4ba6a17fe6200370f6c31a94657ba46d3a4632a48b9ba82bcd",
+      "decode_mesh_current_prefix.py": "e2a48320af52203ce4330323d7ad296daab351ce00aa6f29aeae312a704d11f6",
+      "decode_mesh_face_group_caches.py": "0a48d697e78eba9b82a9caee22d5295a722e17ad702b5a58a1f10f6bb88f239f",
+      "decode_mesh_face_groups.py": "bda55b3baffedbc4ce1ccd071704a990b357bf129a3e92b19ace4eef1d1d3389",
+      "decode_mesh_geometry_variants.py": "62a4abc0151da650ead1cc65166ecd047fefa7132199a328550c20aab6624c1a",
+      "decode_mesh_normals.py": "321aa01bf9448fd69cedaa2f77297726d2a60e209db6e0a4bc72710f2ec92a14",
+      "decode_mesh_plane_cuts.py": "49fa21d42c68d69f562535b370118b78f0fccc07cd8c53cd096a8e675ccfa850",
+      "decode_mesh_reduce.py": "2a83a93806b0c746b44a9016d09c7eb62d574bf98592bf609e48dea13e57adb9",
+      "decode_mesh_remesh.py": "2fbc5f7e83165673d65fa4f82fd191633e6b51c3faf85659a2aa8815f54efced",
+      "decode_mesh_remove.py": "036bc6797ee7537c0a94092d5ceaf0014c45bd350b6f6c6ec5613cf14f8628a0",
+      "decode_mesh_repair.py": "35b4dc9f9247d2d4a19f91d878027c2a08fc17aced582271d75cb2c158575b8c",
+      "decode_mesh_reverse_normals.py": "75d5ff649b0d726fbd9148b835eb7f005515054784abe31f24191fff3c81c17e",
+      "decode_mesh_selections.py": "70ab7c5184ceb907a8342b464906630caadf481e467d407788a03345a7ee35d1",
+      "decode_mesh_separate.py": "9cbf573d36b0e3356271423283948510f20259a832111b23255c3db33cd6dcc6",
+      "decode_mesh_shell.py": "84381367109cdabbf510566e1364b44ac9f56b13e82fa5b3803503f4d7b70338",
+      "decode_mesh_smooth.py": "ed326f871c6867e01a2836a35a752a85667e68e7885e3d80eab5d00fe0544c29",
+      "decode_mirror_boundary_caches.py": "0a4bb6b19f9ff4535e088a991ddcac50dbc6fcb4656c4649bd347f907800c559",
+      "decode_mirror_cache_reflections.py": "b293a18c9017915d91a8dd353afe8cdc938469d6779075e4b74f3376094b80e4",
+      "decode_mirror_cache_sources.py": "880ff849acc0c1a8e40ff720180335755fe39402b745dffa5868ffb61b3ff6e2",
+      "decode_mirror_component_creations.py": "1a5dc5b8d462051b82fab319b75b3cda17d707fcef4facacc2e2c64637787d42",
+      "decode_mirror_datum_outputs.py": "feb839e17e3f7cf0780d80cab261a3af0fa14110e03752352aaec45cb5f3c5c9",
+      "decode_mirror_datum_reflections.py": "e546203a9bbfc4514ed419abce3a0197257f18e4b90732df4ac1a600b398620f",
+      "decode_mirror_face_planes.py": "f7904c16fc3ab0a563962ac51551cb716b7092614f74197e5a8374de6fb9088e",
+      "decode_mirror_modes.py": "680d751c4a1bff5bd64efbcacd89339f7eb94bc9353b1c746b18d26140a8a570",
+      "decode_mirror_nested_occurrences.py": "6320a0dc37675be90dca3824cf591305b7c42faae1177e73476cf2ebfd011d32",
+      "decode_mixed_body_collections.py": "01c07b4ffd2dcb4801f8a5ada699ea36961aa4fee16849ea7a21c1cd016b55a2",
+      "decode_mixed_empty_body_mappings.py": "322c2ece54d19812ea43f31a5c94c79d9b50086315eedd6a8dd02aa0946585dc",
+      "decode_modeling.py": "d34a04e6dbcb62afd8a6502ae7f8d4720919f5842ffa79ba51958d3f51c6fd1e",
+      "decode_move.py": "0dcbc87f650d0c04a18f5151a2b4175433cf4a2eb1e64ac6437f686d83f4da0e",
+      "decode_named_vertex_selections.py": "3ec93adb3fe1339d1c20e7f75f78e28950e42f396311ec6fd1b2c4e817852864",
+      "decode_native_naming_registry.py": "44e514a4ea3ccd916ab707ffad8cc4e7700dc9af08468ea7cf3b317cba628450",
+      "decode_nurbs.py": "1de68691ea7390da0fdc92cb567e11ec07b7f3bb0065cc3619f8b26f1cc8f00c",
+      "decode_occurrence_gate_attributes.py": "91fa3033d3757e0e778ca4a093beebfa3ba1507971b283884c5176064bfb26ef",
+      "decode_offset_details.py": "95016438e829482da283669e25891cb574775980e4f71dc699b4571c065058ea",
+      "decode_one_face_edge_sources.py": "19d85b1a81243f3f9505898ae5a241328505c0ee54f4ea27b260ff049886b92b",
+      "decode_owned_surface_selection.py": "d430a309edf9fc6d21a129a7d953480fa0f142b40a97e79f39883512f3f6e0ab",
+      "decode_parameter_curve_cache.py": "770162d0efb3c38f7f92f60bf3141619e0d3dcbd96e4e6c1829d2bb13cc9180c",
+      "decode_parameter_tables.py": "4dd3ba9c0dff438ef207ca424fc80959d867edf4f9b5eb2be1bb2ed5db7ce6b7",
+      "decode_parameter_text_bindings.py": "bb6b6efc000cc77b344a61edcbc7ca268a8de9dce2aa6c26a51529d5a46469ce",
+      "decode_parameters.py": "eb1df73c03dd015cf067015ceb84fc4f2330c8983ec78ca95b4efe4d6e271d0b",
+      "decode_parting_line_drafts.py": "9ea0f6d90cf61ddd06d675a39994ce218ba8e8d7f9196116a36961a896b1bb16",
+      "decode_patch_continuity.py": "b0497296f97580c204d65bc69e3a7554d4f8427021c995e4e9801fe82ba712f5",
+      "decode_path_pattern_cache_evidence.py": "7815e5b39122d78d31fc51db04df2051a22450616e9a588396b4fad366101527",
+      "decode_path_pattern_composites.py": "184c76d5b93368837596a01d4dc64ff304b6e03b4ed17ed1215c69f311ccb8f4",
+      "decode_path_pattern_feature_caches.py": "93608b221d03785e97f915fbbb48214c4bbe7965849665e9b64e3112f8abc5a2",
+      "decode_path_pattern_inputs.py": "989ec7d915416543cbb7741bd1d2b875cac296951251f834fba11e4f4b06f744",
+      "decode_path_patterns.py": "eb8f5e9ca6688fc8aab0875d6d96b96c64ce9e70f030f664aefc3cf6a14223bf",
+      "decode_path_planes.py": "ad129c159f2d3efb0bbc20da4626f7cf6f1840c0eb8b2523e0769c884855cd41",
+      "decode_pattern_placements.py": "8acab7e08bbe27e009eca3bad51a9b808cb7c163040aaca41bc4879180095487",
+      "decode_patterns.py": "e069745adf008219173a22fd92928cc1605e3cfc25160ae5bf8510051fb5f85e",
+      "decode_pcurve.py": "c95377fbb154e082e1275b39699b8b96a2873dbd4bd43a8384ac4228d8349d3e",
+      "decode_pcurve_variants.py": "55c33e4819fc2302246bd325406a03e85aec151095ef31fde815c1898e3a3e93",
+      "decode_pin_provenance.py": "656e99e8db9bfd3b69f7f962f7d3a840eb86ae361655c20f0e7bc36143cbafda",
+      "decode_pipe.py": "3dabc7e7f81c0d1882f502e18f6b8f8a11757014b7b3fe0b2f499fa14c183e9a",
+      "decode_pipe_edge_controls.py": "786c4c53765bef59aa5ab0e54635f396635e1c0511581a10f340791e69ccdb8c",
+      "decode_pipe_edge_limits.py": "5824c7b8cf1cf2e902cf0957fcd285361620cbdfcd42b7a15330e649e5bcac17",
+      "decode_pipe_operations.py": "7b481f99374239dc872cea8c1e97455ca63f43122724ad973ec25915a80beee7",
+      "decode_pipe_paths.py": "38e2b05962e5fa3e1b6778e08c193029c273ae1cb071b47546d906d54b995209",
+      "decode_pipe_recipe_incidence.py": "68c48a8b6e9c20aa8038075434f5da51493af0f7ba8c65f0eb94d9f6a9591208",
+      "decode_pipe_vertex_contexts.py": "96e4b6085913744a0e2cb861a5970622acfbc3365050b0ed2b75fbbf14ff46ae",
+      "decode_placed_profile_portions.py": "babc983ca555037c2d921bd3af73f319603dae40dd5d44ed09d00bb3b3c20ef4",
+      "decode_placement.py": "e7ec273791462faade3eaa6f60ee301f57ffe3dc75dff6ba60d8d487da5b6743",
+      "decode_plane_definitions.py": "43ea5a8af8968e1174301b6538b0b928c8604de859d243f4d008b7165fdfb676",
+      "decode_plane_extrusion_geometry.py": "1c695e5513fc85af2df9542824b4745319fae1b380991214a8f467d9fdf3a590",
+      "decode_plane_extrusion_reconstruction.py": "8eebab305d044e67086dfc50712f2892bd7191f5f8f90c73fc2465e607118c34",
+      "decode_profile_cache_correspondence.py": "ab20c4946eb143872e112fe09c71ffd3b7c31252580fd1d2df73f58e7c9c1566",
+      "decode_profile_circle_portions.py": "905b8dc5dd10a494ebe147981bb284338c1421294c588e2731874337af9f2693",
+      "decode_profile_line_portions.py": "14db10ac3d2bd0c6db53bc4a3647712ad1f0f8d513ac6e71d3f95b9f2ebee81f",
+      "decode_profile_mixed_portions.py": "c0216a8c0bef684b9c47988edc666c682e2c2d9f4cb13c959f033b3cbd09bc4a",
+      "decode_profile_selections.py": "2d08e761b1ad9709a375078037b05717ca664d02f0303a9cb03b0afe0f236a88",
+      "decode_profiles.py": "38c934f4caa4d96e90f09d1640d9b2da6cebb46035e4685f2d13737c1c1ef5ed",
+      "decode_recipe_components.py": "ce539083f61d3ef5fc2ae8c1c0aeaa9799a26b969854e2bf4717cae80755bd3d",
+      "decode_rectangular_cache_evidence.py": "7c9466b368436400454da2c1d9c2aec782193c303053d77c4126bd068fa63c02",
+      "decode_rectangular_feature_caches.py": "a2f27a812dc4ac5588c692de392d67e0d05157a3ccb5ab7a61f179859dcbcfdd",
+      "decode_rectangular_pattern_modes.py": "abc73ce2d5766e5b77e842de6cd80896e41363903c0663c5e49d119d48e6bbc1",
+      "decode_rectangular_symmetry.py": "99cd767824a3a31fb7e5e3a346ee0276effbd027b107d0fcb7de964000d419fd",
+      "decode_remaining_body_inputs.py": "7e01272a79d5bc98de7b3d9dab213720aee39c34a4b4d8dd52f0573b8bdc86d6",
+      "decode_remove_features.py": "a22de47801177678d23f3b2b941c5d3d1326cd01134cbe2df1ed94190a235aff",
+      "decode_replace_face_body_routes.py": "43a6931d03aa782371a531bd92810c3734b394f8c61dfc205a101b86d999d237",
+      "decode_replace_face_targets.py": "b0c964cd194aa7aa33262ad8eb9d4cf267c7fcd37c99728eff59d37ee511a4f0",
+      "decode_retained_mesh_sources.py": "ac3e3dd045ced137e042d173f09b85671a96009867b15d7950766f2c77d5d33a",
+      "decode_revolve.py": "47aea02104e197994bbcc50c4538ae052d9c2b51e045c948581379e03efb01cc",
+      "decode_revolve_axes.py": "630e89a5a24a52ce620f2a734a878a39c7d833288539cbd89a571018537bc207",
+      "decode_rigid_groups.py": "ed1ade25ff8bdcdb4862f74fc4113b1628ff98faad0a00f8b597af917cd689f0",
+      "decode_rule_blend_cache.py": "656e5de031d70c421c1e288f71ba3f272f955a8afdf5821189e9c900fd42c442",
+      "decode_ruled_edge_sources.py": "337e7287fb2158748f1e465cbed1769aaba43737d0afb1597ae3670342d01f10",
+      "decode_scale_inputs.py": "a6fed1d64b3419fc400b988168a01988c4b03040264fb593afbbffe1c84bcc21",
+      "decode_scale_prism_geometry.py": "4a17d115d2d6dace311901c1bf113b8ea611c706f0375d3f2d195adbdc9b54eb",
+      "decode_scale_reconstruction.py": "342974414ebaf1e97f40559103b48756c52ea638c70ad5d90456e021c042e112",
+      "decode_scale_reconstruction_sources.py": "c788206817af9fcb0431c8ff34822ada0f7af35ed3e9c22c7c393280cfbbadf9",
+      "decode_scope_update_times.py": "ec55abd71b64b05a0d916cac71feec46ad32a3ec91db6858554a7c7d80312b6b",
+      "decode_sculpt_tool_attributes.py": "cd9f7259c6422b03b0893a11fc2709ca2de452a2190e40d0824567861c138484",
+      "decode_selection.py": "241b08558add4bd028dfb151a594c7e1a44211d0fccd3d75ba6f65aac14f59cd",
+      "decode_selection_context_recipes.py": "814d967fb0502b8c827925318abaa61172d03e2c1711988782b4938fd78e8946",
+      "decode_selection_context_variants.py": "8e386a5a3a90489735575f3bae782a7a0eaa16122797ec69f901294384221533",
+      "decode_selection_recipe_incidence.py": "37edc696b5da02eb178a7282ba219d697042c7ce403715c85b6e68a821238a7b",
+      "decode_shell_box_geometry.py": "0ba1e856e74a4b4be1789903fd6a67654d4f7cdb8f30bbf0425932f2cb326429",
+      "decode_shell_reconstruction.py": "d6029b18efab07bddd15fd981f254dbdba318fc3fbe32f57294e5a3dd1df1088",
+      "decode_shell_source_operands.py": "e2d814c236805bf28ceff7b722c1bc2e79be807940238e1c36843bee5a36e5c0",
+      "decode_silhouette_directions.py": "71c0563cd4f0a4be8fe635ac612da8e32d79fd22d036ea8f27322b65bd95e2ce",
+      "decode_silhouette_line_contexts.py": "2d258bac46b719a1cba61f0ed3f9a28fe28a0ac02bb38b5497bb923fb430a6e1",
+      "decode_silhouette_splits.py": "e042aa5299d3b928de8d97ca9b7e8d5ea0daca954b296642f1c22305ffd1771b",
+      "decode_sketch.py": "6190194bfd1e5a39388f48ceecea5eb5f20ccc83f745d11b56b7829f58dcee5c",
+      "decode_sketch_attributes.py": "5f3744d2c5711155a4593b6de086e996dd96f7738455ffd773537a17cd7858e8",
+      "decode_sketch_coverage.py": "d744f0ddccdd6976894a2b954baa4fbc5bffc995dd325b2508fb42f86cd0ac96",
+      "decode_sketch_curved_patterns.py": "07122a4f58d72ae2ef55303da1d52781d237e82e32aa225386a4974f1b618398",
+      "decode_sketch_mixed_patterns.py": "1c8ce11b8b0ea746a4a8b71dd5a44dc2929581656e2dc1b6b6b73788c58da21f",
+      "decode_sketch_pattern_coverage.py": "7b5dff1964f285b734e06468aff7ffeb560b7b2cfab6ad5840b6faaf5d10e952",
+      "decode_sketch_pattern_details.py": "a940a091461bda769bc1890a68c3e13af632b85b8bb8f3bc4ad2badaa4d6c043",
+      "decode_sketch_pattern_modes.py": "3bc8326a5181df8fe22959e54bb2bbb53652f2de43aa2cf5687cd81d94222ce4",
+      "decode_sketch_projection_families.py": "21cb2ae5972b15611fc50177d2683b7c8c5cf1d5fe79706ab9c7fc4d803da0d4",
+      "decode_sketch_projections.py": "041b7b605123002883ffc932543aa27d5edea0c454af32cdc96d3600ecc892f9",
+      "decode_sketch_surface_constraints.py": "ff6cb00771425a29ace341e6df99e7942e944c8281b992b0314b27bdb882fe0f",
+      "decode_sketch_symmetric_indices.py": "a7566b0214fff2ef7f7b9f72ae381ad380c0bd3508d0a1bd731cc930b824537b",
+      "decode_sketch_text_controls.py": "390e1102aa3024e7d5c3f90ee7d1b0a769404a782f9f842f4d92162ee00a375e",
+      "decode_sketch_text_paths.py": "55a9c37dd080148eaa2222c86b8bdd4dbae9f75e2edc0c2c547fa58c8eb5c43f",
+      "decode_sketch_texts.py": "5365842362c79170aa0f01c03d3d5bd8b4f8bb6e12127c9644006baf6a59d848",
+      "decode_sketch_tools.py": "3eeb453bec1c48525a935544100b97b9744b5283a237287e8a0bdf113f199f0c",
+      "decode_solid_sweep.py": "68bb6fab1b0482a53caa10ac1156835f7eabd9fd1d819807bd4af2369072d991",
+      "decode_special_fillets.py": "3cfa22b12b75f378c46b20698be7a41ef0a4b2c4a5212df0f5422fba3920defb",
+      "decode_split.py": "e75c5307385bc15d05b55059fcb6f429836998590e0cacef33bfa89400e334e4",
+      "decode_split_body_multi_sheet_routes.py": "5750023224252b937699d6171ee2e20cdda0fd1ea20a944ab8d31d7f0d7f9c00",
+      "decode_split_body_multi_sheet_tools.py": "28f8bceea6b3f1d46337e3c3542c3f94ebfa7654b141acafb298d99ab7d892e9",
+      "decode_split_body_sheet_routes.py": "38189b730c5c80e6cee336c61a3002c0c0251f6379a202f123b9378932a22ac7",
+      "decode_split_body_sheet_tools.py": "36b21633e29024a32a9f84e8f3b138999dc0b6b9ab1f192aedbe2bc5f2e6c1ef",
+      "decode_split_face.py": "1719032c09fe2dcb678e6c5cd2d06d54564205cd3aec314fa875a0e4fa382ec3",
+      "decode_split_face_metadata_variants.py": "3f6649860a718c3ffad994d716caa051b7f954f91addbac228b637a30f317b5c",
+      "decode_spring_curve_cache.py": "6cd257f760a0ed84cc9b29d09f36ccb4fc1e0aa04c565dd1fd3b07016ebca355",
+      "decode_stitch_hint_attributes.py": "f4d13b8a7278ee872e99c73c6ff7ba8adcf913d6c4ca52c7a408aa021300d22d",
+      "decode_sum_surface_cache.py": "a97e7b0193f88d25c9920bd5ae9519a267076eddcc8850c4a26d0fe4ea0329ad",
+      "decode_surface_cache_variants.py": "63b172108d9e510492d5e114122237020c2e405ec3f32a95ecd043c7c2c9713f",
+      "decode_surface_extrudes.py": "2efa70d47a2cd7cbb15348945758871457c0eb63177b9408e84483cfe4264204",
+      "decode_surface_offset_intersections.py": "7c499f120099666f4810eb35c03084e9b77fe064fc762e8eade134d994dd568f",
+      "decode_surface_offset_source_variants.py": "f471b26e52129c2f6eb2ec8b75d272b9af7ad2153290063db33c55e820ffeb0e",
+      "decode_surface_offset_sources.py": "9b633252b3fb4cbae4e9061a5d3e9dfb3f41e7a59a8b74b57761b74489c54e1e",
+      "decode_surface_tools.py": "93094acafaa29f85256c0f6a7e2f1efa63f9c3d8c344a9acb104c5259735f73f",
+      "decode_surface_trim_line_sources.py": "793be0a321d0da958a45a1ecd4bba0c9f684c9f52f0dd86393b75a6689029307",
+      "decode_surface_trim_lines.py": "074edd7ec024dfb9f771e28d5ea16b300b35ac2222326995b83f2ca047a5b66f",
+      "decode_surface_trim_sources.py": "0d47c34b2a684677d12d4ce7c28ea280bd430db8a98e97f3c2a8ea88f22a3da2",
+      "decode_surface_trim_tools.py": "0442e1cd3c23f5e93c06185d496483f8e89c184fa1f68ab8d1410f84b755bac0",
+      "decode_sweep.py": "1e994abf59ac8e486fd78c2fdf8278beb93575118dfcc492a5677b00a1be8096",
+      "decode_sweep_fixed_spline_paths.py": "1780152c09804fe16a37430578b58383eb8f4eac5cade119d00d4ae3ae1b81d2",
+      "decode_sweep_fixed_spline_sources.py": "568f2067ab4aaf5d03fafed88d987c7754be8ed98f5650823a9f4272f902e74a",
+      "decode_sweep_modes.py": "b529757337f083a037b4b56f284735dfaa3b2f75df4bd1ccaa13358d257b3b37",
+      "decode_sweep_operations.py": "79e8b1c5351dccf5c912a45c88bf9617d4ac66202f4d9a3dd42d93199a0b49f6",
+      "decode_sweep_profiles.py": "6163b07ce1a4cc0a5970b44a43e9c87bdf19aaea08f180175edd1920f4ebb486",
+      "decode_sweep_single_path.py": "baa6615dea46e5998ad40a88febfa20a65905a6e4916298bdbf34193d64d53a5",
+      "decode_sweep_surface_cache.py": "eade8faa20dd88f4f885cbf9fe7cf0bb8d0246acdecb37fb3e0723e763b94269",
+      "decode_tangent_dimension_caches.py": "8377c25aba44a505bf47828004806cd59ec9fefe9c711f8ee5b1dccf916aaad1",
+      "decode_text_literal_dependencies.py": "27709ffea0a745a4cf88ede67a64cc32e571262bfaf99e276b755affe130f066",
+      "decode_thicken.py": "54f7d5352189c3ea4331365daecf082a06b39b046c09f4f03538d8af7522a532",
+      "decode_thin_extrude_body_routes.py": "deaac05da5c9edece4c177fef1d3260b09849ae86a63782aeaffa6448238b050",
+      "decode_thin_extrude_operations.py": "e9fd21aca691120939a13715daed05378ed51bd5f7477a1cff93f5d18edf62c1",
+      "decode_thin_extrudes.py": "f68854eee07c182c5d6aeec87a456cb53d97391892394474735ae06c3866dbc4",
+      "decode_thread_body_routes.py": "4e5345e0bfa1b30103f1b1628b03fbde90d33c78eb0e0c0515b636fde4184ebc",
+      "decode_thread_families.py": "bcd8a698a4631d45c527144b2136661f9367f50e6db60ffea90aecf5b27dc263",
+      "decode_thread_family_body_routes.py": "28a393ef91b4c21629dbfda64847820959992df35c312ade2ca95fd17ae0c56a",
+      "decode_thread_multi_faces.py": "f5e62d1df6d507df6c7c4f50666fdfe1704e4e8c28c0f1c50663460c8d96b7d4",
+      "decode_threads.py": "16c8e2810fc37ce5ddaae0966dcdea37d402595d015e5e4c9a71d98f01863614",
+      "decode_timeline.py": "3a08f6294017f2ec8aeab360d4f4cc7925d1e341e1715af87f1c31755d4fc1fd",
+      "decode_timeline_state_details.py": "ac6a153fb22779bba4949bacb5752012bcc12e0c31e9080a41f3c3763c62e8fd",
+      "decode_tolerant_topology.py": "9d1f6d0b29c9760864dca737f427d44b9240ccc5b9269cc178fad0af892ec61d",
+      "decode_tool_body_inputs.py": "ea22c1fbf86d73aa19e774698f97ef92e8e0a1fab2e60ff454f167e3d1ea7d9a",
+      "decode_tools.py": "c42107046d1e3e43d0e157e7643f58277e795583582977bac1ba1f73fd2afb1c",
+      "decode_trimmed_extrusion_geometry.py": "4aefa41536c987b49ac0639312aecec0211898e94a8a64e0614f2391a5f485ad",
+      "decode_trimmed_extrusion_reconstruction.py": "d4287d0058f68969170b4c69ecccd6dba0ab2406e99684d5cb0b2263e94b4603",
+      "decode_trimmed_extrusion_sources.py": "c213185146f985522ce7ebf40003bfb930b30423d07e125f1e89be282e688cdb",
+      "decode_trimmed_profiles.py": "09b1c1dd46a549b9a41cacdc26183cef004019312527f80e174f44eeea501fd0",
+      "decode_untrim_sources.py": "047dbe7bd98eed4201af6e40af75db56ea53c446df481e978195b55bf5d1b9fd",
+      "decode_variable_blend_cache.py": "ffc4969a61ace331a6e7e308e0786446a1372111d4c9f5b9860fd02222fa06a1",
+      "decode_variable_fillets.py": "0a9f9d5e3ec86d65664e1d4c0bc5a88e22b332b41ffea5955073b353715bfa7b",
+      "decode_vbl_boundary_corners.py": "671c5658bf5a453b58736eb611f2b8dbbf62e343104f174e60d479e0fa8bf6b7",
+      "decode_vbl_components.py": "fc5013b25327f0d82f576376f3e8e7cd4ea612aeaada4dd636fa87abcbffbac7",
+      "discover_features.py": "b3c8df09eb21c4559eb6c9f855c0346699f5ea89462926fd67bc2b2e6ce39aa8",
+      "dispatch_fusion_script.py": "9eac5f9cf3946b521ef1081361eaa717d4d25fd2ecb92deb4006461a41e68369",
+      "fusion_archive.py": "ffaf759e7b85ee2c6b1ec3e92587740831721451af32170932591529f56e47c0",
+      "fusion_metadata.py": "0e2350f3c8a82492b2828e57983f41402dd42500159b3d08e3b61c46806aec66",
+      "fusion_records.py": "cfaf4cffc793698f0e6aa52350310a8c33b4ce184597d7d95af252de1d4297ba",
+      "materialize_asm_alternative.py": "ba8ea68d6d11cd982579212bb557fecf7cd48deccde4c2d79317c6e18a6311ec",
+      "materialize_asm_literal_view.py": "d5d03d94acb3d4e32c9a6870879537491b73fc8a047b9ea6b6ae51a2345e4d72",
+      "materialize_extend_cache.py": "209ad62077459de37c8b92ae34e9ca4490599f12a7080e07850e186cd2dbb595",
+      "materialize_untrim_cache.py": "bde8e5aa01e1cf2cf2f19e1005bfad92cf3c7c11d028dbcfe6f0dda28be8b7a9",
+      "materialize_untrim_six_state_cache.py": "4de59727886583d2bd95bdd5ac02aad9554c5e911119b159638231b3bb197c0b",
+      "validate_advanced_feature_integration.py": "0c9a44521f0b35e7bdd46e5e635a94f65f1d724be55832125f56672e862f4106",
+      "validate_asbuilt_joints.py": "c5ea28be0b8d070a5651a3766beb6572c41e94f930ce3a137b2972843100a203",
+      "validate_asm_history.py": "4da7d6f510c87fb1d68354baadad5eabaa926ad121a6a141c140d3c6103ed54b",
+      "validate_asm_int64.py": "378a3f6987acfb13c9755b5a4209c4751dcbd23991fa18638d62d0b0be708e71",
+      "validate_asm_name_versions.py": "e9e94a662c60246ab9d6901c9f22586c209b8366a35c246d6cc7c6fa0617fc6b",
+      "validate_asm_subtypes.py": "f9b913cff7d0490783de677be527b189d996239af77941bfaceeca80a550bc76",
+      "validate_asymmetric_fillet_flips.py": "70fc0d8d3e00f195980b17930eeb2c86fb9b817719d00be7f06ebe4cc299b240",
+      "validate_attribute_integration.py": "4621b3fb410957e92f6d669d763bc61e8214bf4a63012c8c0aa37894c5e7e73a",
+      "validate_attribute_owner_variants.py": "c725e0e940570bb4ac2221c85250ecd0186a70e2602982f2cb4aee6e463caed5",
+      "validate_auxiliary_wires.py": "a036c9f6d3a2e6d65735520c3901bf0357b43a86adacff9deb114a3546c20654",
+      "validate_base_feature_empty_lists.py": "735d2e0aea563961101deb0a6e507d207e4720209ef78b2f22929f7788e8ae43",
+      "validate_base_feature_single_lists.py": "354fdb40f2e43cc679f7db84b45187a92140f3b35d5bb0e2cfe62d5d464aa2d5",
+      "validate_base_mesh_definition_integration.py": "66f32d3b1ef5bd407f0c0678e5c2b1393e300ee35a987199c6ed7d6482a3a02b",
+      "validate_base_mesh_feature_definitions.py": "a002149dedc06dec6adf462f7b5839c6c1fe2a77952bed0e06d52ee4698d3093",
+      "validate_base_mesh_sources.py": "59e67d8a0e21b5cf1956cf22d70fd9a7739bd3896d9b9fce411a5932691a530b",
+      "validate_body_asm_identifiers.py": "3094263f8a2ef986d317f9e743382d2fbac193f302229610ab3d6c5c4266a170",
+      "validate_body_tool_selections.py": "e7a5d33b10c53c67ef534c92802953c2896c0cc621a3765e1a039c91eb93d0c6",
+      "validate_boundary_face_correspondences.py": "fdef8b09c22b3281ce296410ae1c36705a1a2d4748c4258e7df0a95fa396ec53",
+      "validate_boundary_modifying_faces.py": "81dcb114feb37f2588e92557d1a7582c4bdcb4522991136916288cb575efc712",
+      "validate_boundary_sculpt_provenance.py": "565ed5c0d9068dba143ff65ee6adfdfc3e92bb3a0bfc9a729763d7c74ae0780a",
+      "validate_circular_cache_hooks.py": "4ac5b7c478bd144a726921028b01fe211b4abc9d0afa90bce71fa9d4052ba5cf",
+      "validate_circular_extrusion_geometry.py": "949ae09c874a94deaca597f495a730c397e098449096188dbcf05228bef80e02",
+      "validate_circular_feature_cache_integration.py": "d1bc2528474ead67b02c4b2de28ebc123ea42a18987e53c10c047da57aa96272",
+      "validate_circular_feature_caches.py": "e8addb128abeebe96d8f6a55759e2f217605c977dba70adc1b1557f7cda063e2",
+      "validate_circular_getter_handles.py": "a63fc637e9a75d09595c8ff7af98572680c9da1af4d53e22d023b172616eefe7",
+      "validate_circular_placement_evidence.py": "6b02cf5bd8d6dd63b4f259c1d60aaf10b231da786f1c7e5e8d847c23543124be",
+      "validate_circular_symmetric_suppression.py": "31a1adaef9585a3fe61b24a0a00190b863e9a546a5e98ace35caacd8f938a7fe",
+      "validate_closed_cache_integration.py": "dbc7d08cee6de336013649921e36bee4564dfc4b5ae8b81a422593432fe4f3a8",
+      "validate_closed_parameter_curve_cache.py": "54942b735ac087f586ba7237b64ec4a2f37e1ce48ebfc5e9a7d2679951581415",
+      "validate_compact_pcurve_offsets.py": "9be8fa35c9c16a59e8f57739a712d321092d9978d997d8a98912a658d6a1090b",
+      "validate_component_creation.py": "c8764e6df07aca72202dc2cbda01bb9c57525b45a131d6e6396c26d31c694b29",
+      "validate_component_display_colors.py": "0b3cc8939ddba381ba8922744823c063e2191e0fb205f1877521a92c8695ea45",
+      "validate_counted_asm_names.py": "971ff49815ec5d21fa76258fe4dc36d08155f0d2beb41eb276bf8ec1573c3799",
+      "validate_counted_name_integration.py": "7cdb3ed75b52f4a03fa21bdbd6700b9dc3f006df7396a4de2ec347d5207e1250",
+      "validate_cylinder_parameter_scales.py": "b774649f8c3ebf0ebffac6106d76cc7483ecfe1e3b85bdfb426929cf488613a3",
+      "validate_cylindrical_spline_cache.py": "31be486211b70939106ac2cf2370c38bb3dc9dafba907373ee4404aefa2389c7",
+      "validate_datum_mirror_supports.py": "b7fe8aac215e765581c6b92e70f0882efe99fc535854b787cb36245687c780be",
+      "validate_dimension_annotations.py": "4fe346eebf0885df926589e065d0da31e6fbc36db830cd7d4a6b52739517834f",
+      "validate_direction_trim_group_integration.py": "10cc1fb6d8c3186b6c34f17c423220278c0ec1abce972f05a03eabfea5319e6a",
+      "validate_draft_no_merge_attributes.py": "c5b05ddfbd10e45a4c76c9f3867d72949d4063d5fea63e91b57d3d9a46047233",
+      "validate_draft_patch_mesh_integration.py": "bb1f3ca437d1259a764084384fbea60af687af0565c5625cbd1a8c0db4ab84e7",
+      "validate_edge_chain_integration.py": "210b6aa30bc801d458ee2397f38dba2a4d5a2742723b9f023f8c66e68ee8e863",
+      "validate_elliptic_cone.py": "ac9335ed50c60a9803b03ae79fcae2259fd732878c1a211e624101ae214dd3a8",
+      "validate_exact_curve_form_two.py": "19cc341c51e2ce4f67cf6fa79110700e775a5de323b72191117b9f20d9342fd8",
+      "validate_extend_cache.py": "11f939cbfcf0f0605a97f24ee147ffc4eab96664fdfc15d7c9c1b88f425e6c29",
+      "validate_extend_cache_source_integration.py": "070e91c8f33d0004a872d1ef65073f93c8441bdca128b52173df8cdfe1faaef9",
+      "validate_extend_cache_sources.py": "d1f445f98e11a487e0a65a23dc3850fe50414c041eea67eb0d91fb36ef21aa05",
+      "validate_extend_edge_source_integration.py": "67d9d6dd43c3975df23be8cc192e0eec4c2292ac9a89573098a4a5dc6a7196e2",
+      "validate_extend_edge_sources.py": "2c376a38d7d2a56ac54cc6960d4fca1e576d075cf34c844b3dc086e8c0ed7359",
+      "validate_extrusion_placement_holdout.py": "53b4f291467b4194408acc58ff80ef55cf4a7a40a49d76a9ead04929c7a0e1a8",
+      "validate_extrusion_plane_limits.py": "3422d8f683d77d0ec30e427a56004e2b8bd0d61011247605c2be4cacadb971a0",
+      "validate_extrusion_reconstruction.py": "3061224ab05943ae0c35de6ab3b5638d568aaf045747a9c85f41896a706e7e26",
+      "validate_extrusion_reconstruction_integration.py": "36feea1c0f7405bbd4e69727fbcbd525f7ef4b4115c6cf3da7eeeecdfe5c041e",
+      "validate_extrusion_source_operands.py": "6721a6dab7b4b5f656b11f314b4a227134e4078441c9f169b9c1a9e5eb6192fc",
+      "validate_face_tracking_contexts.py": "927acae4b66d709e3f670f8e925fb2c60a277676ac3f15a2c514d72bb367dcf7",
+      "validate_fdm_face_attributes.py": "443c137375ad3b6a44683aceee7a550181bbfe307c377806d558cd5d8013b221",
+      "validate_feature_cache_integration.py": "bf8c7d19e3d712d52824f850eac5dabd60b4d72613689d6e5a17bc4c8e3b1375",
+      "validate_fillet_followup_integration.py": "a31b2bcdab567ae6ca10d0b82012495ff19bf65ac44ad09f065432a0d6c6bf3a",
+      "validate_fillet_spline_caches.py": "5551a81cc0e01a7880c972fdc25a0ce7c7b76648a7c3ceb1f5055ac5a3c7a363",
+      "validate_fpm_partial_coverage.py": "2ed83c7574969bfc33337f62fab16d5704d0fb374a0a54d3b31cf0e2ec39425b",
+      "validate_fusion_capture_preflight.py": "ca2600bf1eaa6ec738a1564792ff277c599d309b486f1820234e92ef64d4e9d0",
+      "validate_generic_name_variants.py": "8dadf325734c083af65ccd5186fc7c1e777849dc1bd2b2e9e233871056449f00",
+      "validate_helix_cache.py": "80fb7ef3da849e30c8c555db331cbc3568bc7a5725a84fb7e770d5f1c3df2c16",
+      "validate_historical_mesh_face_groups.py": "78119912d1478432ce26a329cd7b05b9fed9cb997d1a74d1c37c970f478fe1ce",
+      "validate_history_cache_integration.py": "7efcaf26d6c34f0853259ab9f65aae85076ca1649436ea887bfed16a4d74b1b1",
+      "validate_history_geometry_integration.py": "62946fd4d8df4016582b4217dfc00f832f615f7a5a9bca56bf6e7d4b9a6a1bae",
+      "validate_interp_blend_cache.py": "2a8c62185d274ec15fac3fb1b230969395d703fc0a8197043198afec4a39cd93",
+      "validate_interp_blend_downstream.py": "cd78725debdaead3ed8fc63757538e46d5667236f362e28a9b8ce1a97a79171b",
+      "validate_intersection_curve_variants.py": "768702b534c8da37e7855f98c912e3efe9d8d39c2b1ef7af890f724649a7cc17",
+      "validate_mesh_asset_errors.py": "c292a05479408a2da823f761d6fd6ce00685046c1403dac1b8828dbf23067bd6",
+      "validate_mesh_asset_header_scalar.py": "fd73afff2661767f85d013187f84106e067d3d9e03a8e83f88e4c569c2a981f1",
+      "validate_mesh_combine.py": "249e4cf190e29f72260daaaff4cdee5980fed641a3d3e378b8a5fdb74b261e21",
+      "validate_mesh_combine_face_groups.py": "80fc6b3559736e9fb13400c0d597dc41b126aea9c37bf065cf062b7933f3a6ca",
+      "validate_mesh_contents.py": "d662def51fc6f58ef1be4473b5f992040b1115ef04bb39d07dd11f1134dbc153",
+      "validate_mesh_convert.py": "cf0f8c128785cef677af19157502101d2101c06613dd494a8acb754e983b82e2",
+      "validate_mesh_convert_inputs.py": "37c24511375ee65983db2dfcce1be2bb86ba4de2faa9c5967a98bcda4509251c",
+      "validate_mesh_convert_operation_geometry.py": "08838e2bd6709576557b31a855c62944d10c9e58a9cc5bef1d0d5a0c7bb585ad",
+      "validate_mesh_convert_operation_integration.py": "06ef7c2fdad4293833940b588c154e4e41bdda683459014fa2f751d0ad11a3d8",
+      "validate_mesh_cut_index_stream.py": "0fb22bb14d5749ac55f1c842a5010149cd64df0aee5cbc00bddc883c0a7501a2",
+      "validate_mesh_deviation_integration.py": "b2a7a32421150b03b6edf860110c4ebba9d7aa5703381d610807707953be6b5d",
+      "validate_mesh_face_group_caches.py": "cb589d9783f67c0eb62b76d77a76f97dd9dcfe27acb2fc8672538c143ef5488a",
+      "validate_mesh_face_group_separate.py": "1bc27e968709095f50d694755260b8b0c2ad5e9457ea2d8cea19fda4d8ed96de",
+      "validate_mesh_face_groups.py": "8f8707dc47182de10d1856658cfc8cbb831b87506b5dd0e0bb52e275db8c268f",
+      "validate_mesh_frontier_integration.py": "6a69504cef85e80d9b9cc2e209aa08b298eda5bb8b8957f5e7431fc3bfd4497e",
+      "validate_mesh_normal_variants.py": "25169691e134b0a91aa3205a5e6527d3c0480a7230687abac72c5b9f79581b8c",
+      "validate_mesh_normals.py": "dc636e9e6682bf22fb0f10d36a765540cc7a2d25ebe0e1e992747df8793009da",
+      "validate_mesh_operation_integration.py": "c584c4e6d7e49f825103c2eb56df6d17c926df3979b6d2e3102258d74b65331a",
+      "validate_mesh_partition_integration.py": "c676758bc251c76985f156b44e313d93e34516c59bacd5a3dc0a9ba74c93d7db",
+      "validate_mesh_plane_cuts.py": "5ad9ee8defcb35876825613736af880a33cf253fecf10fe420c36dfca5ba3cd6",
+      "validate_mesh_rebuild_geometry.py": "01d504de80af7a2b142b747e19b393b4c850e97c2e301d16acbf92bb427ed78b",
+      "validate_mesh_rebuild_integration.py": "a3c3f1d5518057970812034945237bbb15afb27afd4eceb9ee6de4fc3155eccb",
+      "validate_mesh_reduce.py": "c3aab579dcaa220d3a60d62e29b93bb5173e3676ead70a55b304699644f013eb",
+      "validate_mesh_reduce_deviation.py": "046cd4ae1608388161aae8747f05146a47d24d57cba355645dee5de0211fcd1f",
+      "validate_mesh_reduce_deviation_geometry.py": "1324df88aff450eb381e2007033eee73838849dd09d80208ec34080b37c0161c",
+      "validate_mesh_refinement_integration.py": "69d159ac720ad5361f94112e0d9c12634c1a6029f45cabe1514669f13b6e61b6",
+      "validate_mesh_remesh.py": "715b487f3ff5e83e7eafd81958708e85908ac75c3e560005e2f99d1f253adf42",
+      "validate_mesh_remove.py": "e9aec11cc392e1eb0e6286727f73852492587a0f5e90dab057a29ebcd4cd1e9a",
+      "validate_mesh_repair.py": "f6524cdf6b362300e47daf53765d677315495a1902bbb1e52816b738aecc7010",
+      "validate_mesh_repair_geometry.py": "4f7744b36e240f340f6cdf1684fe3ebd573d15977e677988dc4c71278d21a91d",
+      "validate_mesh_repair_integration.py": "8d0653a2dfec9283e541da7be5b7e70883ba29d94e54104dc2ca21227d8a65a9",
+      "validate_mesh_repair_rebuild.py": "5cb7309352d50476cfac28bc685ff74bcadfe9be9269c96cf63817c11889db94",
+      "validate_mesh_reverse_normals.py": "77a778634d8deca032e1d776ca0e0da8d446a96a43ca1627b0fee280bad18035",
+      "validate_mesh_selection_integration.py": "3c762c1700403986bc85b9323777f2bc3789d2e786048ee3c54ed4dc720cfb3d",
+      "validate_mesh_separate.py": "ab056f01f172f9d6387f7d984c42960f547435e3abd7de728df7cfe6c315ffdc",
+      "validate_mesh_separate_normals.py": "aff08f5460552f7bb5f6d74d2b301c08038642a69bad43e62928b8d12eef5148",
+      "validate_mesh_shell.py": "e7dac2bc2e6f901f2dee213e234085459a74312998345ab34d5ef5503e1874dd",
+      "validate_mesh_shell_normals.py": "d480a38ca2d02c30347fa343c8bbd5137b0e57812af32699f89bca8a0940839a",
+      "validate_mesh_signed_volume_holdouts.py": "a90dad729704030c134a1b67fb856862a65760815a523157900e4d81b252d2db",
+      "validate_mesh_smooth.py": "5b90d2abc9107916ae0086a626d673682f75e5a09dbd9c02900786fce48787be",
+      "validate_mirror_boundary_caches.py": "a7b420565df28c4144a6c88015a4f4b0af1152e07f454fefc3d07e1348cf0cee",
+      "validate_mirror_boundary_caches_integration.py": "7b408cfadc875ffcced52d07f913b16b96c6368343a96936dba8c645f01e7e39",
+      "validate_mirror_cache_reflections.py": "e0d43d67157004501540ba04a279d77a29b15c907e0c818eead7fc3ac627a97b",
+      "validate_mirror_cache_reflections_integration.py": "e8d1ba5111fdab6aaf53d49be5cf1176993d4632f2cc48d09f6f09749b7dd8df",
+      "validate_mirror_cache_sources.py": "2dbd720d2cfb0ed90739f0432907280b81394ba3b9f554d9ba4022328438ca38",
+      "validate_mirror_datum_reflections.py": "6deb9ea48f45abd224636219dfe7ae1cf80814dc0d942329c7af98c3b556a820",
+      "validate_mirror_face_planes.py": "778f01911d442127f782a333e8090a2ef6da5cf34aa887a945908f4cf9492ed6",
+      "validate_mirror_face_planes_integration.py": "ea56505f15b093554f5931bfacc00f4879e3eaf05b4b88a64e0ff5cc208f9561",
+      "validate_mixed_body_collection_integration.py": "3d3ab01f2165da953f42f6602c3a7f43d66ff876bb7ded19315119007de59d04",
+      "validate_mixed_body_collections.py": "25e2b5f0d378dc42a6b4182b75788cdff2ec7e8107949f126aef52e207a68025",
+      "validate_mixed_body_ownership_downstream.py": "a246bdabebdd1b267848c408daf2a55e99a41e5b263bd222a76945beb41241e8",
+      "validate_mixed_empty_body_mappings.py": "a1edcf980af75d171449d9d750f6f0faf77dd13589ec2f27ebe7f9b19f11ef16",
+      "validate_modeling_extension_integration.py": "ded0b0bfe2d6c8dc45dc50e79fb9bba6e40b48e530c441a34cf064dceacda192",
+      "validate_named_vertex_selections.py": "5ae8a9c17ac5dacc1b97ef9243c8d2e0e79d2d2b9195264be23ebe8995677387",
+      "validate_naming_registry_variants.py": "1975d2f96171cb06b4ae5c2bb903d9ab0015553690db7fd9550f76e21d4f0a19",
+      "validate_native_selection_integration.py": "25dfe37f26c48e4368e980923aa0f7d7eb9456cd15a60907d296594ad9f86e0b",
+      "validate_negative_cylinders.py": "79e3bb67d6a466a9e13d7217bc49985586c28744ed6766570ef63c8cf9b449fe",
+      "validate_one_face_edge_source_integration.py": "43a4199e27196f6ec90ad9a4c2f539648b73080d530905067320eace5e4a61aa",
+      "validate_one_face_edge_sources.py": "83ec7e17e9d5426d9758a3959a5e8b74863a8f1db1c47c722c95d88d33431bcd",
+      "validate_parameter_curve_cache.py": "8ebf51c27dade394f60759fc218fae30640d40ae645b9db241b5023e459bbf46",
+      "validate_parameter_expression_records.py": "d8b375498ece5894580b75ecd5b406cd77b64daa516e592a815278a4976821aa",
+      "validate_parameter_function_modes.py": "63b2c1048073badbe9a8b3b239457e0b79e3d8fb0a2189b621803b53f492eabd",
+      "validate_parameter_identity_contrasts.py": "e30a5ec4f3395dbb15d0a04360cc33ba91c3b6e0a5d06e7133f7ed8ff060ad19",
+      "validate_parameter_namespace_integration.py": "6236630237ad7cbfe5b6cabfdd0652c9d40623a1b365d511fa4d8f0b67a68816",
+      "validate_parting_line_drafts.py": "cd42e2fee4df9f4d60e3e0a11e30d22e4114555e964ad2a781d9dfe4749fd211",
+      "validate_patch_continuity.py": "5ec883cdc24fb7d7122c48e6da4c154f00b83ba01c76f5eb2b513cbb6f848f4a",
+      "validate_path_pattern_cache_evidence.py": "538752db54c28413c9d7c0a3a1a4df546bbb97336da692c12c9fa470a17b963e",
+      "validate_path_pattern_cache_integration.py": "a1217c7783709747aa6686759e63f09758312a49bd0aebffb79219ef34d778f5",
+      "validate_path_pattern_feature_caches.py": "8d91cdd3e5b877d256d400ef1e6d14a70bb32ed6fababec27ecc825542277b06",
+      "validate_path_pattern_inputs.py": "e2a9a25a9434642169aed086e580f2006a4af359a3c4b7bbdc29dc21aad1f6e2",
+      "validate_pcurve_cache_modes.py": "82a5f459c75659ec746f92d2a7f725b7eca3480e802bb7eaaa2b4550dc6a1583",
+      "validate_pipe_operations.py": "a773ee3af280051e518b676887f890ab665d88484d17b174a4d765123b54be02",
+      "validate_placed_pipe_path_integration.py": "cf5afc655e56cc6c029dd64e34d63b71e19a4270dab09971897b95defe28a2c3",
+      "validate_placed_profile_portions.py": "6a41aecbdd4711bfa1580904a170aaa6c207c5a06c23049c20f02e3d95ef1092",
+      "validate_plane_extrusion_geometry.py": "b7032194bac2755d72679271a4dfb13577af0e20cf9653b4598357476a65cf1a",
+      "validate_plane_extrusion_reconstruction.py": "e7d95904e09354341f6d4bc8324cf64402226e678929e6796064330306ee4c23",
+      "validate_plane_extrusion_reconstruction_integration.py": "f7f13623875883b345c4d097196e4920d429d6d1f6b1c7b5d73aa64ae87deca6",
+      "validate_profile_cache_correspondence.py": "95cb1f6a5d3dbed088bf7d186e2efa6e7e49642f1869a3796550121c1014cae7",
+      "validate_profile_circle_portions.py": "3ef83b8b97f279525fcefcf7e4aacdf1e75675feb4f54e443005a401e5146dec",
+      "validate_profile_line_portions.py": "c3cdd5a7a2178643da34e0b6b505f7c02888221b1337e95668a99f0f37a349b2",
+      "validate_profile_mixed_portions.py": "e622d9310b0ea13d98486602ae1f22ed2d28dabdcd109017c1f467a1e6530fb3",
+      "validate_rectangular_cache_evidence.py": "252a2d589f70a6973c5c016393b0a7cc8d242d200dd5b3fc06f6eddba1784db0",
+      "validate_rectangular_cache_evidence_integration.py": "7f6b18e63bb039aeebbd3051307761c76a2f775ac905c307e1e06ae7bc6d9214",
+      "validate_rectangular_cache_hooks.py": "ab8a119e8d5759f28d6ee2a21c76467019b6d966924454ee7a2baee89bb167ef",
+      "validate_rectangular_feature_cache_integration.py": "5ba1f5226fbda62d41bf38e264e5e02d3e23c5d8740c1c328c87805891a81f05",
+      "validate_rectangular_feature_caches.py": "8e83d7137616f4f8be8a4b1ec6fe2a30df350b696d4633a310251d088e6d18ce",
+      "validate_registry_provenance_integration.py": "f2d2066a31faa0188106569f063d69c28baad394b8142d5fcff64df507f0b1db",
+      "validate_remove_features.py": "d9a8b97a1173056c684f2c96e33cefc484d813002e980873ae2b369ce4d05776",
+      "validate_remove_mixed_pattern_integration.py": "396965fe6229641ffbcef58ac259d198d912e0c92f3e56efe28429ecba4c679f",
+      "validate_replace_face_body_routes.py": "6bee0a28e483bee1a4964e7b134c433e6d175746a940ec98ea292399b4016d89",
+      "validate_replace_face_integration.py": "3ce8ff00c0cc23c974703603d70fe033a2aa925b7f3a4a0bdf73122cc03a25c8",
+      "validate_replace_face_targets.py": "bcfeb012cf5f5a8a3d6cb166c7715f9b854859ead0420863225be4597f10b18c",
+      "validate_revolve_axis_modes.py": "da2aee25e64afc8901e35e0b3841e81326756385a95b7fcb41a7e75b341c87e6",
+      "validate_rigid_groups.py": "68341811e4d92400ab557f08851e9284c851f9141da877b01f93ab1065fc3bec",
+      "validate_rule_fillet_surface_witness_lifecycle.py": "4ba7e13904dc2ba05d805739f88e6b4b1cc0d61da0842cec50cbbd47f3f8ebf6",
+      "validate_rule_surface_native_observations.py": "9c24ac52101c4132f1deff9f24885693570a87094db92fa142db4d005be872ad",
+      "validate_rule_surface_witness_bindings.py": "a87338031995a11f0604a95ee2b8a11cefdceccfc1def801576a92fe5512af56",
+      "validate_rule_surface_witness_native.py": "2de0e25f356b54e3b60389f5bc7aec402a350de67ba415014ca830dcc51cf2d3",
+      "validate_rule_surface_witness_recovery.py": "40e4e9813f6856edba3a115b8abdb4f07efd0b0857a8f297b2db623283553776",
+      "validate_ruled_edge_source_integration.py": "a705d08b238c870da38fcb6a5b64dbcafd499878a24dd98114e44ccffc9f4ebc",
+      "validate_ruled_edge_sources.py": "489b8a561f8e359e5beb3abe093d1b3d32002876591a3d1ea07be110631c87e9",
+      "validate_scale_prism_geometry.py": "10a5899a3d4ec2a40ba4924fe7896581a12885268fb91b2ad96d0068f0ebe5a4",
+      "validate_scale_reconstruction.py": "cbcac73cf057e7d552ddb16954115669bf411369c82347a4adca5cb6a8cb7fad",
+      "validate_scale_reconstruction_integration.py": "f1dedac003a166ec9b37f8a093ce0a0bfb0905c44c6661a294454abc14cd8e05",
+      "validate_scale_reconstruction_sources.py": "78ca5f79f152f674ab02c91c14fad6e8163d513ad5951dd381d3a49cc8b2e7d0",
+      "validate_scale_shell_inputs.py": "3e66d1807c29ff2ec2916c6497f6a90fc232bf31dd6d2f02aeb6d5ba4e9d52aa",
+      "validate_scaled_line_directions.py": "d0cd62906f0bc163025027babedce475062a9b949059759ea644282573bd5ba1",
+      "validate_sculpt_tool_attributes.py": "22d78db243270c0698cb26152b7b82539c2d29bb566d2731ee704cb49908c8f6",
+      "validate_shell_box_geometry.py": "ac6ba37d922d84330f925475a60e2cccf961b2829df99597e45e210055792bb4",
+      "validate_shell_reconstruction.py": "326ba36a491fb1d142dec9c049cecd83ec95f70ab6252749089227f438f921f1",
+      "validate_shell_reconstruction_integration.py": "64749a5784c501ff8217acd4538b3464360e22f11f6b08f45524107ca1da1c7f",
+      "validate_shell_source_operands.py": "f88af3bf0b5169fc2ff13504cf4fae7e85948ffa5c68945ccaecb7b60aac498c",
+      "validate_shell_tangent_holdout.py": "fa08bc61a57784e890f2c6dc9c1dd5105f81b6c0274c8c88c9115198d04db767",
+      "validate_signed_torus.py": "ca0ae40d8b1558053052d054ba510b7096032259bca9347fe1155f02be052dcf",
+      "validate_silhouette_splits.py": "f871f2550ed175f9b1e125a5d1eb89a4423262098212a7541e0b187fd2872ca1",
+      "validate_sketch_attributes.py": "b1dc8927c4d82ebcfb83ff6829ed3b52b771816b0bd1b73765f1b03363f94d2e",
+      "validate_split_body_multi_sheet_integration.py": "a1a955f983128a558ce39c4ef84f6c3f35f76760b0c8b294ad4125b798a48feb",
+      "validate_split_body_multi_sheet_routes.py": "af2d0ea4466d83ab85c8192b3d247945f69aeead680c4446bf552373e37e577b",
+      "validate_split_body_multi_sheet_tools.py": "01536fa42dfe3c61f1b6a879ff9dbdd796344ae73787da725b848da133b6f3e3",
+      "validate_split_body_profile_attempts.py": "eb375f5a741b468b28ceac811001567c5672d7a7480f7837a5a05100f7afa50f",
+      "validate_split_body_sheet_integration.py": "6513eccd76a5bb53f4e645a1f6e061d2d29651a6eb9a805152d25cc0a26e06b1",
+      "validate_split_body_sheet_routes.py": "a3b991ae18d124c5a5ab6cb3aca08c3e721d4bb8e607b2cd42942a1ec19f3815",
+      "validate_split_body_sheet_tools.py": "35a53b7eb4e5d06aca65baf9de9a542dd08565e7fc5a7c57ed805c42353554ba",
+      "validate_split_face_metadata_variants.py": "777ac954424471eaf776b48002cbe7b770b0dadf976466c0762413e2f1b13560",
+      "validate_spring_curve_cache.py": "4deedb86ffa47fcc396e6022219a6a8a842185649a9a350eb70f9489c3c12790",
+      "validate_stitch_hint_attributes.py": "d9298817c3e4eee9f40f17bc22510add6a53e7958c5817349b1e953101529627",
+      "validate_study.py": "334c61e6409521ad66ce36be2c78fd1837fd522b442802dc81b5a7b493fecf8e",
+      "validate_sum_surface_cache.py": "bdcc1030618e21924ae2222d659c8cef7a9408afd9769c505d13df35f365eed1",
+      "validate_surface_cache_variants.py": "8721e7d8cbe39f12b782f299375fb85bed0ed089daf5c6e8ee1050d38244d0b5",
+      "validate_surface_offset_intersection_integration.py": "d259c13df0037abb2c41b7644a05580d26e03636ee36da284773905ba57d6da0",
+      "validate_surface_offset_intersections.py": "9f021d24b600ecb4bd0f6769204c8d33184869062915b2f805065e2566618eca",
+      "validate_surface_offset_source_integration.py": "f09fbea28067ce8d253693221e6db368a7865a78152587ebf56aefffeed3cd86",
+      "validate_surface_offset_source_variants.py": "ecf3201b71813a896d916cf82ead554601688316a701c680d50f655dfc464029",
+      "validate_surface_offset_sources.py": "4684bcecd33204a47fbbe41500cd103d133e7ed1f3d5e2456e15e160681338ae",
+      "validate_surface_topology_integration.py": "ac5b348b3c5588af6bd6b6557b80fb6b971b956c845612a48daeb3d4b9483242",
+      "validate_surface_trim_integration.py": "fd7a1922ee9e66943c4f866ad8009716ae155ce36b77b84cdfbab325b394dacd",
+      "validate_surface_trim_line_integration.py": "a897a122bd891596babcb5090a9e3c068eaa2a458290617f1588d96dd3c597c6",
+      "validate_surface_trim_line_sources.py": "c6693e3af1a8488ccd95b29095dccf54a85ad22e96337aa12a5a2b4746d9d718",
+      "validate_surface_trim_lines.py": "b8f807ce62cc6144786897e6014cebb76bcd8edcae16ece77d92c90798d20ff7",
+      "validate_surface_trim_sources.py": "2c3cfd3fc31713d244578afd3180576ed2c137f6386e4945a88337f914c39cec",
+      "validate_surface_trim_tools.py": "fcaa998a09c9350e171b1ee11b98269b15008a2c94c299df39634d0004a673ac",
+      "validate_sweep_fixed_spline_paths.py": "61ea24d9286523ecc386c9310122a56ef9e35ce83ff44802094c487bf8b8f320",
+      "validate_sweep_fixed_spline_sources.py": "8720fef4f688d50188760254c48cfc88c0f0b12bec460d24d99700d0dcbe8c21",
+      "validate_sweep_nurbs_integration.py": "26e5d4796080e20fcb4935cd96e3ee59c614c2edd938d8f1c88c25b53e2c6efb",
+      "validate_sweep_surface_caches.py": "23f6773a9bb1ae25eb293d9685a5c7c8aa1b3c5cb10ba74fa5a40e4b0df9cf60",
+      "validate_thin_extrude_body_routes.py": "c1dee8c212c18cd6dda61fce43d696d91e40f021163d6973a10e10386f5daf7b",
+      "validate_thin_extrude_operation_integration.py": "20d703d837a8a1ba62553172d557dd3a3fd810594df3da4227eb954276e1856e",
+      "validate_thin_extrude_operations.py": "ef7e275602f37992587b071ffd40b992077e9f840cfe1c0d64e4c3c2d1eec120",
+      "validate_thin_extrudes.py": "e8926ab0a3be2732e1143794a7463d948e062d9146e67fa10d760db71c3fb9e5",
+      "validate_thread_body_routes.py": "6ff4e59beb150595e764b76f317d4f2bdb7c72dd0cf3a5d744079cd6d4d12932",
+      "validate_thread_families.py": "edcc8f29283ba72c269da1b07ce000c770bcf69e4f25662d7098d01b743ff2e7",
+      "validate_thread_family_body_routes.py": "610272bf1f736f9a7459cecda8dbd7b8c26b7c0bf39bf02f743f199678214d6c",
+      "validate_thread_family_integration.py": "7e44dbcfc92698046361570a654af6f70eddf2701a1851fc88c9fb544b4e78fb",
+      "validate_thread_multi_face_integration.py": "cb3b74798b9e921ca7c14b8862c3ac9b6dc9fd1bf5126bddf05255eff8b063af",
+      "validate_thread_multi_faces.py": "33cc08a7da48396f4ebe81fef27968276498c446713d463e3841c19890252720",
+      "validate_tolerant_topology.py": "a8cab55029f2d60381bae2361f27dfb9941e8d87db3944736e337b35af5fef9e",
+      "validate_trim_lifecycle.py": "f79040a985e46e0e8fd47c3f9f24deac76d7cfeb01770f22a1953e7cadaec090",
+      "validate_trimmed_extrusion_geometry.py": "77632c0d8501e0dbc01a116cbf90e3b14c1ac2772a6d6651be280d3e114c77c1",
+      "validate_trimmed_extrusion_reconstruction.py": "9d5bdde875de3c44bfedfa9ab869f4215a215a61b30b44cc446250dbd7a8e482",
+      "validate_trimmed_extrusion_reconstruction_integration.py": "84b0d3a0bb4724712cd55a0c1da922845e26ad0644c6bf9a2c4d3622dd39fbe4",
+      "validate_trimmed_extrusion_sources.py": "9feebeac4b39a4c17b0f95f3631444387c449ac6e44f0b7b5e698593f32ae46e",
+      "validate_trimmed_profiles.py": "1fddc8a48f869286cb41eea04c30c8c7eede2b21330c31cc70a165e9d039f212",
+      "validate_untrim_cache.py": "3d7e3b1c46be357e2e84f30e08d9c82b620ceea178f6691750f7db368a237d6d",
+      "validate_untrim_six_state_cache.py": "8daecc23c762a33612e7dace1116783643663b398577ee3cb332781877c8801e",
+      "validate_untrim_six_state_source_integration.py": "72ea0942cb46134b428fa0c80d8f51ce42e82665ac4b0bca4c1b9f86e31de891",
+      "validate_untrim_six_state_sources.py": "4fc74b039defe91596ab7c14a10a0555752ef17479dc0ef8efece8a55d443487",
+      "validate_untrim_source_integration.py": "6a0e5bba4f23d975c6cfcbc705f6cec56109716712c95495fe6214cdf8f5b0a1",
+      "validate_untrim_sources.py": "63db7c0de8f4a1e4eac1e7b599c21841a20eb4ca9c89f9396a28c088e68655d6",
+      "validate_variable_blend_cache.py": "f8734007ca5c323cb498d6649fc93e16bc965cf644f3c14b84f5461ec826edd3",
+      "validate_variable_fillets.py": "77e8af514c8f247bf94323a067902cca3258c714a5a3e9708d9da2362ff884e0",
+      "validate_vbl_boundary_corners.py": "21c39542c22eab1b1791f80b0fffb336c07d639d0dd353e92b99e055b7005a2d",
+      "validate_vbl_components.py": "8e96a5e93cdd3dd2d51818fe7544210692a79161ee5d61b290cd0fa2c5d3f8c8",
+      "validate_vbl_corner_integration.py": "751f362c7f220a39670c38cceb48e811355c32eff73a89dfdc0b80c297e923cb"
+    },
+    "trusted_acquisition_helper_AST_sha256": "713e3bafa797b25832cdfecd2f07658ea40b2b703db130454cee2fd4872d0077",
+    "method": "Complete committed Python git archive extracted into isolated TemporaryDirectory; /usr/bin/python3 subprocess imports decode_basics and dependencies with that directory as cwd",
+    "ephemeral_snapshot_path": null
+  },
+  "cache_provenance": {
+    "baseline": {
+      "path": "/private/tmp/fusion-revolve-reconstruction-baseline.json",
+      "sha256": "119fbf78db84f5ec46b40547ffd7109cf82954cf089b0660d077a47de825a0c5"
+    },
+    "current": {
+      "path": "/private/tmp/fusion-revolve-reconstruction-current.json",
+      "sha256": "fadc7179be60fa9cf5d066b5aa21f641db3b9d159442028090ddc8aecbefe475"
+    }
+  },
+  "frozen_production_sha256": {
+    "decode_revolve_source_operands.py": "84d464ae5827a853b9bb79c4a9ab3c3f46e3a38fc608e5542b4875b6ce7a959d",
+    "decode_revolve_geometry.py": "c611ae23feacfa587d19a87a6f4011f2e87395a08c540b281d7b1b03c544cc44",
+    "decode_revolve_reconstruction.py": "b2e91e2bc0ea1fb67d3fe7d7ad6f339e9dc28cf5c3fd45a24d4e9564156f89d0"
+  },
+  "frozen_main_sha256": "1ce45522c7c7350216fb8944cf6ce9cfd5547e5d41cb65c02f378247c338eec0",
+  "evidence_sha256": {
+    "revolve-reconstruction-decoding.json": "d6b5ffd627144c476317dff6df89a01bb5ccea32fa4c8ebe6b2d0d152a93b319",
+    "revolve-source-operand-decoding.json": "56ebc090f471bea72b12f46b3f217b191f7df32ca0a409feded3e7cc00e7d324",
+    "revolve-geometry-decoding.json": "c7cd9903c682d9d39694cd8f56798b43e174d5b5fd9fffa9022f7adb6f60025a"
+  },
+  "saved_API_truth_sha256": {
+    "analytic-86a12b291d0a/ground_truth.json": "1be0bba79e8f4bc48d20fe9037298ab8114f7ac1bddb6f7f6fea020fa9fac306",
+    "models-97a5e41e2ba7/ground_truth.json": "5678ef0d2d80ed84911a258dc7109a45afa6bf0f0f1ea4262dab2845bb3f694d",
+    "revolveaxes-14700158dba9/ground_truth.json": "b07bdf298be2c144d41a258682c9331bf46a5b0c2bf267ba87880c1f314660e1",
+    "revolveaxes-36bd04ac77e1/ground_truth.json": "be03b499e5a660a371d63e9f198de8d5fa7e0edd147ce9824977399546d03aac",
+    "revolveaxes-a83b542c4a07/ground_truth.json": "eca4fa8c490d11740e8317ab3a79ea311bdb7a3ff036025bb93906b2a3cb7782",
+    "revolvemodes-8eb734486235/ground_truth.json": "5ca807321e5541bcb0eacfe23583ca55709b5b5bd04394f3974a137245da50c8"
+  },
+  "source_sha256": {
+    "validate_revolve_reconstruction_integration.py": "2ea9a727c4b90a1d51f0853d9c3f7dfb858de6140c9b7d4b095aae598ca096d3",
+    "validate_trimmed_extrusion_reconstruction_integration.py": "84b0d3a0bb4724712cd55a0c1da922845e26ad0644c6bf9a2c4d3622dd39fbe4",
+    "validate_rectangular_cache_evidence_integration.py": "7f6b18e63bb039aeebbd3051307761c76a2f775ac905c307e1e06ae7bc6d9214",
+    "decode_basics.py": "1ce45522c7c7350216fb8944cf6ce9cfd5547e5d41cb65c02f378247c338eec0",
+    "decode_revolve_source_operands.py": "84d464ae5827a853b9bb79c4a9ab3c3f46e3a38fc608e5542b4875b6ce7a959d",
+    "decode_revolve_geometry.py": "c611ae23feacfa587d19a87a6f4011f2e87395a08c540b281d7b1b03c544cc44",
+    "decode_revolve_reconstruction.py": "b2e91e2bc0ea1fb67d3fe7d7ad6f339e9dc28cf5c3fd45a24d4e9564156f89d0"
+  },
+  "limitations": [
+    "Native selected profile/Sketch/axis/owned anchor/BODY/same-asset stored-ID identities precede all mathematical and numerical corroboration.",
+    "Effective angular orientation is derived solely from source axis, occupied radial half-plane and Sketch normal. No target-cache rotation or best-fit sign chooses the axis.",
+    "Symmetric 65-degree controls represent a 130-degree total span; along60/against25 represent [-25,+60] about the source-derived effective axis.",
+    "Distinct coincident native POINT IDs remain distinct. Source endpoint joins establish mathematical polygon roles only, without native welding or result ENTITY identity.",
+    "Twelve rectangle captures have saved source-axis/angle controls but no saved numerical API result bounds, volume or vertex sets. Derived bounds/volumes are not advertised as API-verified.",
+    "Three analytic bodies have actual saved coefficients/counts and a two-position Cone vertex bundle; explicit unique stored BODY names are used only after typed native ownership/mapping, never API collection ordinal or geometry-selected identities.",
+    "Three Boolean seed NewBody sources qualify but their modified complete caches fail reconstruction; eight receiving unsupported operations/modes remain explicit unresolved. No general Boolean regeneration is claimed.",
+    "Full Sphere and Torus preserve actual zero-EDGE topology; the Cone retains its null-curve singular EDGE without an invented seam evaluator.",
+    "All previous controls, settings, warnings, selection recipes, ASM geometry/topology and placement remain exact. Native/API UV, traversal, persistent and chronological/current/final identities remain unresolved."
+  ]
+}

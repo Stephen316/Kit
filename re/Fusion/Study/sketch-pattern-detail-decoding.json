@@ -1,0 +1,1095 @@
+{
+  "scope": "Offline extension of existing single-circle sketch pattern decoding with explicit reciprocal circle/center-point/helper ownership. This does not add multi-entity seeds or suppression decoding.",
+  "fusion_version": "2705.1.30",
+  "summary": {
+    "existing_archives": 2,
+    "patterns": 6,
+    "explicit_circle_center_helper_chains": 30,
+    "api_geometry_comparisons": 78,
+    "all_comparisons_passed": true,
+    "malformed_checks": 3
+  },
+  "integration": {
+    "function": "decode_sketch_pattern_details(data, records, features)",
+    "timing": "After decode_sketches has populated primitive geometry and existing sketch-tool constraints.",
+    "output": "patterns and unresolved lists; no mutation of features."
+  },
+  "new_native_structure": {
+    "helper_class_guid": "362B7EC3-0F09-47C8-A3BE-DC066715CDAE",
+    "observed_circle_center_helper": "29bytes:prefix000001000000,reference6circle,zero17,reference18center_point",
+    "point_relationship": "Known point body after attributes has matching helper references at0and77 and sketch owner reference88; helper points back to both circle and center.",
+    "circle_relationship": "Known circle body after attributes has center-point reference96 and same sketch owner footer; curve tag and center tag agree with decoded geometry.",
+    "controller_dependency_extras": "The four extra bytes in each15-byte dependency slot are0 in all six pattern cases. Rawvalues retained, semantics not assigned."
+  },
+  "notes": [
+    "The fixture corpus has only six single-circle pattern cases and all suppression arrays are false; no multi-entity, suppressed-instance or nondefault direction-selection captures exist here.",
+    "Created order comes from the existing native role list validated against API createdEntities order; no geometric nearest-neighbor or derived lattice index is used.",
+    "EntityGenesis values are retained as raw fields; no universal seed/instance or suppression bits are inferred.",
+    "The new helper class structure exposes previously unreported reciprocal point associations. It does not change the existing pattern settings or extend supported pattern seed types."
+  ],
+  "limitations": [
+    "Multi-entity source groups and non-circle pattern members unresolved.",
+    "Native suppression state field unresolved; production state is null.",
+    "Default-axis direction vectors already decoded elsewhere; selected direction entities not evidenced."
+  ],
+  "samples": [
+    {
+      "file": "sketchtools-85066e723410/sketchtools.f3d",
+      "sketch_name": "CircularPartial",
+      "decoded": {
+        "object_id": 561,
+        "kind": "SketchCircularPattern",
+        "sketch_object_id": 521,
+        "sketch_name": "CircularPartial",
+        "members": [
+          {
+            "membership_index": 0,
+            "role": "Seed",
+            "created_order_index": null,
+            "entity_object_id": 548,
+            "entity_tag": 154,
+            "dependency_order_index": 1,
+            "center_point_object_id": 546,
+            "center_point_tag": 153,
+            "center_helper_object_id": 547,
+            "stored_curve_entity_genesis": 258,
+            "stored_point_entity_genesis": 2,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 1,
+            "role": "Created",
+            "created_order_index": 0,
+            "entity_object_id": 554,
+            "entity_tag": 156,
+            "dependency_order_index": 2,
+            "center_point_object_id": 552,
+            "center_point_tag": 155,
+            "center_helper_object_id": 553,
+            "stored_curve_entity_genesis": 256,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              0.13397459621556163,
+              2.232050807568877,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 2,
+            "role": "Created",
+            "created_order_index": 1,
+            "entity_object_id": 557,
+            "entity_tag": 158,
+            "dependency_order_index": 3,
+            "center_point_object_id": 555,
+            "center_point_tag": 157,
+            "center_helper_object_id": 556,
+            "stored_curve_entity_genesis": 256,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              -1.8660254037844384,
+              1.2320508075688779,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 3,
+            "role": "Created",
+            "created_order_index": 2,
+            "entity_object_id": 560,
+            "entity_tag": 160,
+            "dependency_order_index": 4,
+            "center_point_object_id": 558,
+            "center_point_tag": 159,
+            "center_helper_object_id": 559,
+            "stored_curve_entity_genesis": 256,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              -2.0,
+              -0.9999999999999998,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          }
+        ],
+        "dependency_slots": [
+          {
+            "entity_object_id": 523,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 548,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 554,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 557,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 560,
+            "stored_extra_u32": 0
+          }
+        ],
+        "ordered_role_entity_ids": [
+          548,
+          554,
+          557,
+          560,
+          523
+        ],
+        "center_entity_id": 523,
+        "scope": "Existing ordered single-circle member roles enriched with explicit reciprocal center-point/helper provenance; no inferred lattice positions"
+      },
+      "api_geometry_comparisons": {
+        "ordered_member_count": true,
+        "seed_count": true,
+        "created_count": true,
+        "member_0_center": true,
+        "member_0_radius": true,
+        "member_1_center": true,
+        "member_1_radius": true,
+        "member_2_center": true,
+        "member_2_radius": true,
+        "member_3_center": true,
+        "member_3_radius": true
+      },
+      "api_suppression_observation": [
+        false,
+        false,
+        false
+      ],
+      "suppression_comparison_scope": "API reports all false in these captures; native suppression field is unmapped, so production suppression_state remains null."
+    },
+    {
+      "file": "sketchtools-85066e723410/sketchtools.f3d",
+      "sketch_name": "CircularFull",
+      "decoded": {
+        "object_id": 611,
+        "kind": "SketchCircularPattern",
+        "sketch_object_id": 571,
+        "sketch_name": "CircularFull",
+        "members": [
+          {
+            "membership_index": 0,
+            "role": "Seed",
+            "created_order_index": null,
+            "entity_object_id": 598,
+            "entity_tag": 163,
+            "dependency_order_index": 1,
+            "center_point_object_id": 596,
+            "center_point_tag": 162,
+            "center_helper_object_id": 597,
+            "stored_curve_entity_genesis": 258,
+            "stored_point_entity_genesis": 2,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 1,
+            "role": "Created",
+            "created_order_index": 0,
+            "entity_object_id": 604,
+            "entity_tag": 165,
+            "dependency_order_index": 2,
+            "center_point_object_id": 602,
+            "center_point_tag": 164,
+            "center_helper_object_id": 603,
+            "stored_curve_entity_genesis": 256,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              -0.9999999999999996,
+              2.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 2,
+            "role": "Created",
+            "created_order_index": 1,
+            "entity_object_id": 607,
+            "entity_tag": 167,
+            "dependency_order_index": 3,
+            "center_point_object_id": 605,
+            "center_point_tag": 166,
+            "center_helper_object_id": 606,
+            "stored_curve_entity_genesis": 256,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              -2.0,
+              -0.9999999999999998,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 3,
+            "role": "Created",
+            "created_order_index": 2,
+            "entity_object_id": 610,
+            "entity_tag": 169,
+            "dependency_order_index": 4,
+            "center_point_object_id": 608,
+            "center_point_tag": 168,
+            "center_helper_object_id": 609,
+            "stored_curve_entity_genesis": 256,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              0.9999999999999996,
+              -2.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          }
+        ],
+        "dependency_slots": [
+          {
+            "entity_object_id": 573,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 598,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 604,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 607,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 610,
+            "stored_extra_u32": 0
+          }
+        ],
+        "ordered_role_entity_ids": [
+          598,
+          604,
+          607,
+          610,
+          573
+        ],
+        "center_entity_id": 573,
+        "scope": "Existing ordered single-circle member roles enriched with explicit reciprocal center-point/helper provenance; no inferred lattice positions"
+      },
+      "api_geometry_comparisons": {
+        "ordered_member_count": true,
+        "seed_count": true,
+        "created_count": true,
+        "member_0_center": true,
+        "member_0_radius": true,
+        "member_1_center": true,
+        "member_1_radius": true,
+        "member_2_center": true,
+        "member_2_radius": true,
+        "member_3_center": true,
+        "member_3_radius": true
+      },
+      "api_suppression_observation": [
+        false,
+        false,
+        false
+      ],
+      "suppression_comparison_scope": "API reports all false in these captures; native suppression field is unmapped, so production suppression_state remains null."
+    },
+    {
+      "file": "sketchtools-85066e723410/sketchtools.f3d",
+      "sketch_name": "CircularSymmetric",
+      "decoded": {
+        "object_id": 661,
+        "kind": "SketchCircularPattern",
+        "sketch_object_id": 621,
+        "sketch_name": "CircularSymmetric",
+        "members": [
+          {
+            "membership_index": 0,
+            "role": "Seed",
+            "created_order_index": null,
+            "entity_object_id": 648,
+            "entity_tag": 172,
+            "dependency_order_index": 1,
+            "center_point_object_id": 646,
+            "center_point_tag": 171,
+            "center_helper_object_id": 647,
+            "stored_curve_entity_genesis": 258,
+            "stored_point_entity_genesis": 2,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 1,
+            "role": "Created",
+            "created_order_index": 0,
+            "entity_object_id": 654,
+            "entity_tag": 174,
+            "dependency_order_index": 2,
+            "center_point_object_id": 652,
+            "center_point_tag": 173,
+            "center_helper_object_id": 653,
+            "stored_curve_entity_genesis": 256,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              -0.13397459621556074,
+              -2.2320508075688776,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 2,
+            "role": "Created",
+            "created_order_index": 1,
+            "entity_object_id": 657,
+            "entity_tag": 176,
+            "dependency_order_index": 3,
+            "center_point_object_id": 655,
+            "center_point_tag": 175,
+            "center_helper_object_id": 656,
+            "stored_curve_entity_genesis": 256,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              1.8660254037844388,
+              -1.2320508075688772,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 3,
+            "role": "Created",
+            "created_order_index": 2,
+            "entity_object_id": 660,
+            "entity_tag": 178,
+            "dependency_order_index": 4,
+            "center_point_object_id": 658,
+            "center_point_tag": 177,
+            "center_helper_object_id": 659,
+            "stored_curve_entity_genesis": 256,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              0.13397459621556163,
+              2.232050807568877,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          }
+        ],
+        "dependency_slots": [
+          {
+            "entity_object_id": 623,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 648,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 654,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 657,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 660,
+            "stored_extra_u32": 0
+          }
+        ],
+        "ordered_role_entity_ids": [
+          648,
+          654,
+          657,
+          660,
+          623
+        ],
+        "center_entity_id": 623,
+        "scope": "Existing ordered single-circle member roles enriched with explicit reciprocal center-point/helper provenance; no inferred lattice positions"
+      },
+      "api_geometry_comparisons": {
+        "ordered_member_count": true,
+        "seed_count": true,
+        "created_count": true,
+        "member_0_center": true,
+        "member_0_radius": true,
+        "member_1_center": true,
+        "member_1_radius": true,
+        "member_2_center": true,
+        "member_2_radius": true,
+        "member_3_center": true,
+        "member_3_radius": true
+      },
+      "api_suppression_observation": [
+        false,
+        false,
+        false
+      ],
+      "suppression_comparison_scope": "API reports all false in these captures; native suppression field is unmapped, so production suppression_state remains null."
+    },
+    {
+      "file": "sketchtools-8a6b662b0d6f/sketchtools.f3d",
+      "sketch_name": "RectangularSpacing",
+      "decoded": {
+        "object_id": 249,
+        "kind": "SketchRectangularPattern",
+        "sketch_object_id": 202,
+        "sketch_name": "RectangularSpacing",
+        "members": [
+          {
+            "membership_index": 0,
+            "role": "Seed",
+            "created_order_index": null,
+            "entity_object_id": 230,
+            "entity_tag": 102,
+            "dependency_order_index": 0,
+            "center_point_object_id": 228,
+            "center_point_tag": 101,
+            "center_helper_object_id": 229,
+            "stored_curve_entity_genesis": 130,
+            "stored_point_entity_genesis": 2,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 1,
+            "role": "Created",
+            "created_order_index": 0,
+            "entity_object_id": 236,
+            "entity_tag": 104,
+            "dependency_order_index": 1,
+            "center_point_object_id": 234,
+            "center_point_tag": 103,
+            "center_helper_object_id": 235,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              4.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 2,
+            "role": "Created",
+            "created_order_index": 1,
+            "entity_object_id": 239,
+            "entity_tag": 106,
+            "dependency_order_index": 2,
+            "center_point_object_id": 237,
+            "center_point_tag": 105,
+            "center_helper_object_id": 238,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              6.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 3,
+            "role": "Created",
+            "created_order_index": 2,
+            "entity_object_id": 242,
+            "entity_tag": 108,
+            "dependency_order_index": 3,
+            "center_point_object_id": 240,
+            "center_point_tag": 107,
+            "center_helper_object_id": 241,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              2.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 4,
+            "role": "Created",
+            "created_order_index": 3,
+            "entity_object_id": 245,
+            "entity_tag": 110,
+            "dependency_order_index": 4,
+            "center_point_object_id": 243,
+            "center_point_tag": 109,
+            "center_helper_object_id": 244,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              4.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 5,
+            "role": "Created",
+            "created_order_index": 4,
+            "entity_object_id": 248,
+            "entity_tag": 112,
+            "dependency_order_index": 5,
+            "center_point_object_id": 246,
+            "center_point_tag": 111,
+            "center_helper_object_id": 247,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              6.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          }
+        ],
+        "dependency_slots": [
+          {
+            "entity_object_id": 230,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 236,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 239,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 242,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 245,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 248,
+            "stored_extra_u32": 0
+          }
+        ],
+        "ordered_role_entity_ids": [
+          230,
+          236,
+          239,
+          242,
+          245,
+          248
+        ],
+        "center_entity_id": null,
+        "scope": "Existing ordered single-circle member roles enriched with explicit reciprocal center-point/helper provenance; no inferred lattice positions"
+      },
+      "api_geometry_comparisons": {
+        "ordered_member_count": true,
+        "seed_count": true,
+        "created_count": true,
+        "member_0_center": true,
+        "member_0_radius": true,
+        "member_1_center": true,
+        "member_1_radius": true,
+        "member_2_center": true,
+        "member_2_radius": true,
+        "member_3_center": true,
+        "member_3_radius": true,
+        "member_4_center": true,
+        "member_4_radius": true,
+        "member_5_center": true,
+        "member_5_radius": true
+      },
+      "api_suppression_observation": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "suppression_comparison_scope": "API reports all false in these captures; native suppression field is unmapped, so production suppression_state remains null."
+    },
+    {
+      "file": "sketchtools-8a6b662b0d6f/sketchtools.f3d",
+      "sketch_name": "RectangularExtent",
+      "decoded": {
+        "object_id": 311,
+        "kind": "SketchRectangularPattern",
+        "sketch_object_id": 265,
+        "sketch_name": "RectangularExtent",
+        "members": [
+          {
+            "membership_index": 0,
+            "role": "Seed",
+            "created_order_index": null,
+            "entity_object_id": 292,
+            "entity_tag": 115,
+            "dependency_order_index": 0,
+            "center_point_object_id": 290,
+            "center_point_tag": 114,
+            "center_helper_object_id": 291,
+            "stored_curve_entity_genesis": 130,
+            "stored_point_entity_genesis": 2,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 1,
+            "role": "Created",
+            "created_order_index": 0,
+            "entity_object_id": 298,
+            "entity_tag": 117,
+            "dependency_order_index": 1,
+            "center_point_object_id": 296,
+            "center_point_tag": 116,
+            "center_helper_object_id": 297,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              3.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 2,
+            "role": "Created",
+            "created_order_index": 1,
+            "entity_object_id": 301,
+            "entity_tag": 119,
+            "dependency_order_index": 2,
+            "center_point_object_id": 299,
+            "center_point_tag": 118,
+            "center_helper_object_id": 300,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              4.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 3,
+            "role": "Created",
+            "created_order_index": 2,
+            "entity_object_id": 304,
+            "entity_tag": 121,
+            "dependency_order_index": 3,
+            "center_point_object_id": 302,
+            "center_point_tag": 120,
+            "center_helper_object_id": 303,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              2.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 4,
+            "role": "Created",
+            "created_order_index": 3,
+            "entity_object_id": 307,
+            "entity_tag": 123,
+            "dependency_order_index": 4,
+            "center_point_object_id": 305,
+            "center_point_tag": 122,
+            "center_helper_object_id": 306,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              3.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 5,
+            "role": "Created",
+            "created_order_index": 4,
+            "entity_object_id": 310,
+            "entity_tag": 125,
+            "dependency_order_index": 5,
+            "center_point_object_id": 308,
+            "center_point_tag": 124,
+            "center_helper_object_id": 309,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              4.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          }
+        ],
+        "dependency_slots": [
+          {
+            "entity_object_id": 292,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 298,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 301,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 304,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 307,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 310,
+            "stored_extra_u32": 0
+          }
+        ],
+        "ordered_role_entity_ids": [
+          292,
+          298,
+          301,
+          304,
+          307,
+          310
+        ],
+        "center_entity_id": null,
+        "scope": "Existing ordered single-circle member roles enriched with explicit reciprocal center-point/helper provenance; no inferred lattice positions"
+      },
+      "api_geometry_comparisons": {
+        "ordered_member_count": true,
+        "seed_count": true,
+        "created_count": true,
+        "member_0_center": true,
+        "member_0_radius": true,
+        "member_1_center": true,
+        "member_1_radius": true,
+        "member_2_center": true,
+        "member_2_radius": true,
+        "member_3_center": true,
+        "member_3_radius": true,
+        "member_4_center": true,
+        "member_4_radius": true,
+        "member_5_center": true,
+        "member_5_radius": true
+      },
+      "api_suppression_observation": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "suppression_comparison_scope": "API reports all false in these captures; native suppression field is unmapped, so production suppression_state remains null."
+    },
+    {
+      "file": "sketchtools-8a6b662b0d6f/sketchtools.f3d",
+      "sketch_name": "RectangularSymmetric",
+      "decoded": {
+        "object_id": 373,
+        "kind": "SketchRectangularPattern",
+        "sketch_object_id": 327,
+        "sketch_name": "RectangularSymmetric",
+        "members": [
+          {
+            "membership_index": 0,
+            "role": "Seed",
+            "created_order_index": null,
+            "entity_object_id": 354,
+            "entity_tag": 128,
+            "dependency_order_index": 0,
+            "center_point_object_id": 352,
+            "center_point_tag": 127,
+            "center_helper_object_id": 353,
+            "stored_curve_entity_genesis": 130,
+            "stored_point_entity_genesis": 2,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 1,
+            "role": "Created",
+            "created_order_index": 0,
+            "entity_object_id": 360,
+            "entity_tag": 130,
+            "dependency_order_index": 1,
+            "center_point_object_id": 358,
+            "center_point_tag": 129,
+            "center_helper_object_id": 359,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 2,
+            "role": "Created",
+            "created_order_index": 1,
+            "entity_object_id": 363,
+            "entity_tag": 132,
+            "dependency_order_index": 2,
+            "center_point_object_id": 361,
+            "center_point_tag": 131,
+            "center_helper_object_id": 362,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              4.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 3,
+            "role": "Created",
+            "created_order_index": 2,
+            "entity_object_id": 366,
+            "entity_tag": 134,
+            "dependency_order_index": 3,
+            "center_point_object_id": 364,
+            "center_point_tag": 133,
+            "center_helper_object_id": 365,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              0.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 4,
+            "role": "Created",
+            "created_order_index": 3,
+            "entity_object_id": 369,
+            "entity_tag": 136,
+            "dependency_order_index": 4,
+            "center_point_object_id": 367,
+            "center_point_tag": 135,
+            "center_helper_object_id": 368,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              2.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          },
+          {
+            "membership_index": 5,
+            "role": "Created",
+            "created_order_index": 4,
+            "entity_object_id": 372,
+            "entity_tag": 138,
+            "dependency_order_index": 5,
+            "center_point_object_id": 370,
+            "center_point_tag": 137,
+            "center_helper_object_id": 371,
+            "stored_curve_entity_genesis": 128,
+            "stored_point_entity_genesis": 0,
+            "center_cm": [
+              4.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "suppression_state": null,
+            "suppression_status": "Native suppression field unresolved; geometry presence does not establish suppression state"
+          }
+        ],
+        "dependency_slots": [
+          {
+            "entity_object_id": 354,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 360,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 363,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 366,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 369,
+            "stored_extra_u32": 0
+          },
+          {
+            "entity_object_id": 372,
+            "stored_extra_u32": 0
+          }
+        ],
+        "ordered_role_entity_ids": [
+          354,
+          360,
+          363,
+          366,
+          369,
+          372
+        ],
+        "center_entity_id": null,
+        "scope": "Existing ordered single-circle member roles enriched with explicit reciprocal center-point/helper provenance; no inferred lattice positions"
+      },
+      "api_geometry_comparisons": {
+        "ordered_member_count": true,
+        "seed_count": true,
+        "created_count": true,
+        "member_0_center": true,
+        "member_0_radius": true,
+        "member_1_center": true,
+        "member_1_radius": true,
+        "member_2_center": true,
+        "member_2_radius": true,
+        "member_3_center": true,
+        "member_3_radius": true,
+        "member_4_center": true,
+        "member_4_radius": true,
+        "member_5_center": true,
+        "member_5_radius": true
+      },
+      "api_suppression_observation": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "suppression_comparison_scope": "API reports all false in these captures; native suppression field is unmapped, so production suppression_state remains null."
+    }
+  ],
+  "malformed_checks": [
+    {
+      "case": "unobserved_dependency_extra_field",
+      "rejected": true,
+      "reason": "Unobserved sketch pattern dependency extra field"
+    },
+    {
+      "case": "helper_points_at_other_circle",
+      "rejected": true,
+      "reason": "Sketch pattern circle/point/helper references are not reciprocal"
+    },
+    {
+      "case": "point_duplicate_helper_reference_disagrees",
+      "rejected": true,
+      "reason": "Sketch pattern center helper references disagree"
+    }
+  ],
+  "main_reader_integration": {
+    "status": "pass",
+    "files": 2,
+    "patterns_matching_stage_report": 6,
+    "stream_key": "sketch_pattern_details"
+  }
+}

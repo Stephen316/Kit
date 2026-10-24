@@ -1,0 +1,101 @@
+{
+  "scope": "Complete real ASM token stream with a separately controlled unsupported-history suffix fallback; neither implies history replay or final-body solving",
+  "validation_command": "/usr/bin/python3 validate_body_asm_identifiers.py --auxiliary --output /tmp/body-asm-after-int64-validation.json",
+  "real_plane_first_control": {
+    "file": "boundaryfills-a0953038318b/plane_first.f3d",
+    "native_body_to_ASM_indices": [
+      {
+        "native_body_object_id": 275,
+        "asm_body_index": 1
+      },
+      {
+        "native_body_object_id": 355,
+        "asm_body_index": 3
+      }
+    ],
+    "geometry_identity_scope": "API corroboration after exact stored-ID join; no auxiliary identity selected by geometry",
+    "explicit_boundary_fill_result_bounds_match_actual_API": true,
+    "result_bounds_cm": [
+      [
+        1.2000000000000002,
+        0.0,
+        0.0
+      ],
+      [
+        3.0,
+        2.0,
+        2.0
+      ]
+    ],
+    "whole_ASM_token_stream_complete": true,
+    "no_initial_geometry_fallback_annotation": true
+  },
+  "synthetic_history_fallback_control": {
+    "source_file": "boundaryfills-a0953038318b/plane_first.f3d",
+    "mutation": "Replace the token immediately after the first complete history record with unsupported tag0xff",
+    "unsupported_token_offset": 21447,
+    "real_stream_complete": true,
+    "real_mapping_has_no_prefix_annotation": true,
+    "synthetic_whole_stream_complete": false,
+    "synthetic_token_error": "Unsupported ASM token 0xff at 21447",
+    "native_body_binding_patches_equal_real_complete_case": true,
+    "auxiliary_roots_equal_real_complete_case": true,
+    "initial_geometry_validation": {
+      "initial_geometry_complete": true,
+      "whole_token_stream_complete": false,
+      "initial_geometry_record_count": 213,
+      "history_marker_record_index": 213,
+      "history_marker_offset": 21327,
+      "initial_geometry_end_offset": 21327,
+      "history_marker_end_offset": 21358,
+      "last_complete_later_record_end_offset": 21447,
+      "unsupported_suffix_failure_cursor": 21448,
+      "unsupported_later_history_reason": "Unsupported ASM token 0xff at 21447",
+      "scope": "Contiguous complete initial geometry only; whole stream and later history remain unsupported",
+      "validated_initial_geometry_body_graph_indices": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "fallback_boundary_guards": [
+    {
+      "guard": "Incomplete stream requires the exact first Begin-of-ASM-History-Data boundary",
+      "rejected": true,
+      "reason": "ASM incomplete stream lacks a proven closed initial geometry/history boundary"
+    },
+    {
+      "guard": "A truncated stream ending at the history marker does not prove a later failure location",
+      "rejected": true,
+      "reason": "ASM incomplete stream lacks a proven closed initial geometry/history boundary"
+    },
+    {
+      "guard": "Numeric failure inside initial geometry cannot be relabelled as unsupported later history",
+      "rejected": true,
+      "reason": "ASM incomplete stream lacks a proven closed initial geometry/history boundary"
+    }
+  ],
+  "regression_summary": {
+    "catalog_files_classified_without_main_audit": 559,
+    "explicit_mapping_targets": 40,
+    "recovered_mappings": 40,
+    "recovered_body_joins": 54,
+    "complete_negative_ID_target_mappings": 33,
+    "complete_negative_ID_mappings_recovered": 33,
+    "detached_FACE_target_mappings_recovered": 6,
+    "retained_auxiliary_BODY_roots": 65,
+    "retained_auxiliary_FACE_roots": 7,
+    "retained_unresolved_auxiliary_wire_mappings": 0,
+    "initial_prefix_only_recoveries": 0,
+    "synthetic_history_fallback_controls": 1,
+    "focused_API_controls": 11,
+    "malformed_guards": 8
+  },
+  "historical_case_outputs_preserved_exact": true,
+  "limitations": [
+    "Original historical JSON reports remain unchanged and retain their earlier incomplete-stream evidence.",
+    "The unsupported tag0xff suffix is deliberately injected into a copy for verification only; saved archives are unchanged.",
+    "Token completeness and typed BODY joins do not establish current/final visibility, persistent topology naming, history replay or regeneration."
+  ]
+}

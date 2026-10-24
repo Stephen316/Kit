@@ -1,0 +1,1791 @@
+{
+  "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved",
+  "integration": {
+    "function": "decode_boundary_fill_results(data, records)",
+    "returns": "decoded/unresolved/scope; decoded items keyed by feature_object_id",
+    "dependencies": "Existing BoundaryFill controls, body selections and direct-body feature parsers, all called internally on stored records",
+    "suggested_settings_keys": [
+      "owned_result_body_count",
+      "owned_result_bodies",
+      "result_selection_bodies",
+      "explicit_result_body_count",
+      "result_selection_proxy_object_ids"
+    ],
+    "summary_only_evidence": [
+      "historical_body_tools",
+      "owned_remove_body_actions",
+      "stored_membership"
+    ],
+    "expected_output": "samples[].expected_summary contains the complete new standalone output for exact comparison",
+    "validation_command": "/usr/bin/python3 decode_boundary_fill_results.py --validate"
+  },
+  "native_layout": {
+    "post_selected_cells": "At existing selected_definition_end_offset: u32zero,u32anchorCount,11byte anchor refs,u32zero,u32proxyCount,11byte proxy refs,bounded UUID UTF16 namespace",
+    "NewBody": "Observed one owned D263 anchor, explicitly referencing typed native BODY and naming BoundaryFill as source owner; no result proxy",
+    "modifying_operations": "Observed zero owned anchors plus one distinct owned result proxy; Join has two owned body descriptors, Cut/Intersect one. Result bodies must match explicit historical input body/anchor pairs.",
+    "membership": "Native BODY trailer points to typed collection. Bounded leading and repeated trailing member lists plus native member backreferences independently establish listed membership; absence is retained literally."
+  },
+  "samples": [
+    {
+      "file": "boundaryfills-a0953038318b/new_middle.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 359,
+            "operation": "NewBody",
+            "owned_result_anchor_table_relative_offset": 75,
+            "owned_result_body_count": 1,
+            "owned_result_bodies": [
+              {
+                "body_anchor_object_id": 422,
+                "native_body_object_id": 418,
+                "source_owner_object_id": 359,
+                "role": "Feature-owned NewBody result anchor",
+                "role_scope": "Observed NewBody result association; not a current-visible/final-body classification",
+                "stored_membership": {
+                  "native_body_object_id": 418,
+                  "native_body_collection_reference_offset": 50917,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354,
+                    418
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "result_selection_bodies": [],
+            "explicit_result_body_count": 1,
+            "historical_body_tools": [
+              {
+                "selection_record_object_id": 360,
+                "descriptor_object_id": 363,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 34676,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354,
+                    418
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              },
+              {
+                "selection_record_object_id": 367,
+                "descriptor_object_id": 370,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 44953,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354,
+                    418
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "owned_remove_body_actions": [],
+            "result_selection_proxy_object_ids": [],
+            "result_selection_scope": "Distinct owned result proxy selects historical tool identities; current-body lifetime remains unresolved",
+            "metadata_namespace_text": "00000000-0000-0000-0000-000000000000",
+            "remaining_metadata_byte_count": 206,
+            "empty_anchor_scope": "Zero owned anchors does not mean zero API resulting bodies",
+            "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+      },
+      "actual_API_output_bodies": [
+        {
+          "name": "Body3",
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 4.0
+          }
+        }
+      ],
+      "checks": {
+        "explicit_result_count_matches_API": true,
+        "available_result_bounds_match_API_after_typed_identity_join": true,
+        "unresolved_result_geometry_count": 0,
+        "modifying_result_names_match_API": null,
+        "zero_owned_anchor_count_with_nonzero_API_results": false
+      },
+      "result_geometry_corroboration": [
+        {
+          "native_body_object_id": 418,
+          "asm_body_index": 3,
+          "stored_name": null,
+          "actual_API_feature_body_name": "Body3",
+          "result_vertex_bounds_cm": [
+            [
+              2.0,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              2.0,
+              2.0
+            ]
+          ],
+          "actual_API_bounds_match": true,
+          "identity_source": "Explicit feature anchor/descriptor and typed per-blob BODY stored-ID join; comparison after identity association"
+        }
+      ]
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_first.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 359,
+            "operation": "NewBody",
+            "owned_result_anchor_table_relative_offset": 75,
+            "owned_result_body_count": 1,
+            "owned_result_bodies": [
+              {
+                "body_anchor_object_id": 422,
+                "native_body_object_id": 418,
+                "source_owner_object_id": 359,
+                "role": "Feature-owned NewBody result anchor",
+                "role_scope": "Observed NewBody result association; not a current-visible/final-body classification",
+                "stored_membership": {
+                  "native_body_object_id": 418,
+                  "native_body_collection_reference_offset": 50796,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354,
+                    418
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "result_selection_bodies": [],
+            "explicit_result_body_count": 1,
+            "historical_body_tools": [
+              {
+                "selection_record_object_id": 360,
+                "descriptor_object_id": 363,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 34676,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354,
+                    418
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              },
+              {
+                "selection_record_object_id": 367,
+                "descriptor_object_id": 370,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 44953,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354,
+                    418
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "owned_remove_body_actions": [],
+            "result_selection_proxy_object_ids": [],
+            "result_selection_scope": "Distinct owned result proxy selects historical tool identities; current-body lifetime remains unresolved",
+            "metadata_namespace_text": "00000000-0000-0000-0000-000000000000",
+            "remaining_metadata_byte_count": 206,
+            "empty_anchor_scope": "Zero owned anchors does not mean zero API resulting bodies",
+            "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+      },
+      "actual_API_output_bodies": [
+        {
+          "name": "Body3",
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 8.0
+          }
+        }
+      ],
+      "checks": {
+        "explicit_result_count_matches_API": true,
+        "available_result_bounds_match_API_after_typed_identity_join": true,
+        "unresolved_result_geometry_count": 0,
+        "modifying_result_names_match_API": null,
+        "zero_owned_anchor_count_with_nonzero_API_results": false
+      },
+      "result_geometry_corroboration": [
+        {
+          "native_body_object_id": 418,
+          "asm_body_index": 3,
+          "stored_name": null,
+          "actual_API_feature_body_name": "Body3",
+          "result_vertex_bounds_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              2.0,
+              2.0,
+              2.0
+            ]
+          ],
+          "actual_API_bounds_match": true,
+          "identity_source": "Explicit feature anchor/descriptor and typed per-blob BODY stored-ID join; comparison after identity association"
+        }
+      ]
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_two.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 359,
+            "operation": "NewBody",
+            "owned_result_anchor_table_relative_offset": 86,
+            "owned_result_body_count": 1,
+            "owned_result_bodies": [
+              {
+                "body_anchor_object_id": 429,
+                "native_body_object_id": 425,
+                "source_owner_object_id": 359,
+                "role": "Feature-owned NewBody result anchor",
+                "role_scope": "Observed NewBody result association; not a current-visible/final-body classification",
+                "stored_membership": {
+                  "native_body_object_id": 425,
+                  "native_body_collection_reference_offset": 51626,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354,
+                    425
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "result_selection_bodies": [],
+            "explicit_result_body_count": 1,
+            "historical_body_tools": [
+              {
+                "selection_record_object_id": 360,
+                "descriptor_object_id": 363,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 34676,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354,
+                    425
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              },
+              {
+                "selection_record_object_id": 367,
+                "descriptor_object_id": 370,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 44953,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354,
+                    425
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "owned_remove_body_actions": [],
+            "result_selection_proxy_object_ids": [],
+            "result_selection_scope": "Distinct owned result proxy selects historical tool identities; current-body lifetime remains unresolved",
+            "metadata_namespace_text": "00000000-0000-0000-0000-000000000000",
+            "remaining_metadata_byte_count": 206,
+            "empty_anchor_scope": "Zero owned anchors does not mean zero API resulting bodies",
+            "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+      },
+      "actual_API_output_bodies": [
+        {
+          "name": "Body3",
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 12.0
+          }
+        }
+      ],
+      "checks": {
+        "explicit_result_count_matches_API": true,
+        "available_result_bounds_match_API_after_typed_identity_join": true,
+        "unresolved_result_geometry_count": 0,
+        "modifying_result_names_match_API": null,
+        "zero_owned_anchor_count_with_nonzero_API_results": false
+      },
+      "result_geometry_corroboration": [
+        {
+          "native_body_object_id": 425,
+          "asm_body_index": 3,
+          "stored_name": null,
+          "actual_API_feature_body_name": "Body3",
+          "result_vertex_bounds_cm": [
+            [
+              2.0,
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              2.0,
+              2.0
+            ]
+          ],
+          "actual_API_bounds_match": true,
+          "identity_source": "Explicit feature anchor/descriptor and typed per-blob BODY stored-ID join; comparison after identity association"
+        }
+      ]
+    },
+    {
+      "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 359,
+            "operation": "NewBody",
+            "owned_result_anchor_table_relative_offset": 97,
+            "owned_result_body_count": 1,
+            "owned_result_bodies": [
+              {
+                "body_anchor_object_id": 446,
+                "native_body_object_id": 442,
+                "source_owner_object_id": 359,
+                "role": "Feature-owned NewBody result anchor",
+                "role_scope": "Observed NewBody result association; not a current-visible/final-body classification",
+                "stored_membership": {
+                  "native_body_object_id": 442,
+                  "native_body_collection_reference_offset": 54345,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    442
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "result_selection_bodies": [],
+            "explicit_result_body_count": 1,
+            "historical_body_tools": [
+              {
+                "selection_record_object_id": 360,
+                "descriptor_object_id": 363,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 35563,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    442
+                  ],
+                  "is_listed_in_repeated_collection": false,
+                  "membership_status": "Native body retains a collection reference but is absent from both stored member lists",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              },
+              {
+                "selection_record_object_id": 367,
+                "descriptor_object_id": 370,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 45552,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    442
+                  ],
+                  "is_listed_in_repeated_collection": false,
+                  "membership_status": "Native body retains a collection reference but is absent from both stored member lists",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "owned_remove_body_actions": [
+              {
+                "remove_body_feature_object_id": 387,
+                "native_body_object_id": 275,
+                "body_anchor_object_id": 281,
+                "matching_tool_selection_record_object_id": 360,
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 35563,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    442
+                  ],
+                  "is_listed_in_repeated_collection": false,
+                  "membership_status": "Native body retains a collection reference but is absent from both stored member lists",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                },
+                "action_scope": "Owned removal action for explicit historical BoundaryFill input tool; current final visibility/body lifetime not inferred"
+              },
+              {
+                "remove_body_feature_object_id": 398,
+                "native_body_object_id": 354,
+                "body_anchor_object_id": 358,
+                "matching_tool_selection_record_object_id": 367,
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 45552,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    442
+                  ],
+                  "is_listed_in_repeated_collection": false,
+                  "membership_status": "Native body retains a collection reference but is absent from both stored member lists",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                },
+                "action_scope": "Owned removal action for explicit historical BoundaryFill input tool; current final visibility/body lifetime not inferred"
+              }
+            ],
+            "result_selection_proxy_object_ids": [],
+            "result_selection_scope": "Distinct owned result proxy selects historical tool identities; current-body lifetime remains unresolved",
+            "metadata_namespace_text": "5d50c815-e5a1-434b-b385-3404987de106",
+            "remaining_metadata_byte_count": 249,
+            "empty_anchor_scope": "Zero owned anchors does not mean zero API resulting bodies",
+            "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+      },
+      "actual_API_output_bodies": [
+        {
+          "name": "Body3",
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 8.0
+          }
+        }
+      ],
+      "checks": {
+        "explicit_result_count_matches_API": true,
+        "available_result_bounds_match_API_after_typed_identity_join": true,
+        "unresolved_result_geometry_count": 0,
+        "modifying_result_names_match_API": null,
+        "zero_owned_anchor_count_with_nonzero_API_results": false
+      },
+      "result_geometry_corroboration": [
+        {
+          "native_body_object_id": 442,
+          "asm_body_index": 3,
+          "stored_name": null,
+          "actual_API_feature_body_name": "Body3",
+          "result_vertex_bounds_cm": [
+            [
+              3.0,
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              2.0,
+              2.0
+            ]
+          ],
+          "actual_API_bounds_match": true,
+          "identity_source": "Explicit feature anchor/descriptor and typed per-blob BODY stored-ID join; comparison after identity association"
+        }
+      ]
+    },
+    {
+      "file": "boundaryfills-a0953038318b/join_middle.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 359,
+            "operation": "Join",
+            "owned_result_anchor_table_relative_offset": 71,
+            "owned_result_body_count": 0,
+            "owned_result_bodies": [],
+            "result_selection_bodies": [
+              {
+                "selection_record_object_id": 360,
+                "descriptor_object_id": 363,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "role": "Modifying-operation result selection of an explicit historical body",
+                "role_scope": "Stored result association; no current-visible/final lifecycle inference",
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 34967,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              },
+              {
+                "selection_record_object_id": 360,
+                "descriptor_object_id": 367,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Modifying-operation result selection of an explicit historical body",
+                "role_scope": "Stored result association; no current-visible/final lifecycle inference",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 45093,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "explicit_result_body_count": 2,
+            "historical_body_tools": [
+              {
+                "selection_record_object_id": 371,
+                "descriptor_object_id": 374,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 34967,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              },
+              {
+                "selection_record_object_id": 378,
+                "descriptor_object_id": 381,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 45093,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "owned_remove_body_actions": [],
+            "result_selection_proxy_object_ids": [
+              360
+            ],
+            "result_selection_scope": "Distinct owned result proxy selects historical tool identities; current-body lifetime remains unresolved",
+            "metadata_namespace_text": "00000000-0000-0000-0000-000000000000",
+            "remaining_metadata_byte_count": 239,
+            "empty_anchor_scope": "Zero owned anchors does not mean zero API resulting bodies",
+            "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+      },
+      "actual_API_output_bodies": [
+        {
+          "name": "ToolA",
+          "geometry": {
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 12.0
+          }
+        },
+        {
+          "name": "ToolB",
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 12.0
+          }
+        }
+      ],
+      "checks": {
+        "explicit_result_count_matches_API": true,
+        "available_result_bounds_match_API_after_typed_identity_join": true,
+        "unresolved_result_geometry_count": 0,
+        "modifying_result_names_match_API": true,
+        "zero_owned_anchor_count_with_nonzero_API_results": true
+      },
+      "result_geometry_corroboration": [
+        {
+          "native_body_object_id": 275,
+          "asm_body_index": 1,
+          "stored_name": "ToolA",
+          "actual_API_feature_body_name": "ToolA",
+          "result_vertex_bounds_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              2.0,
+              2.0
+            ]
+          ],
+          "actual_API_bounds_match": true,
+          "identity_source": "Explicit feature anchor/descriptor and typed per-blob BODY stored-ID join; comparison after identity association"
+        },
+        {
+          "native_body_object_id": 354,
+          "asm_body_index": 2,
+          "stored_name": "ToolB",
+          "actual_API_feature_body_name": "ToolB",
+          "result_vertex_bounds_cm": [
+            [
+              2.0,
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              2.0,
+              2.0
+            ]
+          ],
+          "actual_API_bounds_match": true,
+          "identity_source": "Explicit feature anchor/descriptor and typed per-blob BODY stored-ID join; comparison after identity association"
+        }
+      ]
+    },
+    {
+      "file": "boundaryfills-a0953038318b/cut_middle.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 359,
+            "operation": "Cut",
+            "owned_result_anchor_table_relative_offset": 71,
+            "owned_result_body_count": 0,
+            "owned_result_bodies": [],
+            "result_selection_bodies": [
+              {
+                "selection_record_object_id": 360,
+                "descriptor_object_id": 363,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Modifying-operation result selection of an explicit historical body",
+                "role_scope": "Stored result association; no current-visible/final lifecycle inference",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 44947,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "explicit_result_body_count": 1,
+            "historical_body_tools": [
+              {
+                "selection_record_object_id": 367,
+                "descriptor_object_id": 370,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 34821,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              },
+              {
+                "selection_record_object_id": 374,
+                "descriptor_object_id": 377,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 44947,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "owned_remove_body_actions": [],
+            "result_selection_proxy_object_ids": [
+              360
+            ],
+            "result_selection_scope": "Distinct owned result proxy selects historical tool identities; current-body lifetime remains unresolved",
+            "metadata_namespace_text": "00000000-0000-0000-0000-000000000000",
+            "remaining_metadata_byte_count": 228,
+            "empty_anchor_scope": "Zero owned anchors does not mean zero API resulting bodies",
+            "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+      },
+      "actual_API_output_bodies": [
+        {
+          "name": "ToolB",
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 4.0
+          }
+        }
+      ],
+      "checks": {
+        "explicit_result_count_matches_API": true,
+        "available_result_bounds_match_API_after_typed_identity_join": true,
+        "unresolved_result_geometry_count": 0,
+        "modifying_result_names_match_API": true,
+        "zero_owned_anchor_count_with_nonzero_API_results": true
+      },
+      "result_geometry_corroboration": [
+        {
+          "native_body_object_id": 354,
+          "asm_body_index": 2,
+          "stored_name": "ToolB",
+          "actual_API_feature_body_name": "ToolB",
+          "result_vertex_bounds_cm": [
+            [
+              2.0,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              2.0,
+              2.0
+            ]
+          ],
+          "actual_API_bounds_match": true,
+          "identity_source": "Explicit feature anchor/descriptor and typed per-blob BODY stored-ID join; comparison after identity association"
+        }
+      ]
+    },
+    {
+      "file": "boundaryfills-a0953038318b/intersect_middle.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 359,
+            "operation": "Intersect",
+            "owned_result_anchor_table_relative_offset": 71,
+            "owned_result_body_count": 0,
+            "owned_result_bodies": [],
+            "result_selection_bodies": [
+              {
+                "selection_record_object_id": 360,
+                "descriptor_object_id": 363,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Modifying-operation result selection of an explicit historical body",
+                "role_scope": "Stored result association; no current-visible/final lifecycle inference",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 44947,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "explicit_result_body_count": 1,
+            "historical_body_tools": [
+              {
+                "selection_record_object_id": 367,
+                "descriptor_object_id": 370,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 34821,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              },
+              {
+                "selection_record_object_id": 374,
+                "descriptor_object_id": 377,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 44947,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "owned_remove_body_actions": [],
+            "result_selection_proxy_object_ids": [
+              360
+            ],
+            "result_selection_scope": "Distinct owned result proxy selects historical tool identities; current-body lifetime remains unresolved",
+            "metadata_namespace_text": "00000000-0000-0000-0000-000000000000",
+            "remaining_metadata_byte_count": 228,
+            "empty_anchor_scope": "Zero owned anchors does not mean zero API resulting bodies",
+            "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+      },
+      "actual_API_output_bodies": [
+        {
+          "name": "ToolB",
+          "geometry": {
+            "min_cm": [
+              3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 8.0
+          }
+        }
+      ],
+      "checks": {
+        "explicit_result_count_matches_API": true,
+        "available_result_bounds_match_API_after_typed_identity_join": true,
+        "unresolved_result_geometry_count": 0,
+        "modifying_result_names_match_API": true,
+        "zero_owned_anchor_count_with_nonzero_API_results": true
+      },
+      "result_geometry_corroboration": [
+        {
+          "native_body_object_id": 354,
+          "asm_body_index": 2,
+          "stored_name": "ToolB",
+          "actual_API_feature_body_name": "ToolB",
+          "result_vertex_bounds_cm": [
+            [
+              3.0,
+              0.0,
+              0.0
+            ],
+            [
+              5.0,
+              2.0,
+              2.0
+            ]
+          ],
+          "actual_API_bounds_match": true,
+          "identity_source": "Explicit feature anchor/descriptor and typed per-blob BODY stored-ID join; comparison after identity association"
+        }
+      ]
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 422,
+            "operation": "NewBody",
+            "owned_result_anchor_table_relative_offset": 75,
+            "owned_result_body_count": 1,
+            "owned_result_bodies": [
+              {
+                "body_anchor_object_id": 498,
+                "native_body_object_id": 493,
+                "source_owner_object_id": 422,
+                "role": "Feature-owned NewBody result anchor",
+                "role_scope": "Observed NewBody result association; not a current-visible/final-body classification",
+                "stored_membership": {
+                  "native_body_object_id": 493,
+                  "native_body_collection_reference_offset": 59717,
+                  "referenced_collection_object_id": 362,
+                  "repeated_collection_member_object_ids": [
+                    493
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 359,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "result_selection_bodies": [],
+            "explicit_result_body_count": 1,
+            "historical_body_tools": [
+              {
+                "selection_record_object_id": 423,
+                "descriptor_object_id": 432,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 35003,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              },
+              {
+                "selection_record_object_id": 436,
+                "descriptor_object_id": 445,
+                "body_anchor_object_id": 358,
+                "native_body_object_id": 354,
+                "source_owner_object_id": 322,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 354,
+                  "native_body_collection_reference_offset": 45136,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    354
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "owned_remove_body_actions": [],
+            "result_selection_proxy_object_ids": [],
+            "result_selection_scope": "Distinct owned result proxy selects historical tool identities; current-body lifetime remains unresolved",
+            "metadata_namespace_text": "00000000-0000-0000-0000-000000000000",
+            "remaining_metadata_byte_count": 216,
+            "empty_anchor_scope": "Zero owned anchors does not mean zero API resulting bodies",
+            "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+      },
+      "actual_API_output_bodies": [
+        {
+          "name": "Body1",
+          "geometry": {
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 4.0
+          }
+        }
+      ],
+      "checks": {
+        "explicit_result_count_matches_API": true,
+        "available_result_bounds_match_API_after_typed_identity_join": true,
+        "unresolved_result_geometry_count": 0,
+        "modifying_result_names_match_API": null,
+        "zero_owned_anchor_count_with_nonzero_API_results": false
+      },
+      "result_geometry_corroboration": [
+        {
+          "native_body_object_id": 493,
+          "asm_body_index": 1,
+          "stored_name": null,
+          "actual_API_feature_body_name": "Body1",
+          "result_vertex_bounds_cm": [
+            [
+              2.0,
+              0.0,
+              0.0
+            ],
+            [
+              3.0,
+              2.0,
+              2.0
+            ]
+          ],
+          "actual_API_bounds_match": true,
+          "identity_source": "Explicit feature anchor/descriptor and typed per-blob BODY stored-ID join; comparison after identity association"
+        }
+      ]
+    },
+    {
+      "file": "boundaryfills-a0953038318b/plane_first.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 304,
+            "operation": "NewBody",
+            "owned_result_anchor_table_relative_offset": 75,
+            "owned_result_body_count": 1,
+            "owned_result_bodies": [
+              {
+                "body_anchor_object_id": 359,
+                "native_body_object_id": 355,
+                "source_owner_object_id": 304,
+                "role": "Feature-owned NewBody result anchor",
+                "role_scope": "Observed NewBody result association; not a current-visible/final-body classification",
+                "stored_membership": {
+                  "native_body_object_id": 355,
+                  "native_body_collection_reference_offset": 42589,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    355
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "result_selection_bodies": [],
+            "explicit_result_body_count": 1,
+            "historical_body_tools": [
+              {
+                "selection_record_object_id": 305,
+                "descriptor_object_id": 308,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "role": "Explicit BoundaryFill historical body tool",
+                "stored_membership": {
+                  "native_body_object_id": 275,
+                  "native_body_collection_reference_offset": 34094,
+                  "referenced_collection_object_id": 7,
+                  "repeated_collection_member_object_ids": [
+                    275,
+                    355
+                  ],
+                  "is_listed_in_repeated_collection": true,
+                  "membership_status": "Explicit reciprocal stored collection membership",
+                  "collection_component_object_id": 3,
+                  "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                  "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+                }
+              }
+            ],
+            "owned_remove_body_actions": [],
+            "result_selection_proxy_object_ids": [],
+            "result_selection_scope": "Distinct owned result proxy selects historical tool identities; current-body lifetime remains unresolved",
+            "metadata_namespace_text": "00000000-0000-0000-0000-000000000000",
+            "remaining_metadata_byte_count": 206,
+            "empty_anchor_scope": "Zero owned anchors does not mean zero API resulting bodies",
+            "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed BoundaryFill NewBody result anchors, modifying-operation result body selections and stored collection/removal facts; current visibility, final-body lifetime and general regeneration remain unresolved"
+      },
+      "actual_API_output_bodies": [
+        {
+          "name": "Body2",
+          "geometry": {
+            "min_cm": [
+              1.2000000000000002,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "volume_cm3": 7.199999999999999
+          }
+        }
+      ],
+      "checks": {
+        "explicit_result_count_matches_API": true,
+        "available_result_bounds_match_API_after_typed_identity_join": true,
+        "unresolved_result_geometry_count": 1,
+        "modifying_result_names_match_API": null,
+        "zero_owned_anchor_count_with_nonzero_API_results": false
+      },
+      "result_geometry_corroboration": [
+        {
+          "native_body_object_id": 355,
+          "stored_name": null,
+          "actual_API_feature_body_name": "Body2",
+          "actual_API_bounds_match": null,
+          "geometry_status": "Native feature/body association decoded; ASM geometry association remains unresolved",
+          "ASM_association_errors": [
+            {
+              "mapping_record_object_id": 8,
+              "reason": "ASM identifier association requires a complete token stream",
+              "ordinal_candidates_must_be_discarded": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "guards": [
+    {
+      "guard": "Owned result anchor count cannot exceed the observed operation layout",
+      "rejected": true,
+      "reason": "Unsupported BoundaryFill operation/owned-result-anchor count combination"
+    },
+    {
+      "guard": "Counted result anchor must reciprocate the BoundaryFill owner",
+      "rejected": true,
+      "reason": "BoundaryFill counted anchor list and owned typed anchors disagree"
+    },
+    {
+      "guard": "Both stored collection member lists must agree",
+      "rejected": true,
+      "reason": "Result body collection repeated membership disagrees"
+    },
+    {
+      "guard": "Distinct result proxy must be owned by the BoundaryFill",
+      "rejected": true,
+      "reason": "BoundaryFill result proxy list/owner/attributes unsupported"
+    },
+    {
+      "guard": "Result descriptor must be owned by the BoundaryFill",
+      "rejected": true,
+      "reason": "BoundaryFill result descriptor is unresolved or incorrectly owned"
+    }
+  ],
+  "lifecycle_contrasts": [
+    {
+      "file": "splinepatches-ac5e846e59c0/splinepatches.f3d",
+      "BaseFeature_pairs": [
+        {
+          "feature_object_id": 202,
+          "name": "PolynomialPatch",
+          "distinct_body_pair": [
+            {
+              "native_body_object_id": 209,
+              "passive_reference": {
+                "attribute_name": "BASEFEAT_PM_BODY_REF",
+                "attribute_type": "PassiveRefMetaType",
+                "referenced_body_object_id": 215,
+                "body_collection_object_id": 22
+              },
+              "stored_membership": {
+                "native_body_object_id": 209,
+                "native_body_collection_reference_offset": 24955,
+                "referenced_collection_object_id": 22,
+                "repeated_collection_member_object_ids": [
+                  209,
+                  230
+                ],
+                "is_listed_in_repeated_collection": true,
+                "membership_status": "Explicit reciprocal stored collection membership",
+                "collection_component_object_id": 3,
+                "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+              }
+            },
+            {
+              "native_body_object_id": 215,
+              "passive_reference": {
+                "attribute_name": "BASEFEAT_DM_BODY_REF",
+                "attribute_type": "PassiveRefMetaType",
+                "referenced_body_object_id": 209,
+                "body_collection_object_id": 7
+              },
+              "stored_membership": {
+                "native_body_object_id": 215,
+                "native_body_collection_reference_offset": 26603,
+                "referenced_collection_object_id": 7,
+                "repeated_collection_member_object_ids": [
+                  215,
+                  235
+                ],
+                "is_listed_in_repeated_collection": true,
+                "membership_status": "Explicit reciprocal stored collection membership",
+                "collection_component_object_id": 3,
+                "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+              }
+            }
+          ],
+          "explicit_owned_result_body_object_id": 215
+        },
+        {
+          "feature_object_id": 224,
+          "name": "RationalPatch",
+          "distinct_body_pair": [
+            {
+              "native_body_object_id": 230,
+              "passive_reference": {
+                "attribute_name": "BASEFEAT_PM_BODY_REF",
+                "attribute_type": "PassiveRefMetaType",
+                "referenced_body_object_id": 235,
+                "body_collection_object_id": 22
+              },
+              "stored_membership": {
+                "native_body_object_id": 230,
+                "native_body_collection_reference_offset": 28994,
+                "referenced_collection_object_id": 22,
+                "repeated_collection_member_object_ids": [
+                  209,
+                  230
+                ],
+                "is_listed_in_repeated_collection": true,
+                "membership_status": "Explicit reciprocal stored collection membership",
+                "collection_component_object_id": 3,
+                "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+              }
+            },
+            {
+              "native_body_object_id": 235,
+              "passive_reference": {
+                "attribute_name": "BASEFEAT_DM_BODY_REF",
+                "attribute_type": "PassiveRefMetaType",
+                "referenced_body_object_id": 230,
+                "body_collection_object_id": 7
+              },
+              "stored_membership": {
+                "native_body_object_id": 235,
+                "native_body_collection_reference_offset": 30544,
+                "referenced_collection_object_id": 7,
+                "repeated_collection_member_object_ids": [
+                  215,
+                  235
+                ],
+                "is_listed_in_repeated_collection": true,
+                "membership_status": "Explicit reciprocal stored collection membership",
+                "collection_component_object_id": 3,
+                "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+                "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+              }
+            }
+          ],
+          "explicit_owned_result_body_object_id": 235
+        }
+      ],
+      "passive_bodies": [
+        {
+          "native_body_object_id": 209,
+          "stored_name": "PolynomialPatch",
+          "passive_reference_attribute": {
+            "key": "BASEFEAT_PM_BODY_REF",
+            "type": "PassiveRefMetaType",
+            "referenced_body_object_id": 215,
+            "stored_body_tag": "0_209",
+            "attribute_value_relative_offset": 52,
+            "tag_relative_offset": 63
+          },
+          "stored_membership": {
+            "native_body_object_id": 209,
+            "native_body_collection_reference_offset": 24955,
+            "referenced_collection_object_id": 22,
+            "repeated_collection_member_object_ids": [
+              209,
+              230
+            ],
+            "is_listed_in_repeated_collection": true,
+            "membership_status": "Explicit reciprocal stored collection membership",
+            "collection_component_object_id": 3,
+            "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+            "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+          }
+        },
+        {
+          "native_body_object_id": 215,
+          "stored_name": "PolynomialPatch",
+          "passive_reference_attribute": {
+            "key": "BASEFEAT_DM_BODY_REF",
+            "type": "PassiveRefMetaType",
+            "referenced_body_object_id": 209,
+            "stored_body_tag": "0_215",
+            "attribute_value_relative_offset": 52,
+            "tag_relative_offset": 63
+          },
+          "stored_membership": {
+            "native_body_object_id": 215,
+            "native_body_collection_reference_offset": 26603,
+            "referenced_collection_object_id": 7,
+            "repeated_collection_member_object_ids": [
+              215,
+              235
+            ],
+            "is_listed_in_repeated_collection": true,
+            "membership_status": "Explicit reciprocal stored collection membership",
+            "collection_component_object_id": 3,
+            "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+            "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+          }
+        },
+        {
+          "native_body_object_id": 230,
+          "stored_name": "RationalPatch",
+          "passive_reference_attribute": {
+            "key": "BASEFEAT_PM_BODY_REF",
+            "type": "PassiveRefMetaType",
+            "referenced_body_object_id": 235,
+            "stored_body_tag": "0_230",
+            "attribute_value_relative_offset": 52,
+            "tag_relative_offset": 63
+          },
+          "stored_membership": {
+            "native_body_object_id": 230,
+            "native_body_collection_reference_offset": 28994,
+            "referenced_collection_object_id": 22,
+            "repeated_collection_member_object_ids": [
+              209,
+              230
+            ],
+            "is_listed_in_repeated_collection": true,
+            "membership_status": "Explicit reciprocal stored collection membership",
+            "collection_component_object_id": 3,
+            "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+            "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+          }
+        },
+        {
+          "native_body_object_id": 235,
+          "stored_name": "RationalPatch",
+          "passive_reference_attribute": {
+            "key": "BASEFEAT_DM_BODY_REF",
+            "type": "PassiveRefMetaType",
+            "referenced_body_object_id": 230,
+            "stored_body_tag": "0_235",
+            "attribute_value_relative_offset": 52,
+            "tag_relative_offset": 63
+          },
+          "stored_membership": {
+            "native_body_object_id": 235,
+            "native_body_collection_reference_offset": 30544,
+            "referenced_collection_object_id": 7,
+            "repeated_collection_member_object_ids": [
+              215,
+              235
+            ],
+            "is_listed_in_repeated_collection": true,
+            "membership_status": "Explicit reciprocal stored collection membership",
+            "collection_component_object_id": 3,
+            "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+            "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+          }
+        }
+      ],
+      "conclusion": "Distinct reciprocal PM/DM bodies can both be stored collection members. Owned result anchors are a narrower role; no universal current-body selector is inferred.",
+      "missing_API_contrast": "No saved sourceBodies edit/rollback identity getter establishes native PM/DM current-state roles."
+    },
+    {
+      "file": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
+      "BaseFeature_pairs": [],
+      "passive_bodies": [
+        {
+          "native_body_object_id": 543,
+          "stored_name": "NestedSourceBody",
+          "passive_reference_attribute": {
+            "key": "BASEFEAT_PM_BODY_REF",
+            "type": "PassiveRefMetaType",
+            "referenced_body_object_id": 552,
+            "stored_body_tag": "0_543",
+            "attribute_value_relative_offset": 52,
+            "tag_relative_offset": 63
+          },
+          "stored_membership": {
+            "native_body_object_id": 543,
+            "native_body_collection_reference_offset": 62683,
+            "referenced_collection_object_id": 485,
+            "repeated_collection_member_object_ids": [
+              543
+            ],
+            "is_listed_in_repeated_collection": true,
+            "membership_status": "Explicit reciprocal stored collection membership",
+            "collection_component_object_id": 467,
+            "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+            "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+          }
+        },
+        {
+          "native_body_object_id": 552,
+          "stored_name": "NestedSourceBody",
+          "passive_reference_attribute": {
+            "key": "BASEFEAT_DM_BODY_REF",
+            "type": "PassiveRefMetaType",
+            "referenced_body_object_id": 543,
+            "stored_body_tag": "0_552",
+            "attribute_value_relative_offset": 52,
+            "tag_relative_offset": 63
+          },
+          "stored_membership": {
+            "native_body_object_id": 552,
+            "native_body_collection_reference_offset": 64432,
+            "referenced_collection_object_id": 470,
+            "repeated_collection_member_object_ids": [
+              552
+            ],
+            "is_listed_in_repeated_collection": true,
+            "membership_status": "Explicit reciprocal stored collection membership",
+            "collection_component_object_id": 467,
+            "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+            "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+          }
+        }
+      ],
+      "conclusion": "Distinct reciprocal PM/DM bodies can both be stored collection members. Owned result anchors are a narrower role; no universal current-body selector is inferred.",
+      "missing_API_contrast": "No saved sourceBodies edit/rollback identity getter establishes native PM/DM current-state roles."
+    },
+    {
+      "file": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "listed_native_bodies": [
+        {
+          "native_body_object_id": 401,
+          "stored_name": "Root block",
+          "stored_membership": {
+            "native_body_object_id": 401,
+            "native_body_collection_reference_offset": 50652,
+            "referenced_collection_object_id": 7,
+            "repeated_collection_member_object_ids": [
+              401,
+              543
+            ],
+            "is_listed_in_repeated_collection": true,
+            "membership_status": "Explicit reciprocal stored collection membership",
+            "collection_component_object_id": 3,
+            "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+            "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+          }
+        },
+        {
+          "native_body_object_id": 480,
+          "stored_name": "Child bracket",
+          "stored_membership": {
+            "native_body_object_id": 480,
+            "native_body_collection_reference_offset": 60836,
+            "referenced_collection_object_id": 205,
+            "repeated_collection_member_object_ids": [
+              480
+            ],
+            "is_listed_in_repeated_collection": true,
+            "membership_status": "Explicit reciprocal stored collection membership",
+            "collection_component_object_id": 202,
+            "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+            "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+          }
+        },
+        {
+          "native_body_object_id": 543,
+          "stored_name": "Guide pin \u00d812",
+          "stored_membership": {
+            "native_body_object_id": 543,
+            "native_body_collection_reference_offset": 68166,
+            "referenced_collection_object_id": 7,
+            "repeated_collection_member_object_ids": [
+              401,
+              543
+            ],
+            "is_listed_in_repeated_collection": true,
+            "membership_status": "Explicit reciprocal stored collection membership",
+            "collection_component_object_id": 3,
+            "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+            "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+          }
+        },
+        {
+          "native_body_object_id": 620,
+          "stored_name": "Child spacer",
+          "stored_membership": {
+            "native_body_object_id": 620,
+            "native_body_collection_reference_offset": 78021,
+            "referenced_collection_object_id": 268,
+            "repeated_collection_member_object_ids": [
+              620
+            ],
+            "is_listed_in_repeated_collection": true,
+            "membership_status": "Explicit reciprocal stored collection membership",
+            "collection_component_object_id": 265,
+            "component_scope": "Typed collection-to-component reference; absent-member pointer does not establish active ownership",
+            "visibility_status": "Current visibility/final lifecycle not inferred from stored membership"
+          }
+        }
+      ],
+      "actual_API_body_labels": [
+        "Root block",
+        "Child bracket",
+        "Guide pin \u00d812",
+        "Child spacer"
+      ],
+      "checks": {
+        "actual_body_label_multiset_and_count_match_stored_named_members": true
+      },
+      "conclusion": "This saved positive control agrees with four named API bodies; PM/DM and removed-tool contrasts prevent generalizing membership into a current-visible-body rule.",
+      "identity_scope": "Native name/collection references are decoded first; API labels are corroboration, never a native/ASM identity join"
+    }
+  ],
+  "limitations": [
+    "Result associations describe this stored feature, not all final/current bodies of a document.",
+    "Zero feature-owned anchors does not mean zero API resulting bodies.",
+    "A retained collection pointer is not reciprocal membership when the body is absent from both lists.",
+    "Reciprocal collection membership alone cannot choose current/final bodies: PM/DM pairs can both be listed in separate collections of the same component.",
+    "Default UI result names are observed in API truth only; empty native stored names remain empty.",
+    "Geometry checks corroborate already linked identities; geometry/name/order never select a native-to-ASM association.",
+    "General suppression/rollback/edit state, sourceBodies getter identity and arbitrary lifecycle solving remain unproved."
+  ],
+  "summary": {
+    "boundary_fill_files": 9,
+    "owned_NewBody_result_associations": 6,
+    "modifying_historical_result_associations": 4,
+    "result_API_bounds_matches": 9,
+    "result_ASM_geometry_associations_unresolved": 1,
+    "typed_removal_actions_with_absent_membership": 2,
+    "zero_owned_anchor_nonzero_API_result_controls": 3,
+    "malformed_guards": 5,
+    "lifecycle_contrast_files": 3
+  }
+}

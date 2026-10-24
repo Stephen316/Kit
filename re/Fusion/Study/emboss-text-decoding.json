@@ -1,0 +1,2970 @@
+{
+  "scope": "Ordered native editable SketchText Emboss/Deboss input identities with explicit source ownership; optional mixed ordinary profile membership",
+  "fusion_version": "2705.1.30",
+  "generator": "GenerateEmbossTextModes.py",
+  "capture_folder": "embosstext-cd769aa41cdf",
+  "integration": {
+    "source_function": "decode_consumed_sketch_texts(data, records, features)",
+    "source_merge": "Return only successful sources with opaque_tag_base; merge into sketch.texts by object_id before tool decoding. Remove unresolved entries only for successful IDs. Ordinary rectangle/path sources remain with their existing readers.",
+    "feature_function": "decode_emboss_texts(data, records, body, feature, features)",
+    "profile_callback": "resolve_emboss_text_profiles(data, records, selection_id, owner_id, features)",
+    "expected_outputs": "Each expected_texts array and expected_settings dictionary contains complete helper output for exact main-entrypoint equality.",
+    "shared_hooks": "decode_emboss keyword-only profile_resolver; decode_sketch_texts opt-in allow_text_tag_base; decode_rectangle_text_controls exact literal allowed_layouts whitelist. Defaults unchanged."
+  },
+  "layout": {
+    "text_descriptor": {
+      "class_guid": "92F9A5F4-09AA-4B1B-9EE6-DF574D1D183C",
+      "body_bytes": 197,
+      "native_identity_leaf_class": "90055C05-546C-4EE7-B3C9-3DD922AD0C9C",
+      "identity_leaf": "00 00 followed by uint64 native Text object ID; not a glyph tag",
+      "descriptor": "Owned primary reference leaf; u32@13=1; UTF16 UUID and decimal sketch ID; Q1/count1/context reference; retained opaque suffix; last11 owner reference"
+    },
+    "ownership": "Proxy and descriptor feature owners, descriptor/context namespace, typed Text leaf, source native sketch owner, decoded sketch.texts membership, rectangle line/point cycle, three binding owners and reciprocal parameter/bookkeeping/feature-binding-list validation must agree.",
+    "opaque_layouts": "Exactly two literal163-byte source layouts accepted. Difference in bytes35/36 retained as opaque; no translation/matrix meaning assigned.",
+    "consumed_attribute": "Optional txt_tag_base integer retained as opaque_tag_base; not interpreted as glyph indexing.",
+    "numbered_binding_slots": "Opt-in consumed sources only: native TextN-Height/Text roles must agree with slots2*(N-1)/2*(N-1)+1. Captured Text1 slots0/1 and Text2 slots2/3; all existing owner/parameter/bookkeeping checks preserved. Strict default0/1 unchanged."
+  },
+  "limitations": [
+    "Only captured ordered one Text, Text+ordinary Profile, or two Text inputs from one sketch; other input combinations remain unsupported.",
+    "Planar target fixtures, zero offsets/rotation and enabled tangent chaining; no font rendering, glyph generation, wrapped-text surfaces or regeneration.",
+    "Exact target face-to-ASM topology, context transforms and opaque Text tag-base meaning unresolved. API tokens are opaque evidence.",
+    "Captured ordinary mixed Profile is one circle loop; generic profile helper validates explicit curve membership but does not recover traversal/general trims."
+  ],
+  "samples": [
+    {
+      "file": "embosstext-cd769aa41cdf/text_emboss.f3d",
+      "sha256": "3ee7c481acbcc092f739930279a3d069ce5fad439f796b63a57bfe5cd20da94f",
+      "expected_texts": [
+        {
+          "kind": "Text",
+          "object_id": 329,
+          "record_offset": 41868,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 304,
+          "sketch_feature_object_id": 308,
+          "entity_tag": 110,
+          "text": "KIT",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "opaque_tag_base": 307,
+          "opaque_tag_base_status": "Stored optional txt_tag_base retained; glyph indexing/identity semantics unresolved",
+          "native_binding_slots": {
+            "height": 0,
+            "text": 1
+          },
+          "text_style": 0,
+          "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "underline": null,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 346,
+            "binding_object_id": 347,
+            "parameter_name": "d6",
+            "role": "Text1-Text",
+            "text_value": "KIT",
+            "expression": "'KIT'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 6,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 343,
+            "binding_object_id": 344,
+            "parameter_name": "d5",
+            "role": "Text1-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 5
+          },
+          "definition": {
+            "kind": "MultiLineTextDefinition",
+            "controller_object_id": 342,
+            "rectangle_lines": [
+              {
+                "object_id": 338,
+                "entity_tag": 115,
+                "start_point_id": 330,
+                "end_point_id": 332,
+                "start_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 339,
+                "entity_tag": 116,
+                "start_point_id": 332,
+                "end_point_id": 334,
+                "start_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 340,
+                "entity_tag": 117,
+                "start_point_id": 334,
+                "end_point_id": 336,
+                "start_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 341,
+                "entity_tag": 118,
+                "start_point_id": 336,
+                "end_point_id": 330,
+                "start_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              }
+            ],
+            "horizontal_alignment": 0,
+            "vertical_alignment": 0,
+            "character_spacing_percent": 0.0,
+            "native_character_spacing_multiplier": 1.0,
+            "native_horizontal_alignment": 1,
+            "native_vertical_alignment": 1,
+            "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified",
+            "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"
+          },
+          "uninterpreted": {
+            "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+            "style_flags_hex": "01000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "01000000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration"
+        }
+      ],
+      "expected_settings": {
+        "depth_cm": 0.2,
+        "horizontal_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "vertical_distance_cm": 0.0,
+        "mode": "Emboss",
+        "is_tangent_chain": true,
+        "parameter_bindings": {
+          "Depth": 428,
+          "Horizontal Distance": 431,
+          "Rotation Angle": 437,
+          "Vertical Distance": 434
+        },
+        "profiles": [
+          {
+            "selection_record_object_id": 413,
+            "descriptor_object_id": 416,
+            "sketch_object_id": 304,
+            "sketch_name": "EmbossTextInputs",
+            "kind": "SketchText",
+            "terminal_object_id": 419,
+            "text_object_id": 329,
+            "text_entity_tag": 110,
+            "text": "KIT",
+            "font_name": "Arial",
+            "height_cm": 0.5,
+            "context_evidence": {
+              "object_id": 446,
+              "raw_hex": "0000040000000000000024000000610063006400640039006600620032002d0037006500640030002d0034006300650036002d0062003300340065002d0038003300370035003200390031003300310062003400340024000000610063006200340030006300360030002d0063003400650035002d0034003000380035002d0061006500330034002d00640035006100360064006400340032003300380035006600020000000000000000",
+              "namespace": "acdd9fb2-7ed0-4ce6-b34e-837529131b44",
+              "status": "Context values/transforms unresolved"
+            },
+            "descriptor_opaque_suffix_hex": "00000000410000000000000000000000000001010000479b2cb3dd446a3f0101000001a201000000000000000001000001a101000000000000000000",
+            "scope": "Explicit native Text object identity linked to owned editable source; no glyph profile inference"
+          }
+        ],
+        "profile_count": 1,
+        "input_faces": [
+          {
+            "selection_record_object_id": 420,
+            "attributes": {},
+            "faces": [
+              {
+                "descriptor_object_id": 423,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "namespace_text": "acdd9fb2-7ed0-4ce6-b34e-837529131b44",
+                "entity_guid_text": "acb40c60-c4e5-4085-ae34-d5a6dd42385f",
+                "context_record_object_ids": [
+                  445
+                ],
+                "recipe": {
+                  "object_id": 426,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 48021,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "2",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39445,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39445,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "6",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39445,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 3,
+                      "terms": [
+                        {
+                          "name": "4",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39445,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 4,
+                      "terms": [
+                        {
+                          "name": "5",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39445,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 171,
+                  "payload_length": 476,
+                  "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    3,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    3,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -1
+                  ]
+                },
+                "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                "context_scope": "Context identities retained; no occurrence transform inferred"
+              }
+            ]
+          }
+        ],
+        "result_controller_object_id": 439,
+        "uninterpreted_reference_count_field": 28,
+        "uninterpreted_stored_value": 338,
+        "input_definition_end_offset": 133,
+        "profile_scope": "Ordered explicit editable Text object identities and optional ordinary profile membership",
+        "target_scope": "Owned face recipes and native body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Planar Text Emboss/Deboss controls and owned source identities; glyph generation, font rendering, exact target topology and regeneration unresolved"
+      },
+      "checks": {
+        "depth_cm": true,
+        "horizontal_distance_cm": true,
+        "vertical_distance_cm": true,
+        "rotation_angle_radians": true,
+        "is_tangent_chain": true,
+        "profile_count": true,
+        "mode": true,
+        "input0.class": true,
+        "input0.sketch": true,
+        "input0.font_name": true,
+        "input0.text_style": true,
+        "input0.is_horizontal_flip": true,
+        "input0.is_vertical_flip": true,
+        "input0.text": true,
+        "input0.height": true,
+        "input0.text_parameter.role": true,
+        "input0.height_parameter.role": true,
+        "input0.text_parameter.expression": true,
+        "input0.height_parameter.expression": true,
+        "input0.text_parameter.name": true,
+        "input0.height_parameter.name": true,
+        "input0.rectangle0.start": true,
+        "input0.rectangle0.end": true,
+        "input0.rectangle1.start": true,
+        "input0.rectangle1.end": true,
+        "input0.rectangle2.start": true,
+        "input0.rectangle2.end": true,
+        "input0.rectangle3.start": true,
+        "input0.rectangle3.end": true
+      },
+      "api_observations": {
+        "health_state": 0,
+        "warning": "",
+        "result_bodies": [
+          {
+            "name": "EmbossTextTargetBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvZG5KQBmOj8LiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 48.03317975123039,
+            "face_count": 33,
+            "bounding_box_min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              4.0,
+              2.2
+            ]
+          }
+        ],
+        "depth_cm": 0.2,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "is_tangent_chain": true,
+        "profiles": [
+          {
+            "entity_type": "adsk::fusion::SketchText",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGRJQA/6Dx+iAAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGBCQAA9rsyiAAAAA==",
+            "font_name": "Arial",
+            "text_style": 0,
+            "is_horizontal_flip": false,
+            "is_vertical_flip": false,
+            "text_parameter": {
+              "name": "d6",
+              "role": "Text1-Text",
+              "expression": "'KIT'",
+              "unit": "Text",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGJOQC+Yt7PiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "text_value": "KIT"
+            },
+            "height_parameter": {
+              "name": "d5",
+              "role": "Text1-Height",
+              "expression": "5 mm",
+              "unit": "mm",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGJCQAEM9dWiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "value": 0.5
+            },
+            "definition_type": "adsk::fusion::MultiLineTextDefinition",
+            "rectangle_lines": [
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RPU7EMBCFuQMlzbQUliaesWNaxG61oqSNHP9INAtCbEuzB+ECVHCRvQAt58DjFREJKwvLkp/efHkvshE0dEAW+owhhp6V55wVx5TUaPqkrKGA6CKPvQcsrPAoSruiOmBxLLx9vr6/HDZfH7f73eX5xU0htOT6MDIGiypwMorRGeUTsYrG2xhZkzO5siXjbLFqH0KtYyAwVx3IUdz6IzIm7OopcmnYpcFLw/wyEMaH3TamOGQf0vCUwv1jGqJ/9nC9BliDK4iSkFWRRRy3rpMqJ0TD3RGh6umf4ZySyhlHs/H0gXAnKqlV2YiacfyHo0YltyobUadvY+K4UalblY2ofz7AN6lLfXwAAwAA",
+            "temp_id": 0,
+            "body": {
+              "name": "EmbossTextTargetBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvZG5KQBmOj8LiAAAAA==",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 48.0,
+              "face_count": 6,
+              "bounding_box_min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "bounding_box_max_cm": [
+                6.0,
+                4.0,
+                2.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 24.0,
+            "point_on_face_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "centroid_world_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "getter_errors": [],
+      "main_reader_texts_and_settings_exact": true
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/text_deboss.f3d",
+      "sha256": "aec87d4aa59dc4e77e774c95e98b74d83651395697d57c921257d07219ca89c8",
+      "expected_texts": [
+        {
+          "kind": "Text",
+          "object_id": 329,
+          "record_offset": 41868,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 304,
+          "sketch_feature_object_id": 308,
+          "entity_tag": 110,
+          "text": "KIT",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "opaque_tag_base": 307,
+          "opaque_tag_base_status": "Stored optional txt_tag_base retained; glyph indexing/identity semantics unresolved",
+          "native_binding_slots": {
+            "height": 0,
+            "text": 1
+          },
+          "text_style": 0,
+          "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "underline": null,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 346,
+            "binding_object_id": 347,
+            "parameter_name": "d6",
+            "role": "Text1-Text",
+            "text_value": "KIT",
+            "expression": "'KIT'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 6,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 343,
+            "binding_object_id": 344,
+            "parameter_name": "d5",
+            "role": "Text1-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 5
+          },
+          "definition": {
+            "kind": "MultiLineTextDefinition",
+            "controller_object_id": 342,
+            "rectangle_lines": [
+              {
+                "object_id": 338,
+                "entity_tag": 115,
+                "start_point_id": 330,
+                "end_point_id": 332,
+                "start_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 339,
+                "entity_tag": 116,
+                "start_point_id": 332,
+                "end_point_id": 334,
+                "start_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 340,
+                "entity_tag": 117,
+                "start_point_id": 334,
+                "end_point_id": 336,
+                "start_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 341,
+                "entity_tag": 118,
+                "start_point_id": 336,
+                "end_point_id": 330,
+                "start_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              }
+            ],
+            "horizontal_alignment": 0,
+            "vertical_alignment": 0,
+            "character_spacing_percent": 0.0,
+            "native_character_spacing_multiplier": 1.0,
+            "native_horizontal_alignment": 1,
+            "native_vertical_alignment": 1,
+            "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified",
+            "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"
+          },
+          "uninterpreted": {
+            "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+            "style_flags_hex": "01000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "01000000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration"
+        }
+      ],
+      "expected_settings": {
+        "depth_cm": -0.15000000000000002,
+        "horizontal_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "vertical_distance_cm": 0.0,
+        "mode": "Deboss",
+        "is_tangent_chain": true,
+        "parameter_bindings": {
+          "Depth": 428,
+          "Horizontal Distance": 431,
+          "Rotation Angle": 437,
+          "Vertical Distance": 434
+        },
+        "profiles": [
+          {
+            "selection_record_object_id": 413,
+            "descriptor_object_id": 416,
+            "sketch_object_id": 304,
+            "sketch_name": "EmbossTextInputs",
+            "kind": "SketchText",
+            "terminal_object_id": 419,
+            "text_object_id": 329,
+            "text_entity_tag": 110,
+            "text": "KIT",
+            "font_name": "Arial",
+            "height_cm": 0.5,
+            "context_evidence": {
+              "object_id": 446,
+              "raw_hex": "0000040000000000000024000000610062003200370037003900610063002d0037003000640030002d0034003000610064002d0062003500350030002d0033006500640031003600310033006300300033006500320024000000310063003200370034003000390036002d0034006600660033002d0034006400630061002d0061006300650066002d00330037003600380064003300610033003500620030006600020000000000000000",
+              "namespace": "ab2779ac-70d0-40ad-b550-3ed1613c03e2",
+              "status": "Context values/transforms unresolved"
+            },
+            "descriptor_opaque_suffix_hex": "000000004100000000000000000000000000010100009ac2cc3c8e26643f0101000001a201000000000000000001000001a101000000000000000000",
+            "scope": "Explicit native Text object identity linked to owned editable source; no glyph profile inference"
+          }
+        ],
+        "profile_count": 1,
+        "input_faces": [
+          {
+            "selection_record_object_id": 420,
+            "attributes": {},
+            "faces": [
+              {
+                "descriptor_object_id": 423,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "namespace_text": "ab2779ac-70d0-40ad-b550-3ed1613c03e2",
+                "entity_guid_text": "1c274096-4ff3-4dca-acef-3768d3a35b0f",
+                "context_record_object_ids": [
+                  445
+                ],
+                "recipe": {
+                  "object_id": 426,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 48021,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "2",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39445,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39445,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "6",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39445,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 3,
+                      "terms": [
+                        {
+                          "name": "4",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39445,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 4,
+                      "terms": [
+                        {
+                          "name": "5",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39445,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 171,
+                  "payload_length": 476,
+                  "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    3,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    3,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -1
+                  ]
+                },
+                "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                "context_scope": "Context identities retained; no occurrence transform inferred"
+              }
+            ]
+          }
+        ],
+        "result_controller_object_id": 439,
+        "uninterpreted_reference_count_field": 28,
+        "uninterpreted_stored_value": 338,
+        "input_definition_end_offset": 133,
+        "profile_scope": "Ordered explicit editable Text object identities and optional ordinary profile membership",
+        "target_scope": "Owned face recipes and native body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Planar Text Emboss/Deboss controls and owned source identities; glyph generation, font rendering, exact target topology and regeneration unresolved"
+      },
+      "checks": {
+        "depth_cm": true,
+        "horizontal_distance_cm": true,
+        "vertical_distance_cm": true,
+        "rotation_angle_radians": true,
+        "is_tangent_chain": true,
+        "profile_count": true,
+        "mode": true,
+        "input0.class": true,
+        "input0.sketch": true,
+        "input0.font_name": true,
+        "input0.text_style": true,
+        "input0.is_horizontal_flip": true,
+        "input0.is_vertical_flip": true,
+        "input0.text": true,
+        "input0.height": true,
+        "input0.text_parameter.role": true,
+        "input0.height_parameter.role": true,
+        "input0.text_parameter.expression": true,
+        "input0.height_parameter.expression": true,
+        "input0.text_parameter.name": true,
+        "input0.height_parameter.name": true,
+        "input0.rectangle0.start": true,
+        "input0.rectangle0.end": true,
+        "input0.rectangle1.start": true,
+        "input0.rectangle1.end": true,
+        "input0.rectangle2.start": true,
+        "input0.rectangle2.end": true,
+        "input0.rectangle3.start": true,
+        "input0.rectangle3.end": true
+      },
+      "api_observations": {
+        "health_state": 0,
+        "warning": "",
+        "result_bodies": [
+          {
+            "name": "EmbossTextTargetBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvZG5KQAwFCc5iAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 47.975115186577206,
+            "face_count": 33,
+            "bounding_box_min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              4.0,
+              2.0
+            ]
+          }
+        ],
+        "depth_cm": -0.15000000000000002,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "is_tangent_chain": true,
+        "profiles": [
+          {
+            "entity_type": "adsk::fusion::SketchText",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGRJQBpxiRMiAAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGBCQBW2KMAiAAAAA==",
+            "font_name": "Arial",
+            "text_style": 0,
+            "is_horizontal_flip": false,
+            "is_vertical_flip": false,
+            "text_parameter": {
+              "name": "d6",
+              "role": "Text1-Text",
+              "expression": "'KIT'",
+              "unit": "Text",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGJOQDoTMb9iAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "text_value": "KIT"
+            },
+            "height_parameter": {
+              "name": "d5",
+              "role": "Text1-Height",
+              "expression": "5 mm",
+              "unit": "mm",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGJCQBSHc9kiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "value": 0.5
+            },
+            "definition_type": "adsk::fusion::MultiLineTextDefinition",
+            "rectangle_lines": [
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RQUoEMRBFBS9SO1eBpKqSdIOICM7aldsmnXTAzTjIzMIzqUvvoVfwJKYy2NjtEGwC+fx6+T+kNSAYIAeEforsRqUdsuIuahWsscqid77P6Cn3oAsrvBaFXVEGWBwHLxfPr7uP67f3u6vPcHn+VQiUXBPRs+6d4pxJcYpBhThlRd51iQLZUefKloyz1Vf7NNQ6BgLbG5CtuPUiMiZt6i5ybbi1wWvD/jI0jI+HbZrSkMsNh6cpPuymIYV9gJsNwAa6gigJuS2yiOPCOqlyRhDujwhVD3+GS0oqFxwtxvMB4U5UUquyEbXg+A9HjUpuVTaiTr/GzHGjEluVjah//oBv0PukwgADAAA=",
+            "temp_id": 0,
+            "body": {
+              "name": "EmbossTextTargetBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvZG5KQAwFCc5iAAAAA==",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 48.0,
+              "face_count": 6,
+              "bounding_box_min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "bounding_box_max_cm": [
+                6.0,
+                4.0,
+                2.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 24.0,
+            "point_on_face_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "centroid_world_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "getter_errors": [],
+      "main_reader_texts_and_settings_exact": true
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+      "sha256": "fb7c791e057a0bce187978edb3ad5c104291fa25298d821b3896ec51dbb1ff0d",
+      "expected_texts": [
+        {
+          "kind": "Text",
+          "object_id": 329,
+          "record_offset": 42066,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 304,
+          "sketch_feature_object_id": 308,
+          "entity_tag": 110,
+          "text": "KIT",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "opaque_tag_base": 307,
+          "opaque_tag_base_status": "Stored optional txt_tag_base retained; glyph indexing/identity semantics unresolved",
+          "native_binding_slots": {
+            "height": 0,
+            "text": 1
+          },
+          "text_style": 0,
+          "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "underline": null,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 346,
+            "binding_object_id": 347,
+            "parameter_name": "d6",
+            "role": "Text1-Text",
+            "text_value": "KIT",
+            "expression": "'KIT'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 6,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 343,
+            "binding_object_id": 344,
+            "parameter_name": "d5",
+            "role": "Text1-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 5
+          },
+          "definition": {
+            "kind": "MultiLineTextDefinition",
+            "controller_object_id": 342,
+            "rectangle_lines": [
+              {
+                "object_id": 338,
+                "entity_tag": 115,
+                "start_point_id": 330,
+                "end_point_id": 332,
+                "start_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 339,
+                "entity_tag": 116,
+                "start_point_id": 332,
+                "end_point_id": 334,
+                "start_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 340,
+                "entity_tag": 117,
+                "start_point_id": 334,
+                "end_point_id": 336,
+                "start_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 341,
+                "entity_tag": 118,
+                "start_point_id": 336,
+                "end_point_id": 330,
+                "start_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              }
+            ],
+            "horizontal_alignment": 0,
+            "vertical_alignment": 0,
+            "character_spacing_percent": 0.0,
+            "native_character_spacing_multiplier": 1.0,
+            "native_horizontal_alignment": 1,
+            "native_vertical_alignment": 1,
+            "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified",
+            "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"
+          },
+          "uninterpreted": {
+            "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+            "style_flags_hex": "01000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "01000000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration"
+        }
+      ],
+      "expected_settings": {
+        "depth_cm": 0.2,
+        "horizontal_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "vertical_distance_cm": 0.0,
+        "mode": "Emboss",
+        "is_tangent_chain": true,
+        "parameter_bindings": {
+          "Depth": 474,
+          "Horizontal Distance": 477,
+          "Rotation Angle": 483,
+          "Vertical Distance": 480
+        },
+        "profiles": [
+          {
+            "selection_record_object_id": 455,
+            "descriptor_object_id": 458,
+            "sketch_object_id": 304,
+            "sketch_name": "EmbossTextInputs",
+            "kind": "SketchText",
+            "terminal_object_id": 461,
+            "text_object_id": 329,
+            "text_entity_tag": 110,
+            "text": "KIT",
+            "font_name": "Arial",
+            "height_cm": 0.5,
+            "context_evidence": {
+              "object_id": 492,
+              "raw_hex": "0000050000000000000024000000350034006600330063006400620066002d0037003800650061002d0034003500370037002d0039003900390062002d0065003000640066003300360037003100610063003000610024000000640066003300330033003700320038002d0064003800640061002d0034003000610034002d0061003600610035002d00660034003900650066006300660033003400610034006400020000000000000000",
+              "namespace": "54f3cdbf-78ea-4577-999b-e0df3671ac0a",
+              "status": "Context values/transforms unresolved"
+            },
+            "descriptor_opaque_suffix_hex": "00000000410000000000000000000000000001010000e49cd843fb58613f0101000001cc01000000000000000001000001cb01000000000000000000",
+            "scope": "Explicit native Text object identity linked to owned editable source; no glyph profile inference"
+          },
+          {
+            "selection_record_object_id": 455,
+            "descriptor_object_id": 462,
+            "sketch_object_id": 304,
+            "sketch_name": "EmbossTextInputs",
+            "kind": "Profile",
+            "loop_definition_object_id": 465,
+            "loops": [
+              {
+                "is_outer": true,
+                "curve_references": [
+                  {
+                    "entity_id": 354,
+                    "entity_kind": "Circle",
+                    "entity_tag": 120,
+                    "secondary_tag": 0,
+                    "stored_direction_flag": 0
+                  }
+                ],
+                "order_status": "Stored membership order; traversal ordering not decoded"
+              }
+            ],
+            "scope": "Explicit single profile-set loop membership; traversal and general trims unresolved"
+          }
+        ],
+        "profile_count": 2,
+        "input_faces": [
+          {
+            "selection_record_object_id": 466,
+            "attributes": {},
+            "faces": [
+              {
+                "descriptor_object_id": 469,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "namespace_text": "54f3cdbf-78ea-4577-999b-e0df3671ac0a",
+                "entity_guid_text": "df333728-d8da-40a4-a6a5-f49efcf34a4d",
+                "context_record_object_ids": [
+                  491
+                ],
+                "recipe": {
+                  "object_id": 472,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 49340,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "2",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39621,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39621,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "6",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39621,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 3,
+                      "terms": [
+                        {
+                          "name": "4",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39621,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 4,
+                      "terms": [
+                        {
+                          "name": "5",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 39621,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 171,
+                  "payload_length": 476,
+                  "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    3,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    3,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -1
+                  ]
+                },
+                "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                "context_scope": "Context identities retained; no occurrence transform inferred"
+              }
+            ]
+          }
+        ],
+        "result_controller_object_id": 485,
+        "uninterpreted_reference_count_field": 30,
+        "uninterpreted_stored_value": 338,
+        "input_definition_end_offset": 133,
+        "profile_scope": "Ordered explicit editable Text object identities and optional ordinary profile membership",
+        "target_scope": "Owned face recipes and native body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Planar Text Emboss/Deboss controls and owned source identities; glyph generation, font rendering, exact target topology and regeneration unresolved"
+      },
+      "checks": {
+        "depth_cm": true,
+        "horizontal_distance_cm": true,
+        "vertical_distance_cm": true,
+        "rotation_angle_radians": true,
+        "is_tangent_chain": true,
+        "profile_count": true,
+        "mode": true,
+        "input0.class": true,
+        "input0.sketch": true,
+        "input0.font_name": true,
+        "input0.text_style": true,
+        "input0.is_horizontal_flip": true,
+        "input0.is_vertical_flip": true,
+        "input0.text": true,
+        "input0.height": true,
+        "input0.text_parameter.role": true,
+        "input0.height_parameter.role": true,
+        "input0.text_parameter.expression": true,
+        "input0.height_parameter.expression": true,
+        "input0.text_parameter.name": true,
+        "input0.height_parameter.name": true,
+        "input0.rectangle0.start": true,
+        "input0.rectangle0.end": true,
+        "input0.rectangle1.start": true,
+        "input0.rectangle1.end": true,
+        "input0.rectangle2.start": true,
+        "input0.rectangle2.end": true,
+        "input0.rectangle3.start": true,
+        "input0.rectangle3.end": true,
+        "input1.class": true,
+        "input1.sketch": true,
+        "input1.loops": true,
+        "input1.outer0": true,
+        "input1.curves0": true,
+        "input1.circle.radius": true,
+        "input1.circle.center": true
+      },
+      "api_observations": {
+        "health_state": 0,
+        "warning": "",
+        "result_bodies": [
+          {
+            "name": "EmbossTextTargetBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9UbmpgCHx7iSiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 48.08972841899501,
+            "face_count": 35,
+            "bounding_box_min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              4.0,
+              2.2
+            ]
+          }
+        ],
+        "depth_cm": 0.2,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "is_tangent_chain": true,
+        "profiles": [
+          {
+            "entity_type": "adsk::fusion::SketchText",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cZGlgDeFbvniAAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYGJgDhCzyriAAAAA==",
+            "font_name": "Arial",
+            "text_style": 0,
+            "is_horizontal_flip": false,
+            "is_vertical_flip": false,
+            "text_parameter": {
+              "name": "d6",
+              "role": "Text1-Text",
+              "expression": "'KIT'",
+              "unit": "Text",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYm5gBfn1lWiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "text_value": "KIT"
+            },
+            "height_parameter": {
+              "name": "d5",
+              "role": "Text1-Height",
+              "expression": "5 mm",
+              "unit": "mm",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYmJgDlzlDPiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "value": 0.5
+            },
+            "definition_type": "adsk::fusion::MultiLineTextDefinition",
+            "rectangle_lines": [
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0Uwj5fHZ/xSvX8pmzH9w3K1zDBRQ3VDBWMDYwAbOAaoA0kGVkAWQZKpjg1GWkYGymkJJmbGxsbmShm2KRkqhrYpBooptolmiqm2ZimZqWnGZskmiSArOZAQ2A7TNQAFtnZGACsQ8KjQwgrgCpAACKFhBxvgAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYGJgDhCzyriAAAAA==",
+            "loop_count": 1,
+            "loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DpTQyMwbWxgArQayAIAMWa0CpIAAAA=",
+                    "center_sketch_cm": [
+                      4.5,
+                      2.0,
+                      0.0
+                    ],
+                    "radius_cm": 0.2999999999999998
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RTUoEMRCFXXuKukAgqapOp7fCzAnEbVN2EnDjH4pzlcEreAdP4Bl07dYLmMpgY7dDMATyePX1e01iAcEBefDkxbpIph8SGhZiI5g6460E8hwoxx5sYZW3qjAU5YDV8XD+9fa6+9w87Z8/3v3dy2khUHNjJqIeg4khimErJddLZzIPKU+ZWDhWtmScrFbts1DrGAi6wYEexa0/omOyrp4q14ZfG7w2ul+Ghcubx+uY4phlSuN9mq5u0xjlQeBsC7CFUBCjIZsiizhsrJMqZwTh4oBQ9fBnuKS0csHRYjx/oNyRSmpVNqIWHP/hqFHJrcpG1PHbmDluVGKrshH1zwf4BsRQAsIAAwAA",
+            "temp_id": 0,
+            "body": {
+              "name": "EmbossTextTargetBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9UbmpgCHx7iSiAAAAA==",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 48.0,
+              "face_count": 6,
+              "bounding_box_min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "bounding_box_max_cm": [
+                6.0,
+                4.0,
+                2.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 24.0,
+            "point_on_face_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "centroid_world_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "getter_errors": [],
+      "main_reader_texts_and_settings_exact": true
+    },
+    {
+      "file": "embosstext-cd769aa41cdf/two_texts.f3d",
+      "sha256": "9a18f943b1819a248b60cc5c3fe83f031b34ad50f4829122eb87820cf7425f9f",
+      "expected_texts": [
+        {
+          "kind": "Text",
+          "object_id": 329,
+          "record_offset": 44832,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 304,
+          "sketch_feature_object_id": 308,
+          "entity_tag": 110,
+          "text": "KIT",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "opaque_tag_base": 307,
+          "opaque_tag_base_status": "Stored optional txt_tag_base retained; glyph indexing/identity semantics unresolved",
+          "native_binding_slots": {
+            "height": 0,
+            "text": 1
+          },
+          "text_style": 0,
+          "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "underline": null,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 346,
+            "binding_object_id": 347,
+            "parameter_name": "d6",
+            "role": "Text1-Text",
+            "text_value": "KIT",
+            "expression": "'KIT'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 6,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 343,
+            "binding_object_id": 344,
+            "parameter_name": "d5",
+            "role": "Text1-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 5
+          },
+          "definition": {
+            "kind": "MultiLineTextDefinition",
+            "controller_object_id": 342,
+            "rectangle_lines": [
+              {
+                "object_id": 338,
+                "entity_tag": 115,
+                "start_point_id": 330,
+                "end_point_id": 332,
+                "start_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 339,
+                "entity_tag": 116,
+                "start_point_id": 332,
+                "end_point_id": 334,
+                "start_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 340,
+                "entity_tag": 117,
+                "start_point_id": 334,
+                "end_point_id": 336,
+                "start_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 341,
+                "entity_tag": 118,
+                "start_point_id": 336,
+                "end_point_id": 330,
+                "start_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              }
+            ],
+            "horizontal_alignment": 0,
+            "vertical_alignment": 0,
+            "character_spacing_percent": 0.0,
+            "native_character_spacing_multiplier": 1.0,
+            "native_horizontal_alignment": 1,
+            "native_vertical_alignment": 1,
+            "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified",
+            "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"
+          },
+          "uninterpreted": {
+            "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+            "style_flags_hex": "01000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "01000000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration"
+        },
+        {
+          "kind": "Text",
+          "object_id": 352,
+          "record_offset": 48977,
+          "class_guid": "E0618268-3A06-450E-9E94-7CF4C2E66802",
+          "sketch_object_id": 304,
+          "sketch_feature_object_id": 308,
+          "entity_tag": 119,
+          "text": "UCAD",
+          "font_name": "Arial",
+          "height_cm": 0.5,
+          "opaque_tag_base": 338,
+          "opaque_tag_base_status": "Stored optional txt_tag_base retained; glyph indexing/identity semantics unresolved",
+          "native_binding_slots": {
+            "height": 2,
+            "text": 3
+          },
+          "text_style": 0,
+          "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+          "bold": false,
+          "italic": false,
+          "native_font_weight": 400,
+          "underline": null,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "is_fixed": null,
+          "is_reference": null,
+          "text_parameter": {
+            "parameter_object_id": 369,
+            "binding_object_id": 370,
+            "parameter_name": "d8",
+            "role": "Text2-Text",
+            "text_value": "UCAD",
+            "expression": "'UCAD'",
+            "display_units": "Text",
+            "comment": "",
+            "stored_parameter_index": 8,
+            "expression_metadata_hex": "01000000000000000000",
+            "uninterpreted_suffix_hex": "000110000000000000000000"
+          },
+          "height_parameter": {
+            "parameter_object_id": 366,
+            "binding_object_id": 367,
+            "parameter_name": "d7",
+            "role": "Text2-Height",
+            "value_cm": 0.5,
+            "expression_candidates": [
+              "5 mm"
+            ],
+            "stored_parameter_index": 7
+          },
+          "definition": {
+            "kind": "MultiLineTextDefinition",
+            "controller_object_id": 365,
+            "rectangle_lines": [
+              {
+                "object_id": 361,
+                "entity_tag": 124,
+                "start_point_id": 353,
+                "end_point_id": 355,
+                "start_cm": [
+                  3.5,
+                  1.0,
+                  0.0
+                ],
+                "end_cm": [
+                  5.5,
+                  1.0,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 362,
+                "entity_tag": 125,
+                "start_point_id": 355,
+                "end_point_id": 357,
+                "start_cm": [
+                  5.5,
+                  1.0,
+                  0.0
+                ],
+                "end_cm": [
+                  5.5,
+                  2.5,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 363,
+                "entity_tag": 126,
+                "start_point_id": 357,
+                "end_point_id": 359,
+                "start_cm": [
+                  5.5,
+                  2.5,
+                  0.0
+                ],
+                "end_cm": [
+                  3.5,
+                  2.5,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              },
+              {
+                "object_id": 364,
+                "entity_tag": 127,
+                "start_point_id": 359,
+                "end_point_id": 353,
+                "start_cm": [
+                  3.5,
+                  2.5,
+                  0.0
+                ],
+                "end_cm": [
+                  3.5,
+                  1.0,
+                  0.0
+                ],
+                "coordinate_system": "sketch-local",
+                "coordinate_units": "cm",
+                "is_construction": null,
+                "is_fixed": null,
+                "uninterpreted_style_hex": "00000000000000010000000100000000010000803fcdcc4c3fcdcccc3d0000803f0000803f0000000000"
+              }
+            ],
+            "horizontal_alignment": 0,
+            "vertical_alignment": 0,
+            "character_spacing_percent": 0.0,
+            "native_character_spacing_multiplier": 1.0,
+            "native_horizontal_alignment": 1,
+            "native_vertical_alignment": 1,
+            "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified",
+            "status": "Explicit text/rectangle controller and owned source line/point caches; layout controls unvaried"
+          },
+          "uninterpreted": {
+            "prefix_hex": "00000000000000f03f0000000000000000000000000000803f",
+            "style_flags_hex": "01000000000000",
+            "layout_suffix_without_weight_or_owner_hex": "01000000000000000000000000000000f03f000000000000000000000000000000000000000000000c400000000000000000000000000000f03f0000000000000000000000000000f03f00000000000000000000000000000000000000000000f03f0000000000000000000000000000000000000000000000000000000000000000000000000000f03f00000000010000000000000000000000000000803f0000803f0000000000"
+          },
+          "scope": "Observed rectangle SketchText source and reciprocal parameters; no font rendering, glyph decoding or regeneration"
+        }
+      ],
+      "expected_settings": {
+        "depth_cm": 0.2,
+        "horizontal_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "vertical_distance_cm": 0.0,
+        "mode": "Emboss",
+        "is_tangent_chain": true,
+        "parameter_bindings": {
+          "Depth": 503,
+          "Horizontal Distance": 506,
+          "Rotation Angle": 512,
+          "Vertical Distance": 509
+        },
+        "profiles": [
+          {
+            "selection_record_object_id": 484,
+            "descriptor_object_id": 487,
+            "sketch_object_id": 304,
+            "sketch_name": "EmbossTextInputs",
+            "kind": "SketchText",
+            "terminal_object_id": 490,
+            "text_object_id": 329,
+            "text_entity_tag": 110,
+            "text": "KIT",
+            "font_name": "Arial",
+            "height_cm": 0.5,
+            "context_evidence": {
+              "object_id": 521,
+              "raw_hex": "0000040000000000000024000000380065003800650063006500610031002d0035003100330031002d0034003800300032002d0038003500350039002d0034003200300037003600330034003000620036003000320024000000660066003500650036003300380063002d0031003300300066002d0034003200300038002d0062003000360036002d00630032006600370034003000340039006600320038003400020000000000000000",
+              "namespace": "8e8ecea1-5131-4802-8559-42076340b602",
+              "status": "Context values/transforms unresolved"
+            },
+            "descriptor_opaque_suffix_hex": "000000004100000000000000000000000000010100002a504c5d801d623f0101000001e901000000000000000001000001e801000000000000000000",
+            "scope": "Explicit native Text object identity linked to owned editable source; no glyph profile inference"
+          },
+          {
+            "selection_record_object_id": 484,
+            "descriptor_object_id": 491,
+            "sketch_object_id": 304,
+            "sketch_name": "EmbossTextInputs",
+            "kind": "SketchText",
+            "terminal_object_id": 494,
+            "text_object_id": 352,
+            "text_entity_tag": 119,
+            "text": "UCAD",
+            "font_name": "Arial",
+            "height_cm": 0.5,
+            "context_evidence": {
+              "object_id": 522,
+              "raw_hex": "0000050000000000000024000000380065003800650063006500610031002d0035003100330031002d0034003800300032002d0038003500350039002d0034003200300037003600330034003000620036003000320024000000660066003500650036003300380063002d0031003300300066002d0034003200300038002d0062003000360036002d00630032006600370034003000340039006600320038003400020000000000000000",
+              "namespace": "8e8ecea1-5131-4802-8559-42076340b602",
+              "status": "Context values/transforms unresolved"
+            },
+            "descriptor_opaque_suffix_hex": "00000000410000000000000000000000000001010000a0a3b39eea28803f0101000001ed01000000000000000001000001ec01000000000000000000",
+            "scope": "Explicit native Text object identity linked to owned editable source; no glyph profile inference"
+          }
+        ],
+        "profile_count": 2,
+        "input_faces": [
+          {
+            "selection_record_object_id": 495,
+            "attributes": {},
+            "faces": [
+              {
+                "descriptor_object_id": 498,
+                "body_anchor_object_id": 281,
+                "native_body_object_id": 275,
+                "source_owner_object_id": 243,
+                "namespace_text": "8e8ecea1-5131-4802-8559-42076340b602",
+                "entity_guid_text": "ff5e638c-130f-4208-b066-c2f74049f284",
+                "context_record_object_ids": [
+                  520
+                ],
+                "recipe": {
+                  "object_id": 501,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 55564,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "2",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 42217,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 42217,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "6",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 42217,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 3,
+                      "terms": [
+                        {
+                          "name": "4",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 42217,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 4,
+                      "terms": [
+                        {
+                          "name": "5",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 301,
+                          "matching_primary_record": {
+                            "object_id": 301,
+                            "class_guid": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+                            "record_offset": 42217,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "bounded_face_recipe_data",
+                  "payload_relative_offset": 171,
+                  "payload_length": 476,
+                  "payload_hex": "00000000ffffffff04000000ffffffffffffffff0200000001000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffffffffffffffffffff0200000003000000ffffffff00000000ffffffff02000000ffffffff0300000003000000ffffffff00000000ffffffff01000000ffffffff0000000000000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffffffffffffffffffff0200000004000000ffffffff00000000ffffffff02000000ffffffff0300000004000000ffffffff00000000ffffffff03000000ffffffff0000000000000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffffffffffffffffffff0200000002000000ffffffff00000000ffffffff02000000ffffffff0300000002000000ffffffff00000000ffffffff04000000ffffffff0000000000000000ffffffff0300000002000000ffffffff01000000ffffffff00000000ffffffff0000000000000000ffffffff",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+                  "uninterpreted_payload_int32": [
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    -1,
+                    2,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    3,
+                    -1,
+                    0,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    3,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    4,
+                    -1,
+                    0,
+                    -1,
+                    3,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    -1,
+                    -1,
+                    2,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    2,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    0,
+                    -1,
+                    4,
+                    -1,
+                    0,
+                    0,
+                    -1,
+                    3,
+                    2,
+                    -1,
+                    1,
+                    -1,
+                    0,
+                    -1,
+                    0,
+                    0,
+                    -1
+                  ]
+                },
+                "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+                "context_scope": "Context identities retained; no occurrence transform inferred"
+              }
+            ]
+          }
+        ],
+        "result_controller_object_id": 514,
+        "uninterpreted_reference_count_field": 106,
+        "uninterpreted_stored_value": 369,
+        "input_definition_end_offset": 133,
+        "profile_scope": "Ordered explicit editable Text object identities and optional ordinary profile membership",
+        "target_scope": "Owned face recipes and native body anchors; exact persistent face-to-ASM mapping unresolved",
+        "geometry_status": "Planar Text Emboss/Deboss controls and owned source identities; glyph generation, font rendering, exact target topology and regeneration unresolved"
+      },
+      "checks": {
+        "depth_cm": true,
+        "horizontal_distance_cm": true,
+        "vertical_distance_cm": true,
+        "rotation_angle_radians": true,
+        "is_tangent_chain": true,
+        "profile_count": true,
+        "mode": true,
+        "input0.class": true,
+        "input0.sketch": true,
+        "input0.font_name": true,
+        "input0.text_style": true,
+        "input0.is_horizontal_flip": true,
+        "input0.is_vertical_flip": true,
+        "input0.text": true,
+        "input0.height": true,
+        "input0.text_parameter.role": true,
+        "input0.height_parameter.role": true,
+        "input0.text_parameter.expression": true,
+        "input0.height_parameter.expression": true,
+        "input0.text_parameter.name": true,
+        "input0.height_parameter.name": true,
+        "input0.rectangle0.start": true,
+        "input0.rectangle0.end": true,
+        "input0.rectangle1.start": true,
+        "input0.rectangle1.end": true,
+        "input0.rectangle2.start": true,
+        "input0.rectangle2.end": true,
+        "input0.rectangle3.start": true,
+        "input0.rectangle3.end": true,
+        "input1.class": true,
+        "input1.sketch": true,
+        "input1.font_name": true,
+        "input1.text_style": true,
+        "input1.is_horizontal_flip": true,
+        "input1.is_vertical_flip": true,
+        "input1.text": true,
+        "input1.height": true,
+        "input1.text_parameter.role": true,
+        "input1.height_parameter.role": true,
+        "input1.text_parameter.expression": true,
+        "input1.height_parameter.expression": true,
+        "input1.text_parameter.name": true,
+        "input1.height_parameter.name": true,
+        "input1.rectangle0.start": true,
+        "input1.rectangle0.end": true,
+        "input1.rectangle1.start": true,
+        "input1.rectangle1.end": true,
+        "input1.rectangle2.start": true,
+        "input1.rectangle2.end": true,
+        "input1.rectangle3.start": true,
+        "input1.rectangle3.end": true
+      },
+      "api_observations": {
+        "health_state": 0,
+        "warning": "",
+        "result_bodies": [
+          {
+            "name": "EmbossTextTargetBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5mbAgDpQz8oiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 48.09594793715504,
+            "face_count": 113,
+            "bounding_box_min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              4.0,
+              2.2
+            ]
+          }
+        ],
+        "depth_cm": 0.2,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "is_tangent_chain": true,
+        "profiles": [
+          {
+            "entity_type": "adsk::fusion::SketchText",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxtZAgCwkTxdiAAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxuYAACPj7sRiAAAAA==",
+            "font_name": "Arial",
+            "text_style": 0,
+            "is_horizontal_flip": false,
+            "is_vertical_flip": false,
+            "text_parameter": {
+              "name": "d6",
+              "role": "Text1-Text",
+              "expression": "'KIT'",
+              "unit": "Text",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uYAwAxG97siAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "text_value": "KIT"
+            },
+            "height_parameter": {
+              "name": "d5",
+              "role": "Text1-Height",
+              "expression": "5 mm",
+              "unit": "mm",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uYAACLStd1iAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "value": 0.5
+            },
+            "definition_type": "adsk::fusion::MultiLineTextDefinition",
+            "rectangle_lines": [
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::SketchText",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5saAQD/3q+FiAAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxuYAACPj7sRiAAAAA==",
+            "font_name": "Arial",
+            "text_style": 0,
+            "is_horizontal_flip": false,
+            "is_vertical_flip": false,
+            "text_parameter": {
+              "name": "d8",
+              "role": "Text2-Text",
+              "expression": "'UCAD'",
+              "unit": "Text",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5sbAABR3ZdZiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "text_value": "UCAD"
+            },
+            "height_parameter": {
+              "name": "d7",
+              "role": "Text2-Height",
+              "expression": "5 mm",
+              "unit": "mm",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uZAwCzeejeiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "value": 0.5
+            },
+            "definition_type": "adsk::fusion::MultiLineTextDefinition",
+            "rectangle_lines": [
+              {
+                "start_sketch_cm": [
+                  3.5,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  5.5,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  5.5,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  5.5,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  5.5,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.5,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.5,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.5,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RTUoEMRCFZTZeoy4QqFSqk/ROBhzcuhFcNen8gBsV0SO4nTt4CY/hmUxlsLHbIdg05PHq6/eSNAKBBmOBORVnUKvsEit2ZVQBWSsbBocuhTk4D1hZ4VEU+ao0sDgWjsevj1t9s3u/31/Gq89dJUhySxmyNT4qbbAoJvRqRmtVpOIYeSzkubE142LztD6EVsdgYBg1yFLdthEZ1y23VeTWsFuDt8bwy0CYn94eU05TCTFPLzk+POcphdcA+wPAAeT8SkKuq6zi9FKbNLkgBHcnxDSPfoZrSipXnFmNlw+EO1NpepWdqBXHfzjTqeReZSfq/G0sHHcqqVfZifrnD/gGLh/sKwADAAA=",
+            "temp_id": 0,
+            "body": {
+              "name": "EmbossTextTargetBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5mbAgDpQz8oiAAAAA==",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 48.0,
+              "face_count": 6,
+              "bounding_box_min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "bounding_box_max_cm": [
+                6.0,
+                4.0,
+                2.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 24.0,
+            "point_on_face_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "centroid_world_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "getter_errors": [],
+      "main_reader_texts_and_settings_exact": true
+    }
+  ],
+  "malformed_checks": [
+    {
+      "name": "native Text leaf points to non-Text ID",
+      "rejected": true,
+      "reason": "Emboss text typed reference missing or ambiguous"
+    },
+    {
+      "name": "descriptor sketch ID changed",
+      "rejected": true,
+      "reason": "Emboss input sketch/context framing unresolved"
+    },
+    {
+      "name": "descriptor feature owner changed",
+      "rejected": true,
+      "reason": "Unobserved Emboss input descriptor framing/owner"
+    },
+    {
+      "name": "proxy feature owner changed",
+      "rejected": true,
+      "reason": "Emboss text proxy owner disagrees"
+    },
+    {
+      "name": "owning sketch.texts membership removed",
+      "rejected": true,
+      "reason": "Emboss native Text ID not linked to owning sketch.texts"
+    },
+    {
+      "name": "context namespace disagrees",
+      "rejected": true,
+      "reason": "Emboss descriptor/context namespace disagrees"
+    },
+    {
+      "name": "source height/binding mismatch",
+      "rejected": true,
+      "reason": "SketchText binding value or suffix mismatch"
+    },
+    {
+      "name": "Text2 Height slot reset to Text1 slot",
+      "rejected": true,
+      "reason": "SketchText numbered binding slots disagree with TextN roles"
+    }
+  ],
+  "regressions": {
+    "exact_committed_code_rectangle_archives": 13,
+    "rectangle_callbacks": [
+      "default",
+      "expanded"
+    ],
+    "exact_prior_path_text_outputs": 6,
+    "exact_prior_ordinary_emboss_outputs": 6,
+    "original_rectangle_report_outputs": 5,
+    "consumed_helper_replacements_for_prior_ordinary_and_path_sources": 0
+  },
+  "capture_errors": [],
+  "summary": {
+    "archives": 4,
+    "case_errors": 0,
+    "getter_errors": 0,
+    "api_comparisons": 145,
+    "all_passed": true,
+    "malformed_checks": 8
+  }
+}

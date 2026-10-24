@@ -1,0 +1,2353 @@
+{
+  "status": "complete",
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "brep_free",
+      "file": "brep_free.f3d",
+      "status": "exported",
+      "getter_errors": [],
+      "requested": {
+        "continuity_name": "free",
+        "weight": 0.5,
+        "is_continuity_direction_flipped": false,
+        "operation": "NewBody",
+        "outer_radius_cm": 2.0,
+        "hole_radius_cm": 0.7,
+        "boundary_source": "Single inner circular BRepEdge of owned annular planar seed sheet",
+        "continuity_API_value": 0
+      },
+      "source_before_patch": {
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchAnnularSupport",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqnvy+Q2nXda35lyh1f1u4QuUIWRgrGZglmyhZFpmlmKrlGygYGuiZFFmm5iqmGSbmqSUZpxkmWqMVASrBZoBgMaANtnoAC2DmS9kZk5AAkFmKqIAAAA",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 2,
+          "vertex_count": 2,
+          "area_cm2": 11.026990214100174,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -2.0,
+            -2.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::Plane"
+          ]
+        },
+        "edge": {
+          "entity_type": "adsk::fusion::BRepEdge",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11OMQoCQQz0A/ZWksYykM3uLblW0G8ce7tZsRPxE37EVvAZNn7Af1zr5mzEEJIhGWaGgMGBj5CDq75ShyFXh6FIRomJkWsfxKtqrgLUuMYnQywNOQh2ifCcbuvHa3u/lvdyM62wMdh0YxbuaizImQgDS8WkbkQdufqxV9+eM7dpLP5q9iOY7QJ4EIY2LcDsbF9P323w50Cg5aDDWfPxpENJlwQ7sPzorB3swdI3SB8rXmiZAgEAAA==",
+          "temporary_id": 3,
+          "body_name": "PatchAnnularSupport",
+          "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqnvy+Q2nXda35lyh1f1u4QuUIWRgrGZglmyhZFpmlmKrlGygYGuiZFFmm5iqmGSbmqSUZpxkmWqMVASrBZoBgMaANtnoAC2DmS9kZk5AAkFmKqIAAAA",
+          "geometry_type": "adsk::core::Circle3D",
+          "face_count": 1,
+          "incident_face_geometry_types": [
+            "adsk::core::Plane"
+          ],
+          "is_param_reversed": false,
+          "start_vertex_cm": [
+            -0.7,
+            -8.572527594031472e-17,
+            0.0
+          ],
+          "end_vertex_cm": [
+            -0.7,
+            -8.572527594031472e-17,
+            0.0
+          ],
+          "center_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "radius_cm": 0.7,
+          "evaluator_extents_returned": true,
+          "evaluator_extents": [
+            -3.141592653589793,
+            3.141592653589793
+          ],
+          "evaluator_samples": [
+            {
+              "fraction": 0.0,
+              "parameter": -3.141592653589793,
+              "returned": true,
+              "point_cm": [
+                -0.7,
+                8.572527594031472e-17,
+                0.0
+              ]
+            },
+            {
+              "fraction": 0.25,
+              "parameter": -1.5707963267948966,
+              "returned": true,
+              "point_cm": [
+                4.286263797015736e-17,
+                0.7,
+                0.0
+              ]
+            },
+            {
+              "fraction": 0.5,
+              "parameter": 0.0,
+              "returned": true,
+              "point_cm": [
+                0.7,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "fraction": 0.75,
+              "parameter": 1.5707963267948966,
+              "returned": true,
+              "point_cm": [
+                4.286263797015736e-17,
+                -0.7,
+                0.0
+              ]
+            },
+            {
+              "fraction": 1.0,
+              "parameter": 3.141592653589793,
+              "returned": true,
+              "point_cm": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ]
+            }
+          ]
+        }
+      },
+      "input_initial_return_shape": {
+        "python_type": "list",
+        "length": 5
+      },
+      "input_initial_continuity": {
+        "returned": true,
+        "is_group_edges": true,
+        "edges": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11OMQoCQQz0A/ZWksYykM3uLblW0G8ce7tZsRPxE37EVvAZNn7Af1zr5mzEEJIhGWaGgMGBj5CDq75ShyFXh6FIRomJkWsfxKtqrgLUuMYnQywNOQh2ifCcbuvHa3u/lvdyM62wMdh0YxbuaizImQgDS8WkbkQdufqxV9+eM7dpLP5q9iOY7QJ4EIY2LcDsbF9P323w50Cg5aDDWfPxpENJlwQ7sPzorB3swdI3SB8rXmiZAgEAAA==",
+            "temporary_id": 3,
+            "body_name": "PatchAnnularSupport",
+            "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqnvy+Q2nXda35lyh1f1u4QuUIWRgrGZglmyhZFpmlmKrlGygYGuiZFFmm5iqmGSbmqSUZpxkmWqMVASrBZoBgMaANtnoAC2DmS9kZk5AAkFmKqIAAAA",
+            "geometry_type": "adsk::core::Circle3D",
+            "face_count": 1,
+            "incident_face_geometry_types": [
+              "adsk::core::Plane"
+            ],
+            "is_param_reversed": false,
+            "start_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "end_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "radius_cm": 0.7,
+            "evaluator_extents_returned": true,
+            "evaluator_extents": [
+              -3.141592653589793,
+              3.141592653589793
+            ],
+            "evaluator_samples": [
+              {
+                "fraction": 0.0,
+                "parameter": -3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  8.572527594031472e-17,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.25,
+                "parameter": -1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.5,
+                "parameter": 0.0,
+                "returned": true,
+                "point_cm": [
+                  0.7,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.75,
+                "parameter": 1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  -0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 1.0,
+                "parameter": 3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "continuity": [
+          0
+        ],
+        "weights": [
+          0.5
+        ],
+        "is_continuity_direction_flipped": [
+          false
+        ],
+        "group_controls": {
+          "active": true,
+          "continuity": 0,
+          "weight": 0.5,
+          "is_direction_flipped": false
+        },
+        "weight_applicability": "Ignored where continuity is Connected; retained raw otherwise",
+        "flip_applicability": "Ignored for captured one-adjacent-face open boundary edge"
+      },
+      "set_continuity_returned": true,
+      "input_after_set_return_shape": {
+        "python_type": "list",
+        "length": 5
+      },
+      "input_actual_continuity": {
+        "returned": true,
+        "is_group_edges": false,
+        "edges": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11OMQoCQQz0A/ZWksYykM3uLblW0G8ce7tZsRPxE37EVvAZNn7Af1zr5mzEEJIhGWaGgMGBj5CDq75ShyFXh6FIRomJkWsfxKtqrgLUuMYnQywNOQh2ifCcbuvHa3u/lvdyM62wMdh0YxbuaizImQgDS8WkbkQdufqxV9+eM7dpLP5q9iOY7QJ4EIY2LcDsbF9P323w50Cg5aDDWfPxpENJlwQ7sPzorB3swdI3SB8rXmiZAgEAAA==",
+            "temporary_id": 3,
+            "body_name": "PatchAnnularSupport",
+            "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqnvy+Q2nXda35lyh1f1u4QuUIWRgrGZglmyhZFpmlmKrlGygYGuiZFFmm5iqmGSbmqSUZpxkmWqMVASrBZoBgMaANtnoAC2DmS9kZk5AAkFmKqIAAAA",
+            "geometry_type": "adsk::core::Circle3D",
+            "face_count": 1,
+            "incident_face_geometry_types": [
+              "adsk::core::Plane"
+            ],
+            "is_param_reversed": false,
+            "start_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "end_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "radius_cm": 0.7,
+            "evaluator_extents_returned": true,
+            "evaluator_extents": [
+              -3.141592653589793,
+              3.141592653589793
+            ],
+            "evaluator_samples": [
+              {
+                "fraction": 0.0,
+                "parameter": -3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  8.572527594031472e-17,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.25,
+                "parameter": -1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.5,
+                "parameter": 0.0,
+                "returned": true,
+                "point_cm": [
+                  0.7,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.75,
+                "parameter": 1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  -0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 1.0,
+                "parameter": 3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "continuity": [
+          0
+        ],
+        "weights": [
+          0.5
+        ],
+        "is_continuity_direction_flipped": [
+          false
+        ],
+        "group_controls": {
+          "active": false,
+          "continuity": 0,
+          "weight": 0.5,
+          "is_direction_flipped": false
+        },
+        "weight_applicability": "Ignored where continuity is Connected; retained raw otherwise",
+        "flip_applicability": "Ignored for captured one-adjacent-face open boundary edge"
+      },
+      "input_boundary": {
+        "entity_type": "adsk::fusion::Path",
+        "count": 1,
+        "is_closed": true,
+        "members": [
+          {
+            "entity_type": "adsk::fusion::PathEntity",
+            "is_opposed_to_entity": false,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "edge": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11OMQoCQQz0A/ZWksYykM3uLblW0G8ce7tZsRPxE37EVvAZNn7Af1zr5mzEEJIhGWaGgMGBj5CDq75ShyFXh6FIRomJkWsfxKtqrgLUuMYnQywNOQh2ifCcbuvHa3u/lvdyM62wMdh0YxbuaizImQgDS8WkbkQdufqxV9+eM7dpLP5q9iOY7QJ4EIY2LcDsbF9P323w50Cg5aDDWfPxpENJlwQ7sPzorB3swdI3SB8rXmiZAgEAAA==",
+                "temporary_id": 3,
+                "body_name": "PatchAnnularSupport",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqnvy+Q2nXda35lyh1f1u4QuUIWRgrGZglmyhZFpmlmKrlGygYGuiZFFmm5iqmGSbmqSUZpxkmWqMVASrBZoBgMaANtnoAC2DmS9kZk5AAkFmKqIAAAA",
+                "geometry_type": "adsk::core::Circle3D",
+                "face_count": 1,
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane"
+                ],
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "end_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "center_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "radius_cm": 0.7,
+                "evaluator_extents_returned": true,
+                "evaluator_extents": [
+                  -3.141592653589793,
+                  3.141592653589793
+                ],
+                "evaluator_samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": -3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      8.572527594031472e-17,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.25,
+                    "parameter": -1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      0.7,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.75,
+                    "parameter": 1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      -0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      -8.572527594031472e-17,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            },
+            "path_curve_geometry_type": "adsk::core::NurbsCurve3D"
+          }
+        ]
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchFilledSurface",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqnvy+Q2nXda35lyh1f1u4QuUIWRgrGZglmyhZFpmlmKrlGygYGuiZFFmm5iqmGSbmqSUZpxkmWqMVASrBZoBgMaANtnoAC2DmS9sakxAOT4GoeIAAAA",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 1,
+          "vertex_count": 1,
+          "area_cm2": 1.5393804002589984,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -0.7,
+            -0.7,
+            0.0
+          ],
+          "bounds_max_cm": [
+            0.7,
+            0.7,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::Plane"
+          ]
+        }
+      ],
+      "root_bodies_after": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchAnnularSupport",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqnvy+Q2nXda35lyh1f1u4QuUIWRgrGZglmyhZFpmlmKrlGygYGuiZFFmm5iqmGSbmqSUZpxkmWqMVASrBZoBgMaANtnoAC2DmS9kZk5AAkFmKqIAAAA",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 2,
+          "vertex_count": 2,
+          "area_cm2": 11.026990214100174,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -2.0,
+            -2.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::Plane"
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchFilledSurface",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqnvy+Q2nXda35lyh1f1u4QuUIWRgrGZglmyhZFpmlmKrlGygYGuiZFFmm5iqmGSbmqSUZpxkmWqMVASrBZoBgMaANtnoAC2DmS9sakxAOT4GoeIAAAA",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 1,
+          "vertex_count": 1,
+          "area_cm2": 1.5393804002589984,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -0.7,
+            -0.7,
+            0.0
+          ],
+          "bounds_max_cm": [
+            0.7,
+            0.7,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::Plane"
+          ]
+        }
+      ],
+      "actual_feature_return_shape": {
+        "python_type": "list",
+        "length": 5
+      },
+      "settings": {
+        "operation": 3,
+        "boundary": {
+          "entity_type": "adsk::core::ObjectCollection",
+          "count": 1,
+          "members": [
+            {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "edge": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11OMQoCQQz0A/ZWksYykM3uLblW0G8ce7tZsRPxE37EVvAZNn7Af1zr5mzEEJIhGWaGgMGBj5CDq75ShyFXh6FIRomJkWsfxKtqrgLUuMYnQywNOQh2ifCcbuvHa3u/lvdyM62wMdh0YxbuaizImQgDS8WkbkQdufqxV9+eM7dpLP5q9iOY7QJ4EIY2LcDsbF9P323w50Cg5aDDWfPxpENJlwQ7sPzorB3swdI3SB8rXmiZAgEAAA==",
+                "temporary_id": 7,
+                "body_name": "PatchAnnularSupport",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqnvy+Q2nXda35lyh1f1u4QuUIWRgrGZglmyhZFpmlmKrlGygYGuiZFFmm5iqmGSbmqSUZpxkmWqMVASrBZoBgMaANtnoAC2DmS9kZk5AAkFmKqIAAAA",
+                "geometry_type": "adsk::core::Circle3D",
+                "face_count": 1,
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane"
+                ],
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "end_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "center_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "radius_cm": 0.7,
+                "evaluator_extents_returned": true,
+                "evaluator_extents": [
+                  -3.141592653589793,
+                  3.141592653589793
+                ],
+                "evaluator_samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": -3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      8.572527594031472e-17,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.25,
+                    "parameter": -1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      0.7,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.75,
+                    "parameter": 1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      -0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      -8.572527594031472e-17,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "continuity": {
+          "returned": true,
+          "is_group_edges": false,
+          "edges": [
+            {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11OMQoCQQz0A/ZWksYykM3uLblW0G8ce7tZsRPxE37EVvAZNn7Af1zr5mzEEJIhGWaGgMGBj5CDq75ShyFXh6FIRomJkWsfxKtqrgLUuMYnQywNOQh2ifCcbuvHa3u/lvdyM62wMdh0YxbuaizImQgDS8WkbkQdufqxV9+eM7dpLP5q9iOY7QJ4EIY2LcDsbF9P323w50Cg5aDDWfPxpENJlwQ7sPzorB3swdI3SB8rXmiZAgEAAA==",
+              "temporary_id": 7,
+              "body_name": "PatchAnnularSupport",
+              "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwqnvy+Q2nXda35lyh1f1u4QuUIWRgrGZglmyhZFpmlmKrlGygYGuiZFFmm5iqmGSbmqSUZpxkmWqMVASrBZoBgMaANtnoAC2DmS9kZk5AAkFmKqIAAAA",
+              "geometry_type": "adsk::core::Circle3D",
+              "face_count": 1,
+              "incident_face_geometry_types": [
+                "adsk::core::Plane"
+              ],
+              "is_param_reversed": false,
+              "start_vertex_cm": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ],
+              "end_vertex_cm": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ],
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "radius_cm": 0.7,
+              "evaluator_extents_returned": true,
+              "evaluator_extents": [
+                -3.141592653589793,
+                3.141592653589793
+              ],
+              "evaluator_samples": [
+                {
+                  "fraction": 0.0,
+                  "parameter": -3.141592653589793,
+                  "returned": true,
+                  "point_cm": [
+                    -0.7,
+                    8.572527594031472e-17,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 0.25,
+                  "parameter": -1.5707963267948966,
+                  "returned": true,
+                  "point_cm": [
+                    4.286263797015736e-17,
+                    0.7,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 0.5,
+                  "parameter": 0.0,
+                  "returned": true,
+                  "point_cm": [
+                    0.7,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 0.75,
+                  "parameter": 1.5707963267948966,
+                  "returned": true,
+                  "point_cm": [
+                    4.286263797015736e-17,
+                    -0.7,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 1.0,
+                  "parameter": 3.141592653589793,
+                  "returned": true,
+                  "point_cm": [
+                    -0.7,
+                    -8.572527594031472e-17,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "continuity": [
+            0
+          ],
+          "weights": [
+            0.5
+          ],
+          "is_continuity_direction_flipped": [
+            false
+          ],
+          "group_controls": {
+            "active": false,
+            "continuity": 0,
+            "weight": 0.5,
+            "is_direction_flipped": false
+          },
+          "weight_applicability": "Ignored where continuity is Connected; retained raw otherwise",
+          "flip_applicability": "Ignored for captured one-adjacent-face open boundary edge"
+        },
+        "interior_entity_count": 0
+      },
+      "parameters": [],
+      "export_size_bytes": 61932,
+      "export_sha256": "96a9d009201a36ffed05b20934e594dc1181739fb3182cfa6b5f766a6dd190e4",
+      "close_owned_document_result": true
+    },
+    {
+      "case": "brep_tangent",
+      "file": "brep_tangent.f3d",
+      "status": "exported",
+      "getter_errors": [],
+      "requested": {
+        "continuity_name": "tangent",
+        "weight": 0.5,
+        "is_continuity_direction_flipped": false,
+        "operation": "NewBody",
+        "outer_radius_cm": 2.0,
+        "hole_radius_cm": 0.7,
+        "boundary_source": "Single inner circular BRepEdge of owned annular planar seed sheet",
+        "continuity_API_value": 1
+      },
+      "source_before_patch": {
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchAnnularSupport",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtKv2OIDa7wU90WdODtfoHA7UIWRgrGZgmWahaWBSZKFboqlQYquiaVBqq5lkpGlrkGKobGRYbJhkllqGlgt0AwGNAC2z0ABbB3IeiMzcwDcJ4dniAAAAA==",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 2,
+          "vertex_count": 2,
+          "area_cm2": 11.026990214100174,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -2.0,
+            -2.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::Plane"
+          ]
+        },
+        "edge": {
+          "entity_type": "adsk::fusion::BRepEdge",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw1CMQxkBEYwA1iyE7+QDAAFIyChp+QlD9Hx24cF6OkQJQ0LURGHBmFZ9ul8ujOBAQbrwIxpTjlGtMHMUaJljB0nFJHOi3fZxwRUtaonRcZXxCDKOEjvzelxXc3u6+frMj3cqsKobxh9IEkec6CMEqhgSCYgZbaGB06ujE1bPSZ/1fIIWpyABW+gTn2gJevV0ncr/CEISt6W/liG3b70OZ4jLMBXGlmbYQn6fYX0AYBDggkCAQAA",
+          "temporary_id": 3,
+          "body_name": "PatchAnnularSupport",
+          "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtKv2OIDa7wU90WdODtfoHA7UIWRgrGZgmWahaWBSZKFboqlQYquiaVBqq5lkpGlrkGKobGRYbJhkllqGlgt0AwGNAC2z0ABbB3IeiMzcwDcJ4dniAAAAA==",
+          "geometry_type": "adsk::core::Circle3D",
+          "face_count": 1,
+          "incident_face_geometry_types": [
+            "adsk::core::Plane"
+          ],
+          "is_param_reversed": false,
+          "start_vertex_cm": [
+            -0.7,
+            -8.572527594031472e-17,
+            0.0
+          ],
+          "end_vertex_cm": [
+            -0.7,
+            -8.572527594031472e-17,
+            0.0
+          ],
+          "center_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "radius_cm": 0.7,
+          "evaluator_extents_returned": true,
+          "evaluator_extents": [
+            -3.141592653589793,
+            3.141592653589793
+          ],
+          "evaluator_samples": [
+            {
+              "fraction": 0.0,
+              "parameter": -3.141592653589793,
+              "returned": true,
+              "point_cm": [
+                -0.7,
+                8.572527594031472e-17,
+                0.0
+              ]
+            },
+            {
+              "fraction": 0.25,
+              "parameter": -1.5707963267948966,
+              "returned": true,
+              "point_cm": [
+                4.286263797015736e-17,
+                0.7,
+                0.0
+              ]
+            },
+            {
+              "fraction": 0.5,
+              "parameter": 0.0,
+              "returned": true,
+              "point_cm": [
+                0.7,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "fraction": 0.75,
+              "parameter": 1.5707963267948966,
+              "returned": true,
+              "point_cm": [
+                4.286263797015736e-17,
+                -0.7,
+                0.0
+              ]
+            },
+            {
+              "fraction": 1.0,
+              "parameter": 3.141592653589793,
+              "returned": true,
+              "point_cm": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ]
+            }
+          ]
+        }
+      },
+      "input_initial_return_shape": {
+        "python_type": "list",
+        "length": 5
+      },
+      "input_initial_continuity": {
+        "returned": true,
+        "is_group_edges": true,
+        "edges": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw1CMQxkBEYwA1iyE7+QDAAFIyChp+QlD9Hx24cF6OkQJQ0LURGHBmFZ9ul8ujOBAQbrwIxpTjlGtMHMUaJljB0nFJHOi3fZxwRUtaonRcZXxCDKOEjvzelxXc3u6+frMj3cqsKobxh9IEkec6CMEqhgSCYgZbaGB06ujE1bPSZ/1fIIWpyABW+gTn2gJevV0ncr/CEISt6W/liG3b70OZ4jLMBXGlmbYQn6fYX0AYBDggkCAQAA",
+            "temporary_id": 3,
+            "body_name": "PatchAnnularSupport",
+            "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtKv2OIDa7wU90WdODtfoHA7UIWRgrGZgmWahaWBSZKFboqlQYquiaVBqq5lkpGlrkGKobGRYbJhkllqGlgt0AwGNAC2z0ABbB3IeiMzcwDcJ4dniAAAAA==",
+            "geometry_type": "adsk::core::Circle3D",
+            "face_count": 1,
+            "incident_face_geometry_types": [
+              "adsk::core::Plane"
+            ],
+            "is_param_reversed": false,
+            "start_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "end_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "radius_cm": 0.7,
+            "evaluator_extents_returned": true,
+            "evaluator_extents": [
+              -3.141592653589793,
+              3.141592653589793
+            ],
+            "evaluator_samples": [
+              {
+                "fraction": 0.0,
+                "parameter": -3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  8.572527594031472e-17,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.25,
+                "parameter": -1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.5,
+                "parameter": 0.0,
+                "returned": true,
+                "point_cm": [
+                  0.7,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.75,
+                "parameter": 1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  -0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 1.0,
+                "parameter": 3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "continuity": [
+          0
+        ],
+        "weights": [
+          0.5
+        ],
+        "is_continuity_direction_flipped": [
+          false
+        ],
+        "group_controls": {
+          "active": true,
+          "continuity": 0,
+          "weight": 0.5,
+          "is_direction_flipped": false
+        },
+        "weight_applicability": "Ignored where continuity is Connected; retained raw otherwise",
+        "flip_applicability": "Ignored for captured one-adjacent-face open boundary edge"
+      },
+      "set_continuity_returned": true,
+      "input_after_set_return_shape": {
+        "python_type": "list",
+        "length": 5
+      },
+      "input_actual_continuity": {
+        "returned": true,
+        "is_group_edges": false,
+        "edges": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw1CMQxkBEYwA1iyE7+QDAAFIyChp+QlD9Hx24cF6OkQJQ0LURGHBmFZ9ul8ujOBAQbrwIxpTjlGtMHMUaJljB0nFJHOi3fZxwRUtaonRcZXxCDKOEjvzelxXc3u6+frMj3cqsKobxh9IEkec6CMEqhgSCYgZbaGB06ujE1bPSZ/1fIIWpyABW+gTn2gJevV0ncr/CEISt6W/liG3b70OZ4jLMBXGlmbYQn6fYX0AYBDggkCAQAA",
+            "temporary_id": 3,
+            "body_name": "PatchAnnularSupport",
+            "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtKv2OIDa7wU90WdODtfoHA7UIWRgrGZgmWahaWBSZKFboqlQYquiaVBqq5lkpGlrkGKobGRYbJhkllqGlgt0AwGNAC2z0ABbB3IeiMzcwDcJ4dniAAAAA==",
+            "geometry_type": "adsk::core::Circle3D",
+            "face_count": 1,
+            "incident_face_geometry_types": [
+              "adsk::core::Plane"
+            ],
+            "is_param_reversed": false,
+            "start_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "end_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "radius_cm": 0.7,
+            "evaluator_extents_returned": true,
+            "evaluator_extents": [
+              -3.141592653589793,
+              3.141592653589793
+            ],
+            "evaluator_samples": [
+              {
+                "fraction": 0.0,
+                "parameter": -3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  8.572527594031472e-17,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.25,
+                "parameter": -1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.5,
+                "parameter": 0.0,
+                "returned": true,
+                "point_cm": [
+                  0.7,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.75,
+                "parameter": 1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  -0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 1.0,
+                "parameter": 3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "continuity": [
+          1
+        ],
+        "weights": [
+          0.5
+        ],
+        "is_continuity_direction_flipped": [
+          false
+        ],
+        "group_controls": {
+          "active": false,
+          "continuity": 0,
+          "weight": 0.5,
+          "is_direction_flipped": false
+        },
+        "weight_applicability": "Ignored where continuity is Connected; retained raw otherwise",
+        "flip_applicability": "Ignored for captured one-adjacent-face open boundary edge"
+      },
+      "input_boundary": {
+        "entity_type": "adsk::fusion::Path",
+        "count": 1,
+        "is_closed": true,
+        "members": [
+          {
+            "entity_type": "adsk::fusion::PathEntity",
+            "is_opposed_to_entity": false,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "edge": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw1CMQxkBEYwA1iyE7+QDAAFIyChp+QlD9Hx24cF6OkQJQ0LURGHBmFZ9ul8ujOBAQbrwIxpTjlGtMHMUaJljB0nFJHOi3fZxwRUtaonRcZXxCDKOEjvzelxXc3u6+frMj3cqsKobxh9IEkec6CMEqhgSCYgZbaGB06ujE1bPSZ/1fIIWpyABW+gTn2gJevV0ncr/CEISt6W/liG3b70OZ4jLMBXGlmbYQn6fYX0AYBDggkCAQAA",
+                "temporary_id": 3,
+                "body_name": "PatchAnnularSupport",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtKv2OIDa7wU90WdODtfoHA7UIWRgrGZgmWahaWBSZKFboqlQYquiaVBqq5lkpGlrkGKobGRYbJhkllqGlgt0AwGNAC2z0ABbB3IeiMzcwDcJ4dniAAAAA==",
+                "geometry_type": "adsk::core::Circle3D",
+                "face_count": 1,
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane"
+                ],
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "end_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "center_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "radius_cm": 0.7,
+                "evaluator_extents_returned": true,
+                "evaluator_extents": [
+                  -3.141592653589793,
+                  3.141592653589793
+                ],
+                "evaluator_samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": -3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      8.572527594031472e-17,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.25,
+                    "parameter": -1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      0.7,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.75,
+                    "parameter": 1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      -0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      -8.572527594031472e-17,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            },
+            "path_curve_geometry_type": "adsk::core::NurbsCurve3D"
+          }
+        ]
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchFilledSurface",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtKv2OIDa7wU90WdODtfoHA7UIWRgrGZgmWahaWBSZKFboqlQYquiaVBqq5lkpGlrkGKobGRYbJhkllqGlgt0AwGNAC2z0ABbB3IemNTYwAx2gVKiAAAAA==",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 1,
+          "vertex_count": 1,
+          "area_cm2": 1.5392589433772614,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -0.7005857761474843,
+            -0.700100789080967,
+            0.0
+          ],
+          "bounds_max_cm": [
+            0.6992771032664715,
+            0.699889630114144,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::NurbsSurface"
+          ]
+        }
+      ],
+      "root_bodies_after": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchAnnularSupport",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtKv2OIDa7wU90WdODtfoHA7UIWRgrGZgmWahaWBSZKFboqlQYquiaVBqq5lkpGlrkGKobGRYbJhkllqGlgt0AwGNAC2z0ABbB3IeiMzcwDcJ4dniAAAAA==",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 2,
+          "vertex_count": 2,
+          "area_cm2": 11.026990214100174,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -2.0,
+            -2.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::Plane"
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchFilledSurface",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtKv2OIDa7wU90WdODtfoHA7UIWRgrGZgmWahaWBSZKFboqlQYquiaVBqq5lkpGlrkGKobGRYbJhkllqGlgt0AwGNAC2z0ABbB3IemNTYwAx2gVKiAAAAA==",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 1,
+          "vertex_count": 1,
+          "area_cm2": 1.5392589433772614,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -0.7005857761474843,
+            -0.700100789080967,
+            0.0
+          ],
+          "bounds_max_cm": [
+            0.6992771032664715,
+            0.699889630114144,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::NurbsSurface"
+          ]
+        }
+      ],
+      "actual_feature_return_shape": {
+        "python_type": "list",
+        "length": 5
+      },
+      "settings": {
+        "operation": 3,
+        "boundary": {
+          "entity_type": "adsk::core::ObjectCollection",
+          "count": 1,
+          "members": [
+            {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "edge": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw1CMQxkBEYwA1iyE7+QDAAFIyChp+QlD9Hx24cF6OkQJQ0LURGHBmFZ9ul8ujOBAQbrwIxpTjlGtMHMUaJljB0nFJHOi3fZxwRUtaonRcZXxCDKOEjvzelxXc3u6+frMj3cqsKobxh9IEkec6CMEqhgSCYgZbaGB06ujE1bPSZ/1fIIWpyABW+gTn2gJevV0ncr/CEISt6W/liG3b70OZ4jLMBXGlmbYQn6fYX0AYBDggkCAQAA",
+                "temporary_id": 7,
+                "body_name": "PatchAnnularSupport",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtKv2OIDa7wU90WdODtfoHA7UIWRgrGZgmWahaWBSZKFboqlQYquiaVBqq5lkpGlrkGKobGRYbJhkllqGlgt0AwGNAC2z0ABbB3IeiMzcwDcJ4dniAAAAA==",
+                "geometry_type": "adsk::core::Circle3D",
+                "face_count": 1,
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane"
+                ],
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "end_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "center_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "radius_cm": 0.7,
+                "evaluator_extents_returned": true,
+                "evaluator_extents": [
+                  -3.141592653589793,
+                  3.141592653589793
+                ],
+                "evaluator_samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": -3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      8.572527594031472e-17,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.25,
+                    "parameter": -1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      0.7,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.75,
+                    "parameter": 1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      -0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      -8.572527594031472e-17,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "continuity": {
+          "returned": true,
+          "is_group_edges": false,
+          "edges": [
+            {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw1CMQxkBEYwA1iyE7+QDAAFIyChp+QlD9Hx24cF6OkQJQ0LURGHBmFZ9ul8ujOBAQbrwIxpTjlGtMHMUaJljB0nFJHOi3fZxwRUtaonRcZXxCDKOEjvzelxXc3u6+frMj3cqsKobxh9IEkec6CMEqhgSCYgZbaGB06ujE1bPSZ/1fIIWpyABW+gTn2gJevV0ncr/CEISt6W/liG3b70OZ4jLMBXGlmbYQn6fYX0AYBDggkCAQAA",
+              "temporary_id": 7,
+              "body_name": "PatchAnnularSupport",
+              "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQtKv2OIDa7wU90WdODtfoHA7UIWRgrGZgmWahaWBSZKFboqlQYquiaVBqq5lkpGlrkGKobGRYbJhkllqGlgt0AwGNAC2z0ABbB3IeiMzcwDcJ4dniAAAAA==",
+              "geometry_type": "adsk::core::Circle3D",
+              "face_count": 1,
+              "incident_face_geometry_types": [
+                "adsk::core::Plane"
+              ],
+              "is_param_reversed": false,
+              "start_vertex_cm": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ],
+              "end_vertex_cm": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ],
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "radius_cm": 0.7,
+              "evaluator_extents_returned": true,
+              "evaluator_extents": [
+                -3.141592653589793,
+                3.141592653589793
+              ],
+              "evaluator_samples": [
+                {
+                  "fraction": 0.0,
+                  "parameter": -3.141592653589793,
+                  "returned": true,
+                  "point_cm": [
+                    -0.7,
+                    8.572527594031472e-17,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 0.25,
+                  "parameter": -1.5707963267948966,
+                  "returned": true,
+                  "point_cm": [
+                    4.286263797015736e-17,
+                    0.7,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 0.5,
+                  "parameter": 0.0,
+                  "returned": true,
+                  "point_cm": [
+                    0.7,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 0.75,
+                  "parameter": 1.5707963267948966,
+                  "returned": true,
+                  "point_cm": [
+                    4.286263797015736e-17,
+                    -0.7,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 1.0,
+                  "parameter": 3.141592653589793,
+                  "returned": true,
+                  "point_cm": [
+                    -0.7,
+                    -8.572527594031472e-17,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "continuity": [
+            1
+          ],
+          "weights": [
+            0.5
+          ],
+          "is_continuity_direction_flipped": [
+            false
+          ],
+          "group_controls": {
+            "active": false,
+            "continuity": 1,
+            "weight": 0.5,
+            "is_direction_flipped": false
+          },
+          "weight_applicability": "Ignored where continuity is Connected; retained raw otherwise",
+          "flip_applicability": "Ignored for captured one-adjacent-face open boundary edge"
+        },
+        "interior_entity_count": 0
+      },
+      "parameters": [],
+      "export_size_bytes": 68963,
+      "export_sha256": "f8e33e7d6686fd7515f611d723e97bcc69eb4fedacef012f4ef5b4f9929b325a",
+      "close_owned_document_result": true
+    },
+    {
+      "case": "brep_curvature",
+      "file": "brep_curvature.f3d",
+      "status": "exported",
+      "getter_errors": [],
+      "requested": {
+        "continuity_name": "curvature",
+        "weight": 0.5,
+        "is_continuity_direction_flipped": false,
+        "operation": "NewBody",
+        "outer_radius_cm": 2.0,
+        "hole_radius_cm": 0.7,
+        "boundary_source": "Single inner circular BRepEdge of owned annular planar seed sheet",
+        "continuity_API_value": 2
+      },
+      "source_before_patch": {
+        "body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchAnnularSupport",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws7GL4ass1x+93GmB8ZcOZsMVGGkYGymkJiWYm5qlJiia2GQZKRrkmZmoGtpZG6hm5ZikJRikWKYZGSSClYLNIMBDYDtM1AAWwey3sjMHAB12w+IiAAAAA==",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 2,
+          "vertex_count": 2,
+          "area_cm2": 11.026990214100174,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -2.0,
+            -2.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::Plane"
+          ]
+        },
+        "edge": {
+          "entity_type": "adsk::fusion::BRepEdge",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw0CMQyloWALLxDJdnI5Xw/09EinXD4nOoRYgAUYgE0Ygo5R6GiIQ4OwLPvp+ek9IzAQWA8xUJDo2BQbnXFF2EgceoNdIOm9ZewIsGpVj4pYKiJwyni4X160vK3f19W82z8fsSpYfUNJfcchGcGJq69HM3AvpiSckiSa2OWmrR6Lv2p5CC3OgQVhqFMfaMl6tfjdCn8IhJzmPJ5yPBzzmMI5wAak0oa0Cbag31eIHxZfYuYCAQAA",
+          "temporary_id": 3,
+          "body_name": "PatchAnnularSupport",
+          "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws7GL4ass1x+93GmB8ZcOZsMVGGkYGymkJiWYm5qlJiia2GQZKRrkmZmoGtpZG6hm5ZikJRikWKYZGSSClYLNIMBDYDtM1AAWwey3sjMHAB12w+IiAAAAA==",
+          "geometry_type": "adsk::core::Circle3D",
+          "face_count": 1,
+          "incident_face_geometry_types": [
+            "adsk::core::Plane"
+          ],
+          "is_param_reversed": false,
+          "start_vertex_cm": [
+            -0.7,
+            -8.572527594031472e-17,
+            0.0
+          ],
+          "end_vertex_cm": [
+            -0.7,
+            -8.572527594031472e-17,
+            0.0
+          ],
+          "center_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "radius_cm": 0.7,
+          "evaluator_extents_returned": true,
+          "evaluator_extents": [
+            -3.141592653589793,
+            3.141592653589793
+          ],
+          "evaluator_samples": [
+            {
+              "fraction": 0.0,
+              "parameter": -3.141592653589793,
+              "returned": true,
+              "point_cm": [
+                -0.7,
+                8.572527594031472e-17,
+                0.0
+              ]
+            },
+            {
+              "fraction": 0.25,
+              "parameter": -1.5707963267948966,
+              "returned": true,
+              "point_cm": [
+                4.286263797015736e-17,
+                0.7,
+                0.0
+              ]
+            },
+            {
+              "fraction": 0.5,
+              "parameter": 0.0,
+              "returned": true,
+              "point_cm": [
+                0.7,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "fraction": 0.75,
+              "parameter": 1.5707963267948966,
+              "returned": true,
+              "point_cm": [
+                4.286263797015736e-17,
+                -0.7,
+                0.0
+              ]
+            },
+            {
+              "fraction": 1.0,
+              "parameter": 3.141592653589793,
+              "returned": true,
+              "point_cm": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ]
+            }
+          ]
+        }
+      },
+      "input_initial_return_shape": {
+        "python_type": "list",
+        "length": 5
+      },
+      "input_initial_continuity": {
+        "returned": true,
+        "is_group_edges": true,
+        "edges": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw0CMQyloWALLxDJdnI5Xw/09EinXD4nOoRYgAUYgE0Ygo5R6GiIQ4OwLPvp+ek9IzAQWA8xUJDo2BQbnXFF2EgceoNdIOm9ZewIsGpVj4pYKiJwyni4X160vK3f19W82z8fsSpYfUNJfcchGcGJq69HM3AvpiSckiSa2OWmrR6Lv2p5CC3OgQVhqFMfaMl6tfjdCn8IhJzmPJ5yPBzzmMI5wAak0oa0Cbag31eIHxZfYuYCAQAA",
+            "temporary_id": 3,
+            "body_name": "PatchAnnularSupport",
+            "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws7GL4ass1x+93GmB8ZcOZsMVGGkYGymkJiWYm5qlJiia2GQZKRrkmZmoGtpZG6hm5ZikJRikWKYZGSSClYLNIMBDYDtM1AAWwey3sjMHAB12w+IiAAAAA==",
+            "geometry_type": "adsk::core::Circle3D",
+            "face_count": 1,
+            "incident_face_geometry_types": [
+              "adsk::core::Plane"
+            ],
+            "is_param_reversed": false,
+            "start_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "end_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "radius_cm": 0.7,
+            "evaluator_extents_returned": true,
+            "evaluator_extents": [
+              -3.141592653589793,
+              3.141592653589793
+            ],
+            "evaluator_samples": [
+              {
+                "fraction": 0.0,
+                "parameter": -3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  8.572527594031472e-17,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.25,
+                "parameter": -1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.5,
+                "parameter": 0.0,
+                "returned": true,
+                "point_cm": [
+                  0.7,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.75,
+                "parameter": 1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  -0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 1.0,
+                "parameter": 3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "continuity": [
+          0
+        ],
+        "weights": [
+          0.5
+        ],
+        "is_continuity_direction_flipped": [
+          false
+        ],
+        "group_controls": {
+          "active": true,
+          "continuity": 0,
+          "weight": 0.5,
+          "is_direction_flipped": false
+        },
+        "weight_applicability": "Ignored where continuity is Connected; retained raw otherwise",
+        "flip_applicability": "Ignored for captured one-adjacent-face open boundary edge"
+      },
+      "set_continuity_returned": true,
+      "input_after_set_return_shape": {
+        "python_type": "list",
+        "length": 5
+      },
+      "input_actual_continuity": {
+        "returned": true,
+        "is_group_edges": false,
+        "edges": [
+          {
+            "entity_type": "adsk::fusion::BRepEdge",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw0CMQyloWALLxDJdnI5Xw/09EinXD4nOoRYgAUYgE0Ygo5R6GiIQ4OwLPvp+ek9IzAQWA8xUJDo2BQbnXFF2EgceoNdIOm9ZewIsGpVj4pYKiJwyni4X160vK3f19W82z8fsSpYfUNJfcchGcGJq69HM3AvpiSckiSa2OWmrR6Lv2p5CC3OgQVhqFMfaMl6tfjdCn8IhJzmPJ5yPBzzmMI5wAak0oa0Cbag31eIHxZfYuYCAQAA",
+            "temporary_id": 3,
+            "body_name": "PatchAnnularSupport",
+            "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws7GL4ass1x+93GmB8ZcOZsMVGGkYGymkJiWYm5qlJiia2GQZKRrkmZmoGtpZG6hm5ZikJRikWKYZGSSClYLNIMBDYDtM1AAWwey3sjMHAB12w+IiAAAAA==",
+            "geometry_type": "adsk::core::Circle3D",
+            "face_count": 1,
+            "incident_face_geometry_types": [
+              "adsk::core::Plane"
+            ],
+            "is_param_reversed": false,
+            "start_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "end_vertex_cm": [
+              -0.7,
+              -8.572527594031472e-17,
+              0.0
+            ],
+            "center_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "radius_cm": 0.7,
+            "evaluator_extents_returned": true,
+            "evaluator_extents": [
+              -3.141592653589793,
+              3.141592653589793
+            ],
+            "evaluator_samples": [
+              {
+                "fraction": 0.0,
+                "parameter": -3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  8.572527594031472e-17,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.25,
+                "parameter": -1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.5,
+                "parameter": 0.0,
+                "returned": true,
+                "point_cm": [
+                  0.7,
+                  0.0,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 0.75,
+                "parameter": 1.5707963267948966,
+                "returned": true,
+                "point_cm": [
+                  4.286263797015736e-17,
+                  -0.7,
+                  0.0
+                ]
+              },
+              {
+                "fraction": 1.0,
+                "parameter": 3.141592653589793,
+                "returned": true,
+                "point_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "continuity": [
+          2
+        ],
+        "weights": [
+          0.5
+        ],
+        "is_continuity_direction_flipped": [
+          false
+        ],
+        "group_controls": {
+          "active": false,
+          "continuity": 0,
+          "weight": 0.5,
+          "is_direction_flipped": false
+        },
+        "weight_applicability": "Ignored where continuity is Connected; retained raw otherwise",
+        "flip_applicability": "Ignored for captured one-adjacent-face open boundary edge"
+      },
+      "input_boundary": {
+        "entity_type": "adsk::fusion::Path",
+        "count": 1,
+        "is_closed": true,
+        "members": [
+          {
+            "entity_type": "adsk::fusion::PathEntity",
+            "is_opposed_to_entity": false,
+            "entity": {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "edge": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw0CMQyloWALLxDJdnI5Xw/09EinXD4nOoRYgAUYgE0Ygo5R6GiIQ4OwLPvp+ek9IzAQWA8xUJDo2BQbnXFF2EgceoNdIOm9ZewIsGpVj4pYKiJwyni4X160vK3f19W82z8fsSpYfUNJfcchGcGJq69HM3AvpiSckiSa2OWmrR6Lv2p5CC3OgQVhqFMfaMl6tfjdCn8IhJzmPJ5yPBzzmMI5wAak0oa0Cbag31eIHxZfYuYCAQAA",
+                "temporary_id": 3,
+                "body_name": "PatchAnnularSupport",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws7GL4ass1x+93GmB8ZcOZsMVGGkYGymkJiWYm5qlJiia2GQZKRrkmZmoGtpZG6hm5ZikJRikWKYZGSSClYLNIMBDYDtM1AAWwey3sjMHAB12w+IiAAAAA==",
+                "geometry_type": "adsk::core::Circle3D",
+                "face_count": 1,
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane"
+                ],
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "end_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "center_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "radius_cm": 0.7,
+                "evaluator_extents_returned": true,
+                "evaluator_extents": [
+                  -3.141592653589793,
+                  3.141592653589793
+                ],
+                "evaluator_samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": -3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      8.572527594031472e-17,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.25,
+                    "parameter": -1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      0.7,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.75,
+                    "parameter": 1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      -0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      -8.572527594031472e-17,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            },
+            "path_curve_geometry_type": "adsk::core::NurbsCurve3D"
+          }
+        ]
+      },
+      "compute_all_returned": true,
+      "health_state": 0,
+      "warning": "",
+      "result_bodies": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchFilledSurface",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws7GL4ass1x+93GmB8ZcOZsMVGGkYGymkJiWYm5qlJiia2GQZKRrkmZmoGtpZG6hm5ZikJRikWKYZGSSClYLNIMBDYDtM1AAWwey3tjUGACYJo2liAAAAA==",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 1,
+          "vertex_count": 1,
+          "area_cm2": 1.5392589433772597,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -0.7005857761474862,
+            -0.7001007890809671,
+            0.0
+          ],
+          "bounds_max_cm": [
+            0.6992771032664719,
+            0.6998896301141445,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::NurbsSurface"
+          ]
+        }
+      ],
+      "root_bodies_after": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchAnnularSupport",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws7GL4ass1x+93GmB8ZcOZsMVGGkYGymkJiWYm5qlJiia2GQZKRrkmZmoGtpZG6hm5ZikJRikWKYZGSSClYLNIMBDYDtM1AAWwey3sjMHAB12w+IiAAAAA==",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 2,
+          "vertex_count": 2,
+          "area_cm2": 11.026990214100174,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -2.0,
+            -2.0,
+            0.0
+          ],
+          "bounds_max_cm": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::Plane"
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "PatchFilledSurface",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws7GL4ass1x+93GmB8ZcOZsMVGGkYGymkJiWYm5qlJiia2GQZKRrkmZmoGtpZG6hm5ZikJRikWKYZGSSClYLNIMBDYDtM1AAWwey3tjUGACYJo2liAAAAA==",
+          "is_solid": false,
+          "face_count": 1,
+          "edge_count": 1,
+          "vertex_count": 1,
+          "area_cm2": 1.5392589433772597,
+          "volume_cm3": 0.0,
+          "bounds_min_cm": [
+            -0.7005857761474862,
+            -0.7001007890809671,
+            0.0
+          ],
+          "bounds_max_cm": [
+            0.6992771032664719,
+            0.6998896301141445,
+            0.0
+          ],
+          "face_geometry_types": [
+            "adsk::core::NurbsSurface"
+          ]
+        }
+      ],
+      "actual_feature_return_shape": {
+        "python_type": "list",
+        "length": 5
+      },
+      "settings": {
+        "operation": 3,
+        "boundary": {
+          "entity_type": "adsk::core::ObjectCollection",
+          "count": 1,
+          "members": [
+            {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "edge": {
+                "entity_type": "adsk::fusion::BRepEdge",
+                "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw0CMQyloWALLxDJdnI5Xw/09EinXD4nOoRYgAUYgE0Ygo5R6GiIQ4OwLPvp+ek9IzAQWA8xUJDo2BQbnXFF2EgceoNdIOm9ZewIsGpVj4pYKiJwyni4X160vK3f19W82z8fsSpYfUNJfcchGcGJq69HM3AvpiSckiSa2OWmrR6Lv2p5CC3OgQVhqFMfaMl6tfjdCn8IhJzmPJ5yPBzzmMI5wAak0oa0Cbag31eIHxZfYuYCAQAA",
+                "temporary_id": 7,
+                "body_name": "PatchAnnularSupport",
+                "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws7GL4ass1x+93GmB8ZcOZsMVGGkYGymkJiWYm5qlJiia2GQZKRrkmZmoGtpZG6hm5ZikJRikWKYZGSSClYLNIMBDYDtM1AAWwey3sjMHAB12w+IiAAAAA==",
+                "geometry_type": "adsk::core::Circle3D",
+                "face_count": 1,
+                "incident_face_geometry_types": [
+                  "adsk::core::Plane"
+                ],
+                "is_param_reversed": false,
+                "start_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "end_vertex_cm": [
+                  -0.7,
+                  -8.572527594031472e-17,
+                  0.0
+                ],
+                "center_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "normal": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "radius_cm": 0.7,
+                "evaluator_extents_returned": true,
+                "evaluator_extents": [
+                  -3.141592653589793,
+                  3.141592653589793
+                ],
+                "evaluator_samples": [
+                  {
+                    "fraction": 0.0,
+                    "parameter": -3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      8.572527594031472e-17,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.25,
+                    "parameter": -1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.5,
+                    "parameter": 0.0,
+                    "returned": true,
+                    "point_cm": [
+                      0.7,
+                      0.0,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 0.75,
+                    "parameter": 1.5707963267948966,
+                    "returned": true,
+                    "point_cm": [
+                      4.286263797015736e-17,
+                      -0.7,
+                      0.0
+                    ]
+                  },
+                  {
+                    "fraction": 1.0,
+                    "parameter": 3.141592653589793,
+                    "returned": true,
+                    "point_cm": [
+                      -0.7,
+                      -8.572527594031472e-17,
+                      0.0
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "continuity": {
+          "returned": true,
+          "is_group_edges": false,
+          "edges": [
+            {
+              "entity_type": "adsk::fusion::BRepEdge",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/11Ouw0CMQyloWALLxDJdnI5Xw/09EinXD4nOoRYgAUYgE0Ygo5R6GiIQ4OwLPvp+ek9IzAQWA8xUJDo2BQbnXFF2EgceoNdIOm9ZewIsGpVj4pYKiJwyni4X160vK3f19W82z8fsSpYfUNJfcchGcGJq69HM3AvpiSckiSa2OWmrR6Lv2p5CC3OgQVhqFMfaMl6tfjdCn8IhJzmPJ5yPBzzmMI5wAak0oa0Cbag31eIHxZfYuYCAQAA",
+              "temporary_id": 7,
+              "body_name": "PatchAnnularSupport",
+              "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZws7GL4ass1x+93GmB8ZcOZsMVGGkYGymkJiWYm5qlJiia2GQZKRrkmZmoGtpZG6hm5ZikJRikWKYZGSSClYLNIMBDYDtM1AAWwey3sjMHAB12w+IiAAAAA==",
+              "geometry_type": "adsk::core::Circle3D",
+              "face_count": 1,
+              "incident_face_geometry_types": [
+                "adsk::core::Plane"
+              ],
+              "is_param_reversed": false,
+              "start_vertex_cm": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ],
+              "end_vertex_cm": [
+                -0.7,
+                -8.572527594031472e-17,
+                0.0
+              ],
+              "center_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "radius_cm": 0.7,
+              "evaluator_extents_returned": true,
+              "evaluator_extents": [
+                -3.141592653589793,
+                3.141592653589793
+              ],
+              "evaluator_samples": [
+                {
+                  "fraction": 0.0,
+                  "parameter": -3.141592653589793,
+                  "returned": true,
+                  "point_cm": [
+                    -0.7,
+                    8.572527594031472e-17,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 0.25,
+                  "parameter": -1.5707963267948966,
+                  "returned": true,
+                  "point_cm": [
+                    4.286263797015736e-17,
+                    0.7,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 0.5,
+                  "parameter": 0.0,
+                  "returned": true,
+                  "point_cm": [
+                    0.7,
+                    0.0,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 0.75,
+                  "parameter": 1.5707963267948966,
+                  "returned": true,
+                  "point_cm": [
+                    4.286263797015736e-17,
+                    -0.7,
+                    0.0
+                  ]
+                },
+                {
+                  "fraction": 1.0,
+                  "parameter": 3.141592653589793,
+                  "returned": true,
+                  "point_cm": [
+                    -0.7,
+                    -8.572527594031472e-17,
+                    0.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "continuity": [
+            2
+          ],
+          "weights": [
+            0.5
+          ],
+          "is_continuity_direction_flipped": [
+            false
+          ],
+          "group_controls": {
+            "active": false,
+            "continuity": 2,
+            "weight": 0.5,
+            "is_direction_flipped": false
+          },
+          "weight_applicability": "Ignored where continuity is Connected; retained raw otherwise",
+          "flip_applicability": "Ignored for captured one-adjacent-face open boundary edge"
+        },
+        "interior_entity_count": 0
+      },
+      "parameters": [],
+      "export_size_bytes": 69095,
+      "export_sha256": "4e6c85c63ff82fbcee77e02571287701e46f3f55a55d499fe65668768ef3fe0d",
+      "close_owned_document_result": true
+    }
+  ],
+  "errors": [],
+  "executed_generator_sha256": "ec766b26e8865d86c5b05760c757220fe99a07ca43209629b498b956c0c45437",
+  "SDK_scope": "Patch accepts BRepEdge or closed collection/path; per-edge setContinuity arrays follow getContinuity returned edge order. Connected ignores weight; one-face open edge ignores flip. Existing feature boundary/getContinuity require rollback.",
+  "identity_scope": "API edge/body tokens remain opaque; source loops select fixture geometry only and do not establish serialized native/ASM identity"
+}

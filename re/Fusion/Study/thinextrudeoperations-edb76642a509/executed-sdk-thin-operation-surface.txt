@@ -1,0 +1,1419 @@
+class FeatureOperations(object):
+    r"""
+    List of the different operations a feature can perform.
+
+    Attributes:
+        JoinFeatureOperation: The feature joins or adds material.
+        CutFeatureOperation: The feature cuts or removes materials.
+        IntersectFeatureOperation: The feature intersects with an existing body and the result is the intersecting volume.
+        NewBodyFeatureOperation: Results in the creation of a new body.
+        NewComponentFeatureOperation: Results in the creation of a new component that contains the new body.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    JoinFeatureOperation = _fusion.FeatureOperations_JoinFeatureOperation
+    CutFeatureOperation = _fusion.FeatureOperations_CutFeatureOperation
+    IntersectFeatureOperation = _fusion.FeatureOperations_IntersectFeatureOperation
+    NewBodyFeatureOperation = _fusion.FeatureOperations_NewBodyFeatureOperation
+    NewComponentFeatureOperation = _fusion.FeatureOperations_NewComponentFeatureOperation
+
+    def __init__(self):
+        _fusion.FeatureOperations_swiginit(self, _fusion.new_FeatureOperations())
+    __swig_destroy__ = _fusion.delete_FeatureOperations
+
+# Register FeatureOperations in _fusion:
+_fusion.FeatureOperations_swigregister(FeatureOperations)
+
+
+class ThinExtrudeWallLocation(object):
+    r"""
+    List of Thin Extrude Wall Locations
+
+    Attributes:
+        Side1: The wall location type where the thin extrude is offset towards one side of the profile
+        Center: The wall location type where the thin extrude is centered on the profile
+        Side2: The wall location type where the thin extrude is offset towards one side of the profile
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    Side1 = _fusion.ThinExtrudeWallLocation_Side1
+    Center = _fusion.ThinExtrudeWallLocation_Center
+    Side2 = _fusion.ThinExtrudeWallLocation_Side2
+
+    def __init__(self):
+        _fusion.ThinExtrudeWallLocation_swiginit(self, _fusion.new_ThinExtrudeWallLocation())
+    __swig_destroy__ = _fusion.delete_ThinExtrudeWallLocation
+
+# Register ThinExtrudeWallLocation in _fusion:
+_fusion.ThinExtrudeWallLocation_swigregister(ThinExtrudeWallLocation)
+
+
+class ExtentDirections(object):
+    r"""
+    List of the valid extent directions.
+
+    Attributes:
+        PositiveExtentDirection: Feature extent in the positive direction. For sketch based features this is typically in
+            the same direction as the sketch normal.
+        NegativeExtentDirection: Feature extent in the negative direction. For sketch based features this is typically in
+            the direction opposite the sketch normal.
+        SymmetricExtentDirection: Feature extent in both directions.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    PositiveExtentDirection = _fusion.ExtentDirections_PositiveExtentDirection
+    NegativeExtentDirection = _fusion.ExtentDirections_NegativeExtentDirection
+    SymmetricExtentDirection = _fusion.ExtentDirections_SymmetricExtentDirection
+
+    def __init__(self):
+        _fusion.ExtentDirections_swiginit(self, _fusion.new_ExtentDirections())
+    __swig_destroy__ = _fusion.delete_ExtentDirections
+
+# Register ExtentDirections in _fusion:
+_fusion.ExtentDirections_swigregister(ExtentDirections)
+
+
+class DistanceExtentDefinition(ExtentDefinition):
+    r"""
+    Defines the inputs for a distance ExtentDefinition object.
+    This feature extent type defines the distance as well as whether the extent is symmetric
+    or in only one direction. If the extent is not symmetric, a positive or negative distance
+    can be used to control the direction.
+    For a hole, the IsSymmetric property value will always be false.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.DistanceExtentDefinition *":
+        return _fusion.DistanceExtentDefinition___deref__(self)
+
+    def __eq__(self, rhs: "DistanceExtentDefinition") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.DistanceExtentDefinition___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "DistanceExtentDefinition") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.DistanceExtentDefinition___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.DistanceExtentDefinition'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.DistanceExtentDefinition_classType()
+
+    @staticmethod
+    def create(distance: "ValueInput") -> "adsk.core.ValueInput":
+        r"""
+        Statically creates a new DistanceExtentDefinition object. This is used as input when
+        defining the extents of a feature to be a specified distance.
+        distance : A ValueInput that defines the distance of the extrusion.
+        Returns the newly created DistanceExtentDefinition or null in the case of failure.
+        """
+        return _fusion.DistanceExtentDefinition_create(distance)
+    __swig_destroy__ = _fusion.delete_DistanceExtentDefinition
+
+    def _get_isSymmetric(self) -> "bool":
+        r"""** This property is not officially supported and its behavior may change. **"""
+        return _fusion.DistanceExtentDefinition__get_isSymmetric(self)
+
+    def _set_isSymmetric(self, value: "bool") -> "bool":
+        r"""** This property is not officially supported and its behavior may change. **"""
+        return _fusion.DistanceExtentDefinition__set_isSymmetric(self, value)
+
+    def _get_distance(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Returns the parameter controlling the distance. You can edit the distance
+        by editing the value of the parameter object.
+        """
+        return _fusion.DistanceExtentDefinition__get_distance(self)
+
+    def _get_parentFeature(self) -> "adsk.fusion.Feature":
+        r"""
+        Returns the parent feature that this definition is associated with. If this definition has been created
+        statically and is not associated with a feature this property will return null.
+        """
+        return _fusion.DistanceExtentDefinition__get_parentFeature(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.DistanceExtentDefinition__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.DistanceExtentDefinition__get_isValid(self)
+
+# Register DistanceExtentDefinition in _fusion:
+_fusion.DistanceExtentDefinition_swigregister(DistanceExtentDefinition)
+
+def DistanceExtentDefinition_classType() -> "str":
+    return _fusion.DistanceExtentDefinition_classType()
+
+def DistanceExtentDefinition_create(distance: "ValueInput") -> "adsk.core.ValueInput":
+    r"""
+    Statically creates a new DistanceExtentDefinition object. This is used as input when
+    defining the extents of a feature to be a specified distance.
+    distance : A ValueInput that defines the distance of the extrusion.
+    Returns the newly created DistanceExtentDefinition or null in the case of failure.
+    """
+    return _fusion.DistanceExtentDefinition_create(distance)
+
+
+DistanceExtentDefinition.isSymmetric = property(DistanceExtentDefinition._get_isSymmetric, DistanceExtentDefinition._set_isSymmetric, doc="** This property is not officially supported and its behavior may change. **")
+
+
+DistanceExtentDefinition.distance = property(DistanceExtentDefinition._get_distance, doc="Returns the parameter controlling the distance. You can edit the distance\nby editing the value of the parameter object.")
+
+
+DistanceExtentDefinition.cast = lambda arg: arg if isinstance(arg, DistanceExtentDefinition) else None
+
+
+class ExtrudeFeatures(Base):
+    r"""
+    Collection that provides access to all of the existing extrude features in a design
+    and supports the ability to create new extrude features.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.ExtrudeFeatures *":
+        return _fusion.ExtrudeFeatures___deref__(self)
+
+    def __eq__(self, rhs: "ExtrudeFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.ExtrudeFeatures___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "ExtrudeFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.ExtrudeFeatures___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.ExtrudeFeatures'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.ExtrudeFeatures___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.ExtrudeFeature":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.ExtrudeFeatures___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.ExtrudeFeatures_classType()
+    __swig_destroy__ = _fusion.delete_ExtrudeFeatures
+
+    def item(self, index: "int") -> "adsk.fusion.ExtrudeFeature":
+        r"""
+        Function that returns the specified extrude feature using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.ExtrudeFeatures_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of extrude features in the collection."""
+        return _fusion.ExtrudeFeatures__get_count(self)
+
+    def createInput(self, profile: "Base", operation: "FeatureOperations") -> "adsk.fusion.ExtrudeFeatureInput":
+        r"""
+        Creates a new ExtrudeFeatureInput object that is used to specify the input needed
+        to create a new extrude feature.
+        profile : The profile argument can be a single Profile, a single planar face, a single SketchText object,
+        or an ObjectCollection consisting of multiple profiles, planar faces, and sketch texts.
+        When an ObjectCollection is used all of the profiles, faces, and sketch texts must be co-planar.
+        To create a surface (non-solid) extrusion, you can use the createOpenProfile and createBRepEdgeProfile
+        methods of the Component object to create an open profile. You also need to set the isSolid property
+        of the returned ExtrudeFeatureInput property to False.
+        operation : The feature operation to perform.
+        Returns the newly created ExtrudeFeatureInput object or null if the creation failed.
+        """
+        return _fusion.ExtrudeFeatures_createInput(self, profile, operation)
+
+    def add(self, input: "ExtrudeFeatureInput") -> "adsk.fusion.ExtrudeFeature":
+        r"""
+        Creates a new extrude feature based on the information defined by the provided ExtrudeFeatureInput object.
+        To create a new extrusion use the createInput function to create a new input object and use the methods and
+        properties on that object to define the required input for an extrusion. Once the information is defined on the
+        input object you can pass it to the Add method to create the extrusion.
+        input : The ExtrudeFeatureInput object that specifies the input needed to create a new extrude
+        feature.
+        Returns the newly created ExtrudeFeature or null if the creation failed.
+        """
+        return _fusion.ExtrudeFeatures_add(self, input)
+
+    def itemByName(self, name: "str") -> "adsk.fusion.ExtrudeFeature":
+        r"""
+        Function that returns the specified extrude feature using the name of the feature.
+        name : The name of the feature within the collection to return. This is the name seen in the timeline.
+        Returns the specified item or null if the specified name was not found.
+        """
+        return _fusion.ExtrudeFeatures_itemByName(self, name)
+
+    def addSimple(self, profile: "Base", distance: "ValueInput", operation: "FeatureOperations") -> "adsk.fusion.ExtrudeFeature":
+        r"""
+        Creates a basic extrusion that goes from the profile plane the specified distance.
+        profile : The profile argument can be a single Profile, a single planar face, a single SketchText object,
+        or an ObjectCollection consisting of multiple profiles, planar faces, and sketch texts.
+        When an ObjectCollection is used all of the profiles, faces, and sketch texts must be co-planar.
+        This method can only be used to create solid extrusions. To create a surface extrusion you need
+        to use the add method.
+        distance : ValueInput object that defines the extrude distance. A positive value extrudes in the positive direction
+        of the sketch plane and negative value is in the opposite direction.
+        operation : The feature operation to perform.
+        Returns the newly created ExtrudeFeature or null if the creation failed.
+        """
+        return _fusion.ExtrudeFeatures_addSimple(self, profile, distance, operation)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.ExtrudeFeatures__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.ExtrudeFeatures__get_isValid(self)
+
+# Register ExtrudeFeatures in _fusion:
+_fusion.ExtrudeFeatures_swigregister(ExtrudeFeatures)
+
+def ExtrudeFeatures_classType() -> "str":
+    return _fusion.ExtrudeFeatures_classType()
+
+
+ExtrudeFeatures.count = property(ExtrudeFeatures._get_count, doc="The number of extrude features in the collection.")
+
+
+ExtrudeFeatures.cast = lambda arg: arg if isinstance(arg, ExtrudeFeatures) else None
+
+
+class ExtrudeFeatureInput(Base):
+    r"""
+    This class defines the methods and properties that pertain to the definition of an extrude
+    feature. This class also provides properties for setting/getting the Profile and Operation
+    of the extrude. The Profile and Operation are defined when the ExtrudeFeatures.createInput
+    method is called so they do not exist as properties on this class.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.ExtrudeFeatureInput *":
+        return _fusion.ExtrudeFeatureInput___deref__(self)
+
+    def __eq__(self, rhs: "ExtrudeFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.ExtrudeFeatureInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "ExtrudeFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.ExtrudeFeatureInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.ExtrudeFeatureInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.ExtrudeFeatureInput_classType()
+    __swig_destroy__ = _fusion.delete_ExtrudeFeatureInput
+
+    def _get_profile(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the profiles or planar faces used to define the shape of the extrude.
+        This property can return or be set with a single profile, a single planar face, or
+        an ObjectCollection consisting of multiple profiles and planar faces. When an
+        ObjectCollection is used all of the profiles and faces must be co-planar.
+        To create a surface (non-solid) extrusion, you can use the createOpenProfile and createBRepEdgeProfile
+        methods of the Component object to create an open profile. The isSolid property of the
+        ExtrudeFeatureInput property must also be False.
+        """
+        return _fusion.ExtrudeFeatureInput__get_profile(self)
+
+    def _set_profile(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the profiles or planar faces used to define the shape of the extrude.
+        This property can return or be set with a single profile, a single planar face, or
+        an ObjectCollection consisting of multiple profiles and planar faces. When an
+        ObjectCollection is used all of the profiles and faces must be co-planar.
+        To create a surface (non-solid) extrusion, you can use the createOpenProfile and createBRepEdgeProfile
+        methods of the Component object to create an open profile. The isSolid property of the
+        ExtrudeFeatureInput property must also be False.
+        """
+        return _fusion.ExtrudeFeatureInput__set_profile(self, value)
+
+    def _get_operation(self) -> "adsk.fusion.FeatureOperations":
+        r"""Gets and sets the type of operation performed by the extrusion."""
+        return _fusion.ExtrudeFeatureInput__get_operation(self)
+
+    def _set_operation(self, value: "FeatureOperations") -> "bool":
+        r"""Gets and sets the type of operation performed by the extrusion."""
+        return _fusion.ExtrudeFeatureInput__set_operation(self, value)
+
+    def _get_taperAngle(self) -> "adsk.core.ValueInput":
+        r"""
+        ** This property is retired. **
+
+        This property has been retired and is replaced by getting the extent definition for each
+        direction and using it to set the taper angle.
+        Gets and sets the taper angle of the extrusion. This is used to define the
+        taper angle for a single sided and symmetric and defines the angle for side one
+        of a two sided extrusion. This property is initialized with a taper angle of zero.
+        A negative angle will taper the extrusion inward while a positive value will taper
+        the extrusion outward. This property is valid for both parametric and non-parametric extrusions.
+        """
+        return _fusion.ExtrudeFeatureInput__get_taperAngle(self)
+
+    def _set_taperAngle(self, value: "ValueInput") -> "bool":
+        r"""
+        ** This property is retired. **
+
+        This property has been retired and is replaced by getting the extent definition for each
+        direction and using it to set the taper angle.
+        Gets and sets the taper angle of the extrusion. This is used to define the
+        taper angle for a single sided and symmetric and defines the angle for side one
+        of a two sided extrusion. This property is initialized with a taper angle of zero.
+        A negative angle will taper the extrusion inward while a positive value will taper
+        the extrusion outward. This property is valid for both parametric and non-parametric extrusions.
+        """
+        return _fusion.ExtrudeFeatureInput__set_taperAngle(self, value)
+
+    def setDistanceExtent(self, isSymmetric: "bool", distance: "ValueInput") -> "bool":
+        r"""
+        ** This method is retired. **
+
+        This method has been retired and is replaced with the new SetOneSideExtent and passing in either a
+        DistanceExtentDefinition or SymmetricExtentDefinition. This method continues to work for the API to remain
+        backward compatible but it is not longer officially supported.
+        Sets the extrusion extents option to 'Distance'.
+        isSymmetric : Set to 'true' for an extrusion symmetrical about the profile plane
+        distance : ValueInput object that defines the extrude distance.
+        If the isSymmetric argument is 'false', a positive or negative distance can be used to control the direction.
+        Returns true if successful
+        """
+        return _fusion.ExtrudeFeatureInput_setDistanceExtent(self, isSymmetric, distance)
+
+    def setTwoSidesDistanceExtent(self, distanceOne: "ValueInput", distanceTwo: "ValueInput") -> "bool":
+        r"""
+        ** This method is retired. **
+
+        This method has been retired and is replaced with the new SetTwoSidesExtent, passing in a
+        DistanceExtentDefinition for both sides. This method continues to work to allow the API to remain
+        backward compatible, but it is no longer officially supported.
+        Sets the extrusion extents option to 'Two Side'.
+        This method will fail in the case of a non-parametric extrusion.
+        distanceOne : ValueInput object that defines the extrude distance for the first side.
+        distanceTwo : ValueInput object that defines the extrude distance for the second side.
+        Returns true if successful
+        """
+        return _fusion.ExtrudeFeatureInput_setTwoSidesDistanceExtent(self, distanceOne, distanceTwo)
+
+    def setAllExtent(self, direction: "ExtentDirections") -> "bool":
+        r"""
+        ** This method is retired. **
+
+        This method has been retired and is replaced with the setOneSideExtent and SetTwoSidesExtent,
+        passing in a ThroughAllExtentDefinition. This method continues to work to allow the API to remain
+        backward compatible, but it is no longer officially supported.
+        Sets the extrusion extents option to 'All' (i.e. the extrusion is through-all, in both directions.)
+        This method will fail in the case of a non-parametric extrusion.
+        direction : The direction can be either positive, negative, or symmetric.
+        Returns true if successful
+        """
+        return _fusion.ExtrudeFeatureInput_setAllExtent(self, direction)
+
+    def setOneSideToExtent(self, *args) -> "bool":
+        r"""
+        ** This method is retired. **
+
+        This method has been retired and is replaced with the new setOneSideExtent and passing in a
+        ToEntityExtentDefinition. This method continues to work to allow the API to remain backward compatible, but
+        it is no longer officially supported.
+        Sets the extrusion Direction option to 'One Side' and the Extents option to 'To' (a specified face)
+        toEntity : The entity that defines the 'to' extent. The valid types of entities can vary depending on
+        the type of feature this is being used with. For an extrude it can be a BRepBody, BRepFace,
+        BRepVertex, ConstructionPlane, or ConstructionPoint.
+        matchShape : If the matchShape argument is 'true', the toEntity is extended to fully intersect the extrusion.
+        directionHint : Specifies the direction of the extrusion. This is only used in the case where there are two possible solutions and the extrusion can
+        hit the toEntity in either direction. An example is if the profile of the extrusion is within a hole.
+        The extrusion will intersect the cylinder of the hole in either direction.
+        Typically there is only a single solution and the direction is determined automatically.
+        Returns true if successful.
+        """
+        return _fusion.ExtrudeFeatureInput_setOneSideToExtent(self, *args)
+
+    def setTwoSidesToExtent(self, toEntityOne: "Base", toEntityTwo: "Base", matchShape: "bool") -> "bool":
+        r"""
+        ** This method is retired. **
+
+        This method has been retired and is replaced with the new setTwoSidesExtent and passing in a
+        ToEntityExtentDefinition for both sides. This method continues to work to allow the API to remain backward compatible, but
+        it is no longer officially supported.
+        Set the extrusion Direction option to 'Two Side'. This method will fail in the case of a non-parametric extrusion.
+        toEntityOne : The first entity that defines the 'to' extent. The valid types of entities can vary depending on
+        the type of feature this is being used with. For an extrude it can be a BRepBody, BRepFace,
+        BRepVertex, ConstructionPlane, or ConstructionPoint.
+        toEntityTwo : The second entity that defines the 'to' extent. The valid types of entities can vary depending on
+        the type of feature this is being used with. For an extrude it can be a BRepBody, BRepFace,
+        BRepVertex, ConstructionPlane, or ConstructionPoint.
+        matchShape : If the matchShape argument is 'true', the toEntity is extended to fully intersect the extrusion.
+        Returns true if successful.
+        """
+        return _fusion.ExtrudeFeatureInput_setTwoSidesToExtent(self, toEntityOne, toEntityTwo, matchShape)
+
+    def _get_creationOccurrence(self) -> "adsk.fusion.Occurrence":
+        r"""
+        In order for geometry to be transformed correctly, an Occurrence for creation needs to be
+        specified when the Extrusion is created based on geometry (e.g. a profile and/or face(s))
+        in another component AND (the Extrusion) is not in the root component.
+        The CreationOccurrence is analogous to the active occurrence in the UI
+        """
+        return _fusion.ExtrudeFeatureInput__get_creationOccurrence(self)
+
+    def _set_creationOccurrence(self, value: "Occurrence") -> "bool":
+        r"""
+        In order for geometry to be transformed correctly, an Occurrence for creation needs to be
+        specified when the Extrusion is created based on geometry (e.g. a profile and/or face(s))
+        in another component AND (the Extrusion) is not in the root component.
+        The CreationOccurrence is analogous to the active occurrence in the UI
+        """
+        return _fusion.ExtrudeFeatureInput__set_creationOccurrence(self, value)
+
+    def _get_isSolid(self) -> "bool":
+        r"""
+        Specifies if the extrusion should be created as a solid or surface. If
+        it's a surface then there aren't any end caps and it's open. When an ExtrudeFeature
+        input is created, this is initialized to true so a solid will be created if it's not changed.
+        """
+        return _fusion.ExtrudeFeatureInput__get_isSolid(self)
+
+    def _set_isSolid(self, value: "bool") -> "bool":
+        r"""
+        Specifies if the extrusion should be created as a solid or surface. If
+        it's a surface then there aren't any end caps and it's open. When an ExtrudeFeature
+        input is created, this is initialized to true so a solid will be created if it's not changed.
+        """
+        return _fusion.ExtrudeFeatureInput__set_isSolid(self, value)
+
+    def _get_targetBaseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.ExtrudeFeatureInput__get_targetBaseFeature(self)
+
+    def _set_targetBaseFeature(self, value: "BaseFeature") -> "bool":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.ExtrudeFeatureInput__set_targetBaseFeature(self, value)
+
+    def _get_startExtent(self) -> "adsk.fusion.ExtentDefinition":
+        r"""
+        Gets and sets the extent used to define the start of the extrusion. When a new ExtrudeFeatureInput
+        object is created the start extent is initialized to be the profile plane but you can change it
+        to a profile plane with offset or from an object by setting this property with either a
+        OffsetStartDefinition or an EntityStartDefinition object. You can get either one
+        of those objects by using the static create method on the class.
+        """
+        return _fusion.ExtrudeFeatureInput__get_startExtent(self)
+
+    def _set_startExtent(self, value: "ExtentDefinition") -> "bool":
+        r"""
+        Gets and sets the extent used to define the start of the extrusion. When a new ExtrudeFeatureInput
+        object is created the start extent is initialized to be the profile plane but you can change it
+        to a profile plane with offset or from an object by setting this property with either a
+        OffsetStartDefinition or an EntityStartDefinition object. You can get either one
+        of those objects by using the static create method on the class.
+        """
+        return _fusion.ExtrudeFeatureInput__set_startExtent(self, value)
+
+    def setOneSideExtent(self, *args) -> "bool":
+        r"""
+        Defines the extrusion to go in one direction from the profile. The extent of the extrusion is
+        defined by the extent argument.
+        extent : An ExtentDefinition object that defines how the extent of the extrusion is defined. This can be
+        a specified distance (DistanceExtentDefinition), to an entity (ToEntityExtent), or through-all (AllExtentDefinition).
+        These objects can be obtained by using the static create method on the appropriate class.
+        direction : Specifies the direction of the extrusion. PositiveExtentDirection and NegativeExtentDirection
+        are valid values. PositiveExtentDirection is in the same direction as the normal of the profile's
+        parent sketch plane.
+        taperAngle : Optional argument that specifies the taper angle. If omitted a taper angle of 0 is used.
+        Returns true is setting the input to a one sided extent was successful.
+        """
+        return _fusion.ExtrudeFeatureInput_setOneSideExtent(self, *args)
+
+    def setTwoSidesExtent(self, *args) -> "bool":
+        r"""
+        Defines the extrusion to go in both directions from the profile. The extent is defined independently
+        for each direction using the input arguments.
+        sideOneExtent : An ExtentDefinition object that defines how the extent of the extrusion towards side one is defined. This can be
+        a specified distance (DistanceExtentDefinition), to an entity (ToEntityExtent), or through-all (AllExtentDefinition).
+        These objects can be obtained by using the static create method on the appropriate class.
+        sideTwoExtent : An ExtentDefinition object that defines how the extent of the extrusion towards side two is defined. This can be
+        a specified distance (DistanceExtentDefinition), to an entity (ToEntityExtent), or through-all (AllExtentDefinition).
+        These objects can be obtained by using the static create method on the appropriate class.
+        sideOneTaperAngle : Optional argument that specifies the taper angle for side one. If omitted a taper angle of 0 is used.
+        sideTwoTaperAngle : Optional argument that specifies the taper angle for side two. If omitted a taper angle of 0 is used.
+        Returns true is setting the extent was successful.
+        """
+        return _fusion.ExtrudeFeatureInput_setTwoSidesExtent(self, *args)
+
+    def setSymmetricExtent(self, *args) -> "bool":
+        r"""
+        Defines the extrusion to go symmetrically in both directions from the profile.
+        distance : The distance of the extrusions. This is either the full length of half of the length of the final extrusion
+        depending on the value of the isFullLength property.
+        isFullLength : Defines if the value defines the full length of the extrusion or half of the length. A value of true indicates
+        it defines the full length.
+        taperAngle : Optional argument that specifies the taper angle. The same taper angle is used for both sides for a symmetric
+        extrusion. If omitted a taper angle of 0 is used.
+        Returns true is setting the extent was successful.
+        """
+        return _fusion.ExtrudeFeatureInput_setSymmetricExtent(self, *args)
+
+    def _get_extentOne(self) -> "adsk.fusion.ExtentDefinition":
+        r"""
+        Gets the extent assigned for a single sided extrude or side one of a two-sided extrusion. To set the extent, use
+        one of the set methods on the ExtrudeFeatureInput object.
+        """
+        return _fusion.ExtrudeFeatureInput__get_extentOne(self)
+
+    def _get_extentTwo(self) -> "adsk.fusion.ExtentDefinition":
+        r"""
+        Gets the extent assigned for side two of the extrusion. If the extrude is single sided extrude this
+        property will return null. The hasTwoExtents property can be used to determine if there
+        are two sides or not. To set the extent, use one of the set methods on the ExtrudeFeatureInput object.
+        """
+        return _fusion.ExtrudeFeatureInput__get_extentTwo(self)
+
+    def _get_taperAngleOne(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets the value that will be used as the taper angle for a single sided extrusion or side one of a two-sided
+        extrusion. To set the taper angle, use one of the set methods on the ExtrudeFeatureInput object.
+        """
+        return _fusion.ExtrudeFeatureInput__get_taperAngleOne(self)
+
+    def _get_taperAngleTwo(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets the value that will be used as the taper angle for side two of a two-sided extrusion. If the extrusion is
+        single-sided, this property will return null. The hasTwoExtents property can be used to determine if there
+        are two sides or not. To set the taper angle, use one of the set methods on the ExtrudeFeatureInput object.
+        """
+        return _fusion.ExtrudeFeatureInput__get_taperAngleTwo(self)
+
+    def _get_hasTwoExtents(self) -> "bool":
+        r"""
+        Property that indicates if the extrusion is a single or two-sided extrusion. If false, the extentTwo
+        and taperAngleTwo properties should not be used.
+        """
+        return _fusion.ExtrudeFeatureInput__get_hasTwoExtents(self)
+
+    def _get_participantBodies(self) -> "list[adsk.fusion.BRepBody]":
+        r"""
+        Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.
+        If this property has not been set, the default behavior is that all bodies that are intersected by the
+        feature will participate.
+        This property can return null in the case where the feature has not been fully defined so that
+        possible intersecting bodies can be computed.
+        """
+        return _fusion.ExtrudeFeatureInput__get_participantBodies(self)
+
+    def _set_participantBodies(self, value: "list[BRepBody]") -> "bool":
+        r"""
+        Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.
+        If this property has not been set, the default behavior is that all bodies that are intersected by the
+        feature will participate.
+        This property can return null in the case where the feature has not been fully defined so that
+        possible intersecting bodies can be computed.
+        """
+        return _fusion.ExtrudeFeatureInput__set_participantBodies(self, value)
+
+    def _get_isThinExtrude(self) -> "bool":
+        r"""
+        Sets or returns whether the extrude is a thin extrude.
+        Setting it as false will make it a regular extrude.
+        """
+        return _fusion.ExtrudeFeatureInput__get_isThinExtrude(self)
+
+    def _set_isThinExtrude(self, value: "bool") -> "bool":
+        r"""
+        Sets or returns whether the extrude is a thin extrude.
+        Setting it as false will make it a regular extrude.
+        """
+        return _fusion.ExtrudeFeatureInput__set_isThinExtrude(self, value)
+
+    def setThinExtrude(self, *args) -> "bool":
+        r"""
+        Changes the extrude feature to be a thin extrude. This is only valid if the isThinExtrude property
+        is False. If the extrusion is already a thin extrude, you can use the properties on the ExtrudeFeature
+        to modify the thin extrude specific values.
+        thinExtrudeWallLocationOne : Specifies the position of the thin wall extrude with respect to the profile being extruded. This defines
+        the direction for a single sided thin extrude or side one of a two-sided extrusion.
+        thinExtrudeWallThicknessOne : A ValueInput object that defines the thickness for a single sided thin extrude or side one of a two-sided
+        extrusion .
+        thinExtrudeWallLocationTwo : Optional argument that specifies the position of side two of a two-sided extrusion. This argument is ignored
+        for a single sided thin extrude.
+        thinExtrudeWallThicknessTwo : Optional argument that is a ValueInput object that defines the thickness for side two of a
+        two-sided extrusion. This argument is ignored for a single sided thin extrude.
+        Returns true if successful.
+        """
+        return _fusion.ExtrudeFeatureInput_setThinExtrude(self, *args)
+
+    def _get_thinExtrudeWallLocationOne(self) -> "adsk.fusion.ThinExtrudeWallLocation":
+        r"""Gets and sets the wall location for a one sided thin extrude or side one of a two sided thin extrude"""
+        return _fusion.ExtrudeFeatureInput__get_thinExtrudeWallLocationOne(self)
+
+    def _set_thinExtrudeWallLocationOne(self, value: "ThinExtrudeWallLocation") -> "bool":
+        r"""Gets and sets the wall location for a one sided thin extrude or side one of a two sided thin extrude"""
+        return _fusion.ExtrudeFeatureInput__set_thinExtrudeWallLocationOne(self, value)
+
+    def _get_thinExtrudeWallLocationTwo(self) -> "adsk.fusion.ThinExtrudeWallLocation":
+        r"""Gets and sets the wall location for side two of a two sided thin extrude"""
+        return _fusion.ExtrudeFeatureInput__get_thinExtrudeWallLocationTwo(self)
+
+    def _set_thinExtrudeWallLocationTwo(self, value: "ThinExtrudeWallLocation") -> "bool":
+        r"""Gets and sets the wall location for side two of a two sided thin extrude"""
+        return _fusion.ExtrudeFeatureInput__set_thinExtrudeWallLocationTwo(self, value)
+
+    def _get_thinExtrudeWallThicknessOne(self) -> "adsk.core.ValueInput":
+        r"""Gets and sets the wall thickness for a one sided thin extrude or side one of a two sided thin extrude"""
+        return _fusion.ExtrudeFeatureInput__get_thinExtrudeWallThicknessOne(self)
+
+    def _set_thinExtrudeWallThicknessOne(self, value: "ValueInput") -> "bool":
+        r"""Gets and sets the wall thickness for a one sided thin extrude or side one of a two sided thin extrude"""
+        return _fusion.ExtrudeFeatureInput__set_thinExtrudeWallThicknessOne(self, value)
+
+    def _get_thinExtrudeWallThicknessTwo(self) -> "adsk.core.ValueInput":
+        r"""Gets and sets the wall thickness for side two of a two sided thin extrude"""
+        return _fusion.ExtrudeFeatureInput__get_thinExtrudeWallThicknessTwo(self)
+
+    def _set_thinExtrudeWallThicknessTwo(self, value: "ValueInput") -> "bool":
+        r"""Gets and sets the wall thickness for side two of a two sided thin extrude"""
+        return _fusion.ExtrudeFeatureInput__set_thinExtrudeWallThicknessTwo(self, value)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.ExtrudeFeatureInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.ExtrudeFeatureInput__get_isValid(self)
+
+# Register ExtrudeFeatureInput in _fusion:
+_fusion.ExtrudeFeatureInput_swigregister(ExtrudeFeatureInput)
+
+def ExtrudeFeatureInput_classType() -> "str":
+    return _fusion.ExtrudeFeatureInput_classType()
+
+
+ExtrudeFeatureInput.profile = property(ExtrudeFeatureInput._get_profile, ExtrudeFeatureInput._set_profile, doc="Gets and sets the profiles or planar faces used to define the shape of the extrude.\nThis property can return or be set with a single profile, a single planar face, or\nan ObjectCollection consisting of multiple profiles and planar faces. When an\nObjectCollection is used all of the profiles and faces must be co-planar.\nTo create a surface (non-solid) extrusion, you can use the createOpenProfile and createBRepEdgeProfile\nmethods of the Component object to create an open profile. The isSolid property of the\nExtrudeFeatureInput property must also be False.")
+
+
+ExtrudeFeatureInput.operation = property(ExtrudeFeatureInput._get_operation, ExtrudeFeatureInput._set_operation, doc="Gets and sets the type of operation performed by the extrusion.")
+
+
+ExtrudeFeatureInput.taperAngle = property(ExtrudeFeatureInput._get_taperAngle, ExtrudeFeatureInput._set_taperAngle, doc="** This property is retired. **\n\nThis property has been retired and is replaced by getting the extent definition for each\ndirection and using it to set the taper angle.\nGets and sets the taper angle of the extrusion. This is used to define the\ntaper angle for a single sided and symmetric and defines the angle for side one\nof a two sided extrusion. This property is initialized with a taper angle of zero.\nA negative angle will taper the extrusion inward while a positive value will taper\nthe extrusion outward. This property is valid for both parametric and non-parametric extrusions.")
+
+
+ExtrudeFeatureInput.creationOccurrence = property(ExtrudeFeatureInput._get_creationOccurrence, ExtrudeFeatureInput._set_creationOccurrence, doc="In order for geometry to be transformed correctly, an Occurrence for creation needs to be\nspecified when the Extrusion is created based on geometry (e.g. a profile and/or face(s))\nin another component AND (the Extrusion) is not in the root component.\nThe CreationOccurrence is analogous to the active occurrence in the UI")
+
+
+ExtrudeFeatureInput.isSolid = property(ExtrudeFeatureInput._get_isSolid, ExtrudeFeatureInput._set_isSolid, doc="Specifies if the extrusion should be created as a solid or surface. If\nit's a surface then there aren't any end caps and it's open. When an ExtrudeFeature\ninput is created, this is initialized to true so a solid will be created if it's not changed.")
+
+
+ExtrudeFeatureInput.targetBaseFeature = property(ExtrudeFeatureInput._get_targetBaseFeature, ExtrudeFeatureInput._set_targetBaseFeature, doc="When creating a feature that is owned by a base feature, set this property to the\nbase feature you want to associate the new feature with. By default, this is null,\nmeaning it will not be associated with a base feature.\nBecause of a current limitation, if you want to create a feature associated with a base\nfeature, you must set this property AND call the startEdit method of the base feature,\ncreate the feature, and then call the finishEdit method of the base feature. The base\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+ExtrudeFeatureInput.startExtent = property(ExtrudeFeatureInput._get_startExtent, ExtrudeFeatureInput._set_startExtent, doc="Gets and sets the extent used to define the start of the extrusion. When a new ExtrudeFeatureInput\nobject is created the start extent is initialized to be the profile plane but you can change it\nto a profile plane with offset or from an object by setting this property with either a\nOffsetStartDefinition or an EntityStartDefinition object. You can get either one\nof those objects by using the static create method on the class.")
+
+
+ExtrudeFeatureInput.extentOne = property(ExtrudeFeatureInput._get_extentOne, doc="Gets the extent assigned for a single sided extrude or side one of a two-sided extrusion. To set the extent, use\none of the set methods on the ExtrudeFeatureInput object.")
+
+
+ExtrudeFeatureInput.extentTwo = property(ExtrudeFeatureInput._get_extentTwo, doc="Gets the extent assigned for side two of the extrusion. If the extrude is single sided extrude this\nproperty will return null. The hasTwoExtents property can be used to determine if there\nare two sides or not. To set the extent, use one of the set methods on the ExtrudeFeatureInput object.")
+
+
+ExtrudeFeatureInput.taperAngleOne = property(ExtrudeFeatureInput._get_taperAngleOne, doc="Gets the value that will be used as the taper angle for a single sided extrusion or side one of a two-sided\nextrusion. To set the taper angle, use one of the set methods on the ExtrudeFeatureInput object.")
+
+
+ExtrudeFeatureInput.taperAngleTwo = property(ExtrudeFeatureInput._get_taperAngleTwo, doc="Gets the value that will be used as the taper angle for side two of a two-sided extrusion. If the extrusion is\nsingle-sided, this property will return null. The hasTwoExtents property can be used to determine if there\nare two sides or not. To set the taper angle, use one of the set methods on the ExtrudeFeatureInput object.")
+
+
+ExtrudeFeatureInput.hasTwoExtents = property(ExtrudeFeatureInput._get_hasTwoExtents, doc="Property that indicates if the extrusion is a single or two-sided extrusion. If false, the extentTwo\nand taperAngleTwo properties should not be used.")
+
+
+ExtrudeFeatureInput.participantBodies = property(ExtrudeFeatureInput._get_participantBodies, ExtrudeFeatureInput._set_participantBodies, doc="Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.\nIf this property has not been set, the default behavior is that all bodies that are intersected by the\nfeature will participate.\nThis property can return null in the case where the feature has not been fully defined so that\npossible intersecting bodies can be computed.")
+
+
+ExtrudeFeatureInput.isThinExtrude = property(ExtrudeFeatureInput._get_isThinExtrude, ExtrudeFeatureInput._set_isThinExtrude, doc="Sets or returns whether the extrude is a thin extrude.\nSetting it as false will make it a regular extrude.")
+
+
+ExtrudeFeatureInput.thinExtrudeWallLocationOne = property(ExtrudeFeatureInput._get_thinExtrudeWallLocationOne, ExtrudeFeatureInput._set_thinExtrudeWallLocationOne, doc="Gets and sets the wall location for a one sided thin extrude or side one of a two sided thin extrude")
+
+
+ExtrudeFeatureInput.thinExtrudeWallLocationTwo = property(ExtrudeFeatureInput._get_thinExtrudeWallLocationTwo, ExtrudeFeatureInput._set_thinExtrudeWallLocationTwo, doc="Gets and sets the wall location for side two of a two sided thin extrude")
+
+
+ExtrudeFeatureInput.thinExtrudeWallThicknessOne = property(ExtrudeFeatureInput._get_thinExtrudeWallThicknessOne, ExtrudeFeatureInput._set_thinExtrudeWallThicknessOne, doc="Gets and sets the wall thickness for a one sided thin extrude or side one of a two sided thin extrude")
+
+
+ExtrudeFeatureInput.thinExtrudeWallThicknessTwo = property(ExtrudeFeatureInput._get_thinExtrudeWallThicknessTwo, ExtrudeFeatureInput._set_thinExtrudeWallThicknessTwo, doc="Gets and sets the wall thickness for side two of a two sided thin extrude")
+
+
+ExtrudeFeatureInput.cast = lambda arg: arg if isinstance(arg, ExtrudeFeatureInput) else None
+
+
+class ExtrudeFeature(Feature):
+    r"""Object that represents an existing extrude feature in a design."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.ExtrudeFeature *":
+        return _fusion.ExtrudeFeature___deref__(self)
+
+    def __eq__(self, rhs: "ExtrudeFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.ExtrudeFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "ExtrudeFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.ExtrudeFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.ExtrudeFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.ExtrudeFeature_classType()
+    __swig_destroy__ = _fusion.delete_ExtrudeFeature
+
+    def _get_profile(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the profiles or planar faces used to define the shape of the extrude.
+        This property can return or be set with a single Profile, a single planar face, or
+        an ObjectCollection consisting of multiple profiles and planar faces. When an
+        ObjectCollection is used all of the profiles and faces must be co-planar.
+        When setting this property of a surface (non-solid) extrusion, you can use the
+        createOpenProfile and createBRepEdgeProfile methods of the Component object to create
+        an open profile.
+        This property returns null in the case where the feature is non-parametric.
+        """
+        return _fusion.ExtrudeFeature__get_profile(self)
+
+    def _set_profile(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the profiles or planar faces used to define the shape of the extrude.
+        This property can return or be set with a single Profile, a single planar face, or
+        an ObjectCollection consisting of multiple profiles and planar faces. When an
+        ObjectCollection is used all of the profiles and faces must be co-planar.
+        When setting this property of a surface (non-solid) extrusion, you can use the
+        createOpenProfile and createBRepEdgeProfile methods of the Component object to create
+        an open profile.
+        This property returns null in the case where the feature is non-parametric.
+        """
+        return _fusion.ExtrudeFeature__set_profile(self, value)
+
+    def _get_taperAngle(self) -> "adsk.fusion.ModelParameter":
+        r"""** This property is not officially supported and its behavior may change. **"""
+        return _fusion.ExtrudeFeature__get_taperAngle(self)
+
+    def _get_operation(self) -> "adsk.fusion.FeatureOperations":
+        r"""Gets and sets the type of operation performed by the extrusion."""
+        return _fusion.ExtrudeFeature__get_operation(self)
+
+    def _set_operation(self, value: "FeatureOperations") -> "bool":
+        r"""Gets and sets the type of operation performed by the extrusion."""
+        return _fusion.ExtrudeFeature__set_operation(self, value)
+
+    def _get_extentDefinition(self) -> "adsk.fusion.ExtentDefinition":
+        r"""** This property is not officially supported and its behavior may change. **"""
+        return _fusion.ExtrudeFeature__get_extentDefinition(self)
+
+    def setDistanceExtent(self, isSymmetric: "bool", distance: "ValueInput") -> "bool":
+        r"""** This method is not officially supported and its behavior may change. **"""
+        return _fusion.ExtrudeFeature_setDistanceExtent(self, isSymmetric, distance)
+
+    def setTwoSidesDistanceExtent(self, distanceOne: "ValueInput", distanceTwo: "ValueInput") -> "bool":
+        r"""** This method is not officially supported and its behavior may change. **"""
+        return _fusion.ExtrudeFeature_setTwoSidesDistanceExtent(self, distanceOne, distanceTwo)
+
+    def setAllExtent(self, direction: "ExtentDirections") -> "bool":
+        r"""** This method is not officially supported and its behavior may change. **"""
+        return _fusion.ExtrudeFeature_setAllExtent(self, direction)
+
+    def setOneSideToExtent(self, *args) -> "bool":
+        r"""** This method is not officially supported and its behavior may change. **"""
+        return _fusion.ExtrudeFeature_setOneSideToExtent(self, *args)
+
+    def setTwoSidesToExtent(self, toEntityOne: "Base", toEntityTwo: "Base", matchShape: "bool") -> "bool":
+        r"""** This method is not officially supported and its behavior may change. **"""
+        return _fusion.ExtrudeFeature_setTwoSidesToExtent(self, toEntityOne, toEntityTwo, matchShape)
+
+    def _get_startFaces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Property that returns the set of faces that cap the end of the extrusion and are coincident
+        with the sketch plane. In the case of a symmetric extrusion, these faces are the ones on the
+        positive normal side of the sketch plane. In the case where there are no start faces,
+        this property will return null.
+        """
+        return _fusion.ExtrudeFeature__get_startFaces(self)
+
+    def _get_endFaces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Property that returns the set of faces that cap the end of the extrusion, opposite the
+        start faces. In the case where there are no end faces, this property will return null.
+        """
+        return _fusion.ExtrudeFeature__get_endFaces(self)
+
+    def _get_sideFaces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Property that returns all of the side faces (i.e. those running perpendicular to the extrude direction)
+        of the feature.
+        """
+        return _fusion.ExtrudeFeature__get_sideFaces(self)
+
+    def _get_nativeObject(self) -> "adsk.fusion.ExtrudeFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.ExtrudeFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.ExtrudeFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.ExtrudeFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_isSolid(self) -> "bool":
+        r"""Indicates if this feature was initially created as a solid or a surface."""
+        return _fusion.ExtrudeFeature__get_isSolid(self)
+
+    def _get_startExtent(self) -> "adsk.fusion.ExtentDefinition":
+        r"""
+        Gets and sets the extent used to define the start of the extrusion. You can set this property
+        with either a ProfilePlaneStartDefinition, OffsetStartDefinition or a
+        EntityStartDefinition object. You can get any of those objects by using the static create method on the class.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ExtrudeFeature__get_startExtent(self)
+
+    def _set_startExtent(self, value: "ExtentDefinition") -> "bool":
+        r"""
+        Gets and sets the extent used to define the start of the extrusion. You can set this property
+        with either a ProfilePlaneStartDefinition, OffsetStartDefinition or a
+        EntityStartDefinition object. You can get any of those objects by using the static create method on the class.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ExtrudeFeature__set_startExtent(self, value)
+
+    def setOneSideExtent(self, *args) -> "bool":
+        r"""
+        Redefines the extrusion to go in one direction from the profile. The extent of the extrusion is
+        defined by the extent argument.
+        To use this method, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        extent : An ExtentDefinition object that defines how the extent of the extrusion is defined. This can be
+        a specified distance (DistanceExtentDefinition), to an entity (ToEntityExtent), or through-all (AllExtentDefinition).
+        These objects can be obtained by using the static create method on the appropriate class.
+        direction : Specifies the direction of the extrusion. PositiveExtentDirection and NegativeExtentDirection
+        are valid values. PositiveExtentDirection is in the same direction as the normal of the profile's
+        parent sketch plane.
+        taperAngle : Optional argument that specifies the taper angle. If omitted a taper angle of 0 is used.
+        Returns true is setting the input to a one sided extent was successful.
+        """
+        return _fusion.ExtrudeFeature_setOneSideExtent(self, *args)
+
+    def setTwoSidesExtent(self, *args) -> "bool":
+        r"""
+        Redefines the extrusion to go in both directions from the profile. The extent is defined independently
+        for each direction using the input arguments.
+        To use this method, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        sideOneExtent : An ExtentDefinition object that defines how the extent of the extrusion towards side one is defined. This can be
+        a specified distance (DistanceExtentDefinition), to an entity (ToEntityExtent), or through-all (AllExtentDefinition).
+        These objects can be obtained by using the static create method on the appropriate class.
+        sideTwoExtent : An ExtentDefinition object that defines how the extent of the extrusion towards side two is defined. This can be
+        a specified distance (DistanceExtentDefinition), to an entity (ToEntityExtent), or through-all (AllExtentDefinition).
+        These objects can be obtained by using the static create method on the appropriate class.
+        sideOneTaperAngle : Optional argument that specifies the taper angle for side one. If omitted a taper angle of 0 is used.
+        sideTwoTaperAngle : Optional argument that specifies the taper angle for side two. If omitted a taper angle of 0 is used.
+        Returns true, if the call was successful.
+        """
+        return _fusion.ExtrudeFeature_setTwoSidesExtent(self, *args)
+
+    def setSymmetricExtent(self, *args) -> "bool":
+        r"""
+        Redefines the extrusion to go symmetrically in both directions from the profile.
+        To use this method, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        distance : The distance of the extrusions. This is either the full length of half of the length of the final extrusion
+        depending on the value of the isFullLength property.
+        isFullLength : Defines if the value defines the full length of the extrusion or half of the length. A value of true indicates
+        it defines the full length.
+        taperAngle : Optional argument that specifies the taper angle. The same taper angle is used for both sides for a symmetric
+        extrusion. If omitted a taper angle of 0 is used.
+        Returns true, if the call was successful.
+        """
+        return _fusion.ExtrudeFeature_setSymmetricExtent(self, *args)
+
+    def _get_extentOne(self) -> "adsk.fusion.ExtentDefinition":
+        r"""
+        Gets and sets the extent used for a single sided extrude or side one of a two-sided extrusion. Valid
+        inputs are DistanceExtentDefinition, ToEntityExtentDefinition, and ThroughAllExtentDefinition object,
+        which can be created statically using the create method on the classes.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ExtrudeFeature__get_extentOne(self)
+
+    def _set_extentOne(self, value: "ExtentDefinition") -> "bool":
+        r"""
+        Gets and sets the extent used for a single sided extrude or side one of a two-sided extrusion. Valid
+        inputs are DistanceExtentDefinition, ToEntityExtentDefinition, and ThroughAllExtentDefinition object,
+        which can be created statically using the create method on the classes.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ExtrudeFeature__set_extentOne(self, value)
+
+    def _get_extentTwo(self) -> "adsk.fusion.ExtentDefinition":
+        r"""
+        Gets and sets the extent used for side two of the extrusion. If the extrude is a single sided extrude this
+        property will return null and will fail if set. The hasTwoExtents property can be used to determine if
+        there are two sides or not. When setting this property, valid inputs are DistanceExtentDefinition,
+        ToEntityExtentDefinition, and ThroughAllExtentDefinition object, which can be created
+        statically using the create method on the classes.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ExtrudeFeature__get_extentTwo(self)
+
+    def _set_extentTwo(self, value: "ExtentDefinition") -> "bool":
+        r"""
+        Gets and sets the extent used for side two of the extrusion. If the extrude is a single sided extrude this
+        property will return null and will fail if set. The hasTwoExtents property can be used to determine if
+        there are two sides or not. When setting this property, valid inputs are DistanceExtentDefinition,
+        ToEntityExtentDefinition, and ThroughAllExtentDefinition object, which can be created
+        statically using the create method on the classes.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ExtrudeFeature__set_extentTwo(self, value)
+
+    def _get_taperAngleOne(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets the parameter controlling the taper angle for a single sided extrusion or side one of a two-sided
+        extrusion. To edit the angle, use properties on the parameter to change the value of the parameter.
+        """
+        return _fusion.ExtrudeFeature__get_taperAngleOne(self)
+
+    def _get_taperAngleTwo(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets the parameter controlling the taper angle for side two of a two-sided extrusion. if the extrusion is
+        single-sided, this property will return null. The hasTwoExtents property can be used to determine if there
+        are two sides or not. To edit the angle, use properties on the parameter to change the value of the parameter.
+        """
+        return _fusion.ExtrudeFeature__get_taperAngleTwo(self)
+
+    def _get_hasTwoExtents(self) -> "bool":
+        r"""
+        Property that indicates if the extrusion is a single or two-sided extrusion. If false, the extentTwo
+        and taperAngleTwo properties should not be used.
+        """
+        return _fusion.ExtrudeFeature__get_hasTwoExtents(self)
+
+    def _get_participantBodies(self) -> "list[adsk.fusion.BRepBody]":
+        r"""
+        Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ExtrudeFeature__get_participantBodies(self)
+
+    def _set_participantBodies(self, value: "list[BRepBody]") -> "bool":
+        r"""
+        Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.ExtrudeFeature__set_participantBodies(self, value)
+
+    def _get_extentType(self) -> "adsk.fusion.FeatureExtentTypes":
+        r"""Returns a value indicating how the extent is defined for this extrude."""
+        return _fusion.ExtrudeFeature__get_extentType(self)
+
+    def _get_symmetricExtent(self) -> "adsk.fusion.SymmetricExtentDefinition":
+        r"""
+        If the current extent of the feature is defined as a symmetric extent, this property
+        returns the SymmericExtentDefinition object that provides access to the information
+        defining the symmetric extent. If the current extent is not symmetric, this property
+        returns null. You can determine the type of extent by using the extentType property.
+        To change the extent of a feature to symmetric extent you can use the setSymmetricExtent
+        method.
+        """
+        return _fusion.ExtrudeFeature__get_symmetricExtent(self)
+
+    def _get_isThinExtrude(self) -> "bool":
+        r"""
+        Sets or returns whether the extrude is a thin extrude.
+        Setting it as false will make it a regular extrude.
+        """
+        return _fusion.ExtrudeFeature__get_isThinExtrude(self)
+
+    def _set_isThinExtrude(self, value: "bool") -> "bool":
+        r"""
+        Sets or returns whether the extrude is a thin extrude.
+        Setting it as false will make it a regular extrude.
+        """
+        return _fusion.ExtrudeFeature__set_isThinExtrude(self, value)
+
+    def setThinExtrude(self, *args) -> "bool":
+        r"""
+        Changes the extrude feature to be a thin extrude. This is only valid if the isThinExtrude property
+        is False. If the extrusion is already a thin extrude, you can use the properties on the ExtrudeFeature
+        to modify the thin extrude specific values.
+        thinExtrudeWallLocationOne : Specifies the position of the thin wall extrude with respect to the profile being extruded. This defines
+        the direction for a single sided thin extrude or side one of a two-sided extrusion.
+        thinExtrudeWallThicknessOne : A ValueInput object that defines the thickness for a single sided thin extrude or side one of a two-sided
+        extrusion .
+        thinExtrudeWallLocationTwo : Optional argument that specifies the position of side two of a two-sided extrusion. This argument is ignored
+        for a single sided thin extrude.
+        thinExtrudeWallThicknessTwo : Optional argument that is a ValueInput object that defines the thickness for side two of a
+        two-sided extrusion. This argument is ignored for a single sided thin extrude.
+        Returns true if successful.
+        """
+        return _fusion.ExtrudeFeature_setThinExtrude(self, *args)
+
+    def _get_thinExtrudeWallLocationOne(self) -> "adsk.fusion.ThinExtrudeWallLocation":
+        r"""Gets and sets the wall location for a one sided thin extrude or side one of a two sided thin extrude"""
+        return _fusion.ExtrudeFeature__get_thinExtrudeWallLocationOne(self)
+
+    def _set_thinExtrudeWallLocationOne(self, value: "ThinExtrudeWallLocation") -> "bool":
+        r"""Gets and sets the wall location for a one sided thin extrude or side one of a two sided thin extrude"""
+        return _fusion.ExtrudeFeature__set_thinExtrudeWallLocationOne(self, value)
+
+    def _get_thinExtrudeWallLocationTwo(self) -> "adsk.fusion.ThinExtrudeWallLocation":
+        r"""Gets and sets the wall location for side two of a two sided thin extrude"""
+        return _fusion.ExtrudeFeature__get_thinExtrudeWallLocationTwo(self)
+
+    def _set_thinExtrudeWallLocationTwo(self, value: "ThinExtrudeWallLocation") -> "bool":
+        r"""Gets and sets the wall location for side two of a two sided thin extrude"""
+        return _fusion.ExtrudeFeature__set_thinExtrudeWallLocationTwo(self, value)
+
+    def _get_thinExtrudeWallThicknessOne(self) -> "adsk.fusion.ModelParameter":
+        r"""Gets and sets the wall thickness for a one sided thin extrude or side one of a two sided thin extrude"""
+        return _fusion.ExtrudeFeature__get_thinExtrudeWallThicknessOne(self)
+
+    def _get_thinExtrudeWallThicknessTwo(self) -> "adsk.fusion.ModelParameter":
+        r"""Gets and sets the wall thickness for side two of a two sided thin extrude"""
+        return _fusion.ExtrudeFeature__get_thinExtrudeWallThicknessTwo(self)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.ExtrudeFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.ExtrudeFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.ExtrudeFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.ExtrudeFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.ExtrudeFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.ExtrudeFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.ExtrudeFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.ExtrudeFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.ExtrudeFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.ExtrudeFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.ExtrudeFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.ExtrudeFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.ExtrudeFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.ExtrudeFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.ExtrudeFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.ExtrudeFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.ExtrudeFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.ExtrudeFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.ExtrudeFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.ExtrudeFeature__get_isValid(self)
+
+# Register ExtrudeFeature in _fusion:
+_fusion.ExtrudeFeature_swigregister(ExtrudeFeature)
+
+def ExtrudeFeature_classType() -> "str":
+    return _fusion.ExtrudeFeature_classType()
+
+
+ExtrudeFeature.profile = property(ExtrudeFeature._get_profile, ExtrudeFeature._set_profile, doc="Gets and sets the profiles or planar faces used to define the shape of the extrude.\nThis property can return or be set with a single Profile, a single planar face, or\nan ObjectCollection consisting of multiple profiles and planar faces. When an\nObjectCollection is used all of the profiles and faces must be co-planar.\nWhen setting this property of a surface (non-solid) extrusion, you can use the\ncreateOpenProfile and createBRepEdgeProfile methods of the Component object to create\nan open profile.\nThis property returns null in the case where the feature is non-parametric.")
+
+
+ExtrudeFeature.taperAngle = property(ExtrudeFeature._get_taperAngle, doc="** This property is not officially supported and its behavior may change. **")
+
+
+ExtrudeFeature.operation = property(ExtrudeFeature._get_operation, ExtrudeFeature._set_operation, doc="Gets and sets the type of operation performed by the extrusion.")
+
+
+ExtrudeFeature.extentDefinition = property(ExtrudeFeature._get_extentDefinition, doc="** This property is not officially supported and its behavior may change. **")
+
+
+ExtrudeFeature.startFaces = property(ExtrudeFeature._get_startFaces, doc="Property that returns the set of faces that cap the end of the extrusion and are coincident\nwith the sketch plane. In the case of a symmetric extrusion, these faces are the ones on the\npositive normal side of the sketch plane. In the case where there are no start faces,\nthis property will return null.")
+
+
+ExtrudeFeature.endFaces = property(ExtrudeFeature._get_endFaces, doc="Property that returns the set of faces that cap the end of the extrusion, opposite the\nstart faces. In the case where there are no end faces, this property will return null.")
+
+
+ExtrudeFeature.sideFaces = property(ExtrudeFeature._get_sideFaces, doc="Property that returns all of the side faces (i.e. those running perpendicular to the extrude direction)\nof the feature.")
+
+
+ExtrudeFeature.nativeObject = property(ExtrudeFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+ExtrudeFeature.isSolid = property(ExtrudeFeature._get_isSolid, doc="Indicates if this feature was initially created as a solid or a surface.")
+
+
+ExtrudeFeature.startExtent = property(ExtrudeFeature._get_startExtent, ExtrudeFeature._set_startExtent, doc="Gets and sets the extent used to define the start of the extrusion. You can set this property\nwith either a ProfilePlaneStartDefinition, OffsetStartDefinition or a\nEntityStartDefinition object. You can get any of those objects by using the static create method on the class.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+ExtrudeFeature.extentOne = property(ExtrudeFeature._get_extentOne, ExtrudeFeature._set_extentOne, doc="Gets and sets the extent used for a single sided extrude or side one of a two-sided extrusion. Valid\ninputs are DistanceExtentDefinition, ToEntityExtentDefinition, and ThroughAllExtentDefinition object,\nwhich can be created statically using the create method on the classes.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+ExtrudeFeature.extentTwo = property(ExtrudeFeature._get_extentTwo, ExtrudeFeature._set_extentTwo, doc="Gets and sets the extent used for side two of the extrusion. If the extrude is a single sided extrude this\nproperty will return null and will fail if set. The hasTwoExtents property can be used to determine if\nthere are two sides or not. When setting this property, valid inputs are DistanceExtentDefinition,\nToEntityExtentDefinition, and ThroughAllExtentDefinition object, which can be created\nstatically using the create method on the classes.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+ExtrudeFeature.taperAngleOne = property(ExtrudeFeature._get_taperAngleOne, doc="Gets the parameter controlling the taper angle for a single sided extrusion or side one of a two-sided\nextrusion. To edit the angle, use properties on the parameter to change the value of the parameter.")
+
+
+ExtrudeFeature.taperAngleTwo = property(ExtrudeFeature._get_taperAngleTwo, doc="Gets the parameter controlling the taper angle for side two of a two-sided extrusion. if the extrusion is\nsingle-sided, this property will return null. The hasTwoExtents property can be used to determine if there\nare two sides or not. To edit the angle, use properties on the parameter to change the value of the parameter.")
+
+
+ExtrudeFeature.hasTwoExtents = property(ExtrudeFeature._get_hasTwoExtents, doc="Property that indicates if the extrusion is a single or two-sided extrusion. If false, the extentTwo\nand taperAngleTwo properties should not be used.")
+
+
+ExtrudeFeature.participantBodies = property(ExtrudeFeature._get_participantBodies, ExtrudeFeature._set_participantBodies, doc="Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.\nTo use this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+ExtrudeFeature.extentType = property(ExtrudeFeature._get_extentType, doc="Returns a value indicating how the extent is defined for this extrude.")
+
+
+ExtrudeFeature.symmetricExtent = property(ExtrudeFeature._get_symmetricExtent, doc="If the current extent of the feature is defined as a symmetric extent, this property\nreturns the SymmericExtentDefinition object that provides access to the information\ndefining the symmetric extent. If the current extent is not symmetric, this property\nreturns null. You can determine the type of extent by using the extentType property.\nTo change the extent of a feature to symmetric extent you can use the setSymmetricExtent\nmethod.")
+
+
+ExtrudeFeature.isThinExtrude = property(ExtrudeFeature._get_isThinExtrude, ExtrudeFeature._set_isThinExtrude, doc="Sets or returns whether the extrude is a thin extrude.\nSetting it as false will make it a regular extrude.")
+
+
+ExtrudeFeature.thinExtrudeWallLocationOne = property(ExtrudeFeature._get_thinExtrudeWallLocationOne, ExtrudeFeature._set_thinExtrudeWallLocationOne, doc="Gets and sets the wall location for a one sided thin extrude or side one of a two sided thin extrude")
+
+
+ExtrudeFeature.thinExtrudeWallLocationTwo = property(ExtrudeFeature._get_thinExtrudeWallLocationTwo, ExtrudeFeature._set_thinExtrudeWallLocationTwo, doc="Gets and sets the wall location for side two of a two sided thin extrude")
+
+
+ExtrudeFeature.thinExtrudeWallThicknessOne = property(ExtrudeFeature._get_thinExtrudeWallThicknessOne, doc="Gets and sets the wall thickness for a one sided thin extrude or side one of a two sided thin extrude")
+
+
+ExtrudeFeature.thinExtrudeWallThicknessTwo = property(ExtrudeFeature._get_thinExtrudeWallThicknessTwo, doc="Gets and sets the wall thickness for side two of a two sided thin extrude")
+
+
+ExtrudeFeature.cast = lambda arg: arg if isinstance(arg, ExtrudeFeature) else None

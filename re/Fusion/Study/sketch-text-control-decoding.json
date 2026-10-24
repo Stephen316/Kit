@@ -1,0 +1,1147 @@
+{
+  "scope": "Observed rectangle text flips, combined bold/italic, alignment codes and native spacing multiplier; source/rectangle/parameter validation reused from prior reader",
+  "fusion_version": "2705.1.30",
+  "capture_folder": "sketchtextcontrols-9318aff8ae89",
+  "capture_errors": [],
+  "validation": {
+    "new_captures": 8,
+    "prior_captures": 5,
+    "api_equalities": 143,
+    "all_passed": true,
+    "prior_default_outputs_exact": 5,
+    "malformed_guards": [
+      {
+        "case": "negative derived spacing remains unsupported",
+        "rejected": true,
+        "reason": "Unverified negative or non-finite rectangle text spacing"
+      },
+      {
+        "case": "nonfinite spacing",
+        "rejected": true,
+        "reason": "Unverified negative or non-finite rectangle text spacing"
+      },
+      {
+        "case": "unobserved horizontal alignment code",
+        "rejected": true,
+        "reason": "Unobserved rectangle text alignment or font weight"
+      },
+      {
+        "case": "unobserved style flag",
+        "rejected": true,
+        "reason": "Unobserved rectangle text formatting flags"
+      },
+      {
+        "case": "unobserved vertical flip value",
+        "rejected": true,
+        "reason": "Unobserved rectangle text layout controls"
+      }
+    ],
+    "syntax": true,
+    "main_entrypoint_control_matches": 13
+  },
+  "integration": {
+    "wrapper": "decode_sketch_text_controls(data, records, features)",
+    "callback": "decode_rectangle_text_controls(prefix25, flags7, tail183)",
+    "shared_hook": "decode_sketch_texts(data, records, features, *, controls_decoder=None)",
+    "default_behavior": "Original five strict outputs unchanged, callback opt-in only",
+    "source_ownership": "Shared reader validates text->sketch, controller->text+fourorderedlines+sketch, reciprocal bindings/modelparameters and source geometry. Controls helper does not duplicate or relax source/rectangle/binding validation."
+  },
+  "native_control_fields": {
+    "character_spacing": "prefix f64@1 multiplier1=0%,1.25=25%; percentage=(multiplier-1)*100, finite nonnegative derived values accepted; negative spacing unverified",
+    "horizontal_alignment": "flags u32@0 native1Left/API0,3Center/API1,2Right/API2",
+    "horizontal_flip": "flags byte@4 0/1 verified independently",
+    "italic": "flags byte@5 0/1 verified previously and in combined style3",
+    "vertical_alignment": "tail u32@0 native1Top/API0,3Middle/API1,2Bottom/API2",
+    "vertical_flip": "tail byte@4 0/1 verified independently",
+    "bold": "tail u32@5 fontweight400regular/700bold; combined700+italic1 matches APIstyle3",
+    "underline": "Requestedstyle4 and preaddinput.style4; created SketchText.style0; source text/controller bytes identical to plain. No native underline encoding established."
+  },
+  "certainty_limits": [
+    "Only captured control fields change; other prefix/style/layout bytes validated against known schema",
+    "Nonnegative spacing interpolation derives from multiplier semantics and0/25% endpoints; only0/25 actually captured",
+    "Independent fields are decoded, but arbitrary combined flips/alignments/spacing are not regenerated or geometry validated",
+    "Underline normalization observed in this API/font/build only; no general guarantee",
+    "Fixed/reference flags, rotation, along-path text and fit-on-path text remain separate unsupported scope"
+  ],
+  "samples": [
+    {
+      "file": "sketchtexts-a16af12c28bf/plain.f3d",
+      "sha256": "7e3e01883bb4765a7ba3ca38b5f8c5cb0628daae3741a2de91aea694255cab49",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 0,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 0,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/content_height.f3d",
+      "sha256": "8d0de552c0c6223e51d16114f72ecff050d6c5b5503cb7157b0af5d217ebe714",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "UCAD",
+        "height_cm": 0.8,
+        "font_name": "Arial",
+        "text_style": 0,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "UCAD",
+        "height_expression": "8 mm",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "UCAD",
+        "expression": "'UCAD'",
+        "fontName": "Arial",
+        "textStyle": 0,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/bold.f3d",
+      "sha256": "aec470dabcc4dacecf3a211c86716c87e486a4c7b5754ce1b9eb993be3374597",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 1,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": true,
+        "italic": false,
+        "native_font_weight": 700,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 1,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 1,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 1,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/italic.f3d",
+      "sha256": "1aec2f2e91e93b2e453e71ddef5ec843894d3f43806e5cd8fa686129c03fcf23",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 2,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": true,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 2,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 2,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 2,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtexts-a16af12c28bf/multiline.f3d",
+      "sha256": "845603f760986c0e8da45ce5e23b06cc5039e43a8f65a64533e3a2fc4f9e7606",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT\nUCAD",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 0,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT\nUCAD",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT\nUCAD",
+        "expression": "'KIT\nUCAD'",
+        "fontName": "Arial",
+        "textStyle": 0,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/horizontal_flip.f3d",
+      "sha256": "d1956e648bd86dcf1e0c2b9ae366779fb6017303463533afcd19216baab57a0d",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 0,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 0,
+        "isHorizontalFlip": true,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 0,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/vertical_flip.f3d",
+      "sha256": "9aefe36c3fb03167087f6a4e1bc43a48f7ab81517a8aa9071b6aa8994a19c83b",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 0,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": true,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": true,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 0,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": true
+      },
+      "actual_api_controls": {
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": true,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/bold_italic.f3d",
+      "sha256": "1db965b5ca4e03090f846e305c419ce92ea8919fe3bee249234bdaf4d89a22d8",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 3,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": true,
+        "italic": true,
+        "native_font_weight": 700,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 3,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 3,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 3,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/underline.f3d",
+      "sha256": "9c825d236a857e10eac4c67071103f38de106ec9f6bb29cba27313e52b794dad",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 0,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 4,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 4,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/center.f3d",
+      "sha256": "af9d6d3436e8b583bec9574ac1754d4a4c03c2d325c7a3c33e0d9ff5984e71d6",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 0,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 1,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 3,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 1,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 0,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 1,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/middle.f3d",
+      "sha256": "4a664e7c8a88ea48885ce1e7011c3333c24c8bf3653aa3da4f4b47095a5e5568",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 0,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 1,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 3,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 1,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 0,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 1,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/right_bottom.f3d",
+      "sha256": "057a7af29a29d8135dcfcd4f17ea5139faef2b03dee00bada7aaa53dbbdb9e99",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 0,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 2,
+          "vertical_alignment": 2,
+          "character_spacing_percent": 0.0,
+          "native_character_spacing_multiplier": 1.0,
+          "native_horizontal_alignment": 2,
+          "native_vertical_alignment": 2,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 2,
+        "vertical_alignment": 2,
+        "character_spacing_percent": 0.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 0,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 2,
+        "vertical_alignment": 2,
+        "character_spacing_percent": 0.0
+      }
+    },
+    {
+      "file": "sketchtextcontrols-9318aff8ae89/spacing.f3d",
+      "sha256": "c718ae801173d0cc8160d1a56244902c6b0a5bb67772c82483763f06f1c96101",
+      "checks": {
+        "text_style": true,
+        "is_horizontal_flip": true,
+        "is_vertical_flip": true,
+        "horizontal_alignment": true,
+        "vertical_alignment": true,
+        "character_spacing_percent": true,
+        "text": true,
+        "font": true,
+        "height": true,
+        "rectangle_endpoint_coordinates": true,
+        "underline_remains_unverified": true
+      },
+      "decoded": {
+        "object_id": 228,
+        "sketch_object_id": 202,
+        "sketch_feature_object_id": 207,
+        "text": "KIT",
+        "height_cm": 0.5,
+        "font_name": "Arial",
+        "text_style": 0,
+        "text_style_status": "Observed native weight and italic controls agree with API styles0/1/2/3; requested underline4 normalized to actual0 without a native contrast",
+        "bold": false,
+        "italic": false,
+        "native_font_weight": 400,
+        "underline": null,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "definition": {
+          "kind": "MultiLineTextDefinition",
+          "controller_object_id": 241,
+          "horizontal_alignment": 0,
+          "vertical_alignment": 0,
+          "character_spacing_percent": 25.0,
+          "native_character_spacing_multiplier": 1.25,
+          "native_horizontal_alignment": 1,
+          "native_vertical_alignment": 1,
+          "spacing_status": "Percentage derived from native multiplier: captured1->0%,1.25->25%; negative spacing unverified"
+        }
+      },
+      "requested": {
+        "text": "KIT",
+        "height_expression": "5 mm",
+        "font_name": "Arial",
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "layout": "MultiLineTextDefinition",
+        "corner_sketch_cm": [
+          1.0,
+          1.0,
+          0.0
+        ],
+        "diagonal_sketch_cm": [
+          9.0,
+          4.0,
+          0.0
+        ],
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 25.0
+      },
+      "actual_input": {
+        "getter_errors": [],
+        "text": "KIT",
+        "expression": "'KIT'",
+        "fontName": "Arial",
+        "textStyle": 0,
+        "isHorizontalFlip": false,
+        "isVerticalFlip": false
+      },
+      "actual_api_controls": {
+        "text_style": 0,
+        "is_horizontal_flip": false,
+        "is_vertical_flip": false,
+        "horizontal_alignment": 0,
+        "vertical_alignment": 0,
+        "character_spacing_percent": 25.0
+      }
+    }
+  ]
+}

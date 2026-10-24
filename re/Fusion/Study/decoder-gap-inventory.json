@@ -1,0 +1,588 @@
+{
+  "scope": "Diagnostic inventory of existing saved reference archives at baseline commit 4835282; not a full-format support percentage",
+  "baseline_commit": "4835282",
+  "archive_count": 559,
+  "decode_exceptions": [],
+  "read_duration_seconds": 11.861,
+  "counting_limits": [
+    "Counts are reported unresolved entries, not distinct unsupported features or bytes. One underlying issue can appear in several summaries.",
+    "Only top-level per-stream summary.unresolved lists were counted; nested feature/record coverage is outside this inventory.",
+    "Zero exceptions means all reference archives returned partial-decoder results, not full feature or format support."
+  ],
+  "groups": [
+    {
+      "summary": "body_placement",
+      "reason": "Typed ASM BODY identifier association or explicit component owner unresolved",
+      "count": 60,
+      "examples": [
+        {
+          "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+          "native_body_object_id": 354,
+          "reason": "Typed ASM BODY identifier association or explicit component owner unresolved"
+        },
+        {
+          "file": "boundaryfills-a0953038318b/new_middle_remove.f3d",
+          "native_body_object_id": 275,
+          "reason": "Typed ASM BODY identifier association or explicit component owner unresolved"
+        },
+        {
+          "file": "boundaryfills-a0953038318b/plane_first.f3d",
+          "native_body_object_id": 275,
+          "reason": "Typed ASM BODY identifier association or explicit component owner unresolved"
+        },
+        {
+          "file": "boundaryfills-a0953038318b/plane_first.f3d",
+          "native_body_object_id": 355,
+          "reason": "Typed ASM BODY identifier association or explicit component owner unresolved"
+        }
+      ]
+    },
+    {
+      "summary": "selection_context_recipes",
+      "reason": "Topology context typed reference missing, ambiguous or wrong class",
+      "count": 46,
+      "examples": [
+        {
+          "file": "edgemodes-52695761f185/chamfer_multiple.f3d",
+          "descriptor_object_id": 286,
+          "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "record_offset": 34728,
+          "reason": "Topology context typed reference missing, ambiguous or wrong class",
+          "additional_reason": "Geometry-only context cache has no supported explicit naming route; context semantics unresolved"
+        },
+        {
+          "file": "edgemodes-52695761f185/chamfer_multiple.f3d",
+          "descriptor_object_id": 298,
+          "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "record_offset": 36199,
+          "reason": "Topology context typed reference missing, ambiguous or wrong class",
+          "additional_reason": "Geometry-only context cache has no supported explicit naming route; context semantics unresolved"
+        },
+        {
+          "file": "edgemodes-52695761f185/fillet_curvature.f3d",
+          "descriptor_object_id": 287,
+          "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "record_offset": 34353,
+          "reason": "Topology context typed reference missing, ambiguous or wrong class",
+          "additional_reason": "Geometry-only context cache has no supported explicit naming route; context semantics unresolved"
+        },
+        {
+          "file": "edgemodes-87edbf67527b/chamfer_angle.f3d",
+          "descriptor_object_id": 286,
+          "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "record_offset": 34292,
+          "reason": "Topology context typed reference missing, ambiguous or wrong class",
+          "additional_reason": "Geometry-only context cache has no supported explicit naming route; context semantics unresolved"
+        }
+      ]
+    },
+    {
+      "summary": "selection_context_variants",
+      "reason": "Geometry-only context cache has no supported explicit naming route; context semantics unresolved",
+      "count": 46,
+      "examples": [
+        {
+          "file": "edgemodes-52695761f185/chamfer_multiple.f3d",
+          "descriptor_object_id": 286,
+          "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "record_offset": 34728,
+          "reason": "Geometry-only context cache has no supported explicit naming route; context semantics unresolved"
+        },
+        {
+          "file": "edgemodes-52695761f185/chamfer_multiple.f3d",
+          "descriptor_object_id": 298,
+          "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "record_offset": 36199,
+          "reason": "Geometry-only context cache has no supported explicit naming route; context semantics unresolved"
+        },
+        {
+          "file": "edgemodes-52695761f185/fillet_curvature.f3d",
+          "descriptor_object_id": 287,
+          "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "record_offset": 34353,
+          "reason": "Geometry-only context cache has no supported explicit naming route; context semantics unresolved"
+        },
+        {
+          "file": "edgemodes-87edbf67527b/chamfer_angle.f3d",
+          "descriptor_object_id": 286,
+          "class_guid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+          "record_offset": 34292,
+          "reason": "Geometry-only context cache has no supported explicit naming route; context semantics unresolved"
+        }
+      ]
+    },
+    {
+      "summary": "body_asm_identifiers",
+      "reason": "ASM BODY stored entity IDs are negative or ambiguous",
+      "count": 33,
+      "examples": [
+        {
+          "file": "planedefinitions-6cd0820a832e/tangent.f3d",
+          "mapping_record_object_id": 8,
+          "reason": "ASM BODY stored entity IDs are negative or ambiguous",
+          "ordinal_candidates_must_be_discarded": true
+        },
+        {
+          "file": "projectionfamilies-d987c50c2d73/surface_closest_line.f3d",
+          "mapping_record_object_id": 8,
+          "reason": "ASM BODY stored entity IDs are negative or ambiguous",
+          "ordinal_candidates_must_be_discarded": true
+        },
+        {
+          "file": "projectionfamilies-d987c50c2d73/surface_vector_line.f3d",
+          "mapping_record_object_id": 8,
+          "reason": "ASM BODY stored entity IDs are negative or ambiguous",
+          "ordinal_candidates_must_be_discarded": true
+        },
+        {
+          "file": "sketchsurfaceconstraints-5a2cd669cd19/line_on_face.f3d",
+          "mapping_record_object_id": 8,
+          "reason": "ASM BODY stored entity IDs are negative or ambiguous",
+          "ordinal_candidates_must_be_discarded": true
+        }
+      ]
+    },
+    {
+      "summary": "pattern_placements",
+      "reason": "Circular API getter matrix sets disagree with ordinary equally spaced rotation sets in captured full/partial/symmetric fixtures; transform semantics unresolved",
+      "count": 11,
+      "examples": [
+        {
+          "file": "circularmodes-45f859c1f1b6/body_full.f3d",
+          "feature_object_id": 282,
+          "kind": "CircularPattern",
+          "reason": "Circular API getter matrix sets disagree with ordinary equally spaced rotation sets in captured full/partial/symmetric fixtures; transform semantics unresolved",
+          "native_evidence": {
+            "control_record_object_id": 289,
+            "controller_payload_bytes": 187,
+            "native_element_records": [
+              {
+                "object_id": 310,
+                "stored_key_or_ordinal": 1,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 311,
+                "stored_key_or_ordinal": 2,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 312,
+                "stored_key_or_ordinal": 3,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 313,
+                "stored_key_or_ordinal": 4,
+                "payload_bytes": 17
+              }
+            ],
+            "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+          }
+        },
+        {
+          "file": "circularmodes-45f859c1f1b6/body_negative.f3d",
+          "feature_object_id": 282,
+          "kind": "CircularPattern",
+          "reason": "Circular API getter matrix sets disagree with ordinary equally spaced rotation sets in captured full/partial/symmetric fixtures; transform semantics unresolved",
+          "native_evidence": {
+            "control_record_object_id": 289,
+            "controller_payload_bytes": 187,
+            "native_element_records": [
+              {
+                "object_id": 310,
+                "stored_key_or_ordinal": 1,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 311,
+                "stored_key_or_ordinal": 2,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 312,
+                "stored_key_or_ordinal": 3,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 313,
+                "stored_key_or_ordinal": 4,
+                "payload_bytes": 17
+              }
+            ],
+            "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+          }
+        },
+        {
+          "file": "circularmodes-45f859c1f1b6/body_suppressed.f3d",
+          "feature_object_id": 282,
+          "kind": "CircularPattern",
+          "reason": "Circular API getter matrix sets disagree with ordinary equally spaced rotation sets in captured full/partial/symmetric fixtures; transform semantics unresolved",
+          "native_evidence": {
+            "control_record_object_id": 289,
+            "controller_payload_bytes": 191,
+            "native_element_records": [
+              {
+                "object_id": 310,
+                "stored_key_or_ordinal": 1,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 311,
+                "stored_key_or_ordinal": 2,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 312,
+                "stored_key_or_ordinal": 3,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 313,
+                "stored_key_or_ordinal": 4,
+                "payload_bytes": 17
+              }
+            ],
+            "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+          }
+        },
+        {
+          "file": "circularmodes-45f859c1f1b6/body_symmetric.f3d",
+          "feature_object_id": 282,
+          "kind": "CircularPattern",
+          "reason": "Circular API getter matrix sets disagree with ordinary equally spaced rotation sets in captured full/partial/symmetric fixtures; transform semantics unresolved",
+          "native_evidence": {
+            "control_record_object_id": 289,
+            "controller_payload_bytes": 214,
+            "native_element_records": [
+              {
+                "object_id": 310,
+                "stored_key_or_ordinal": 4,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 311,
+                "stored_key_or_ordinal": 2,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 312,
+                "stored_key_or_ordinal": 1,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 313,
+                "stored_key_or_ordinal": 3,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 314,
+                "stored_key_or_ordinal": 5,
+                "payload_bytes": 17
+              }
+            ],
+            "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+          }
+        }
+      ]
+    },
+    {
+      "summary": "body_asm_identifiers",
+      "reason": "Unsupported ASM mixed declared root kind or section",
+      "count": 6,
+      "examples": [
+        {
+          "file": "extents-f0f33a9a605f/from_plane.f3d",
+          "mapping_record_object_id": 8,
+          "reason": "Unsupported ASM mixed declared root kind or section",
+          "ordinal_candidates_must_be_discarded": true
+        },
+        {
+          "file": "extents-f0f33a9a605f/to_plane.f3d",
+          "mapping_record_object_id": 8,
+          "reason": "Unsupported ASM mixed declared root kind or section",
+          "ordinal_candidates_must_be_discarded": true
+        },
+        {
+          "file": "extents-f0f33a9a605f/to_plane_offset.f3d",
+          "mapping_record_object_id": 8,
+          "reason": "Unsupported ASM mixed declared root kind or section",
+          "ordinal_candidates_must_be_discarded": true
+        },
+        {
+          "file": "revolveto-b1d196f65c46/negative_plane.f3d",
+          "mapping_record_object_id": 8,
+          "reason": "Unsupported ASM mixed declared root kind or section",
+          "ordinal_candidates_must_be_discarded": true
+        }
+      ]
+    },
+    {
+      "summary": "tool_decoding",
+      "reason": "Unsupported Pipe variant; single path: Unsupported observed Pipe prefix/operation; extended sketch path: Populated Pipe selector layout requires separate provenance inspection; native edge closedness/fraction mapping unresolved",
+      "count": 4,
+      "examples": [
+        {
+          "file": "pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+          "object_id": 330,
+          "kind": "Pipe",
+          "reason": "Unsupported Pipe variant; single path: Unsupported observed Pipe prefix/operation; extended sketch path: Populated Pipe selector layout requires separate provenance inspection; native edge closedness/fraction mapping unresolved"
+        },
+        {
+          "file": "pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+          "object_id": 330,
+          "kind": "Pipe",
+          "reason": "Unsupported Pipe variant; single path: Unsupported observed Pipe prefix/operation; extended sketch path: Populated Pipe selector layout requires separate provenance inspection; native edge closedness/fraction mapping unresolved"
+        },
+        {
+          "file": "pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+          "object_id": 330,
+          "kind": "Pipe",
+          "reason": "Unsupported Pipe variant; single path: Unsupported observed Pipe prefix/operation; extended sketch path: Populated Pipe selector layout requires separate provenance inspection; native edge closedness/fraction mapping unresolved"
+        },
+        {
+          "file": "pipepaths-3d11bd427946/brep_edge_circular.f3d",
+          "object_id": 306,
+          "kind": "Pipe",
+          "reason": "Unsupported Pipe variant; single path: Unsupported observed Pipe prefix/operation; extended sketch path: Populated Pipe selector layout requires separate provenance inspection; native edge closedness/fraction mapping unresolved"
+        }
+      ]
+    },
+    {
+      "summary": "tool_decoding",
+      "reason": "Unsupported reference encoding",
+      "count": 3,
+      "examples": [
+        {
+          "file": "mirrorassemblydatum-65c867cc41d9/plane_xy_positive_offset.f3d",
+          "object_id": 242,
+          "kind": "Mirror",
+          "reason": "Unsupported reference encoding"
+        },
+        {
+          "file": "mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
+          "object_id": 242,
+          "kind": "Mirror",
+          "reason": "Unsupported reference encoding"
+        },
+        {
+          "file": "remainingbodyinputs-7b3357274e85/mirror_construction_plane.f3d",
+          "object_id": 236,
+          "kind": "Mirror",
+          "reason": "Unsupported reference encoding"
+        }
+      ]
+    },
+    {
+      "summary": "component_creations",
+      "reason": "Component creation typed reference missing, ambiguous or wrong class",
+      "count": 3,
+      "examples": [
+        {
+          "file": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+          "feature_object_id": 518,
+          "kind": "CreateComponent",
+          "reason": "Component creation typed reference missing, ambiguous or wrong class"
+        },
+        {
+          "file": "mirrorassemblydatum-700af16e9fc6/nested_occurrence_yz.f3d",
+          "feature_object_id": 518,
+          "kind": "CreateComponent",
+          "reason": "Component creation typed reference missing, ambiguous or wrong class"
+        },
+        {
+          "file": "remainingbodyinputs-7b3357274e85/mirror_occurrence.f3d",
+          "feature_object_id": 439,
+          "kind": "CreateComponent",
+          "reason": "Component creation typed reference missing, ambiguous or wrong class"
+        }
+      ]
+    },
+    {
+      "summary": "body_placement",
+      "reason": "Body component has no resolved assembly placement",
+      "count": 3,
+      "examples": [
+        {
+          "file": "timeline-expanded-2396e32f2574/expanded.f3d",
+          "native_body_object_id": 260,
+          "reason": "Body component has no resolved assembly placement"
+        },
+        {
+          "file": "timeline-expanded-2396e32f2574/expanded.f3d",
+          "native_body_object_id": 324,
+          "reason": "Body component has no resolved assembly placement"
+        },
+        {
+          "file": "timeline-expanded-2396e32f2574/expanded.f3d",
+          "native_body_object_id": 386,
+          "reason": "Body component has no resolved assembly placement"
+        }
+      ]
+    },
+    {
+      "summary": "plane_definitions",
+      "reason": "Unobserved plane backend/feature/cache method combination",
+      "count": 2,
+      "examples": [
+        {
+          "file": "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
+          "feature_object_id": 270,
+          "reason": "Unobserved plane backend/feature/cache method combination"
+        },
+        {
+          "file": "loftcompositeguides-8ea2ef593872/spline_centerline.f3d",
+          "feature_object_id": 303,
+          "reason": "Unobserved plane backend/feature/cache method combination"
+        }
+      ]
+    },
+    {
+      "summary": "body_asm_identifiers",
+      "reason": "ASM identifier association requires a complete token stream",
+      "count": 1,
+      "examples": [
+        {
+          "file": "boundaryfills-a0953038318b/plane_first.f3d",
+          "mapping_record_object_id": 8,
+          "reason": "ASM identifier association requires a complete token stream",
+          "ordinal_candidates_must_be_discarded": true
+        }
+      ]
+    },
+    {
+      "summary": "tool_decoding",
+      "reason": "Unsupported Pipe variant; single path: Unsupported Pipe section or parameter range; extended sketch path: Unsupported Pipe section or parameter range",
+      "count": 1,
+      "examples": [
+        {
+          "file": "pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+          "object_id": 315,
+          "kind": "Pipe",
+          "reason": "Unsupported Pipe variant; single path: Unsupported Pipe section or parameter range; extended sketch path: Unsupported Pipe section or parameter range"
+        }
+      ]
+    },
+    {
+      "summary": "tool_decoding",
+      "reason": "Unsupported Pipe variant; single path: Sketch-curve selection reference missing or ambiguous; extended sketch path: Composite PathPattern typed reference missing, ambiguous or wrong class",
+      "count": 1,
+      "examples": [
+        {
+          "file": "pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+          "object_id": 315,
+          "kind": "Pipe",
+          "reason": "Unsupported Pipe variant; single path: Sketch-curve selection reference missing or ambiguous; extended sketch path: Composite PathPattern typed reference missing, ambiguous or wrong class"
+        }
+      ]
+    },
+    {
+      "summary": "assembly_decoding",
+      "reason": "Invalid string extent",
+      "count": 1,
+      "examples": [
+        {
+          "file": "timeline-expanded-2396e32f2574/expanded.f3d",
+          "object_id": 57,
+          "reason": "Invalid string extent"
+        }
+      ]
+    },
+    {
+      "summary": "assembly_decoding",
+      "reason": "Unique document root occurrence is unresolved",
+      "count": 1,
+      "examples": [
+        {
+          "file": "timeline-expanded-2396e32f2574/expanded.f3d",
+          "reason": "Unique document root occurrence is unresolved"
+        }
+      ]
+    },
+    {
+      "summary": "pattern_placements",
+      "reason": "Active rectangular direction lacks a decoded explicit unit vector",
+      "count": 1,
+      "examples": [
+        {
+          "file": "tools-fda3948848f4/RectangularPattern.f3d",
+          "feature_object_id": 282,
+          "kind": "RectangularPattern",
+          "reason": "Active rectangular direction lacks a decoded explicit unit vector",
+          "native_evidence": {
+            "control_record_object_id": 289,
+            "controller_payload_bytes": 412,
+            "native_element_records": [
+              {
+                "object_id": 316,
+                "stored_key_or_ordinal": 1,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 317,
+                "stored_key_or_ordinal": 3,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 318,
+                "stored_key_or_ordinal": 6,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 319,
+                "stored_key_or_ordinal": 2,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 320,
+                "stored_key_or_ordinal": 5,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 321,
+                "stored_key_or_ordinal": 9,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 322,
+                "stored_key_or_ordinal": 4,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 323,
+                "stored_key_or_ordinal": 8,
+                "payload_bytes": 17
+              },
+              {
+                "object_id": 324,
+                "stored_key_or_ordinal": 13,
+                "payload_bytes": 17
+              }
+            ],
+            "native_matrix_evidence": "Bounded element records contain only header, key/ordinal and controller reference; validated controller schemas expose no per-element matrices. Other cache records are outside this claim."
+          }
+        }
+      ]
+    }
+  ],
+  "focused_recoveries_after_snapshot": [
+    {
+      "summary": "plane_definitions",
+      "baseline_reason": "Unobserved plane backend/feature/cache method combination",
+      "verified_records_recovered": 2,
+      "evidence_report": "path-plane-decoding.json"
+    },
+    {
+      "summary": "assembly_decoding",
+      "verified_archives_recovered": 1,
+      "baseline_diagnostics_resolved": 2,
+      "evidence_report": "occurrence-gate-attribute-decoding.json"
+    },
+    {
+      "summary": "body_placement",
+      "baseline_reason": "Body component has no resolved assembly placement",
+      "verified_records_recovered": 3,
+      "evidence_report": "occurrence-gate-attribute-decoding.json"
+    }
+  ]
+}

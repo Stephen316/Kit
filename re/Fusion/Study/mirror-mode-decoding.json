@@ -1,0 +1,664 @@
+{
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "mirrorfeatures-1ffa1b15c612/feature_optimized.f3d",
+      "checks": {
+        "stored_compute_code_matches_actual_getter": true,
+        "combine_matches_actual": true,
+        "tolerance_matches_actual_getter_not_request": true,
+        "input_count_matches_actual": true,
+        "active_compute_is_explicitly_decoded": true,
+        "source_feature_types_match_actual": true,
+        "ordered_source_feature_names_match_actual": true,
+        "plane_kind_matches_actual": true,
+        "plane_origin_normal_match_actual": true
+      },
+      "decoded": {
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "plane_selection_record_object_id": 318,
+        "plane": {
+          "entity": {
+            "kind": "ConstructionPlane",
+            "name": "YZ",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              -0.0,
+              1.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "object_id": 44,
+            "origin_container_object_id": 37,
+            "scope": "Native component origin entity; occurrence context unresolved"
+          },
+          "selection_object_id": 318,
+          "descriptor_object_id": 321,
+          "terminal_object_id": 324,
+          "namespace_text": "5725cd04-abdb-483a-901f-0e56b9daa325",
+          "entity_guid_text": "ef83b717-3d63-4eeb-a342-3aed82f66529",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "control_record_object_id": 307,
+        "input_selection_status": "Explicit owned single-Extrude feature input decoded; feature regeneration not applied",
+        "input_kind": "Feature",
+        "input_count": 1,
+        "input_feature_count": 1,
+        "input_body_count": 0,
+        "input_face_count": 0,
+        "input_features": [
+          {
+            "kind": "Feature",
+            "descriptor_object_id": 311,
+            "association_record_object_id": 335,
+            "terminal_object_id": 314,
+            "source_feature_object_id": 243,
+            "source_feature_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+            "source_feature_kind": "Extrude",
+            "source_feature_name": "MirrorSeedExtrude",
+            "namespace_text": "5725cd04-abdb-483a-901f-0e56b9daa325",
+            "entity_guid_text": "ef83b717-3d63-4eeb-a342-3aed82f66529",
+            "association": "Owned collection/proxy agree on descriptor; bounded typed leaf explicitly stores native source feature ID"
+          }
+        ],
+        "input_selections": [
+          {
+            "kind": "Feature",
+            "descriptor_object_id": 311,
+            "association_record_object_id": 335,
+            "terminal_object_id": 314,
+            "source_feature_object_id": 243,
+            "source_feature_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+            "source_feature_kind": "Extrude",
+            "source_feature_name": "MirrorSeedExtrude",
+            "namespace_text": "5725cd04-abdb-483a-901f-0e56b9daa325",
+            "entity_guid_text": "ef83b717-3d63-4eeb-a342-3aed82f66529",
+            "association": "Owned collection/proxy agree on descriptor; bounded typed leaf explicitly stores native source feature ID"
+          }
+        ],
+        "input_entity_collection_object_id": 304,
+        "input_selection_record_object_ids": [
+          308
+        ],
+        "pattern_entity_type": "Features",
+        "pattern_entity_type_code": 1,
+        "pattern_compute_option_code": 0,
+        "pattern_compute_option": "Optimized",
+        "compute_applies_to_feature_inputs": true,
+        "compute_scope": "Native control uint32 at37 matches actual Optimized/Identical/Adjust feature-input getters; stored body-input value retained with inactive compute semantics"
+      },
+      "actual_settings": {
+        "compute_option": 0,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "health_state": 0,
+        "warning": ""
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "MirrorSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvZGJMQAeFVA2iAAAAA==",
+          "timeline_index": 1,
+          "parent_component_name": "(Unsaved)",
+          "source_feature_bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "MirrorSeedBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvZG5KQDo4x70iAAAAA==",
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  2.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_mirror_plane": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrjqWZbVtz2sJsjzhe28tVgVqMJIwdhMITXNwjjJ3NBc1zjFzFjXJDU1STfR2MRI1zgxNcXCKM3MzNTIEqwWaAYDGgDbZ6AAtg5kvYkJADk/bwqHAAAA",
+        "name": "YZ",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "source_and_result_scope": "Actual Feature.bodies includes input and mirrored bodies in these captures; no direct result-body count/topology association inferred from geometry",
+      "main_reader_output_exact": true
+    },
+    {
+      "archive": "mirrorfeatures-1ffa1b15c612/feature_identical.f3d",
+      "checks": {
+        "stored_compute_code_matches_actual_getter": true,
+        "combine_matches_actual": true,
+        "tolerance_matches_actual_getter_not_request": true,
+        "input_count_matches_actual": true,
+        "active_compute_is_explicitly_decoded": true,
+        "source_feature_types_match_actual": true,
+        "ordered_source_feature_names_match_actual": true,
+        "plane_kind_matches_actual": true,
+        "plane_origin_normal_match_actual": true
+      },
+      "decoded": {
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "plane_selection_record_object_id": 318,
+        "plane": {
+          "entity": {
+            "kind": "ConstructionPlane",
+            "name": "YZ",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              -0.0,
+              1.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "object_id": 44,
+            "origin_container_object_id": 37,
+            "scope": "Native component origin entity; occurrence context unresolved"
+          },
+          "selection_object_id": 318,
+          "descriptor_object_id": 321,
+          "terminal_object_id": 324,
+          "namespace_text": "572ff949-fa36-4b5c-9735-5d839cf2c6d5",
+          "entity_guid_text": "5dad5650-dd6a-4e6b-a4fd-1d2272a792c0",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "control_record_object_id": 307,
+        "input_selection_status": "Explicit owned single-Extrude feature input decoded; feature regeneration not applied",
+        "input_kind": "Feature",
+        "input_count": 1,
+        "input_feature_count": 1,
+        "input_body_count": 0,
+        "input_face_count": 0,
+        "input_features": [
+          {
+            "kind": "Feature",
+            "descriptor_object_id": 311,
+            "association_record_object_id": 335,
+            "terminal_object_id": 314,
+            "source_feature_object_id": 243,
+            "source_feature_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+            "source_feature_kind": "Extrude",
+            "source_feature_name": "MirrorSeedExtrude",
+            "namespace_text": "572ff949-fa36-4b5c-9735-5d839cf2c6d5",
+            "entity_guid_text": "5dad5650-dd6a-4e6b-a4fd-1d2272a792c0",
+            "association": "Owned collection/proxy agree on descriptor; bounded typed leaf explicitly stores native source feature ID"
+          }
+        ],
+        "input_selections": [
+          {
+            "kind": "Feature",
+            "descriptor_object_id": 311,
+            "association_record_object_id": 335,
+            "terminal_object_id": 314,
+            "source_feature_object_id": 243,
+            "source_feature_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+            "source_feature_kind": "Extrude",
+            "source_feature_name": "MirrorSeedExtrude",
+            "namespace_text": "572ff949-fa36-4b5c-9735-5d839cf2c6d5",
+            "entity_guid_text": "5dad5650-dd6a-4e6b-a4fd-1d2272a792c0",
+            "association": "Owned collection/proxy agree on descriptor; bounded typed leaf explicitly stores native source feature ID"
+          }
+        ],
+        "input_entity_collection_object_id": 304,
+        "input_selection_record_object_ids": [
+          308
+        ],
+        "pattern_entity_type": "Features",
+        "pattern_entity_type_code": 1,
+        "pattern_compute_option_code": 1,
+        "pattern_compute_option": "Identical",
+        "compute_applies_to_feature_inputs": true,
+        "compute_scope": "Native control uint32 at37 matches actual Optimized/Identical/Adjust feature-input getters; stored body-input value retained with inactive compute semantics"
+      },
+      "actual_settings": {
+        "compute_option": 1,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "health_state": 0,
+        "warning": ""
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "MirrorSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvZGJMQAOyVifiAAAAA==",
+          "timeline_index": 1,
+          "parent_component_name": "(Unsaved)",
+          "source_feature_bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "MirrorSeedBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvZG5KQD4PxZdiAAAAA==",
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  2.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_mirror_plane": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQrj+T89fZt4x001jm+d8OnYVqMJIwdhMwTQlMcXUzNRANyXFLFHXJNUsSTfRJC1F1zDFyMjcKNHc0ijZAKwWaAYDGgDbZ6AAtg5kvYkJANV8Hb6HAAAA",
+        "name": "YZ",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "source_and_result_scope": "Actual Feature.bodies includes input and mirrored bodies in these captures; no direct result-body count/topology association inferred from geometry",
+      "main_reader_output_exact": true
+    },
+    {
+      "archive": "mirrorfeatures-1ffa1b15c612/feature_adjust.f3d",
+      "checks": {
+        "stored_compute_code_matches_actual_getter": true,
+        "combine_matches_actual": true,
+        "tolerance_matches_actual_getter_not_request": true,
+        "input_count_matches_actual": true,
+        "active_compute_is_explicitly_decoded": true,
+        "source_feature_types_match_actual": true,
+        "ordered_source_feature_names_match_actual": true,
+        "plane_kind_matches_actual": true,
+        "plane_origin_normal_match_actual": true
+      },
+      "decoded": {
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "plane_selection_record_object_id": 318,
+        "plane": {
+          "entity": {
+            "kind": "ConstructionPlane",
+            "name": "YZ",
+            "origin_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "x_axis": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "y_axis": [
+              0.0,
+              -0.0,
+              1.0
+            ],
+            "normal": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "object_id": 44,
+            "origin_container_object_id": 37,
+            "scope": "Native component origin entity; occurrence context unresolved"
+          },
+          "selection_object_id": 318,
+          "descriptor_object_id": 321,
+          "terminal_object_id": 324,
+          "namespace_text": "a78c1414-b6c4-4e9f-8994-6263cd994837",
+          "entity_guid_text": "0894edc6-302b-4f29-a9ec-cdf0e309ef4a",
+          "association": "Explicit selection -> descriptor -> native object reference chain"
+        },
+        "control_record_object_id": 307,
+        "input_selection_status": "Explicit owned single-Extrude feature input decoded; feature regeneration not applied",
+        "input_kind": "Feature",
+        "input_count": 1,
+        "input_feature_count": 1,
+        "input_body_count": 0,
+        "input_face_count": 0,
+        "input_features": [
+          {
+            "kind": "Feature",
+            "descriptor_object_id": 311,
+            "association_record_object_id": 335,
+            "terminal_object_id": 314,
+            "source_feature_object_id": 243,
+            "source_feature_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+            "source_feature_kind": "Extrude",
+            "source_feature_name": "MirrorSeedExtrude",
+            "namespace_text": "a78c1414-b6c4-4e9f-8994-6263cd994837",
+            "entity_guid_text": "0894edc6-302b-4f29-a9ec-cdf0e309ef4a",
+            "association": "Owned collection/proxy agree on descriptor; bounded typed leaf explicitly stores native source feature ID"
+          }
+        ],
+        "input_selections": [
+          {
+            "kind": "Feature",
+            "descriptor_object_id": 311,
+            "association_record_object_id": 335,
+            "terminal_object_id": 314,
+            "source_feature_object_id": 243,
+            "source_feature_class_guid": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+            "source_feature_kind": "Extrude",
+            "source_feature_name": "MirrorSeedExtrude",
+            "namespace_text": "a78c1414-b6c4-4e9f-8994-6263cd994837",
+            "entity_guid_text": "0894edc6-302b-4f29-a9ec-cdf0e309ef4a",
+            "association": "Owned collection/proxy agree on descriptor; bounded typed leaf explicitly stores native source feature ID"
+          }
+        ],
+        "input_entity_collection_object_id": 304,
+        "input_selection_record_object_ids": [
+          308
+        ],
+        "pattern_entity_type": "Features",
+        "pattern_entity_type_code": 1,
+        "pattern_compute_option_code": 2,
+        "pattern_compute_option": "Adjust",
+        "compute_applies_to_feature_inputs": true,
+        "compute_scope": "Native control uint32 at37 matches actual Optimized/Identical/Adjust feature-input getters; stored body-input value retained with inactive compute semantics"
+      },
+      "actual_settings": {
+        "compute_option": 2,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "health_state": 0,
+        "warning": ""
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::ExtrudeFeature",
+          "name": "MirrorSeedExtrude",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvZGJMQC+mjF3iAAAAA==",
+          "timeline_index": 1,
+          "parent_component_name": "(Unsaved)",
+          "source_feature_bodies": [
+            {
+              "entity_type": "adsk::fusion::BRepBody",
+              "name": "MirrorSeedBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvZG5KQBIbH+1iAAAAA==",
+              "is_solid": true,
+              "bounding_box_cm": {
+                "min": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "max": [
+                  4.0,
+                  4.0,
+                  2.0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "actual_mirror_plane": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwvIeEZFtR/zmd05JSj4708McqMJIwdhMwcDC0iQ1JdlM19jAKEnXJM3IUjfRMjVZNzklzSDV2MAyNc0kEawWaAYDGgDbZ6AAtg5kvYkJAJL/mm+HAAAA",
+        "name": "YZ",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "source_and_result_scope": "Actual Feature.bodies includes input and mirrored bodies in these captures; no direct result-body count/topology association inferred from geometry",
+      "main_reader_output_exact": true
+    },
+    {
+      "archive": "mirrorfeatures-1ffa1b15c612/body_brep_face_plane.f3d",
+      "checks": {
+        "stored_compute_code_matches_actual_getter": true,
+        "combine_matches_actual": true,
+        "tolerance_matches_actual_getter_not_request": true,
+        "input_count_matches_actual": true,
+        "body_compute_is_inactive": true,
+        "input_body_names_match_actual": true,
+        "actual_plane_is_face": true,
+        "face_plane_support_body_matches_actual": true,
+        "native_plane_equation_remains_unknown": true
+      },
+      "decoded": {
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "plane_selection_record_object_id": 395,
+        "plane": null,
+        "control_record_object_id": 384,
+        "input_selection_status": "Explicit input field/counts and owned body descriptors or face recipes; persistent topology unresolved",
+        "plane_selection_status": "Owned BRepFace recipe/body provenance decoded; plane equation unresolved",
+        "input_selections": [
+          {
+            "kind": "Body",
+            "descriptor_object_id": 388,
+            "native_body_object_id": 275,
+            "body_anchor_object_id": 281,
+            "source_owner_object_id": 243,
+            "identity_scope": "Explicit historical native body; result lifecycle and ASM topology remain separate",
+            "association_record_object_id": 411
+          }
+        ],
+        "input_count": 1,
+        "input_body_count": 1,
+        "input_face_count": 0,
+        "native_input_body_object_ids": [
+          275
+        ],
+        "input_selection_record_object_ids": [],
+        "input_entity_collection_object_id": 381,
+        "input_kind": "Body",
+        "input_feature_count": 0,
+        "pattern_entity_type": "Bodies",
+        "pattern_entity_type_code": 2,
+        "pattern_compute_option_code": 2,
+        "pattern_compute_option": null,
+        "compute_applies_to_feature_inputs": false,
+        "compute_scope": "Native control uint32 at37 matches actual Optimized/Identical/Adjust feature-input getters; stored body-input value retained with inactive compute semantics",
+        "plane_source": {
+          "kind": "BRepFaceRecipe",
+          "descriptor_object_id": 398,
+          "body_anchor_object_id": 358,
+          "native_body_object_id": 354,
+          "source_owner_object_id": 322,
+          "namespace_text": "8ba7a432-0668-4c5c-92a8-b6113cef6945",
+          "entity_guid_text": "12e79956-5cb1-416c-b85d-b89dfa869745",
+          "context_record_object_ids": [
+            408
+          ],
+          "recipe": {
+            "object_id": 401,
+            "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+            "record_offset": 48958,
+            "stored_header_fields": [
+              1,
+              3
+            ],
+            "name_table": [
+              {
+                "table_index": 0,
+                "terms": [
+                  {
+                    "name": "2",
+                    "stored_index": 0,
+                    "stored_reference_tag": 1,
+                    "stored_reference_value": 304
+                  }
+                ]
+              }
+            ],
+            "payload_kind": "face_recipe_data",
+            "payload_relative_offset": 63,
+            "payload_length": 8,
+            "payload_hex": "00000000ffffffff",
+            "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved",
+            "uninterpreted_payload_int32": [
+              0,
+              -1
+            ]
+          },
+          "identity_scope": "Explicit native historical body anchor and owned face recipe; exact ASM face unresolved",
+          "context_scope": "Context identities retained; no occurrence transform inferred",
+          "selection_object_id": 395,
+          "plane_geometry": null,
+          "geometry_status": "Owned face recipe and historical support body; native plane origin/normal and exact persistent face identity unresolved"
+        }
+      },
+      "actual_settings": {
+        "compute_option": 2,
+        "is_combine": false,
+        "stitch_tolerance_cm": 0.0001,
+        "health_state": 0,
+        "warning": ""
+      },
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorSeedBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1huZmwIAc1iJCYgAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              1.0,
+              1.0,
+              0.0
+            ],
+            "max": [
+              4.0,
+              4.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "actual_mirror_plane": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RQUrEMBSGXbn3Bu8CgeTlJW3A1cDMyrUroaR5Kc5mFBlP4c4zCHoCr+UVzMtgsXUIltD8/O/L/4dWA4IB66ELkazpkspjZEWakxp7HZXDGEIamSfDoAsrvBaFfVEGSBwPL+9veHl/c/f68Xl1/bXfFgIl12DuQnBeuTQaRcZLruPyCjzF3oeOXGVLxsXqqX0aah2BBRcMyFbcehEZW011F7k2/NqgteF+GRrGh+cDZx6mmPLwlNP+MQ8cjxE2O4Ad9AVRErItsojTwjqpckYQbk+IrR7+DJeUVC44uxjPB4Q7U2lblY2oBUd/ONuopFZlI+r815g5alRiq7IR9c8f8A0z2s7NAAMAAA==",
+        "source_body": {
+          "entity_type": "adsk::fusion::BRepBody",
+          "name": "MirrorPlaneSupportBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQvfyJUZsGT4xk1ZsE7R5n+kKVGGkYGwGVJZqbmlpaqZrmpxkqGtiaJasm2RhmgIkLFPSEi3MLM1NTMFqgWYwoAGwfQYKYOtA1hubmgAAUGB6TYgAAAA=",
+          "is_solid": true,
+          "bounding_box_cm": {
+            "min": [
+              -4.0,
+              -4.0,
+              0.0
+            ],
+            "max": [
+              -2.0,
+              -2.0,
+              3.0
+            ]
+          }
+        },
+        "surface_type": 0,
+        "point_on_face_cm": [
+          -3.0,
+          -3.0,
+          3.0
+        ],
+        "origin_cm": [
+          -3.0,
+          -3.0,
+          3.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "source_and_result_scope": "Actual Feature.bodies includes input and mirrored bodies in these captures; no direct result-body count/topology association inferred from geometry",
+      "main_reader_output_exact": true
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Unsupported active compute enum",
+      "passed": true,
+      "reason": "Unobserved Mirror compute or input entity code"
+    },
+    {
+      "check": "Feature descriptor wrong owner",
+      "passed": true,
+      "reason": "Mirror feature descriptor count/owner unsupported"
+    },
+    {
+      "check": "Explicit source feature absent",
+      "passed": true,
+      "reason": "Mirror typed reference missing, ambiguous or wrong class"
+    },
+    {
+      "check": "Face-plane descriptor wrong owner",
+      "passed": true,
+      "reason": "Mirror plane descriptor count/owner unsupported"
+    }
+  ],
+  "interface": "decode_mirror_modes(data,records,body,feature,known,features)",
+  "validation_command": "python3 decode_mirror_modes.py --validate --zstd-library <local libzstd path>",
+  "integration": "Call for Mirror instead of base body-tool parser, or fallback to base for unobserved combinations. Body-tool selection pass must skip Mirror input_kind='Feature' already resolved here.",
+  "limitations": [
+    "Active compute enum/input-kind fields are independently contrasted; only one Extrude feature input and captured body selections supported.",
+    "Face-plane provenance does not establish native plane equation or persistent ASM face identity; plane geometry remains unresolved.",
+    "Body-input compute getter is captured but does not enable active feature-compute semantics.",
+    "Generator requested stitch tolerance0.001cm, but all actual getters and native bindings report0.0001cm; decoder validates actual getter agreement.",
+    "No mirrored result geometry regeneration, face topology reconstruction, occurrence inputs or general feature inputs solved."
+  ]
+}

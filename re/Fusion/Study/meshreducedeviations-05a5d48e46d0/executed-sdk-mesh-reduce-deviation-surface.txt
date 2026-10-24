@@ -1,0 +1,643 @@
+class MeshReduceMethodTypes(object):
+    r"""
+    ** This enum is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Specify the reduce method for the mesh.
+
+    Attributes:
+        AdaptiveReduceType: Creates smaller(larger) faces in areas of high (low) detail.
+        UniformReduceType: Creates faces of similar size in all areas.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    AdaptiveReduceType = _fusion.MeshReduceMethodTypes_AdaptiveReduceType
+    UniformReduceType = _fusion.MeshReduceMethodTypes_UniformReduceType
+
+    def __init__(self):
+        _fusion.MeshReduceMethodTypes_swiginit(self, _fusion.new_MeshReduceMethodTypes())
+    __swig_destroy__ = _fusion.delete_MeshReduceMethodTypes
+
+# Register MeshReduceMethodTypes in _fusion:
+_fusion.MeshReduceMethodTypes_swigregister(MeshReduceMethodTypes)
+
+
+class MeshReduceTargetTypes(object):
+    r"""
+    ** This enum is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Specify what the target criteria for the reduction should be.
+
+    Attributes:
+        MaximumDeviationMeshReduceTargetType: Reduces mesh by merging faces within a maximum deviation from the original mesh shape. If this
+            criteria type is used, the reduce method type is ignored and the adaptive method is always
+            applied.
+        ProportionMeshReduceTargetType: Reduces mesh to a given proportion of the number of faces on the original mesh.
+        FaceCountMeshReduceTargetType: Reduces mesh to a given specific number of faces.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    MaximumDeviationMeshReduceTargetType = _fusion.MeshReduceTargetTypes_MaximumDeviationMeshReduceTargetType
+    ProportionMeshReduceTargetType = _fusion.MeshReduceTargetTypes_ProportionMeshReduceTargetType
+    FaceCountMeshReduceTargetType = _fusion.MeshReduceTargetTypes_FaceCountMeshReduceTargetType
+
+    def __init__(self):
+        _fusion.MeshReduceTargetTypes_swiginit(self, _fusion.new_MeshReduceTargetTypes())
+    __swig_destroy__ = _fusion.delete_MeshReduceTargetTypes
+
+# Register MeshReduceTargetTypes in _fusion:
+_fusion.MeshReduceTargetTypes_swigregister(MeshReduceTargetTypes)
+
+
+class MeshReduceFeatureInput(Base):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    This class defines the methods and properties that pertain to the definition of a mesh reduce
+    feature.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshReduceFeatureInput *":
+        return _fusion.MeshReduceFeatureInput___deref__(self)
+
+    def __eq__(self, rhs: "MeshReduceFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshReduceFeatureInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshReduceFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshReduceFeatureInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshReduceFeatureInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshReduceFeatureInput_classType()
+    __swig_destroy__ = _fusion.delete_MeshReduceFeatureInput
+
+    def _get_mesh(self) -> "adsk.core.Base":
+        r"""Gets and sets the input mesh body."""
+        return _fusion.MeshReduceFeatureInput__get_mesh(self)
+
+    def _set_mesh(self, value: "Base") -> "bool":
+        r"""Gets and sets the input mesh body."""
+        return _fusion.MeshReduceFeatureInput__set_mesh(self, value)
+
+    def _get_meshReduceMethodType(self) -> "adsk.fusion.MeshReduceMethodTypes":
+        r"""Gets and sets the type of mesh reduce, default value is AdaptiveReduceType."""
+        return _fusion.MeshReduceFeatureInput__get_meshReduceMethodType(self)
+
+    def _set_meshReduceMethodType(self, value: "MeshReduceMethodTypes") -> "bool":
+        r"""Gets and sets the type of mesh reduce, default value is AdaptiveReduceType."""
+        return _fusion.MeshReduceFeatureInput__set_meshReduceMethodType(self, value)
+
+    def _get_meshReduceTargetType(self) -> "adsk.fusion.MeshReduceTargetTypes":
+        r"""Gets and sets the target criteria for the reduction, default value is MaximumDeviationMeshReduceTargetType."""
+        return _fusion.MeshReduceFeatureInput__get_meshReduceTargetType(self)
+
+    def _set_meshReduceTargetType(self, value: "MeshReduceTargetTypes") -> "bool":
+        r"""Gets and sets the target criteria for the reduction, default value is MaximumDeviationMeshReduceTargetType."""
+        return _fusion.MeshReduceFeatureInput__set_meshReduceTargetType(self, value)
+
+    def _get_maximumDeviation(self) -> "adsk.core.ValueInput":
+        r"""
+        Controls the maximum deviation of the reduced mesh to the original mesh.
+        The default value is 0.
+        Only valid if meshReduceTargetType is MaximumDeviationMeshReduceTargetType.
+        """
+        return _fusion.MeshReduceFeatureInput__get_maximumDeviation(self)
+
+    def _set_maximumDeviation(self, value: "ValueInput") -> "bool":
+        r"""
+        Controls the maximum deviation of the reduced mesh to the original mesh.
+        The default value is 0.
+        Only valid if meshReduceTargetType is MaximumDeviationMeshReduceTargetType.
+        """
+        return _fusion.MeshReduceFeatureInput__set_maximumDeviation(self, value)
+
+    def _get_proportion(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets and sets the proportion of number of faces of the reduced mesh to the number of
+        faces of original mesh as a target for the reduction. The value can range between 0 and 100 percent.
+        Only valid if meshReduceTargetType is ProportionMeshReduceTargetType.
+        """
+        return _fusion.MeshReduceFeatureInput__get_proportion(self)
+
+    def _set_proportion(self, value: "ValueInput") -> "bool":
+        r"""
+        Gets and sets the proportion of number of faces of the reduced mesh to the number of
+        faces of original mesh as a target for the reduction. The value can range between 0 and 100 percent.
+        Only valid if meshReduceTargetType is ProportionMeshReduceTargetType.
+        """
+        return _fusion.MeshReduceFeatureInput__set_proportion(self, value)
+
+    def _get_facecount(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets and sets the target face count for the reduced mesh as a target for the reduction.
+        Only valid if meshReduceTargetType is FaceCountMeshReduceTargetType.
+        """
+        return _fusion.MeshReduceFeatureInput__get_facecount(self)
+
+    def _set_facecount(self, value: "ValueInput") -> "bool":
+        r"""
+        Gets and sets the target face count for the reduced mesh as a target for the reduction.
+        Only valid if meshReduceTargetType is FaceCountMeshReduceTargetType.
+        """
+        return _fusion.MeshReduceFeatureInput__set_facecount(self, value)
+
+    def _get_targetBaseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.MeshReduceFeatureInput__get_targetBaseFeature(self)
+
+    def _set_targetBaseFeature(self, value: "BaseFeature") -> "bool":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.MeshReduceFeatureInput__set_targetBaseFeature(self, value)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshReduceFeatureInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshReduceFeatureInput__get_isValid(self)
+
+# Register MeshReduceFeatureInput in _fusion:
+_fusion.MeshReduceFeatureInput_swigregister(MeshReduceFeatureInput)
+
+def MeshReduceFeatureInput_classType() -> "str":
+    return _fusion.MeshReduceFeatureInput_classType()
+
+
+MeshReduceFeatureInput.mesh = property(MeshReduceFeatureInput._get_mesh, MeshReduceFeatureInput._set_mesh, doc="Gets and sets the input mesh body.")
+
+
+MeshReduceFeatureInput.meshReduceMethodType = property(MeshReduceFeatureInput._get_meshReduceMethodType, MeshReduceFeatureInput._set_meshReduceMethodType, doc="Gets and sets the type of mesh reduce, default value is AdaptiveReduceType.")
+
+
+MeshReduceFeatureInput.meshReduceTargetType = property(MeshReduceFeatureInput._get_meshReduceTargetType, MeshReduceFeatureInput._set_meshReduceTargetType, doc="Gets and sets the target criteria for the reduction, default value is MaximumDeviationMeshReduceTargetType.")
+
+
+MeshReduceFeatureInput.maximumDeviation = property(MeshReduceFeatureInput._get_maximumDeviation, MeshReduceFeatureInput._set_maximumDeviation, doc="Controls the maximum deviation of the reduced mesh to the original mesh.\nThe default value is 0.\nOnly valid if meshReduceTargetType is MaximumDeviationMeshReduceTargetType.")
+
+
+MeshReduceFeatureInput.proportion = property(MeshReduceFeatureInput._get_proportion, MeshReduceFeatureInput._set_proportion, doc="Gets and sets the proportion of number of faces of the reduced mesh to the number of\nfaces of original mesh as a target for the reduction. The value can range between 0 and 100 percent.\nOnly valid if meshReduceTargetType is ProportionMeshReduceTargetType.")
+
+
+MeshReduceFeatureInput.facecount = property(MeshReduceFeatureInput._get_facecount, MeshReduceFeatureInput._set_facecount, doc="Gets and sets the target face count for the reduced mesh as a target for the reduction.\nOnly valid if meshReduceTargetType is FaceCountMeshReduceTargetType.")
+
+
+MeshReduceFeatureInput.targetBaseFeature = property(MeshReduceFeatureInput._get_targetBaseFeature, MeshReduceFeatureInput._set_targetBaseFeature, doc="When creating a feature that is owned by a base feature, set this property to the\nbase feature you want to associate the new feature with. By default, this is null,\nmeaning it will not be associated with a base feature.\nBecause of a current limitation, if you want to create a feature associated with a base\nfeature, you must set this property AND call the startEdit method of the base feature,\ncreate the feature, and then call the finishEdit method of the base feature. The base\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+MeshReduceFeatureInput.cast = lambda arg: arg if isinstance(arg, MeshReduceFeatureInput) else None
+
+
+class MeshReduceFeatures(Base):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Collection that provides access to all of the existing mesh reduce features in a component
+    and supports the ability to create new mesh reduce features.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshReduceFeatures *":
+        return _fusion.MeshReduceFeatures___deref__(self)
+
+    def __eq__(self, rhs: "MeshReduceFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshReduceFeatures___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshReduceFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshReduceFeatures___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshReduceFeatures'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.MeshReduceFeatures___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.MeshReduceFeature":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.MeshReduceFeatures___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshReduceFeatures_classType()
+    __swig_destroy__ = _fusion.delete_MeshReduceFeatures
+
+    def item(self, index: "int") -> "adsk.fusion.MeshReduceFeature":
+        r"""
+        Function that returns the specified mesh reduce feature using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.MeshReduceFeatures_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of mesh reduce features in the collection."""
+        return _fusion.MeshReduceFeatures__get_count(self)
+
+    def createInput(self, mesh: "Base") -> "adsk.fusion.MeshReduceFeatureInput":
+        r"""
+        Creates a MeshReduceFeatureInput object. Use properties and methods on this object
+        to define the mesh reduce you want to create and then use the add method, passing in
+        the MeshReduceFeatureInput object.
+        mesh : A MeshBody in either a parametric or direct modeling design.
+        Returns the newly created MeshReduceFeatureInput object or null if the creation failed.
+        """
+        return _fusion.MeshReduceFeatures_createInput(self, mesh)
+
+    def add(self, input: "MeshReduceFeatureInput") -> "adsk.fusion.MeshReduceFeature":
+        r"""
+        Creates a mesh reduce feature.
+        input : A MeshReduceFeatureInput object that defines the desired reduce feature. Use the createInput
+        method to create a new MeshReduceFeatureInput object and then use methods on it
+        (the MeshReduceFeatureInput object) to define the reduce.
+        Returns the newly created MeshReduceFeature object or null if the creation failed.
+        Returns nothing in the case where the feature is non-parametric.
+        """
+        return _fusion.MeshReduceFeatures_add(self, input)
+
+    def itemByName(self, name: "str") -> "adsk.fusion.MeshReduceFeature":
+        r"""
+        Function that returns the specified MeshReduce feature using the name of the feature.
+        name : The name of the feature within the collection to return. This is the name seen in the timeline.
+        Returns the specified item or null if the specified name was not found.
+        """
+        return _fusion.MeshReduceFeatures_itemByName(self, name)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshReduceFeatures__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshReduceFeatures__get_isValid(self)
+
+# Register MeshReduceFeatures in _fusion:
+_fusion.MeshReduceFeatures_swigregister(MeshReduceFeatures)
+
+def MeshReduceFeatures_classType() -> "str":
+    return _fusion.MeshReduceFeatures_classType()
+
+
+MeshReduceFeatures.count = property(MeshReduceFeatures._get_count, doc="The number of mesh reduce features in the collection.")
+
+
+MeshReduceFeatures.cast = lambda arg: arg if isinstance(arg, MeshReduceFeatures) else None
+
+
+class MeshReduceFeature(MeshFeature):
+    r"""
+    ** This class is a preview feature and may change in future releases. Do not use it in distributed programs. **
+
+    Object that represents an existing mesh reduce feature in a design.
+    To change the properties of this feature, you need to position the timeline marker to immediately before this feature.
+    This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.MeshReduceFeature *":
+        return _fusion.MeshReduceFeature___deref__(self)
+
+    def __eq__(self, rhs: "MeshReduceFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.MeshReduceFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "MeshReduceFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.MeshReduceFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.MeshReduceFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.MeshReduceFeature_classType()
+    __swig_destroy__ = _fusion.delete_MeshReduceFeature
+
+    def _get_mesh(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the input mesh body.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.MeshReduceFeature__get_mesh(self)
+
+    def _set_mesh(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the input mesh body.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.MeshReduceFeature__set_mesh(self, value)
+
+    def _get_meshReduceMethodType(self) -> "adsk.fusion.MeshReduceMethodTypes":
+        r"""Gets and sets the type of mesh reduce."""
+        return _fusion.MeshReduceFeature__get_meshReduceMethodType(self)
+
+    def _set_meshReduceMethodType(self, value: "MeshReduceMethodTypes") -> "bool":
+        r"""Gets and sets the type of mesh reduce."""
+        return _fusion.MeshReduceFeature__set_meshReduceMethodType(self, value)
+
+    def _get_meshReduceTargetType(self) -> "adsk.fusion.MeshReduceTargetTypes":
+        r"""Gets and sets the target criteria for the reduction."""
+        return _fusion.MeshReduceFeature__get_meshReduceTargetType(self)
+
+    def _set_meshReduceTargetType(self, value: "MeshReduceTargetTypes") -> "bool":
+        r"""Gets and sets the target criteria for the reduction."""
+        return _fusion.MeshReduceFeature__set_meshReduceTargetType(self, value)
+
+    def _get_maximumDeviation(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Controls the maximum deviation of the reduced mesh to the original mesh.
+        Only valid if meshReduceTargetType is MaximumDeviationMeshReduceTargetType.
+        """
+        return _fusion.MeshReduceFeature__get_maximumDeviation(self)
+
+    def _get_proportion(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets and sets the proportion of number of faces of the reduced mesh to the number of
+        faces of original mesh as a target for the reduction. The value can range between 0 and 100 percent.
+        Only valid if meshReduceTargetType is ProportionMeshReduceTargetType.
+        """
+        return _fusion.MeshReduceFeature__get_proportion(self)
+
+    def _get_facecount(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets and sets the target face count for the reduced mesh as a target for the reduction.
+        Only valid if meshReduceTargetType is FaceCountMeshReduceTargetType.
+        """
+        return _fusion.MeshReduceFeature__get_facecount(self)
+
+    def _get_nativeObject(self) -> "adsk.fusion.MeshReduceFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.MeshReduceFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.MeshReduceFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.MeshReduceFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.MeshReduceFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.MeshReduceFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.MeshReduceFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.MeshReduceFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.MeshReduceFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.MeshReduceFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.MeshReduceFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.MeshReduceFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.MeshReduceFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.MeshReduceFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.MeshReduceFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.MeshReduceFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.MeshReduceFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.MeshReduceFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.MeshReduceFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.MeshReduceFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.MeshReduceFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.MeshReduceFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.MeshReduceFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.MeshReduceFeature__get_isValid(self)
+
+# Register MeshReduceFeature in _fusion:
+_fusion.MeshReduceFeature_swigregister(MeshReduceFeature)
+
+def MeshReduceFeature_classType() -> "str":
+    return _fusion.MeshReduceFeature_classType()
+
+
+MeshReduceFeature.mesh = property(MeshReduceFeature._get_mesh, MeshReduceFeature._set_mesh, doc="Gets and sets the input mesh body.\nTo use this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+MeshReduceFeature.meshReduceMethodType = property(MeshReduceFeature._get_meshReduceMethodType, MeshReduceFeature._set_meshReduceMethodType, doc="Gets and sets the type of mesh reduce.")
+
+
+MeshReduceFeature.meshReduceTargetType = property(MeshReduceFeature._get_meshReduceTargetType, MeshReduceFeature._set_meshReduceTargetType, doc="Gets and sets the target criteria for the reduction.")
+
+
+MeshReduceFeature.maximumDeviation = property(MeshReduceFeature._get_maximumDeviation, doc="Controls the maximum deviation of the reduced mesh to the original mesh.\nOnly valid if meshReduceTargetType is MaximumDeviationMeshReduceTargetType.")
+
+
+MeshReduceFeature.proportion = property(MeshReduceFeature._get_proportion, doc="Gets and sets the proportion of number of faces of the reduced mesh to the number of\nfaces of original mesh as a target for the reduction. The value can range between 0 and 100 percent.\nOnly valid if meshReduceTargetType is ProportionMeshReduceTargetType.")
+
+
+MeshReduceFeature.facecount = property(MeshReduceFeature._get_facecount, doc="Gets and sets the target face count for the reduced mesh as a target for the reduction.\nOnly valid if meshReduceTargetType is FaceCountMeshReduceTargetType.")
+
+
+MeshReduceFeature.nativeObject = property(MeshReduceFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+MeshReduceFeature.cast = lambda arg: arg if isinstance(arg, MeshReduceFeature) else None

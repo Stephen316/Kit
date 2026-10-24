@@ -1,0 +1,4745 @@
+{
+  "scope": "Observed single and multiple entity sketch circular and rectangular patterns, Line/Circle members, explicit direction lines, and native suppression ordinals. No sketch solver or unsupported pattern interpretation.",
+  "fusion_version": "2705.1.30",
+  "generator": "GenerateSketchPatternModes.py",
+  "capture_folder": "sketchpatternmodes-5b83cb71a99d",
+  "summary": {
+    "new_archives": 8,
+    "new_api_comparisons": 130,
+    "all_comparisons_passed": true,
+    "legacy_pattern_cases": 6,
+    "malformed_checks": 5
+  },
+  "integration": {
+    "function": "decode_sketch_pattern(data, record, sketches, entities) -> (constraint, owner_sketch_id)",
+    "shared_reader_change": "In decode_sketch_tools replace the pattern else branch with a call to this function; retain the existing shared append and decoded/unresolved handling. Offset decoding remains unchanged.",
+    "optional_legacy_detail_reader": "Skip legacy circle-center-helper detail pass when seed_entity_count!=1, suppressed_instance_ordinals or direction_selections is nonempty, or any member is not Circle. These are decoded modes, not unresolved pattern definitions; optional helper details may be listed as skipped.",
+    "maximum_dependency_arguments": 16
+  },
+  "layout": {
+    "circular": "Angle/count bindings and caches occupy head bytes0..37. The counted list of suppressed uint32 ordinals starts at38. The symmetry byte and sketch owner reference follow, then native kind0x10000000 and counted member references. The circular center point is the last role.",
+    "rectangular": "Three flags precede a direction-reference count at3 (observed0or2), the references, a reserved uint32 zero, and the counted suppression list. Two58-byte quantity/binding/vector/distance/binding records follow, then owner reference, native kind0x20000000, and counted member references. Direction references appear in dependencies but are excluded from member roles.",
+    "suppression": "Native ordinal0 is the seed instance; native ordinal2 maps to API isSuppressed[1]. Suppressed ordinals must be unique and lie in1..instance_count-1. Active member references omit suppressed groups.",
+    "grouping": "Member count divided by active instance count gives seed count. The role list starts with the seed group, followed by each active instance group. Corresponding seed columns are checked against geometry kinds and circle radii; no nearest-geometry matching is used.",
+    "observed_genesis_crosschecks": {
+      "circular_seed": 258,
+      "circular_created": 256,
+      "rectangular_seed": 130,
+      "rectangular_created": 128
+    },
+    "dependency_extra_fields": "The four extra bytes in each15-byte dependency slot are zero in all captured cases. Their meanings remain unresolved."
+  },
+  "notes": [
+    "Two-circle and mixed Line/Circle captures validate the ordering of members within successive instances for both pattern kinds. The single Line circular case validates non-circle membership.",
+    "Each suppression contrast explicitly suppresses instance ordinal2. Both API createdEntities and native active member roles omit that instance. The counted native suppression schema supports decoding an empty suppression list as all false.",
+    "Explicit rectangular directions resolve to same-sketch Line IDs and tags. Stored unit vectors agree with the selected lines. Only zero or two explicit direction references were captured; the single-direction variant remains unverified.",
+    "Instance ordinals are separate from u/v lattice coordinates. Symmetric row/column remapping and geometric regeneration remain unsupported.",
+    "SDK entity tokens remain in the original ground_truth.json. No token strings were compared or decoded to identify native entities.",
+    "Combined multi-seed suppression, multiple suppressed ordinals, negative circular angles, point/spline/arc seeds, and other direction variants remain unverified.",
+    "The shared constraint_prefix reader limits decoding to16 dependency arguments, including member geometry, center and selected directions. Larger lists remain unsupported despite larger defensive bounds on quantities and payload counts."
+  ],
+  "limitations": [
+    "No general sketch pattern solver or writer.",
+    "Captures cover one or two Line/Circle seeds; other seed types are rejected.",
+    "Only default rectangular axes or two explicit Line directions were captured.",
+    "Multiple suppressed instances and suppression combined with multiple seeds remain unverified.",
+    "Suppression combined with symmetric circular or rectangular patterns is rejected until its ordinal mapping is contrasted.",
+    "At most16 dependency arguments are accepted through the shared constraint reader; larger dependency lists are unsupported."
+  ],
+  "samples": [
+    {
+      "file": "sketchpatternmodes-5b83cb71a99d/circular_two_circles.f3d",
+      "api_settings": {
+        "quantity": 4.0,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": false,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "requested_suppression": null,
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ],
+        "entities": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              2.0,
+              0.0
+            ],
+            "radius_cm": 0.20000000000000018,
+            "is_construction": false
+          }
+        ],
+        "created_entities": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              0.13397459621556163,
+              2.232050807568877,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              -0.732050807568877,
+              2.7320508075688776,
+              0.0
+            ],
+            "radius_cm": 0.20000000000000018,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              -1.8660254037844384,
+              1.2320508075688779,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              -2.732050807568877,
+              0.7320508075688781,
+              0.0
+            ],
+            "radius_cm": 0.20000000000000018,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              -2.0,
+              -0.9999999999999998,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              -2.0000000000000004,
+              -1.9999999999999998,
+              0.0
+            ],
+            "radius_cm": 0.20000000000000018,
+            "is_construction": false
+          }
+        ]
+      },
+      "decoded": {
+        "kind": "SketchCircularPattern",
+        "quantity": 4,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": false,
+        "center_entity_id": 205,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "object_id": 258,
+        "entity_ids": [
+          230,
+          236
+        ],
+        "created_entity_ids": [
+          242,
+          245,
+          248,
+          251,
+          254,
+          257
+        ],
+        "seed_entity_count": 2,
+        "instance_count": 4,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230,
+              236
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              },
+              {
+                "seed_entity_id": 236,
+                "entity_id": 236,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              242,
+              245
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 242,
+                "kind": "Circle"
+              },
+              {
+                "seed_entity_id": 236,
+                "entity_id": 245,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              248,
+              251
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 248,
+                "kind": "Circle"
+              },
+              {
+                "seed_entity_id": 236,
+                "entity_id": 251,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254,
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 254,
+                "kind": "Circle"
+              },
+              {
+                "seed_entity_id": 236,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [],
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 29938,
+        "class_guid": "8269E861-0BB7-47E0-9911-5AE3EC475058"
+      },
+      "comparisons": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression_mask": true,
+        "quantity": true,
+        "total_angle": true,
+        "symmetric": true,
+        "entities_0_geometry": true,
+        "entities_1_geometry": true,
+        "created_entities_0_geometry": true,
+        "created_entities_1_geometry": true,
+        "created_entities_2_geometry": true,
+        "created_entities_3_geometry": true,
+        "created_entities_4_geometry": true,
+        "created_entities_5_geometry": true
+      },
+      "native_member_geometry": {
+        "230": {
+          "object_id": 230,
+          "sketch_object_id": 202,
+          "record_offset": 25279,
+          "entity_genesis": 258,
+          "kind": "Circle",
+          "center_point_id": 228,
+          "center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 102,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "236": {
+          "object_id": 236,
+          "sketch_object_id": 202,
+          "record_offset": 25895,
+          "entity_genesis": 258,
+          "kind": "Circle",
+          "center_point_id": 234,
+          "center_cm": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "radius_cm": 0.20000000000000018,
+          "radius_mm": 2.0000000000000018,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 104,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "242": {
+          "object_id": 242,
+          "sketch_object_id": 202,
+          "record_offset": 26511,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 240,
+          "center_cm": [
+            0.13397459621556163,
+            2.232050807568877,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 106,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            0.13397459621556163,
+            2.232050807568877,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "245": {
+          "object_id": 245,
+          "sketch_object_id": 202,
+          "record_offset": 27127,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 243,
+          "center_cm": [
+            -0.732050807568877,
+            2.7320508075688776,
+            0.0
+          ],
+          "radius_cm": 0.20000000000000018,
+          "radius_mm": 2.0000000000000018,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 108,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            -0.732050807568877,
+            2.7320508075688776,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "248": {
+          "object_id": 248,
+          "sketch_object_id": 202,
+          "record_offset": 27743,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 246,
+          "center_cm": [
+            -1.8660254037844384,
+            1.2320508075688779,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 110,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            -1.8660254037844384,
+            1.2320508075688779,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "251": {
+          "object_id": 251,
+          "sketch_object_id": 202,
+          "record_offset": 28359,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 249,
+          "center_cm": [
+            -2.732050807568877,
+            0.7320508075688781,
+            0.0
+          ],
+          "radius_cm": 0.20000000000000018,
+          "radius_mm": 2.0000000000000018,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 112,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            -2.732050807568877,
+            0.7320508075688781,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "254": {
+          "object_id": 254,
+          "sketch_object_id": 202,
+          "record_offset": 28975,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 252,
+          "center_cm": [
+            -2.0,
+            -0.9999999999999998,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 114,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            -2.0,
+            -0.9999999999999998,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "257": {
+          "object_id": 257,
+          "sketch_object_id": 202,
+          "record_offset": 29591,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 255,
+          "center_cm": [
+            -2.0000000000000004,
+            -1.9999999999999998,
+            0.0
+          ],
+          "radius_cm": 0.20000000000000018,
+          "radius_mm": 2.0000000000000018,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 116,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            -2.0000000000000004,
+            -1.9999999999999998,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "file": "sketchpatternmodes-5b83cb71a99d/circular_line_circle.f3d",
+      "api_settings": {
+        "quantity": 4.0,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": false,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "requested_suppression": null,
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ],
+        "entities": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              1.6,
+              2.0,
+              0.0
+            ],
+            "end_cm": [
+              2.8,
+              2.4,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          }
+        ],
+        "created_entities": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              -0.9320508075688769,
+              2.3856406460551023,
+              0.0
+            ],
+            "end_cm": [
+              -0.6784609690826524,
+              3.624871130596428,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              0.13397459621556163,
+              2.232050807568877,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              -2.5320508075688775,
+              0.38564064605510273,
+              0.0
+            ],
+            "end_cm": [
+              -3.4784609690826525,
+              1.2248711305964288,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              -1.8660254037844384,
+              1.2320508075688779,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              -1.6000000000000003,
+              -1.9999999999999998,
+              0.0
+            ],
+            "end_cm": [
+              -2.8000000000000003,
+              -2.3999999999999995,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              -2.0,
+              -0.9999999999999998,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          }
+        ]
+      },
+      "decoded": {
+        "kind": "SketchCircularPattern",
+        "quantity": 4,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": false,
+        "center_entity_id": 205,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "object_id": 266,
+        "entity_ids": [
+          232,
+          238
+        ],
+        "created_entity_ids": [
+          246,
+          249,
+          254,
+          257,
+          262,
+          265
+        ],
+        "seed_entity_count": 2,
+        "instance_count": 4,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              232,
+              238
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 232,
+                "kind": "Line"
+              },
+              {
+                "seed_entity_id": 238,
+                "entity_id": 238,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              246,
+              249
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 246,
+                "kind": "Line"
+              },
+              {
+                "seed_entity_id": 238,
+                "entity_id": 249,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254,
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 254,
+                "kind": "Line"
+              },
+              {
+                "seed_entity_id": 238,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              262,
+              265
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 262,
+                "kind": "Line"
+              },
+              {
+                "seed_entity_id": 238,
+                "entity_id": 265,
+                "kind": "Circle"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [],
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 31094,
+        "class_guid": "8269E861-0BB7-47E0-9911-5AE3EC475058"
+      },
+      "comparisons": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression_mask": true,
+        "quantity": true,
+        "total_angle": true,
+        "symmetric": true,
+        "entities_0_geometry": true,
+        "entities_1_geometry": true,
+        "created_entities_0_geometry": true,
+        "created_entities_1_geometry": true,
+        "created_entities_2_geometry": true,
+        "created_entities_3_geometry": true,
+        "created_entities_4_geometry": true,
+        "created_entities_5_geometry": true
+      },
+      "native_member_geometry": {
+        "232": {
+          "object_id": 232,
+          "sketch_object_id": 202,
+          "record_offset": 25592,
+          "entity_genesis": 258,
+          "kind": "Line",
+          "start_point_id": 228,
+          "end_point_id": 230,
+          "start_cm": [
+            1.6,
+            2.0,
+            0.0
+          ],
+          "end_cm": [
+            2.8,
+            2.4,
+            0.0
+          ],
+          "entity_tag": 103,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            1.6,
+            2.0,
+            0.0
+          ],
+          "component_end_cm": [
+            2.8,
+            2.4,
+            0.0
+          ]
+        },
+        "238": {
+          "object_id": 238,
+          "sketch_object_id": 202,
+          "record_offset": 26217,
+          "entity_genesis": 258,
+          "kind": "Circle",
+          "center_point_id": 236,
+          "center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 105,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "246": {
+          "object_id": 246,
+          "sketch_object_id": 202,
+          "record_offset": 27102,
+          "entity_genesis": 256,
+          "kind": "Line",
+          "start_point_id": 242,
+          "end_point_id": 244,
+          "start_cm": [
+            -0.9320508075688769,
+            2.3856406460551023,
+            0.0
+          ],
+          "end_cm": [
+            -0.6784609690826524,
+            3.624871130596428,
+            0.0
+          ],
+          "entity_tag": 108,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            -0.9320508075688769,
+            2.3856406460551023,
+            0.0
+          ],
+          "component_end_cm": [
+            -0.6784609690826524,
+            3.624871130596428,
+            0.0
+          ]
+        },
+        "249": {
+          "object_id": 249,
+          "sketch_object_id": 202,
+          "record_offset": 27727,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 247,
+          "center_cm": [
+            0.13397459621556163,
+            2.232050807568877,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 110,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            0.13397459621556163,
+            2.232050807568877,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "254": {
+          "object_id": 254,
+          "sketch_object_id": 202,
+          "record_offset": 28612,
+          "entity_genesis": 256,
+          "kind": "Line",
+          "start_point_id": 250,
+          "end_point_id": 252,
+          "start_cm": [
+            -2.5320508075688775,
+            0.38564064605510273,
+            0.0
+          ],
+          "end_cm": [
+            -3.4784609690826525,
+            1.2248711305964288,
+            0.0
+          ],
+          "entity_tag": 113,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            -2.5320508075688775,
+            0.38564064605510273,
+            0.0
+          ],
+          "component_end_cm": [
+            -3.4784609690826525,
+            1.2248711305964288,
+            0.0
+          ]
+        },
+        "257": {
+          "object_id": 257,
+          "sketch_object_id": 202,
+          "record_offset": 29237,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 255,
+          "center_cm": [
+            -1.8660254037844384,
+            1.2320508075688779,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 115,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            -1.8660254037844384,
+            1.2320508075688779,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "262": {
+          "object_id": 262,
+          "sketch_object_id": 202,
+          "record_offset": 30122,
+          "entity_genesis": 256,
+          "kind": "Line",
+          "start_point_id": 258,
+          "end_point_id": 260,
+          "start_cm": [
+            -1.6000000000000003,
+            -1.9999999999999998,
+            0.0
+          ],
+          "end_cm": [
+            -2.8000000000000003,
+            -2.3999999999999995,
+            0.0
+          ],
+          "entity_tag": 118,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            -1.6000000000000003,
+            -1.9999999999999998,
+            0.0
+          ],
+          "component_end_cm": [
+            -2.8000000000000003,
+            -2.3999999999999995,
+            0.0
+          ]
+        },
+        "265": {
+          "object_id": 265,
+          "sketch_object_id": 202,
+          "record_offset": 30747,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 263,
+          "center_cm": [
+            -2.0,
+            -0.9999999999999998,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 120,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            -2.0,
+            -0.9999999999999998,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "file": "sketchpatternmodes-5b83cb71a99d/circular_line.f3d",
+      "api_settings": {
+        "quantity": 4.0,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": false,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "requested_suppression": null,
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ],
+        "entities": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              1.6,
+              2.0,
+              0.0
+            ],
+            "end_cm": [
+              2.8,
+              2.4,
+              0.0
+            ],
+            "is_construction": false
+          }
+        ],
+        "created_entities": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              -0.9320508075688769,
+              2.3856406460551023,
+              0.0
+            ],
+            "end_cm": [
+              -0.6784609690826524,
+              3.624871130596428,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              -2.5320508075688775,
+              0.38564064605510273,
+              0.0
+            ],
+            "end_cm": [
+              -3.4784609690826525,
+              1.2248711305964288,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              -1.6000000000000003,
+              -1.9999999999999998,
+              0.0
+            ],
+            "end_cm": [
+              -2.8000000000000003,
+              -2.3999999999999995,
+              0.0
+            ],
+            "is_construction": false
+          }
+        ]
+      },
+      "decoded": {
+        "kind": "SketchCircularPattern",
+        "quantity": 4,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": false,
+        "center_entity_id": 205,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "object_id": 251,
+        "entity_ids": [
+          232
+        ],
+        "created_entity_ids": [
+          240,
+          245,
+          250
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 4,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              232
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 232,
+                "kind": "Line"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              240
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 240,
+                "kind": "Line"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              245
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 245,
+                "kind": "Line"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              250
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 250,
+                "kind": "Line"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [],
+        "is_suppressed": [
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 28436,
+        "class_guid": "8269E861-0BB7-47E0-9911-5AE3EC475058"
+      },
+      "comparisons": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression_mask": true,
+        "quantity": true,
+        "total_angle": true,
+        "symmetric": true,
+        "entities_0_geometry": true,
+        "created_entities_0_geometry": true,
+        "created_entities_1_geometry": true,
+        "created_entities_2_geometry": true
+      },
+      "native_member_geometry": {
+        "232": {
+          "object_id": 232,
+          "sketch_object_id": 202,
+          "record_offset": 25398,
+          "entity_genesis": 258,
+          "kind": "Line",
+          "start_point_id": 228,
+          "end_point_id": 230,
+          "start_cm": [
+            1.6,
+            2.0,
+            0.0
+          ],
+          "end_cm": [
+            2.8,
+            2.4,
+            0.0
+          ],
+          "entity_tag": 103,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            1.6,
+            2.0,
+            0.0
+          ],
+          "component_end_cm": [
+            2.8,
+            2.4,
+            0.0
+          ]
+        },
+        "240": {
+          "object_id": 240,
+          "sketch_object_id": 202,
+          "record_offset": 26292,
+          "entity_genesis": 256,
+          "kind": "Line",
+          "start_point_id": 236,
+          "end_point_id": 238,
+          "start_cm": [
+            -0.9320508075688769,
+            2.3856406460551023,
+            0.0
+          ],
+          "end_cm": [
+            -0.6784609690826524,
+            3.624871130596428,
+            0.0
+          ],
+          "entity_tag": 106,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            -0.9320508075688769,
+            2.3856406460551023,
+            0.0
+          ],
+          "component_end_cm": [
+            -0.6784609690826524,
+            3.624871130596428,
+            0.0
+          ]
+        },
+        "245": {
+          "object_id": 245,
+          "sketch_object_id": 202,
+          "record_offset": 27186,
+          "entity_genesis": 256,
+          "kind": "Line",
+          "start_point_id": 241,
+          "end_point_id": 243,
+          "start_cm": [
+            -2.5320508075688775,
+            0.38564064605510273,
+            0.0
+          ],
+          "end_cm": [
+            -3.4784609690826525,
+            1.2248711305964288,
+            0.0
+          ],
+          "entity_tag": 109,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            -2.5320508075688775,
+            0.38564064605510273,
+            0.0
+          ],
+          "component_end_cm": [
+            -3.4784609690826525,
+            1.2248711305964288,
+            0.0
+          ]
+        },
+        "250": {
+          "object_id": 250,
+          "sketch_object_id": 202,
+          "record_offset": 28080,
+          "entity_genesis": 256,
+          "kind": "Line",
+          "start_point_id": 246,
+          "end_point_id": 248,
+          "start_cm": [
+            -1.6000000000000003,
+            -1.9999999999999998,
+            0.0
+          ],
+          "end_cm": [
+            -2.8000000000000003,
+            -2.3999999999999995,
+            0.0
+          ],
+          "entity_tag": 112,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            -1.6000000000000003,
+            -1.9999999999999998,
+            0.0
+          ],
+          "component_end_cm": [
+            -2.8000000000000003,
+            -2.3999999999999995,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "file": "sketchpatternmodes-5b83cb71a99d/circular_suppressed.f3d",
+      "api_settings": {
+        "quantity": 4.0,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": false,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "requested_suppression": [
+          false,
+          true,
+          false
+        ],
+        "is_suppressed": [
+          false,
+          true,
+          false
+        ],
+        "entities": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          }
+        ],
+        "created_entities": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              0.13397459621556163,
+              2.232050807568877,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              -2.0,
+              -0.9999999999999998,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          }
+        ]
+      },
+      "decoded": {
+        "kind": "SketchCircularPattern",
+        "quantity": 4,
+        "total_angle_radians": 3.141592653589793,
+        "is_symmetric": false,
+        "center_entity_id": 205,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "object_id": 243,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          236,
+          242
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 4,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              236
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 236,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": []
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              242
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 242,
+                "kind": "Circle"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [
+          2
+        ],
+        "is_suppressed": [
+          false,
+          true,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 26748,
+        "class_guid": "8269E861-0BB7-47E0-9911-5AE3EC475058"
+      },
+      "comparisons": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression_mask": true,
+        "quantity": true,
+        "total_angle": true,
+        "symmetric": true,
+        "entities_0_geometry": true,
+        "created_entities_0_geometry": true,
+        "created_entities_1_geometry": true
+      },
+      "native_member_geometry": {
+        "230": {
+          "object_id": 230,
+          "sketch_object_id": 202,
+          "record_offset": 25169,
+          "entity_genesis": 258,
+          "kind": "Circle",
+          "center_point_id": 228,
+          "center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 102,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "236": {
+          "object_id": 236,
+          "sketch_object_id": 202,
+          "record_offset": 25785,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 234,
+          "center_cm": [
+            0.13397459621556163,
+            2.232050807568877,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            -0.0,
+            1.0
+          ],
+          "reference_axis": [
+            0.5000000000000001,
+            0.8660254037844386,
+            0.0
+          ],
+          "entity_tag": 104,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            0.13397459621556163,
+            2.232050807568877,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            0.5000000000000001,
+            0.8660254037844386,
+            0.0
+          ]
+        },
+        "242": {
+          "object_id": 242,
+          "sketch_object_id": 202,
+          "record_offset": 26401,
+          "entity_genesis": 256,
+          "kind": "Circle",
+          "center_point_id": 240,
+          "center_cm": [
+            -2.0,
+            -0.9999999999999998,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            -1.0,
+            1.2246467991473532e-16,
+            0.0
+          ],
+          "entity_tag": 108,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            -2.0,
+            -0.9999999999999998,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            -1.0,
+            1.2246467991473532e-16,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "file": "sketchpatternmodes-5b83cb71a99d/rectangular_two_circles.f3d",
+      "api_settings": {
+        "quantity_one": 3.0,
+        "quantity_two": 2.0,
+        "distance_one_cm": 2.0,
+        "distance_two_cm": 1.5,
+        "distance_type": 1,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": null,
+        "direction_two": null,
+        "requested_suppression": null,
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "entities": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              2.0,
+              0.0
+            ],
+            "radius_cm": 0.20000000000000018,
+            "is_construction": false
+          }
+        ],
+        "created_entities": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              4.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              4.0,
+              2.0,
+              0.0
+            ],
+            "radius_cm": 0.20000000000000018,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              6.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              6.0,
+              2.0,
+              0.0
+            ],
+            "radius_cm": 0.20000000000000018,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              3.5,
+              0.0
+            ],
+            "radius_cm": 0.20000000000000018,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              4.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              4.0,
+              3.5,
+              0.0
+            ],
+            "radius_cm": 0.20000000000000018,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              6.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              6.0,
+              3.5,
+              0.0
+            ],
+            "radius_cm": 0.20000000000000018,
+            "is_construction": false
+          }
+        ]
+      },
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "quantity_one": 3,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "quantity_two": 2,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_selections": [],
+        "object_id": 270,
+        "entity_ids": [
+          230,
+          236
+        ],
+        "created_entity_ids": [
+          242,
+          245,
+          248,
+          251,
+          254,
+          257,
+          260,
+          263,
+          266,
+          269
+        ],
+        "seed_entity_count": 2,
+        "instance_count": 6,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230,
+              236
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              },
+              {
+                "seed_entity_id": 236,
+                "entity_id": 236,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              242,
+              245
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 242,
+                "kind": "Circle"
+              },
+              {
+                "seed_entity_id": 236,
+                "entity_id": 245,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              248,
+              251
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 248,
+                "kind": "Circle"
+              },
+              {
+                "seed_entity_id": 236,
+                "entity_id": 251,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254,
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 254,
+                "kind": "Circle"
+              },
+              {
+                "seed_entity_id": 236,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              260,
+              263
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 260,
+                "kind": "Circle"
+              },
+              {
+                "seed_entity_id": 236,
+                "entity_id": 263,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              266,
+              269
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 266,
+                "kind": "Circle"
+              },
+              {
+                "seed_entity_id": 236,
+                "entity_id": 269,
+                "kind": "Circle"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [],
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 32796,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C"
+      },
+      "comparisons": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression_mask": true,
+        "quantity_one": true,
+        "quantity_two": true,
+        "distance_one": true,
+        "distance_two": true,
+        "distance_type": true,
+        "symmetric_one": true,
+        "symmetric_two": true,
+        "direction_one": true,
+        "direction_two": true,
+        "entities_0_geometry": true,
+        "entities_1_geometry": true,
+        "created_entities_0_geometry": true,
+        "created_entities_1_geometry": true,
+        "created_entities_2_geometry": true,
+        "created_entities_3_geometry": true,
+        "created_entities_4_geometry": true,
+        "created_entities_5_geometry": true,
+        "created_entities_6_geometry": true,
+        "created_entities_7_geometry": true,
+        "created_entities_8_geometry": true,
+        "created_entities_9_geometry": true
+      },
+      "native_member_geometry": {
+        "230": {
+          "object_id": 230,
+          "sketch_object_id": 202,
+          "record_offset": 25673,
+          "entity_genesis": 130,
+          "kind": "Circle",
+          "center_point_id": 228,
+          "center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 102,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "236": {
+          "object_id": 236,
+          "sketch_object_id": 202,
+          "record_offset": 26289,
+          "entity_genesis": 130,
+          "kind": "Circle",
+          "center_point_id": 234,
+          "center_cm": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "radius_cm": 0.20000000000000018,
+          "radius_mm": 2.0000000000000018,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 104,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            2.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "242": {
+          "object_id": 242,
+          "sketch_object_id": 202,
+          "record_offset": 26905,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 240,
+          "center_cm": [
+            4.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 106,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            4.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "245": {
+          "object_id": 245,
+          "sketch_object_id": 202,
+          "record_offset": 27521,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 243,
+          "center_cm": [
+            4.0,
+            2.0,
+            0.0
+          ],
+          "radius_cm": 0.20000000000000018,
+          "radius_mm": 2.0000000000000018,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 108,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            4.0,
+            2.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "248": {
+          "object_id": 248,
+          "sketch_object_id": 202,
+          "record_offset": 28137,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 246,
+          "center_cm": [
+            6.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 110,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            6.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "251": {
+          "object_id": 251,
+          "sketch_object_id": 202,
+          "record_offset": 28753,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 249,
+          "center_cm": [
+            6.0,
+            2.0,
+            0.0
+          ],
+          "radius_cm": 0.20000000000000018,
+          "radius_mm": 2.0000000000000018,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 112,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            6.0,
+            2.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "254": {
+          "object_id": 254,
+          "sketch_object_id": 202,
+          "record_offset": 29369,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 252,
+          "center_cm": [
+            2.0,
+            2.5,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 114,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            2.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "257": {
+          "object_id": 257,
+          "sketch_object_id": 202,
+          "record_offset": 29985,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 255,
+          "center_cm": [
+            2.0,
+            3.5,
+            0.0
+          ],
+          "radius_cm": 0.20000000000000018,
+          "radius_mm": 2.0000000000000018,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 116,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            3.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "260": {
+          "object_id": 260,
+          "sketch_object_id": 202,
+          "record_offset": 30601,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 258,
+          "center_cm": [
+            4.0,
+            2.5,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 118,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            4.0,
+            2.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "263": {
+          "object_id": 263,
+          "sketch_object_id": 202,
+          "record_offset": 31217,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 261,
+          "center_cm": [
+            4.0,
+            3.5,
+            0.0
+          ],
+          "radius_cm": 0.20000000000000018,
+          "radius_mm": 2.0000000000000018,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 120,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            4.0,
+            3.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "266": {
+          "object_id": 266,
+          "sketch_object_id": 202,
+          "record_offset": 31833,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 264,
+          "center_cm": [
+            6.0,
+            2.5,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 122,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            6.0,
+            2.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "269": {
+          "object_id": 269,
+          "sketch_object_id": 202,
+          "record_offset": 32449,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 267,
+          "center_cm": [
+            6.0,
+            3.5,
+            0.0
+          ],
+          "radius_cm": 0.20000000000000018,
+          "radius_mm": 2.0000000000000018,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 124,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            6.0,
+            3.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "file": "sketchpatternmodes-5b83cb71a99d/rectangular_line_circle.f3d",
+      "api_settings": {
+        "quantity_one": 3.0,
+        "quantity_two": 2.0,
+        "distance_one_cm": 2.0,
+        "distance_two_cm": 1.5,
+        "distance_type": 1,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": null,
+        "direction_two": null,
+        "requested_suppression": null,
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "entities": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              1.6,
+              2.0,
+              0.0
+            ],
+            "end_cm": [
+              2.8,
+              2.4,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          }
+        ],
+        "created_entities": [
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              3.6,
+              2.0,
+              0.0
+            ],
+            "end_cm": [
+              4.8,
+              2.4,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              4.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              5.6,
+              2.0,
+              0.0
+            ],
+            "end_cm": [
+              6.8,
+              2.4,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              6.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              1.6,
+              3.5,
+              0.0
+            ],
+            "end_cm": [
+              2.8,
+              3.9,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              3.6,
+              3.5,
+              0.0
+            ],
+            "end_cm": [
+              4.8,
+              3.9,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              4.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchLine",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "start_cm": [
+              5.6,
+              3.5,
+              0.0
+            ],
+            "end_cm": [
+              6.8,
+              3.9,
+              0.0
+            ],
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              6.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          }
+        ]
+      },
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "quantity_one": 3,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "quantity_two": 2,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_selections": [],
+        "object_id": 282,
+        "entity_ids": [
+          232,
+          238
+        ],
+        "created_entity_ids": [
+          246,
+          249,
+          254,
+          257,
+          262,
+          265,
+          270,
+          273,
+          278,
+          281
+        ],
+        "seed_entity_count": 2,
+        "instance_count": 6,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              232,
+              238
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 232,
+                "kind": "Line"
+              },
+              {
+                "seed_entity_id": 238,
+                "entity_id": 238,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              246,
+              249
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 246,
+                "kind": "Line"
+              },
+              {
+                "seed_entity_id": 238,
+                "entity_id": 249,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              254,
+              257
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 254,
+                "kind": "Line"
+              },
+              {
+                "seed_entity_id": 238,
+                "entity_id": 257,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              262,
+              265
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 262,
+                "kind": "Line"
+              },
+              {
+                "seed_entity_id": 238,
+                "entity_id": 265,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              270,
+              273
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 270,
+                "kind": "Line"
+              },
+              {
+                "seed_entity_id": 238,
+                "entity_id": 273,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              278,
+              281
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 232,
+                "entity_id": 278,
+                "kind": "Line"
+              },
+              {
+                "seed_entity_id": 238,
+                "entity_id": 281,
+                "kind": "Circle"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [],
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 34530,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C"
+      },
+      "comparisons": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression_mask": true,
+        "quantity_one": true,
+        "quantity_two": true,
+        "distance_one": true,
+        "distance_two": true,
+        "distance_type": true,
+        "symmetric_one": true,
+        "symmetric_two": true,
+        "direction_one": true,
+        "direction_two": true,
+        "entities_0_geometry": true,
+        "entities_1_geometry": true,
+        "created_entities_0_geometry": true,
+        "created_entities_1_geometry": true,
+        "created_entities_2_geometry": true,
+        "created_entities_3_geometry": true,
+        "created_entities_4_geometry": true,
+        "created_entities_5_geometry": true,
+        "created_entities_6_geometry": true,
+        "created_entities_7_geometry": true,
+        "created_entities_8_geometry": true,
+        "created_entities_9_geometry": true
+      },
+      "native_member_geometry": {
+        "232": {
+          "object_id": 232,
+          "sketch_object_id": 202,
+          "record_offset": 26008,
+          "entity_genesis": 130,
+          "kind": "Line",
+          "start_point_id": 228,
+          "end_point_id": 230,
+          "start_cm": [
+            1.6,
+            2.0,
+            0.0
+          ],
+          "end_cm": [
+            2.8,
+            2.4,
+            0.0
+          ],
+          "entity_tag": 103,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            1.6,
+            2.0,
+            0.0
+          ],
+          "component_end_cm": [
+            2.8,
+            2.4,
+            0.0
+          ]
+        },
+        "238": {
+          "object_id": 238,
+          "sketch_object_id": 202,
+          "record_offset": 26633,
+          "entity_genesis": 130,
+          "kind": "Circle",
+          "center_point_id": 236,
+          "center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 105,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "246": {
+          "object_id": 246,
+          "sketch_object_id": 202,
+          "record_offset": 27518,
+          "entity_genesis": 128,
+          "kind": "Line",
+          "start_point_id": 242,
+          "end_point_id": 244,
+          "start_cm": [
+            3.6,
+            2.0,
+            0.0
+          ],
+          "end_cm": [
+            4.8,
+            2.4,
+            0.0
+          ],
+          "entity_tag": 108,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            3.6,
+            2.0,
+            0.0
+          ],
+          "component_end_cm": [
+            4.8,
+            2.4,
+            0.0
+          ]
+        },
+        "249": {
+          "object_id": 249,
+          "sketch_object_id": 202,
+          "record_offset": 28143,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 247,
+          "center_cm": [
+            4.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 110,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            4.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "254": {
+          "object_id": 254,
+          "sketch_object_id": 202,
+          "record_offset": 29028,
+          "entity_genesis": 128,
+          "kind": "Line",
+          "start_point_id": 250,
+          "end_point_id": 252,
+          "start_cm": [
+            5.6,
+            2.0,
+            0.0
+          ],
+          "end_cm": [
+            6.8,
+            2.4,
+            0.0
+          ],
+          "entity_tag": 113,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            5.6,
+            2.0,
+            0.0
+          ],
+          "component_end_cm": [
+            6.8,
+            2.4,
+            0.0
+          ]
+        },
+        "257": {
+          "object_id": 257,
+          "sketch_object_id": 202,
+          "record_offset": 29653,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 255,
+          "center_cm": [
+            6.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 115,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            6.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "262": {
+          "object_id": 262,
+          "sketch_object_id": 202,
+          "record_offset": 30538,
+          "entity_genesis": 128,
+          "kind": "Line",
+          "start_point_id": 258,
+          "end_point_id": 260,
+          "start_cm": [
+            1.6,
+            3.5,
+            0.0
+          ],
+          "end_cm": [
+            2.8,
+            3.9,
+            0.0
+          ],
+          "entity_tag": 118,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            1.6,
+            3.5,
+            0.0
+          ],
+          "component_end_cm": [
+            2.8,
+            3.9,
+            0.0
+          ]
+        },
+        "265": {
+          "object_id": 265,
+          "sketch_object_id": 202,
+          "record_offset": 31163,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 263,
+          "center_cm": [
+            2.0,
+            2.5,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 120,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            2.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "270": {
+          "object_id": 270,
+          "sketch_object_id": 202,
+          "record_offset": 32048,
+          "entity_genesis": 128,
+          "kind": "Line",
+          "start_point_id": 266,
+          "end_point_id": 268,
+          "start_cm": [
+            3.6,
+            3.5,
+            0.0
+          ],
+          "end_cm": [
+            4.8,
+            3.9,
+            0.0
+          ],
+          "entity_tag": 123,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            3.6,
+            3.5,
+            0.0
+          ],
+          "component_end_cm": [
+            4.8,
+            3.9,
+            0.0
+          ]
+        },
+        "273": {
+          "object_id": 273,
+          "sketch_object_id": 202,
+          "record_offset": 32673,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 271,
+          "center_cm": [
+            4.0,
+            2.5,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 125,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            4.0,
+            2.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "278": {
+          "object_id": 278,
+          "sketch_object_id": 202,
+          "record_offset": 33558,
+          "entity_genesis": 128,
+          "kind": "Line",
+          "start_point_id": 274,
+          "end_point_id": 276,
+          "start_cm": [
+            5.6,
+            3.5,
+            0.0
+          ],
+          "end_cm": [
+            6.8,
+            3.9,
+            0.0
+          ],
+          "entity_tag": 128,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_start_cm": [
+            5.6,
+            3.5,
+            0.0
+          ],
+          "component_end_cm": [
+            6.8,
+            3.9,
+            0.0
+          ]
+        },
+        "281": {
+          "object_id": 281,
+          "sketch_object_id": 202,
+          "record_offset": 34183,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 279,
+          "center_cm": [
+            6.0,
+            2.5,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 130,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            6.0,
+            2.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "file": "sketchpatternmodes-5b83cb71a99d/rectangular_direction.f3d",
+      "api_settings": {
+        "quantity_one": 3.0,
+        "quantity_two": 2.0,
+        "distance_one_cm": 2.0,
+        "distance_two_cm": 1.5,
+        "distance_type": 1,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": {
+          "type": "adsk::fusion::SketchLine",
+          "is_valid": true,
+          "is_reference": false,
+          "is_fixed": false,
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "is_construction": true
+        },
+        "direction_two": {
+          "type": "adsk::fusion::SketchLine",
+          "is_valid": true,
+          "is_reference": false,
+          "is_fixed": false,
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            -1.0,
+            2.0,
+            0.0
+          ],
+          "is_construction": true
+        },
+        "requested_suppression": null,
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "entities": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          }
+        ],
+        "created_entities": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              3.7888543819998315,
+              1.8944271909999157,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              5.577708763999663,
+              2.7888543819998315,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              1.329179606750063,
+              2.341640786499874,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              3.118033988749895,
+              3.23606797749979,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              4.906888370749726,
+              4.1304951684997055,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          }
+        ]
+      },
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "quantity_one": 3,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          0.8944271909999159,
+          0.4472135954999579,
+          0.0
+        ],
+        "quantity_two": 2,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          -0.4472135954999579,
+          0.8944271909999159,
+          0.0
+        ],
+        "direction_selections": [
+          {
+            "direction": "one",
+            "entity_object_id": 238,
+            "entity_tag": 105,
+            "kind": "Line"
+          },
+          {
+            "direction": "two",
+            "entity_object_id": 246,
+            "entity_tag": 108,
+            "kind": "Line"
+          }
+        ],
+        "object_id": 271,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          258,
+          261,
+          264,
+          267,
+          270
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 6,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              258
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 258,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              261
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 261,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              264
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 264,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              267
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 267,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              270
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 270,
+                "kind": "Circle"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [],
+        "is_suppressed": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 30822,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C"
+      },
+      "comparisons": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression_mask": true,
+        "quantity_one": true,
+        "quantity_two": true,
+        "distance_one": true,
+        "distance_two": true,
+        "distance_type": true,
+        "symmetric_one": true,
+        "symmetric_two": true,
+        "direction_one": true,
+        "direction_two": true,
+        "entities_0_geometry": true,
+        "created_entities_0_geometry": true,
+        "created_entities_1_geometry": true,
+        "created_entities_2_geometry": true,
+        "created_entities_3_geometry": true,
+        "created_entities_4_geometry": true
+      },
+      "native_member_geometry": {
+        "230": {
+          "object_id": 230,
+          "sketch_object_id": 202,
+          "record_offset": 25607,
+          "entity_genesis": 130,
+          "kind": "Circle",
+          "center_point_id": 228,
+          "center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 102,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "258": {
+          "object_id": 258,
+          "sketch_object_id": 202,
+          "record_offset": 28011,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 256,
+          "center_cm": [
+            3.7888543819998315,
+            1.8944271909999157,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 110,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            3.7888543819998315,
+            1.8944271909999157,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "261": {
+          "object_id": 261,
+          "sketch_object_id": 202,
+          "record_offset": 28627,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 259,
+          "center_cm": [
+            5.577708763999663,
+            2.7888543819998315,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 112,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            5.577708763999663,
+            2.7888543819998315,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "264": {
+          "object_id": 264,
+          "sketch_object_id": 202,
+          "record_offset": 29243,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 262,
+          "center_cm": [
+            1.329179606750063,
+            2.341640786499874,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 114,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            1.329179606750063,
+            2.341640786499874,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "267": {
+          "object_id": 267,
+          "sketch_object_id": 202,
+          "record_offset": 29859,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 265,
+          "center_cm": [
+            3.118033988749895,
+            3.23606797749979,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 116,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            3.118033988749895,
+            3.23606797749979,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "270": {
+          "object_id": 270,
+          "sketch_object_id": 202,
+          "record_offset": 30475,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 268,
+          "center_cm": [
+            4.906888370749726,
+            4.1304951684997055,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 118,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            4.906888370749726,
+            4.1304951684997055,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "file": "sketchpatternmodes-5b83cb71a99d/rectangular_suppressed.f3d",
+      "api_settings": {
+        "quantity_one": 3.0,
+        "quantity_two": 2.0,
+        "distance_one_cm": 2.0,
+        "distance_two_cm": 1.5,
+        "distance_type": 1,
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "direction_one": null,
+        "direction_two": null,
+        "requested_suppression": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "is_suppressed": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "entities": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          }
+        ],
+        "created_entities": [
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              4.0,
+              1.0,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              2.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              4.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          },
+          {
+            "type": "adsk::fusion::SketchCircle",
+            "is_valid": true,
+            "is_reference": false,
+            "is_fixed": false,
+            "center_cm": [
+              6.0,
+              2.5,
+              0.0
+            ],
+            "radius_cm": 0.2999999999999998,
+            "is_construction": false
+          }
+        ]
+      },
+      "decoded": {
+        "kind": "SketchRectangularPattern",
+        "distance_type": "Spacing",
+        "symmetric_one": false,
+        "symmetric_two": false,
+        "quantity_one": 3,
+        "distance_one_cm": 2.0,
+        "direction_one": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "quantity_two": 2,
+        "distance_two_cm": 1.5,
+        "direction_two": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "direction_selections": [],
+        "object_id": 249,
+        "entity_ids": [
+          230
+        ],
+        "created_entity_ids": [
+          236,
+          242,
+          245,
+          248
+        ],
+        "seed_entity_count": 1,
+        "instance_count": 6,
+        "instance_groups": [
+          {
+            "instance_ordinal": 0,
+            "is_seed_instance": true,
+            "is_suppressed": false,
+            "entity_ids": [
+              230
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 230,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 1,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              236
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 236,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 2,
+            "is_seed_instance": false,
+            "is_suppressed": true,
+            "entity_ids": [],
+            "seed_associations": []
+          },
+          {
+            "instance_ordinal": 3,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              242
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 242,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 4,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              245
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 245,
+                "kind": "Circle"
+              }
+            ]
+          },
+          {
+            "instance_ordinal": 5,
+            "is_seed_instance": false,
+            "is_suppressed": false,
+            "entity_ids": [
+              248
+            ],
+            "seed_associations": [
+              {
+                "seed_entity_id": 230,
+                "entity_id": 248,
+                "kind": "Circle"
+              }
+            ]
+          }
+        ],
+        "suppressed_instance_ordinals": [
+          2
+        ],
+        "is_suppressed": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "suppression_status": "Explicit native non-seed ordinal list decoded; suppressed members are absent from the active role list",
+        "membership_status": "Observed seed prefix and active instance-major role groups; associations follow stored positions, not geometric matching",
+        "record_offset": 28330,
+        "class_guid": "40800FB9-C2BE-494E-A047-7D76E82B9F6C"
+      },
+      "comparisons": {
+        "seed_count": true,
+        "created_count": true,
+        "suppression_mask": true,
+        "quantity_one": true,
+        "quantity_two": true,
+        "distance_one": true,
+        "distance_two": true,
+        "distance_type": true,
+        "symmetric_one": true,
+        "symmetric_two": true,
+        "direction_one": true,
+        "direction_two": true,
+        "entities_0_geometry": true,
+        "created_entities_0_geometry": true,
+        "created_entities_1_geometry": true,
+        "created_entities_2_geometry": true,
+        "created_entities_3_geometry": true
+      },
+      "native_member_geometry": {
+        "230": {
+          "object_id": 230,
+          "sketch_object_id": 202,
+          "record_offset": 25519,
+          "entity_genesis": 130,
+          "kind": "Circle",
+          "center_point_id": 228,
+          "center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            -0.0
+          ],
+          "entity_tag": 102,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "236": {
+          "object_id": 236,
+          "sketch_object_id": 202,
+          "record_offset": 26135,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 234,
+          "center_cm": [
+            4.0,
+            1.0,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "entity_tag": 104,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            4.0,
+            1.0,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "242": {
+          "object_id": 242,
+          "sketch_object_id": 202,
+          "record_offset": 26751,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 240,
+          "center_cm": [
+            2.0,
+            2.5,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "entity_tag": 108,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            2.0,
+            2.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "245": {
+          "object_id": 245,
+          "sketch_object_id": 202,
+          "record_offset": 27367,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 243,
+          "center_cm": [
+            4.0,
+            2.5,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "entity_tag": 110,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            4.0,
+            2.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        "248": {
+          "object_id": 248,
+          "sketch_object_id": 202,
+          "record_offset": 27983,
+          "entity_genesis": 128,
+          "kind": "Circle",
+          "center_point_id": 246,
+          "center_cm": [
+            6.0,
+            2.5,
+            0.0
+          ],
+          "radius_cm": 0.2999999999999998,
+          "radius_mm": 2.9999999999999982,
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "entity_tag": 112,
+          "is_fixed": false,
+          "is_construction": false,
+          "component_center_cm": [
+            6.0,
+            2.5,
+            0.0
+          ],
+          "component_normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_reference_axis": [
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  ],
+  "legacy_samples": [
+    {
+      "file": "sketchtools-85066e723410/sketchtools.f3d",
+      "sketch": "CircularPartial",
+      "previous_fields_preserved": true,
+      "native_suppression_mask_matches_api": true
+    },
+    {
+      "file": "sketchtools-85066e723410/sketchtools.f3d",
+      "sketch": "CircularFull",
+      "previous_fields_preserved": true,
+      "native_suppression_mask_matches_api": true
+    },
+    {
+      "file": "sketchtools-85066e723410/sketchtools.f3d",
+      "sketch": "CircularSymmetric",
+      "previous_fields_preserved": true,
+      "native_suppression_mask_matches_api": true
+    },
+    {
+      "file": "sketchtools-8a6b662b0d6f/sketchtools.f3d",
+      "sketch": "RectangularSpacing",
+      "previous_fields_preserved": true,
+      "native_suppression_mask_matches_api": true
+    },
+    {
+      "file": "sketchtools-8a6b662b0d6f/sketchtools.f3d",
+      "sketch": "RectangularExtent",
+      "previous_fields_preserved": true,
+      "native_suppression_mask_matches_api": true
+    },
+    {
+      "file": "sketchtools-8a6b662b0d6f/sketchtools.f3d",
+      "sketch": "RectangularSymmetric",
+      "previous_fields_preserved": true,
+      "native_suppression_mask_matches_api": true
+    }
+  ],
+  "malformed_checks": [
+    {
+      "case": "suppressed_seed_ordinal",
+      "rejected": true,
+      "reason": "Sketch pattern suppression ordinal outside non-seed domain"
+    },
+    {
+      "case": "out_of_range_suppression_ordinal",
+      "rejected": true,
+      "reason": "Sketch pattern suppression ordinal outside non-seed domain"
+    },
+    {
+      "case": "selected_direction_vector_disagrees",
+      "rejected": true,
+      "reason": "Rectangular sketch selected direction and stored vector disagree"
+    },
+    {
+      "case": "circular_suppressed_symmetric_combination_unverified",
+      "rejected": true,
+      "reason": "Symmetric sketch pattern suppression ordinal mapping remains unverified"
+    },
+    {
+      "case": "rectangular_suppressed_symmetric_combination_unverified",
+      "rejected": true,
+      "reason": "Symmetric sketch pattern suppression ordinal mapping remains unverified"
+    }
+  ],
+  "main_reader_integration": {
+    "status": "pass",
+    "new_constraints_matching_report": 8,
+    "legacy_circle_helper_patterns": 6,
+    "legacy_offset_constraints": 4,
+    "expanded_shapes_skipped_by_optional_legacy_helper": 8,
+    "unresolved_new_tools": 0
+  }
+}

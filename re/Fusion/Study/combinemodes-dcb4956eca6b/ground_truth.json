@@ -1,0 +1,129 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "join_keep.f3d",
+      "requested_new_component": false,
+      "is_new_component": false,
+      "output_body_names": [
+        "TargetA",
+        "ToolA"
+      ],
+      "health_state": 0,
+      "warning": "",
+      "operation": 0,
+      "keep_tool_bodies": true,
+      "target_name": "TargetA",
+      "tool_names": [
+        "ToolA"
+      ]
+    },
+    {
+      "file": "join_consume.f3d",
+      "requested_new_component": false,
+      "is_new_component": false,
+      "output_body_names": [
+        "TargetA"
+      ],
+      "health_state": 0,
+      "warning": "",
+      "operation": 0,
+      "keep_tool_bodies": false,
+      "target_name": "TargetA",
+      "tool_names": [
+        "ToolA"
+      ]
+    },
+    {
+      "file": "cut_keep.f3d",
+      "requested_new_component": false,
+      "is_new_component": false,
+      "output_body_names": [
+        "TargetA",
+        "ToolA"
+      ],
+      "health_state": 0,
+      "warning": "",
+      "operation": 1,
+      "keep_tool_bodies": true,
+      "target_name": "TargetA",
+      "tool_names": [
+        "ToolA"
+      ]
+    },
+    {
+      "file": "intersect_keep.f3d",
+      "requested_new_component": false,
+      "is_new_component": false,
+      "output_body_names": [
+        "TargetA",
+        "ToolA"
+      ],
+      "health_state": 0,
+      "warning": "",
+      "operation": 2,
+      "keep_tool_bodies": true,
+      "target_name": "TargetA",
+      "tool_names": [
+        "ToolA"
+      ]
+    },
+    {
+      "file": "cut_multiple.f3d",
+      "requested_new_component": false,
+      "is_new_component": false,
+      "output_body_names": [
+        "TargetA",
+        "TargetA (1)",
+        "TargetA (2)",
+        "ToolA",
+        "ToolB"
+      ],
+      "health_state": 0,
+      "warning": "",
+      "operation": 1,
+      "keep_tool_bodies": true,
+      "target_name": "TargetA",
+      "tool_names": [
+        "ToolA",
+        "ToolB"
+      ]
+    },
+    {
+      "file": "cut_swapped.f3d",
+      "requested_new_component": false,
+      "is_new_component": false,
+      "output_body_names": [
+        "ToolA",
+        "TargetA"
+      ],
+      "health_state": 0,
+      "warning": "",
+      "operation": 1,
+      "keep_tool_bodies": true,
+      "target_name": "ToolA",
+      "tool_names": [
+        "TargetA"
+      ]
+    },
+    {
+      "file": "join_component.f3d",
+      "requested_new_component": true,
+      "is_new_component": true,
+      "output_body_names": [
+        "TargetA",
+        "TargetA",
+        "ToolA"
+      ],
+      "health_state": 0,
+      "warning": "",
+      "operation": 0,
+      "keep_tool_bodies": true,
+      "target_name": "TargetA",
+      "tool_names": [
+        "ToolA"
+      ]
+    }
+  ],
+  "errors": []
+}

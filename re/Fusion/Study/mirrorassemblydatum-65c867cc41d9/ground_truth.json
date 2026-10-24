@@ -1,0 +1,587 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "case": "plane_xy_positive_offset",
+      "file": "plane_xy_positive_offset.f3d",
+      "getter_errors": [
+        {
+          "field": "plane.timelineObject",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 51, in <lambda>\n    timeline=observe('plane.timelineObject',lambda:plane.timelineObject)\n                                                   ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 27240, in _get_timelineObject\n    return _fusion.ConstructionPlane__get_timelineObject(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : dcWorkGeom\n"
+        },
+        {
+          "field": "plane.definition.type",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 61, in <lambda>\n    'definition_type':observe('plane.definition.type',lambda:plane.definition.objectType if plane.definition else None)}\n                                                                                            ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 27166, in _get_definition\n    return _fusion.ConstructionPlane__get_definition(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : dcWorkPlane\n"
+        }
+      ],
+      "journal": [
+        "starting_case",
+        "adding_mirror",
+        "feature_added",
+        "reading_results",
+        "getter_failed:plane.timelineObject",
+        "getter_failed:plane.definition.type",
+        "exporting",
+        "exported"
+      ],
+      "requested_offset_cm": 3,
+      "requested_source": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "name": "MirroredDatumSource",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQunK2IpKKZ+W5UfUY/SDDt0GqjBSMDZTMDUwS0w0MbTQTTQ3NtE1MbZM1bVIMUjVtbRITTEyTDQwTTQyAasFmsGABsD2GSiArQNZb2RgBACK8MSaiAAAAA==",
+        "origin_cm": [
+          0.0,
+          0.0,
+          3.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "transform": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          3.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "component_name": "(Unsaved)",
+        "timeline": {
+          "index": 0,
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "entity_name": "MirroredDatumSource"
+        },
+        "is_parametric": true,
+        "definition_type": "adsk::fusion::ConstructionPlaneOffsetDefinition"
+      },
+      "requested_mirror_plane": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "name": "XY",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQunK2IpKKZ+W5UfUY/SDDt0GqjBSMDZTMDUwS0w0MbTQTTQ3NtE1MbZM1bVIMUjVtbRITTEyTDQwTTQyAasFmsGABsD2GSiArQNZb2IEAD+KfcyHAAAA",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "construction_planes_before": [
+        {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "name": "MirroredDatumSource",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQunK2IpKKZ+W5UfUY/SDDt0GqjBSMDZTMDUwS0w0MbTQTTQ3NtE1MbZM1bVIMUjVtbRITTEyTDQwTTQyAasFmsGABsD2GSiArQNZb2RgBACK8MSaiAAAAA==",
+          "origin_cm": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_name": "(Unsaved)",
+          "timeline": {
+            "index": 0,
+            "entity_type": "adsk::fusion::ConstructionPlane",
+            "entity_name": "MirroredDatumSource"
+          },
+          "is_parametric": true,
+          "definition_type": "adsk::fusion::ConstructionPlaneOffsetDefinition"
+        }
+      ],
+      "all_occurrences_before": [],
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "name": "MirroredDatumSource",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQunK2IpKKZ+W5UfUY/SDDt0GqjBSMDZTMDUwS0w0MbTQTTQ3NtE1MbZM1bVIMUjVtbRITTEyTDQwTTQyAasFmsGABsD2GSiArQNZb2RgBACK8MSaiAAAAA==",
+          "origin_cm": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_name": "(Unsaved)",
+          "timeline": {
+            "index": 0,
+            "entity_type": "adsk::fusion::ConstructionPlane",
+            "entity_name": "MirroredDatumSource"
+          },
+          "is_parametric": true,
+          "definition_type": "adsk::fusion::ConstructionPlaneOffsetDefinition"
+        }
+      ],
+      "mirror_plane_getter_status": "not_requested_prior_actual_datum_getter_unavailable",
+      "feature_identity": {
+        "entity_type": "adsk::fusion::MirrorFeature",
+        "name": "ProbeMirrorAssemblyDatum",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQunK2IpKKZ+W5UfUY/SDDt0GqjBSMDZTMDUwS0w0MbTQTTQ3NtE1MbZM1bVIMUjVtbRITTEyTDQwTTQyAasFmsGABsD2GSiArQNZb2RiBACONaj+iAAAAA==",
+        "timeline_index": 1
+      },
+      "api_result_features": {
+        "status": "returned_null",
+        "entities": [],
+        "scope": "Actual resultFeatures getter returnedNone; independently enumerated construction planes/occurrences are separate evidence"
+      },
+      "construction_planes_after": [
+        {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "name": "MirroredDatumSource",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQunK2IpKKZ+W5UfUY/SDDt0GqjBSMDZTMDUwS0w0MbTQTTQ3NtE1MbZM1bVIMUjVtbRITTEyTDQwTTQyAasFmsGABsD2GSiArQNZb2RgBACK8MSaiAAAAA==",
+          "origin_cm": [
+            0.0,
+            0.0,
+            3.0
+          ],
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "transform": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_name": "(Unsaved)",
+          "timeline": {
+            "index": 0,
+            "entity_type": "adsk::fusion::ConstructionPlane",
+            "entity_name": "MirroredDatumSource"
+          },
+          "is_parametric": true,
+          "definition_type": "adsk::fusion::ConstructionPlaneOffsetDefinition"
+        },
+        {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "name": "Plane2",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQunK2IpKKZ+W5UfUY/SDDt0GqjBSMDZTMDUwS0w0MbTQTTQ3NtE1MbZM1bVIMUjVtbRITTEyTDQwTTQyAasFmsGABsD2GSiArQNZb2RuAABhB4s7iAAAAA==",
+          "origin_cm": [
+            0.0,
+            0.0,
+            -3.0
+          ],
+          "normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ],
+          "transform": [
+            1.0,
+            -0.0,
+            -0.0,
+            0.0,
+            0.0,
+            1.0,
+            -0.0,
+            0.0,
+            -0.0,
+            0.0,
+            -1.0,
+            -3.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_name": "(Unsaved)",
+          "timeline": null,
+          "is_parametric": true,
+          "definition_type": null
+        }
+      ],
+      "all_occurrences_after": [],
+      "health_state": 0,
+      "warning": "",
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 3.0,
+          "unit": "mm",
+          "expression": "30.00 mm",
+          "created_by": "MirroredDatumSource"
+        }
+      ],
+      "export_exists": true
+    },
+    {
+      "case": "plane_xz_negative_offset",
+      "file": "plane_xz_negative_offset.f3d",
+      "getter_errors": [
+        {
+          "field": "plane.timelineObject",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 51, in <lambda>\n    timeline=observe('plane.timelineObject',lambda:plane.timelineObject)\n                                                   ^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 27240, in _get_timelineObject\n    return _fusion.ConstructionPlane__get_timelineObject(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : dcWorkGeom\n"
+        },
+        {
+          "field": "plane.definition.type",
+          "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 44, in observe\n    try:return getter()\n               ~~~~~~^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 61, in <lambda>\n    'definition_type':observe('plane.definition.type',lambda:plane.definition.objectType if plane.definition else None)}\n                                                                                            ^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 27166, in _get_definition\n    return _fusion.ConstructionPlane__get_definition(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : dcWorkPlane\n"
+        }
+      ],
+      "journal": [
+        "starting_case",
+        "adding_mirror",
+        "feature_added",
+        "reading_results",
+        "getter_failed:plane.timelineObject",
+        "getter_failed:plane.definition.type",
+        "exporting",
+        "exported"
+      ],
+      "requested_offset_cm": -2,
+      "requested_source": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "name": "MirroredDatumSource",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnbFs/SYW/5LlmQ8q3GRiH4EVGGkYGymkJpkYJyaamiia2JunKJrYmBmqJtoamyha2JhaGZhCGSlmBuA1QLNYEADYPsMFMDWgaw3MjACAJMgTeOIAAAA",
+        "origin_cm": [
+          0.0,
+          -2.0,
+          0.0
+        ],
+        "normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "transform": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          -2.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "component_name": "(Unsaved)",
+        "timeline": {
+          "index": 0,
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "entity_name": "MirroredDatumSource"
+        },
+        "is_parametric": true,
+        "definition_type": "adsk::fusion::ConstructionPlaneOffsetDefinition"
+      },
+      "requested_mirror_plane": {
+        "entity_type": "adsk::fusion::ConstructionPlane",
+        "name": "XZ",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnbFs/SYW/5LlmQ8q3GRiH4EVGGkYGymkJpkYJyaamiia2JunKJrYmBmqJtoamyha2JhaGZhCGSlmBuA1QLNYEADYPsMFMDWgaw3MQYAoAcS7ocAAAA=",
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "normal": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "construction_planes_before": [
+        {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "name": "MirroredDatumSource",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnbFs/SYW/5LlmQ8q3GRiH4EVGGkYGymkJpkYJyaamiia2JunKJrYmBmqJtoamyha2JhaGZhCGSlmBuA1QLNYEADYPsMFMDWgaw3MjACAJMgTeOIAAAA",
+          "origin_cm": [
+            0.0,
+            -2.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "transform": [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            -2.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_name": "(Unsaved)",
+          "timeline": {
+            "index": 0,
+            "entity_type": "adsk::fusion::ConstructionPlane",
+            "entity_name": "MirroredDatumSource"
+          },
+          "is_parametric": true,
+          "definition_type": "adsk::fusion::ConstructionPlaneOffsetDefinition"
+        }
+      ],
+      "all_occurrences_before": [],
+      "actual_inputs": [
+        {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "name": "MirroredDatumSource",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnbFs/SYW/5LlmQ8q3GRiH4EVGGkYGymkJpkYJyaamiia2JunKJrYmBmqJtoamyha2JhaGZhCGSlmBuA1QLNYEADYPsMFMDWgaw3MjACAJMgTeOIAAAA",
+          "origin_cm": [
+            0.0,
+            -2.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "transform": [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            -2.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_name": "(Unsaved)",
+          "timeline": {
+            "index": 0,
+            "entity_type": "adsk::fusion::ConstructionPlane",
+            "entity_name": "MirroredDatumSource"
+          },
+          "is_parametric": true,
+          "definition_type": "adsk::fusion::ConstructionPlaneOffsetDefinition"
+        }
+      ],
+      "mirror_plane_getter_status": "not_requested_prior_actual_datum_getter_unavailable",
+      "feature_identity": {
+        "entity_type": "adsk::fusion::MirrorFeature",
+        "name": "ProbeMirrorAssemblyDatum",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnbFs/SYW/5LlmQ8q3GRiH4EVGGkYGymkJpkYJyaamiia2JunKJrYmBmqJtoamyha2JhaGZhCGSlmBuA1QLNYEADYPsMFMDWgaw3MjECAJflIYeIAAAA",
+        "timeline_index": 1
+      },
+      "api_result_features": {
+        "status": "returned_null",
+        "entities": [],
+        "scope": "Actual resultFeatures getter returnedNone; independently enumerated construction planes/occurrences are separate evidence"
+      },
+      "construction_planes_after": [
+        {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "name": "MirroredDatumSource",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnbFs/SYW/5LlmQ8q3GRiH4EVGGkYGymkJpkYJyaamiia2JunKJrYmBmqJtoamyha2JhaGZhCGSlmBuA1QLNYEADYPsMFMDWgaw3MjACAJMgTeOIAAAA",
+          "origin_cm": [
+            0.0,
+            -2.0,
+            0.0
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "transform": [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            -2.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_name": "(Unsaved)",
+          "timeline": {
+            "index": 0,
+            "entity_type": "adsk::fusion::ConstructionPlane",
+            "entity_name": "MirroredDatumSource"
+          },
+          "is_parametric": true,
+          "definition_type": "adsk::fusion::ConstructionPlaneOffsetDefinition"
+        },
+        {
+          "entity_type": "adsk::fusion::ConstructionPlane",
+          "name": "Plane2",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQnbFs/SYW/5LlmQ8q3GRiH4EVGGkYGymkJpkYJyaamiia2JunKJrYmBmqJtoamyha2JhaGZhCGSlmBuA1QLNYEADYPsMFMDWgaw3MjcAAHjXAkKIAAAA",
+          "origin_cm": [
+            0.0,
+            2.0,
+            0.0
+          ],
+          "normal": [
+            -0.0,
+            -1.0,
+            -0.0
+          ],
+          "transform": [
+            0.0,
+            1.0,
+            -0.0,
+            0.0,
+            -0.0,
+            0.0,
+            -1.0,
+            2.0,
+            1.0,
+            -0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "component_name": "(Unsaved)",
+          "timeline": null,
+          "is_parametric": true,
+          "definition_type": null
+        }
+      ],
+      "all_occurrences_after": [],
+      "health_state": 0,
+      "warning": "",
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": -2.0,
+          "unit": "mm",
+          "expression": "-20.00 mm",
+          "created_by": "MirroredDatumSource"
+        }
+      ],
+      "export_exists": true
+    }
+  ],
+  "errors": [
+    {
+      "case": "nested_occurrence_yz",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 120, in run\n    sample['requested_source']=occurrence_truth(selected)\n                               ~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in occurrence_truth\n    'native_object_token':native.entityToken if native else None,\n                          ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n",
+      "partial_capture": {
+        "case": "nested_occurrence_yz",
+        "file": "nested_occurrence_yz.f3d",
+        "getter_errors": [],
+        "journal": [
+          "starting_case",
+          "case_failed"
+        ]
+      }
+    },
+    {
+      "case": "nested_occurrence_rotated_parent_xz",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 120, in run\n    sample['requested_source']=occurrence_truth(selected)\n                               ~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateMirrorAssemblyDatumHoldouts.py\", line 74, in occurrence_truth\n    'native_object_token':native.entityToken if native else None,\n                          ^^^^^^^^^^^^^^^^^^\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 52966, in _get_entityToken\n    return _fusion.Occurrence__get_entityToken(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 3 : Tokens can only be created for proxies whose top-level parent is the root component.\n",
+      "partial_capture": {
+        "case": "nested_occurrence_rotated_parent_xz",
+        "file": "nested_occurrence_rotated_parent_xz.f3d",
+        "getter_errors": [],
+        "journal": [
+          "starting_case",
+          "case_failed"
+        ]
+      }
+    }
+  ],
+  "scope": "Nested actual occurrence input context plus two datum orientations/offsets. Source and result collection geometry are independent API observations; no native reflection/ownership mapping is presumed.",
+  "omitted_getters": {
+    "isCombine": "Prior actual non-body cases raise dcMirror InternalValidationError; inapplicable body control is not retried",
+    "stitchTolerance": "Prior actual non-body cases raise dcMirror InternalValidationError; no tolerance field invented",
+    "datum_mirrorPlane": "Prior actual datum getter returnsNone; requested mirror-plane identity/geometry is separately retained"
+  }
+}

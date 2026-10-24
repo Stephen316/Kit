@@ -1,0 +1,1332 @@
+{
+  "scope": "Explicit component creation and historical placement; no replay or solved-state inference",
+  "samples": [
+    {
+      "file": "assembly-acc48a9dc05d/assembly.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "ComponentA",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "ComponentA:1"
+            ],
+            "snapshot_transform": [
+              0.8660254037844387,
+              -0.49999999999999994,
+              0.0,
+              10.0,
+              0.49999999999999994,
+              0.8660254037844387,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              -1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 382,
+            "kind": "CreateComponent",
+            "component_object_id": 330,
+            "component_name": "ComponentB",
+            "component_scope_object_id": 359,
+            "snapshot_object_id": 388,
+            "occurrence_datum_object_id": 386,
+            "datum_bookkeeping_object_id": 387,
+            "native_occurrence_object_id": 381,
+            "occurrence_paths": [
+              "ComponentA:1+ComponentB:1",
+              "ComponentA:2+ComponentB:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.9396926207859084,
+              -0.34202014332566866,
+              5.0,
+              0.0,
+              0.34202014332566866,
+              0.9396926207859084,
+              0.7,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 523,
+            "kind": "CreateComponent",
+            "component_object_id": 471,
+            "component_name": "ComponentC",
+            "component_scope_object_id": 500,
+            "snapshot_object_id": 529,
+            "occurrence_datum_object_id": 527,
+            "datum_bookkeeping_object_id": 528,
+            "native_occurrence_object_id": 522,
+            "occurrence_paths": [
+              "ComponentC:1"
+            ],
+            "snapshot_transform": [
+              0.8191520442889918,
+              0.0,
+              0.573576436351046,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -4.0,
+              -0.573576436351046,
+              0.0,
+              0.8191520442889918,
+              3.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [
+        {
+          "component_name": "ComponentA",
+          "component_and_created_path_match_api": true,
+          "snapshot_matches_api_native_local_transform": true
+        },
+        {
+          "component_name": "ComponentB",
+          "component_and_created_path_match_api": true,
+          "snapshot_matches_api_native_local_transform": true
+        },
+        {
+          "component_name": "ComponentC",
+          "component_and_created_path_match_api": true,
+          "snapshot_matches_api_native_local_transform": true
+        }
+      ],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "boundaryfills-a0953038318b/component_middle.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 411,
+            "kind": "CreateComponent",
+            "component_object_id": 359,
+            "component_name": null,
+            "component_scope_object_id": 388,
+            "snapshot_object_id": 417,
+            "occurrence_datum_object_id": 415,
+            "datum_bookkeeping_object_id": 416,
+            "native_occurrence_object_id": 410,
+            "occurrence_paths": [
+              "None:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "combinemodes-dcb4956eca6b/join_component.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 411,
+            "kind": "CreateComponent",
+            "component_object_id": 359,
+            "component_name": null,
+            "component_scope_object_id": 388,
+            "snapshot_object_id": 417,
+            "occurrence_datum_object_id": 415,
+            "datum_bookkeeping_object_id": 416,
+            "native_occurrence_object_id": 410,
+            "occurrence_paths": [
+              "None:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/ball.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "Fixed",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "Fixed:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 397,
+            "kind": "CreateComponent",
+            "component_object_id": 345,
+            "component_name": "Moving",
+            "component_scope_object_id": 374,
+            "snapshot_object_id": 403,
+            "occurrence_datum_object_id": 401,
+            "datum_bookkeeping_object_id": 402,
+            "native_occurrence_object_id": 396,
+            "occurrence_paths": [
+              "Moving:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [
+        {
+          "component_name": "Fixed",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": true,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        },
+        {
+          "component_name": "Moving",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": false,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        }
+      ],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/cylindrical.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "Fixed",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "Fixed:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 397,
+            "kind": "CreateComponent",
+            "component_object_id": 345,
+            "component_name": "Moving",
+            "component_scope_object_id": 374,
+            "snapshot_object_id": 403,
+            "occurrence_datum_object_id": 401,
+            "datum_bookkeeping_object_id": 402,
+            "native_occurrence_object_id": 396,
+            "occurrence_paths": [
+              "Moving:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [
+        {
+          "component_name": "Fixed",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": true,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        },
+        {
+          "component_name": "Moving",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": false,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        }
+      ],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/pin_slot.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "Fixed",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "Fixed:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 397,
+            "kind": "CreateComponent",
+            "component_object_id": 345,
+            "component_name": "Moving",
+            "component_scope_object_id": 374,
+            "snapshot_object_id": 403,
+            "occurrence_datum_object_id": 401,
+            "datum_bookkeeping_object_id": 402,
+            "native_occurrence_object_id": 396,
+            "occurrence_paths": [
+              "Moving:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [
+        {
+          "component_name": "Fixed",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": true,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        },
+        {
+          "component_name": "Moving",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": false,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        }
+      ],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/planar.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "Fixed",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "Fixed:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 397,
+            "kind": "CreateComponent",
+            "component_object_id": 345,
+            "component_name": "Moving",
+            "component_scope_object_id": 374,
+            "snapshot_object_id": 403,
+            "occurrence_datum_object_id": 401,
+            "datum_bookkeeping_object_id": 402,
+            "native_occurrence_object_id": 396,
+            "occurrence_paths": [
+              "Moving:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [
+        {
+          "component_name": "Fixed",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": true,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        },
+        {
+          "component_name": "Moving",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": false,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        }
+      ],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/revolute.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "Fixed",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "Fixed:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 397,
+            "kind": "CreateComponent",
+            "component_object_id": 345,
+            "component_name": "Moving",
+            "component_scope_object_id": 374,
+            "snapshot_object_id": 403,
+            "occurrence_datum_object_id": 401,
+            "datum_bookkeeping_object_id": 402,
+            "native_occurrence_object_id": 396,
+            "occurrence_paths": [
+              "Moving:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [
+        {
+          "component_name": "Fixed",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": true,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        },
+        {
+          "component_name": "Moving",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": false,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        }
+      ],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/rigid.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "Fixed",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "Fixed:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 397,
+            "kind": "CreateComponent",
+            "component_object_id": 345,
+            "component_name": "Moving",
+            "component_scope_object_id": 374,
+            "snapshot_object_id": 403,
+            "occurrence_datum_object_id": 401,
+            "datum_bookkeeping_object_id": 402,
+            "native_occurrence_object_id": 396,
+            "occurrence_paths": [
+              "Moving:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [
+        {
+          "component_name": "Fixed",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": true,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        },
+        {
+          "component_name": "Moving",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": false,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        }
+      ],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/rigid_flipped.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "Fixed",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "Fixed:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 397,
+            "kind": "CreateComponent",
+            "component_object_id": 345,
+            "component_name": "Moving",
+            "component_scope_object_id": 374,
+            "snapshot_object_id": 403,
+            "occurrence_datum_object_id": 401,
+            "datum_bookkeeping_object_id": 402,
+            "native_occurrence_object_id": 396,
+            "occurrence_paths": [
+              "Moving:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [
+        {
+          "component_name": "Fixed",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": true,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        },
+        {
+          "component_name": "Moving",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": false,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        }
+      ],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "jointmodes-20d3aef2a07d/slider.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "Fixed",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "Fixed:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 397,
+            "kind": "CreateComponent",
+            "component_object_id": 345,
+            "component_name": "Moving",
+            "component_scope_object_id": 374,
+            "snapshot_object_id": 403,
+            "occurrence_datum_object_id": 401,
+            "datum_bookkeeping_object_id": 402,
+            "native_occurrence_object_id": 396,
+            "occurrence_paths": [
+              "Moving:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [
+        {
+          "component_name": "Fixed",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": true,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        },
+        {
+          "component_name": "Moving",
+          "component_matches_api": true,
+          "snapshot_matches_saved_api_transform": false,
+          "scope": "Historical creation snapshot; Moving differs after joint solving"
+        }
+      ],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "loftoperations-0cfcad35feb7/new_component.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 446,
+            "kind": "CreateComponent",
+            "component_object_id": 394,
+            "component_name": null,
+            "component_scope_object_id": 423,
+            "snapshot_object_id": 452,
+            "occurrence_datum_object_id": 450,
+            "datum_bookkeeping_object_id": 451,
+            "native_occurrence_object_id": 445,
+            "occurrence_paths": [
+              "None:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": true,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "movemodes-0dd2f72dd9a7/point_to_position_nested_design.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "MovedComponent",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "MovedComponent:1"
+            ],
+            "snapshot_transform": [
+              0.7071067811865475,
+              -0.7071067811865476,
+              0.0,
+              4.0,
+              0.7071067811865476,
+              0.7071067811865475,
+              0.0,
+              -2.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "movemodes-34cba3ced135/xyz_component.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "MovedComponent",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "MovedComponent:1"
+            ],
+            "snapshot_transform": [
+              0.7071067811865475,
+              -0.7071067811865476,
+              0.0,
+              4.0,
+              0.7071067811865476,
+              0.7071067811865475,
+              0.0,
+              -2.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "movemodes-34cba3ced135/xyz_nested_design.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "MovedComponent",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "MovedComponent:1"
+            ],
+            "snapshot_transform": [
+              0.7071067811865475,
+              -0.7071067811865476,
+              0.0,
+              4.0,
+              0.7071067811865476,
+              0.7071067811865475,
+              0.0,
+              -2.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [],
+      "main_reader_summary_exact": true
+    },
+    {
+      "file": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "expected_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 254,
+            "kind": "CreateComponent",
+            "component_object_id": 202,
+            "component_name": "Module A",
+            "component_scope_object_id": 231,
+            "snapshot_object_id": 260,
+            "occurrence_datum_object_id": 258,
+            "datum_bookkeeping_object_id": 259,
+            "native_occurrence_object_id": 253,
+            "occurrence_paths": [
+              "Module A:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              10.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          },
+          {
+            "feature_object_id": 317,
+            "kind": "CreateComponent",
+            "component_object_id": 265,
+            "component_name": "Module B",
+            "component_scope_object_id": 294,
+            "snapshot_object_id": 323,
+            "occurrence_datum_object_id": 321,
+            "datum_bookkeeping_object_id": 322,
+            "native_occurrence_object_id": 316,
+            "occurrence_paths": [
+              "Module B:1"
+            ],
+            "snapshot_transform": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              12.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "snapshot_uses_identity_shortcut": false,
+            "snapshot_matches_occurrence_cache": true,
+            "transform_scope": "Historical parent-local placement, cm, row-major; no joint solution or replay",
+            "association": "CreateComponent/scope/snapshot links, repeated occurrence datum and reciprocal bookkeeping agree",
+            "snapshot_schema_status": "Only explicit placement and creation correspondence decoded; other snapshot feature fields unsupported"
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed local component creation and explicit historical occurrence placement; copying, external links and replay unsupported"
+      },
+      "api_checks": [],
+      "main_reader_summary_exact": true
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Creation snapshot reference mismatch",
+      "passed": true,
+      "reason": "Component creation scope/snapshot correspondence disagrees"
+    },
+    {
+      "check": "Snapshot counted association changed",
+      "passed": true,
+      "reason": "Component snapshot repeated datum/creation/scope references disagree"
+    },
+    {
+      "check": "Occurrence datum owner changed",
+      "passed": true,
+      "reason": "Component occurrence datum snapshot owner disagrees"
+    },
+    {
+      "check": "Snapshot matrix is not rigid",
+      "passed": true,
+      "reason": "Non-unit transform axes"
+    }
+  ],
+  "api_comparisons": 41,
+  "archive_count": 16,
+  "creation_count": 27,
+  "limitations": [
+    "Only observed local creation layouts and nil namespace fields; external component creation and copy/paste are unsupported.",
+    "Internal snapshot class remains an unsupported feature with separately decoded placement/association fields.",
+    "Snapshots can disagree with saved solved API occurrence transforms; they are not a current-state or joint-solution claim.",
+    "Only assembly and joint fixtures have independent saved occurrence getters; other cases provide native structural consistency evidence."
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "scope": "Installed public Boss API availability in the three actual owned-document probes only; no native Boss decode support established",
+  "capture_directory": "bosscontrasts-abdaa81944ec",
+  "ground_truth_sha256": "f15286cac9bfaba65283412ecbf1217c16a587fa15cce5892de51c7a70e14d43",
+  "executed_generator_sha256": "e16a320e593a69475350d93ef110c2bdaf5c2e389db3d1f438d375aea1443171",
+  "exact_executed_source_snapshot": "bosscontrasts-abdaa81944ec/executed-generator-source.txt",
+  "status": "complete",
+  "samples": [
+    {
+      "case": "blank_diameter_08",
+      "requested": {
+        "diameter_cm": 0.8,
+        "position_plane_z_cm": 1.5,
+        "side": "side2",
+        "is_default_direction": true,
+        "offset_cm": 0.0,
+        "shape": "Blank",
+        "rib_shape": "None",
+        "draft_angle_radians": 0.0,
+        "root_radius_cm": 0.0,
+        "tip_radius_cm": 0.0,
+        "base_top_z_cm": 0.3
+      },
+      "status": "error",
+      "failure": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateBossContrasts.py\", line 107, in run\n    bosses=component.features.bossFeatures.add(inputs)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 15442, in add\n    return _fusion.BossFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : Design Extension is not available.\n",
+      "getter_errors": [],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "blank_diameter_12",
+      "requested": {
+        "diameter_cm": 1.2,
+        "position_plane_z_cm": 1.5,
+        "side": "side2",
+        "is_default_direction": true,
+        "offset_cm": 0.0,
+        "shape": "Blank",
+        "rib_shape": "None",
+        "draft_angle_radians": 0.0,
+        "root_radius_cm": 0.0,
+        "tip_radius_cm": 0.0,
+        "base_top_z_cm": 0.3
+      },
+      "status": "error",
+      "failure": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateBossContrasts.py\", line 107, in run\n    bosses=component.features.bossFeatures.add(inputs)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 15442, in add\n    return _fusion.BossFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : Design Extension is not available.\n",
+      "getter_errors": [],
+      "close_owned_document_result": true
+    },
+    {
+      "case": "blank_taller_position",
+      "requested": {
+        "diameter_cm": 0.8,
+        "position_plane_z_cm": 2.2,
+        "side": "side2",
+        "is_default_direction": true,
+        "offset_cm": 0.0,
+        "shape": "Blank",
+        "rib_shape": "None",
+        "draft_angle_radians": 0.0,
+        "root_radius_cm": 0.0,
+        "tip_radius_cm": 0.0,
+        "base_top_z_cm": 0.3
+      },
+      "status": "error",
+      "failure": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateBossContrasts.py\", line 107, in run\n    bosses=component.features.bossFeatures.add(inputs)\n  File \"/Users/stephenh/Library/Application Support/Autodesk/webdeploy/production/c139e2731e42a0340acc3d34de2cbdb01237a27c/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 15442, in add\n    return _fusion.BossFeatures_add(self, input)\n           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\nRuntimeError: 3 : Design Extension is not available.\n",
+      "getter_errors": [],
+      "close_owned_document_result": true
+    }
+  ],
+  "summary": {
+    "attempted_owned_cases": 3,
+    "exported_archives": 0,
+    "actual_add_failures": 3,
+    "getter_errors": 0,
+    "all_owned_documents_closed_true": true
+  },
+  "limits": [
+    "All actual BossFeatures.add calls fail RuntimeError3: Design Extension is not available. Installed method existence does not imply the current design/license grants execution.",
+    "No serialization, native feature grammar, Boss geometry or decoder capability inferred from failed creation.",
+    "No retry, license bypass, existing document edit or global setting change performed."
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "scope": "Fixed six saved archives against 4780e22; only independently proved one-face edge source summary and receiving-Patch provenance lists",
+  "baseline_commit": "4780e22",
+  "files": [
+    "patchcontinuity-b9b0be85a281/brep_free.f3d",
+    "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+    "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+    "surfacebounds-ac801bb00fae/untrim_manual.f3d",
+    "surfacebounds-ac801bb00fae/extend_natural.f3d",
+    "namedbodies-3c7c11fc2924/namedbodies.f3d"
+  ],
+  "summary": {
+    "published_source_summaries": 3,
+    "qualified_source_associations": 3,
+    "unresolved_source_rows": 0,
+    "feature_annotation_lists": 3,
+    "feature_annotation_rows": 3,
+    "saved_files": 6,
+    "whole_output_unchanged_controls": 3,
+    "unexpected_changes": 0,
+    "baseline_main_calls": 0,
+    "current_main_calls": 0,
+    "live_API_calls": 0
+  },
+  "samples": [
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_free.f3d",
+      "archive_sha256": "96a9d009201a36ffed05b20934e594dc1181739fb3182cfa6b5f766a6dd190e4",
+      "published_source_summaries": 1,
+      "qualified_source_associations": 1,
+      "unresolved_source_rows": 0,
+      "feature_annotation_lists": 1,
+      "feature_annotation_rows": 1,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_independent_new_sources": true,
+      "old_profile_membership_warnings_errors_classifications_geometry_placement_and_ASM_exact": true,
+      "baseline_output_sha256": "7d3fbdf0c530efa408a42d8b7447f70039db58123520d1caf76aa6aadb925596",
+      "current_output_sha256": "b3ca6b84af8fa71cff588f634702cc012dd8b2889e1c479264aaf3d254fceb2c",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/one_face_edge_sources",
+        "/streams/0/one_face_edge_sources"
+      ]
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_tangent.f3d",
+      "archive_sha256": "f8e33e7d6686fd7515f611d723e97bcc69eb4fedacef012f4ef5b4f9929b325a",
+      "published_source_summaries": 1,
+      "qualified_source_associations": 1,
+      "unresolved_source_rows": 0,
+      "feature_annotation_lists": 1,
+      "feature_annotation_rows": 1,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_independent_new_sources": true,
+      "old_profile_membership_warnings_errors_classifications_geometry_placement_and_ASM_exact": true,
+      "baseline_output_sha256": "19338d5c8ba9ad2fa1abcc9896de63cabbc46d1e77fbec016fcfc58c9761a12c",
+      "current_output_sha256": "932c6de8f931c73726513fece60e39175e6f78154c6ef812398e4d67d72a2e81",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/one_face_edge_sources",
+        "/streams/0/one_face_edge_sources"
+      ]
+    },
+    {
+      "archive": "patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+      "archive_sha256": "4e6c85c63ff82fbcee77e02571287701e46f3f55a55d499fe65668768ef3fe0d",
+      "published_source_summaries": 1,
+      "qualified_source_associations": 1,
+      "unresolved_source_rows": 0,
+      "feature_annotation_lists": 1,
+      "feature_annotation_rows": 1,
+      "whole_output_unchanged": false,
+      "whole_output_exact_after_removing_only_independent_new_sources": true,
+      "old_profile_membership_warnings_errors_classifications_geometry_placement_and_ASM_exact": true,
+      "baseline_output_sha256": "e6d33bdf1af78e1deb8d7c404b3f2ab09762df4c06da31068a17f58af1af172f",
+      "current_output_sha256": "2149e53e781e49c33cc8dc20ca734b57ad0209f67ac928cf1225330b20f95c54",
+      "qualified_difference_paths": [
+        "/streams/0/features/2/one_face_edge_sources",
+        "/streams/0/one_face_edge_sources"
+      ]
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/untrim_manual.f3d",
+      "archive_sha256": "2c5f63f80e7e87fb9a6e364bb4a3eb9739b07854eb2513f156d0d3278c3e3de3",
+      "published_source_summaries": 0,
+      "qualified_source_associations": 0,
+      "unresolved_source_rows": 0,
+      "feature_annotation_lists": 0,
+      "feature_annotation_rows": 0,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_independent_new_sources": true,
+      "old_profile_membership_warnings_errors_classifications_geometry_placement_and_ASM_exact": true,
+      "baseline_output_sha256": "b93bc8a27b0064185b4a2f1182d2b94e9a2d68dfcf9ece4ad0dfd642f1e229ad",
+      "current_output_sha256": "b93bc8a27b0064185b4a2f1182d2b94e9a2d68dfcf9ece4ad0dfd642f1e229ad",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "surfacebounds-ac801bb00fae/extend_natural.f3d",
+      "archive_sha256": "38efa6ec0238e3a9bb6d2f0bc714df159ab5a8e012a2ee8175b862da01e83d98",
+      "published_source_summaries": 0,
+      "qualified_source_associations": 0,
+      "unresolved_source_rows": 0,
+      "feature_annotation_lists": 0,
+      "feature_annotation_rows": 0,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_independent_new_sources": true,
+      "old_profile_membership_warnings_errors_classifications_geometry_placement_and_ASM_exact": true,
+      "baseline_output_sha256": "0e646883e472d0de6279d4fd36ed5924eeefd43984e773eb7360968b614c990c",
+      "current_output_sha256": "0e646883e472d0de6279d4fd36ed5924eeefd43984e773eb7360968b614c990c",
+      "qualified_difference_paths": []
+    },
+    {
+      "archive": "namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "archive_sha256": "c868160a0e516a560733acf0b41fbb7dcdefe9a8a650e0d5cf62e3972d8c58e1",
+      "published_source_summaries": 0,
+      "qualified_source_associations": 0,
+      "unresolved_source_rows": 0,
+      "feature_annotation_lists": 0,
+      "feature_annotation_rows": 0,
+      "whole_output_unchanged": true,
+      "whole_output_exact_after_removing_only_independent_new_sources": true,
+      "old_profile_membership_warnings_errors_classifications_geometry_placement_and_ASM_exact": true,
+      "baseline_output_sha256": "664a3aad02508153a82dee05f7b5e612b2ed26de2eaee70c87b86e7d3a51373d",
+      "current_output_sha256": "664a3aad02508153a82dee05f7b5e612b2ed26de2eaee70c87b86e7d3a51373d",
+      "qualified_difference_paths": []
+    }
+  ],
+  "cache_provenance": {
+    "baseline": {
+      "path": "/private/tmp/fusion-one-face-edge-baseline.json",
+      "sha256": "cc1e6529f4b8a83b4b531fedd1a5d76376be5b74ba5fbe7199ed0d070b7491d5"
+    },
+    "current": {
+      "path": "/private/tmp/fusion-one-face-edge-current.json",
+      "sha256": "454edf22d2167ece02a1bd4ae0ca320225bc1e0775c417e0e2c556725e61d3fb"
+    }
+  },
+  "evidence_sha256": {
+    "one-face-edge-source-decoding.json": "3f585f093ce971061511aa32dde9d173a32c60d2e0b1ec986c48fccca353717b"
+  },
+  "source_sha256": {
+    "validate_one_face_edge_source_integration.py": "43a4199e27196f6ec90ad9a4c2f539648b73080d530905067320eace5e4a61aa",
+    "decode_one_face_edge_sources.py": "19d85b1a81243f3f9505898ae5a241328505c0ee54f4ea27b260ff049886b92b",
+    "decode_basics.py": "53063f323f9e25bdd6ae88d5e91cb151e52fa79ace8b60b79d5f93a66034a800"
+  },
+  "limitations": [
+    "Source provenance is attached to the receiving Patch, separately from historical source owner and existing sketch-profile warnings",
+    "No geometry-selected identity, API temporary ID assignment, historical replay, regeneration or persistent topology claim",
+    "Independent focused full dictionaries qualify every addition; cached main never supplies its own expected golden",
+    "All old profile results, diagnostics, feature classification, timeline, geometry, placement and ASM remain exact",
+    "No live Fusion/API/UI or corpus-wide main run; optional caches avoid duplicate fixed-manifest decoding"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "axis_perpendicular_at_point.f3d",
+      "requested_method": "setByPerpendicularAtPoint",
+      "name": "ProbeAxis",
+      "definition_type": "ConstructionAxisPerpendicularAtPointDefinition",
+      "support_inputs": [
+        {
+          "role": "face",
+          "entity": {
+            "kind": "BRepFace",
+            "body_name": "SupportBody",
+            "geometry_type": "Plane",
+            "point_on_face_cm": [
+              1.5,
+              1.0,
+              2.0
+            ],
+            "area_cm2": 6.0,
+            "origin_cm": [
+              1.5,
+              1.0,
+              2.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        },
+        {
+          "role": "point",
+          "entity": {
+            "kind": "Point3D",
+            "position_cm": [
+              0.0,
+              0.0,
+              2.0
+            ]
+          }
+        }
+      ],
+      "geometry": {
+        "origin_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "direction": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "value": 2.0,
+          "unit": "mm",
+          "created_by": "SeedExtrusion"
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "value": 0.0,
+          "unit": "deg",
+          "created_by": "SeedExtrusion"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

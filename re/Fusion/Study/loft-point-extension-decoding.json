@@ -1,0 +1,1305 @@
+{
+  "api_version": "2705.1.30",
+  "samples": [
+    {
+      "archive": "loftpointholdouts-bb91509a13e4/tangent_start_weight1.f3d",
+      "checks": {
+        "actual_point_entity_kind_matches": true,
+        "actual_point_position_matches_explicit_native_identity": true,
+        "actual_end_condition_type_matches": true,
+        "actual_controls_match": true,
+        "actual_start_weight_matches": true,
+        "explicit_start_weight_binding_matches_api_parameter_role": true
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          320,
+          328
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 320,
+            "point": {
+              "selection_record_object_id": 321,
+              "descriptor_object_id": 324,
+              "terminal_object_id": 327,
+              "sketch_object_id": 256,
+              "sketch_name": "HoldoutLoftPoint",
+              "point_object_id": 281,
+              "point_entity_tag": 104,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "cached_section_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "proxy_support_record_object_id": 322,
+              "descriptor_support_record_object_id": 325,
+              "context_record_object_id": 342,
+              "context_payload_hex": "0000000000000000000000000000000000000000000000000000010157010000000000000000",
+              "context_status": "Typed observed 38/166-byte point context retained; coordinate-frame payload semantics unresolved",
+              "association": "Owned section/proxy/descriptor and reciprocal supports select typed sketch ID and point tag",
+              "scope": "Explicit selected point membership; cached section position is independently cross-checked when sketch placement is available",
+              "kind": "SketchPoint"
+            },
+            "end_condition": {
+              "type": "PointTangent",
+              "stored_condition_code": 5,
+              "stored_endpoint_integer": -1,
+              "byte_length": 32,
+              "stored_post_weight_field": 0,
+              "weight": 1.0,
+              "weight_binding_object_id": 318
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 328,
+            "profile": {
+              "selection_record_object_id": 329,
+              "descriptor_object_id": 332,
+              "loop_definition_object_id": 335,
+              "sketch_object_id": 224,
+              "sketch_name": "HoldoutLoftProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 252,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "PointTangent",
+          "stored_condition_code": 5,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 1.0,
+          "weight_binding_object_id": 318
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "PointTangent",
+          "stored_condition_code": 5,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 1.0,
+          "weight_binding_object_id": 318
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 336,
+        "result_body_anchor_object_ids": [
+          361
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit point/profile identities and reciprocal construction ownership; section positions cross-check selected geometry",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "point_section_count": 1,
+        "point_scope": "Observed SketchPoint tangent START with positive finite Start Weight, three-plane ConstructionPoint Sharp START/END and vertex-referenced ConstructionPoint Sharp END; source vertex topology remains partial"
+      },
+      "actual_api_point_section": {
+        "entity_type": "adsk::fusion::SketchPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv6Djd7H/BxXLTjLIfh1/e8tQBVGCsZmCsnJKakpyYkmukZm5ma6JobGJrqWaWZpuhbGJqlGZmaWBsmGRmC1QDMY0ADYPgMFsHVGpmZQ0tDABACwolk/jgAAAA==",
+        "sketch_name": "HoldoutLoftPoint",
+        "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQv6Djd7H/BxXLTjLIfh1/e8tQBVGCsZmCsnJKakpyYkmukZm5ma6JobGJrqWaWZpuhbGJqlGZmaWBsmGRmC1QDMY0ADYPgMFsHUg641MzQBaAXgXiAAAAA==",
+        "sketch_point_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "world_point_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "index": 0,
+        "end_condition_type": "adsk::fusion::LoftPointTangentEndCondition",
+        "weight": 1.0
+      },
+      "actual_requested_source": "SketchPoint",
+      "coordinate_evidence_scope": "Root-component fixtures only; captured API world point equals native component point here"
+    },
+    {
+      "archive": "loftpointholdouts-bb91509a13e4/construction_sharp_end.f3d",
+      "checks": {
+        "actual_point_entity_kind_matches": true,
+        "actual_point_position_matches_explicit_native_identity": true,
+        "actual_end_condition_type_matches": true,
+        "actual_controls_match": true,
+        "actual_parametric_point_and_name_match": true,
+        "actual_source_definition_is_three_planes": true,
+        "actual_source_plane_names_match_explicit_native_refs": true
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          329,
+          337
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 329,
+            "profile": {
+              "selection_record_object_id": 330,
+              "descriptor_object_id": 333,
+              "loop_definition_object_id": 336,
+              "sketch_object_id": 202,
+              "sketch_name": "HoldoutLoftProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 337,
+            "point": {
+              "kind": "ConstructionPoint",
+              "selection_record_object_id": 338,
+              "descriptor_object_id": 341,
+              "terminal_object_id": 344,
+              "point_object_id": 256,
+              "construction_feature_object_id": 257,
+              "name": "HoldoutLoftConstructionPoint",
+              "component_position_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "cached_section_position_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "stored_section_kind": 5,
+              "proxy_support_record_object_id": 339,
+              "descriptor_support_record_object_id": 342,
+              "context_record_object_id": 353,
+              "context_payload_hex": "0000000000000000000000000000000000000000000000000840010162010000000000000000",
+              "context_status": "Observed typed context retained; frame/lifecycle semantics unresolved",
+              "source_definition": {
+                "kind": "ThreePlanes",
+                "backend_object_id": 258,
+                "support_descriptor_object_ids": [
+                  261,
+                  265,
+                  269
+                ],
+                "support_inputs": [
+                  {
+                    "role": "planeOne",
+                    "descriptor_object_id": 261,
+                    "terminal_object_id": 264,
+                    "namespace_text": "12137112-c59c-4695-bd17-b3e8189a7ce5",
+                    "entity_guid_text": "7b16d839-5f1f-4438-9740-861e7a309bd4",
+                    "entity": {
+                      "kind": "ConstructionPlane",
+                      "name": "PointEndpointPlane",
+                      "object_id": 234,
+                      "feature_object_id": 235,
+                      "origin_cm": [
+                        0.0,
+                        0.0,
+                        3.0
+                      ],
+                      "normal": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ]
+                    },
+                    "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+                  },
+                  {
+                    "role": "planeTwo",
+                    "descriptor_object_id": 265,
+                    "terminal_object_id": 268,
+                    "namespace_text": "12137112-c59c-4695-bd17-b3e8189a7ce5",
+                    "entity_guid_text": "7b16d839-5f1f-4438-9740-861e7a309bd4",
+                    "entity": {
+                      "kind": "ConstructionPlane",
+                      "name": "XZ",
+                      "origin_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "x_axis": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "y_axis": [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      "normal": [
+                        0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "object_id": 43,
+                      "origin_container_object_id": 37,
+                      "scope": "Native component origin entity; occurrence context unresolved"
+                    },
+                    "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+                  },
+                  {
+                    "role": "planeThree",
+                    "descriptor_object_id": 269,
+                    "terminal_object_id": 272,
+                    "namespace_text": "12137112-c59c-4695-bd17-b3e8189a7ce5",
+                    "entity_guid_text": "7b16d839-5f1f-4438-9740-861e7a309bd4",
+                    "entity": {
+                      "kind": "ConstructionPlane",
+                      "name": "YZ",
+                      "origin_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "x_axis": [
+                        -0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "y_axis": [
+                        0.0,
+                        -0.0,
+                        1.0
+                      ],
+                      "normal": [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      "object_id": 44,
+                      "origin_container_object_id": 37,
+                      "scope": "Native component origin entity; occurrence context unresolved"
+                    },
+                    "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+                  }
+                ],
+                "support_consistency": {
+                  "matches": true,
+                  "plane_residuals_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal_matrix_determinant": -1.0,
+                  "scope": "Cached point satisfies three independent explicit support-plane equations"
+                }
+              },
+              "association": "Owned section/proxy/descriptor -> typed native point identity -> reciprocal construction feature; descriptor support independently references that feature",
+              "coordinate_scope": "Native component; no occurrence or joint transforms applied"
+            },
+            "end_condition": {
+              "type": "PointSharp",
+              "stored_condition_code": 4,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "PointSharp",
+          "stored_condition_code": 4,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "PointSharp",
+          "stored_condition_code": 4,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 345,
+        "result_body_anchor_object_ids": [
+          370
+        ],
+        "result_anchor_list_end_relative_offset": 117,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit point/profile identities and reciprocal construction ownership; section positions cross-check selected geometry",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "point_section_count": 1,
+        "point_scope": "Observed SketchPoint tangent START with positive finite Start Weight, three-plane ConstructionPoint Sharp START/END and vertex-referenced ConstructionPoint Sharp END; source vertex topology remains partial"
+      },
+      "actual_api_point_section": {
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IeiNTMwDW3jyeiAAAAA==",
+        "name": "HoldoutLoftConstructionPoint",
+        "world_point_cm": [
+          0.0,
+          0.0,
+          3.0
+        ],
+        "is_parametric": true,
+        "component_name": "(Unsaved)",
+        "definition": {
+          "entity_type": "adsk::fusion::ConstructionPointThreePlanesDefinition",
+          "sources": {
+            "planeOne": {
+              "entity_type": "adsk::fusion::ConstructionPlane",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IeiNjEwB8GGgmiAAAAA==",
+              "name": "PointEndpointPlane",
+              "origin_world_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "normal_world": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "planeTwo": {
+              "entity_type": "adsk::fusion::ConstructionPlane",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IehNjAKQHGOiHAAAA",
+              "name": "XZ",
+              "origin_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal_world": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "planeThree": {
+              "entity_type": "adsk::fusion::ConstructionPlane",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgpBwodDROW5T94pvfiExq+YpUIWRgrGZgnmSoVmKhbGlrmmaYZquiYmxha6luYmBroWZYap5orGBZVKKCVgt0AwGNAC2z0ABbB3IehMTAAeSfHaHAAAA",
+              "name": "YZ",
+              "origin_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal_world": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "index": 1,
+        "end_condition_type": "adsk::fusion::LoftPointSharpEndCondition"
+      },
+      "actual_requested_source": "ConstructionPointInput.setByThreePlanes",
+      "coordinate_evidence_scope": "Root-component fixtures only; captured API world point equals native component point here"
+    },
+    {
+      "archive": "loftpointholdouts-bb91509a13e4/construction_sharp_start.f3d",
+      "checks": {
+        "actual_point_entity_kind_matches": true,
+        "actual_point_position_matches_explicit_native_identity": true,
+        "actual_end_condition_type_matches": true,
+        "actual_controls_match": true,
+        "actual_parametric_point_and_name_match": true,
+        "actual_source_definition_is_three_planes": true,
+        "actual_source_plane_names_match_explicit_native_refs": true
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          329,
+          337
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 329,
+            "point": {
+              "kind": "ConstructionPoint",
+              "selection_record_object_id": 330,
+              "descriptor_object_id": 333,
+              "terminal_object_id": 336,
+              "point_object_id": 256,
+              "construction_feature_object_id": 257,
+              "name": "HoldoutLoftConstructionPoint",
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "cached_section_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "stored_section_kind": 5,
+              "proxy_support_record_object_id": 331,
+              "descriptor_support_record_object_id": 334,
+              "context_record_object_id": 351,
+              "context_payload_hex": "0000000000000000000000000000000000000000000000000000010160010000000000000000",
+              "context_status": "Observed typed context retained; frame/lifecycle semantics unresolved",
+              "source_definition": {
+                "kind": "ThreePlanes",
+                "backend_object_id": 258,
+                "support_descriptor_object_ids": [
+                  261,
+                  265,
+                  269
+                ],
+                "support_inputs": [
+                  {
+                    "role": "planeOne",
+                    "descriptor_object_id": 261,
+                    "terminal_object_id": 264,
+                    "namespace_text": "8e883962-cb72-488c-aab1-2b3c5912ef69",
+                    "entity_guid_text": "7baf02b3-d464-4655-b230-d12e3786da47",
+                    "entity": {
+                      "kind": "ConstructionPlane",
+                      "name": "XY",
+                      "origin_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "x_axis": [
+                        1.0,
+                        0.0,
+                        -0.0
+                      ],
+                      "y_axis": [
+                        -0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "normal": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "object_id": 42,
+                      "origin_container_object_id": 37,
+                      "scope": "Native component origin entity; occurrence context unresolved"
+                    },
+                    "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+                  },
+                  {
+                    "role": "planeTwo",
+                    "descriptor_object_id": 265,
+                    "terminal_object_id": 268,
+                    "namespace_text": "8e883962-cb72-488c-aab1-2b3c5912ef69",
+                    "entity_guid_text": "7baf02b3-d464-4655-b230-d12e3786da47",
+                    "entity": {
+                      "kind": "ConstructionPlane",
+                      "name": "XZ",
+                      "origin_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "x_axis": [
+                        0.0,
+                        0.0,
+                        1.0
+                      ],
+                      "y_axis": [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      "normal": [
+                        0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "object_id": 43,
+                      "origin_container_object_id": 37,
+                      "scope": "Native component origin entity; occurrence context unresolved"
+                    },
+                    "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+                  },
+                  {
+                    "role": "planeThree",
+                    "descriptor_object_id": 269,
+                    "terminal_object_id": 272,
+                    "namespace_text": "8e883962-cb72-488c-aab1-2b3c5912ef69",
+                    "entity_guid_text": "7baf02b3-d464-4655-b230-d12e3786da47",
+                    "entity": {
+                      "kind": "ConstructionPlane",
+                      "name": "YZ",
+                      "origin_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "x_axis": [
+                        -0.0,
+                        1.0,
+                        0.0
+                      ],
+                      "y_axis": [
+                        0.0,
+                        -0.0,
+                        1.0
+                      ],
+                      "normal": [
+                        1.0,
+                        0.0,
+                        0.0
+                      ],
+                      "object_id": 44,
+                      "origin_container_object_id": 37,
+                      "scope": "Native component origin entity; occurrence context unresolved"
+                    },
+                    "association": "Explicit owned descriptor -> typed terminal -> native plane or sketch/tag reference"
+                  }
+                ],
+                "support_consistency": {
+                  "matches": true,
+                  "plane_residuals_cm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "normal_matrix_determinant": -1.0,
+                  "scope": "Cached point satisfies three independent explicit support-plane equations"
+                }
+              },
+              "association": "Owned section/proxy/descriptor -> typed native point identity -> reciprocal construction feature; descriptor support independently references that feature",
+              "coordinate_scope": "Native component; no occurrence or joint transforms applied"
+            },
+            "end_condition": {
+              "type": "PointSharp",
+              "stored_condition_code": 4,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 337,
+            "profile": {
+              "selection_record_object_id": 338,
+              "descriptor_object_id": 341,
+              "loop_definition_object_id": 344,
+              "sketch_object_id": 224,
+              "sketch_name": "HoldoutLoftProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 252,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "PointSharp",
+          "stored_condition_code": 4,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "PointSharp",
+          "stored_condition_code": 4,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 345,
+        "result_body_anchor_object_ids": [
+          370
+        ],
+        "result_anchor_list_end_relative_offset": 117,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit point/profile identities and reciprocal construction ownership; section positions cross-check selected geometry",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "point_section_count": 1,
+        "point_scope": "Observed SketchPoint tangent START with positive finite Start Weight, three-plane ConstructionPoint Sharp START/END and vertex-referenced ConstructionPoint Sharp END; source vertex topology remains partial"
+      },
+      "actual_api_point_section": {
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzI1AwBpPpMtiAAAAA==",
+        "name": "HoldoutLoftConstructionPoint",
+        "world_point_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "is_parametric": true,
+        "component_name": "(Unsaved)",
+        "definition": {
+          "entity_type": "adsk::fusion::ConstructionPointThreePlanesDefinition",
+          "sources": {
+            "planeOne": {
+              "entity_type": "adsk::fusion::ConstructionPlane",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzECAMqmhVaHAAAA",
+              "name": "XY",
+              "origin_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal_world": [
+                0.0,
+                0.0,
+                1.0
+              ]
+            },
+            "planeTwo": {
+              "entity_type": "adsk::fusion::ConstructionPlane",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzEGAFyWgiGHAAAA",
+              "name": "XZ",
+              "origin_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal_world": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            },
+            "planeThree": {
+              "entity_type": "adsk::fusion::ConstructionPlane",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl+HZdLpIo+eVRu1bSKF3mcCVRgpGJspmCclphkYJRnrppiYmeiamJma6iYZGRvophgapRqbW5ilJJqYg9UCzWBAA2D7DBTA1oGsNzEBAP8D5r+HAAAA",
+              "name": "YZ",
+              "origin_world_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "normal_world": [
+                1.0,
+                0.0,
+                0.0
+              ]
+            }
+          }
+        },
+        "index": 0,
+        "end_condition_type": "adsk::fusion::LoftPointSharpEndCondition"
+      },
+      "actual_requested_source": "ConstructionPointInput.setByThreePlanes",
+      "coordinate_evidence_scope": "Root-component fixtures only; captured API world point equals native component point here"
+    },
+    {
+      "archive": "loftpointholdouts-bb91509a13e4/vertex_construction_sharp_end.f3d",
+      "checks": {
+        "actual_point_entity_kind_matches": true,
+        "actual_point_position_matches_explicit_native_identity": true,
+        "actual_end_condition_type_matches": true,
+        "actual_controls_match": true,
+        "actual_parametric_point_and_name_match": true,
+        "actual_source_is_vertex_referenced_construction_point": true,
+        "native_source_recipe_kind_is_vertex": true
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          377,
+          385
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 377,
+            "profile": {
+              "selection_record_object_id": 378,
+              "descriptor_object_id": 381,
+              "loop_definition_object_id": 384,
+              "sketch_object_id": 202,
+              "sketch_name": "HoldoutLoftProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 230,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 22,
+              "stored_post_weight_field": 0
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 385,
+            "point": {
+              "kind": "ConstructionPoint",
+              "selection_record_object_id": 386,
+              "descriptor_object_id": 389,
+              "terminal_object_id": 392,
+              "point_object_id": 325,
+              "construction_feature_object_id": 326,
+              "name": "HoldoutLoftConstructionPoint",
+              "component_position_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "cached_section_position_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "stored_section_kind": 5,
+              "proxy_support_record_object_id": 387,
+              "descriptor_support_record_object_id": 390,
+              "context_record_object_id": 401,
+              "context_payload_hex": "0000000000000000000000000000000000000000000000000840010192010000000000000000",
+              "context_status": "Observed typed context retained; frame/lifecycle semantics unresolved",
+              "source_definition": {
+                "kind": "ByPointVertexRecipe",
+                "backend_object_id": 327,
+                "descriptor_object_id": 330,
+                "recipe_object_id": 333,
+                "recipe": {
+                  "object_id": 333,
+                  "class_guid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+                  "record_offset": 39168,
+                  "stored_header_fields": [
+                    1,
+                    3
+                  ],
+                  "name_table": [
+                    {
+                      "table_index": 0,
+                      "terms": [
+                        {
+                          "name": "4",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 302,
+                          "matching_primary_record": {
+                            "object_id": 302,
+                            "class_guid": "335CC7BD-BBE5-40AA-9E8C-5EC99D427A3A",
+                            "record_offset": 35616,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 1,
+                      "terms": [
+                        {
+                          "name": "2",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 302,
+                          "matching_primary_record": {
+                            "object_id": 302,
+                            "class_guid": "335CC7BD-BBE5-40AA-9E8C-5EC99D427A3A",
+                            "record_offset": 35616,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "table_index": 2,
+                      "terms": [
+                        {
+                          "name": "3",
+                          "stored_index": 0,
+                          "stored_reference_tag": 1,
+                          "stored_reference_value": 302,
+                          "matching_primary_record": {
+                            "object_id": 302,
+                            "class_guid": "335CC7BD-BBE5-40AA-9E8C-5EC99D427A3A",
+                            "record_offset": 35616,
+                            "scope": "Numeric identity match in this stream; persistent topology meaning unresolved"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "payload_kind": "vertex_recipe_data",
+                  "payload_relative_offset": 115,
+                  "payload_length": 40,
+                  "payload_hex": "ffffffff0300000000000000ffffffff01000000ffffffff02000000ffffffff0000000000000000",
+                  "scope": "Observed grouped terms and tagged numeric references; topology operation semantics unresolved"
+                },
+                "descriptor_payload_hex": "00000000014d0100000000000000000100000024000000310037003100310037006400640065002d0033006100330031002d0034003400360062002d0038003900630038002d0032003900330064003600370031003500300065003500630024000000360030003800310033003100330031002d0066003200610064002d0034006500300034002d0061003500320033002d006300650037003400620038003500630063003700350064000200000000000000010000000152010000000000000000010000000138010000000000000000010200000000000000000000000001010000000000000000000001010000014c010000000000000000010000014b010000000000000000000146010000000000000000",
+                "association_status": "Explicit owned vertex-recipe source framed; persistent ASM vertex identity and source-topology mapping unresolved"
+              },
+              "association": "Owned section/proxy/descriptor -> typed native point identity -> reciprocal construction feature; descriptor support independently references that feature",
+              "coordinate_scope": "Native component; no occurrence or joint transforms applied"
+            },
+            "end_condition": {
+              "type": "PointSharp",
+              "stored_condition_code": 4,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "end_condition": {
+          "type": "PointSharp",
+          "stored_condition_code": 4,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 22,
+          "stored_post_weight_field": 0
+        },
+        "stored_end_condition": {
+          "type": "PointSharp",
+          "stored_condition_code": 4,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 393,
+        "result_body_anchor_object_ids": [
+          416
+        ],
+        "result_anchor_list_end_relative_offset": 117,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit point/profile identities and reciprocal construction ownership; section positions cross-check selected geometry",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "point_section_count": 1,
+        "point_scope": "Observed SketchPoint tangent START with positive finite Start Weight, three-plane ConstructionPoint Sharp START/END and vertex-referenced ConstructionPoint Sharp END; source vertex topology remains partial"
+      },
+      "actual_api_point_section": {
+        "entity_type": "adsk::fusion::ConstructionPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7YyBQAy0mwQogAAAA=",
+        "name": "HoldoutLoftConstructionPoint",
+        "world_point_cm": [
+          0.0,
+          0.0,
+          3.0
+        ],
+        "is_parametric": true,
+        "component_name": "(Unsaved)",
+        "definition": {
+          "entity_type": "adsk::fusion::ConstructionPointPointDefinition",
+          "sources": {
+            "pointEntity": {
+              "entity_type": "adsk::fusion::BRepVertex",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OQWoDMQxFe4JCF6FbbbsQyJZmbArZlRwhq8LgsTUldFPCULLJAXKznKJniWQIlNgLPb6fJBNECMAjlFRl1iWgtsQoAweca2OkpqoitdW8AJnrPjnFbBRAPBnh9eX89x4+vi/Xt+3X5vnTjOhzR8qB7eISS0NREixDZKyaZM5DrWlo3bUZTw+n7yPo6wQYgjlWDKAv9mem2Gv/2UPA/wKCXz2uepqOWg8/OrWyFthDBnRvZ0CODuEO0cFabzTvPjMlAQAA",
+              "world_point_cm": [
+                0.0,
+                0.0,
+                3.0
+              ],
+              "body_name": "PointSupportBody",
+              "body_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrhg7T0rQ5fszhOatumifDFAFUYKxmYKZgYWhsZAqJtmlJiia5JqYKKbaGpkrJucam6SZGGanGxumgJWCzSDAQ2A7TNQAFsHst7YwAwA83qP6YgAAAA="
+            }
+          }
+        },
+        "index": 1,
+        "end_condition_type": "adsk::fusion::LoftPointSharpEndCondition"
+      },
+      "actual_requested_source": "ConstructionPointInput.setByPoint(BRepVertex)",
+      "coordinate_evidence_scope": "Root-component fixtures only; captured API world point equals native component point here"
+    },
+    {
+      "archive": "loftpointholdouts-35b5ac0d2f42/tangent_start_weight2.f3d",
+      "checks": {
+        "actual_point_entity_kind_matches": true,
+        "actual_point_position_matches_explicit_native_identity": true,
+        "actual_end_condition_type_matches": true,
+        "actual_controls_match": true,
+        "actual_start_weight_matches": true,
+        "explicit_start_weight_binding_matches_api_parameter_role": true
+      },
+      "decoded": {
+        "operation": "NewBody",
+        "stored_operation_code": 4,
+        "is_solid": true,
+        "is_closed": false,
+        "closure_status": "Native boolean after counted rail references; directly contrasted open/closed four-section captures",
+        "closure_field_relative_offset": 37,
+        "is_tangent_edges_merged": true,
+        "section_count": 2,
+        "section_input_record_object_ids": [
+          320,
+          328
+        ],
+        "sections": [
+          {
+            "index": 0,
+            "section_record_object_id": 320,
+            "point": {
+              "selection_record_object_id": 321,
+              "descriptor_object_id": 324,
+              "terminal_object_id": 327,
+              "sketch_object_id": 256,
+              "sketch_name": "HoldoutLoftPoint",
+              "point_object_id": 281,
+              "point_entity_tag": 104,
+              "position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "component_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "cached_section_position_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "proxy_support_record_object_id": 322,
+              "descriptor_support_record_object_id": 325,
+              "context_record_object_id": 342,
+              "context_payload_hex": "0000000000000000000000000000000000000000000000000000010157010000000000000000",
+              "context_status": "Typed observed 38/166-byte point context retained; coordinate-frame payload semantics unresolved",
+              "association": "Owned section/proxy/descriptor and reciprocal supports select typed sketch ID and point tag",
+              "scope": "Explicit selected point membership; cached section position is independently cross-checked when sketch placement is available",
+              "kind": "SketchPoint"
+            },
+            "end_condition": {
+              "type": "PointTangent",
+              "stored_condition_code": 5,
+              "stored_endpoint_integer": -1,
+              "byte_length": 32,
+              "stored_post_weight_field": 0,
+              "weight": 2.0,
+              "weight_binding_object_id": 318
+            }
+          },
+          {
+            "index": 1,
+            "section_record_object_id": 328,
+            "profile": {
+              "selection_record_object_id": 329,
+              "descriptor_object_id": 332,
+              "loop_definition_object_id": 335,
+              "sketch_object_id": 224,
+              "sketch_name": "HoldoutLoftProfile",
+              "loops": [
+                {
+                  "is_outer": true,
+                  "curve_references": [
+                    {
+                      "entity_id": 252,
+                      "entity_kind": "Circle",
+                      "entity_tag": 102,
+                      "secondary_tag": 0,
+                      "stored_direction_flag": 0
+                    }
+                  ],
+                  "order_status": "Stored membership order; traversal ordering not decoded"
+                }
+              ],
+              "scope": "Explicit sketch-curve membership and outer/inner loop flags; traversal and general trims unresolved"
+            },
+            "end_condition": {
+              "type": "Free",
+              "stored_condition_code": 0,
+              "stored_endpoint_integer": -1,
+              "byte_length": 18
+            }
+          }
+        ],
+        "start_condition": {
+          "type": "PointTangent",
+          "stored_condition_code": 5,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 2.0,
+          "weight_binding_object_id": 318
+        },
+        "end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "stored_start_condition": {
+          "type": "PointTangent",
+          "stored_condition_code": 5,
+          "stored_endpoint_integer": -1,
+          "byte_length": 32,
+          "stored_post_weight_field": 0,
+          "weight": 2.0,
+          "weight_binding_object_id": 318
+        },
+        "stored_end_condition": {
+          "type": "Free",
+          "stored_condition_code": 0,
+          "stored_endpoint_integer": -1,
+          "byte_length": 18
+        },
+        "result_control_record_object_id": 336,
+        "result_body_anchor_object_ids": [
+          361
+        ],
+        "result_anchor_list_end_relative_offset": 127,
+        "guide_count": 0,
+        "is_centerline": false,
+        "centerline": null,
+        "stored_rail_count": 0,
+        "rails": [],
+        "guide_status": "Explicit ordered zero/one/two straight sketch rails or existing single straight centerline; closed guide variants and composite curves remain unsupported",
+        "section_selection_status": "Explicit point/profile identities and reciprocal construction ownership; section positions cross-check selected geometry",
+        "input_body_selection_record_object_ids": [],
+        "input_bodies": [],
+        "point_section_count": 1,
+        "point_scope": "Observed SketchPoint tangent START with positive finite Start Weight, three-plane ConstructionPoint Sharp START/END and vertex-referenced ConstructionPoint Sharp END; source vertex topology remains partial"
+      },
+      "actual_api_point_section": {
+        "entity_type": "adsk::fusion::SketchPoint",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAlfW/bmhizwOzL1ryBbp6LceqMJIwdhMwczAzNjSwChF18I40UzXxNLERDcx2SxZ19LC3Mg4yTQlxdQwEawWaAYDGgDbZ6AAts7I1AxKGhqYAAA53YWCjgAAAA==",
+        "sketch_name": "HoldoutLoftPoint",
+        "sketch_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZAlfW/bmhizwOzL1ryBbp6LceqMJIwdhMwczAzNjSwChF18I40UzXxNLERDcx2SxZ19LC3Mg4yTQlxdQwEawWaAYDGgDbZ6AAtg5kvZGpGQAc1xbsiAAAAA==",
+        "sketch_point_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "world_point_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "index": 0,
+        "end_condition_type": "adsk::fusion::LoftPointTangentEndCondition",
+        "weight": 2.0
+      },
+      "actual_requested_source": "SketchPoint",
+      "coordinate_evidence_scope": "Root-component fixtures only; captured API world point equals native component point here"
+    }
+  ],
+  "negative_checks": [
+    {
+      "check": "Loft descriptor owner mismatch",
+      "passed": true,
+      "reason": "ConstructionPoint Loft descriptor count/owner/layout mismatch"
+    },
+    {
+      "check": "Native point leaf replaced with unowned origin identity",
+      "passed": true,
+      "reason": "Extended Loft point typed identity missing, ambiguous or wrong class"
+    },
+    {
+      "check": "Descriptor support source backlink mismatch",
+      "passed": true,
+      "reason": "ConstructionPoint Loft support links are not reciprocal"
+    },
+    {
+      "check": "Section cached point disagrees with native geometry",
+      "passed": true,
+      "reason": "ConstructionPoint reciprocal geometry owner/index/position mismatch"
+    },
+    {
+      "check": "Zero tangent START weight rejected",
+      "passed": true,
+      "reason": "Loft point tangent weight must be positive"
+    },
+    {
+      "check": "Negative tangent START weight rejected",
+      "passed": true,
+      "reason": "Loft point tangent weight must be positive"
+    },
+    {
+      "check": "Nonfinite tangent START weight rejected",
+      "passed": true,
+      "reason": "Loft binding role disagrees with end control: Start Weight"
+    }
+  ],
+  "interface": "decode_loft_point_extensions(data, records, body, feature, features); resolve_loft_extended_point_section is the existing five-argument section_resolver hook",
+  "validation_command": "python3 decode_loft_point_extensions.py --validate --zstd-library <local libzstd path>",
+  "start_weight_evidence": {
+    "actual_api_getter_contrasts": [
+      1.0,
+      2.0
+    ],
+    "binding_role": "Start Weight",
+    "decoding_rule": "Positive finite numeric binding; no equality to fixture-specific values required"
+  },
+  "limitations": [
+    "The extension covers exactly one point plus one Free profile, open solid NewBody without guides. Three-plane ConstructionPoints support Sharp START/END, vertex-referenced ConstructionPoints support Sharp END only, and SketchPoint tangent START decodes positive finite Start Weight bindings.",
+    "ConstructionPoint identity follows the explicit native datum reference and reciprocal feature links; coordinate agreement never chooses an identity.",
+    "The vertex source is an owned, bounded vertex_recipe_data record; persistent ASM vertex identity, topology interpretation and source-body mapping remain unresolved.",
+    "Point contexts are retained as opaque typed bytes. No general assembly/world placement, joint solving or Loft regeneration is claimed."
+  ]
+}

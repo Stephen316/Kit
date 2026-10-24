@@ -1,0 +1,2636 @@
+{
+  "interface": "resolve_thin_extrude_body_routes(data,records,body,feature,cursor) pure callback; qualify_thin_extrude_body_routes(data,records,member,members,evidence) late ASM proof",
+  "sample_count": 3,
+  "target_descriptor_count": 3,
+  "new_owned_BODY_count": 1,
+  "qualified_mapped_BODY_count": 4,
+  "check_count": 68,
+  "malformed_guard_count": 5,
+  "samples": [
+    {
+      "archive": "thinextrudeoperations-edb76642a509/join.f3d",
+      "feature_object_id": 1414,
+      "expected_body_list_evidence": {
+        "feature_object_id": 1414,
+        "feature_record_offset": 39318,
+        "body_list_start_offset": 153,
+        "body_list_end_offset": 180,
+        "stored_body_list_hex": "00000000000000000000000001000000018a050000000000000000",
+        "new_result_anchor_object_ids": [],
+        "new_result_body_anchors": [],
+        "new_result_native_body_object_ids": [],
+        "target_body_selection_object_ids": [
+          1418
+        ],
+        "target_body_selection_proxy": {
+          "selection_record_object_id": 1418,
+          "owner_object_id": 1414,
+          "attributes": {},
+          "descriptor_object_ids": [
+            1421
+          ],
+          "native_body_object_ids": [
+            311
+          ],
+          "association": "Explicit counted proxy list with matching descriptor owners"
+        },
+        "target_body_descriptor": {
+          "object_id": 1421,
+          "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+          "owner_object_id": 1414,
+          "body_anchor_object_id": 317,
+          "native_body_object_id": 311,
+          "body_properties": {},
+          "source_owner_object_id": 279,
+          "recipe_record_object_id": 1424,
+          "stored_identifier": 301,
+          "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+          "stored_kind_field": 33,
+          "namespace_text": "becdbd5e-0f83-416d-b493-2096402d2ef2",
+          "entity_uuid_text": "530ab561-16d2-439c-83ec-16f801ce03d9",
+          "context_record_object_ids": [],
+          "stored_trailer_kind_field": 8,
+          "uninterpreted_trailer_field_hex": "00000000000000000000",
+          "uninterpreted_cached_scalar": 5.0792000000000025e-05,
+          "helper_record_object_id": 1423,
+          "support_record_object_id": 1422,
+          "support_reference_object_ids": [
+            279
+          ],
+          "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+          "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+        },
+        "target_native_body_object_ids": [
+          311
+        ],
+        "target_seed_anchor_object_ids": [
+          317
+        ],
+        "target_seed_owner_object_ids": [
+          279
+        ],
+        "native_current_body_collection": {
+          "object_id": 7,
+          "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+          "component_object_id": 3,
+          "component_name": "(Unsaved)",
+          "body_object_ids": [
+            311
+          ],
+          "stored_field_at_3": 1,
+          "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+        },
+        "native_current_body_object_ids": [
+          311
+        ],
+        "stored_history_filename": "BREP.35a09813-56ef-4eab-ae88-2d4804bc786b.smbh",
+        "native_history_mapping": {
+          "mapping_record_object_id": 8,
+          "owner_object_id": 7,
+          "body_count": 1,
+          "bindings": [
+            {
+              "stored_handle": 102,
+              "native_body_object_id": 311
+            }
+          ]
+        },
+        "layout": {
+          "collection_record_offset": 2042,
+          "stored_collection_payload_hex": "0000000100000001000000013701000000000000000001013c0100000000000000000108000000000000000000010112000000000000000000000100000001370100000000000000000103000000000000000000",
+          "mapping_record_offset": 2145,
+          "stored_mapping_payload_hex": "000001000000660000000000000037010000000000000107000000000000000000002e00000042005200450050002e00330035006100300039003800310033002d0035003600650066002d0034006500610062002d0061006500380038002d003200640034003800300034006200630037003800360062002e0073006d0062006800",
+          "exact_body_list_and_mapping_replay": true
+        },
+        "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+        "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+      },
+      "expected_body_route": {
+        "feature_object_id": 1414,
+        "native_body_list_evidence": {
+          "feature_object_id": 1414,
+          "feature_record_offset": 39318,
+          "body_list_start_offset": 153,
+          "body_list_end_offset": 180,
+          "stored_body_list_hex": "00000000000000000000000001000000018a050000000000000000",
+          "new_result_anchor_object_ids": [],
+          "new_result_body_anchors": [],
+          "new_result_native_body_object_ids": [],
+          "target_body_selection_object_ids": [
+            1418
+          ],
+          "target_body_selection_proxy": {
+            "selection_record_object_id": 1418,
+            "owner_object_id": 1414,
+            "attributes": {},
+            "descriptor_object_ids": [
+              1421
+            ],
+            "native_body_object_ids": [
+              311
+            ],
+            "association": "Explicit counted proxy list with matching descriptor owners"
+          },
+          "target_body_descriptor": {
+            "object_id": 1421,
+            "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "owner_object_id": 1414,
+            "body_anchor_object_id": 317,
+            "native_body_object_id": 311,
+            "body_properties": {},
+            "source_owner_object_id": 279,
+            "recipe_record_object_id": 1424,
+            "stored_identifier": 301,
+            "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+            "stored_kind_field": 33,
+            "namespace_text": "becdbd5e-0f83-416d-b493-2096402d2ef2",
+            "entity_uuid_text": "530ab561-16d2-439c-83ec-16f801ce03d9",
+            "context_record_object_ids": [],
+            "stored_trailer_kind_field": 8,
+            "uninterpreted_trailer_field_hex": "00000000000000000000",
+            "uninterpreted_cached_scalar": 5.0792000000000025e-05,
+            "helper_record_object_id": 1423,
+            "support_record_object_id": 1422,
+            "support_reference_object_ids": [
+              279
+            ],
+            "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+            "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+          },
+          "target_native_body_object_ids": [
+            311
+          ],
+          "target_seed_anchor_object_ids": [
+            317
+          ],
+          "target_seed_owner_object_ids": [
+            279
+          ],
+          "native_current_body_collection": {
+            "object_id": 7,
+            "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "body_object_ids": [
+              311
+            ],
+            "stored_field_at_3": 1,
+            "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+          },
+          "native_current_body_object_ids": [
+            311
+          ],
+          "stored_history_filename": "BREP.35a09813-56ef-4eab-ae88-2d4804bc786b.smbh",
+          "native_history_mapping": {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "body_count": 1,
+            "bindings": [
+              {
+                "stored_handle": 102,
+                "native_body_object_id": 311
+              }
+            ]
+          },
+          "layout": {
+            "collection_record_offset": 2042,
+            "stored_collection_payload_hex": "0000000100000001000000013701000000000000000001013c0100000000000000000108000000000000000000010112000000000000000000000100000001370100000000000000000103000000000000000000",
+            "mapping_record_offset": 2145,
+            "stored_mapping_payload_hex": "000001000000660000000000000037010000000000000107000000000000000000002e00000042005200450050002e00330035006100300039003800310033002d0035003600650066002d0034006500610062002d0061006500380038002d003200640034003800300034006200630037003800360062002e0073006d0062006800",
+            "exact_body_list_and_mapping_replay": true
+          },
+          "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+          "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+        },
+        "native_history_mapping": {
+          "mapping_record_object_id": 8,
+          "owner_object_id": 7,
+          "body_count": 1,
+          "bindings": [
+            {
+              "stored_handle": 102,
+              "native_body_object_id": 311
+            }
+          ],
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.35a09813-56ef-4eab-ae88-2d4804bc786b.smbh"
+        },
+        "stored_asm_body_identifiers": {
+          "decoded": [
+            {
+              "mapping_record_object_id": 8,
+              "owner_object_id": 7,
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.35a09813-56ef-4eab-ae88-2d4804bc786b.smbh",
+              "body_count": 1,
+              "bindings": [
+                {
+                  "native_body_object_id": 311,
+                  "stored_handle": 102,
+                  "asm_body_index": 1,
+                  "asm_stored_entity_id": 102,
+                  "asm_body_record_offset": 186,
+                  "asm_identifier_token_offset": 201,
+                  "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                  "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                  "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                  "previous_ordinal_candidate": null,
+                  "ordinal_candidate_conflict": false
+                }
+              ],
+              "auxiliary_declared_roots": [
+                {
+                  "asm_record_index": 2,
+                  "kind": "body",
+                  "stored_entity_id": -1,
+                  "body_graph_index": 2,
+                  "topology_counts": {
+                    "lump": 1,
+                    "shell": 1,
+                    "face": 1,
+                    "loop": 1,
+                    "coedge": 4,
+                    "edge": 4,
+                    "vertex": 4
+                  },
+                  "transform_index": null,
+                  "body_transform_is_identity": true,
+                  "ownership_status": "Unnumbered declared initial BODY; no native body identity assigned",
+                  "lifecycle_status": "Auxiliary stored geometry; source/result/current lifecycle unresolved"
+                }
+              ],
+              "root_table_status": "Mixed initial BODY and bounded unassociated auxiliary roots; BODY association uses stored IDs only"
+            }
+          ],
+          "unresolved": [],
+          "invalidate_ordinal_candidates_for_mapping_ids": [
+            8
+          ],
+          "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+        },
+        "source_to_result_pairing": null,
+        "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+      },
+      "expected_body_routes_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 1414,
+            "native_body_list_evidence": {
+              "feature_object_id": 1414,
+              "feature_record_offset": 39318,
+              "body_list_start_offset": 153,
+              "body_list_end_offset": 180,
+              "stored_body_list_hex": "00000000000000000000000001000000018a050000000000000000",
+              "new_result_anchor_object_ids": [],
+              "new_result_body_anchors": [],
+              "new_result_native_body_object_ids": [],
+              "target_body_selection_object_ids": [
+                1418
+              ],
+              "target_body_selection_proxy": {
+                "selection_record_object_id": 1418,
+                "owner_object_id": 1414,
+                "attributes": {},
+                "descriptor_object_ids": [
+                  1421
+                ],
+                "native_body_object_ids": [
+                  311
+                ],
+                "association": "Explicit counted proxy list with matching descriptor owners"
+              },
+              "target_body_descriptor": {
+                "object_id": 1421,
+                "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                "owner_object_id": 1414,
+                "body_anchor_object_id": 317,
+                "native_body_object_id": 311,
+                "body_properties": {},
+                "source_owner_object_id": 279,
+                "recipe_record_object_id": 1424,
+                "stored_identifier": 301,
+                "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                "stored_kind_field": 33,
+                "namespace_text": "becdbd5e-0f83-416d-b493-2096402d2ef2",
+                "entity_uuid_text": "530ab561-16d2-439c-83ec-16f801ce03d9",
+                "context_record_object_ids": [],
+                "stored_trailer_kind_field": 8,
+                "uninterpreted_trailer_field_hex": "00000000000000000000",
+                "uninterpreted_cached_scalar": 5.0792000000000025e-05,
+                "helper_record_object_id": 1423,
+                "support_record_object_id": 1422,
+                "support_reference_object_ids": [
+                  279
+                ],
+                "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+              },
+              "target_native_body_object_ids": [
+                311
+              ],
+              "target_seed_anchor_object_ids": [
+                317
+              ],
+              "target_seed_owner_object_ids": [
+                279
+              ],
+              "native_current_body_collection": {
+                "object_id": 7,
+                "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "body_object_ids": [
+                  311
+                ],
+                "stored_field_at_3": 1,
+                "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+              },
+              "native_current_body_object_ids": [
+                311
+              ],
+              "stored_history_filename": "BREP.35a09813-56ef-4eab-ae88-2d4804bc786b.smbh",
+              "native_history_mapping": {
+                "mapping_record_object_id": 8,
+                "owner_object_id": 7,
+                "body_count": 1,
+                "bindings": [
+                  {
+                    "stored_handle": 102,
+                    "native_body_object_id": 311
+                  }
+                ]
+              },
+              "layout": {
+                "collection_record_offset": 2042,
+                "stored_collection_payload_hex": "0000000100000001000000013701000000000000000001013c0100000000000000000108000000000000000000010112000000000000000000000100000001370100000000000000000103000000000000000000",
+                "mapping_record_offset": 2145,
+                "stored_mapping_payload_hex": "000001000000660000000000000037010000000000000107000000000000000000002e00000042005200450050002e00330035006100300039003800310033002d0035003600650066002d0034006500610062002d0061006500380038002d003200640034003800300034006200630037003800360062002e0073006d0062006800",
+                "exact_body_list_and_mapping_replay": true
+              },
+              "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+              "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+            },
+            "native_history_mapping": {
+              "mapping_record_object_id": 8,
+              "owner_object_id": 7,
+              "body_count": 1,
+              "bindings": [
+                {
+                  "stored_handle": 102,
+                  "native_body_object_id": 311
+                }
+              ],
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.35a09813-56ef-4eab-ae88-2d4804bc786b.smbh"
+            },
+            "stored_asm_body_identifiers": {
+              "decoded": [
+                {
+                  "mapping_record_object_id": 8,
+                  "owner_object_id": 7,
+                  "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.35a09813-56ef-4eab-ae88-2d4804bc786b.smbh",
+                  "body_count": 1,
+                  "bindings": [
+                    {
+                      "native_body_object_id": 311,
+                      "stored_handle": 102,
+                      "asm_body_index": 1,
+                      "asm_stored_entity_id": 102,
+                      "asm_body_record_offset": 186,
+                      "asm_identifier_token_offset": 201,
+                      "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                      "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                      "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                      "previous_ordinal_candidate": null,
+                      "ordinal_candidate_conflict": false
+                    }
+                  ],
+                  "auxiliary_declared_roots": [
+                    {
+                      "asm_record_index": 2,
+                      "kind": "body",
+                      "stored_entity_id": -1,
+                      "body_graph_index": 2,
+                      "topology_counts": {
+                        "lump": 1,
+                        "shell": 1,
+                        "face": 1,
+                        "loop": 1,
+                        "coedge": 4,
+                        "edge": 4,
+                        "vertex": 4
+                      },
+                      "transform_index": null,
+                      "body_transform_is_identity": true,
+                      "ownership_status": "Unnumbered declared initial BODY; no native body identity assigned",
+                      "lifecycle_status": "Auxiliary stored geometry; source/result/current lifecycle unresolved"
+                    }
+                  ],
+                  "root_table_status": "Mixed initial BODY and bounded unassociated auxiliary roots; BODY association uses stored IDs only"
+                }
+              ],
+              "unresolved": [],
+              "invalidate_ordinal_candidates_for_mapping_ids": [
+                8
+              ],
+              "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+            },
+            "source_to_result_pairing": null,
+            "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+      },
+      "expected_default_strict_thin_summary": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 1414,
+            "reason": "Only observed solid NewBody untapered distance Thin Extrude family supported"
+          }
+        ],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "actual_API_result_geometry_bundles": [
+        {
+          "vertex_count": 24,
+          "edge_count": 36,
+          "face_count": 16,
+          "unordered_vertices_cm": [
+            [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              -1.0,
+              1.5
+            ],
+            [
+              -1.0,
+              4.0,
+              0.0
+            ],
+            [
+              -1.0,
+              4.0,
+              1.5
+            ],
+            [
+              0.0,
+              0.0,
+              1.5
+            ],
+            [
+              0.0,
+              0.0,
+              2.5
+            ],
+            [
+              0.0,
+              3.0,
+              1.5
+            ],
+            [
+              0.0,
+              3.0,
+              2.5
+            ],
+            [
+              0.12,
+              0.12,
+              1.5
+            ],
+            [
+              0.12,
+              0.12,
+              2.5
+            ],
+            [
+              0.12,
+              2.88,
+              1.5
+            ],
+            [
+              0.12,
+              2.88,
+              2.5
+            ],
+            [
+              3.88,
+              0.12,
+              1.5
+            ],
+            [
+              3.88,
+              0.12,
+              2.5
+            ],
+            [
+              3.88,
+              2.88,
+              1.5
+            ],
+            [
+              3.88,
+              2.88,
+              2.5
+            ],
+            [
+              4.0,
+              0.0,
+              1.5
+            ],
+            [
+              4.0,
+              0.0,
+              2.5
+            ],
+            [
+              4.0,
+              3.0,
+              1.5
+            ],
+            [
+              4.0,
+              3.0,
+              2.5
+            ],
+            [
+              5.0,
+              -1.0,
+              0.0
+            ],
+            [
+              5.0,
+              -1.0,
+              1.5
+            ],
+            [
+              5.0,
+              4.0,
+              0.0
+            ],
+            [
+              5.0,
+              4.0,
+              1.5
+            ]
+          ],
+          "unordered_plane_origin_normal_pairs": [
+            [
+              [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                -1.0,
+                4.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.12,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                3.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.12,
+                3.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                1.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                1.5,
+                1.5
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                1.5,
+                1.5
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                1.5,
+                2.5
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                3.88,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                4.0,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                4.0,
+                2.88,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                -0.0
+              ]
+            ],
+            [
+              [
+                4.0,
+                3.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                -0.0
+              ]
+            ],
+            [
+              [
+                5.0,
+                -1.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                5.0,
+                4.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                -0.0
+              ]
+            ]
+          ]
+        }
+      ],
+      "geometry_comparison_scope": "Explicit native target/new-owned/current-collection mapping fixes native BODY identities before complete result data bundles are compared collectively as an unordered multiset at12decimal numerical precision; no per-native-ID/API or source/result pairing",
+      "native_API_result_assignment": null
+    },
+    {
+      "archive": "thinextrudeoperations-edb76642a509/cut.f3d",
+      "feature_object_id": 1720,
+      "expected_body_list_evidence": {
+        "feature_object_id": 1720,
+        "feature_record_offset": 39376,
+        "body_list_start_offset": 153,
+        "body_list_end_offset": 191,
+        "stored_body_list_hex": "000000000100000001e8060000000000000000000000000100000001bc060000000000000000",
+        "new_result_anchor_object_ids": [
+          1768
+        ],
+        "new_result_body_anchors": [
+          {
+            "object_id": 1768,
+            "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+            "native_body_object_id": 1764,
+            "source_owner_object_id": 1720,
+            "native_uuid_text": "3b309afd-3964-4b9e-a867-eb51600b8210",
+            "stored_flags": [
+              0,
+              1
+            ],
+            "native_body_reference_offset": 45359,
+            "body_properties": {},
+            "association": "Typed anchor contains an explicit reference to the native body record",
+            "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+          }
+        ],
+        "new_result_native_body_object_ids": [
+          1764
+        ],
+        "target_body_selection_object_ids": [
+          1724
+        ],
+        "target_body_selection_proxy": {
+          "selection_record_object_id": 1724,
+          "owner_object_id": 1720,
+          "attributes": {},
+          "descriptor_object_ids": [
+            1727
+          ],
+          "native_body_object_ids": [
+            311
+          ],
+          "association": "Explicit counted proxy list with matching descriptor owners"
+        },
+        "target_body_descriptor": {
+          "object_id": 1727,
+          "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+          "owner_object_id": 1720,
+          "body_anchor_object_id": 317,
+          "native_body_object_id": 311,
+          "body_properties": {},
+          "source_owner_object_id": 279,
+          "recipe_record_object_id": 1730,
+          "stored_identifier": 301,
+          "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+          "stored_kind_field": 33,
+          "namespace_text": "87808eab-985c-430e-964d-f373ae8b0e79",
+          "entity_uuid_text": "9a342ec5-864e-4888-966b-edbda863efe8",
+          "context_record_object_ids": [],
+          "stored_trailer_kind_field": 8,
+          "uninterpreted_trailer_field_hex": "00000000000000000000",
+          "uninterpreted_cached_scalar": 5.454199999999987e-05,
+          "helper_record_object_id": 1729,
+          "support_record_object_id": 1728,
+          "support_reference_object_ids": [
+            279
+          ],
+          "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+          "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+        },
+        "target_native_body_object_ids": [
+          311
+        ],
+        "target_seed_anchor_object_ids": [
+          317
+        ],
+        "target_seed_owner_object_ids": [
+          279
+        ],
+        "native_current_body_collection": {
+          "object_id": 7,
+          "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+          "component_object_id": 3,
+          "component_name": "(Unsaved)",
+          "body_object_ids": [
+            311,
+            1764
+          ],
+          "stored_field_at_3": 2,
+          "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+        },
+        "native_current_body_object_ids": [
+          311,
+          1764
+        ],
+        "stored_history_filename": "BREP.c7488a26-5cb3-46de-9292-07a023951db3.smbh",
+        "native_history_mapping": {
+          "mapping_record_object_id": 8,
+          "owner_object_id": 7,
+          "body_count": 2,
+          "bindings": [
+            {
+              "stored_handle": 102,
+              "native_body_object_id": 311
+            },
+            {
+              "stored_handle": 103,
+              "native_body_object_id": 1764
+            }
+          ]
+        },
+        "layout": {
+          "collection_record_offset": 2042,
+          "stored_collection_payload_hex": "0000000200000002000000013701000000000000000001e406000000000000000001013c01000000000000000001080000000000000000000101120000000000000000000002000000013701000000000000000001e40600000000000000000103000000000000000000",
+          "mapping_record_offset": 2167,
+          "stored_mapping_payload_hex": "000002000000660000000000000037010000000000006700000000000000e4060000000000000107000000000000000000002e00000042005200450050002e00630037003400380038006100320036002d0035006300620033002d0034003600640065002d0039003200390032002d003000370061003000320033003900350031006400620033002e0073006d0062006800",
+          "exact_body_list_and_mapping_replay": true
+        },
+        "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+        "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+      },
+      "expected_body_route": {
+        "feature_object_id": 1720,
+        "native_body_list_evidence": {
+          "feature_object_id": 1720,
+          "feature_record_offset": 39376,
+          "body_list_start_offset": 153,
+          "body_list_end_offset": 191,
+          "stored_body_list_hex": "000000000100000001e8060000000000000000000000000100000001bc060000000000000000",
+          "new_result_anchor_object_ids": [
+            1768
+          ],
+          "new_result_body_anchors": [
+            {
+              "object_id": 1768,
+              "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+              "native_body_object_id": 1764,
+              "source_owner_object_id": 1720,
+              "native_uuid_text": "3b309afd-3964-4b9e-a867-eb51600b8210",
+              "stored_flags": [
+                0,
+                1
+              ],
+              "native_body_reference_offset": 45359,
+              "body_properties": {},
+              "association": "Typed anchor contains an explicit reference to the native body record",
+              "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+            }
+          ],
+          "new_result_native_body_object_ids": [
+            1764
+          ],
+          "target_body_selection_object_ids": [
+            1724
+          ],
+          "target_body_selection_proxy": {
+            "selection_record_object_id": 1724,
+            "owner_object_id": 1720,
+            "attributes": {},
+            "descriptor_object_ids": [
+              1727
+            ],
+            "native_body_object_ids": [
+              311
+            ],
+            "association": "Explicit counted proxy list with matching descriptor owners"
+          },
+          "target_body_descriptor": {
+            "object_id": 1727,
+            "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "owner_object_id": 1720,
+            "body_anchor_object_id": 317,
+            "native_body_object_id": 311,
+            "body_properties": {},
+            "source_owner_object_id": 279,
+            "recipe_record_object_id": 1730,
+            "stored_identifier": 301,
+            "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+            "stored_kind_field": 33,
+            "namespace_text": "87808eab-985c-430e-964d-f373ae8b0e79",
+            "entity_uuid_text": "9a342ec5-864e-4888-966b-edbda863efe8",
+            "context_record_object_ids": [],
+            "stored_trailer_kind_field": 8,
+            "uninterpreted_trailer_field_hex": "00000000000000000000",
+            "uninterpreted_cached_scalar": 5.454199999999987e-05,
+            "helper_record_object_id": 1729,
+            "support_record_object_id": 1728,
+            "support_reference_object_ids": [
+              279
+            ],
+            "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+            "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+          },
+          "target_native_body_object_ids": [
+            311
+          ],
+          "target_seed_anchor_object_ids": [
+            317
+          ],
+          "target_seed_owner_object_ids": [
+            279
+          ],
+          "native_current_body_collection": {
+            "object_id": 7,
+            "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "body_object_ids": [
+              311,
+              1764
+            ],
+            "stored_field_at_3": 2,
+            "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+          },
+          "native_current_body_object_ids": [
+            311,
+            1764
+          ],
+          "stored_history_filename": "BREP.c7488a26-5cb3-46de-9292-07a023951db3.smbh",
+          "native_history_mapping": {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "body_count": 2,
+            "bindings": [
+              {
+                "stored_handle": 102,
+                "native_body_object_id": 311
+              },
+              {
+                "stored_handle": 103,
+                "native_body_object_id": 1764
+              }
+            ]
+          },
+          "layout": {
+            "collection_record_offset": 2042,
+            "stored_collection_payload_hex": "0000000200000002000000013701000000000000000001e406000000000000000001013c01000000000000000001080000000000000000000101120000000000000000000002000000013701000000000000000001e40600000000000000000103000000000000000000",
+            "mapping_record_offset": 2167,
+            "stored_mapping_payload_hex": "000002000000660000000000000037010000000000006700000000000000e4060000000000000107000000000000000000002e00000042005200450050002e00630037003400380038006100320036002d0035006300620033002d0034003600640065002d0039003200390032002d003000370061003000320033003900350031006400620033002e0073006d0062006800",
+            "exact_body_list_and_mapping_replay": true
+          },
+          "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+          "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+        },
+        "native_history_mapping": {
+          "mapping_record_object_id": 8,
+          "owner_object_id": 7,
+          "body_count": 2,
+          "bindings": [
+            {
+              "stored_handle": 102,
+              "native_body_object_id": 311
+            },
+            {
+              "stored_handle": 103,
+              "native_body_object_id": 1764
+            }
+          ],
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c7488a26-5cb3-46de-9292-07a023951db3.smbh"
+        },
+        "stored_asm_body_identifiers": {
+          "decoded": [
+            {
+              "mapping_record_object_id": 8,
+              "owner_object_id": 7,
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c7488a26-5cb3-46de-9292-07a023951db3.smbh",
+              "body_count": 2,
+              "bindings": [
+                {
+                  "native_body_object_id": 311,
+                  "stored_handle": 102,
+                  "asm_body_index": 1,
+                  "asm_stored_entity_id": 102,
+                  "asm_body_record_offset": 186,
+                  "asm_identifier_token_offset": 201,
+                  "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                  "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                  "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                  "previous_ordinal_candidate": null,
+                  "ordinal_candidate_conflict": false
+                },
+                {
+                  "native_body_object_id": 1764,
+                  "stored_handle": 103,
+                  "asm_body_index": 3,
+                  "asm_stored_entity_id": 103,
+                  "asm_body_record_offset": 308,
+                  "asm_identifier_token_offset": 323,
+                  "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                  "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                  "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                  "previous_ordinal_candidate": null,
+                  "ordinal_candidate_conflict": false
+                }
+              ],
+              "auxiliary_declared_roots": [
+                {
+                  "asm_record_index": 2,
+                  "kind": "body",
+                  "stored_entity_id": -1,
+                  "body_graph_index": 2,
+                  "topology_counts": {
+                    "lump": 1,
+                    "shell": 1,
+                    "face": 1,
+                    "loop": 1,
+                    "coedge": 4,
+                    "edge": 4,
+                    "vertex": 4
+                  },
+                  "transform_index": null,
+                  "body_transform_is_identity": true,
+                  "ownership_status": "Unnumbered declared initial BODY; no native body identity assigned",
+                  "lifecycle_status": "Auxiliary stored geometry; source/result/current lifecycle unresolved"
+                }
+              ],
+              "root_table_status": "Mixed initial BODY and bounded unassociated auxiliary roots; BODY association uses stored IDs only"
+            }
+          ],
+          "unresolved": [],
+          "invalidate_ordinal_candidates_for_mapping_ids": [
+            8
+          ],
+          "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+        },
+        "source_to_result_pairing": null,
+        "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+      },
+      "expected_body_routes_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 1720,
+            "native_body_list_evidence": {
+              "feature_object_id": 1720,
+              "feature_record_offset": 39376,
+              "body_list_start_offset": 153,
+              "body_list_end_offset": 191,
+              "stored_body_list_hex": "000000000100000001e8060000000000000000000000000100000001bc060000000000000000",
+              "new_result_anchor_object_ids": [
+                1768
+              ],
+              "new_result_body_anchors": [
+                {
+                  "object_id": 1768,
+                  "class_guid": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+                  "native_body_object_id": 1764,
+                  "source_owner_object_id": 1720,
+                  "native_uuid_text": "3b309afd-3964-4b9e-a867-eb51600b8210",
+                  "stored_flags": [
+                    0,
+                    1
+                  ],
+                  "native_body_reference_offset": 45359,
+                  "body_properties": {},
+                  "association": "Typed anchor contains an explicit reference to the native body record",
+                  "lifecycle_status": "Historical or resulting identity; current visibility not inferred"
+                }
+              ],
+              "new_result_native_body_object_ids": [
+                1764
+              ],
+              "target_body_selection_object_ids": [
+                1724
+              ],
+              "target_body_selection_proxy": {
+                "selection_record_object_id": 1724,
+                "owner_object_id": 1720,
+                "attributes": {},
+                "descriptor_object_ids": [
+                  1727
+                ],
+                "native_body_object_ids": [
+                  311
+                ],
+                "association": "Explicit counted proxy list with matching descriptor owners"
+              },
+              "target_body_descriptor": {
+                "object_id": 1727,
+                "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                "owner_object_id": 1720,
+                "body_anchor_object_id": 317,
+                "native_body_object_id": 311,
+                "body_properties": {},
+                "source_owner_object_id": 279,
+                "recipe_record_object_id": 1730,
+                "stored_identifier": 301,
+                "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                "stored_kind_field": 33,
+                "namespace_text": "87808eab-985c-430e-964d-f373ae8b0e79",
+                "entity_uuid_text": "9a342ec5-864e-4888-966b-edbda863efe8",
+                "context_record_object_ids": [],
+                "stored_trailer_kind_field": 8,
+                "uninterpreted_trailer_field_hex": "00000000000000000000",
+                "uninterpreted_cached_scalar": 5.454199999999987e-05,
+                "helper_record_object_id": 1729,
+                "support_record_object_id": 1728,
+                "support_reference_object_ids": [
+                  279
+                ],
+                "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+              },
+              "target_native_body_object_ids": [
+                311
+              ],
+              "target_seed_anchor_object_ids": [
+                317
+              ],
+              "target_seed_owner_object_ids": [
+                279
+              ],
+              "native_current_body_collection": {
+                "object_id": 7,
+                "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "body_object_ids": [
+                  311,
+                  1764
+                ],
+                "stored_field_at_3": 2,
+                "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+              },
+              "native_current_body_object_ids": [
+                311,
+                1764
+              ],
+              "stored_history_filename": "BREP.c7488a26-5cb3-46de-9292-07a023951db3.smbh",
+              "native_history_mapping": {
+                "mapping_record_object_id": 8,
+                "owner_object_id": 7,
+                "body_count": 2,
+                "bindings": [
+                  {
+                    "stored_handle": 102,
+                    "native_body_object_id": 311
+                  },
+                  {
+                    "stored_handle": 103,
+                    "native_body_object_id": 1764
+                  }
+                ]
+              },
+              "layout": {
+                "collection_record_offset": 2042,
+                "stored_collection_payload_hex": "0000000200000002000000013701000000000000000001e406000000000000000001013c01000000000000000001080000000000000000000101120000000000000000000002000000013701000000000000000001e40600000000000000000103000000000000000000",
+                "mapping_record_offset": 2167,
+                "stored_mapping_payload_hex": "000002000000660000000000000037010000000000006700000000000000e4060000000000000107000000000000000000002e00000042005200450050002e00630037003400380038006100320036002d0035006300620033002d0034003600640065002d0039003200390032002d003000370061003000320033003900350031006400620033002e0073006d0062006800",
+                "exact_body_list_and_mapping_replay": true
+              },
+              "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+              "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+            },
+            "native_history_mapping": {
+              "mapping_record_object_id": 8,
+              "owner_object_id": 7,
+              "body_count": 2,
+              "bindings": [
+                {
+                  "stored_handle": 102,
+                  "native_body_object_id": 311
+                },
+                {
+                  "stored_handle": 103,
+                  "native_body_object_id": 1764
+                }
+              ],
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c7488a26-5cb3-46de-9292-07a023951db3.smbh"
+            },
+            "stored_asm_body_identifiers": {
+              "decoded": [
+                {
+                  "mapping_record_object_id": 8,
+                  "owner_object_id": 7,
+                  "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c7488a26-5cb3-46de-9292-07a023951db3.smbh",
+                  "body_count": 2,
+                  "bindings": [
+                    {
+                      "native_body_object_id": 311,
+                      "stored_handle": 102,
+                      "asm_body_index": 1,
+                      "asm_stored_entity_id": 102,
+                      "asm_body_record_offset": 186,
+                      "asm_identifier_token_offset": 201,
+                      "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                      "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                      "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                      "previous_ordinal_candidate": null,
+                      "ordinal_candidate_conflict": false
+                    },
+                    {
+                      "native_body_object_id": 1764,
+                      "stored_handle": 103,
+                      "asm_body_index": 3,
+                      "asm_stored_entity_id": 103,
+                      "asm_body_record_offset": 308,
+                      "asm_identifier_token_offset": 323,
+                      "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                      "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                      "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                      "previous_ordinal_candidate": null,
+                      "ordinal_candidate_conflict": false
+                    }
+                  ],
+                  "auxiliary_declared_roots": [
+                    {
+                      "asm_record_index": 2,
+                      "kind": "body",
+                      "stored_entity_id": -1,
+                      "body_graph_index": 2,
+                      "topology_counts": {
+                        "lump": 1,
+                        "shell": 1,
+                        "face": 1,
+                        "loop": 1,
+                        "coedge": 4,
+                        "edge": 4,
+                        "vertex": 4
+                      },
+                      "transform_index": null,
+                      "body_transform_is_identity": true,
+                      "ownership_status": "Unnumbered declared initial BODY; no native body identity assigned",
+                      "lifecycle_status": "Auxiliary stored geometry; source/result/current lifecycle unresolved"
+                    }
+                  ],
+                  "root_table_status": "Mixed initial BODY and bounded unassociated auxiliary roots; BODY association uses stored IDs only"
+                }
+              ],
+              "unresolved": [],
+              "invalidate_ordinal_candidates_for_mapping_ids": [
+                8
+              ],
+              "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+            },
+            "source_to_result_pairing": null,
+            "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+      },
+      "expected_default_strict_thin_summary": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 1720,
+            "reason": "Only observed solid NewBody untapered distance Thin Extrude family supported"
+          }
+        ],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "actual_API_result_geometry_bundles": [
+        {
+          "vertex_count": 8,
+          "edge_count": 12,
+          "face_count": 6,
+          "unordered_vertices_cm": [
+            [
+              0.12,
+              0.12,
+              0.0
+            ],
+            [
+              0.12,
+              0.12,
+              1.5
+            ],
+            [
+              0.12,
+              2.88,
+              0.0
+            ],
+            [
+              0.12,
+              2.88,
+              1.5
+            ],
+            [
+              3.88,
+              0.12,
+              0.0
+            ],
+            [
+              3.88,
+              0.12,
+              1.5
+            ],
+            [
+              3.88,
+              2.88,
+              0.0
+            ],
+            [
+              3.88,
+              2.88,
+              1.5
+            ]
+          ],
+          "unordered_plane_origin_normal_pairs": [
+            [
+              [
+                0.0,
+                0.12,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.12,
+                3.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                1.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                1.5,
+                1.5
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                3.88,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                4.0,
+                2.88,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                -0.0
+              ]
+            ]
+          ]
+        },
+        {
+          "vertex_count": 16,
+          "edge_count": 24,
+          "face_count": 10,
+          "unordered_vertices_cm": [
+            [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            [
+              -1.0,
+              -1.0,
+              1.5
+            ],
+            [
+              -1.0,
+              4.0,
+              0.0
+            ],
+            [
+              -1.0,
+              4.0,
+              1.5
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.5
+            ],
+            [
+              0.0,
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              3.0,
+              1.5
+            ],
+            [
+              4.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              0.0,
+              1.5
+            ],
+            [
+              4.0,
+              3.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0,
+              1.5
+            ],
+            [
+              5.0,
+              -1.0,
+              0.0
+            ],
+            [
+              5.0,
+              -1.0,
+              1.5
+            ],
+            [
+              5.0,
+              4.0,
+              0.0
+            ],
+            [
+              5.0,
+              4.0,
+              1.5
+            ]
+          ],
+          "unordered_plane_origin_normal_pairs": [
+            [
+              [
+                -1.0,
+                -1.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                -1.0,
+                4.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                3.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                1.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                1.5,
+                1.5
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                4.0,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                4.0,
+                3.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                -0.0
+              ]
+            ],
+            [
+              [
+                5.0,
+                -1.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                5.0,
+                4.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                -0.0
+              ]
+            ]
+          ]
+        }
+      ],
+      "geometry_comparison_scope": "Explicit native target/new-owned/current-collection mapping fixes native BODY identities before complete result data bundles are compared collectively as an unordered multiset at12decimal numerical precision; no per-native-ID/API or source/result pairing",
+      "native_API_result_assignment": null
+    },
+    {
+      "archive": "thinextrudeoperations-edb76642a509/intersect.f3d",
+      "feature_object_id": 1720,
+      "expected_body_list_evidence": {
+        "feature_object_id": 1720,
+        "feature_record_offset": 39184,
+        "body_list_start_offset": 153,
+        "body_list_end_offset": 180,
+        "stored_body_list_hex": "0000000000000000000000000100000001bc060000000000000000",
+        "new_result_anchor_object_ids": [],
+        "new_result_body_anchors": [],
+        "new_result_native_body_object_ids": [],
+        "target_body_selection_object_ids": [
+          1724
+        ],
+        "target_body_selection_proxy": {
+          "selection_record_object_id": 1724,
+          "owner_object_id": 1720,
+          "attributes": {},
+          "descriptor_object_ids": [
+            1727
+          ],
+          "native_body_object_ids": [
+            311
+          ],
+          "association": "Explicit counted proxy list with matching descriptor owners"
+        },
+        "target_body_descriptor": {
+          "object_id": 1727,
+          "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+          "owner_object_id": 1720,
+          "body_anchor_object_id": 317,
+          "native_body_object_id": 311,
+          "body_properties": {},
+          "source_owner_object_id": 279,
+          "recipe_record_object_id": 1730,
+          "stored_identifier": 301,
+          "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+          "stored_kind_field": 33,
+          "namespace_text": "33da30c1-6213-4d85-afd3-f6799e0c9fb4",
+          "entity_uuid_text": "95d14568-8a85-4397-b5fd-db990ece2c2a",
+          "context_record_object_ids": [],
+          "stored_trailer_kind_field": 8,
+          "uninterpreted_trailer_field_hex": "00000000000000000000",
+          "uninterpreted_cached_scalar": 5.541599999999997e-05,
+          "helper_record_object_id": 1729,
+          "support_record_object_id": 1728,
+          "support_reference_object_ids": [
+            279
+          ],
+          "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+          "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+        },
+        "target_native_body_object_ids": [
+          311
+        ],
+        "target_seed_anchor_object_ids": [
+          317
+        ],
+        "target_seed_owner_object_ids": [
+          279
+        ],
+        "native_current_body_collection": {
+          "object_id": 7,
+          "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+          "component_object_id": 3,
+          "component_name": "(Unsaved)",
+          "body_object_ids": [
+            311
+          ],
+          "stored_field_at_3": 1,
+          "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+        },
+        "native_current_body_object_ids": [
+          311
+        ],
+        "stored_history_filename": "BREP.0374fbb6-77eb-4144-85d3-3247f58e019d.smbh",
+        "native_history_mapping": {
+          "mapping_record_object_id": 8,
+          "owner_object_id": 7,
+          "body_count": 1,
+          "bindings": [
+            {
+              "stored_handle": 102,
+              "native_body_object_id": 311
+            }
+          ]
+        },
+        "layout": {
+          "collection_record_offset": 2042,
+          "stored_collection_payload_hex": "0000000100000001000000013701000000000000000001013c0100000000000000000108000000000000000000010112000000000000000000000100000001370100000000000000000103000000000000000000",
+          "mapping_record_offset": 2145,
+          "stored_mapping_payload_hex": "000001000000660000000000000037010000000000000107000000000000000000002e00000042005200450050002e00300033003700340066006200620036002d0037003700650062002d0034003100340034002d0038003500640033002d003300320034003700660035003800650030003100390064002e0073006d0062006800",
+          "exact_body_list_and_mapping_replay": true
+        },
+        "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+        "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+      },
+      "expected_body_route": {
+        "feature_object_id": 1720,
+        "native_body_list_evidence": {
+          "feature_object_id": 1720,
+          "feature_record_offset": 39184,
+          "body_list_start_offset": 153,
+          "body_list_end_offset": 180,
+          "stored_body_list_hex": "0000000000000000000000000100000001bc060000000000000000",
+          "new_result_anchor_object_ids": [],
+          "new_result_body_anchors": [],
+          "new_result_native_body_object_ids": [],
+          "target_body_selection_object_ids": [
+            1724
+          ],
+          "target_body_selection_proxy": {
+            "selection_record_object_id": 1724,
+            "owner_object_id": 1720,
+            "attributes": {},
+            "descriptor_object_ids": [
+              1727
+            ],
+            "native_body_object_ids": [
+              311
+            ],
+            "association": "Explicit counted proxy list with matching descriptor owners"
+          },
+          "target_body_descriptor": {
+            "object_id": 1727,
+            "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+            "owner_object_id": 1720,
+            "body_anchor_object_id": 317,
+            "native_body_object_id": 311,
+            "body_properties": {},
+            "source_owner_object_id": 279,
+            "recipe_record_object_id": 1730,
+            "stored_identifier": 301,
+            "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+            "stored_kind_field": 33,
+            "namespace_text": "33da30c1-6213-4d85-afd3-f6799e0c9fb4",
+            "entity_uuid_text": "95d14568-8a85-4397-b5fd-db990ece2c2a",
+            "context_record_object_ids": [],
+            "stored_trailer_kind_field": 8,
+            "uninterpreted_trailer_field_hex": "00000000000000000000",
+            "uninterpreted_cached_scalar": 5.541599999999997e-05,
+            "helper_record_object_id": 1729,
+            "support_record_object_id": 1728,
+            "support_reference_object_ids": [
+              279
+            ],
+            "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+            "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+          },
+          "target_native_body_object_ids": [
+            311
+          ],
+          "target_seed_anchor_object_ids": [
+            317
+          ],
+          "target_seed_owner_object_ids": [
+            279
+          ],
+          "native_current_body_collection": {
+            "object_id": 7,
+            "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+            "component_object_id": 3,
+            "component_name": "(Unsaved)",
+            "body_object_ids": [
+              311
+            ],
+            "stored_field_at_3": 1,
+            "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+          },
+          "native_current_body_object_ids": [
+            311
+          ],
+          "stored_history_filename": "BREP.0374fbb6-77eb-4144-85d3-3247f58e019d.smbh",
+          "native_history_mapping": {
+            "mapping_record_object_id": 8,
+            "owner_object_id": 7,
+            "body_count": 1,
+            "bindings": [
+              {
+                "stored_handle": 102,
+                "native_body_object_id": 311
+              }
+            ]
+          },
+          "layout": {
+            "collection_record_offset": 2042,
+            "stored_collection_payload_hex": "0000000100000001000000013701000000000000000001013c0100000000000000000108000000000000000000010112000000000000000000000100000001370100000000000000000103000000000000000000",
+            "mapping_record_offset": 2145,
+            "stored_mapping_payload_hex": "000001000000660000000000000037010000000000000107000000000000000000002e00000042005200450050002e00300033003700340066006200620036002d0037003700650062002d0034003100340034002d0038003500640033002d003300320034003700660035003800650030003100390064002e0073006d0062006800",
+            "exact_body_list_and_mapping_replay": true
+          },
+          "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+          "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+        },
+        "native_history_mapping": {
+          "mapping_record_object_id": 8,
+          "owner_object_id": 7,
+          "body_count": 1,
+          "bindings": [
+            {
+              "stored_handle": 102,
+              "native_body_object_id": 311
+            }
+          ],
+          "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0374fbb6-77eb-4144-85d3-3247f58e019d.smbh"
+        },
+        "stored_asm_body_identifiers": {
+          "decoded": [
+            {
+              "mapping_record_object_id": 8,
+              "owner_object_id": 7,
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0374fbb6-77eb-4144-85d3-3247f58e019d.smbh",
+              "body_count": 1,
+              "bindings": [
+                {
+                  "native_body_object_id": 311,
+                  "stored_handle": 102,
+                  "asm_body_index": 1,
+                  "asm_stored_entity_id": 102,
+                  "asm_body_record_offset": 186,
+                  "asm_identifier_token_offset": 201,
+                  "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                  "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                  "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                  "previous_ordinal_candidate": null,
+                  "ordinal_candidate_conflict": false
+                }
+              ],
+              "auxiliary_declared_roots": [
+                {
+                  "asm_record_index": 2,
+                  "kind": "body",
+                  "stored_entity_id": -1,
+                  "body_graph_index": 2,
+                  "topology_counts": {
+                    "lump": 1,
+                    "shell": 1,
+                    "face": 1,
+                    "loop": 1,
+                    "coedge": 4,
+                    "edge": 4,
+                    "vertex": 4
+                  },
+                  "transform_index": null,
+                  "body_transform_is_identity": true,
+                  "ownership_status": "Unnumbered declared initial BODY; no native body identity assigned",
+                  "lifecycle_status": "Auxiliary stored geometry; source/result/current lifecycle unresolved"
+                }
+              ],
+              "root_table_status": "Mixed initial BODY and bounded unassociated auxiliary roots; BODY association uses stored IDs only"
+            }
+          ],
+          "unresolved": [],
+          "invalidate_ordinal_candidates_for_mapping_ids": [
+            8
+          ],
+          "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+        },
+        "source_to_result_pairing": null,
+        "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+      },
+      "expected_body_routes_summary": {
+        "decoded": [
+          {
+            "feature_object_id": 1720,
+            "native_body_list_evidence": {
+              "feature_object_id": 1720,
+              "feature_record_offset": 39184,
+              "body_list_start_offset": 153,
+              "body_list_end_offset": 180,
+              "stored_body_list_hex": "0000000000000000000000000100000001bc060000000000000000",
+              "new_result_anchor_object_ids": [],
+              "new_result_body_anchors": [],
+              "new_result_native_body_object_ids": [],
+              "target_body_selection_object_ids": [
+                1724
+              ],
+              "target_body_selection_proxy": {
+                "selection_record_object_id": 1724,
+                "owner_object_id": 1720,
+                "attributes": {},
+                "descriptor_object_ids": [
+                  1727
+                ],
+                "native_body_object_ids": [
+                  311
+                ],
+                "association": "Explicit counted proxy list with matching descriptor owners"
+              },
+              "target_body_descriptor": {
+                "object_id": 1727,
+                "class_guid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+                "owner_object_id": 1720,
+                "body_anchor_object_id": 317,
+                "native_body_object_id": 311,
+                "body_properties": {},
+                "source_owner_object_id": 279,
+                "recipe_record_object_id": 1730,
+                "stored_identifier": 301,
+                "identifier_scope": "Opaque stored identifier; not a native body ID or ASM record index",
+                "stored_kind_field": 33,
+                "namespace_text": "33da30c1-6213-4d85-afd3-f6799e0c9fb4",
+                "entity_uuid_text": "95d14568-8a85-4397-b5fd-db990ece2c2a",
+                "context_record_object_ids": [],
+                "stored_trailer_kind_field": 8,
+                "uninterpreted_trailer_field_hex": "00000000000000000000",
+                "uninterpreted_cached_scalar": 5.541599999999997e-05,
+                "helper_record_object_id": 1729,
+                "support_record_object_id": 1728,
+                "support_reference_object_ids": [
+                  279
+                ],
+                "association": "Owned descriptor -> counted typed body anchor -> explicit native body reference",
+                "lifecycle_status": "Selection identity retained; historical input is not replaced with a resulting body"
+              },
+              "target_native_body_object_ids": [
+                311
+              ],
+              "target_seed_anchor_object_ids": [
+                317
+              ],
+              "target_seed_owner_object_ids": [
+                279
+              ],
+              "native_current_body_collection": {
+                "object_id": 7,
+                "class_guid": "CD57BC48-50EC-47DC-975A-FB6DEA72F4DA",
+                "component_object_id": 3,
+                "component_name": "(Unsaved)",
+                "body_object_ids": [
+                  311
+                ],
+                "stored_field_at_3": 1,
+                "uninterpreted_middle_hex": "01013c010000000000000000010800000000000000000001011200000000000000000000"
+              },
+              "native_current_body_object_ids": [
+                311
+              ],
+              "stored_history_filename": "BREP.0374fbb6-77eb-4144-85d3-3247f58e019d.smbh",
+              "native_history_mapping": {
+                "mapping_record_object_id": 8,
+                "owner_object_id": 7,
+                "body_count": 1,
+                "bindings": [
+                  {
+                    "stored_handle": 102,
+                    "native_body_object_id": 311
+                  }
+                ]
+              },
+              "layout": {
+                "collection_record_offset": 2042,
+                "stored_collection_payload_hex": "0000000100000001000000013701000000000000000001013c0100000000000000000108000000000000000000010112000000000000000000000100000001370100000000000000000103000000000000000000",
+                "mapping_record_offset": 2145,
+                "stored_mapping_payload_hex": "000001000000660000000000000037010000000000000107000000000000000000002e00000042005200450050002e00300033003700340066006200620036002d0037003700650062002d0034003100340034002d0038003500640033002d003300320034003700660035003800650030003100390064002e0073006d0062006800",
+                "exact_body_list_and_mapping_replay": true
+              },
+              "native_identity_scope": "Owned target selection references a distinct seed feature BODY anchor. Optional newly owned anchors and literal reciprocal current collection retained separately; no historical input replaced by result identity.",
+              "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+            },
+            "native_history_mapping": {
+              "mapping_record_object_id": 8,
+              "owner_object_id": 7,
+              "body_count": 1,
+              "bindings": [
+                {
+                  "stored_handle": 102,
+                  "native_body_object_id": 311
+                }
+              ],
+              "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0374fbb6-77eb-4144-85d3-3247f58e019d.smbh"
+            },
+            "stored_asm_body_identifiers": {
+              "decoded": [
+                {
+                  "mapping_record_object_id": 8,
+                  "owner_object_id": 7,
+                  "history_blob_member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0374fbb6-77eb-4144-85d3-3247f58e019d.smbh",
+                  "body_count": 1,
+                  "bindings": [
+                    {
+                      "native_body_object_id": 311,
+                      "stored_handle": 102,
+                      "asm_body_index": 1,
+                      "asm_stored_entity_id": 102,
+                      "asm_body_record_offset": 186,
+                      "asm_identifier_token_offset": 201,
+                      "association_status": "Observed explicit same-blob native handle / typed ASM BODY stored-entity-ID association",
+                      "identifier_scope": "Identifier local to the explicitly referenced history blob; not an ASM record index",
+                      "lifecycle_status": "Initial stored geometry root; current visibility and historical/final lifecycle unresolved",
+                      "previous_ordinal_candidate": null,
+                      "ordinal_candidate_conflict": false
+                    }
+                  ],
+                  "auxiliary_declared_roots": [
+                    {
+                      "asm_record_index": 2,
+                      "kind": "body",
+                      "stored_entity_id": -1,
+                      "body_graph_index": 2,
+                      "topology_counts": {
+                        "lump": 1,
+                        "shell": 1,
+                        "face": 1,
+                        "loop": 1,
+                        "coedge": 4,
+                        "edge": 4,
+                        "vertex": 4
+                      },
+                      "transform_index": null,
+                      "body_transform_is_identity": true,
+                      "ownership_status": "Unnumbered declared initial BODY; no native body identity assigned",
+                      "lifecycle_status": "Auxiliary stored geometry; source/result/current lifecycle unresolved"
+                    }
+                  ],
+                  "root_table_status": "Mixed initial BODY and bounded unassociated auxiliary roots; BODY association uses stored IDs only"
+                }
+              ],
+              "unresolved": [],
+              "invalidate_ordinal_candidates_for_mapping_ids": [
+                8
+              ],
+              "scope": "Observed typed per-blob BODY identifier association; no component ownership, final-body or solved placement inference"
+            },
+            "source_to_result_pairing": null,
+            "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+          }
+        ],
+        "unresolved": [],
+        "scope": "Observed modifying Thin Extrude owned target proxy/descriptor to historical seed anchor/native BODY, separate optional new owned BODY anchor, reciprocal native current collection and same-blob ASM stored BODY identifier mapping. Target/seed/new-result identities stay distinct; no source/result ordinal pairing, participant API applicability, current visibility, lifecycle or regeneration inferred."
+      },
+      "expected_default_strict_thin_summary": {
+        "decoded": [],
+        "unresolved": [
+          {
+            "feature_object_id": 1720,
+            "reason": "Only observed solid NewBody untapered distance Thin Extrude family supported"
+          }
+        ],
+        "scope": "Observed solid NewBody distance Thin Extrude one/two extent sides, wall enum and owned thickness parameters, using unchanged shared common extrusion controls; closed sketch profiles and one open SketchLine provenance only, no geometry regeneration"
+      },
+      "actual_API_result_geometry_bundles": [
+        {
+          "vertex_count": 16,
+          "edge_count": 24,
+          "face_count": 10,
+          "unordered_vertices_cm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.5
+            ],
+            [
+              0.0,
+              3.0,
+              0.0
+            ],
+            [
+              0.0,
+              3.0,
+              1.5
+            ],
+            [
+              0.12,
+              0.12,
+              0.0
+            ],
+            [
+              0.12,
+              0.12,
+              1.5
+            ],
+            [
+              0.12,
+              2.88,
+              0.0
+            ],
+            [
+              0.12,
+              2.88,
+              1.5
+            ],
+            [
+              3.88,
+              0.12,
+              0.0
+            ],
+            [
+              3.88,
+              0.12,
+              1.5
+            ],
+            [
+              3.88,
+              2.88,
+              0.0
+            ],
+            [
+              3.88,
+              2.88,
+              1.5
+            ],
+            [
+              4.0,
+              0.0,
+              0.0
+            ],
+            [
+              4.0,
+              0.0,
+              1.5
+            ],
+            [
+              4.0,
+              3.0,
+              0.0
+            ],
+            [
+              4.0,
+              3.0,
+              1.5
+            ]
+          ],
+          "unordered_plane_origin_normal_pairs": [
+            [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                0.12,
+                0.0
+              ],
+              [
+                0.0,
+                -1.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.0,
+                3.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                0.12,
+                3.0,
+                0.0
+              ],
+              [
+                -1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                1.5,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                2.0,
+                1.5,
+                1.5
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            [
+              [
+                3.88,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                4.0,
+                0.0,
+                0.0
+              ],
+              [
+                1.0,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              [
+                4.0,
+                2.88,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                -0.0
+              ]
+            ],
+            [
+              [
+                4.0,
+                3.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                -0.0
+              ]
+            ]
+          ]
+        }
+      ],
+      "geometry_comparison_scope": "Explicit native target/new-owned/current-collection mapping fixes native BODY identities before complete result data bundles are compared collectively as an unordered multiset at12decimal numerical precision; no per-native-ID/API or source/result pairing",
+      "native_API_result_assignment": null
+    }
+  ],
+  "legacy_controls": [
+    {
+      "archive": "thinextrudes-c1632bcb5efe/closed_side1.f3d",
+      "complete_NewBody_summary_exact": true
+    },
+    {
+      "archive": "thinextrudes-c1632bcb5efe/closed_center.f3d",
+      "complete_NewBody_summary_exact": true
+    },
+    {
+      "archive": "thinextrudes-c1632bcb5efe/closed_side2.f3d",
+      "complete_NewBody_summary_exact": true
+    },
+    {
+      "archive": "thinextrudes-c1632bcb5efe/closed_two_sides_mixed.f3d",
+      "complete_NewBody_summary_exact": true
+    },
+    {
+      "archive": "thinextrudes-c1632bcb5efe/closed_two_sides_center.f3d",
+      "complete_NewBody_summary_exact": true
+    },
+    {
+      "archive": "thinextrudes-f758eff14202/open_line_side1.f3d",
+      "complete_NewBody_summary_exact": true
+    }
+  ],
+  "checks": [
+    {
+      "check": "Actual terminal3exports/no case errors"
+    },
+    {
+      "check": "Actual3owned closeFalse true"
+    },
+    {
+      "check": "Exact executed generator snapshot hash"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d actual archive hash"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d independent early thin controls/profile fully decoded"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d target selection remains historical seedowner279/nativeBODY311"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d owned proxy/descriptor references match target"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d separately owned new bodies exact"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d body-list offsets/fullbytes replay retained"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d no source/result identity pairing"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d Join native target evidence separate from inactive APIparticipants"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d native mapping retains all current bodies by storedhandle"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d sameasset ASM complete tokens"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d nativeBODY311 exact typed stored-ID root"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d complete BRep geometry bundles corroborate API collectively"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d collective geometry proof invariant to API order"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d auxiliary unnumbered ASM BODY retained unassigned"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/join.f3d existing feature dictionaries not mutated"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d actual archive hash"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d independent early thin controls/profile fully decoded"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d target selection remains historical seedowner279/nativeBODY311"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d owned proxy/descriptor references match target"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d separately owned new bodies exact"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d body-list offsets/fullbytes replay retained"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d no source/result identity pairing"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d actual explicit and rolled APIparticipant handle equality"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d native mapping retains all current bodies by storedhandle"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d sameasset ASM complete tokens"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d nativeBODY311 exact typed stored-ID root"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d nativeBODY1764 exact typed stored-ID root"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d complete BRep geometry bundles corroborate API collectively"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d collective geometry proof invariant to API order"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d auxiliary unnumbered ASM BODY retained unassigned"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d Cut result103 uses ASMrecord3 not ordinal2"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/cut.f3d existing feature dictionaries not mutated"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d actual archive hash"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d independent early thin controls/profile fully decoded"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d target selection remains historical seedowner279/nativeBODY311"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d owned proxy/descriptor references match target"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d separately owned new bodies exact"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d body-list offsets/fullbytes replay retained"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d no source/result identity pairing"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d actual explicit and rolled APIparticipant handle equality"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d native mapping retains all current bodies by storedhandle"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d sameasset ASM complete tokens"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d nativeBODY311 exact typed stored-ID root"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d complete BRep geometry bundles corroborate API collectively"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d collective geometry proof invariant to API order"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d auxiliary unnumbered ASM BODY retained unassigned"
+    },
+    {
+      "check": "thinextrudeoperations-edb76642a509/intersect.f3d existing feature dictionaries not mutated"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/closed_side1.f3d prior full Thin NewBody dictionary exact"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/closed_side1.f3d new Boolean helper no false matching"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/closed_center.f3d prior full Thin NewBody dictionary exact"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/closed_center.f3d new Boolean helper no false matching"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/closed_side2.f3d prior full Thin NewBody dictionary exact"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/closed_side2.f3d new Boolean helper no false matching"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/closed_two_sides_mixed.f3d prior full Thin NewBody dictionary exact"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/closed_two_sides_mixed.f3d new Boolean helper no false matching"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/closed_two_sides_center.f3d prior full Thin NewBody dictionary exact"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/closed_two_sides_center.f3d new Boolean helper no false matching"
+    },
+    {
+      "check": "thinextrudes-f758eff14202/open_line_side1.f3d prior full Thin NewBody dictionary exact"
+    },
+    {
+      "check": "thinextrudes-f758eff14202/open_line_side1.f3d new Boolean helper no false matching"
+    },
+    {
+      "check": "thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d ordinary False inspection exact"
+    },
+    {
+      "check": "Reject unsupported new-anchor count2"
+    },
+    {
+      "check": "Reject owned target proxy backlink mismatch"
+    },
+    {
+      "check": "Native framing passes but unknown ASM handle fails late"
+    },
+    {
+      "check": "Reject tampered late current-body evidence"
+    },
+    {
+      "check": "Native framing passes but missing sameasset blob fails late"
+    }
+  ],
+  "malformed_guards": [
+    {
+      "guard": "Reject unsupported new-anchor count2",
+      "phase": "NativeFraming",
+      "reason": "Unobserved modifying Thin new-anchor count"
+    },
+    {
+      "guard": "Reject owned target proxy backlink mismatch",
+      "phase": "NativeFraming",
+      "reason": "Thin owned target proxy/descriptor ambiguous"
+    },
+    {
+      "guard": "Native framing passes but unknown ASM handle fails late",
+      "phase": "LateASMQualification",
+      "reason": "Thin same-blob native handle/ASM BODY identifier association unresolved"
+    },
+    {
+      "guard": "Reject tampered late current-body evidence",
+      "phase": "LateASMQualification",
+      "reason": "Thin late route evidence disagrees with independent native revalidation"
+    },
+    {
+      "guard": "Native framing passes but missing sameasset blob fails late",
+      "phase": "LateASMQualification",
+      "reason": "Thin explicit same-asset history blob absent"
+    }
+  ],
+  "actual_document_close_journal": [
+    {
+      "time_utc": "2026-10-21T14:45:15.165566+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "join",
+      "sample_count": 1,
+      "error_count": 0,
+      "save": false,
+      "returned": true
+    },
+    {
+      "time_utc": "2026-10-21T14:45:15.599728+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "cut",
+      "sample_count": 2,
+      "error_count": 0,
+      "save": false,
+      "returned": true
+    },
+    {
+      "time_utc": "2026-10-21T14:45:16.096118+00:00",
+      "phase": "owned_document_close_returned",
+      "case": "intersect",
+      "sample_count": 3,
+      "error_count": 0,
+      "save": false,
+      "returned": true
+    }
+  ],
+  "actual_terminal_journal": {
+    "time_utc": "2026-10-21T14:45:16.105360+00:00",
+    "phase": "batch_complete",
+    "case": null,
+    "sample_count": 3,
+    "error_count": 0
+  },
+  "limitations": [
+    "Historical seed targetBODY311 not relabeled as feature-owned result; separate newCutBODY1764 anchor retained",
+    "Join native target selection does not imply applicable API participantBodies getter/setter",
+    "Native current collection proves stored membership only; source/result geometry pairing and lifecycle remain unresolved",
+    "Cut BODYhandle103 resolves ASMrecord3; ordinal2 is an unassigned auxiliary BODY",
+    "Geometry comparisons are unordered complete-data multisets, no native/API per-body assignment",
+    "Early controls/native framing can succeed while late ASM qualification remains unresolved",
+    "No Thin wall Boolean algorithm, current visibility or regeneration"
+  ],
+  "source_sha256": {
+    "decode_thin_extrude_body_routes.py": "deaac05da5c9edece4c177fef1d3260b09849ae86a63782aeaffa6448238b050",
+    "validate_thin_extrude_body_routes.py": "c1dee8c212c18cd6dda61fce43d696d91e40f021163d6973a10e10386f5daf7b",
+    "decode_thin_extrude_operations.py": "e9fd21aca691120939a13715daed05378ed51bd5f7477a1cff93f5d18edf62c1",
+    "decode_thin_extrudes.py": "f68854eee07c182c5d6aeec87a456cb53d97391892394474735ae06c3866dbc4",
+    "decode_body_properties.py": "d51ddfbd067f7f84296e2966de179b40e0dfe8f011debf6a6b067cb1232c237a",
+    "decode_body_asm_identifiers.py": "3c80d7cb4658b49c2429ccdb4da561bb803ba77eef17d32cad0e7d2fa2283a2a"
+  }
+}

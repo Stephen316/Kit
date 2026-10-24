@@ -1,0 +1,2131 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [
+    {
+      "file": "text_emboss.f3d",
+      "case": "text_emboss",
+      "getter_errors": [],
+      "source_inputs_before_emboss": [
+        {
+          "entity_type": "adsk::fusion::SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGRJQA/6Dx+iAAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGBCQAA9rsyiAAAAA==",
+          "font_name": "Arial",
+          "text_style": 0,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "text_parameter": {
+            "name": "d6",
+            "role": "Text1-Text",
+            "expression": "'KIT'",
+            "unit": "Text",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGJOQC+Yt7PiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "text_value": "KIT"
+          },
+          "height_parameter": {
+            "name": "d5",
+            "role": "Text1-Height",
+            "expression": "5 mm",
+            "unit": "mm",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGJCQAEM9dWiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "value": 0.5
+          },
+          "definition_type": "adsk::fusion::MultiLineTextDefinition",
+          "rectangle_lines": [
+            {
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "target_before_emboss": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RPU7EMBCFuQMlzbQUliaesWNaxG61oqSNHP9INAtCbEuzB+ECVHCRvQAt58DjFREJKwvLkp/efHkvshE0dEAW+owhhp6V55wVx5TUaPqkrKGA6CKPvQcsrPAoSruiOmBxLLx9vr6/HDZfH7f73eX5xU0htOT6MDIGiypwMorRGeUTsYrG2xhZkzO5siXjbLFqH0KtYyAwVx3IUdz6IzIm7OopcmnYpcFLw/wyEMaH3TamOGQf0vCUwv1jGqJ/9nC9BliDK4iSkFWRRRy3rpMqJ0TD3RGh6umf4ZySyhlHs/H0gXAnKqlV2YiacfyHo0YltyobUadvY+K4UalblY2ofz7AN6lLfXwAAwAA",
+        "temp_id": 0,
+        "body": {
+          "name": "EmbossTextTargetBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvZG5KQBmOj8LiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 48.0,
+          "face_count": 6,
+          "bounding_box_min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            6.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Plane",
+        "area_cm2": 24.0,
+        "point_on_face_cm": [
+          3.0,
+          2.0,
+          2.0
+        ],
+        "centroid_world_cm": [
+          3.0,
+          2.0,
+          2.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "requested": {
+        "depth_expression": "2 mm",
+        "is_tangent_chain": true,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0
+      },
+      "input_profiles": [
+        {
+          "entity_type": "adsk::fusion::SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGRJQA/6Dx+iAAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGBCQAA9rsyiAAAAA==",
+          "font_name": "Arial",
+          "text_style": 0,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "text_parameter": {
+            "name": "d6",
+            "role": "Text1-Text",
+            "expression": "'KIT'",
+            "unit": "Text",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGJOQC+Yt7PiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "text_value": "KIT"
+          },
+          "height_parameter": {
+            "name": "d5",
+            "role": "Text1-Height",
+            "expression": "5 mm",
+            "unit": "mm",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGJCQAEM9dWiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "value": 0.5
+          },
+          "definition_type": "adsk::fusion::MultiLineTextDefinition",
+          "rectangle_lines": [
+            {
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "settings": {
+        "health_state": 0,
+        "warning": "",
+        "result_bodies": [
+          {
+            "name": "EmbossTextTargetBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvZG5KQBmOj8LiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 48.03317975123039,
+            "face_count": 33,
+            "bounding_box_min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              4.0,
+              2.2
+            ]
+          }
+        ],
+        "depth_cm": 0.2,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "is_tangent_chain": true,
+        "profiles": [
+          {
+            "entity_type": "adsk::fusion::SketchText",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGRJQA/6Dx+iAAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGBCQAA9rsyiAAAAA==",
+            "font_name": "Arial",
+            "text_style": 0,
+            "is_horizontal_flip": false,
+            "is_vertical_flip": false,
+            "text_parameter": {
+              "name": "d6",
+              "role": "Text1-Text",
+              "expression": "'KIT'",
+              "unit": "Text",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGJOQC+Yt7PiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "text_value": "KIT"
+            },
+            "height_parameter": {
+              "name": "d5",
+              "role": "Text1-Height",
+              "expression": "5 mm",
+              "unit": "mm",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGJCQAEM9dWiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "value": 0.5
+            },
+            "definition_type": "adsk::fusion::MultiLineTextDefinition",
+            "rectangle_lines": [
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RPU7EMBCFuQMlzbQUliaesWNaxG61oqSNHP9INAtCbEuzB+ECVHCRvQAt58DjFREJKwvLkp/efHkvshE0dEAW+owhhp6V55wVx5TUaPqkrKGA6CKPvQcsrPAoSruiOmBxLLx9vr6/HDZfH7f73eX5xU0htOT6MDIGiypwMorRGeUTsYrG2xhZkzO5siXjbLFqH0KtYyAwVx3IUdz6IzIm7OopcmnYpcFLw/wyEMaH3TamOGQf0vCUwv1jGqJ/9nC9BliDK4iSkFWRRRy3rpMqJ0TD3RGh6umf4ZySyhlHs/H0gXAnKqlV2YiacfyHo0YltyobUadvY+K4UalblY2ofz7AN6lLfXwAAwAA",
+            "temp_id": 0,
+            "body": {
+              "name": "EmbossTextTargetBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvZG5KQBmOj8LiAAAAA==",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 48.0,
+              "face_count": 6,
+              "bounding_box_min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "bounding_box_max_cm": [
+                6.0,
+                4.0,
+                2.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 24.0,
+            "point_on_face_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "centroid_world_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "model_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "expression": "20 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvZGpEQBHzW2niAAAAA==",
+          "created_by": "EmbossTextTargetExtrude",
+          "value": 2.0
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvZGpKQDkWAk5iAAAAA==",
+          "created_by": "EmbossTextTargetExtrude",
+          "value": 0.0
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "expression": "25 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvZGFKQCpJqeMiAAAAA==",
+          "created_by": "Plane1",
+          "value": 2.5
+        },
+        {
+          "name": "d5",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGJCQAEM9dWiAAAAA==",
+          "created_by": "EmbossTextInputs",
+          "value": 0.5
+        },
+        {
+          "name": "d6",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvbGJOQC+Yt7PiAAAAA==",
+          "created_by": "EmbossTextInputs",
+          "text_value": "KIT"
+        },
+        {
+          "name": "d7",
+          "role": "Depth",
+          "expression": "2 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvYmRBQAsznQMiAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.2
+        },
+        {
+          "name": "d8",
+          "role": "Horizontal Distance",
+          "expression": "0.00 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvYmxIQDJR7NsiAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        },
+        {
+          "name": "d9",
+          "role": "Vertical Distance",
+          "expression": "0.00 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvYmxCQBGs9kciAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        },
+        {
+          "name": "d10",
+          "role": "Rotation Angle",
+          "expression": "0.00 rad",
+          "unit": "deg",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwpq78zfVXfB5ttmvuVRTWNoFqMJIwdhMITE5ycQg2cxAN9kk1VTXxMDCVDcx1dhEN8U00SwlxcTI2MI0DawWaAYDGgDbZ6AAtg5kvYmxOQD84tCFiAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "file": "text_deboss.f3d",
+      "case": "text_deboss",
+      "getter_errors": [],
+      "source_inputs_before_emboss": [
+        {
+          "entity_type": "adsk::fusion::SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGRJQBpxiRMiAAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGBCQBW2KMAiAAAAA==",
+          "font_name": "Arial",
+          "text_style": 0,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "text_parameter": {
+            "name": "d6",
+            "role": "Text1-Text",
+            "expression": "'KIT'",
+            "unit": "Text",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGJOQDoTMb9iAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "text_value": "KIT"
+          },
+          "height_parameter": {
+            "name": "d5",
+            "role": "Text1-Height",
+            "expression": "5 mm",
+            "unit": "mm",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGJCQBSHc9kiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "value": 0.5
+          },
+          "definition_type": "adsk::fusion::MultiLineTextDefinition",
+          "rectangle_lines": [
+            {
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "target_before_emboss": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RQUoEMRBFBS9SO1eBpKqSdIOICM7aldsmnXTAzTjIzMIzqUvvoVfwJKYy2NjtEGwC+fx6+T+kNSAYIAeEforsRqUdsuIuahWsscqid77P6Cn3oAsrvBaFXVEGWBwHLxfPr7uP67f3u6vPcHn+VQiUXBPRs+6d4pxJcYpBhThlRd51iQLZUefKloyz1Vf7NNQ6BgLbG5CtuPUiMiZt6i5ybbi1wWvD/jI0jI+HbZrSkMsNh6cpPuymIYV9gJsNwAa6gigJuS2yiOPCOqlyRhDujwhVD3+GS0oqFxwtxvMB4U5UUquyEbXg+A9HjUpuVTaiTr/GzHGjEluVjah//oBv0PukwgADAAA=",
+        "temp_id": 0,
+        "body": {
+          "name": "EmbossTextTargetBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvZG5KQAwFCc5iAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 48.0,
+          "face_count": 6,
+          "bounding_box_min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            6.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Plane",
+        "area_cm2": 24.0,
+        "point_on_face_cm": [
+          3.0,
+          2.0,
+          2.0
+        ],
+        "centroid_world_cm": [
+          3.0,
+          2.0,
+          2.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "requested": {
+        "depth_expression": "-1.5 mm",
+        "is_tangent_chain": true,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0
+      },
+      "input_profiles": [
+        {
+          "entity_type": "adsk::fusion::SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGRJQBpxiRMiAAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGBCQBW2KMAiAAAAA==",
+          "font_name": "Arial",
+          "text_style": 0,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "text_parameter": {
+            "name": "d6",
+            "role": "Text1-Text",
+            "expression": "'KIT'",
+            "unit": "Text",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGJOQDoTMb9iAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "text_value": "KIT"
+          },
+          "height_parameter": {
+            "name": "d5",
+            "role": "Text1-Height",
+            "expression": "5 mm",
+            "unit": "mm",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGJCQBSHc9kiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "value": 0.5
+          },
+          "definition_type": "adsk::fusion::MultiLineTextDefinition",
+          "rectangle_lines": [
+            {
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "settings": {
+        "health_state": 0,
+        "warning": "",
+        "result_bodies": [
+          {
+            "name": "EmbossTextTargetBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvZG5KQAwFCc5iAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 47.975115186577206,
+            "face_count": 33,
+            "bounding_box_min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              4.0,
+              2.0
+            ]
+          }
+        ],
+        "depth_cm": -0.15000000000000002,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "is_tangent_chain": true,
+        "profiles": [
+          {
+            "entity_type": "adsk::fusion::SketchText",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGRJQBpxiRMiAAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGBCQBW2KMAiAAAAA==",
+            "font_name": "Arial",
+            "text_style": 0,
+            "is_horizontal_flip": false,
+            "is_vertical_flip": false,
+            "text_parameter": {
+              "name": "d6",
+              "role": "Text1-Text",
+              "expression": "'KIT'",
+              "unit": "Text",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGJOQDoTMb9iAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "text_value": "KIT"
+            },
+            "height_parameter": {
+              "name": "d5",
+              "role": "Text1-Height",
+              "expression": "5 mm",
+              "unit": "mm",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGJCQBSHc9kiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "value": 0.5
+            },
+            "definition_type": "adsk::fusion::MultiLineTextDefinition",
+            "rectangle_lines": [
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RQUoEMRBFBS9SO1eBpKqSdIOICM7aldsmnXTAzTjIzMIzqUvvoVfwJKYy2NjtEGwC+fx6+T+kNSAYIAeEforsRqUdsuIuahWsscqid77P6Cn3oAsrvBaFXVEGWBwHLxfPr7uP67f3u6vPcHn+VQiUXBPRs+6d4pxJcYpBhThlRd51iQLZUefKloyz1Vf7NNQ6BgLbG5CtuPUiMiZt6i5ybbi1wWvD/jI0jI+HbZrSkMsNh6cpPuymIYV9gJsNwAa6gigJuS2yiOPCOqlyRhDujwhVD3+GS0oqFxwtxvMB4U5UUquyEbXg+A9HjUpuVTaiTr/GzHGjEluVjah//oBv0PukwgADAAA=",
+            "temp_id": 0,
+            "body": {
+              "name": "EmbossTextTargetBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvZG5KQAwFCc5iAAAAA==",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 48.0,
+              "face_count": 6,
+              "bounding_box_min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "bounding_box_max_cm": [
+                6.0,
+                4.0,
+                2.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 24.0,
+            "point_on_face_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "centroid_world_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "model_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "expression": "20 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvZGpEQAR43WViAAAAA==",
+          "created_by": "EmbossTextTargetExtrude",
+          "value": 2.0
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvZGpKQCydhELiAAAAA==",
+          "created_by": "EmbossTextTargetExtrude",
+          "value": 0.0
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "expression": "25 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvZGFKQD/CL++iAAAAA==",
+          "created_by": "Plane1",
+          "value": 2.5
+        },
+        {
+          "name": "d5",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGJCQBSHc9kiAAAAA==",
+          "created_by": "EmbossTextInputs",
+          "value": 0.5
+        },
+        {
+          "name": "d6",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvbGJOQDoTMb9iAAAAA==",
+          "created_by": "EmbossTextInputs",
+          "text_value": "KIT"
+        },
+        {
+          "name": "d7",
+          "role": "Depth",
+          "expression": "-1.5 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvYmRBQB64Gw+iAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": -0.15000000000000002
+        },
+        {
+          "name": "d8",
+          "role": "Horizontal Distance",
+          "expression": "0.00 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvYmxIQCfaateiAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        },
+        {
+          "name": "d9",
+          "role": "Vertical Distance",
+          "expression": "0.00 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvYmxCQAQncEuiAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        },
+        {
+          "name": "d10",
+          "role": "Rotation Angle",
+          "expression": "0.00 rad",
+          "unit": "deg",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZwmr1yjUFFxzWbg2wu5how/wIqMJIwdhMwTDZyNzEwNJM1yQtzVjXJCU5UTcxOTVN19jczCLFONHYNMkgDawWaAYDGgDbZ6AAtg5kvYmxOQCqzMi3iAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "file": "mixed_text_profile.f3d",
+      "case": "mixed_text_profile",
+      "getter_errors": [],
+      "source_inputs_before_emboss": [
+        {
+          "entity_type": "adsk::fusion::SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cZGlgDeFbvniAAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYGJgDhCzyriAAAAA==",
+          "font_name": "Arial",
+          "text_style": 0,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "text_parameter": {
+            "name": "d6",
+            "role": "Text1-Text",
+            "expression": "'KIT'",
+            "unit": "Text",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYm5gBfn1lWiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "text_value": "KIT"
+          },
+          "height_parameter": {
+            "name": "d5",
+            "role": "Text1-Height",
+            "expression": "5 mm",
+            "unit": "mm",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYmJgDlzlDPiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "value": 0.5
+          },
+          "definition_type": "adsk::fusion::MultiLineTextDefinition",
+          "rectangle_lines": [
+            {
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0Uwj5fHZ/xSvX8pmzH9w3K1zDBRQ3VDBWMDYwAbOAaoA0kGVkAWQZKpjg1GWkYGymkJJmbGxsbmShm2KRkqhrYpBooptolmiqm2ZimZqWnGZskmiSArOZAQ2A7TNQAFtnZGACsQ8KjQwgrgCpAACKFhBxvgAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYGJgDhCzyriAAAAA==",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchCircle",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DpTQyMwbWxgArQayAIAMWa0CpIAAAA=",
+                  "center_sketch_cm": [
+                    4.5,
+                    2.0,
+                    0.0
+                  ],
+                  "radius_cm": 0.2999999999999998
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "target_before_emboss": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RTUoEMRCFXXuKukAgqapOp7fCzAnEbVN2EnDjH4pzlcEreAdP4Bl07dYLmMpgY7dDMATyePX1e01iAcEBefDkxbpIph8SGhZiI5g6460E8hwoxx5sYZW3qjAU5YDV8XD+9fa6+9w87Z8/3v3dy2khUHNjJqIeg4khimErJddLZzIPKU+ZWDhWtmScrFbts1DrGAi6wYEexa0/omOyrp4q14ZfG7w2ul+Ghcubx+uY4phlSuN9mq5u0xjlQeBsC7CFUBCjIZsiizhsrJMqZwTh4oBQ9fBnuKS0csHRYjx/oNyRSmpVNqIWHP/hqFHJrcpG1PHbmDluVGKrshH1zwf4BsRQAsIAAwAA",
+        "temp_id": 0,
+        "body": {
+          "name": "EmbossTextTargetBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9UbmpgCHx7iSiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 48.0,
+          "face_count": 6,
+          "bounding_box_min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            6.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Plane",
+        "area_cm2": 24.0,
+        "point_on_face_cm": [
+          3.0,
+          2.0,
+          2.0
+        ],
+        "centroid_world_cm": [
+          3.0,
+          2.0,
+          2.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "requested": {
+        "depth_expression": "2 mm",
+        "is_tangent_chain": true,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0
+      },
+      "input_profiles": [
+        {
+          "entity_type": "adsk::fusion::SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cZGlgDeFbvniAAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYGJgDhCzyriAAAAA==",
+          "font_name": "Arial",
+          "text_style": 0,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "text_parameter": {
+            "name": "d6",
+            "role": "Text1-Text",
+            "expression": "'KIT'",
+            "unit": "Text",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYm5gBfn1lWiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "text_value": "KIT"
+          },
+          "height_parameter": {
+            "name": "d5",
+            "role": "Text1-Height",
+            "expression": "5 mm",
+            "unit": "mm",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYmJgDlzlDPiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "value": 0.5
+          },
+          "definition_type": "adsk::fusion::MultiLineTextDefinition",
+          "rectangle_lines": [
+            {
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::Profile",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0Uwj5fHZ/xSvX8pmzH9w3K1zDBRQ3VDBWMDYwAbOAaoA0kGVkAWQZKpjg1GWkYGymkJJmbGxsbmShm2KRkqhrYpBooptolmiqm2ZimZqWnGZskmiSArOZAQ2A7TNQAFtnZGACsQ8KjQwgrgCpAACKFhBxvgAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYGJgDhCzyriAAAAA==",
+          "loop_count": 1,
+          "loops": [
+            {
+              "is_outer": true,
+              "curves": [
+                {
+                  "entity_type": "adsk::fusion::SketchCircle",
+                  "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DpTQyMwbWxgArQayAIAMWa0CpIAAAA=",
+                  "center_sketch_cm": [
+                    4.5,
+                    2.0,
+                    0.0
+                  ],
+                  "radius_cm": 0.2999999999999998
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "settings": {
+        "health_state": 0,
+        "warning": "",
+        "result_bodies": [
+          {
+            "name": "EmbossTextTargetBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9UbmpgCHx7iSiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 48.08972841899501,
+            "face_count": 35,
+            "bounding_box_min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              4.0,
+              2.2
+            ]
+          }
+        ],
+        "depth_cm": 0.2,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "is_tangent_chain": true,
+        "profiles": [
+          {
+            "entity_type": "adsk::fusion::SketchText",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cZGlgDeFbvniAAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYGJgDhCzyriAAAAA==",
+            "font_name": "Arial",
+            "text_style": 0,
+            "is_horizontal_flip": false,
+            "is_vertical_flip": false,
+            "text_parameter": {
+              "name": "d6",
+              "role": "Text1-Text",
+              "expression": "'KIT'",
+              "unit": "Text",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYm5gBfn1lWiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "text_value": "KIT"
+            },
+            "height_parameter": {
+              "name": "d5",
+              "role": "Text1-Height",
+              "expression": "5 mm",
+              "unit": "mm",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYmJgDlzlDPiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "value": 0.5
+            },
+            "definition_type": "adsk::fusion::MultiLineTextDefinition",
+            "rectangle_lines": [
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::Profile",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQMDZSMFAwUjA0Uwj5fHZ/xSvX8pmzH9w3K1zDBRQ3VDBWMDYwAbOAaoA0kGVkAWQZKpjg1GWkYGymkJJmbGxsbmShm2KRkqhrYpBooptolmiqm2ZimZqWnGZskmiSArOZAQ2A7TNQAFtnZGACsQ8KjQwgrgCpAACKFhBxvgAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYGJgDhCzyriAAAAA==",
+            "loop_count": 1,
+            "loops": [
+              {
+                "is_outer": true,
+                "curves": [
+                  {
+                    "entity_type": "adsk::fusion::SketchCircle",
+                    "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DpTQyMwbWxgArQayAIAMWa0CpIAAAA=",
+                    "center_sketch_cm": [
+                      4.5,
+                      2.0,
+                      0.0
+                    ],
+                    "radius_cm": 0.2999999999999998
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RTUoEMRCFXXuKukAgqapOp7fCzAnEbVN2EnDjH4pzlcEreAdP4Bl07dYLmMpgY7dDMATyePX1e01iAcEBefDkxbpIph8SGhZiI5g6460E8hwoxx5sYZW3qjAU5YDV8XD+9fa6+9w87Z8/3v3dy2khUHNjJqIeg4khimErJddLZzIPKU+ZWDhWtmScrFbts1DrGAi6wYEexa0/omOyrp4q14ZfG7w2ul+Ghcubx+uY4phlSuN9mq5u0xjlQeBsC7CFUBCjIZsiizhsrJMqZwTh4oBQ9fBnuKS0csHRYjx/oNyRSmpVNqIWHP/hqFHJrcpG1PHbmDluVGKrshH1zwf4BsRQAsIAAwAA",
+            "temp_id": 0,
+            "body": {
+              "name": "EmbossTextTargetBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9UbmpgCHx7iSiAAAAA==",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 48.0,
+              "face_count": 6,
+              "bounding_box_min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "bounding_box_max_cm": [
+                6.0,
+                4.0,
+                2.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 24.0,
+            "point_on_face_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "centroid_world_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "model_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "expression": "20 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9UamRgCmMOo+iAAAAA==",
+          "created_by": "EmbossTextTargetExtrude",
+          "value": 2.0
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9UampgAFpY6giAAAAA==",
+          "created_by": "EmbossTextTargetExtrude",
+          "value": 0.0
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "expression": "25 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9UYWpgBI2yAViAAAAA==",
+          "created_by": "Plane1",
+          "value": 2.5
+        },
+        {
+          "name": "d5",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYmJgDlzlDPiAAAAA==",
+          "created_by": "EmbossTextInputs",
+          "value": 0.5
+        },
+        {
+          "name": "d6",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9cYm5gBfn1lWiAAAAA==",
+          "created_by": "EmbossTextInputs",
+          "text_value": "KIT"
+        },
+        {
+          "name": "d7",
+          "role": "Depth",
+          "expression": "2 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9SbmJgCjizLhiAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.2
+        },
+        {
+          "name": "d8",
+          "role": "Horizontal Distance",
+          "expression": "0.00 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9Sbm5gAZ2jt4iAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        },
+        {
+          "name": "d9",
+          "role": "Vertical Distance",
+          "expression": "0.00 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9SYWBgB1U8dhiAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        },
+        {
+          "name": "d10",
+          "role": "Rotation Angle",
+          "expression": "0.00 rad",
+          "unit": "deg",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsjns/srXrmWz5z94L5Z4RouoAojBWMzhZQ0Y2NjcyML3RSLlERdE4NEE91Es0RT3TQTy9S05DRjk0STFLBaoBkMaABsn4EC2DqQ9SYWxgDPAs74iAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        }
+      ]
+    },
+    {
+      "file": "two_texts.f3d",
+      "case": "two_texts",
+      "getter_errors": [],
+      "source_inputs_before_emboss": [
+        {
+          "entity_type": "adsk::fusion::SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxtZAgCwkTxdiAAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxuYAACPj7sRiAAAAA==",
+          "font_name": "Arial",
+          "text_style": 0,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "text_parameter": {
+            "name": "d6",
+            "role": "Text1-Text",
+            "expression": "'KIT'",
+            "unit": "Text",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uYAwAxG97siAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "text_value": "KIT"
+          },
+          "height_parameter": {
+            "name": "d5",
+            "role": "Text1-Height",
+            "expression": "5 mm",
+            "unit": "mm",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uYAACLStd1iAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "value": 0.5
+          },
+          "definition_type": "adsk::fusion::MultiLineTextDefinition",
+          "rectangle_lines": [
+            {
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5saAQD/3q+FiAAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxuYAACPj7sRiAAAAA==",
+          "font_name": "Arial",
+          "text_style": 0,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "text_parameter": {
+            "name": "d8",
+            "role": "Text2-Text",
+            "expression": "'UCAD'",
+            "unit": "Text",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5sbAABR3ZdZiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "text_value": "UCAD"
+          },
+          "height_parameter": {
+            "name": "d7",
+            "role": "Text2-Height",
+            "expression": "5 mm",
+            "unit": "mm",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uZAwCzeejeiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "value": 0.5
+          },
+          "definition_type": "adsk::fusion::MultiLineTextDefinition",
+          "rectangle_lines": [
+            {
+              "start_sketch_cm": [
+                3.5,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                5.5,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                5.5,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                5.5,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                5.5,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.5,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.5,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.5,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "target_before_emboss": {
+        "entity_type": "adsk::fusion::BRepFace",
+        "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RTUoEMRCFZTZeoy4QqFSqk/ROBhzcuhFcNen8gBsV0SO4nTt4CY/hmUxlsLHbIdg05PHq6/eSNAKBBmOBORVnUKvsEit2ZVQBWSsbBocuhTk4D1hZ4VEU+ao0sDgWjsevj1t9s3u/31/Gq89dJUhySxmyNT4qbbAoJvRqRmtVpOIYeSzkubE142LztD6EVsdgYBg1yFLdthEZ1y23VeTWsFuDt8bwy0CYn94eU05TCTFPLzk+POcphdcA+wPAAeT8SkKuq6zi9FKbNLkgBHcnxDSPfoZrSipXnFmNlw+EO1NpepWdqBXHfzjTqeReZSfq/G0sHHcqqVfZifrnD/gGLh/sKwADAAA=",
+        "temp_id": 0,
+        "body": {
+          "name": "EmbossTextTargetBody",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5mbAgDpQz8oiAAAAA==",
+          "component_name": "(Unsaved)",
+          "is_solid": true,
+          "volume_cm3": 48.0,
+          "face_count": 6,
+          "bounding_box_min_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "bounding_box_max_cm": [
+            6.0,
+            4.0,
+            2.0
+          ]
+        },
+        "geometry_type": "adsk::core::Plane",
+        "area_cm2": 24.0,
+        "point_on_face_cm": [
+          3.0,
+          2.0,
+          2.0
+        ],
+        "centroid_world_cm": [
+          3.0,
+          2.0,
+          2.0
+        ],
+        "normal": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "requested": {
+        "depth_expression": "2 mm",
+        "is_tangent_chain": true,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0
+      },
+      "input_profiles": [
+        {
+          "entity_type": "adsk::fusion::SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxtZAgCwkTxdiAAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxuYAACPj7sRiAAAAA==",
+          "font_name": "Arial",
+          "text_style": 0,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "text_parameter": {
+            "name": "d6",
+            "role": "Text1-Text",
+            "expression": "'KIT'",
+            "unit": "Text",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uYAwAxG97siAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "text_value": "KIT"
+          },
+          "height_parameter": {
+            "name": "d5",
+            "role": "Text1-Height",
+            "expression": "5 mm",
+            "unit": "mm",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uYAACLStd1iAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "value": 0.5
+          },
+          "definition_type": "adsk::fusion::MultiLineTextDefinition",
+          "rectangle_lines": [
+            {
+              "start_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                1.0,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                1.0,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        {
+          "entity_type": "adsk::fusion::SketchText",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5saAQD/3q+FiAAAAA==",
+          "sketch_name": "EmbossTextInputs",
+          "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxuYAACPj7sRiAAAAA==",
+          "font_name": "Arial",
+          "text_style": 0,
+          "is_horizontal_flip": false,
+          "is_vertical_flip": false,
+          "text_parameter": {
+            "name": "d8",
+            "role": "Text2-Text",
+            "expression": "'UCAD'",
+            "unit": "Text",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5sbAABR3ZdZiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "text_value": "UCAD"
+          },
+          "height_parameter": {
+            "name": "d7",
+            "role": "Text2-Height",
+            "expression": "5 mm",
+            "unit": "mm",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uZAwCzeejeiAAAAA==",
+            "created_by": "EmbossTextInputs",
+            "value": 0.5
+          },
+          "definition_type": "adsk::fusion::MultiLineTextDefinition",
+          "rectangle_lines": [
+            {
+              "start_sketch_cm": [
+                3.5,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                5.5,
+                1.0,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                5.5,
+                1.0,
+                0.0
+              ],
+              "end_sketch_cm": [
+                5.5,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                5.5,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.5,
+                2.5,
+                0.0
+              ]
+            },
+            {
+              "start_sketch_cm": [
+                3.5,
+                2.5,
+                0.0
+              ],
+              "end_sketch_cm": [
+                3.5,
+                1.0,
+                0.0
+              ]
+            }
+          ]
+        }
+      ],
+      "settings": {
+        "health_state": 0,
+        "warning": "",
+        "result_bodies": [
+          {
+            "name": "EmbossTextTargetBody",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5mbAgDpQz8oiAAAAA==",
+            "component_name": "(Unsaved)",
+            "is_solid": true,
+            "volume_cm3": 48.09594793715504,
+            "face_count": 113,
+            "bounding_box_min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "bounding_box_max_cm": [
+              6.0,
+              4.0,
+              2.2
+            ]
+          }
+        ],
+        "depth_cm": 0.2,
+        "horizontal_distance_cm": 0.0,
+        "vertical_distance_cm": 0.0,
+        "rotation_angle_radians": 0.0,
+        "is_tangent_chain": true,
+        "profiles": [
+          {
+            "entity_type": "adsk::fusion::SketchText",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxtZAgCwkTxdiAAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxuYAACPj7sRiAAAAA==",
+            "font_name": "Arial",
+            "text_style": 0,
+            "is_horizontal_flip": false,
+            "is_vertical_flip": false,
+            "text_parameter": {
+              "name": "d6",
+              "role": "Text1-Text",
+              "expression": "'KIT'",
+              "unit": "Text",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uYAwAxG97siAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "text_value": "KIT"
+            },
+            "height_parameter": {
+              "name": "d5",
+              "role": "Text1-Height",
+              "expression": "5 mm",
+              "unit": "mm",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uYAACLStd1iAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "value": 0.5
+            },
+            "definition_type": "adsk::fusion::MultiLineTextDefinition",
+            "rectangle_lines": [
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  1.0,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  1.0,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          },
+          {
+            "entity_type": "adsk::fusion::SketchText",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5saAQD/3q+FiAAAAA==",
+            "sketch_name": "EmbossTextInputs",
+            "sketch_entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWGxuYAACPj7sRiAAAAA==",
+            "font_name": "Arial",
+            "text_style": 0,
+            "is_horizontal_flip": false,
+            "is_vertical_flip": false,
+            "text_parameter": {
+              "name": "d8",
+              "role": "Text2-Text",
+              "expression": "'UCAD'",
+              "unit": "Text",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5sbAABR3ZdZiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "text_value": "UCAD"
+            },
+            "height_parameter": {
+              "name": "d7",
+              "role": "Text2-Height",
+              "expression": "5 mm",
+              "unit": "mm",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uZAwCzeejeiAAAAA==",
+              "created_by": "EmbossTextInputs",
+              "value": 0.5
+            },
+            "definition_type": "adsk::fusion::MultiLineTextDefinition",
+            "rectangle_lines": [
+              {
+                "start_sketch_cm": [
+                  3.5,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  5.5,
+                  1.0,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  5.5,
+                  1.0,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  5.5,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  5.5,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.5,
+                  2.5,
+                  0.0
+                ]
+              },
+              {
+                "start_sketch_cm": [
+                  3.5,
+                  2.5,
+                  0.0
+                ],
+                "end_sketch_cm": [
+                  3.5,
+                  1.0,
+                  0.0
+                ]
+              }
+            ]
+          }
+        ],
+        "input_faces": [
+          {
+            "entity_type": "adsk::fusion::BRepFace",
+            "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/42RTUoEMRCFZTZeoy4QqFSqk/ROBhzcuhFcNen8gBsV0SO4nTt4CY/hmUxlsLHbIdg05PHq6/eSNAKBBmOBORVnUKvsEit2ZVQBWSsbBocuhTk4D1hZ4VEU+ao0sDgWjsevj1t9s3u/31/Gq89dJUhySxmyNT4qbbAoJvRqRmtVpOIYeSzkubE142LztD6EVsdgYBg1yFLdthEZ1y23VeTWsFuDt8bwy0CYn94eU05TCTFPLzk+POcphdcA+wPAAeT8SkKuq6zi9FKbNLkgBHcnxDSPfoZrSipXnFmNlw+EO1NpepWdqBXHfzjTqeReZSfq/G0sHHcqqVfZifrnD/gGLh/sKwADAAA=",
+            "temp_id": 0,
+            "body": {
+              "name": "EmbossTextTargetBody",
+              "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5mbAgDpQz8oiAAAAA==",
+              "component_name": "(Unsaved)",
+              "is_solid": true,
+              "volume_cm3": 48.0,
+              "face_count": 6,
+              "bounding_box_min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "bounding_box_max_cm": [
+                6.0,
+                4.0,
+                2.0
+              ]
+            },
+            "geometry_type": "adsk::core::Plane",
+            "area_cm2": 24.0,
+            "point_on_face_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "centroid_world_cm": [
+              3.0,
+              2.0,
+              2.0
+            ],
+            "normal": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "model_parameters": [
+        {
+          "name": "d1",
+          "role": "AlongDistance",
+          "expression": "20 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5kaAQDItG2EiAAAAA==",
+          "created_by": "EmbossTextTargetExtrude",
+          "value": 2.0
+        },
+        {
+          "name": "d2",
+          "role": "TaperAngle",
+          "expression": "0.0 deg",
+          "unit": "deg",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5maAgBrIQkaiAAAAA==",
+          "created_by": "EmbossTextTargetExtrude",
+          "value": 0.0
+        },
+        {
+          "name": "d3",
+          "role": "AlongDistance",
+          "expression": "25 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG1mYAgAmX6eviAAAAA==",
+          "created_by": "Plane1",
+          "value": 2.5
+        },
+        {
+          "name": "d5",
+          "role": "Text1-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uYAACLStd1iAAAAA==",
+          "created_by": "EmbossTextInputs",
+          "value": 0.5
+        },
+        {
+          "name": "d6",
+          "role": "Text1-Text",
+          "expression": "'KIT'",
+          "unit": "Text",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uYAwAxG97siAAAAA==",
+          "created_by": "EmbossTextInputs",
+          "text_value": "KIT"
+        },
+        {
+          "name": "d7",
+          "role": "Text2-Height",
+          "expression": "5 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5uZAwCzeejeiAAAAA==",
+          "created_by": "EmbossTextInputs",
+          "value": 0.5
+        },
+        {
+          "name": "d8",
+          "role": "Text2-Text",
+          "expression": "'UCAD'",
+          "unit": "Text",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWG5sbAABR3ZdZiAAAAA==",
+          "created_by": "EmbossTextInputs",
+          "text_value": "UCAD"
+        },
+        {
+          "name": "d9",
+          "role": "Depth",
+          "expression": "2 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWmxoYAwCeZlKLiAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.2
+        },
+        {
+          "name": "d10",
+          "role": "Horizontal Distance",
+          "expression": "0.00 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWmxqYAQARkjj7iAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        },
+        {
+          "name": "d11",
+          "role": "Vertical Distance",
+          "expression": "0.00 mm",
+          "unit": "mm",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWmxpYAgCAj4driAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        },
+        {
+          "name": "d12",
+          "role": "Rotation Angle",
+          "expression": "0.00 rad",
+          "unit": "deg",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQl/fuYWBhh5MrZFO7MkO25iAKowUjM0U0tJMU82MLZJ1DY0N0nRNjAwsdJMMzMx0k43SzE0MTCzTjCxMwGqBZjCgAbB9Bgpg60DWmxoaAQBJZ07liAAAAA==",
+          "created_by": "ProbeEmbossText",
+          "value": 0.0
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "sdk_scope": "EmbossFeatures.createInput accepts coplanar Profile/SketchText arrays. Editable text remains source text; never exploded or inferred from glyph outlines.",
+  "identity_scope": "API tokens/tempIds are opaque evidence, not interpreted as native design IDs or ASM indices."
+}

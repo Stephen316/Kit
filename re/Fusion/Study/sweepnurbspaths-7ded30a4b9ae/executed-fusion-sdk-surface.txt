@@ -1,0 +1,1946 @@
+class SketchFixedSplines(Base):
+    r"""
+    The collection of fixed splines in a sketch. Fixed splines are splines that were created
+    as the result of some operation (i.e. intersection) and is not directly editable.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.SketchFixedSplines *":
+        return _fusion.SketchFixedSplines___deref__(self)
+
+    def __eq__(self, rhs: "SketchFixedSplines") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.SketchFixedSplines___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "SketchFixedSplines") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.SketchFixedSplines___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.SketchFixedSplines'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.SketchFixedSplines___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.SketchFixedSpline":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.SketchFixedSplines___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.SketchFixedSplines_classType()
+    __swig_destroy__ = _fusion.delete_SketchFixedSplines
+
+    def item(self, index: "int") -> "adsk.fusion.SketchFixedSpline":
+        r"""
+        Function that returns the specified sketch fixed spline using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.SketchFixedSplines_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""Returns the number of fitted splines in the sketch."""
+        return _fusion.SketchFixedSplines__get_count(self)
+
+    def addByNurbsCurve(self, nurbsCurve: "NurbsCurve3D") -> "adsk.fusion.SketchFixedSpline":
+        r"""
+        Creates a new fixed spline using the input NurbsCurve3D to define the shape. The resulting curve
+        is not editable by the user but can be updated via the API using the replaceGeometry method on the
+        SketchFixedSpline object.
+        nurbsCurve : A NurbsCurve3D object that defines a valid NURBS curve.
+        Returns the newly created SketchFixedSpline object if the creation was successful or null if it failed.
+        """
+        return _fusion.SketchFixedSplines_addByNurbsCurve(self, nurbsCurve)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.SketchFixedSplines__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.SketchFixedSplines__get_isValid(self)
+
+# Register SketchFixedSplines in _fusion:
+_fusion.SketchFixedSplines_swigregister(SketchFixedSplines)
+
+def SketchFixedSplines_classType() -> "str":
+    return _fusion.SketchFixedSplines_classType()
+
+
+SketchFixedSplines.count = property(SketchFixedSplines._get_count, doc="Returns the number of fitted splines in the sketch.")
+
+
+SketchFixedSplines.cast = lambda arg: arg if isinstance(arg, SketchFixedSplines) else None
+
+class SketchFixedSpline(SketchCurve):
+    r"""
+    The SketchFixedSpline class represents splines in a sketch that are
+    not editable. These can result from including splines from other sketches
+    or the spline edges. They can also be created by intersections and
+    projecting splines onto a sketch.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.SketchFixedSpline *":
+        return _fusion.SketchFixedSpline___deref__(self)
+
+    def __eq__(self, rhs: "SketchFixedSpline") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.SketchFixedSpline___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "SketchFixedSpline") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.SketchFixedSpline___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.SketchFixedSpline'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.SketchFixedSpline_classType()
+    __swig_destroy__ = _fusion.delete_SketchFixedSpline
+
+    def _get_startSketchPoint(self) -> "adsk.fusion.SketchPoint":
+        r"""The sketch point at the start of the spline."""
+        return _fusion.SketchFixedSpline__get_startSketchPoint(self)
+
+    def _get_endSketchPoint(self) -> "adsk.fusion.SketchPoint":
+        r"""The sketch point at the end of the spline."""
+        return _fusion.SketchFixedSpline__get_endSketchPoint(self)
+
+    def _get_geometry(self) -> "adsk.core.NurbsCurve3D":
+        r"""
+        Returns the transient geometry of the curve which provides geometric
+        information about the curve. The returned geometry is always in sketch space.
+        Because the fixed spline can be analytically defined, for example it
+        can be the precise intersection of a surface and the sketch plane,
+        returning a NURBS curve that represents the spline may be an
+        approximation of the actual curve. You can use the Evaluator
+        property of the SketchFixedSpline object to perform evaluations
+        on the precise curve.
+        """
+        return _fusion.SketchFixedSpline__get_geometry(self)
+
+    def _get_worldGeometry(self) -> "adsk.core.NurbsCurve3D":
+        r"""
+        Returns a NurbsCurve3D object that is the equivalent of this sketch curve
+        but is in the space of the parent component rather than in sketch space.
+        """
+        return _fusion.SketchFixedSpline__get_worldGeometry(self)
+
+    def _get_evaluator(self) -> "adsk.core.CurveEvaluator3D":
+        r"""
+        Returns an evaluator object that lets you perform evaluations
+        on the precise geometry of the curve.
+        """
+        return _fusion.SketchFixedSpline__get_evaluator(self)
+
+    def _get_nativeObject(self) -> "adsk.fusion.SketchFixedSpline":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.SketchFixedSpline__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.SketchFixedSpline":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.SketchFixedSpline_createForAssemblyContext(self, occurrence)
+
+    def replaceGeometry(self, nurbsCurve: "NurbsCurve3D") -> "bool":
+        r"""
+        Replaces the underlying NURBS curve that defines the shape of the fixed curve. This
+        can only be used if the isNative property of the SketchFixedSpline returns false.
+        nurbsCurve : A NurbsCurve3D object that defines a valid NURBS curve and will be used to replace
+        the existing geometry definition.
+        Returns true if the replacement was successful.
+        """
+        return _fusion.SketchFixedSpline_replaceGeometry(self, nurbsCurve)
+
+    def _get_length(self) -> "float":
+        r"""Returns the length of the curve in centimeters."""
+        return _fusion.SketchFixedSpline__get_length(self)
+
+    def _get_isConstruction(self) -> "bool":
+        r"""Gets and sets whether this curve is construction geometry."""
+        return _fusion.SketchFixedSpline__get_isConstruction(self)
+
+    def _set_isConstruction(self, value: "bool") -> "bool":
+        r"""Gets and sets whether this curve is construction geometry."""
+        return _fusion.SketchFixedSpline__set_isConstruction(self, value)
+
+    def split(self, splitPoint: "Point3D", createConstraints: "bool"=True) -> "adsk.core.ObjectCollection":
+        r"""
+        Split a curve at a position specified along the curve
+        splitPoint : A position (transient Point3D) on the curve that defines the point at which to split the curve
+        createConstraints : Constraints are created by default. Specify false to create no constraints.
+        Returns the resulting 2 curves; the original curve + the newly created curve
+        When split spline the original is deleted and two new curves returned.
+        Empty collection returned if curve is closed.
+        """
+        return _fusion.SketchFixedSpline_split(self, splitPoint, createConstraints)
+
+    def trim(self, segmentPoint: "Point3D", createConstraints: "bool"=True) -> "adsk.core.ObjectCollection":
+        r"""
+        Trim a curve by specifying a point that determines the segment of the curve to trim away
+        segmentPoint : A point (transient Point3D) on or closest to the segment of the curve to remove. (start, end or middle)
+        The segment of the curve closest to the segmentPoint gets removed
+        createConstraints : Constraints are created by default. Specify false to not create constraints.
+        When trimming the start or end side of a line, unclosed circular or elliptical arc, the original entity is modified and returned
+        When trimming the middle of a line, unclosed circular or elliptical arc the original entity is deleted and two new entities are returned
+        When trimming the start or end of any type of closed curve, the original is deleted and a new curve is returned
+        Any trimming of a spline (open or closed) deletes the original and new spline/s are returned
+        Trimming a curve having no intersections deletes the original and returns an empty collection
+        """
+        return _fusion.SketchFixedSpline_trim(self, segmentPoint, createConstraints)
+
+    def breakCurve(self, segmentPoint: "Point3D", createConstraints: "bool"=True) -> "adsk.core.ObjectCollection":
+        r"""
+        Breaks a curve into two or three pieces by finding intersections of this curve with all other curves in the
+        sketch and splitting this curve at the nearest intersections to a specified point on the curve.
+        segmentPoint : A point that specifies the segment of the curve that is to be split from the rest of the curve. The nearest
+        intersection(s) to this point define the break location(s).
+        createConstraints : Optional argument that specifies if constraints should be created between the new curve segments. A value of
+        true indicates constraints will be created.
+        All of the curves resulting from the break are returned in an ObjectCollection. In the case where no intersections
+        are found and as a result the curve is not broken, an empty ObjectCollection is returned.
+        """
+        return _fusion.SketchFixedSpline_breakCurve(self, segmentPoint, createConstraints)
+
+    def extend(self, endPoint: "Point3D", createConstraints: "bool"=True) -> "adsk.core.ObjectCollection":
+        r"""
+        Extend a curve by specifying a point that determines the end of the curve to extend
+        endPoint : A point (transient Point3D) on or closest to the end of the curve to extend. (start or end)
+        The end of the curve closest to the endPoint gets extended
+        createConstraints : Constraints are created by default. Specify false to not create constraints.
+        Returns the modified original curve if the start or end of the curve is extended
+        If the extend joins a curve to another, the two original curves are deleted and a new curve is returned
+        If an arc is extended so as to become a circle, the original arc is deleted and a new circle is returned
+        """
+        return _fusion.SketchFixedSpline_extend(self, endPoint, createConstraints)
+
+    def intersections(self, sketchCurves: "ObjectCollection") -> "bool":
+        r"""
+        Get the curves that intersect this curve along with the intersection points (Point3D)
+        sketchCurves : A collection of curves to attempt to find intersections with.
+        Set the value of this parameter to null to use all curves in the sketch for the calculation.
+        intersectingCurves : A collection of the actual intersecting curves
+        intersectionPoints : A collection of intersection points (Point3D)
+        Item numbers in this collection correspond to the item numbers in the intersectingCurves collection.
+        Returns true if the method was successful. It can be successful regardless of whether intersections were found or not.
+        """
+        return _fusion.SketchFixedSpline_intersections(self, sketchCurves)
+
+    def _get_parentSketch(self) -> "adsk.fusion.Sketch":
+        r"""Returns the parent sketch."""
+        return _fusion.SketchFixedSpline__get_parentSketch(self)
+
+    def _get_sketchDimensions(self) -> "adsk.fusion.SketchDimensionList":
+        r"""Returns the sketch dimensions that are attached to this curve."""
+        return _fusion.SketchFixedSpline__get_sketchDimensions(self)
+
+    def _get_geometricConstraints(self) -> "adsk.fusion.GeometricConstraintList":
+        r"""Returns the sketch constraints that are attached to this curve."""
+        return _fusion.SketchFixedSpline__get_geometricConstraints(self)
+
+    def _get_is2D(self) -> "bool":
+        r"""Indicates if this curve lies entirely on the sketch x-y plane."""
+        return _fusion.SketchFixedSpline__get_is2D(self)
+
+    def _get_isReference(self) -> "bool":
+        r"""
+        Indicates if this geometry is a reference.
+        Changing this property from true to false removes the reference.
+        This property can not be set to true if it is already false.
+        """
+        return _fusion.SketchFixedSpline__get_isReference(self)
+
+    def _set_isReference(self, value: "bool") -> "bool":
+        r"""
+        Indicates if this geometry is a reference.
+        Changing this property from true to false removes the reference.
+        This property can not be set to true if it is already false.
+        """
+        return _fusion.SketchFixedSpline__set_isReference(self, value)
+
+    def _get_isFixed(self) -> "bool":
+        r"""Indicates if this geometry is 'fixed'."""
+        return _fusion.SketchFixedSpline__get_isFixed(self)
+
+    def _set_isFixed(self, value: "bool") -> "bool":
+        r"""Indicates if this geometry is 'fixed'."""
+        return _fusion.SketchFixedSpline__set_isFixed(self, value)
+
+    def _get_isVisible(self) -> "bool":
+        r"""
+        When a sketch is created, geometry is sometimes automatically added to the sketch.
+        For example a sketch point that references the origin point is always included and
+        if a face was selected to create the sketch on, geometry from the face is also included.
+        This automatically created geometry behaves in a special way in that it is invisible
+        but is available for selection and it also participates in profile calculations. It's
+        not possible to make them visible but they can be deleted and they can be used for any
+        other standard sketch operation.
+        """
+        return _fusion.SketchFixedSpline__get_isVisible(self)
+
+    def _get_boundingBox(self) -> "adsk.core.BoundingBox3D":
+        r"""Returns the bounding box of the entity in sketch space."""
+        return _fusion.SketchFixedSpline__get_boundingBox(self)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the entity from the sketch.
+        Returns true if the delete was successful.
+        """
+        return _fusion.SketchFixedSpline_deleteMe(self)
+
+    def _get_referencedEntity(self) -> "adsk.core.Base":
+        r"""
+        Returns the referenced entity in the case where IsReference
+        is true. However, this property can also return null when
+        IsReference is true in the case where the reference is not
+        parametric.
+        """
+        return _fusion.SketchFixedSpline__get_referencedEntity(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.SketchFixedSpline__get_assemblyContext(self)
+
+    def _get_isDeletable(self) -> "bool":
+        r"""
+        Indicates if this sketch entity can be deleted. There are cases, especially with sketch
+        points where another entity is dependent on an entity so deleting it is not allowed.
+        For example, you can't delete the center point of circle by itself but deleting the circle
+        will delete the point. The same is true for the end points of a line.
+        """
+        return _fusion.SketchFixedSpline__get_isDeletable(self)
+
+    def _get_isFullyConstrained(self) -> "bool":
+        r"""Indicates if this sketch entity is fully constrained."""
+        return _fusion.SketchFixedSpline__get_isFullyConstrained(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this sketch entity."""
+        return _fusion.SketchFixedSpline__get_attributes(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the SketchEntity object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same sketch entity.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.SketchFixedSpline__get_entityToken(self)
+
+    def _get_isLinked(self) -> "bool":
+        r"""
+        Indicates if this sketch entity was created by a projection, inclusion, or driven by an API script.
+        If this returns true, then the entity is presented to the user as not editable and with a 'break link'
+        command available.
+        """
+        return _fusion.SketchFixedSpline__get_isLinked(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.SketchFixedSpline__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.SketchFixedSpline__get_isValid(self)
+
+# Register SketchFixedSpline in _fusion:
+_fusion.SketchFixedSpline_swigregister(SketchFixedSpline)
+
+def SketchFixedSpline_classType() -> "str":
+    return _fusion.SketchFixedSpline_classType()
+
+
+SketchFixedSpline.startSketchPoint = property(SketchFixedSpline._get_startSketchPoint, doc="The sketch point at the start of the spline.")
+
+
+SketchFixedSpline.endSketchPoint = property(SketchFixedSpline._get_endSketchPoint, doc="The sketch point at the end of the spline.")
+
+
+SketchFixedSpline.geometry = property(SketchFixedSpline._get_geometry, doc="Returns the transient geometry of the curve which provides geometric\ninformation about the curve. The returned geometry is always in sketch space.\nBecause the fixed spline can be analytically defined, for example it\ncan be the precise intersection of a surface and the sketch plane,\nreturning a NURBS curve that represents the spline may be an\napproximation of the actual curve. You can use the Evaluator\nproperty of the SketchFixedSpline object to perform evaluations\non the precise curve.")
+
+
+SketchFixedSpline.worldGeometry = property(SketchFixedSpline._get_worldGeometry, doc="Returns a NurbsCurve3D object that is the equivalent of this sketch curve\nbut is in the space of the parent component rather than in sketch space.")
+
+
+SketchFixedSpline.evaluator = property(SketchFixedSpline._get_evaluator, doc="Returns an evaluator object that lets you perform evaluations\non the precise geometry of the curve.")
+
+
+SketchFixedSpline.nativeObject = property(SketchFixedSpline._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+SketchFixedSpline.cast = lambda arg: arg if isinstance(arg, SketchFixedSpline) else None
+
+class Path(Base):
+    r"""
+    The Path object represents a single set of connected curves. The order of the objects within the collection is the same as the connection order of the entities.
+    When using a Path to create a feature, the Path serves as a way to pass in the set of sketch entities and edges. When
+    getting the Path of an existing feature it returns the actual path used to define the feature geometry. In cases like a
+    sweep feature, this can result in using portions of the original input sketch curves or edges and the returned path
+    will provide these 'partial' curves as the PathEntity objects.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.Path *":
+        return _fusion.Path___deref__(self)
+
+    def __eq__(self, rhs: "Path") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.Path___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "Path") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.Path___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.Path'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.Path___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.PathEntity":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.Path___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.Path_classType()
+
+    @staticmethod
+    def create(curves: "Base", chainOptions: "ChainedCurveOptions") -> "adsk.fusion.Path":
+        r"""
+        Creates a new Path that can be used as input to various features. For example, it is used
+        to create an open set of curves to create surfaces using extrude, revolve, and sweep.
+        It is also used to create the path for a sweep and sections and profiles and rails for lofts. And
+        it is used to define the boundary of a patch feature.
+        Although the creation of a path is very flexible as far as the types of entities and whether they
+        are planar or not, each of the features have specific requirements and the path must meet those
+        requirements. For example, a path for an extrusion can only contain sketch curves and must be planar,
+        whereas the path for a sweep can contain a mix of sketch curves and edges and can be in three dimensions.
+        curves : A SketchCurve, BRepEdge, or an ObjectCollection containing multiple sketch entities and/or BRepEdges. If a single sketch curve
+        or BRepEdge is input the chainCurves argument is used to determine if connected curves or edges (they do not need to be tangent)
+        should be automatically found. Searching for connected curves is only performed within the same sketch or open edges on the same
+        body. If multiple curves are provided the chainCurves argument is treated as false so only the specified input curves are
+        used. The input curves need to geometrically connect for a path to be created.
+        chainOptions : If a single SketchCurve or BRepEdge is input, this argument is used to specify the rules in how chained entities should be found. If
+        an ObjectCollection is input, this argument is ignored.
+        Returns the new Path object or null in the case of a failure.
+        """
+        return _fusion.Path_create(curves, chainOptions)
+    __swig_destroy__ = _fusion.delete_Path
+
+    def item(self, index: "int") -> "adsk.fusion.PathEntity":
+        r"""
+        Function that returns the specified PathEntity using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.Path_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of curves in the path."""
+        return _fusion.Path__get_count(self)
+
+    def _get_isClosed(self) -> "bool":
+        r"""Indicates if the path is closed or not. Returns True in the case of a closed path."""
+        return _fusion.Path__get_isClosed(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""This property is not supported for the Path object."""
+        return _fusion.Path__get_assemblyContext(self)
+
+    def _get_nativeObject(self) -> "adsk.fusion.Path":
+        r"""This property is not supported for the Path object."""
+        return _fusion.Path__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.Path":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : 
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.Path_createForAssemblyContext(self, occurrence)
+
+    def addCurves(self, curves: "Base", chainOptions: "ChainedCurveOptions") -> "bool":
+        r"""
+        Adds additional curves to the existing path. This can be useful when creating a complex path for a sweep and you
+        want to include sets of curves from multiple sketches and edges from multiple bodies.
+        curves : A SketchCurve, BRepEdge, or an ObjectCollection containing multiple sketch entities and/or BRepEdges. If a single sketch curve
+        or BRepEdge is input the chainCurves argument is used to determine if connected curves or edges (they do not need to be tangent)
+        should be automatically found. Searching for connected curves is only performed within the same sketch or open edges on the same
+        body. If multiple curves are provided the chainCurves argument is treated as false so only the specified input curves are
+        used. The input curves need to geometrically connect for a path to be created.
+        chainOptions : If a single SketchCurve or BRepEdge is input, this argument is used to specify the rules in how chained entities should be found. If
+        an ObjectCollection is input, this argument is ignored.
+        Returns a bool indicating if the process was successful or not.
+        """
+        return _fusion.Path_addCurves(self, curves, chainOptions)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.Path__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.Path__get_isValid(self)
+
+# Register Path in _fusion:
+_fusion.Path_swigregister(Path)
+
+def Path_classType() -> "str":
+    return _fusion.Path_classType()
+
+def Path_create(curves: "Base", chainOptions: "ChainedCurveOptions") -> "adsk.fusion.Path":
+    r"""
+    Creates a new Path that can be used as input to various features. For example, it is used
+    to create an open set of curves to create surfaces using extrude, revolve, and sweep.
+    It is also used to create the path for a sweep and sections and profiles and rails for lofts. And
+    it is used to define the boundary of a patch feature.
+    Although the creation of a path is very flexible as far as the types of entities and whether they
+    are planar or not, each of the features have specific requirements and the path must meet those
+    requirements. For example, a path for an extrusion can only contain sketch curves and must be planar,
+    whereas the path for a sweep can contain a mix of sketch curves and edges and can be in three dimensions.
+    curves : A SketchCurve, BRepEdge, or an ObjectCollection containing multiple sketch entities and/or BRepEdges. If a single sketch curve
+    or BRepEdge is input the chainCurves argument is used to determine if connected curves or edges (they do not need to be tangent)
+    should be automatically found. Searching for connected curves is only performed within the same sketch or open edges on the same
+    body. If multiple curves are provided the chainCurves argument is treated as false so only the specified input curves are
+    used. The input curves need to geometrically connect for a path to be created.
+    chainOptions : If a single SketchCurve or BRepEdge is input, this argument is used to specify the rules in how chained entities should be found. If
+    an ObjectCollection is input, this argument is ignored.
+    Returns the new Path object or null in the case of a failure.
+    """
+    return _fusion.Path_create(curves, chainOptions)
+
+
+Path.count = property(Path._get_count, doc="The number of curves in the path.")
+
+
+Path.isClosed = property(Path._get_isClosed, doc="Indicates if the path is closed or not. Returns True in the case of a closed path.")
+
+
+Path.assemblyContext = property(Path._get_assemblyContext, doc="This property is not supported for the Path object.")
+
+
+Path.nativeObject = property(Path._get_nativeObject, doc="This property is not supported for the Path object.")
+
+
+Path.cast = lambda arg: arg if isinstance(arg, Path) else None
+
+class PathEntity(Base):
+    r"""The PathEntity object represents a curve within a path"""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.PathEntity *":
+        return _fusion.PathEntity___deref__(self)
+
+    def __eq__(self, rhs: "PathEntity") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.PathEntity___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "PathEntity") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.PathEntity___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.PathEntity'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.PathEntity_classType()
+    __swig_destroy__ = _fusion.delete_PathEntity
+
+    def _get_curve(self) -> "adsk.core.Curve3D":
+        r"""
+        Property that returns the geometry of the entity.
+        This is different from the original path curve if the true start point is not the same as the start point of the original path curve.
+        """
+        return _fusion.PathEntity__get_curve(self)
+
+    def _get_curveType(self) -> "adsk.core.Curve3DTypes":
+        r"""Property that returns the type of the curve referenced by the path entity. This property allows you to determine what type of object will be returned by the Curve property."""
+        return _fusion.PathEntity__get_curveType(self)
+
+    def _get_entity(self) -> "adsk.core.Base":
+        r"""Property that gets the sketch curve or edge this entity was derived from."""
+        return _fusion.PathEntity__get_entity(self)
+
+    def _get_parentPath(self) -> "adsk.fusion.Path":
+        r"""Property that returns the parent Path of the entity."""
+        return _fusion.PathEntity__get_parentPath(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""This property is not supported for a PathEntity object."""
+        return _fusion.PathEntity__get_assemblyContext(self)
+
+    def _get_nativeObject(self) -> "adsk.fusion.PathEntity":
+        r"""This property is not supported for a PathEntity object."""
+        return _fusion.PathEntity__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.PathEntity":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : 
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.PathEntity_createForAssemblyContext(self, occurrence)
+
+    def _get_isOpposedToEntity(self) -> "bool":
+        r"""
+        Indicates if the orientation of this PathEntity is in the same direction or opposed to the natural direction
+        of the SketchCurve or BRepEdge object it is derived from.
+        """
+        return _fusion.PathEntity__get_isOpposedToEntity(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.PathEntity__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.PathEntity__get_isValid(self)
+
+# Register PathEntity in _fusion:
+_fusion.PathEntity_swigregister(PathEntity)
+
+def PathEntity_classType() -> "str":
+    return _fusion.PathEntity_classType()
+
+
+PathEntity.curve = property(PathEntity._get_curve, doc="Property that returns the geometry of the entity.\nThis is different from the original path curve if the true start point is not the same as the start point of the original path curve.")
+
+
+PathEntity.curveType = property(PathEntity._get_curveType, doc="Property that returns the type of the curve referenced by the path entity. This property allows you to determine what type of object will be returned by the Curve property.")
+
+
+PathEntity.entity = property(PathEntity._get_entity, doc="Property that gets the sketch curve or edge this entity was derived from.")
+
+
+PathEntity.parentPath = property(PathEntity._get_parentPath, doc="Property that returns the parent Path of the entity.")
+
+
+PathEntity.assemblyContext = property(PathEntity._get_assemblyContext, doc="This property is not supported for a PathEntity object.")
+
+
+PathEntity.nativeObject = property(PathEntity._get_nativeObject, doc="This property is not supported for a PathEntity object.")
+
+
+PathEntity.isOpposedToEntity = property(PathEntity._get_isOpposedToEntity, doc="Indicates if the orientation of this PathEntity is in the same direction or opposed to the natural direction\nof the SketchCurve or BRepEdge object it is derived from.")
+
+
+PathEntity.cast = lambda arg: arg if isinstance(arg, PathEntity) else None
+
+class SweepFeatures(Base):
+    r"""
+    Collection that provides access to all of the existing sweep features in a component
+    and supports the ability to create new sweep features.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.SweepFeatures *":
+        return _fusion.SweepFeatures___deref__(self)
+
+    def __eq__(self, rhs: "SweepFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.SweepFeatures___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "SweepFeatures") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.SweepFeatures___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.SweepFeatures'>"
+
+
+    def __len__(self) -> "int":
+        return _fusion.SweepFeatures___len__(self)
+
+    def __getitem__(self, i: "int") -> "adsk.fusion.SweepFeature":
+
+        if i < 0:
+            i = len(self) + i
+        if i < 0 or i >= len(self):
+            raise IndexError("The index (%d) is out of range." % i)
+
+
+        return _fusion.SweepFeatures___getitem__(self, i)
+
+
+    def __iter__(self):
+        i = 0
+        while i < len(self):
+            yield self.item(i)
+            i = i + 1
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.SweepFeatures_classType()
+    __swig_destroy__ = _fusion.delete_SweepFeatures
+
+    def item(self, index: "int") -> "adsk.fusion.SweepFeature":
+        r"""
+        Function that returns the specified sweep feature using an index into the collection.
+        index : The index of the item within the collection to return. The first item in the collection has an index of 0.
+        Returns the specified item or null if an invalid index was specified.
+        """
+        return _fusion.SweepFeatures_item(self, index)
+
+    def _get_count(self) -> "int":
+        r"""The number of sweep features in the collection."""
+        return _fusion.SweepFeatures__get_count(self)
+
+    def createInput(self, profile: "Base", path: "Path", operation: "FeatureOperations") -> "adsk.fusion.SweepFeatureInput":
+        r"""
+        Creates a SweepFeatureInput object for defining a simple sweep feature with only a path and no guide rail or surface.
+        Use properties and methods on this object to define the sweep you want to create and then use the Add method,
+        passing in the SweepFeatureInput object.
+        profile : The profile argument can be a single Profile, a single
+        planar face, or an ObjectCollection consisting of multiple profiles and planar faces.
+        When an ObjectCollection is used all of the profiles and faces must be co-planar.
+        path : The path to create the sweep.
+        operation : The feature operation to perform
+        Returns the newly created SweepFeatureInput object or null if the creation failed.
+        """
+        return _fusion.SweepFeatures_createInput(self, profile, path, operation)
+
+    def add(self, input: "SweepFeatureInput") -> "adsk.fusion.SweepFeature":
+        r"""
+        Creates a new sweep feature.
+        input : A SweepFeatureInput object that defines the desired sweep. Use the createInput
+        method to create a new SweepFeatureInput object and then use methods on it
+        (the SweepFeatureInput object) to define the sweep.
+        Returns the newly created SweepFeature object or null if the creation failed.
+        """
+        return _fusion.SweepFeatures_add(self, input)
+
+    def itemByName(self, name: "str") -> "adsk.fusion.SweepFeature":
+        r"""
+        Function that returns the specified sweep feature using the name of the feature.
+        name : The name of the feature within the collection to return. This is the name seen in the timeline.
+        Returns the specified item or null if the specified name was not found.
+        """
+        return _fusion.SweepFeatures_itemByName(self, name)
+
+    def createInputForSolid(self, solidBody: "BRepBody", path: "Path", operation: "FeatureOperations") -> "adsk.fusion.SweepFeatureInput":
+        r"""
+        Creates a SweepFeatureInput object for defining a simple sweep feature from a B-Rep
+        solid with a path. Use properties and methods on this object to define the sweep you
+        want to create, and then use the Add method, passing in the SweepFeatureInput object.
+        solidBody : The BRepBody object to sweep. It must be a solid body.
+        path : The Path object that defines the path the body will be swept along.
+        operation : The type of feature operation to perform.
+        Returns the newly created SweepFeatureInput object or null if the creation fails.
+        """
+        return _fusion.SweepFeatures_createInputForSolid(self, solidBody, path, operation)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.SweepFeatures__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.SweepFeatures__get_isValid(self)
+
+# Register SweepFeatures in _fusion:
+_fusion.SweepFeatures_swigregister(SweepFeatures)
+
+def SweepFeatures_classType() -> "str":
+    return _fusion.SweepFeatures_classType()
+
+
+SweepFeatures.count = property(SweepFeatures._get_count, doc="The number of sweep features in the collection.")
+
+
+SweepFeatures.cast = lambda arg: arg if isinstance(arg, SweepFeatures) else None
+
+class SweepFeatureInput(Base):
+    r"""
+    This class defines the methods and properties that pertain to the definition of a sweep
+    feature.
+    """
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.SweepFeatureInput *":
+        return _fusion.SweepFeatureInput___deref__(self)
+
+    def __eq__(self, rhs: "SweepFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.SweepFeatureInput___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "SweepFeatureInput") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.SweepFeatureInput___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.SweepFeatureInput'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.SweepFeatureInput_classType()
+    __swig_destroy__ = _fusion.delete_SweepFeatureInput
+
+    def _get_profile(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the profiles or planar faces used to define the shape of the sweep.
+        This property can return or be set with a single Profile, a single planar face, or
+        an ObjectCollection consisting of multiple profiles and planar faces. When an
+        ObjectCollection is used all of the profiles and faces must be co-planar.
+        """
+        return _fusion.SweepFeatureInput__get_profile(self)
+
+    def _set_profile(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the profiles or planar faces used to define the shape of the sweep.
+        This property can return or be set with a single Profile, a single planar face, or
+        an ObjectCollection consisting of multiple profiles and planar faces. When an
+        ObjectCollection is used all of the profiles and faces must be co-planar.
+        """
+        return _fusion.SweepFeatureInput__set_profile(self, value)
+
+    def _get_operation(self) -> "adsk.fusion.FeatureOperations":
+        r"""Gets and sets the type of operation performed by the sweep."""
+        return _fusion.SweepFeatureInput__get_operation(self)
+
+    def _set_operation(self, value: "FeatureOperations") -> "bool":
+        r"""Gets and sets the type of operation performed by the sweep."""
+        return _fusion.SweepFeatureInput__set_operation(self, value)
+
+    def _get_path(self) -> "adsk.fusion.Path":
+        r"""Gets and sets the path to create the sweep."""
+        return _fusion.SweepFeatureInput__get_path(self)
+
+    def _set_path(self, value: "Path") -> "bool":
+        r"""Gets and sets the path to create the sweep."""
+        return _fusion.SweepFeatureInput__set_path(self, value)
+
+    def _get_distanceOne(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets and sets the distance for the first side.
+        The distance is a value from 0 to 1 indicating the position along the path where 0
+        is at the start and 1 is at the end. The value is default to 1.0.
+        """
+        return _fusion.SweepFeatureInput__get_distanceOne(self)
+
+    def _set_distanceOne(self, value: "ValueInput") -> "bool":
+        r"""
+        Gets and sets the distance for the first side.
+        The distance is a value from 0 to 1 indicating the position along the path where 0
+        is at the start and 1 is at the end. The value is default to 1.0.
+        """
+        return _fusion.SweepFeatureInput__set_distanceOne(self, value)
+
+    def _get_distanceTwo(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets and sets the distance for the second side.
+        The distance is a value from 0 to 1 indicating the position along the path where 0
+        is at the start and 1 is at the end. The value defaults to 0 in the case where the path is closed, otherwise it defaults to 1.0.
+        It is ignored if the path is only on one side of the profile or if the sweep definition includes a guide rail.
+        It's always the distance against the normal of the profile if available.
+        """
+        return _fusion.SweepFeatureInput__get_distanceTwo(self)
+
+    def _set_distanceTwo(self, value: "ValueInput") -> "bool":
+        r"""
+        Gets and sets the distance for the second side.
+        The distance is a value from 0 to 1 indicating the position along the path where 0
+        is at the start and 1 is at the end. The value defaults to 0 in the case where the path is closed, otherwise it defaults to 1.0.
+        It is ignored if the path is only on one side of the profile or if the sweep definition includes a guide rail.
+        It's always the distance against the normal of the profile if available.
+        """
+        return _fusion.SweepFeatureInput__set_distanceTwo(self, value)
+
+    def _get_orientation(self) -> "adsk.fusion.SweepOrientationTypes":
+        r"""
+        Gets and sets the sweep orientation. It defaults to PerpendicularOrientationType.
+        This property is ignored when sweeping a solid or a guide rail or surface has been specified.
+        """
+        return _fusion.SweepFeatureInput__get_orientation(self)
+
+    def _set_orientation(self, value: "SweepOrientationTypes") -> "bool":
+        r"""
+        Gets and sets the sweep orientation. It defaults to PerpendicularOrientationType.
+        This property is ignored when sweeping a solid or a guide rail or surface has been specified.
+        """
+        return _fusion.SweepFeatureInput__set_orientation(self, value)
+
+    def _get_creationOccurrence(self) -> "adsk.fusion.Occurrence":
+        r"""
+        In order for geometry to be transformed correctly, an Occurrence for creation needs to be
+        specified when the sweep is created based on geometry (e.g. a profile and/or face(s))
+        in another component AND (the sweep) is not in the root component.
+        The CreationOccurrence is analogous to the active occurrence in the UI
+        """
+        return _fusion.SweepFeatureInput__get_creationOccurrence(self)
+
+    def _set_creationOccurrence(self, value: "Occurrence") -> "bool":
+        r"""
+        In order for geometry to be transformed correctly, an Occurrence for creation needs to be
+        specified when the sweep is created based on geometry (e.g. a profile and/or face(s))
+        in another component AND (the sweep) is not in the root component.
+        The CreationOccurrence is analogous to the active occurrence in the UI
+        """
+        return _fusion.SweepFeatureInput__set_creationOccurrence(self, value)
+
+    def _get_isSolid(self) -> "bool":
+        r"""
+        Specifies if the sweep should be created as a solid or surface. If
+        it's a surface then there aren't any end caps and it's open. This is
+        initialized to true so a solid will be created if it's not changed.
+        """
+        return _fusion.SweepFeatureInput__get_isSolid(self)
+
+    def _set_isSolid(self, value: "bool") -> "bool":
+        r"""
+        Specifies if the sweep should be created as a solid or surface. If
+        it's a surface then there aren't any end caps and it's open. This is
+        initialized to true so a solid will be created if it's not changed.
+        """
+        return _fusion.SweepFeatureInput__set_isSolid(self, value)
+
+    def _get_guideRail(self) -> "adsk.fusion.Path":
+        r"""
+        Gets and sets the guide rail to create the sweep. This can be set to
+        null to remove the guide rail definition and have a single path sweep feature.
+        """
+        return _fusion.SweepFeatureInput__get_guideRail(self)
+
+    def _set_guideRail(self, value: "Path") -> "bool":
+        r"""
+        Gets and sets the guide rail to create the sweep. This can be set to
+        null to remove the guide rail definition and have a single path sweep feature.
+        """
+        return _fusion.SweepFeatureInput__set_guideRail(self, value)
+
+    def _get_isDirectionFlipped(self) -> "bool":
+        r"""
+        Gets and sets if the direction of the sweep is flipped.
+        This property only applies to sweep features that include a guide rail and whose path runs on both
+        sides of the profile.
+        """
+        return _fusion.SweepFeatureInput__get_isDirectionFlipped(self)
+
+    def _set_isDirectionFlipped(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if the direction of the sweep is flipped.
+        This property only applies to sweep features that include a guide rail and whose path runs on both
+        sides of the profile.
+        """
+        return _fusion.SweepFeatureInput__set_isDirectionFlipped(self, value)
+
+    def _get_profileScaling(self) -> "adsk.fusion.SweepProfileScalingOptions":
+        r"""
+        Gets and sets the sweep profile scaling option. It defaults to SweepProfileScaleOption.
+        This property is only used when a guide rail has been specified.
+        """
+        return _fusion.SweepFeatureInput__get_profileScaling(self)
+
+    def _set_profileScaling(self, value: "SweepProfileScalingOptions") -> "bool":
+        r"""
+        Gets and sets the sweep profile scaling option. It defaults to SweepProfileScaleOption.
+        This property is only used when a guide rail has been specified.
+        """
+        return _fusion.SweepFeatureInput__set_profileScaling(self, value)
+
+    def _get_targetBaseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.SweepFeatureInput__get_targetBaseFeature(self)
+
+    def _set_targetBaseFeature(self, value: "BaseFeature") -> "bool":
+        r"""
+        When creating a feature that is owned by a base feature, set this property to the
+        base feature you want to associate the new feature with. By default, this is null,
+        meaning it will not be associated with a base feature.
+        Because of a current limitation, if you want to create a feature associated with a base
+        feature, you must set this property AND call the startEdit method of the base feature,
+        create the feature, and then call the finishEdit method of the base feature. The base
+        feature must be in an 'edit' state to be able to add any additional items to it.
+        """
+        return _fusion.SweepFeatureInput__set_targetBaseFeature(self, value)
+
+    def _get_participantBodies(self) -> "list[adsk.fusion.BRepBody]":
+        r"""
+        Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.
+        If this property has not been set, the default behavior is that all bodies that are intersected by the
+        feature will participate.
+        This property can return null in the case where the feature has not been fully defined so that
+        possible intersecting bodies can be computed.
+        """
+        return _fusion.SweepFeatureInput__get_participantBodies(self)
+
+    def _set_participantBodies(self, value: "list[BRepBody]") -> "bool":
+        r"""
+        Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.
+        If this property has not been set, the default behavior is that all bodies that are intersected by the
+        feature will participate.
+        This property can return null in the case where the feature has not been fully defined so that
+        possible intersecting bodies can be computed.
+        """
+        return _fusion.SweepFeatureInput__set_participantBodies(self, value)
+
+    def _get_taperAngle(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets and sets the taper angle of the sweep. This property is initialized with a taper angle of zero.
+        A negative angle will taper the sweep inward while a positive value will taper
+        the sweep outward.
+        This property is ignored if sweeping a solid or a guide rail or surface has been specified.
+        This property is valid for both parametric and non-parametric extrusions.
+        """
+        return _fusion.SweepFeatureInput__get_taperAngle(self)
+
+    def _set_taperAngle(self, value: "ValueInput") -> "bool":
+        r"""
+        Gets and sets the taper angle of the sweep. This property is initialized with a taper angle of zero.
+        A negative angle will taper the sweep inward while a positive value will taper
+        the sweep outward.
+        This property is ignored if sweeping a solid or a guide rail or surface has been specified.
+        This property is valid for both parametric and non-parametric extrusions.
+        """
+        return _fusion.SweepFeatureInput__set_taperAngle(self, value)
+
+    def _get_twistAngle(self) -> "adsk.core.ValueInput":
+        r"""
+        Gets and sets the twist angle of the sweep. This property is initialized with a twist angle of zero.
+        When sweeping a solid setting the twist angle requires the solid twist axis to be set.
+        This property is ignored if a guide rail or surface has been specified.
+        This property is valid for both parametric and non-parametric extrusions.
+        """
+        return _fusion.SweepFeatureInput__get_twistAngle(self)
+
+    def _set_twistAngle(self, value: "ValueInput") -> "bool":
+        r"""
+        Gets and sets the twist angle of the sweep. This property is initialized with a twist angle of zero.
+        When sweeping a solid setting the twist angle requires the solid twist axis to be set.
+        This property is ignored if a guide rail or surface has been specified.
+        This property is valid for both parametric and non-parametric extrusions.
+        """
+        return _fusion.SweepFeatureInput__set_twistAngle(self, value)
+
+    def _get_extent(self) -> "adsk.fusion.SweepExtentTypes":
+        r"""
+        Gets and sets the sweep extent type. It defaults to PerpendicularToPathExtentType.
+        This property is ignored when a guide rail has not been specified.
+        """
+        return _fusion.SweepFeatureInput__get_extent(self)
+
+    def _set_extent(self, value: "SweepExtentTypes") -> "bool":
+        r"""
+        Gets and sets the sweep extent type. It defaults to PerpendicularToPathExtentType.
+        This property is ignored when a guide rail has not been specified.
+        """
+        return _fusion.SweepFeatureInput__set_extent(self, value)
+
+    def _get_guideSurfaces(self) -> "list[adsk.fusion.BRepFace]":
+        r"""
+        Gets and sets the guide surfaces to create the sweep. This can be set to
+        an empty array to remove the guide surfaces and have a single path sweep feature.
+        By default connected faces that are tangent to any of the guide faces are set as guide faces.
+        Use the isChainSelection property to disable the use of tangent faces.
+        """
+        return _fusion.SweepFeatureInput__get_guideSurfaces(self)
+
+    def _set_guideSurfaces(self, value: "list[BRepFace]") -> "bool":
+        r"""
+        Gets and sets the guide surfaces to create the sweep. This can be set to
+        an empty array to remove the guide surfaces and have a single path sweep feature.
+        By default connected faces that are tangent to any of the guide faces are set as guide faces.
+        Use the isChainSelection property to disable the use of tangent faces.
+        """
+        return _fusion.SweepFeatureInput__set_guideSurfaces(self, value)
+
+    def _get_isChainSelection(self) -> "bool":
+        r"""Get and sets whether faces that are tangentially connected to the guide surfaces are also made guide surfaces."""
+        return _fusion.SweepFeatureInput__get_isChainSelection(self)
+
+    def _set_isChainSelection(self, value: "bool") -> "bool":
+        r"""Get and sets whether faces that are tangentially connected to the guide surfaces are also made guide surfaces."""
+        return _fusion.SweepFeatureInput__set_isChainSelection(self, value)
+
+    def _get_solidBody(self) -> "adsk.fusion.BRepBody":
+        r"""
+        Gets and sets the BRepBody object to sweep. It must be a solid body.
+        Setting this property results in the type being a single path sweep, and
+        if the profile, guide path, or surface are set, they are set to null.
+        """
+        return _fusion.SweepFeatureInput__get_solidBody(self)
+
+    def _set_solidBody(self, value: "BRepBody") -> "bool":
+        r"""
+        Gets and sets the BRepBody object to sweep. It must be a solid body.
+        Setting this property results in the type being a single path sweep, and
+        if the profile, guide path, or surface are set, they are set to null.
+        """
+        return _fusion.SweepFeatureInput__set_solidBody(self, value)
+
+    def _get_solidOrientation(self) -> "adsk.fusion.SweepSolidOrientationTypes":
+        r"""
+        Gets and sets the solid sweep orientation. It defaults to PerpendicularSolidOrientationType.
+        Setting the solid orientation to AlignedSolidOrientationType requires the solid aligned axis to be set.
+        This property is ignored if sweeping a profile.
+        """
+        return _fusion.SweepFeatureInput__get_solidOrientation(self)
+
+    def _set_solidOrientation(self, value: "SweepSolidOrientationTypes") -> "bool":
+        r"""
+        Gets and sets the solid sweep orientation. It defaults to PerpendicularSolidOrientationType.
+        Setting the solid orientation to AlignedSolidOrientationType requires the solid aligned axis to be set.
+        This property is ignored if sweeping a profile.
+        """
+        return _fusion.SweepFeatureInput__set_solidOrientation(self, value)
+
+    def _get_solidAlignedAxis(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the axis to align the solid being swept with. The axis is used when sweeping a solid,
+        and the solid orientation is set to AlignedSolidOrientationType. It can be a sketch line, linear edge,
+        or construction axis.
+        """
+        return _fusion.SweepFeatureInput__get_solidAlignedAxis(self)
+
+    def _set_solidAlignedAxis(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the axis to align the solid being swept with. The axis is used when sweeping a solid,
+        and the solid orientation is set to AlignedSolidOrientationType. It can be a sketch line, linear edge,
+        or construction axis.
+        """
+        return _fusion.SweepFeatureInput__set_solidAlignedAxis(self, value)
+
+    def _get_solidTwistAxis(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the twist axis of the solid being swept. The axis is used when sweeping a solid,
+        and the twist angle is set. It can be a sketch line, linear edge, construction axis, or a face
+        that defines an axis (cylinder, cone, torus, etc.).
+        """
+        return _fusion.SweepFeatureInput__get_solidTwistAxis(self)
+
+    def _set_solidTwistAxis(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the twist axis of the solid being swept. The axis is used when sweeping a solid,
+        and the twist angle is set. It can be a sketch line, linear edge, construction axis, or a face
+        that defines an axis (cylinder, cone, torus, etc.).
+        """
+        return _fusion.SweepFeatureInput__set_solidTwistAxis(self, value)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.SweepFeatureInput__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.SweepFeatureInput__get_isValid(self)
+
+# Register SweepFeatureInput in _fusion:
+_fusion.SweepFeatureInput_swigregister(SweepFeatureInput)
+
+def SweepFeatureInput_classType() -> "str":
+    return _fusion.SweepFeatureInput_classType()
+
+
+SweepFeatureInput.profile = property(SweepFeatureInput._get_profile, SweepFeatureInput._set_profile, doc="Gets and sets the profiles or planar faces used to define the shape of the sweep.\nThis property can return or be set with a single Profile, a single planar face, or\nan ObjectCollection consisting of multiple profiles and planar faces. When an\nObjectCollection is used all of the profiles and faces must be co-planar.")
+
+
+SweepFeatureInput.operation = property(SweepFeatureInput._get_operation, SweepFeatureInput._set_operation, doc="Gets and sets the type of operation performed by the sweep.")
+
+
+SweepFeatureInput.path = property(SweepFeatureInput._get_path, SweepFeatureInput._set_path, doc="Gets and sets the path to create the sweep.")
+
+
+SweepFeatureInput.distanceOne = property(SweepFeatureInput._get_distanceOne, SweepFeatureInput._set_distanceOne, doc="Gets and sets the distance for the first side.\nThe distance is a value from 0 to 1 indicating the position along the path where 0\nis at the start and 1 is at the end. The value is default to 1.0.")
+
+
+SweepFeatureInput.distanceTwo = property(SweepFeatureInput._get_distanceTwo, SweepFeatureInput._set_distanceTwo, doc="Gets and sets the distance for the second side.\nThe distance is a value from 0 to 1 indicating the position along the path where 0\nis at the start and 1 is at the end. The value defaults to 0 in the case where the path is closed, otherwise it defaults to 1.0.\nIt is ignored if the path is only on one side of the profile or if the sweep definition includes a guide rail.\nIt's always the distance against the normal of the profile if available.")
+
+
+SweepFeatureInput.orientation = property(SweepFeatureInput._get_orientation, SweepFeatureInput._set_orientation, doc="Gets and sets the sweep orientation. It defaults to PerpendicularOrientationType.\nThis property is ignored when sweeping a solid or a guide rail or surface has been specified.")
+
+
+SweepFeatureInput.creationOccurrence = property(SweepFeatureInput._get_creationOccurrence, SweepFeatureInput._set_creationOccurrence, doc="In order for geometry to be transformed correctly, an Occurrence for creation needs to be\nspecified when the sweep is created based on geometry (e.g. a profile and/or face(s))\nin another component AND (the sweep) is not in the root component.\nThe CreationOccurrence is analogous to the active occurrence in the UI")
+
+
+SweepFeatureInput.isSolid = property(SweepFeatureInput._get_isSolid, SweepFeatureInput._set_isSolid, doc="Specifies if the sweep should be created as a solid or surface. If\nit's a surface then there aren't any end caps and it's open. This is\ninitialized to true so a solid will be created if it's not changed.")
+
+
+SweepFeatureInput.guideRail = property(SweepFeatureInput._get_guideRail, SweepFeatureInput._set_guideRail, doc="Gets and sets the guide rail to create the sweep. This can be set to\nnull to remove the guide rail definition and have a single path sweep feature.")
+
+
+SweepFeatureInput.isDirectionFlipped = property(SweepFeatureInput._get_isDirectionFlipped, SweepFeatureInput._set_isDirectionFlipped, doc="Gets and sets if the direction of the sweep is flipped.\nThis property only applies to sweep features that include a guide rail and whose path runs on both\nsides of the profile.")
+
+
+SweepFeatureInput.profileScaling = property(SweepFeatureInput._get_profileScaling, SweepFeatureInput._set_profileScaling, doc="Gets and sets the sweep profile scaling option. It defaults to SweepProfileScaleOption.\nThis property is only used when a guide rail has been specified.")
+
+
+SweepFeatureInput.targetBaseFeature = property(SweepFeatureInput._get_targetBaseFeature, SweepFeatureInput._set_targetBaseFeature, doc="When creating a feature that is owned by a base feature, set this property to the\nbase feature you want to associate the new feature with. By default, this is null,\nmeaning it will not be associated with a base feature.\nBecause of a current limitation, if you want to create a feature associated with a base\nfeature, you must set this property AND call the startEdit method of the base feature,\ncreate the feature, and then call the finishEdit method of the base feature. The base\nfeature must be in an 'edit' state to be able to add any additional items to it.")
+
+
+SweepFeatureInput.participantBodies = property(SweepFeatureInput._get_participantBodies, SweepFeatureInput._set_participantBodies, doc="Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.\nIf this property has not been set, the default behavior is that all bodies that are intersected by the\nfeature will participate.\nThis property can return null in the case where the feature has not been fully defined so that\npossible intersecting bodies can be computed.")
+
+
+SweepFeatureInput.taperAngle = property(SweepFeatureInput._get_taperAngle, SweepFeatureInput._set_taperAngle, doc="Gets and sets the taper angle of the sweep. This property is initialized with a taper angle of zero.\nA negative angle will taper the sweep inward while a positive value will taper\nthe sweep outward.\nThis property is ignored if sweeping a solid or a guide rail or surface has been specified.\nThis property is valid for both parametric and non-parametric extrusions.")
+
+
+SweepFeatureInput.twistAngle = property(SweepFeatureInput._get_twistAngle, SweepFeatureInput._set_twistAngle, doc="Gets and sets the twist angle of the sweep. This property is initialized with a twist angle of zero.\nWhen sweeping a solid setting the twist angle requires the solid twist axis to be set.\nThis property is ignored if a guide rail or surface has been specified.\nThis property is valid for both parametric and non-parametric extrusions.")
+
+
+SweepFeatureInput.extent = property(SweepFeatureInput._get_extent, SweepFeatureInput._set_extent, doc="Gets and sets the sweep extent type. It defaults to PerpendicularToPathExtentType.\nThis property is ignored when a guide rail has not been specified.")
+
+
+SweepFeatureInput.guideSurfaces = property(SweepFeatureInput._get_guideSurfaces, SweepFeatureInput._set_guideSurfaces, doc="Gets and sets the guide surfaces to create the sweep. This can be set to\nan empty array to remove the guide surfaces and have a single path sweep feature.\nBy default connected faces that are tangent to any of the guide faces are set as guide faces.\nUse the isChainSelection property to disable the use of tangent faces.")
+
+
+SweepFeatureInput.isChainSelection = property(SweepFeatureInput._get_isChainSelection, SweepFeatureInput._set_isChainSelection, doc="Get and sets whether faces that are tangentially connected to the guide surfaces are also made guide surfaces.")
+
+
+SweepFeatureInput.solidBody = property(SweepFeatureInput._get_solidBody, SweepFeatureInput._set_solidBody, doc="Gets and sets the BRepBody object to sweep. It must be a solid body.\nSetting this property results in the type being a single path sweep, and\nif the profile, guide path, or surface are set, they are set to null.")
+
+
+SweepFeatureInput.solidOrientation = property(SweepFeatureInput._get_solidOrientation, SweepFeatureInput._set_solidOrientation, doc="Gets and sets the solid sweep orientation. It defaults to PerpendicularSolidOrientationType.\nSetting the solid orientation to AlignedSolidOrientationType requires the solid aligned axis to be set.\nThis property is ignored if sweeping a profile.")
+
+
+SweepFeatureInput.solidAlignedAxis = property(SweepFeatureInput._get_solidAlignedAxis, SweepFeatureInput._set_solidAlignedAxis, doc="Gets and sets the axis to align the solid being swept with. The axis is used when sweeping a solid,\nand the solid orientation is set to AlignedSolidOrientationType. It can be a sketch line, linear edge,\nor construction axis.")
+
+
+SweepFeatureInput.solidTwistAxis = property(SweepFeatureInput._get_solidTwistAxis, SweepFeatureInput._set_solidTwistAxis, doc="Gets and sets the twist axis of the solid being swept. The axis is used when sweeping a solid,\nand the twist angle is set. It can be a sketch line, linear edge, construction axis, or a face\nthat defines an axis (cylinder, cone, torus, etc.).")
+
+
+SweepFeatureInput.cast = lambda arg: arg if isinstance(arg, SweepFeatureInput) else None
+
+class SweepFeature(Feature):
+    r"""Object that represents an existing sweep feature in a design."""
+
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def __deref__(self) -> "adsk.fusion.SweepFeature *":
+        return _fusion.SweepFeature___deref__(self)
+
+    def __eq__(self, rhs: "SweepFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)) :
+           return False
+
+
+        return _fusion.SweepFeature___eq__(self, rhs)
+
+
+    def __ne__(self, rhs: "SweepFeature") -> "bool":
+
+        if not isinstance(self, type(rhs)):
+           return True
+
+
+        return _fusion.SweepFeature___ne__(self, rhs)
+
+
+    def __repr__(self):
+        return "<class 'adsk.fusion.SweepFeature'>"
+
+
+    @staticmethod
+    def classType() -> "str":
+        return _fusion.SweepFeature_classType()
+    __swig_destroy__ = _fusion.delete_SweepFeature
+
+    def _get_profile(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the profiles or planar faces used to define the shape of the sweep.
+        This property can return or be set with a single Profile, a single planar face, or
+        an ObjectCollection consisting of multiple profiles and planar faces. When an
+        ObjectCollection is used all of the profiles and faces must be co-planar.
+        This property returns nothing in the case where the feature is non-parametric.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__get_profile(self)
+
+    def _set_profile(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the profiles or planar faces used to define the shape of the sweep.
+        This property can return or be set with a single Profile, a single planar face, or
+        an ObjectCollection consisting of multiple profiles and planar faces. When an
+        ObjectCollection is used all of the profiles and faces must be co-planar.
+        This property returns nothing in the case where the feature is non-parametric.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__set_profile(self, value)
+
+    def _get_operation(self) -> "adsk.fusion.FeatureOperations":
+        r"""Gets and sets the type of operation performed by the sweep."""
+        return _fusion.SweepFeature__get_operation(self)
+
+    def _set_operation(self, value: "FeatureOperations") -> "bool":
+        r"""Gets and sets the type of operation performed by the sweep."""
+        return _fusion.SweepFeature__set_operation(self, value)
+
+    def _get_path(self) -> "adsk.fusion.Path":
+        r"""
+        Gets and sets the path to create the sweep.
+        This property returns nothing in the case where the feature is non-parametric.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__get_path(self)
+
+    def _set_path(self, value: "Path") -> "bool":
+        r"""
+        Gets and sets the path to create the sweep.
+        This property returns nothing in the case where the feature is non-parametric.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__set_path(self, value)
+
+    def _get_distanceOne(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets the distance for the first side.
+        This property returns nothing in the case where the feature is non-parametric.
+        """
+        return _fusion.SweepFeature__get_distanceOne(self)
+
+    def _get_distanceTwo(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets the distance for the second side.
+        Returns nothing if the path is only on one side of the profile or if the sweep definition includes a guide rail or surface.
+        It's always the distance against the normal of the profile if available.
+        This property returns nothing in the case where the feature is non-parametric.
+        """
+        return _fusion.SweepFeature__get_distanceTwo(self)
+
+    def _get_orientation(self) -> "adsk.fusion.SweepOrientationTypes":
+        r"""
+        Gets and sets the sweep orientation. It defaults to PerpendicularOrientationType.
+        This property is ignored if sweeping a solid or a guide rail or surface has been specified.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__get_orientation(self)
+
+    def _set_orientation(self, value: "SweepOrientationTypes") -> "bool":
+        r"""
+        Gets and sets the sweep orientation. It defaults to PerpendicularOrientationType.
+        This property is ignored if sweeping a solid or a guide rail or surface has been specified.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__set_orientation(self, value)
+
+    def _get_startFaces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Property that returns the set of that cap one end of the sweep that are coincident with the sketch plane.
+        In the cases where there aren't any start faces this property will return Nothing.
+        """
+        return _fusion.SweepFeature__get_startFaces(self)
+
+    def _get_endFaces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Property that returns the set of that cap one end of the sweep that are coincident with the sketch plane.
+        The end faces are those not coincident to the sketch plane of the feature's profile.
+        In the case of a symmetric revolution these faces are the ones on the negative normal side of the sketch plane.
+        In the cases where there aren't any end faces this property will return Nothing.
+        """
+        return _fusion.SweepFeature__get_endFaces(self)
+
+    def _get_sideFaces(self) -> "adsk.fusion.BRepFaces":
+        r"""Property that returns an object that provides access to all of the faces created around the perimeter of the feature."""
+        return _fusion.SweepFeature__get_sideFaces(self)
+
+    def _get_nativeObject(self) -> "adsk.fusion.SweepFeature":
+        r"""
+        The NativeObject is the object outside the context of an assembly and
+        in the context of its parent component.
+        Returns null in the case where this object is not in the context of
+        an assembly but is already the native object.
+        """
+        return _fusion.SweepFeature__get_nativeObject(self)
+
+    def createForAssemblyContext(self, occurrence: "Occurrence") -> "adsk.fusion.SweepFeature":
+        r"""
+        Creates or returns a proxy for the native object
+        - i.e. a new object that represents this object but adds the assembly context
+        defined by the input occurrence.
+        occurrence : The occurrence that defines the context to create the proxy in.
+        Returns the proxy object or null if this isn't the NativeObject.
+        """
+        return _fusion.SweepFeature_createForAssemblyContext(self, occurrence)
+
+    def _get_isSolid(self) -> "bool":
+        r"""Indicates if this feature was initially created as a solid or a surface."""
+        return _fusion.SweepFeature__get_isSolid(self)
+
+    def _get_guideRail(self) -> "adsk.fusion.Path":
+        r"""
+        Gets and sets the guide rail to create the sweep. This can be set to null
+        to have a path only sweep.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__get_guideRail(self)
+
+    def _set_guideRail(self, value: "Path") -> "bool":
+        r"""
+        Gets and sets the guide rail to create the sweep. This can be set to null
+        to have a path only sweep.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__set_guideRail(self, value)
+
+    def _get_isDirectionFlipped(self) -> "bool":
+        r"""
+        Gets and sets if the direction of the sweep is flipped.
+        This property only applies to sweep features that include a guide rail and whose path runs on both
+        sides of the profile.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__get_isDirectionFlipped(self)
+
+    def _set_isDirectionFlipped(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if the direction of the sweep is flipped.
+        This property only applies to sweep features that include a guide rail and whose path runs on both
+        sides of the profile.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__set_isDirectionFlipped(self, value)
+
+    def _get_profileScaling(self) -> "adsk.fusion.SweepProfileScalingOptions":
+        r"""
+        Gets and sets the sweep profile scaling option. It defaults to SweepProfileScaleOption.
+        This property is only used when a guide rail has been specified.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__get_profileScaling(self)
+
+    def _set_profileScaling(self, value: "SweepProfileScalingOptions") -> "bool":
+        r"""
+        Gets and sets the sweep profile scaling option. It defaults to SweepProfileScaleOption.
+        This property is only used when a guide rail has been specified.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__set_profileScaling(self, value)
+
+    def _get_participantBodies(self) -> "list[adsk.fusion.BRepBody]":
+        r"""
+        Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__get_participantBodies(self)
+
+    def _set_participantBodies(self, value: "list[BRepBody]") -> "bool":
+        r"""
+        Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__set_participantBodies(self, value)
+
+    def _get_taperAngle(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets the ModelParameter that defines the taper angle of the sweep feature.
+        The value of the angle can be edited by using the properties on the ModelParameter object to edit the parameter.
+        This property is ignored if sweeping a solid or a guide rail or surface has been specified.
+        """
+        return _fusion.SweepFeature__get_taperAngle(self)
+
+    def _get_twistAngle(self) -> "adsk.fusion.ModelParameter":
+        r"""
+        Gets the ModelParameter that defines the twist angle of the sweep feature.
+        The value of the angle can be edited by using the properties on the ModelParameter object to edit the parameter.
+        When sweeping a solid setting the twist angle requires the solid twist axis to be set.
+        This property is ignored if a guide rail or surface has been specified.
+        """
+        return _fusion.SweepFeature__get_twistAngle(self)
+
+    def _get_extent(self) -> "adsk.fusion.SweepExtentTypes":
+        r"""
+        Gets and sets the sweep extent type. It defaults to PerpendicularToPathExtentType.
+        When sweeping a solid setting the twist angle requires the solid twist axis to be set.
+        This property is ignored when a guide rail has not been specified.
+        """
+        return _fusion.SweepFeature__get_extent(self)
+
+    def _set_extent(self, value: "SweepExtentTypes") -> "bool":
+        r"""
+        Gets and sets the sweep extent type. It defaults to PerpendicularToPathExtentType.
+        When sweeping a solid setting the twist angle requires the solid twist axis to be set.
+        This property is ignored when a guide rail has not been specified.
+        """
+        return _fusion.SweepFeature__set_extent(self, value)
+
+    def _get_guideSurfaces(self) -> "list[adsk.fusion.BRepFace]":
+        r"""
+        Gets and sets the guide surfaces to create the sweep. This can be set to
+        an empty array to remove the guide surfaces and have a single path sweep feature.
+        The isChainSelection property controls whether tangentially connected faces to
+        the guide surfaces are also made guide surfaces.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__get_guideSurfaces(self)
+
+    def _set_guideSurfaces(self, value: "list[BRepFace]") -> "bool":
+        r"""
+        Gets and sets the guide surfaces to create the sweep. This can be set to
+        an empty array to remove the guide surfaces and have a single path sweep feature.
+        The isChainSelection property controls whether tangentially connected faces to
+        the guide surfaces are also made guide surfaces.
+        To use this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__set_guideSurfaces(self, value)
+
+    def _get_isChainSelection(self) -> "bool":
+        r"""Get and sets whether faces that are tangentially connected to the guide surfaces are also made guide surfaces."""
+        return _fusion.SweepFeature__get_isChainSelection(self)
+
+    def _set_isChainSelection(self, value: "bool") -> "bool":
+        r"""Get and sets whether faces that are tangentially connected to the guide surfaces are also made guide surfaces."""
+        return _fusion.SweepFeature__set_isChainSelection(self, value)
+
+    def _get_solidBody(self) -> "adsk.fusion.BRepBody":
+        r"""
+        Gets and sets the BRepBody object to sweep. It must be a solid body.
+        Setting this property results in the type being a single path sweep, and
+        if the profile, guide path, or surface are set, they are set to null.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__get_solidBody(self)
+
+    def _set_solidBody(self, value: "BRepBody") -> "bool":
+        r"""
+        Gets and sets the BRepBody object to sweep. It must be a solid body.
+        Setting this property results in the type being a single path sweep, and
+        if the profile, guide path, or surface are set, they are set to null.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__set_solidBody(self, value)
+
+    def _get_solidOrientation(self) -> "adsk.fusion.SweepSolidOrientationTypes":
+        r"""
+        Gets and sets the sweep solid orientation. It defaults to PerpendicularSolidOrientationType.
+        Setting the solid orientation to AlignedSolidOrientationType requires the solid aligned axis to be set.
+        This property is ignored if sweeping a profile.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__get_solidOrientation(self)
+
+    def _set_solidOrientation(self, value: "SweepSolidOrientationTypes") -> "bool":
+        r"""
+        Gets and sets the sweep solid orientation. It defaults to PerpendicularSolidOrientationType.
+        Setting the solid orientation to AlignedSolidOrientationType requires the solid aligned axis to be set.
+        This property is ignored if sweeping a profile.
+        To set this property, you need to position the timeline marker to immediately before this feature.
+        This can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)
+        """
+        return _fusion.SweepFeature__set_solidOrientation(self, value)
+
+    def _get_solidAlignedAxis(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the axis to align the solid being swept with. The axis is used when sweeping a solid,
+        and the solid orientation is set to AlignedSolidOrientationType. It can be a sketch line, linear edge,
+        or construction axis.
+        """
+        return _fusion.SweepFeature__get_solidAlignedAxis(self)
+
+    def _set_solidAlignedAxis(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the axis to align the solid being swept with. The axis is used when sweeping a solid,
+        and the solid orientation is set to AlignedSolidOrientationType. It can be a sketch line, linear edge,
+        or construction axis.
+        """
+        return _fusion.SweepFeature__set_solidAlignedAxis(self, value)
+
+    def _get_solidTwistAxis(self) -> "adsk.core.Base":
+        r"""
+        Gets and sets the twist axis of the solid being swept. The axis is used when sweeping a solid,
+        and the twist angle is set. It can be a sketch line, linear edge, construction axis, or a face
+        that defines an axis (cylinder, cone, torus, etc.).
+        """
+        return _fusion.SweepFeature__get_solidTwistAxis(self)
+
+    def _set_solidTwistAxis(self, value: "Base") -> "bool":
+        r"""
+        Gets and sets the twist axis of the solid being swept. The axis is used when sweeping a solid,
+        and the twist angle is set. It can be a sketch line, linear edge, construction axis, or a face
+        that defines an axis (cylinder, cone, torus, etc.).
+        """
+        return _fusion.SweepFeature__set_solidTwistAxis(self, value)
+
+    def _get_name(self) -> "str":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.SweepFeature__get_name(self)
+
+    def _set_name(self, value: "str") -> "bool":
+        r"""Returns the name of the feature as seen in the browser (non-parametric) or in the timeline (parametric)."""
+        return _fusion.SweepFeature__set_name(self, value)
+
+    def deleteMe(self) -> "bool":
+        r"""
+        Deletes the feature.
+        This works for both parametric and non-parametric features.
+        Returns a bool indicating if the delete was successful or not.
+        """
+        return _fusion.SweepFeature_deleteMe(self)
+
+    def dissolve(self) -> "bool":
+        r"""
+        Dissolves the feature so that the feature information is lost
+        and only the B-Rep geometry defined by the feature remains.
+        This is only valid for non-parametric features.
+        Returns a bool indicating if the dissolve was successful or not.
+        """
+        return _fusion.SweepFeature_dissolve(self)
+
+    def _get_isSuppressed(self) -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.SweepFeature__get_isSuppressed(self)
+
+    def _set_isSuppressed(self, value: "bool") -> "bool":
+        r"""
+        Gets and sets if this feature is suppressed. This is only valid
+        for parametric features.
+        """
+        return _fusion.SweepFeature__set_isSuppressed(self, value)
+
+    def _get_isParametric(self) -> "bool":
+        r"""Indicates if this feature is parametric or not."""
+        return _fusion.SweepFeature__get_isParametric(self)
+
+    def _get_faces(self) -> "adsk.fusion.BRepFaces":
+        r"""
+        Returns the faces that were created by this feature. This works for
+        both parametric and non-parametric features.
+        Depending on the modifications made to the body after the feature was
+        created, this may not return all of the faces. For example, when a
+        component is created from a body, the original body and its faces
+        no longer exist, so this won't return any faces. However, you can
+        roll the timeline to immediately after the feature, and all the
+        original faces will be available.
+        """
+        return _fusion.SweepFeature__get_faces(self)
+
+    def _get_parentComponent(self) -> "adsk.fusion.Component":
+        r"""Returns the parent component that owns this feature."""
+        return _fusion.SweepFeature__get_parentComponent(self)
+
+    def _get_linkedFeatures(self) -> "adsk.fusion.FeatureList":
+        r"""
+        Returns the set of features that are linked to this feature. The set of linked features
+        are all of the features that were created in various components as the result of a
+        single feature being created in the user interface.
+        """
+        return _fusion.SweepFeature__get_linkedFeatures(self)
+
+    def _get_assemblyContext(self) -> "adsk.fusion.Occurrence":
+        r"""
+        Returns the assembly occurrence (i.e. the occurrence) of this object
+        in an assembly. This is only valid in the case where this is acting
+        as a proxy in an assembly. Returns null in the case where the object
+        is not in the context of an assembly but is already the native object.
+        """
+        return _fusion.SweepFeature__get_assemblyContext(self)
+
+    def _get_timelineObject(self) -> "adsk.fusion.TimelineObject":
+        r"""Returns the timeline object associated with this feature."""
+        return _fusion.SweepFeature__get_timelineObject(self)
+
+    def _get_bodies(self) -> "adsk.fusion.BRepBodies":
+        r"""
+        Returns the bodies that were modified or created by this feature.
+        This property works for both parametric and non-parametric features.
+        For a BaseFeature, this property has two different behaviors depending
+        on if the BaseFeature is active for edit or not. When the base feature is
+        active, this property returns the bodies owned by the base feature or the
+        source bodies. When the base feature is not active, this property returns
+        the result bodies.
+        When a body is added to a base feature, that body is owned by the base feature
+        and is only seen in the UI when the base feature is active. This body is referred
+        to as a 'source body'. Fusion creates a parametric copy of the body when you
+        exit the base feature. This copy is referred to as the 'result body,' and it
+        is used for subsequent modeling operations.
+        You can map between the source and result bodies by using their position
+        within the bodies returned. To get a valid list of result bodies, you should
+        roll the timeline to immediately after the base feature node in the timeline.
+        Otherwise, subsequent operations could have done something to cause one or
+        more bodies to no longer be available.
+        """
+        return _fusion.SweepFeature__get_bodies(self)
+
+    def _get_attributes(self) -> "adsk.core.Attributes":
+        r"""Returns the collection of attributes associated with this face."""
+        return _fusion.SweepFeature__get_attributes(self)
+
+    def _get_baseFeature(self) -> "adsk.fusion.BaseFeature":
+        r"""
+        If this feature is associated with a base feature, this property will return that base feature.
+        If it's not associated with a base feature, this property will return null.
+        """
+        return _fusion.SweepFeature__get_baseFeature(self)
+
+    def _get_healthState(self) -> "adsk.fusion.FeatureHealthStates":
+        r"""Returns the current health state of the feature."""
+        return _fusion.SweepFeature__get_healthState(self)
+
+    def _get_errorOrWarningMessage(self) -> "str":
+        r"""
+        Returns the error or warning message in the case where the healthState property returns either
+        WarningFeatureHealthState or ErrorFeatureHealthState. Otherwise this property returns an empty string.
+        """
+        return _fusion.SweepFeature__get_errorOrWarningMessage(self)
+
+    def _get_entityToken(self) -> "str":
+        r"""
+        Returns a token for the Feature object. This can be saved and used at a later
+        time with the Design.findEntityByToken method to get back the same feature.
+        When using entity tokens it's important to understand that the token string returned for a
+        specific entity can be different over time. However, even if you have two different token
+        strings that were obtained from the same entity, when you use findEntityByToken they
+        will both return the same entity. Because of that you should never compare entity tokens
+        as way to determine what the token represents. Instead, you need to use the findEntityByToken
+        method to get the two entities identified by the tokens and then compare them.
+        """
+        return _fusion.SweepFeature__get_entityToken(self)
+
+    def _get_objectType(self) -> "str":
+        return _fusion.SweepFeature__get_objectType(self)
+
+    def _get_isValid(self) -> "bool":
+        return _fusion.SweepFeature__get_isValid(self)
+
+# Register SweepFeature in _fusion:
+_fusion.SweepFeature_swigregister(SweepFeature)
+
+def SweepFeature_classType() -> "str":
+    return _fusion.SweepFeature_classType()
+
+
+SweepFeature.profile = property(SweepFeature._get_profile, SweepFeature._set_profile, doc="Gets and sets the profiles or planar faces used to define the shape of the sweep.\nThis property can return or be set with a single Profile, a single planar face, or\nan ObjectCollection consisting of multiple profiles and planar faces. When an\nObjectCollection is used all of the profiles and faces must be co-planar.\nThis property returns nothing in the case where the feature is non-parametric.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SweepFeature.operation = property(SweepFeature._get_operation, SweepFeature._set_operation, doc="Gets and sets the type of operation performed by the sweep.")
+
+
+SweepFeature.path = property(SweepFeature._get_path, SweepFeature._set_path, doc="Gets and sets the path to create the sweep.\nThis property returns nothing in the case where the feature is non-parametric.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SweepFeature.distanceOne = property(SweepFeature._get_distanceOne, doc="Gets the distance for the first side.\nThis property returns nothing in the case where the feature is non-parametric.")
+
+
+SweepFeature.distanceTwo = property(SweepFeature._get_distanceTwo, doc="Gets the distance for the second side.\nReturns nothing if the path is only on one side of the profile or if the sweep definition includes a guide rail or surface.\nIt's always the distance against the normal of the profile if available.\nThis property returns nothing in the case where the feature is non-parametric.")
+
+
+SweepFeature.orientation = property(SweepFeature._get_orientation, SweepFeature._set_orientation, doc="Gets and sets the sweep orientation. It defaults to PerpendicularOrientationType.\nThis property is ignored if sweeping a solid or a guide rail or surface has been specified.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SweepFeature.startFaces = property(SweepFeature._get_startFaces, doc="Property that returns the set of that cap one end of the sweep that are coincident with the sketch plane.\nIn the cases where there aren't any start faces this property will return Nothing.")
+
+
+SweepFeature.endFaces = property(SweepFeature._get_endFaces, doc="Property that returns the set of that cap one end of the sweep that are coincident with the sketch plane.\nThe end faces are those not coincident to the sketch plane of the feature's profile.\nIn the case of a symmetric revolution these faces are the ones on the negative normal side of the sketch plane.\nIn the cases where there aren't any end faces this property will return Nothing.")
+
+
+SweepFeature.sideFaces = property(SweepFeature._get_sideFaces, doc="Property that returns an object that provides access to all of the faces created around the perimeter of the feature.")
+
+
+SweepFeature.nativeObject = property(SweepFeature._get_nativeObject, doc="The NativeObject is the object outside the context of an assembly and\nin the context of its parent component.\nReturns null in the case where this object is not in the context of\nan assembly but is already the native object.")
+
+
+SweepFeature.isSolid = property(SweepFeature._get_isSolid, doc="Indicates if this feature was initially created as a solid or a surface.")
+
+
+SweepFeature.guideRail = property(SweepFeature._get_guideRail, SweepFeature._set_guideRail, doc="Gets and sets the guide rail to create the sweep. This can be set to null\nto have a path only sweep.\nTo use this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SweepFeature.isDirectionFlipped = property(SweepFeature._get_isDirectionFlipped, SweepFeature._set_isDirectionFlipped, doc="Gets and sets if the direction of the sweep is flipped.\nThis property only applies to sweep features that include a guide rail and whose path runs on both\nsides of the profile.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SweepFeature.profileScaling = property(SweepFeature._get_profileScaling, SweepFeature._set_profileScaling, doc="Gets and sets the sweep profile scaling option. It defaults to SweepProfileScaleOption.\nThis property is only used when a guide rail has been specified.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SweepFeature.participantBodies = property(SweepFeature._get_participantBodies, SweepFeature._set_participantBodies, doc="Gets and sets the list of bodies that will participate in the feature when the operation is a cut or intersection.\nTo use this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SweepFeature.taperAngle = property(SweepFeature._get_taperAngle, doc="Gets the ModelParameter that defines the taper angle of the sweep feature.\nThe value of the angle can be edited by using the properties on the ModelParameter object to edit the parameter.\nThis property is ignored if sweeping a solid or a guide rail or surface has been specified.")
+
+
+SweepFeature.twistAngle = property(SweepFeature._get_twistAngle, doc="Gets the ModelParameter that defines the twist angle of the sweep feature.\nThe value of the angle can be edited by using the properties on the ModelParameter object to edit the parameter.\nWhen sweeping a solid setting the twist angle requires the solid twist axis to be set.\nThis property is ignored if a guide rail or surface has been specified.")
+
+
+SweepFeature.extent = property(SweepFeature._get_extent, SweepFeature._set_extent, doc="Gets and sets the sweep extent type. It defaults to PerpendicularToPathExtentType.\nWhen sweeping a solid setting the twist angle requires the solid twist axis to be set.\nThis property is ignored when a guide rail has not been specified.")
+
+
+SweepFeature.guideSurfaces = property(SweepFeature._get_guideSurfaces, SweepFeature._set_guideSurfaces, doc="Gets and sets the guide surfaces to create the sweep. This can be set to\nan empty array to remove the guide surfaces and have a single path sweep feature.\nThe isChainSelection property controls whether tangentially connected faces to\nthe guide surfaces are also made guide surfaces.\nTo use this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SweepFeature.isChainSelection = property(SweepFeature._get_isChainSelection, SweepFeature._set_isChainSelection, doc="Get and sets whether faces that are tangentially connected to the guide surfaces are also made guide surfaces.")
+
+
+SweepFeature.solidBody = property(SweepFeature._get_solidBody, SweepFeature._set_solidBody, doc="Gets and sets the BRepBody object to sweep. It must be a solid body.\nSetting this property results in the type being a single path sweep, and\nif the profile, guide path, or surface are set, they are set to null.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SweepFeature.solidOrientation = property(SweepFeature._get_solidOrientation, SweepFeature._set_solidOrientation, doc="Gets and sets the sweep solid orientation. It defaults to PerpendicularSolidOrientationType.\nSetting the solid orientation to AlignedSolidOrientationType requires the solid aligned axis to be set.\nThis property is ignored if sweeping a profile.\nTo set this property, you need to position the timeline marker to immediately before this feature.\nThis can be accomplished using the following code: thisFeature.timelineObject.rollTo(True)")
+
+
+SweepFeature.solidAlignedAxis = property(SweepFeature._get_solidAlignedAxis, SweepFeature._set_solidAlignedAxis, doc="Gets and sets the axis to align the solid being swept with. The axis is used when sweeping a solid,\nand the solid orientation is set to AlignedSolidOrientationType. It can be a sketch line, linear edge,\nor construction axis.")
+
+
+SweepFeature.solidTwistAxis = property(SweepFeature._get_solidTwistAxis, SweepFeature._set_solidTwistAxis, doc="Gets and sets the twist axis of the solid being swept. The axis is used when sweeping a solid,\nand the twist angle is set. It can be a sketch line, linear edge, construction axis, or a face\nthat defines an axis (cylinder, cone, torus, etc.).")
+
+
+SweepFeature.cast = lambda arg: arg if isinstance(arg, SweepFeature) else None

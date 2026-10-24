@@ -1,0 +1,127 @@
+{
+  "fusion_version": "2705.1.30",
+  "samples": [],
+  "errors": [
+    {
+      "case": "custom_two_points",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRevolveAxisModes.py\", line 81, in run\n    sample['parameters'] = [{'name':p.name,'role':p.role,'value':p.value,'unit':p.unit} for p in feature.parameters]\n                                                                                                 ^^^^^^^^^^^^^^^^^^\nAttributeError: 'RevolveFeature' object has no attribute 'parameters'\n",
+      "partial": {
+        "file": "custom_two_points.f3d",
+        "getter_errors": [],
+        "actual_axis": {
+          "entity_type": "adsk::fusion::ConstructionAxis",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgp3Ip6YEXlfV9sM390efnOYDVGGkYGymkJySZphiYZymm2xpbqJrYmRkqZuYZp6sm2aRlpKUnGqQmJxmCFYLNIMBDYDtM1AAWwey3sjYAgAJP6i6iAAAAA==",
+          "name": "ProbeCustomAxis",
+          "origin_cm": [
+            1.0,
+            -1.0,
+            0.0
+          ],
+          "direction": [
+            0.447213595499958,
+            0.8944271909999161,
+            0.0
+          ]
+        },
+        "settings": {
+          "operation": 3,
+          "is_solid": true,
+          "is_project_axis": false,
+          "angle_radians": 1.2740903539558606,
+          "result_body_count": 1
+        }
+      }
+    },
+    {
+      "case": "sketch_line",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRevolveAxisModes.py\", line 81, in run\n    sample['parameters'] = [{'name':p.name,'role':p.role,'value':p.value,'unit':p.unit} for p in feature.parameters]\n                                                                                                 ^^^^^^^^^^^^^^^^^^\nAttributeError: 'RevolveFeature' object has no attribute 'parameters'\n",
+      "partial": {
+        "file": "sketch_line.f3d",
+        "getter_errors": [],
+        "actual_axis": {
+          "entity_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZgrfpxRk6E7yjFq2Q6BfbYaIBVGGkYGymkJZiYWRubJimm2RsbKxrkphiqJtkYJAMIgzMjFKTUpJSLcBqgWYwoAGwfQYKYOtMDY3AtJEBUKmBsYIBAMjfXcKSAAAA",
+          "sketch_name": "AxisSupportSketch",
+          "start_cm": [
+            1.0,
+            -1.0,
+            0.0
+          ],
+          "end_cm": [
+            2.7888543819998315,
+            2.5777087639996634,
+            0.0
+          ]
+        },
+        "settings": {
+          "operation": 3,
+          "is_solid": true,
+          "is_project_axis": false,
+          "angle_radians": 1.2740903539558606,
+          "result_body_count": 1
+        }
+      }
+    },
+    {
+      "case": "sketch_line_reversed",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRevolveAxisModes.py\", line 81, in run\n    sample['parameters'] = [{'name':p.name,'role':p.role,'value':p.value,'unit':p.unit} for p in feature.parameters]\n                                                                                                 ^^^^^^^^^^^^^^^^^^\nAttributeError: 'RevolveFeature' object has no attribute 'parameters'\n",
+      "partial": {
+        "file": "sketch_line_reversed.f3d",
+        "getter_errors": [],
+        "actual_axis": {
+          "entity_type": "adsk::fusion::SketchLine",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/zNQsFAwAEJDBSMgBrOMLIAsQwUTkIiZQsZU6a1ZPv5WG41u5rv93KAKVGGkYGymYGpiaGFuap6sa5aYaqBrYmRmqWuZaGamm2KeZGCQamFoapmcBlYLNIMBDYDtM1AAW2dqaASmjQyASg2MFQwAXpjzhpIAAAA=",
+          "sketch_name": "AxisSupportSketch",
+          "start_cm": [
+            2.7888543819998315,
+            2.5777087639996634,
+            0.0
+          ],
+          "end_cm": [
+            1.0,
+            -1.0,
+            0.0
+          ]
+        },
+        "settings": {
+          "operation": 3,
+          "is_solid": true,
+          "is_project_axis": false,
+          "angle_radians": 1.2740903539558606,
+          "result_body_count": 1
+        }
+      }
+    },
+    {
+      "case": "brep_edge",
+      "error": "Traceback (most recent call last):\n  File \"/Users/stephenh/.codex/visualizations/2026/10/17/01a14ba1-a51c-7f72-b92e-9f1f0114012e/FusionFileStudy/GenerateRevolveAxisModes.py\", line 81, in run\n    sample['parameters'] = [{'name':p.name,'role':p.role,'value':p.value,'unit':p.unit} for p in feature.parameters]\n                                                                                                 ^^^^^^^^^^^^^^^^^^\nAttributeError: 'RevolveFeature' object has no attribute 'parameters'\n",
+      "partial": {
+        "file": "brep_edge.f3d",
+        "getter_errors": [],
+        "actual_axis": {
+          "entity_type": "adsk::fusion::BRepEdge",
+          "entity_token": "/v4BAAAARlJLZXkAH4sIAAAAAAAA/12OQU4DMQxFOcq/gCXH8aTOAWDRFSu2VTpJUHcIcQOExB3aS7CEG3EEdiRpVXUmiuSf75dvMwQOPkC9JJtypFzdnrTMiaIUIbFNma3KFPMEbmznuSuxphy0OwGPf/j4/Nn+frv3r+PpcGqE9FyZTeteKgW2ROqyUcyVqYoax0114utgW8bd6ox5jDFO4SEc0Io2ty892p7dqGOXlRHWht4YjJKfy+61zIeXssvpLeEeBnKXK3hoT+6yi4v3dEb88GTRvOI9e8H5Rfv6oXH/wMtXDn8BAAA=",
+          "body_name": "AxisSeedBody",
+          "start_cm": [
+            0.0,
+            3.0,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "geometry_type": "adsk::core::Line3D"
+        },
+        "settings": {
+          "operation": 3,
+          "is_solid": true,
+          "is_project_axis": false,
+          "angle_radians": 1.2740903539558606,
+          "result_body_count": 1
+        }
+      }
+    }
+  ]
+}
