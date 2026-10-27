@@ -1,10 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
 from __future__ import annotations
 
@@ -15,7 +10,7 @@ from tools.skills.SkillSource import StripSource
 from tools.skills.YamlScalar import QuoteYaml
 
 # shared license identity keeps every generated skill compatible with agent discovery
-KLicenseName = "LicenseRef-PolyForm-Strict-1.0.0"
+KLicenseName = "MIT"
 
 
 # single skill rendering guarantees checks compare the exact bytes writers produce

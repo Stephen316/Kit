@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # Disjoint boss and full revolution closure record
@@ -55,14 +50,14 @@ or copy any oracle part or stream.
 The fixture below is reverse-engineering and test evidence. Its bytes are prohibited from every
 production path. Static hashes agree with `examples/Fixtures/SolidWorks/donors/manifest.json`.
 
-| Stream                                      | Bytes  | SHA-256                                                            |
-| ------------------------------------------- | -----: | ------------------------------------------------------------------ |
-| `Contents/Config-0-ResolvedFeatures`        | 17,474 | `6894ccb75d456dc86322ad539c84d116651c0c6873bdaddc47719bf5211da997` |
-| `Contents/Config-0`                         | 25,246 | `2139eccd2cf58fdc9da51942ee0bea54755db3cff59e4575e7d84cc46f128f57` |
-| `Contents/Config-0-ModelHeader`             |  2,461 | `71ee946aaefaccd7288abcb6f9a1f148590ae1a1e1df9ea13136756ef0ea6bbb` |
-| `Header2`                                   |  2,461 | `71ee946aaefaccd7288abcb6f9a1f148590ae1a1e1df9ea13136756ef0ea6bbb` |
-| `Contents/Definition`                       |  3,810 | `9ef7791e99859010fb2f1568181284d79c06d27dc95109b759ff654574ba6494` |
-| `Contents/CMgr`                             |  2,019 | `1876165797a42f027b02a7f1133d7a4e09817e32b1cb940f252c580ffc20e45a` |
+| Stream                               |  Bytes | SHA-256                                                            |
+| ------------------------------------ | -----: | ------------------------------------------------------------------ |
+| `Contents/Config-0-ResolvedFeatures` | 17,474 | `6894ccb75d456dc86322ad539c84d116651c0c6873bdaddc47719bf5211da997` |
+| `Contents/Config-0`                  | 25,246 | `2139eccd2cf58fdc9da51942ee0bea54755db3cff59e4575e7d84cc46f128f57` |
+| `Contents/Config-0-ModelHeader`      |  2,461 | `71ee946aaefaccd7288abcb6f9a1f148590ae1a1e1df9ea13136756ef0ea6bbb` |
+| `Header2`                            |  2,461 | `71ee946aaefaccd7288abcb6f9a1f148590ae1a1e1df9ea13136756ef0ea6bbb` |
+| `Contents/Definition`                |  3,810 | `9ef7791e99859010fb2f1568181284d79c06d27dc95109b759ff654574ba6494` |
+| `Contents/CMgr`                      |  2,019 | `1876165797a42f027b02a7f1133d7a4e09817e32b1cb940f252c580ffc20e45a` |
 
 The resolved metadata identifies sketches 26 and 33, features 32 and 39, names `Sketch1`,
 `Boss-Extrude1`, `Sketch2`, and `Revolve1`, four and six profile points, and revolution axis

@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # Revolve donors for `src/convert/adapters/solidworks/donor_library.py`
@@ -23,7 +18,7 @@ committing a donor.
 | revolve **angle**                                                                        | **PATCHABLE**             | one `float64` in radians, located by the ordinal dimension-scalar rule; the two derived copies at `scalar+513` / `scalar+537` must be **left stale**                                                                                                    |
 | axis **target** (repoint to another existing reference axis or sketch in the same donor) | **PATCHABLE**, unverified | `u32` feature id at `end-spec-object − 131` (reference axis) or `− 145` (sketch)                                                                                                                                                                        |
 | **profile geometry**                                                                     | **PARTIALLY PATCHABLE**   | `float64` x/y pairs in the same 18-byte-prefixed coordinate record as extrudes, but arcs are unreadable (§7.2 of `Revolve.md`) and the role/class trailer values are undecoded — treat as inherit-only unless the donor's profile is pure line segments |
-| boss ↔ cut                                                                               | **INHERIT ONLY**          | changes the class set (`moRevolution_c` ↔ `moRevCut_c`) and therefore every `su_CArchive` map index after it. Separate donors, no byte flip.                                                                                                            |
+| boss ↔ cut                                                                              | **INHERIT ONLY**          | changes the class set (`moRevolution_c` ↔ `moRevCut_c`) and therefore every `su_CArchive` map index after it. Separate donors, no byte flip.                                                                                                           |
 | end condition (one-direction / mid-plane / two-direction)                                | **INHERIT ONLY**          | `moRevEndSpec_c` is a 52-byte constant across the whole corpus; the code byte is not located                                                                                                                                                            |
 | direction / reverse                                                                      | **INHERIT ONLY**          | same reason                                                                                                                                                                                                                                             |
 | thin feature                                                                             | **INHERIT ONLY**          | same reason; the two `0.01` doubles in `moRevEndSpec_c` are a guess                                                                                                                                                                                     |

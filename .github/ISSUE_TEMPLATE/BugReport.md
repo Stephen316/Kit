@@ -1,18 +1,16 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
+
 ---
+
 name: Bug report
 about: Report a problem with Kit
 title: "[Bug] "
 labels: bug
 assignees: ""
+
 ---
 
 **Describe the bug**
@@ -26,6 +24,7 @@ formats and the `convert(...)` call used.
 A clear and concise description of what you expected to happen.
 
 **Environment**
+
 - Kit version:
 - Python version:
 - OS:

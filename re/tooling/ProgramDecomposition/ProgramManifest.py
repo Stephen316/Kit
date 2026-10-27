@@ -1,10 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
 from __future__ import annotations
 
@@ -60,7 +55,7 @@ KProgramManifest = (
                 "f0ce5924eb208ac3450b83e5c2bddd65e5cdc0aa475246b98f534bfa2e0864f6",
             ),
         ),
-        "7a7cae8647f052a07d8be619b0dc7b04aa243a1ca264cd127a3a6cb3827c04c0",
+        "befbc1de0258af17be1c3e14b89bb2b411274e362d9e32c777761426ef9cb4c5",
     ),
     (
         "assembly/distinct/default",
@@ -109,7 +104,7 @@ KProgramManifest = (
                 "b4ad0e5988c073bdec5202ceaef83e403348708053211883d5c3a2f615d6009c",
             ),
         ),
-        "7a7cae8647f052a07d8be619b0dc7b04aa243a1ca264cd127a3a6cb3827c04c0",
+        "befbc1de0258af17be1c3e14b89bb2b411274e362d9e32c777761426ef9cb4c5",
     ),
     (
         "assembly/distinct/quintuples",
@@ -158,7 +153,7 @@ KProgramManifest = (
                 "43f7f262b0e5b79c250c808c78942c60673385724c00d18d6b7d4767c172e7b0",
             ),
         ),
-        "7a7cae8647f052a07d8be619b0dc7b04aa243a1ca264cd127a3a6cb3827c04c0",
+        "befbc1de0258af17be1c3e14b89bb2b411274e362d9e32c777761426ef9cb4c5",
     ),
     (
         "assembly/hybrid/quintuples",
@@ -207,7 +202,7 @@ KProgramManifest = (
                 "7174ecd6e4c1a88d8a1651bb659e837579ccc5cb14404c81af1d199deccde13a",
             ),
         ),
-        "7a7cae8647f052a07d8be619b0dc7b04aa243a1ca264cd127a3a6cb3827c04c0",
+        "befbc1de0258af17be1c3e14b89bb2b411274e362d9e32c777761426ef9cb4c5",
     ),
     (
         "assembly/mixed/sextuples",
@@ -256,7 +251,7 @@ KProgramManifest = (
                 "9bb18f54f6a3beda1b3b68a9e292ca2a71ac4792e880bc2aa548690ecb91a817",
             ),
         ),
-        "7a7cae8647f052a07d8be619b0dc7b04aa243a1ca264cd127a3a6cb3827c04c0",
+        "befbc1de0258af17be1c3e14b89bb2b411274e362d9e32c777761426ef9cb4c5",
     ),
     (
         "assembly/pairs",
@@ -305,7 +300,7 @@ KProgramManifest = (
                 "630db71b0e220e25d9a2f1d96c4468521ebf083383107b88239fee6786a9c750",
             ),
         ),
-        "7a7cae8647f052a07d8be619b0dc7b04aa243a1ca264cd127a3a6cb3827c04c0",
+        "befbc1de0258af17be1c3e14b89bb2b411274e362d9e32c777761426ef9cb4c5",
     ),
     (
         "assembly/quintuples",
@@ -354,7 +349,7 @@ KProgramManifest = (
                 "a663aaa351cbf124204f24b85c8dc60befb90a22eed123b41897ae6156e7d0a9",
             ),
         ),
-        "7a7cae8647f052a07d8be619b0dc7b04aa243a1ca264cd127a3a6cb3827c04c0",
+        "befbc1de0258af17be1c3e14b89bb2b411274e362d9e32c777761426ef9cb4c5",
     ),
     (
         "assembly/triples",
@@ -403,7 +398,7 @@ KProgramManifest = (
                 "26282628265c582a65dbf4b2b65cb7a0e11244ffd17ac3a9ed0165ceb3728376",
             ),
         ),
-        "7a7cae8647f052a07d8be619b0dc7b04aa243a1ca264cd127a3a6cb3827c04c0",
+        "befbc1de0258af17be1c3e14b89bb2b411274e362d9e32c777761426ef9cb4c5",
     ),
     (
         "configuration/box",
@@ -420,7 +415,7 @@ KProgramManifest = (
                 "fa3df28fd9c12e232d0e251d46a847f479550e0cd52a6416b9cd3c02c79c340e",
             ),
         ),
-        "e2838de7869b4e64abe15735c138b208fc7f879d53eeddc7fed9a857fea1066d",
+        "ec0bfc6c6ba228e3530321b181cd2e63c964b420d1515a4f1b1725f0e46ca1d5",
     ),
     (
         "configuration/circle/reverse",
@@ -437,7 +432,7 @@ KProgramManifest = (
                 "fc1cb072c15c9f334bab288234353e3dc27db5aa83abd61c6fdd95364ac276a8",
             ),
         ),
-        "e2838de7869b4e64abe15735c138b208fc7f879d53eeddc7fed9a857fea1066d",
+        "ec0bfc6c6ba228e3530321b181cd2e63c964b420d1515a4f1b1725f0e46ca1d5",
     ),
     (
         "configuration/default",
@@ -474,7 +469,7 @@ KProgramManifest = (
                 "a0877db37735da4027459d8161425843e3ad90f1e3e90dc32835f9370dd643bb",
             ),
         ),
-        "f1a6fecb2e228cc2bd5f8013ea44bcd7570c0589ce10d8c43a54c9c6aba225e1",
+        "9f095f82aff9ec408a0edb267657cbc63663f7f84a496664b26232d50fa25061",
     ),
     (
         "configuration/fillet/views",
@@ -497,7 +492,7 @@ KProgramManifest = (
                 "aefe03f396b753ca6e8e77939bfb889879363e30d9392d8a122c7eefa46e6c2d",
             ),
         ),
-        "cca10f1db1c6f54b9719b668ed4d98b4606a93058eb4a1ce899e7433fbcf7050",
+        "a28147d876a8acae3765fea68f64a8813337730b4ba04fbc7849d2d27d5eff10",
     ),
     (
         "configuration/pattern/views",
@@ -520,7 +515,7 @@ KProgramManifest = (
                 "cba7c372806cbe955955cb9d5f47f9a6043b2dcb9bf31c57ad5ef3b0e0e267ea",
             ),
         ),
-        "bd827ae135458536c2d9af9ab8c1435a61cb32567f9dc853de21ad4ca0f7831d",
+        "d4fb100a10cfb92131e569ed3aeb0175dcfa9d27773cfc930b5055a6e594e092",
     ),
     (
         "configuration/revolve/pin/default",
@@ -537,7 +532,7 @@ KProgramManifest = (
                 "f5409831ddedb4c2c396e4b9485dc114acaf0d277e763edf35ac5daca1f0faf9",
             ),
         ),
-        "fcaed953315045ef6fc7b943f450092fbebd24fdd2c04f4ab26805bd67e46410",
+        "8936d23a69d502456b35e7384fdff9f6fe5ce4add45c62438b5961bd9c544bfe",
     ),
     (
         "configuration/revolve/pin/front",
@@ -562,7 +557,7 @@ KProgramManifest = (
                 "692fc14d4f32dd9e171d31a70b1c778eed157f1b2b62caf78bfaeae188d344d7",
             ),
         ),
-        "e02590365e10dd1801e70b1d985eea4c3d4539cdb42abb8cedf8d427c5e97566",
+        "0d5df4f978857b85308918e3654d5dadd0b389e7eadf9eaee3264e09576f468a",
     ),
     (
         "configuration/revolve/pin/midplane",
@@ -586,7 +581,7 @@ KProgramManifest = (
                 "f2dc3d440fb6ac956155e5d300c15e83a8574311c9e58802b514af486d448341",
             ),
         ),
-        "2f2cbe48751a716093c4e7fc8224bf644317bfbb1e7e25c52ef370f151466f84",
+        "9935c52ed6d872116144b3241b1c4d5fa41ce009c5fb74681c1317498bbb8852",
     ),
     (
         "configuration/revolve/pin/rightangle",
@@ -610,7 +605,7 @@ KProgramManifest = (
                 "4a09091e5f03e9c8f617da241f1e0a71d5e43f64f84889067a2e520ac5c91f76",
             ),
         ),
-        "875a64b2f9ada8148a8179b8f175d8cb3eec1e17e446d6fb21266226003f9c4f",
+        "d705d5e4ae57cc516aec551ccbd9a64ea6684a639b77b5c9dab1a17e2d605fd8",
     ),
     (
         "configuration/views/pair",
@@ -633,7 +628,7 @@ KProgramManifest = (
                 "721d6cfb6b8b66511e248b1cce1a0bfc4b16adfa4bc3e200c7f765819bac271c",
             ),
         ),
-        "7bcd6184dce1251843f0539acabc2037bbdc3709cc8bb61610152aced89a51c6",
+        "d60c944dd4f48c2c916b96a12489a7de297d01b33978bd3a87beda687701d2d4",
     ),
     (
         "resolved/boss/chamfer",
@@ -650,7 +645,7 @@ KProgramManifest = (
                 "d8b6f859a0e60e5e6307833ce502723123663bc9e25ca2b46e74f608dd5b9450",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/boss/cut/circle",
@@ -667,7 +662,7 @@ KProgramManifest = (
                 "ea2e72fee693b357d6ccea3aac0f9a64a428f5b851aff0d77faf422491d939a6",
             ),
         ),
-        "7aa482c4a9a4e216ad246c144407fe2936efd08565ad8a54c4ec2452c23dec83",
+        "6854fdab565b2c7e11d98039e5eded34168d2f057157ea8fe39b992824200256",
     ),
     (
         "resolved/boss/cut/default",
@@ -684,7 +679,7 @@ KProgramManifest = (
                 "29f593195014e24c3eacb2993990434d4666234fc66c67d3a476011b3d6d3679",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/boss/cut/pair",
@@ -701,7 +696,7 @@ KProgramManifest = (
                 "32a7e188bc08fa2782c540f2bf86e8118494900341c1ef700c5fa3953a6500dd",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/boss/cut/through",
@@ -718,7 +713,7 @@ KProgramManifest = (
                 "94efc6667d96af3ab9c800931f072b7b735a369955a099634783a3df32bbcbb6",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/boss/cut/triple",
@@ -735,7 +730,7 @@ KProgramManifest = (
                 "9353602c5c9c904d7a8ef7ffd1a98ec1c5829aac17a60b7b31870fb787f70bef",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/boss/fillet",
@@ -752,7 +747,7 @@ KProgramManifest = (
                 "fed3e9464e9fa26722941b7355502fe2d3c24243bc00993f22726f39d11418bb",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/boss/pattern/circular",
@@ -769,7 +764,7 @@ KProgramManifest = (
                 "ced6aec7dd5b4bc323416dfd89afe75d684aa8ad9010b54438ec516798f91be3",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/boss/pattern/linear",
@@ -786,7 +781,7 @@ KProgramManifest = (
                 "fa69899e0a0d5f3271f2e1a9fff8e8eae396c7492f8910ef3ba470b3f53bb370",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/boss/repeated",
@@ -803,7 +798,7 @@ KProgramManifest = (
                 "9292aa8eb59293e1983cdde1cda36aeba60c1b5e6b55ebf036bdac91519047a9",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/boss/revolvecut",
@@ -820,7 +815,7 @@ KProgramManifest = (
                 "9bbea7abcf5b62fc5a7b1451db9f4d8dd869de1a88cbfb3cac307b5614084eb9",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/boss/shell",
@@ -837,7 +832,7 @@ KProgramManifest = (
                 "19572f2d262a02c450ac66315089598074f506880ac0df03f8a74670ffac0191",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/box",
@@ -854,7 +849,7 @@ KProgramManifest = (
                 "b6670de760d418fbf7397a550f6eebfb33e62f675465d61911258c7a3693f517",
             ),
         ),
-        "ffca13121c53c0473ed1169463fbe07a1fd6f515513b8479df0198f66a1f776b",
+        "7dc33641fef2fce3b1932abb480ee12f52fc8d0bf5cbf295343e3f86d23e8281",
     ),
     (
         "resolved/circle/default",
@@ -871,7 +866,7 @@ KProgramManifest = (
                 "29905bf8d30bbddc3a69143210788af791b068327bf1fe3c74d1cfc42f69dacd",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/circle/reverse",
@@ -888,7 +883,7 @@ KProgramManifest = (
                 "b9735d3134c944dc8e66e64d62aa84c117edcf06a17e5d69601e552b9150655d",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/cut/base",
@@ -905,7 +900,7 @@ KProgramManifest = (
                 "ad58d6f8d4ff779498b56bfc845c18fd0a323dd3eb6e780148b6c4a67c237e89",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/default",
@@ -922,7 +917,7 @@ KProgramManifest = (
                 "b2f7301a4e62e5b8112a5397bca31d71fd0a811b8f74c09bca56af3aaed82f24",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/planes/right",
@@ -939,7 +934,7 @@ KProgramManifest = (
                 "ef23f6728367c90a46d99ab9307b5701da636a14b01a6fc85ac98c30ed1467e2",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/planes/top",
@@ -956,7 +951,7 @@ KProgramManifest = (
                 "20a713dcbfa0e5f06663a62f05f98dc45c0151d2a1e85da3b008518dbc13a471",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/polyline/sixpoint",
@@ -985,7 +980,7 @@ KProgramManifest = (
                 "b973bd5326bbdb65b8e8b5e8345e0bdbdef20d345bf70d9f7562e5a74077bfb4",
             ),
         ),
-        "fd7cc417881b4023e7a7e1bb919314875844662a2dab981da53bdf72eee8fa03",
+        "39fefd1a43a44fba92fe98ec2a3c9ee83e699f162b5d885540a22bd067da3c7d",
     ),
     (
         "resolved/revolve/default",
@@ -1002,7 +997,7 @@ KProgramManifest = (
                 "c73e9ac98957c651e023bc895196a90db3b0b2b6232541dbab8189ee8329321e",
             ),
         ),
-        "17aaf5e9d6447a5783640e6baf6dcc6eb1d2e0a0d714fb214c86051eda33312e",
+        "1717d66c8cc29657a6f24f276d323fc2ab45cdcb77b7303bc7ec84d556458514",
     ),
     (
         "resolved/revolve/pin/default",
@@ -1019,7 +1014,7 @@ KProgramManifest = (
                 "e8a72dfd4796bda2a408ab8b629e9f12dc4ae225c8a1e0cc08f3c09b02ff68bf",
             ),
         ),
-        "03394c5baf3c487c25a4f9d80139b3aa5aeb21ae7861c9195d4b6f93d9d4d59e",
+        "1e194ef349b7d1bc201f8585cf2edfc03415aad1b985471c1861d84043e43e08",
     ),
     (
         "resolved/revolve/pin/front",
@@ -1046,7 +1041,7 @@ KProgramManifest = (
                 "2319ad19c471780a0d0b30f9108b47d5816f23cb16d9a327224b81e6afa1ec3a",
             ),
         ),
-        "f2ce5d5162ae66112319eccf55e70ac973e76ddd8b1884d41bd42d6c7da46e42",
+        "18605a1c044f71d226478f9109818b7c969cc5631d56155a8010f00c06524168",
     ),
     (
         "resolved/revolve/pin/midplane",
@@ -1075,7 +1070,7 @@ KProgramManifest = (
                 "bffc7d98b6ed899d79deff6b71772454cb94c1c45d8ace10a167022f154f179e",
             ),
         ),
-        "5d3abff38d9700e81b5bca98e228389fbcedc657897aa32ca449c92d05c0eac0",
+        "7b8e288d40e85fa634cf07132cc9cc48747c8c974457c469f18c79a325c42d4f",
     ),
     (
         "resolved/revolve/pin/rightangle",
@@ -1102,7 +1097,7 @@ KProgramManifest = (
                 "cd1ef9071450bacb44a54efc92b5e3b1d2a778504b5124e942e79fbfba5de8d4",
             ),
         ),
-        "fdce33325a5ebdd8853e2fcaa73a02b2dd933da890c12e1a11ce9e768de1420e",
+        "fa1b745f92235bf8170f02cf2e4a0843a3c6d0609788b3e5df75faf169048ecd",
     ),
 )
 

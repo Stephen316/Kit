@@ -1,7 +1,7 @@
 ---
 name: chats
 description: "Apply the concise chat-response policy. Use when preparing any user-facing response, progress update, or completion summary."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/Chats.md"
   kiro-inclusion: "always"

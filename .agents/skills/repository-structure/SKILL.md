@@ -1,7 +1,7 @@
 ---
 name: repository-structure
 description: "Enforce repository path naming, semantic folder density, exact imports, extension modules, SOLID boundaries, and security-quality verification. Use when creating, renaming, moving, organizing, importing, or securing project files."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/RepositoryStructure.md"
   kiro-inclusion: "always"

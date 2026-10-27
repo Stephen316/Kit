@@ -1,7 +1,7 @@
 ---
 name: naming-convention
 description: "Apply the PascalCase identifier casing and length ranges. Use when naming or renaming classes, functions, methods, variables, globals, or constants."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/NamingConvention.md"
   kiro-inclusion: "always"

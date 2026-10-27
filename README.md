@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 <p align="center">
@@ -14,7 +9,7 @@ to you under it immediately and permanently.
 
 # Kit
 
-Kit by Parashell is a source-available CAD interchange SDK for translating geometry, feature trees, assemblies and more between proprietary formats.
+Kit by Parashell is an open-source CAD interchange SDK for translating geometry, feature trees, assemblies and more between proprietary formats.
 
 ## _Currently_ supported CAD software
 
@@ -77,4 +72,8 @@ result = convert("bracket.SLDPRT", "bracket.FCStd", allow_carrier=False)
 
 ## Distribution
 
-Kit is source-available under the PolyForm Strict License 1.0.0
+Kit is licensed under the [MIT License](LICENSE).
+
+Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt.
+
+Third-party materials retain their respective licenses; see [the vendor binary notice](re/binaries/README.md).

@@ -1,7 +1,7 @@
 ---
 name: split-large-definitions
 description: "Split substantial declarations into focused files with exact symbol imports. Use when adding or changing code structure, modules, classes, functions, variables, registries, or imports."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/SplitLargeDefinitions.md"
   kiro-inclusion: "always"

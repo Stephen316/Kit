@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # Donors awaiting a SOLIDWORKS measurement
@@ -247,10 +242,10 @@ the bundle is incomplete and the write downgrades to a carrier; and the output *
 
 Measured anyway, since a declined file that opens is worth knowing about:
 
-| file | opened | load errors | load warnings | components | states | mates | rebuilt | bodies | volume mm³ | centre mm |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| vendor `V8_engine.SLDASM` | yes | none | `read-only` | 358 | 358 fully-resolved | 619 | true | 391 | `30996938.730483357` | `(20.270257724271392, 171.02270374521262, 3.648910118394005)` |
-| Kit-written `V8_engine.SLDASM` | yes | none | `read-only`, `drawing-sheet-in-viewonly` | 358 | 358 fully-resolved | 619 | true | 391 | `30996938.730483353` | `(20.270257724271357, 171.02270374521115, 3.648910118404377)` |
+| file                           | opened | load errors | load warnings                            | components | states             | mates | rebuilt | bodies | volume mm³           | centre mm                                                     |
+| ------------------------------ | ------ | ----------- | ---------------------------------------- | ---------- | ------------------ | ----- | ------- | ------ | -------------------- | ------------------------------------------------------------- |
+| vendor `V8_engine.SLDASM`      | yes    | none        | `read-only`                              | 358        | 358 fully-resolved | 619   | true    | 391    | `30996938.730483357` | `(20.270257724271392, 171.02270374521262, 3.648910118394005)` |
+| Kit-written `V8_engine.SLDASM` | yes    | none        | `read-only`, `drawing-sheet-in-viewonly` | 358        | 358 fully-resolved | 619   | true    | 391    | `30996938.730483353` | `(20.270257724271357, 171.02270374521115, 3.648910118404377)` |
 
 It opens, and matches the vendor to ~1e-16 relative — the added partition stream did no harm here,
 and this machine's SOLIDWORKS resolved the Toolbox components from its own library. Neither fact is

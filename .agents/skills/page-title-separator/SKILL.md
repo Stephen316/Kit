@@ -1,7 +1,7 @@
 ---
 name: page-title-separator
 description: "Use the double-colon separator in public page titles. Use when editing document metadata, SEO titles, or public landing and marketing routes."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/PageTitleSeparator.md"
   kiro-inclusion: "always"

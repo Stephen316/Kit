@@ -1,7 +1,7 @@
 ---
 name: rationale-comments
 description: "Explain why each class, function, lambda, and module-level constant exists in a comment directly above it. Use when adding or editing Python declarations."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/RationaleComments.md"
   kiro-inclusion: "always"

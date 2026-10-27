@@ -1,7 +1,7 @@
 ---
 name: code-formatting
 description: "Format and verify edited Python, TypeScript, JavaScript, JSON, CSS, or Markdown files. Use after changing code or related text files."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/CodeFormatting.md"
   kiro-inclusion: "always"

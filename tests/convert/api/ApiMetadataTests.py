@@ -1,10 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
 from importlib.metadata import distribution as GetPackage
 
@@ -33,8 +28,11 @@ def CheckMetadata() -> None:
     assert ProjectData["entry-points"] == {"kit": {"convert": "convert:convert"}}
     assert "scripts" not in ProjectData
     assert "gui-scripts" not in ProjectData
-    assert ProjectData["license"] == "LicenseRef-PolyForm-Strict-1.0.0"
+    assert ProjectData["license"] == "MIT"
     assert ProjectData["license-files"] == ["LICENSE"]
+    assert {"Odin Glynn-Martin", "Stephen Harcourt"} <= {
+        AuthorData["name"] for AuthorData in ProjectData["authors"]
+    }
     assert ProjectData["urls"]["Repository"] == "https://github.com/TryParashell/Kit"
     assert MetadataData["tool"]["hatch"]["build"]["targets"]["sdist"]["include"] == [
         "/LICENSE",
@@ -54,3 +52,9 @@ def CheckReadme() -> None:
     assert "convert(source, destination)" in ReadmeText
     assert "allow_carrier=False" in ReadmeText
     assert "without requiring CAD software" in ReadmeText
+
+    LicenseText = (KRootPath / "LICENSE").read_text(encoding="utf-8")
+    assert "MIT License" in LicenseText
+    for AuthorName in ("Odin Glynn-Martin", "Stephen Harcourt"):
+        assert AuthorName in ReadmeText
+        assert AuthorName in LicenseText

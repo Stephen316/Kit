@@ -1,10 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
 [build-system]
 requires = ["hatchling==1.32.0"]
@@ -16,11 +11,12 @@ version = "0.1.0"
 description = "CAD interchange SDK by Parashell."
 readme = "README.md"
 requires-python = ">=3.11"
-license = "LicenseRef-PolyForm-Strict-1.0.0"
+license = "MIT"
 license-files = ["LICENSE"]
 authors = [
     { name = "Parashell" },
     { name = "Odin Glynn-Martin", email = "odin.glynn@parashell.cloud" },
+    { name = "Stephen Harcourt" },
 ]
 maintainers = [
     { name = "Odin Glynn-Martin", email = "odin.glynn@parashell.cloud" },
@@ -76,7 +72,7 @@ force-exclude = "(examples|Parashell|modules|re|src/convert/adapters/solidworks/
 [dependency-groups]
 dev = [
     "bandit>=1.9.4",
-    "black==26.3.1",
+    "black==26.10.1",
     "checkov>=3.3.11",
     "cyclonedx-bom>=4.6.1",
     "defusedxml>=0.7.1",
@@ -88,8 +84,8 @@ dev = [
     "pyright==1.1.411",
     "ruff>=0.16.3",
     "safety>=3.8.1",
-    "semgrep>=1.136.0",
-    "setuptools==80.9.0",
+    "semgrep>=1.181.0",
+    "setuptools==84.1.0",
     "typing-extensions>=4.12",
     "types-pywin32>=312.0.0.20260724",
     "zizmor>=1.29.0",
@@ -166,6 +162,14 @@ reportUnusedVariable = "error"
 exclude-newer = "7 days"
 override-dependencies = [
     "click>=8.3.3,<8.5",
+    "filelock==4.2.4",
+    "mcp==1.30.0",
+    "opentelemetry-api==1.45.1",
+    "opentelemetry-sdk==1.45.1",
+    "opentelemetry-exporter-otlp-proto-http==1.45.1",
+    "opentelemetry-instrumentation-requests==0.66b1",
+    "opentelemetry-instrumentation-threading==0.66b1",
+    "pywin32==312 ; sys_platform == 'win32'",
     "nltk @ git+https://github.com/nltk/nltk.git@ba6b259aa94a85168c031ad60e4072538c30b513",
     "protobuf>=5.29.6,<6",
 ]

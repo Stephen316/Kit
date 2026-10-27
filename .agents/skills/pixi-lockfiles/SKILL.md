@@ -1,7 +1,7 @@
 ---
 name: pixi-lockfiles
 description: "Relock Pixi manifests. Use whenever editing pixi.toml, Pixi dependencies, environments, or channels."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/PixiLockfiles.md"
   kiro-inclusion: "always"

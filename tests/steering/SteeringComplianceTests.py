@@ -1,10 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
 from __future__ import annotations
 
@@ -17,13 +12,8 @@ from pathlib import Path as FilePath
 from tools.steering.SteeringCompliance import CheckPaths, Finding, GetNewFindings
 
 # fixtures reuse the production notice so tests isolate every other compliance rule
-KPythonHeader = """# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
+KPythonHeader = """# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 """
 
 # command tests need the checked in entry point because fixtures use temporary directories
@@ -433,7 +423,10 @@ KOtherLimit = 3  # explains the assignment
             for FindingInfo in FindingList
             if FindingInfo.RuleCode == "CMT001"
         }
-        CaseSelf.assertEqual(CommentLines, {9, 17})
+        CaseSelf.assertEqual(
+            CommentLines,
+            {len(KPythonHeader.splitlines()) + Offset for Offset in (2, 10)},
+        )
 
     # forbidden words need coverage because mandated rationale syntax cannot hide incomplete work
     @staticmethod

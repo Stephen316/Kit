@@ -1,10 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
 from __future__ import annotations
 import json as JsonData
@@ -33,7 +28,7 @@ from convert.Security.PathBoundary import ResolveInput, ValidateLabel
 KOutInfo = KScratch / "trace" / "out"
 
 # needed to keep reverse engineering responsibilities isolated and maintainable
-KScript = '$$ SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0\n$$ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin\n$$\n$$ This SPDX license identifier and copyright notice must not be\n$$ removed, altered, or obscured. Doing so is a material breach of\n$$ the PolyForm Strict License 1.0.0 and voids all licenses granted\n$$ to you under it immediately and permanently.\n.symopt+0x4000\n.symopt-0x20000\n.exepath+ {solidworks}\n.reload /f swccu.dll\nbp swccu!su_CArchive::ReadObject ".if ((poi(@rcx+{max:#x})-poi(@rcx+{start:#x}))=={span:#x}) {{ .printf \\"RO %p %x %d %p\\\\n\\", poi(@rcx+{start:#x}), poi(@rcx+{cur:#x})-poi(@rcx+{start:#x}), dwo(@rcx+{map:#x}), @rsp }}; gc"\nbp swccu!su_CArchive::ReadClass ".if ((poi(@rcx+{max:#x})-poi(@rcx+{start:#x}))=={span:#x}) {{ .printf \\"RC %p %x %d %p\\\\n\\", poi(@rcx+{start:#x}), poi(@rcx+{cur:#x})-poi(@rcx+{start:#x}), dwo(@rcx+{map:#x}), @rsp }}; gc"\nbl\ng\n'
+KScript = '$$ SPDX-License-Identifier: MIT\n$$ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt\n.symopt+0x4000\n.symopt-0x20000\n.exepath+ {solidworks}\n.reload /f swccu.dll\nbp swccu!su_CArchive::ReadObject ".if ((poi(@rcx+{max:#x})-poi(@rcx+{start:#x}))=={span:#x}) {{ .printf \\"RO %p %x %d %p\\\\n\\", poi(@rcx+{start:#x}), poi(@rcx+{cur:#x})-poi(@rcx+{start:#x}), dwo(@rcx+{map:#x}), @rsp }}; gc"\nbp swccu!su_CArchive::ReadClass ".if ((poi(@rcx+{max:#x})-poi(@rcx+{start:#x}))=={span:#x}) {{ .printf \\"RC %p %x %d %p\\\\n\\", poi(@rcx+{start:#x}), poi(@rcx+{cur:#x})-poi(@rcx+{start:#x}), dwo(@rcx+{map:#x}), @rsp }}; gc"\nbl\ng\n'
 
 
 # needed to keep reverse engineering responsibilities isolated and maintainable

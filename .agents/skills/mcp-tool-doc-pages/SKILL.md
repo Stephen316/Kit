@@ -1,7 +1,7 @@
 ---
 name: mcp-tool-doc-pages
 description: "Document agent-facing MCP tools with standalone Mintlify pages. Use when creating or changing MCP tools or their documentation."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/McpToolDocPages.md"
   kiro-inclusion: "always"

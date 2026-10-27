@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # The four SOLIDWORKS binaries every finding in `re/solidworks/` was derived from
@@ -18,9 +13,8 @@ That is a real convenience and it has a real cost:
 
 - They are **unmodified proprietary Dassault Systèmes binaries** taken from a licensed local
   install. Committing them is redistribution of vendor code, and the SOLIDWORKS licence agreement
-  governs whether that is permitted — including to other people inside Parashell. This repository is
-  marked internal-use-only (`LICENSE`, PolyForm Strict; `README.md`, "Internal use only"), which
-  limits but does not by itself resolve the question.
+  governs whether that is permitted — including to other people inside Parashell. These proprietary
+  binaries are not covered by Kit's MIT License and retain their vendor license terms.
 - They add **~52.6 MB** to the repository, against ~6.9 MB for everything else in `re/`.
 
 **If you would rather not carry them,** nothing in `re/` depends on their presence except re-running

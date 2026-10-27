@@ -1,7 +1,7 @@
 ---
 name: python-package-manager
 description: "Use uv for Python dependency management. Use when changing Python dependencies, pyproject.toml, uv.lock, CI, or container commands."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/PythonPackageManager.md"
   kiro-inclusion: "always"

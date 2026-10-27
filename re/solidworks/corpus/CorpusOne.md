@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # SOLIDWORKS `Contents/Config-0-ResolvedFeatures` — corpus + differential layout analysis
@@ -417,11 +412,11 @@ annotation fields of §5.6**, not a radius. There is no explicit radius double.
 
 What is stored is the arc centre `(0, 0)` plus **a point on the circle at exactly 17°**:
 
-| file | point at 6261/6269 (mm) | `|p|` | angle | error vs authored r |
-|---|---|---|---|---|
-| CIRCLE_r10 | (9.563047560, 2.923717047) | 10.000000000000 | 17.000000° | 0.0 |
+| file       | point at 6261/6269 (mm)     | `               | p          | `           | angle | error vs authored r |
+| ---------- | --------------------------- | --------------- | ---------- | ----------- | ----- | ------------------- |
+| CIRCLE_r10 | (9.563047560, 2.923717047)  | 10.000000000000 | 17.000000° | 0.0         |
 | CIRCLE_r11 | (10.519352316, 3.216088752) | 11.000000000000 | 17.000000° | −1.8e-15 mm |
-| CIRCLE_r20 | (19.126095119, 5.847434094) | 20.000000000000 | 17.000000° | 0.0 |
+| CIRCLE_r20 | (19.126095119, 5.847434094) | 20.000000000000 | 17.000000° | 0.0         |
 
 So the radius must be reconstructed as `hypot(x, y)`, and 17° is SOLIDWORKS' fixed start angle for a
 `CreateCircleByRadius` circle.
@@ -441,11 +436,11 @@ second feature's ids and the changed body topology. The `D1` depth scalar moves 
 
 Growth accounting:
 
-| where                                                                 | baseline | two features | delta       |
-| --------------------------------------------------------------------- | -------- | ------------ | ----------- |
-| `moCompFeature_c` (feature tree)                                      | 233      | 471          | **+238**    |
-| `moFromEndSpec_c` (last record, absorbs the second feature's objects) | 61       | 3320         | **+3259**   |
-| 7 appended class records                                              | —        | 4818         | **+4818**   |
+| where                                                                 | baseline | two features | delta        |
+| --------------------------------------------------------------------- | -------- | ------------ | ------------ |
+| `moCompFeature_c` (feature tree)                                      | 233      | 471          | **+238**     |
+| `moFromEndSpec_c` (last record, absorbs the second feature's objects) | 61       | 3320         | **+3259**    |
+| 7 appended class records                                              | —        | 4818         | **+4818**    |
 | total                                                                 |          |              | **+8315** ✔ |
 
 The seven appended records, in order:

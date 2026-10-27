@@ -1,7 +1,7 @@
 ---
 name: lossless-translation
 description: "Hold every format translation to lossless, vendor loadable, application usable, and parametric output verified in the target application. Use when converting between CAD formats or reporting translation results."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/LosslessTranslation.md"
   kiro-inclusion: "always"

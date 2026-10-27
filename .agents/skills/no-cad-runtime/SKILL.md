@@ -1,7 +1,7 @@
 ---
 name: no-cad-runtime
 description: "Keep CAD applications and vendor automation out of production runtime paths. Use when implementing, testing, or reviewing CAD parsing, conversion, or writing workflows."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/NoCadRuntime.md"
   kiro-inclusion: "always"

@@ -1,7 +1,7 @@
 ---
 name: shadcn-pages
 description: "Follow the shadcn UI CLI-first composition method. Use when adding UI primitives or building React and Next.js pages."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/ShadcnPages.md"
   kiro-inclusion: "always"

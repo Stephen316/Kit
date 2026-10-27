@@ -1,7 +1,7 @@
 ---
 name: identifier-markers
 description: "Prefix boolean-returning functions and methods with Is, Has, or Can. Use when naming or renaming any function or method that returns a bool."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/IdentifierMarkers.md"
   kiro-inclusion: "always"

@@ -1,7 +1,7 @@
 ---
 name: component-architecture
 description: "Apply React and Next.js component architecture rules. Use when editing TSX, JSX, React components, hooks, or frontend component structure."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/ComponentArchitecture.md"
   kiro-inclusion: "always"

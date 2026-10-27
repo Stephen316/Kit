@@ -1,7 +1,7 @@
 ---
 name: isolated-agent-worktrees
 description: "Run every repository-changing delegated agent in its own isolated worktree and finish with a draft pull request. Use when creating, invoking, or handing off work to another agent."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/IsolatedAgentWorktrees.md"
   kiro-inclusion: "always"

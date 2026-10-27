@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # `Contents/Config-0-ResolvedFeatures` — serialization grammar
@@ -33,8 +28,8 @@ SOLIDWORKS. Claims marked PARTIAL or OPAQUE are called out as such.
 | `ff ff 01 00` is `wNewClassTag` (`0xFFFF`) + `u16` schema; schema is 1 for every class in every corpus file      | **CONFIRMED**                               |
 | The reader is not MFC's `CArchive`; it is SOLIDWORKS' own `su_CArchive`, exported by name from `swccu.dll`       | **CONFIRMED** (see `Windbg.md`)             |
 | `swXmlContents/KeyWords` starts with a `0x86` tag byte and uses CRLF, not a UTF-8 BOM                            | **CONFIRMED**, and a BOM crashes SOLIDWORKS |
-| boss ↔ cut is **not** selected by the tree flags word — it is opaque                                             | measured, corrects report 2 §7.2            |
-| end condition (blind ↔ MidPlane) and direction are writable in place for any feature                             | measured, exact                             |
+| boss ↔ cut is **not** selected by the tree flags word — it is opaque                                            | measured, corrects report 2 §7.2            |
+| end condition (blind ↔ MidPlane) and direction are writable in place for any feature                            | measured, exact                             |
 | the sketch support plane is writable in place                                                                    | measured, exact, verified by centre of mass |
 | tree order is taken from the `moCompFeature_c` array order                                                       | measured, exact                             |
 | the five derived depth copies and the bbox cache must be left stale, not written wrong                           | measured                                    |

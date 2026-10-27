@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # Runtime object segmentation of the remaining feature-count streams
@@ -358,17 +353,17 @@ with the control at 8000.000000000001 mm³ on both sides.
 The current emitted container holds 27 streams. Reading it back with `SldprtArchive` and the
 stream-specific decoders shows which records are load-critical and how each is now emitted:
 
-| stream                                              | in the emitted container     | status         | evidence                                                                                                                                      |
-| --------------------------------------------------- | ---------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Contents/Config-0-ResolvedFeatures`                | typed feature-family program | load-critical  | the tree, sketches, selections and editable dimensions live here; every generated program has zero opaque spans                               |
-| `Contents/CMgr`                                     | typed archive grammar        | load-critical  | every one of its 1,957 reference-body bytes is declared; the 96-byte display cache is a validated zero field, not injectable data             |
-| `Contents/Config-0-ModelHeader` + `Header2`         | typed archive grammar        | load-critical  | tree logs, creation pairs and the spatial frame are calculated from source history and geometry                                               |
-| `Contents/Config-0`                                 | typed field program          | load-critical  | view, annotation and pattern managers are selected from explicit source semantics; zero opaque bytes remain                                   |
-| `Contents/Definition`                               | typed primitive fields       | load-critical  | all 3,618 reference-body bytes are accounted for and arbitrary residual injection is rejected                                                 |
-| `Contents/Config-0-Partition`                       | Kit-synthesised blank        | **droppable**  | every §5 volume is a genuine rebuild from the records, not a cached body                                                                      |
+| stream                                              | in the emitted container     | status         | evidence                                                                                                                                       |
+| --------------------------------------------------- | ---------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Contents/Config-0-ResolvedFeatures`                | typed feature-family program | load-critical  | the tree, sketches, selections and editable dimensions live here; every generated program has zero opaque spans                                |
+| `Contents/CMgr`                                     | typed archive grammar        | load-critical  | every one of its 1,957 reference-body bytes is declared; the 96-byte display cache is a validated zero field, not injectable data              |
+| `Contents/Config-0-ModelHeader` + `Header2`         | typed archive grammar        | load-critical  | tree logs, creation pairs and the spatial frame are calculated from source history and geometry                                                |
+| `Contents/Config-0`                                 | typed field program          | load-critical  | view, annotation and pattern managers are selected from explicit source semantics; zero opaque bytes remain                                    |
+| `Contents/Definition`                               | typed primitive fields       | load-critical  | all 3,618 reference-body bytes are accounted for and arbitrary residual injection is rejected                                                  |
+| `Contents/Config-0-Partition`                       | Kit-synthesised blank        | **droppable**  | every §5 volume is a genuine rebuild from the records, not a cached body                                                                       |
 | `Contents/Config-0-LWDATA`, `Contents/DisplayLists` | Kit-synthesised              | **stale-safe** | present but never feature-count-shaped; 17 correct volumes across 1 to 6 features, plus `cvB` / `cvC` in `.rescratch/sw/out/MeasureCvOne.json` |
-| `_MO_VERSION_18000/Biography`                       | Kit-synthesised              | **stale-safe** | same: one fixed shape, 1 to 6 features all build correctly                                                                                    |
-| `ThirdPtyStore/VisualStates`                        | **absent**                   | **droppable**  | the writer never emits it and every measured write opens and rebuilds                                                                         |
+| `_MO_VERSION_18000/Biography`                       | Kit-synthesised              | **stale-safe** | same: one fixed shape, 1 to 6 features all build correctly                                                                                     |
+| `ThirdPtyStore/VisualStates`                        | **absent**                   | **droppable**  | the writer never emits it and every measured write opens and rebuilds                                                                          |
 
 `VisualStates` is omitted because the application-oracle matrix proves it is not required for
 load, rebuild, native-tree editing, or body regeneration. `Biography`, `DisplayLists`, `LWDATA`

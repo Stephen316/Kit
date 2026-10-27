@@ -18,7 +18,7 @@ Binary files that cannot contain a text comment (images, compiled artifacts, CAD
 ## Agent Skills exception
 
 `SKILL.md` files under `.agents/skills/` must begin with the Agent Skills YAML
-frontmatter. Use `license: LicenseRef-PolyForm-Strict-1.0.0` in that
+frontmatter. Use `license: MIT` in that
 frontmatter instead of the comment header. The SPDX guard validates this field
 in place of the standard header.
 
@@ -27,25 +27,15 @@ in place of the standard header.
 Copy the exact text from `HEADER_NOTICE`, then prefix each line with that language's line-comment token (`#`, `//`, `--`, etc.), or wrap it in the language's block-comment syntax when the file has no line-comment token (e.g. HTML/Markdown `<!-- -->`). Do not paraphrase, shorten, or reorder the lines:
 
 ```
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 ```
 
 For a Python/YAML/shell-style file, this looks like:
 
 ```python
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 ```
 
 The header is the first thing in the file (before any shebang-adjacent content it must still come first except a `#!` shebang line, which stays on line 1 with the header immediately after).

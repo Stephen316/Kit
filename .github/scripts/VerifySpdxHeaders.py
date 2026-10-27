@@ -1,10 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
 """Verify exact SPDX headers on every in-scope changed file."""
 
@@ -29,7 +24,7 @@ KRepoRoot = Pathlib.Path(__file__).resolve().parents[2]
 KHeaderNoticePath = KRepoRoot / "HEADER_NOTICE"
 
 # required skill license stays immutable because frontmatter cannot carry the normal leading block
-KSkillLicenseField = "license: LicenseRef-PolyForm-Strict-1.0.0"
+KSkillLicenseField = "license: MIT"
 
 # complete commit identifiers keep diff and worktree selection free from revision expression ambiguity
 KFullShaPattern = Regex.compile(r"\A[0-9a-f]{40}\Z")

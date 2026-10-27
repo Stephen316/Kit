@@ -1,7 +1,7 @@
 ---
 name: design-system-discipline
 description: "Apply shared design-system primitives and UI composition rules. Use when designing or modifying React or Next.js pages, views, or components."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/DesignSystemDiscipline.md"
   kiro-inclusion: "always"

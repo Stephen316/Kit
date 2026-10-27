@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # Sketch arcs in `Contents/Config-0-ResolvedFeatures`
@@ -140,7 +135,7 @@ base-class data followed by a nested `ff ff 1f 00 03` entity record; the coordin
 
 That is exactly the keystone `Grammar.md` §8 item 1 records as unsolved: without object
 segmentation the object boundaries are unknown, so a field at a fixed offset inside `sgArcHandle`
-cannot be located, and the su_CArchive class-reference token that would let the _second_ and later
+cannot be located, and the `su_CArchive` class-reference token that would let the _second_ and later
 `sgArcHandle` objects be found cannot be computed either (§2.3 — the map index depends on the
 object count before the definition).
 

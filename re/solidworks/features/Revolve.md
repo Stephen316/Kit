@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # SOLIDWORKS revolve — `Contents/Config-0-ResolvedFeatures` field map
@@ -39,7 +34,7 @@ outputs in this directory are the working evidence.
 | the extrude anchors (scalar−824/−818, scalar−721/−715) do **not** transfer to revolves                                                                            | **CONFIRMED** as not applicable         |
 | the axis source is a `<u32 feature id><u32 time_t>` pair at `end-spec-object − 145` (sketch) or `− 131` (reference axis)                                          | **CONFIRMED**, 56 + 11 = 67/67          |
 | _which_ entity inside the sketch is the centerline                                                                                                                | **OPAQUE**                              |
-| `moRevolution_c` and `moRevCut_c` are genuinely distinct classes; boss ↔ cut changes the class set                                                                | **CONFIRMED**                           |
+| `moRevolution_c` and `moRevCut_c` are genuinely distinct classes; boss ↔ cut changes the class set                                                               | **CONFIRMED**                           |
 | revolve profiles use the same sketch-coordinate record as extrudes, but the role/class trailer takes undecoded values and the 17° circle rule does not generalise | **PARTIAL**                             |
 | every revolve part in the corpus is `swVersion` 13000 or 14000, never 18000                                                                                       | **CONFIRMED** — see §9                  |
 

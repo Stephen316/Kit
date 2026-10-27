@@ -1,7 +1,7 @@
 ---
 name: linear-issue-tracking
 description: "Track work end-to-end in Linear. Use when starting, updating, or completing a task that requires a Linear issue workflow."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/LinearIssueTracking.md"
   kiro-inclusion: "always"

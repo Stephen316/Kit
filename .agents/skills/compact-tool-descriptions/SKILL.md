@@ -1,7 +1,7 @@
 ---
 name: compact-tool-descriptions
 description: "Write compact agent-facing tool descriptions. Use when adding or editing an MCP or agent tool schema, manifest, or tool documentation."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/CompactToolDescriptions.md"
   kiro-inclusion: "always"

@@ -1,7 +1,7 @@
 ---
 name: no-donor-blocks
 description: "Never ship vendor bytes; reverse engineer proprietary binary formats until they can be emitted from first principles. Use when reading or writing SOLIDWORKS, CATIA, Parasolid, or any proprietary CAD format."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/NoDonorBlocks.md"
   kiro-inclusion: "always"

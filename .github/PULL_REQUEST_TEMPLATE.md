@@ -1,17 +1,14 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-Kit is licensed under the PolyForm Strict License 1.0.0, which does not
-permit external contributions, and this repository does not accept pull
-requests from outside Parashell.
+## Change
 
-If you have a change to propose, contact Parashell directly instead of
-opening a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for contact
-details.
+Describe the problem and the resulting behavior.
+
+## Validation
+
+List the checks performed and any checks still pending in CI.
+
+Contributions are provided under the [MIT License](../LICENSE).

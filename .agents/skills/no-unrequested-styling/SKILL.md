@@ -1,7 +1,7 @@
 ---
 name: no-unrequested-styling
 description: "Limit UI changes to the requested scope. Use when changing pages, visual styling, layout, or components."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/NoUnrequestedStyling.md"
   kiro-inclusion: "always"

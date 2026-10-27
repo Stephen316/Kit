@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # Version-gated and absorption-hidden runs
@@ -419,9 +414,9 @@ The regression floors are 18761 reached objects and 17 exact round trips.
 Everything else came from the existing dumps under `C:\Users\odin\kitgh\out`. Two functions were
 genuinely absent and were recovered with headless `DumpFunctions` passes, depth 1:
 
-| function       | module                                | why it was needed                                                                                    |
-| -------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `FUN_4c2d6070` | `sldmodu.dll`, project `proj_sldmodu` | virtual slot 42 of `moRefPlnData_c`, the entire body of `moDefaultRefPlnData_c`                      |
+| function       | module                                | why it was needed                                                                                   |
+| -------------- | ------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `FUN_4c2d6070` | `sldmodu.dll`, project `proj_sldmodu` | virtual slot 42 of `moRefPlnData_c`, the entire body of `moDefaultRefPlnData_c`                     |
 | `FUN_3ca867b0` | `sldmfcu.dll`, project `proj_sldmfcu` | `moCStringHandle_c::Serialize`; the class is not in sldmodu, so it has no `SerializeMap.json` entry |
 
 `mgPoint_c::restore`, `mgVector_c::restore` and `mgXform_c::restore` were not resolvable by name in

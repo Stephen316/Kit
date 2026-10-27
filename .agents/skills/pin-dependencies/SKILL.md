@@ -1,7 +1,7 @@
 ---
 name: pin-dependencies
 description: "Pin GitHub Actions and runners to immutable references. Use when editing GitHub Actions workflows, actions, or runner versions."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/PinDependencies.md"
   kiro-inclusion: "always"

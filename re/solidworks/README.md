@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # The SOLIDWORKS story: what was cracked, what was not
@@ -37,7 +32,7 @@ repository-wide boundary is measured in `CorpusCoverage.md`.
 | supported feature records                                              | **constructive.** Exact boxes, pad, pocket chains, pad→pad, revolution, groove, fillet, chamfer, shell, linear pattern, and circular pattern have typed native programs. |
 | boss versus cut                                                        | **constructive by family.** Each recovered operation has its own typed tree; Kit does not mutate an arbitrary foreign feature record.                                    |
 | arbitrary feature records and sketch profiles                          | **partial.** No donor fallback is allowed; unrecovered histories are rejected.                                                                                           |
-| repository FCStd corpus                                                | **38/163 accepted**, zero errors and zero vendor-only results; see `CorpusCoverage.md`.                                                                                 |
+| repository FCStd corpus                                                | **38/163 accepted**, zero errors and zero vendor-only results; see `CorpusCoverage.md`.                                                                                  |
 | repository FCStd assemblies                                            | **0/5 accepted.** The assembly core is typed, but these component histories or assembly semantics remain unsupported.                                                    |
 
 ## Read in this order
@@ -184,11 +179,11 @@ Kept because they cost real time and they are as valuable as the wins.
 | Ghidra + dot directories            | `analyzeHeadless` throws `Path element starting with '.' is not permitted` for any path component beginning with `.`. Fixed with a directory junction: `mklink /J C:\Users\odin\kitgh <...>\.rescratch\ghidra`. (`../tooling/ghidra/Setup.md` §3)                                                                      |
 | Ghidra without the rename pass      | Every `operator>>` overload prints identically, so a `double` read is indistinguishable from a `char` read. Run `RenameArchiveApi.java` first. (`../tooling/ghidra/Setup.md` §6)                                                                                                                                       |
 | trusting a `crashed-on-open` result | After ~25 SOLIDWORKS launches the install degraded so that a **pristine donor also crashed** (`com_error(-2147023170)`). Read `features/Results.md` §4 before concluding anything from a crash. Recovery needs a reboot or a settings reset.                                                                           |
-| COM early binding                   | `gencache.EnsureDispatch` fails on the 2025 interface. Use late binding, integer args to `NewDocument`, `SaveAs4` not `SaveAs2`, and a `VARIANT(VT_DISPATCH, None)` for `SelectByID2`'s callout. (`corpus/CorpusOne.md` §0)                                                                                              |
-| guessing COM arity                  | `FeatureCut4` takes **27** arguments, not 24, and `FeatureCut5` does not exist on `IFeatureManager`. Read arity out of `sldworks.tlb` first — guessing costs a whole session. (`corpus/CorpusTwo.md` §0)                                                                                                                 |
-| stream length as a fingerprint      | Face-supported layouts carry ±3 bytes of noise from a nondeterministic zlib-compressed Parasolid blob. (`corpus/CorpusTwo.md` §2)                                                                                                                                                                                        |
-| `moICE_c` means "cut"               | It does not. It means "feature 2 or later". There is no `moCut_c` in any authored corpus. (`corpus/CorpusTwo.md` §7.1)                                                                                                                                                                                                   |
-| the 17° circle rule                 | It is how COM `CreateCircleByRadius` places the rim point, and it generalises to diametrally-dimensioned circles (578/817) but **not** to radially-dimensioned ones (20/362), and it finds **0** arcs in every production revolve profile. (`features/Arc.md`, `ReportResolved.md` §4)                                |
+| COM early binding                   | `gencache.EnsureDispatch` fails on the 2025 interface. Use late binding, integer args to `NewDocument`, `SaveAs4` not `SaveAs2`, and a `VARIANT(VT_DISPATCH, None)` for `SelectByID2`'s callout. (`corpus/CorpusOne.md` §0)                                                                                            |
+| guessing COM arity                  | `FeatureCut4` takes **27** arguments, not 24, and `FeatureCut5` does not exist on `IFeatureManager`. Read arity out of `sldworks.tlb` first — guessing costs a whole session. (`corpus/CorpusTwo.md` §0)                                                                                                               |
+| stream length as a fingerprint      | Face-supported layouts carry ±3 bytes of noise from a nondeterministic zlib-compressed Parasolid blob. (`corpus/CorpusTwo.md` §2)                                                                                                                                                                                      |
+| `moICE_c` means "cut"               | It does not. It means "feature 2 or later". There is no `moCut_c` in any authored corpus. (`corpus/CorpusTwo.md` §7.1)                                                                                                                                                                                                 |
+| the 17° circle rule                 | It is how COM `CreateCircleByRadius` places the rim point, and it generalises to diametrally-dimensioned circles (578/817) but **not** to radially-dimensioned ones (20/362), and it finds **0** arcs in every production revolve profile. (`features/Arc.md`, `ReportResolved.md` §4)                                 |
 | treating merge-result as one flag   | The donor-era experiment produced 32,000 mm³ and two bodies instead of 28,800 mm³ and one. The typed boss→boss program later closed the feature scope: the current file opens and rebuilds as one body at 28,800 mm³, and changing `D1@Boss-Extrude2` from 25 to 30 rebuilds to 30,400 mm³. (`archive/Multistream.md`) |
 
 ## What is superseded

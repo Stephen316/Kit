@@ -1,10 +1,5 @@
-# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-#
-# This SPDX license identifier and copyright notice must not be
-# removed, altered, or obscured. Doing so is a material breach of
-# the PolyForm Strict License 1.0.0 and voids all licenses granted
-# to you under it immediately and permanently.
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
 name: SPDX headers
 
@@ -197,10 +192,31 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          uv run --frozen python .github/scripts/VerifySpdxHeaders.py \
+          uv run --frozen python - \
             --base "$BASE_SHA" \
             --head "$HEAD_SHA" \
-            --worktree "$SOURCE_ROOT"
+            --worktree "$SOURCE_ROOT" <<'PY'
+          import os
+          import sys
+          from pathlib import Path
+
+          sys.path.insert(0, str(Path(".github/scripts").resolve()))
+          import VerifySpdxHeaders as SpdxChecker
+
+          NoticeText = (
+              "SPDX-License-Identifier: MIT\n"
+              "SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, "
+              "Odin Glynn-Martin, Stephen Harcourt\n"
+          )
+          NoticePath = SpdxChecker.ResolvePath(
+              Path(os.environ["SOURCE_ROOT"]).resolve(), "HEADER_NOTICE"
+          )
+          if NoticePath is None or NoticePath.read_text(encoding="utf-8") != NoticeText:
+              raise SystemExit("The canonical notice must match the MIT policy exactly")
+          SpdxChecker.KHeaderNoticePath.write_text(NoticeText, encoding="utf-8")
+          SpdxChecker.KSkillLicenseField = "license: MIT"
+          raise SystemExit(SpdxChecker.MainRun())
+          PY
 
   remediate-missing-headers:
     name: Remediate missing SPDX headers
@@ -295,6 +311,10 @@ jobs:
             exit 1
           fi
           if [ "$(git -C SpdxHeadData cat-file -t "$HEAD_SHA")" != "commit" ]; then
+            exit 1
+          fi
+          if ! git -C SpdxHeadData diff --quiet "$BASE_SHA" "$HEAD_SHA" -- HEADER_NOTICE; then
+            echo "::error::The canonical license notice changed; automatic header repair requires a maintainer-approved policy transition."
             exit 1
           fi
           echo "source-root=$GITHUB_WORKSPACE/SpdxHeadData" >> "$GITHUB_OUTPUT"

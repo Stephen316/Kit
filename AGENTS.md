@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # Agent guidance
@@ -68,6 +63,6 @@ Each kebab-case skill is generated from its mapped PascalCase source file in
 
 `SKILL.md` files must begin with their required YAML frontmatter to remain
 Agent Skills-compatible. For `.agents/skills/**/SKILL.md`, use the required
-`license: LicenseRef-PolyForm-Strict-1.0.0` frontmatter field instead of
+`license: MIT` frontmatter field instead of
 placing the normal comment notice before the frontmatter. All other new files
 continue to use the exact `HEADER_NOTICE` block.

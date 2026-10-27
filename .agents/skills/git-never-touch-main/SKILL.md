@@ -1,7 +1,7 @@
 ---
 name: git-never-touch-main
 description: "Protect the main branch. Use before any Git commit, push, pull, merge, rebase, reset, cherry-pick, or revert operation."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/GitNeverTouchMain.md"
   kiro-inclusion: "always"

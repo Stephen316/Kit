@@ -1,7 +1,7 @@
 ---
 name: workos-token-verification
 description: "Verify WorkOS user-management JWT access tokens with the client-specific issuer. Use when changing Python backend authentication, token validation, or backend files."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/WorkosTokenVerification.md"
   kiro-inclusion: "fileMatch"

@@ -1,7 +1,7 @@
 ---
 name: user-owned-workspace
 description: "Preserve user-owned workspace state. Use whenever inspecting or modifying a shared worktree, especially when unknown commits, branches, staged changes, unstaged changes, untracked files, or background Git activity appear."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/UserOwnedWorkspace.md"
   kiro-inclusion: "always"

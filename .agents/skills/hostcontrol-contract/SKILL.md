@@ -1,7 +1,7 @@
 ---
 name: hostcontrol-contract
 description: "Keep HostControl services, schemas, tests, documentation, and consumers synchronized. Use when changing a HostControl service contract."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/HostcontrolContract.md"
   kiro-inclusion: "always"

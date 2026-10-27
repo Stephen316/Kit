@@ -1,11 +1,6 @@
 <!--
-SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
-SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
-
-This SPDX license identifier and copyright notice must not be
-removed, altered, or obscured. Doing so is a material breach of
-the PolyForm Strict License 1.0.0 and voids all licenses granted
-to you under it immediately and permanently.
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
 # `Contents/Config-0-ResolvedFeatures` — segmentation, header semantics, and the field-program debt
@@ -40,25 +35,25 @@ Everything below is measured. Controls measured 8000.000000000001 mm³, centre `
 
 ## 1. What landed in shipped code and data
 
-| change                                                      | file                                         | effect                                     |
-| ----------------------------------------------------------- | -------------------------------------------- | ------------------------------------------ |
-| `moCompRefPlane_c` run 1 becomes a `conditional` rule       | `re/data/Layouts/ClassLayoutsVersioned.json`       | unblocks all 32 donor fixtures             |
-| `moProfileFeature_c` gets ten fixed child slots             | `re/data/Layouts/ClassLayoutsDecompiled.json`      | `boss1_front_rect_blind` 148 → 223 objects |
-| `moExtrusion_c` gets the sixteen children the traces record | `re/data/Layouts/ClassLayoutsVersioned.json`       | replaces a nine-slot absorption            |
-| `moCompSketchEntHandle_c` run 0 gets the 89/85 version gate | `re/data/Layouts/ClassLayoutsDecompiled.json`      | its `sgPointHandle` was 89 bytes early     |
-| `moFR_c` gets its modern 8-byte inline data record          | `re/data/Layouts/ClassLayoutsDecompiled.json`      | advances 23 donors to `moFaceRef_c`        |
-| `ParallelPlaneDistanceDim_c` gets its transform predicate   | `re/data/Layouts/ClassLayoutsVersioned.json`       | closes the 403/474/475-byte split          |
-| `moFromEndSpec_c` and `moEndSpec_c` get owned tails         | both authored layout tables                  | separates nested feature tails             |
-| the four-byte stream footer becomes archive framing         | `src/convert/adapters/solidworks/container/Archive.py` | three exact donor round trips              |
-| `moICE_c` gets its complete conditional child graph         | `re/data/Layouts/ClassLayoutsDecompiled.json`      | removes the former 9.6 KB content wall     |
-| `moPerBodyChooserData_c` gets three counted object arrays   | `re/data/Layouts/ClassLayoutsDecompiled.json`      | replaces a fitted fixed three-child shape  |
-| native `su_CDWordArray` count replaces a boolean guess      | `re/data/Layouts/ClassLayoutsDecompiled.json`      | accepts every chooser DWord count          |
-| native ANSI and Unicode CString framing                     | `src/convert/adapters/solidworks/container/Archive.py` | decodes all four native length forms       |
-| guarded primitive trace for the 1437-byte lightweight lane  | `re/tooling/windbg/Commands/Fields/FieldCdbLwdata.txt`     | confirms it is not read on normal open     |
-| donor object floor                                          | `tests/convert/solidworks/container/SolidworksArchiveTests.py`   | 5244 → **18761**                           |
-| exact donor round-trip floor                                | `tests/convert/solidworks/container/SolidworksArchiveTests.py`   | 0 → **17**                                 |
-| `_name_record` flag word per node kind                      | `src/convert/adapters/solidworks/core/Native.py`  | correct for planes, Origin and cuts        |
-| `_resolved_payload` first `u32`                             | `src/convert/adapters/solidworks/core/Native.py`  | base map index, not the object count       |
+| change                                                      | file                                                           | effect                                     |
+| ----------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------ |
+| `moCompRefPlane_c` run 1 becomes a `conditional` rule       | `re/data/Layouts/ClassLayoutsVersioned.json`                   | unblocks all 32 donor fixtures             |
+| `moProfileFeature_c` gets ten fixed child slots             | `re/data/Layouts/ClassLayoutsDecompiled.json`                  | `boss1_front_rect_blind` 148 → 223 objects |
+| `moExtrusion_c` gets the sixteen children the traces record | `re/data/Layouts/ClassLayoutsVersioned.json`                   | replaces a nine-slot absorption            |
+| `moCompSketchEntHandle_c` run 0 gets the 89/85 version gate | `re/data/Layouts/ClassLayoutsDecompiled.json`                  | its `sgPointHandle` was 89 bytes early     |
+| `moFR_c` gets its modern 8-byte inline data record          | `re/data/Layouts/ClassLayoutsDecompiled.json`                  | advances 23 donors to `moFaceRef_c`        |
+| `ParallelPlaneDistanceDim_c` gets its transform predicate   | `re/data/Layouts/ClassLayoutsVersioned.json`                   | closes the 403/474/475-byte split          |
+| `moFromEndSpec_c` and `moEndSpec_c` get owned tails         | both authored layout tables                                    | separates nested feature tails             |
+| the four-byte stream footer becomes archive framing         | `src/convert/adapters/solidworks/container/Archive.py`         | three exact donor round trips              |
+| `moICE_c` gets its complete conditional child graph         | `re/data/Layouts/ClassLayoutsDecompiled.json`                  | removes the former 9.6 KB content wall     |
+| `moPerBodyChooserData_c` gets three counted object arrays   | `re/data/Layouts/ClassLayoutsDecompiled.json`                  | replaces a fitted fixed three-child shape  |
+| native `su_CDWordArray` count replaces a boolean guess      | `re/data/Layouts/ClassLayoutsDecompiled.json`                  | accepts every chooser DWord count          |
+| native ANSI and Unicode CString framing                     | `src/convert/adapters/solidworks/container/Archive.py`         | decodes all four native length forms       |
+| guarded primitive trace for the 1437-byte lightweight lane  | `re/tooling/windbg/Commands/Fields/FieldCdbLwdata.txt`         | confirms it is not read on normal open     |
+| donor object floor                                          | `tests/convert/solidworks/container/SolidworksArchiveTests.py` | 5244 → **18761**                           |
+| exact donor round-trip floor                                | `tests/convert/solidworks/container/SolidworksArchiveTests.py` | 0 → **17**                                 |
+| `_name_record` flag word per node kind                      | `src/convert/adapters/solidworks/core/Native.py`               | correct for planes, Origin and cuts        |
+| `_resolved_payload` first `u32`                             | `src/convert/adapters/solidworks/core/Native.py`               | base map index, not the object count       |
 
 `Archive.py` now mirrors the native `swccu.dll` CString reader and writer: short ANSI strings use a
 single length prefix; Unicode strings use `ff fe ff` followed by the same 8/16/32-bit length
@@ -363,7 +358,7 @@ Each of these was believed, tested and killed. They are recorded so nobody pays 
 10. **One `moExtrusion_c@5` length closes the class.** Refuted twice over. 707 is the best of
     `{587, 635, 705, 707, 779}` for `PLANE_TOP` and still stalls, **and 707 demonstrably absorbs a
     `moPerBodyChooserData_c` class definition at `+30`** — `ff ff 01 00 16 00
-   moPerBodyChooserData_c` — so it swallows child objects. It re-emits byte-identically only
+moPerBodyChooserData_c` — so it swallows child objects. It re-emits byte-identically only
     because `Model.emit()` copies run bytes verbatim; the swallowed class tags would not be
     renumbered if the object count changed. **This is an absorption artifact, not a field program,
     and it is deliberately not shipped.** The class has more child slots than the nine declared, and

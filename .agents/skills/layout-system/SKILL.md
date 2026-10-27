@@ -1,7 +1,7 @@
 ---
 name: layout-system
 description: "Use existing global layout primitives and avoid hand-rolled layout. Use when changing React or Next.js page layout, shells, or spacing."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/LayoutSystem.md"
   kiro-inclusion: "always"

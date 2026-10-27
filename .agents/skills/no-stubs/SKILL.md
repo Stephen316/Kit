@@ -1,7 +1,7 @@
 ---
 name: no-stubs
 description: "Deliver complete implementations with no stubs, placeholders, or incomplete code. Use for all code changes and bug fixes."
-license: LicenseRef-PolyForm-Strict-1.0.0
+license: MIT
 metadata:
   source: ".kiro/steering/NoStubs.md"
   kiro-inclusion: "always"
