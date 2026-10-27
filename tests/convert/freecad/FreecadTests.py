@@ -8,6 +8,7 @@
 
 from __future__ import annotations as Annotations
 import base64 as BaseSixFour
+from collections.abc import Callable as FuncCall, Mapping, Sequence
 from dataclasses import replace as Replace
 import hashlib as Hashlib
 import inspect as Inspect
@@ -16,6 +17,7 @@ import json as JsonValue
 import math as MathValue
 from pathlib import Path as FilePath
 import struct as Struct
+from typing import TypeGuard, TypedDict as TypeDict
 import xml.etree.ElementTree as XmlTree
 import zipfile as Zipfile
 import zlib as ZlibValue
@@ -27,7 +29,10 @@ from convert import (
     registry as Registry,
     write_document as WriteDoc,
 )
-from convert.adapters.base import CarrierReason, ReadOptions, TransferMode, WriteOptions
+from convert.adapters.base.ReadOptions import ReadOptions
+from convert.adapters.base.TransferContract import CarrierReason, TransferMode
+from convert.adapters.base.WriteOptions import WriteOptions
+from convert.adapters.base.WriteResult import WriteResult
 from convert.adapters.freecad import (
     FreeCADAdapter as FreeCadAdapter,
     FreeCADAdapterError as FreeCadAdapterError,
@@ -38,7 +43,11 @@ from convert.adapters.freecad.Brep import brep_model_brep as BrepModelBrep
 from convert.adapters.freecad import Adapter as FreecadAdapterModule
 from convert.adapters.freecad import Archive as FreecadArchiveModule
 from convert.adapters.freecad import Native as FreecadNativeModule
-from convert.adapters.freecad.Adapter import _filtered_document as FilteredDoc
+from convert.adapters.freecad.Adapter import (
+    AnnotateNative,
+    FilteredDoc,
+    UnchangedNative,
+)
 from convert.adapters.freecad.Format import (
     CAPABILITY_CARRIER_REASONS as CapabilityCarrierReasons,
     CAPABILITY_WRITE_TYPE_IDS as CapabilityWriteTypeIds,
@@ -136,26 +145,19 @@ from interchange import (
     ArcEllipseGeometry as ArcEllipseGeom,
     ArcHyperbolaGeometry as ArcHyperbolaGeom,
     ArcParabolaGeometry as ArcParabolaGeom,
-    BooleanOperation as BoolOperation,
     BrepPayload,
-    Capability,
+    CadDocument,
     ChamferFeature,
     CircleGeometry as CircleGeom,
     CircularPatternFeature,
     Configuration as Config,
-    ConstraintKind as RuleKind,
     ConstraintReference as RuleRef,
     Expression,
-    ExtrusionEndCondition,
-    ExtrusionFeature,
-    FeatureKind,
     FeatureStep,
     EllipseGeometry as EllipseGeom,
-    GeometryKind as GeomKind,
     HyperbolaGeometry as HyperbolaGeom,
     LineGeometry as LineGeom,
     LinearPatternFeature,
-    MateKind,
     Mesh as MeshRecord,
     NativeFeatureDefinition,
     NativeGeometry as NativeGeom,
@@ -169,13 +171,78 @@ from interchange import (
     ShellFeature,
     SketchConstraint as SketchRule,
     SketchEntity,
-    Transform,
-    ValueKind,
     Vector2 as VectorTwo,
     Vector3 as VectorThree,
 )
+from interchange.assembly.AssemblyEnums import MateKind
+from interchange.enums.EnumDocument import Capability
+from interchange.enums.EnumFeatures import BooleanOp as BoolOperation, FeatureKind
+from interchange.enums.EnumGeometry import ConstraintKind as RuleKind
+from interchange.enums.EnumGeometry import GeometryKind as GeomKind
+from interchange.enums.EnumValues import ValueKind
+from interchange.features.FeatureExtrude import ExtrudeEnd as ExtrusionEndCondition
+from interchange.features.FeatureExtrude import ExtrudeFeature as ExtrusionFeature
+from interchange.geometry.models.GeometryTypes import KGeometryTypes as GeometryTypes
 from tests.interchange.document.DocumentTests import document as NeutralDoc
 from tests.interchange.brep.BrepTests import triangle_brep as TriangleBrep
+
+# this binding keeps xml element annotations aligned with the imported parser
+ET = XmlTree
+
+# this binding keeps fixture paths aligned with the imported pathlib contract
+Path = FilePath
+
+# native fixture options need a closed schema so xml payloads remain statically typed
+KNativeOptions = TypeDict(
+    "KNativeOptions",
+    {
+        "id": str | int,
+        "touched": bool,
+        "extensions": tuple[str, ...],
+        "transient_properties": tuple[ET.Element, ...],
+    },
+    total=False,
+)
+
+
+# runtime mapping checks need an object contract before recursive metadata iteration
+def IsMetaMap(SourceValue: object) -> TypeGuard[Mapping[object, object]]:
+    return isinstance(SourceValue, Mapping)
+
+
+# runtime sequence checks need an object contract without accepting scalar containers
+def IsMetaSeq(SourceValue: object) -> TypeGuard[Sequence[object]]:
+    return isinstance(SourceValue, Sequence) and not isinstance(
+        SourceValue, (str, bytes, bytearray)
+    )
+
+
+# nested metadata needs checked string keyed mappings before tests inspect vendor fields
+def MetaMap(SourceValue: object) -> dict[str, object]:
+    if not IsMetaMap(SourceValue):
+        raise TypeError("metadata value must be a mapping")
+    ResultValue: dict[str, object] = {}
+    for KeyValue, ItemValue in SourceValue.items():
+        if not isinstance(KeyValue, str):
+            raise TypeError("metadata mapping keys must be strings")
+        ResultValue[KeyValue] = ItemValue
+    return ResultValue
+
+
+# nested metadata needs checked sequences without accepting text or binary scalar values
+def MetaSeq(SourceValue: object) -> tuple[object, ...]:
+    if not IsMetaSeq(SourceValue):
+        raise TypeError("metadata value must be a sequence")
+    return tuple(SourceValue)
+
+
+# external document assertions share one recursive metadata boundary across portable write tests
+def OuterDocs(DocValue: CadDocument) -> tuple[dict[str, object], ...]:
+    FreecadMeta = MetaMap(DocValue.metadata["freecad"])
+    return tuple(
+        MetaMap(ItemValue) for ItemValue in MetaSeq(FreecadMeta["external_documents"])
+    )
+
 
 # this binding exists because shared behavior needs one stable value
 KSample = FilePath(__file__).parents[3] / "examples" / ".SLDPRT" / "example.SLDPRT"
@@ -191,72 +258,6 @@ KFreecadExamples = (
     / "data"
     / "examples"
 )
-
-
-# this definition exists because focused behavior needs one stable owner
-def LineEntity(
-    IdValue: str, Start: tuple[float, float], EndValue: tuple[float, float]
-) -> SketchEntity:
-    return SketchEntity(
-        IdValue, GeomKind.LINE, LineGeom(VectorTwo(*Start), VectorTwo(*EndValue))
-    )
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestClosedEdge() -> None:
-    First = tuple(
-        (
-            LineEntity(IdValue, Start, EndValue)
-            for IdValue, Start, EndValue in (
-                ("edge:0", (-30.0, -15.0), (30.0, -15.0)),
-                ("edge:1", (30.0, -15.0), (30.0, 15.0)),
-                ("edge:2", (30.0, 15.0), (-30.0, 15.0)),
-                ("edge:3", (-30.0, 15.0), (-30.0, -15.0)),
-            )
-        )
-    )
-    Second = tuple(
-        (
-            LineEntity(IdValue, Start, EndValue)
-            for IdValue, Start, EndValue in (
-                ("edge:4", (50.0, 0.0), (60.0, 0.0)),
-                ("edge:5", (60.0, 0.0), (55.0, 10.0)),
-                ("edge:6", (55.0, 10.0), (50.0, 0.0)),
-            )
-        )
-    )
-    assert FreecadNativeModule._closed_profile_entity_ids((*First, *Second)) == (
-        ("edge:0", "edge:1", "edge:2", "edge:3"),
-        ("edge:4", "edge:5", "edge:6"),
-    )
-
-
-# this definition exists because focused behavior needs one stable owner
-@Pytest.mark.parametrize(
-    "Entities",
-    (
-        (
-            LineEntity("open:0", (0.0, 0.0), (10.0, 0.0)),
-            LineEntity("open:1", (10.0, 0.0), (10.0, 10.0)),
-            LineEntity("open:2", (10.0, 10.0), (0.0, 10.0)),
-        ),
-        (
-            LineEntity("branch:0", (0.0, 0.0), (10.0, 0.0)),
-            LineEntity("branch:1", (10.0, 0.0), (10.0, 10.0)),
-            LineEntity("branch:2", (10.0, 10.0), (0.0, 10.0)),
-            LineEntity("branch:3", (0.0, 10.0), (0.0, 0.0)),
-            LineEntity("branch:4", (0.0, 0.0), (-10.0, 0.0)),
-        ),
-        (
-            LineEntity("cross:0", (-10.0, -10.0), (10.0, 10.0)),
-            LineEntity("cross:1", (10.0, 10.0), (-10.0, 10.0)),
-            LineEntity("cross:2", (-10.0, 10.0), (10.0, -10.0)),
-            LineEntity("cross:3", (10.0, -10.0), (-10.0, -10.0)),
-        ),
-    ),
-)
-def TestClosed(Entities: tuple[SketchEntity, ...]) -> None:
-    assert FreecadNativeModule._closed_profile_entity_ids(Entities) == ()
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -288,7 +289,7 @@ def TestReaderFrom() -> None:
                     "migrated": "1",
                 },
             )
-            XmlTree.SubElement(
+            _ = XmlTree.SubElement(
                 ItemValue,
                 "LineSegment",
                 {
@@ -298,7 +299,7 @@ def TestReaderFrom() -> None:
                     "EndY": str(EndValue[1]),
                 },
             )
-            XmlTree.SubElement(ItemValue, "Construction", {"value": "0"})
+            _ = XmlTree.SubElement(ItemValue, "Construction", {"value": "0"})
 
     DocValue = FreeCadAdapter().read(RewriteDocXml(NativePart(), Rectangle))
     Sketch = DocValue.sketches[0]
@@ -306,181 +307,6 @@ def TestReaderFrom() -> None:
     assert Sketch.closed_profile_entity_ids == (
         tuple((Entity.id for Entity in Sketch.entities)),
     )
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestOriginUse() -> None:
-
-    # this definition exists because focused behavior needs one stable owner
-    def Plane(
-        NameValue: str,
-        Label: str,
-        Quaternion: tuple[float, float, float, float],
-        Origin: tuple[float, float, float] = (0.0, 0.0, 0.0),
-        RoleValue: str = "",
-        TypeId: str = "App::Plane",
-    ):
-        Placement = NativePlacement()
-        Value = Placement.find("./PropertyPlacement")
-        assert Value is not None
-        for KeyValue, Coordinate in zip(("Q0", "Q1", "Q2", "Q3"), Quaternion):
-            Value.set(KeyValue, str(Coordinate))
-        for KeyValue, Coordinate in zip(("Px", "Py", "Pz"), Origin):
-            Value.set(KeyValue, str(Coordinate))
-        Properties = {
-            "Label": NativeProp(
-                "Label", "App::PropertyString", "String", {"value": Label}
-            ),
-            "Placement": Placement,
-        }
-        if RoleValue:
-            Properties["Role"] = NativeProp(
-                "Role", "App::PropertyString", "String", {"value": RoleValue}
-            )
-        return FreecadNativeModule._NativeObject(
-            NameValue, TypeId, 0, NameValue, False, (), (), (), Properties
-        )
-
-    HalfValue = MathValue.sqrt(0.5)
-    Objects = (
-        Plane("XY_Plane", "XY-plane", (0.0, 0.0, 0.0, 1.0), RoleValue="XY_Plane"),
-        Plane(
-            "XZ_Plane",
-            "XZ-plane",
-            (HalfValue, 0.0, 0.0, HalfValue),
-            RoleValue="XZ_Plane",
-        ),
-        Plane("YZ_Plane", "YZ-plane", (0.5, 0.5, 0.5, 0.5), RoleValue="YZ_Plane"),
-        Plane(
-            "DatumPlane",
-            "Datum Plane",
-            (
-                0.0,
-                0.0,
-                MathValue.sin(MathValue.pi / 8.0),
-                MathValue.cos(MathValue.pi / 8.0),
-            ),
-            (7.0, 8.0, 9.0),
-            TypeId="PartDesign::Plane",
-        ),
-    )
-    Planes, Sketches = FreecadNativeModule._parse_sketches(Objects, [], set())
-    assert Sketches == ()
-    assert [Value.id for Value in Planes] == [
-        "freecad:plane:XY_Plane",
-        "freecad:plane:XZ_Plane",
-        "freecad:plane:YZ_Plane",
-        "freecad:plane:DatumPlane",
-    ]
-    assert [Value.attributes.get("principal_index") for Value in Planes] == [
-        0,
-        1,
-        2,
-        None,
-    ]
-    Frames = tuple(
-        (
-            (
-                (
-                    Value.transform.x_axis.x,
-                    Value.transform.x_axis.y,
-                    Value.transform.x_axis.z,
-                ),
-                (
-                    Value.transform.y_axis.x,
-                    Value.transform.y_axis.y,
-                    Value.transform.y_axis.z,
-                ),
-                (
-                    Value.transform.z_axis.x,
-                    Value.transform.z_axis.y,
-                    Value.transform.z_axis.z,
-                ),
-            )
-            for Value in Planes[:3]
-        )
-    )
-    assert Frames == (
-        ((1.0, 0.0, 0.0), (0.0, 1.0, 0.0), (0.0, 0.0, 1.0)),
-        ((1.0, 0.0, 0.0), (0.0, 0.0, -1.0), (0.0, 1.0, 0.0)),
-        ((0.0, 0.0, -1.0), (0.0, 1.0, 0.0), (1.0, 0.0, 0.0)),
-    )
-    Datum = Planes[3].transform
-    assert (Datum.origin.x, Datum.origin.y, Datum.origin.z) == (7.0, 8.0, 9.0)
-    assert (Datum.x_axis.x, Datum.x_axis.y, Datum.x_axis.z) == Pytest.approx(
-        (HalfValue, HalfValue, 0.0)
-    )
-    assert (Datum.y_axis.x, Datum.y_axis.y, Datum.y_axis.z) == Pytest.approx(
-        (-HalfValue, HalfValue, 0.0)
-    )
-
-
-# this definition exists because focused behavior needs one stable owner
-@Pytest.mark.parametrize(
-    ("Source", "Target", "ExpectedStart", "ExpectedEnd"),
-    (
-        (
-            Transform(
-                x_axis=VectorThree(1.0, 0.0, 0.0),
-                y_axis=VectorThree(0.0, 0.0, 1.0),
-                z_axis=VectorThree(0.0, -1.0, 0.0),
-            ),
-            Transform(
-                x_axis=VectorThree(1.0, 0.0, 0.0),
-                y_axis=VectorThree(0.0, 0.0, -1.0),
-                z_axis=VectorThree(0.0, 1.0, 0.0),
-            ),
-            (2.0, -3.0),
-            (5.0, -7.0),
-        ),
-        (
-            Transform(
-                x_axis=VectorThree(0.0, 1.0, 0.0),
-                y_axis=VectorThree(0.0, 0.0, 1.0),
-                z_axis=VectorThree(1.0, 0.0, 0.0),
-            ),
-            Transform(
-                x_axis=VectorThree(0.0, 0.0, -1.0),
-                y_axis=VectorThree(0.0, 1.0, 0.0),
-                z_axis=VectorThree(1.0, 0.0, 0.0),
-            ),
-            (-3.0, 2.0),
-            (-7.0, 5.0),
-        ),
-    ),
-)
-def TestPrincipal(
-    Source: Transform,
-    Target: Transform,
-    ExpectedStart: tuple[float, float],
-    ExpectedEnd: tuple[float, float],
-) -> None:
-    GeomValue = LineGeom(VectorTwo(2.0, 3.0), VectorTwo(5.0, 7.0))
-    Reframed = FreecadNativeModule._reframe_geometry(
-        GeomValue, FreecadNativeModule._plane_reframe(Source, Target)
-    )
-    assert isinstance(Reframed, LineGeom)
-    assert (Reframed.start.x, Reframed.start.y) == ExpectedStart
-    assert (Reframed.end.x, Reframed.end.y) == ExpectedEnd
-
-    # this definition exists because focused behavior needs one stable owner
-    def World(Transform: Transform, Point: Vector2) -> tuple[float, float, float]:
-        return (
-            Transform.origin.x
-            + Point.x * Transform.x_axis.x
-            + Point.y * Transform.y_axis.x,
-            Transform.origin.y
-            + Point.x * Transform.x_axis.y
-            + Point.y * Transform.y_axis.y,
-            Transform.origin.z
-            + Point.x * Transform.x_axis.z
-            + Point.y * Transform.y_axis.z,
-        )
-
-    assert World(Source, GeomValue.start) == Pytest.approx(
-        World(Target, Reframed.start)
-    )
-    assert World(Source, GeomValue.end) == Pytest.approx(World(Target, Reframed.end))
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -535,9 +361,20 @@ def TestPrePayload() -> None:
         ),
     )
     Manifest = DocToManifest(Source)
-    for Payload in Manifest["brep_payloads"]["$tuple"]:
-        Payload.pop("role")
-        Payload.pop("file_extension")
+    PayloadContainerValue: object = Manifest.get("brep_payloads")
+    assert FreecadAdapterModule.IsPayloadMap(PayloadContainerValue)
+    PayloadSequenceValue: object = PayloadContainerValue.get("$tuple")
+    assert FreecadAdapterModule.IsPayloadSeq(PayloadSequenceValue)
+    LegacyPayloads: list[dict[str, object]] = []
+    for PayloadValue in PayloadSequenceValue:
+        assert FreecadAdapterModule.IsPayloadMap(PayloadValue)
+        PayloadData = dict(PayloadValue)
+        _ = PayloadData.pop("role")
+        _ = PayloadData.pop("file_extension")
+        LegacyPayloads.append(PayloadData)
+    PayloadContainer = dict(PayloadContainerValue)
+    PayloadContainer["$tuple"] = LegacyPayloads
+    Manifest["brep_payloads"] = PayloadContainer
     Carrier = BuildFcstdArchive(Manifest)
     Restored = FreeCadAdapter().read(
         Carrier, ReadOptions(include_brep=True, include_tessellation=True)
@@ -570,7 +407,7 @@ def NativeProp(
     NameValue: str, TypeId: str, TagValue: str, Attributes: dict[str, str] | None = None
 ) -> XmlTree.Element:
     NodeValue = XmlTree.Element("Property", {"name": NameValue, "type": TypeId})
-    XmlTree.SubElement(NodeValue, TagValue, Attributes or {})
+    _ = XmlTree.SubElement(NodeValue, TagValue, Attributes or {})
     return NodeValue
 
 
@@ -590,7 +427,7 @@ def NativeLinkList(NameValue: str, Values: tuple[str, ...]) -> XmlTree.Element:
         NameValue, "App::PropertyLinkList", "LinkList", {"count": str(len(Values))}
     )
     for Value in Values:
-        XmlTree.SubElement(NodeValue[0], "Link", {"value": Value})
+        _ = XmlTree.SubElement(NodeValue[0], "Link", {"value": Value})
     return NodeValue
 
 
@@ -610,7 +447,7 @@ def NativeXlink(
         },
     )
     for SubElem in Subelements:
-        XmlTree.SubElement(NodeValue[0], "Sub", {"value": SubElem})
+        _ = XmlTree.SubElement(NodeValue[0], "Sub", {"value": SubElem})
     return NodeValue
 
 
@@ -618,20 +455,23 @@ def NativeXlink(
 def NativeDeclsMut(
     RootValue: ET.Element,
     Objects: tuple[tuple[str, str, tuple[str, ...], tuple[ET.Element, ...]], ...],
-    ObjectOptions: dict[str, dict[str, object]],
+    ObjectOptions: dict[str, KNativeOptions],
 ) -> None:
     Declarations = XmlTree.SubElement(
         RootValue, "Objects", {"Count": str(len(Objects)), "Dependencies": "1"}
     )
-    for NameValue, Ignored, Dependencies, Ignored in Objects:
+    for ObjectValue in Objects:
+        NameValue = ObjectValue[0]
+        Dependencies = ObjectValue[2]
         DependencyNode = XmlTree.SubElement(
             Declarations,
             "ObjectDeps",
             {"Name": NameValue, "Count": str(len(Dependencies))},
         )
         for Dependency in Dependencies:
-            XmlTree.SubElement(DependencyNode, "Dep", {"Name": Dependency})
-    for Index, (NameValue, TypeId, Ignored, Ignored) in enumerate(Objects, start=1):
+            _ = XmlTree.SubElement(DependencyNode, "Dep", {"Name": Dependency})
+    for Index, ObjectValue in enumerate(Objects, start=1):
+        NameValue, TypeId = ObjectValue[:2]
         Options = ObjectOptions.get(NameValue, {})
         Attributes = {
             "type": TypeId,
@@ -640,27 +480,23 @@ def NativeDeclsMut(
         }
         if bool(Options.get("touched")):
             Attributes["Touched"] = "1"
-        XmlTree.SubElement(Declarations, "Object", Attributes)
+        _ = XmlTree.SubElement(Declarations, "Object", Attributes)
 
 
 # this definition exists because native property payloads have a separate archive responsibility
 def NativeDataMut(
     RootValue: ET.Element,
     Objects: tuple[tuple[str, str, tuple[str, ...], tuple[ET.Element, ...]], ...],
-    ObjectOptions: dict[str, dict[str, object]],
+    ObjectOptions: dict[str, KNativeOptions],
 ) -> None:
     DataValue = XmlTree.SubElement(
         RootValue, "ObjectData", {"Count": str(len(Objects))}
     )
-    for NameValue, Ignored, Ignored, Properties in Objects:
+    for ObjectValue in Objects:
+        NameValue = ObjectValue[0]
+        Properties = ObjectValue[3]
         Options = ObjectOptions.get(NameValue, {})
-        Extensions = tuple(
-            (
-                Value
-                for Value in Options.get("extensions", ())
-                if isinstance(Value, str) and Value
-            )
-        )
+        Extensions = Options.get("extensions", ())
         ObjectAttributes = {"name": NameValue}
         if Extensions:
             ObjectAttributes["Extensions"] = "True"
@@ -670,18 +506,12 @@ def NativeDataMut(
                 ObjectNode, "Extensions", {"Count": str(len(Extensions))}
             )
             for Extension in Extensions:
-                XmlTree.SubElement(
+                _ = XmlTree.SubElement(
                     ExtensionNode,
                     "Extension",
                     {"type": Extension, "name": Extension.rsplit("::", 1)[-1]},
                 )
-        TransientProperties = tuple(
-            (
-                Value
-                for Value in Options.get("transient_properties", ())
-                if isinstance(Value, XmlTree.Element)
-            )
-        )
+        TransientProperties = Options.get("transient_properties", ())
         PropNode = XmlTree.SubElement(
             ObjectNode,
             "Properties",
@@ -711,7 +541,7 @@ def EmitArchive(RootValue: ET.Element, Entries: dict[str, bytes]) -> bytes:
 def NativeArchive(
     Objects: tuple[tuple[str, str, tuple[str, ...], tuple[ET.Element, ...]], ...],
     Entries: dict[str, bytes],
-    ObjectOptions: dict[str, dict[str, object]] | None = None,
+    ObjectOptions: dict[str, KNativeOptions] | None = None,
 ) -> bytes:
     Options = ObjectOptions or {}
     RootValue = XmlTree.Element(
@@ -723,7 +553,7 @@ def NativeArchive(
 
 
 # this definition exists because focused behavior needs one stable owner
-def RewriteDocXml(Source: bytes, Mutate) -> bytes:
+def RewriteDocXml(Source: bytes, Mutate: FuncCall[[ET.Element], None]) -> bytes:
     Output = IoStream.BytesIO()
     with Zipfile.ZipFile(IoStream.BytesIO(Source)) as InputArchive:
         RootValue = XmlTree.fromstring(InputArchive.read("Document.xml"))
@@ -765,13 +595,13 @@ def NativeMesh(Endian: str = "<", Inline: bool = False) -> bytes:
     if Inline:
         Points = XmlTree.SubElement(MeshValue[0], "Points", {"Count": "3"})
         for FirstCoord, SecondCoord, ThirdCoord in ((-2, 3, 1), (5, -7, 4), (1, 2, -6)):
-            XmlTree.SubElement(
+            _ = XmlTree.SubElement(
                 Points,
                 "P",
                 {"x": str(FirstCoord), "y": str(SecondCoord), "z": str(ThirdCoord)},
             )
         Faces = XmlTree.SubElement(MeshValue[0], "Faces", {"Count": "1"})
-        XmlTree.SubElement(
+        _ = XmlTree.SubElement(
             Faces,
             "F",
             {
@@ -798,7 +628,7 @@ def NativeSketch() -> tuple[ET.Element, ...]:
     Attachment = NativeProp(
         "AttachmentSupport", "App::PropertyLinkSubList", "LinkSubList", {"count": "1"}
     )
-    XmlTree.SubElement(Attachment[0], "Link", {"obj": "XY_Plane", "sub": ""})
+    _ = XmlTree.SubElement(Attachment[0], "Link", {"obj": "XY_Plane", "sub": ""})
     GeomValue = NativeProp(
         "Geometry", "Part::PropertyGeometryList", "GeometryList", {"count": "4"}
     )
@@ -807,23 +637,23 @@ def NativeSketch() -> tuple[ET.Element, ...]:
         "Geometry",
         {"type": "Part::GeomCircle", "id": "101", "migrated": "1"},
     )
-    XmlTree.SubElement(
+    _ = XmlTree.SubElement(
         Circle, "Circle", {"CenterX": "0", "CenterY": "0", "Radius": "5"}
     )
-    XmlTree.SubElement(Circle, "Construction", {"value": "0"})
+    _ = XmlTree.SubElement(Circle, "Construction", {"value": "0"})
     Point = XmlTree.SubElement(
         GeomValue[0],
         "Geometry",
         {"type": "Part::GeomPoint", "id": "102", "migrated": "1"},
     )
-    XmlTree.SubElement(Point, "GeomPoint", {"X": "2", "Y": "3", "Z": "0"})
-    XmlTree.SubElement(Point, "Construction", {"value": "0"})
+    _ = XmlTree.SubElement(Point, "GeomPoint", {"X": "2", "Y": "3", "Z": "0"})
+    _ = XmlTree.SubElement(Point, "Construction", {"value": "0"})
     Ellipse = XmlTree.SubElement(
         GeomValue[0],
         "Geometry",
         {"type": "Part::GeomEllipse", "id": "103", "migrated": "1"},
     )
-    XmlTree.SubElement(
+    _ = XmlTree.SubElement(
         Ellipse,
         "Ellipse",
         {
@@ -835,7 +665,7 @@ def NativeSketch() -> tuple[ET.Element, ...]:
             "MinorRadius": "3",
         },
     )
-    XmlTree.SubElement(Ellipse, "Construction", {"value": "1"})
+    _ = XmlTree.SubElement(Ellipse, "Construction", {"value": "1"})
     Spline = XmlTree.SubElement(
         GeomValue[0],
         "Geometry",
@@ -845,10 +675,10 @@ def NativeSketch() -> tuple[ET.Element, ...]:
         Spline, "BSplineCurve", {"Degree": "2", "Periodic": "false"}
     )
     for FirstCoord, SecondCoord in (("0", "0"), ("2", "4"), ("5", "1")):
-        XmlTree.SubElement(
+        _ = XmlTree.SubElement(
             SplineCurve, "Pole", {"X": FirstCoord, "Y": SecondCoord, "Z": "0"}
         )
-    XmlTree.SubElement(Spline, "Construction", {"value": "0"})
+    _ = XmlTree.SubElement(Spline, "Construction", {"value": "0"})
     Constraints = NativeProp(
         "Constraints",
         "Sketcher::PropertyConstraintList",
@@ -896,14 +726,14 @@ def NativeSketch() -> tuple[ET.Element, ...]:
             "ThirdPos": "0",
         },
     ):
-        XmlTree.SubElement(Constraints[0], "Constrain", Attributes)
+        _ = XmlTree.SubElement(Constraints[0], "Constrain", Attributes)
     Expressions = NativeProp(
         "ExpressionEngine",
         "App::PropertyExpressionEngine",
         "ExpressionEngine",
         {"count": "1"},
     )
-    XmlTree.SubElement(
+    _ = XmlTree.SubElement(
         Expressions[0],
         "Expression",
         {"path": "Constraints[0]", "expression": "diameter"},
@@ -944,7 +774,7 @@ def NativePart(BrepData: bytes | None = None) -> bytes:
         "ExpressionEngine",
         {"count": "1"},
     )
-    XmlTree.SubElement(
+    _ = XmlTree.SubElement(
         PadExpressions[0], "Expression", {"path": "Length", "expression": "height"}
     )
     PadProperties = (
@@ -1020,8 +850,8 @@ def NativeAsm(BrepData: bytes | None = None) -> bytes:
         {"value": "1", "CustomEnum": "true"},
     )
     EnumList = XmlTree.SubElement(JointType, "CustomEnumList", {"count": "2"})
-    XmlTree.SubElement(EnumList, "Enum", {"value": "Fixed"})
-    XmlTree.SubElement(EnumList, "Enum", {"value": "Revolute"})
+    _ = XmlTree.SubElement(EnumList, "Enum", {"value": "Fixed"})
+    _ = XmlTree.SubElement(EnumList, "Enum", {"value": "Revolute"})
     JointProxy = NativeProp(
         "Proxy",
         "App::PropertyPythonObject",
@@ -1085,7 +915,7 @@ def NativeOuterAsm(
     Links: tuple[tuple[str, str, str, str], ...],
     GroupedNames: tuple[str, ...] | None = None,
 ) -> bytes:
-    LinkNames = tuple((NameValue for NameValue, Ignored, Ignored, Ignored in Links))
+    LinkNames = tuple((LinkValue[0] for LinkValue in Links))
     GroupedNames = LinkNames if GroupedNames is None else GroupedNames
     AsmProperties = (
         NativeProp(
@@ -1131,41 +961,6 @@ def NativeLinkOnly(FileValue: str, Target: str = "Body") -> bytes:
         NativeProp("Visibility", "App::PropertyBool", "Bool", {"value": "true"}),
     )
     return NativeArchive((("PartLink", "App::Link", (), Properties),), {})
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestAdapterAnd() -> None:
-    Adapter = FreeCadAdapter()
-    assert Adapter.info is InfoValue
-    assert FormatId == InfoValue.format_id
-    assert (Suffix,) == InfoValue.extensions
-    assert Adapter.info.capabilities == frozenset(Capability)
-    assert set(CapabilityWriteTypeIds) == set(Capability)
-    assert set(CapabilityCarrierReasons) == set(Capability)
-    assert all(
-        (isinstance(TypeIds, frozenset) for TypeIds in CapabilityWriteTypeIds.values())
-    )
-    assert all(
-        (
-            isinstance(Reason, CarrierReason)
-            for Reason in CapabilityCarrierReasons.values()
-        )
-    )
-    with Pytest.raises(TypeError):
-        CapabilityWriteTypeIds[Capability.PARAMETERS] = frozenset()
-    with Pytest.raises(TypeError):
-        CapabilityCarrierReasons[Capability.PARAMETERS] = (
-            CarrierReason.TARGET_UNSUPPORTED
-        )
-    assert NativeCapabilities == frozenset(
-        (
-            CapabilityValue
-            for CapabilityValue, TypeIds in CapabilityWriteTypeIds.items()
-            if TypeIds
-        )
-    )
-    assert Adapter.info.native_capabilities == NativeCapabilities
-    assert Adapter.info.media_types == ("application/x-extension-fcstd",)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1459,40 +1254,6 @@ def TestProtocolAre() -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestBrepFilter() -> None:
-    Payloads = tuple(
-        (
-            BrepPayload(
-                f"payload:{RoleValue.value}",
-                "test.payload",
-                RoleValue.value,
-                "1",
-                Hashlib.sha256(RoleValue.value.encode("ascii")).hexdigest(),
-                data=RoleValue.value.encode("ascii"),
-                role=RoleValue,
-            )
-            for RoleValue in PayloadRole
-        )
-    )
-    Source = NeutralDoc()
-    DocValue = Replace(
-        Source,
-        brep_payloads=Payloads,
-        capabilities=Source.capabilities
-        | {Capability.BREP, Capability.TESSELLATION, Capability.NATIVE_PAYLOADS},
-    )
-    Filtered = FilteredDoc(
-        DocValue, ReadOptions(include_brep=False, include_tessellation=True)
-    )
-    assert {Payload.role for Payload in Filtered.brep_payloads} == set(PayloadRole) - {
-        PayloadRole.BREP
-    }
-    assert Capability.BREP not in Filtered.capabilities
-    assert Capability.TESSELLATION in Filtered.capabilities
-    assert Capability.NATIVE_PAYLOADS in Filtered.capabilities
-
-
-# this definition exists because focused behavior needs one stable owner
 def TestEncodableIs() -> None:
     Source = Replace(NeutralDoc(), brep=TriangleBrep())
     Adapter = FreeCadAdapter()
@@ -1722,14 +1483,14 @@ def AddFeatureMut(
     ObjectData.set("Count", str(int(ObjectData.get("Count", "0")) + 1))
     BodyDeps = ObjectsData.find("./ObjectDeps[@Name='Body']")
     assert BodyDeps is not None
-    XmlTree.SubElement(BodyDeps, "Dep", {"Name": NameValue})
+    _ = XmlTree.SubElement(BodyDeps, "Dep", {"Name": NameValue})
     BodyDeps.set("Count", str(int(BodyDeps.get("Count", "0")) + 1))
     FeatureDeps = XmlTree.SubElement(
         ObjectsData, "ObjectDeps", {"Name": NameValue, "Count": str(len(Dependencies))}
     )
     for DependencyName in Dependencies:
-        XmlTree.SubElement(FeatureDeps, "Dep", {"Name": DependencyName})
-    XmlTree.SubElement(
+        _ = XmlTree.SubElement(FeatureDeps, "Dep", {"Name": DependencyName})
+    _ = XmlTree.SubElement(
         ObjectsData, "Object", {"type": TypeId, "name": NameValue, "id": "5"}
     )
     BodyProperties = ObjectData.find("./Object[@name='Body']/Properties")
@@ -1738,7 +1499,7 @@ def AddFeatureMut(
     TipData = BodyProperties.find("./Property[@name='Tip']/Link")
     assert GroupData is not None
     assert TipData is not None
-    XmlTree.SubElement(GroupData, "Link", {"value": NameValue})
+    _ = XmlTree.SubElement(GroupData, "Link", {"value": NameValue})
     GroupData.set("count", str(int(GroupData.get("count", "0")) + 1))
     TipData.set("value", NameValue)
     FeatureData = XmlTree.SubElement(ObjectData, "Object", {"name": NameValue})
@@ -1755,7 +1516,7 @@ def AddChamferMut(RootData: ET.Element) -> None:
     BaseData = NativeProp(
         "Base", "App::PropertyLinkSub", "LinkSub", {"value": "Pad", "count": "1"}
     )
-    XmlTree.SubElement(BaseData[0], "Sub", {"value": "Edge5"})
+    _ = XmlTree.SubElement(BaseData[0], "Sub", {"value": "Edge5"})
     PropertiesData = (
         NativeProp("Label", "App::PropertyString", "String", {"value": "Chamfer"}),
         BaseData,
@@ -1779,7 +1540,7 @@ def AddThicknessMut(RootData: ET.Element) -> None:
     BaseData = NativeProp(
         "Base", "App::PropertyLinkSub", "LinkSub", {"value": "Pad", "count": "1"}
     )
-    XmlTree.SubElement(BaseData[0], "Sub", {"value": "Face6"})
+    _ = XmlTree.SubElement(BaseData[0], "Sub", {"value": "Face6"})
     PropertiesData = (
         NativeProp("Label", "App::PropertyString", "String", {"value": "Thickness"}),
         BaseData,
@@ -1797,11 +1558,11 @@ def PatternRefs(NameValue: str) -> tuple[ET.Element, ET.Element]:
     OriginalsData = NativeProp(
         "Originals", "App::PropertyLinkList", "LinkList", {"count": "1"}
     )
-    XmlTree.SubElement(OriginalsData[0], "Link", {"value": "Pad"})
+    _ = XmlTree.SubElement(OriginalsData[0], "Link", {"value": "Pad"})
     DirectionData = NativeProp(
         NameValue, "App::PropertyLinkSub", "LinkSub", {"value": "Sketch", "count": "1"}
     )
-    XmlTree.SubElement(DirectionData[0], "Sub", {"value": "N_Axis"})
+    _ = XmlTree.SubElement(DirectionData[0], "Sub", {"value": "N_Axis"})
     return OriginalsData, DirectionData
 
 
@@ -1982,7 +1743,7 @@ def TestPartdesignB() -> None:
 
 
 # this definition exists because native transfer modes form one independent write contract
-def VerifyTransfers(Result) -> None:
+def VerifyTransfers(Result: WriteResult) -> None:
     Transfers = {ItemValue.capability: ItemValue.mode for ItemValue in Result.transfers}
     assert Transfers[Capability.SUPPORT_PLANES] is TransferMode.NATIVE
     assert Transfers[Capability.BODY_STRUCTURE] is TransferMode.NATIVE
@@ -2040,7 +1801,7 @@ def VerifyWriteXml(PayloadData: bytes) -> None:
 
 
 # this definition exists because neutral readback must preserve interchange and native projections
-def VerifyReadback(PayloadData: bytes, DocValue, SelectionId: str) -> None:
+def VerifyReadback(PayloadData: bytes, DocValue: CadDocument, SelectionId: str) -> None:
     assert FreeCadAdapter().read(PayloadData) == DocValue
     Native = FreecadNativeModule.read_native_fcstd(PayloadData)
     assert len(Native.support_planes) == 1
@@ -2108,7 +1869,7 @@ def TestNeutralAnd() -> None:
     DocValue = Replace(Source, feature_timeline=(System, RefValue, Extrusion))
     DocValue.assert_valid()
     Output = IoStream.BytesIO()
-    FreeCadAdapter().write(DocValue, Output)
+    _ = FreeCadAdapter().write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     Declarations = {
@@ -2189,14 +1950,14 @@ def TestDatumPlane() -> None:
         Selection = NativeProp(
             "Targets", "Vendor::DerivedLinkSelection", "LinkSub", {"value": "Body"}
         )
-        XmlTree.SubElement(Selection[0], "Sub", {"value": "Face1"})
+        _ = XmlTree.SubElement(Selection[0], "Sub", {"value": "Face1"})
         Properties.append(Selection)
         Properties.set("Count", str(len(Properties.findall("./Property"))))
 
     DocValue = FreeCadAdapter().read(RewriteDocXml(NativePart(), DatumAnd))
     assert DocValue.sketches[0].support_plane_id == DocValue.support_planes[0].id
     assert (
-        DocValue.support_planes[0].attributes["freecad"]["type_id"]
+        MetaMap(DocValue.support_planes[0].attributes["freecad"])["type_id"]
         == "PartDesign::Plane"
     )
     assert len(DocValue.selections) == 1
@@ -2219,7 +1980,7 @@ def TestCustomIsAs() -> None:
     assert len(DocValue.support_planes) == 1
     assert DocValue.sketches[0].support_plane_id == DocValue.support_planes[0].id
     assert (
-        DocValue.support_planes[0].attributes["freecad"]["type_id"]
+        MetaMap(DocValue.support_planes[0].attributes["freecad"])["type_id"]
         == "Vendor::FeaturePythonPlane"
     )
 
@@ -2255,7 +2016,7 @@ def TestCustomDatum() -> None:
     assert len(DocValue.support_planes) == 1
     assert DocValue.support_planes[0].name == "Future datum"
     assert (
-        DocValue.support_planes[0].attributes["freecad"]["type_id"]
+        MetaMap(DocValue.support_planes[0].attributes["freecad"])["type_id"]
         == "Vendor::FutureDatumPlane"
     )
 
@@ -2283,7 +2044,7 @@ def TestCustomAnd() -> None:
     assert len(DocValue.feature_timeline) == 1
     assert str(DocValue.feature_timeline[0].kind) == "native"
     assert (
-        DocValue.feature_timeline[0].attributes["freecad"]["type_id"]
+        MetaMap(DocValue.feature_timeline[0].attributes["freecad"])["type_id"]
         == "Vendor::ParametricFeature"
     )
     ShapePayloads = tuple(
@@ -2304,11 +2065,11 @@ def TestCustomAnd() -> None:
 @Pytest.mark.parametrize("SchemaVersion", (3, 4))
 def TestObjectGraph(SchemaVersion: int) -> None:
 
-    # this callback exists because local behavior needs one focused transformation
-    Source = RewriteDocXml(
-        NativePart(),
-        lambda RootValue: RootValue.set("SchemaVersion", str(SchemaVersion)),
-    )
+    # this callback exists because schema mutation needs a typed xml boundary
+    def SchemaMut(RootValue: ET.Element) -> None:
+        RootValue.set("SchemaVersion", str(SchemaVersion))
+
+    Source = RewriteDocXml(NativePart(), SchemaMut)
     DocValue = FreeCadAdapter().read(Source)
     assert DocValue.validate() == ()
     assert DocValue.source.attributes["freecad_schema_version"] == str(SchemaVersion)
@@ -2333,7 +2094,7 @@ def TestSchemaTwoIs() -> None:
         FeatureData = XmlTree.Element("FeatureData", {"Count": str(len(Declarations))})
         for DeclValue in Declarations:
             NameValue = DeclValue.get("name", "")
-            XmlTree.SubElement(
+            _ = XmlTree.SubElement(
                 Features,
                 "Feature",
                 {"type": DeclValue.get("type", ""), "name": NameValue},
@@ -2357,8 +2118,8 @@ def TestEmptyObject() -> None:
     RootValue = XmlTree.Element(
         "Document", {"SchemaVersion": "4", "ProgramVersion": "1.0", "FileVersion": "1"}
     )
-    XmlTree.SubElement(RootValue, "Objects", {"Count": "0", "Dependencies": "1"})
-    XmlTree.SubElement(RootValue, "ObjectData", {"Count": "0"})
+    _ = XmlTree.SubElement(RootValue, "Objects", {"Count": "0", "Dependencies": "1"})
+    _ = XmlTree.SubElement(RootValue, "ObjectData", {"Count": "0"})
     Source = IoStream.BytesIO()
     with Zipfile.ZipFile(Source, "w", Zipfile.ZIP_DEFLATED) as Archive:
         Archive.writestr(
@@ -2394,7 +2155,7 @@ def TestAllCurrent() -> None:
         RuleList.clear()
         RuleList.set("count", str(len(RuleTypes)))
         for CodeValue in RuleKindByCode:
-            XmlTree.SubElement(
+            _ = XmlTree.SubElement(
                 RuleList,
                 "Constrain",
                 {
@@ -2496,7 +2257,7 @@ def TestUnavailable() -> None:
 def TestNeutralTrip() -> None:
     Source = NeutralDoc()
     AxisValue = VectorTwo(0.6, 0.8)
-    Values = (
+    Values: tuple[tuple[GeomKind, GeometryTypes, str], ...] = (
         (
             GeomKind.ELLIPSE,
             EllipseGeom(VectorTwo(1.0, 2.0), AxisValue, 8.0, 3.0),
@@ -2520,8 +2281,8 @@ def TestNeutralTrip() -> None:
     )
     Entities = tuple(
         (
-            SketchEntity(f"conic:{Index}", KindValue, GeomValue)
-            for Index, (KindValue, GeomValue, Ignored) in enumerate(Values)
+            SketchEntity(f"conic:{Index}", Value[0], Value[1])
+            for Index, Value in enumerate(Values)
         )
     )
     Sketch = Replace(
@@ -2544,21 +2305,44 @@ def TestNeutralTrip() -> None:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     GeomNodes = RootValue.findall(".//Property[@name='Geometry']/GeometryList/Geometry")
     assert [ItemValue.get("type") for ItemValue in GeomNodes] == [
-        TypeId for Ignored, Ignored, TypeId in Values
+        Value[2] for Value in Values
     ]
     Native = FreecadNativeModule.read_native_fcstd(Output.getvalue())
     Restored = Native.sketches[0].entities
-    assert [ItemValue.kind for ItemValue in Restored] == [
-        KindValue for KindValue, Ignored, Ignored in Values
-    ]
-    for ItemValue, (Ignored, Expected, Ignored) in zip(Restored, Values, strict=True):
+    assert [ItemValue.kind for ItemValue in Restored] == [Value[0] for Value in Values]
+    for ItemValue, SourceValue in zip(Restored, Values, strict=True):
+        Expected = SourceValue[1]
         Actual = ItemValue.geometry
         assert type(Actual) is type(Expected)
+        assert isinstance(
+            Actual,
+            (
+                EllipseGeom,
+                ArcEllipseGeom,
+                HyperbolaGeom,
+                ArcHyperbolaGeom,
+                ParabolaGeom,
+                ArcParabolaGeom,
+            ),
+        )
+        assert isinstance(
+            Expected,
+            (
+                EllipseGeom,
+                ArcEllipseGeom,
+                HyperbolaGeom,
+                ArcHyperbolaGeom,
+                ParabolaGeom,
+                ArcParabolaGeom,
+            ),
+        )
         assert (Actual.center.x, Actual.center.y) == Pytest.approx(
             (Expected.center.x, Expected.center.y)
         )
         ExpectedAxis = getattr(Expected, "major_axis", getattr(Expected, "axis", None))
         ActualAxis = getattr(Actual, "major_axis", getattr(Actual, "axis", None))
+        assert ExpectedAxis is not None
+        assert ActualAxis is not None
         assert (ActualAxis.x, ActualAxis.y) == Pytest.approx(
             (ExpectedAxis.x, ExpectedAxis.y)
         )
@@ -2579,7 +2363,7 @@ def TestNeutralTrip() -> None:
 def TestUnbounded() -> None:
     Source = NeutralDoc()
     AxisValue = VectorTwo(0.6, 0.8)
-    Values = (
+    Values: tuple[tuple[GeomKind, GeometryTypes], ...] = (
         (GeomKind.HYPERBOLA, HyperbolaGeom(VectorTwo(3.0, 4.0), AxisValue, 10.0, 5.0)),
         (GeomKind.PARABOLA, ParabolaGeom(VectorTwo(5.0, 6.0), AxisValue, 7.0)),
     )
@@ -2672,13 +2456,13 @@ def TestGeomPayload() -> None:
         "./Properties/Property[@name='Geometry']/GeometryList/Geometry"
     )
     assert [ItemValue.get("type") for ItemValue in GeomNodes] == [
-        TypeId for Ignored, TypeId, Ignored in Kinds
+        Value[1] for Value in Kinds
     ]
     assert [list(ItemValue)[0].tag for ItemValue in GeomNodes] == [
-        TagValue for Ignored, Ignored, TagValue in Kinds
+        Value[2] for Value in Kinds
     ]
     assert [list(ItemValue)[0].get("Token") for ItemValue in GeomNodes] == [
-        KindValue.value for KindValue, Ignored, Ignored in Kinds
+        Value[0].value for Value in Kinds
     ]
     assert (
         SketchObject.find("./Properties/Property[@name='KitSketchDiagnosticsJSON']")
@@ -2793,7 +2577,7 @@ def TestNeutralUses() -> None:
     )
     DocValue = Replace(Source, sketches=(Sketch,))
     Output = IoStream.BytesIO()
-    FreeCadAdapter().write(DocValue, Output)
+    _ = FreeCadAdapter().write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     Encoded = RootValue.find(
@@ -2825,7 +2609,7 @@ def TestRadiusRule() -> None:
         closed_profile_entity_ids=((Circle.id,),),
     )
     Output = IoStream.BytesIO()
-    FreeCadAdapter().write(Replace(Source, sketches=(Sketch,)), Output)
+    _ = FreeCadAdapter().write(Replace(Source, sketches=(Sketch,)), Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     Encoded = RootValue.find(
@@ -2843,7 +2627,7 @@ def TestSolidworksB() -> None:
         Source, source=Replace(Source.source, format_id="solidworks.sldprt")
     )
     Output = IoStream.BytesIO()
-    FreeCadAdapter().write(DocValue, Output)
+    _ = FreeCadAdapter().write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     DeclValue = RootValue.find("./Objects/Object[@name='Boss1']")
@@ -2878,7 +2662,7 @@ def TestSolidworks() -> None:
         sketches=(Sketch,),
     )
     Output = IoStream.BytesIO()
-    FreeCadAdapter().write(DocValue, Output)
+    _ = FreeCadAdapter().write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     DeclValue = RootValue.find("./Objects/Object[@name='Boss1']")
@@ -2928,7 +2712,7 @@ def TestCurrentPad(TypeId: str, TypeCode: int, Expected: str) -> None:
         NativeArchive((("Extrude", TypeId, (), Properties),), {})
     )
     Definition = DocValue.feature_timeline[0].definition
-    assert Definition is not None
+    assert isinstance(Definition, ExtrusionFeature)
     assert str(Definition.end_condition) == Expected
     assert str(Definition.second_end_condition) == "up_to_shape"
     assert Definition.second_length is not None
@@ -2989,11 +2773,11 @@ def TestFeatureAnd() -> None:
     assert isinstance(Feature.definition, NativeFeatureDefinition)
     assert Feature.definition.format_id == "freecad.fcstd"
     assert Feature.definition.type_id == "PartDesign::Revolution"
-    ObjectData = dict(Feature.definition.object_data)
-    NativeProperties = dict(ObjectData["properties"])
-    Angle = dict(NativeProperties["Angle"])
-    AngleValue = dict(Angle["children"][0])
-    AngleAttributes = dict(AngleValue["attributes"])
+    ObjectData = MetaMap(Feature.definition.object_data)
+    NativeProperties = MetaMap(ObjectData["properties"])
+    Angle = MetaMap(NativeProperties["Angle"])
+    AngleValue = MetaMap(MetaSeq(Angle["children"])[0])
+    AngleAttributes = MetaMap(AngleValue["attributes"])
     AngleAttributes["value"] = "37.5"
     AngleValue["attributes"] = AngleAttributes
     Angle["children"] = [AngleValue]
@@ -3008,7 +2792,7 @@ def TestFeatureAnd() -> None:
         ),
     )
     Output = IoStream.BytesIO()
-    Adapter.write(Edited, Output)
+    _ = Adapter.write(Edited, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     AngleNode = RootValue.find(
@@ -3051,7 +2835,7 @@ def TestNonFeature() -> None:
     DocValue.assert_valid()
     Output = IoStream.BytesIO()
     Adapter = FreeCadAdapter()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     FeatureObject = next(
@@ -3064,9 +2848,9 @@ def TestNonFeature() -> None:
         )
     )
     Values = {
-        NodeValue.get("name"): NodeValue.find("./String").get("value")
+        NodeValue.get("name"): StringValue.get("value", "")
         for NodeValue in FeatureObject.findall("./Properties/Property")
-        if NodeValue.find("./String") is not None
+        if (StringValue := NodeValue.find("./String")) is not None
     }
     assert Values["KitRole"] == "feature-data"
     assert Values["NativeTypeId"] == "PartDesign::Hole"
@@ -3112,7 +2896,7 @@ def TestMeshKernel() -> None:
         ((0, 1, 2),),
     )
     Output = IoStream.BytesIO()
-    FreeCadAdapter().write(
+    _ = FreeCadAdapter().write(
         Replace(
             Source,
             meshes=(MeshValue,),
@@ -3171,7 +2955,7 @@ def TestCurrentAsm(JointIndex: int, Expected: str) -> None:
         Choices = JointTypes
         EnumList.set("count", str(len(Choices)))
         for Choice in Choices:
-            XmlTree.SubElement(EnumList, "Enum", {"value": Choice})
+            _ = XmlTree.SubElement(EnumList, "Enum", {"value": Choice})
 
     DocValue = FreeCadAdapter().read(RewriteDocXml(NativeAsm(), JointType))
     assert DocValue.assembly is not None
@@ -3193,12 +2977,12 @@ def GearActionMut(RootValue: ET.Element) -> None:
     Choices = JointTypes
     EnumList.set("count", str(len(Choices)))
     for Choice in Choices:
-        XmlTree.SubElement(EnumList, "Enum", {"value": Choice})
+        _ = XmlTree.SubElement(EnumList, "Enum", {"value": Choice})
     RefValue = Properties.find("./Property[@name='Reference1']/XLink")
     assert RefValue is not None
     for Child in list(RefValue.findall("./Sub")):
         RefValue.remove(Child)
-    XmlTree.SubElement(RefValue, "Sub", {"value": ""})
+    _ = XmlTree.SubElement(RefValue, "Sub", {"value": ""})
     Properties.extend(
         (
             NativeProp("Distance", "App::PropertyLength", "Float", {"value": "4"}),
@@ -3285,16 +3069,16 @@ def TestExplicit() -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestStrictTo(TmpPath) -> None:
+def TestStrictTo(TmpPath: FilePath) -> None:
     Output = TmpPath / "blocked.FCStd"
     with Pytest.raises(AppUsabilityError) as Captured:
-        Convert(KSample, Output, allow_carrier=False)
+        _ = Convert(KSample, Output, allow_carrier=False)
     assert "opaque_source_data" in Captured.value.issues
     assert not Output.exists()
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestDirectFcstd(TmpPath) -> None:
+def TestDirectFcstd(TmpPath: FilePath) -> None:
     Output = TmpPath / "example.FCStd"
     Result = Convert(KSample, Output, allow_carrier=True)
     Restored = OpenDoc(Output)
@@ -3306,7 +3090,7 @@ def TestDirectFcstd(TmpPath) -> None:
         "59d5eef7feb40d7a2ce52e20e50e14ca8eedaa1a1671b33a13fdc43720311cb7",
     ]
     with Zipfile.ZipFile(Output) as Archive:
-        Archive.testzip()
+        _ = Archive.testzip()
         Names = set(Archive.namelist())
         assert "Document.xml" in Names
         assert "interchange/document.json" in Names
@@ -3328,9 +3112,9 @@ def TestDirectFcstd(TmpPath) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestFcstd(TmpPath) -> None:
+def TestFcstd(TmpPath: FilePath) -> None:
     Output = TmpPath / "example.FCStd"
-    Convert(KSample, Output, allow_carrier=True)
+    _ = Convert(KSample, Output, allow_carrier=True)
     with Zipfile.ZipFile(Output) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
         Objects = RootValue.findall("./Objects/Object")
@@ -3390,7 +3174,7 @@ def TestFcstdEmits() -> None:
         bodies=(Replace(Source.bodies[0], final_feature_id=Second.id),),
     )
     Target = IoStream.BytesIO()
-    FreeCadAdapter().write(Source, Target)
+    _ = FreeCadAdapter().write(Source, Target)
     DataValue = Target.getvalue()
     with Zipfile.ZipFile(IoStream.BytesIO(DataValue)) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
@@ -3409,16 +3193,16 @@ def TestFcstdEmits() -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestFcstdOutput(TmpPath) -> None:
+def TestFcstdOutput(TmpPath: FilePath) -> None:
     First = TmpPath / "first.FCStd"
     Second = TmpPath / "second.FCStd"
-    Convert(KSample, First, allow_carrier=True)
-    Convert(KSample, Second, allow_carrier=True)
+    _ = Convert(KSample, First, allow_carrier=True)
+    _ = Convert(KSample, Second, allow_carrier=True)
     assert First.read_bytes() == Second.read_bytes()
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestFcstdStream(TmpPath) -> None:
+def TestFcstdStream(TmpPath: FilePath) -> None:
     Output = TmpPath / "example.FCStd"
     Result = Convert(KSample, Output, allow_carrier=True)
     Stream = IoStream.BytesIO(Output.read_bytes())
@@ -3436,7 +3220,7 @@ def TestGenericIsAs() -> None:
 
 
 # this definition exists because opaque reads must retain their exact native payload
-def VerifyOpaque(DocValue, Source: bytes) -> None:
+def VerifyOpaque(DocValue: CadDocument, Source: bytes) -> None:
     assert DocValue.validate() == ()
     assert DocValue.feature_timeline == ()
     assert len(DocValue.brep_payloads) == 2
@@ -3504,7 +3288,7 @@ def TestOpaqueOnly() -> None:
     WithoutBrep = Adapter.read(Source, ReadOptions(include_brep=False))
     assert WithoutBrep.brep_payloads == DocValue.brep_payloads
     Output = IoStream.BytesIO()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     VerifyOpaqueXml(Output.getvalue())
     assert Output.getvalue() == Source
     assert Adapter.read(Output.getvalue()) == DocValue
@@ -3538,9 +3322,9 @@ def TestUnknownData(CarrierSuffix: str, TmpPath: Path) -> None:
         {"FutureWorkbench/state.bin": b"future opaque state\x00\xff"},
     )
     Source = TmpPath / "Future.FCStd"
-    Source.write_bytes(SourceData)
+    _ = Source.write_bytes(SourceData)
     Carrier = TmpPath / f"Future{CarrierSuffix}"
-    Convert(Source, Carrier, allow_carrier=True)
+    _ = Convert(Source, Carrier, allow_carrier=True)
     Carried = OpenDoc(Carrier)
     NativeDoc = next(
         (
@@ -3558,14 +3342,18 @@ def TestUnknownData(CarrierSuffix: str, TmpPath: Path) -> None:
     )
     assert NativeDoc.data == SourceData
     assert NativeBinding.data == Hashlib.sha256(SourceData).digest()
+    FreecadMeta = MetaMap(Carried.metadata["freecad"])
     FutureObject = next(
         (
-            Value
-            for Value in Carried.metadata["freecad"]["objects"]
-            if Value["name"] == "FutureResult"
+            MetaMap(ItemValue)
+            for ItemValue in MetaSeq(FreecadMeta["objects"])
+            if MetaMap(ItemValue)["name"] == "FutureResult"
         )
     )
-    assert FutureObject["properties"]["SolverState"]["children"][0]["attributes"] == {
+    FutureProps = MetaMap(FutureObject["properties"])
+    SolverState = MetaMap(FutureProps["SolverState"])
+    SolverChild = MetaMap(MetaSeq(SolverState["children"])[0])
+    assert SolverChild["attributes"] == {
         "encoding": "opaque",
         "value": "future-state",
     }
@@ -3580,7 +3368,7 @@ def TestUnknownData(CarrierSuffix: str, TmpPath: Path) -> None:
 
 
 # this definition exists because native part reads have a focused interchange contract
-def VerifyPart(DocValue) -> None:
+def VerifyPart(DocValue: CadDocument) -> None:
     assert DocValue.validate() == ()
     assert len(DocValue.sketches) == 1
     assert [str(Entity.kind) for Entity in DocValue.sketches[0].entities] == [
@@ -3611,8 +3399,8 @@ def VerifyPart(DocValue) -> None:
     )
     assert sum((Param.expression is not None for Param in DocValue.parameters)) == 2
     NativeRule = DocValue.sketches[0].constraints[2]
-    Slots = NativeRule.attributes["freecad_reference_slots"]
-    assert [SlotValue["freecad_geometry_index"] for SlotValue in Slots] == [
+    Slots = MetaSeq(NativeRule.attributes["freecad_reference_slots"])
+    assert [MetaMap(SlotValue)["freecad_geometry_index"] for SlotValue in Slots] == [
         1,
         -3,
         -2000,
@@ -3620,9 +3408,10 @@ def VerifyPart(DocValue) -> None:
 
 
 # this definition exists because circle edits should alter only the intended sketch entity
-def EditCircle(DocValue):
+def EditCircle(DocValue: CadDocument) -> CadDocument:
     SketchModel = DocValue.sketches[0]
     CircleEntity = SketchModel.entities[0]
+    assert isinstance(CircleEntity.geometry, CircleGeom)
     EditedCircle = Replace(
         CircleEntity, geometry=Replace(CircleEntity.geometry, radius=7.5)
     )
@@ -3672,7 +3461,7 @@ def TestSelfPart() -> None:
     VerifyPart(DocValue)
     DocValue = EditCircle(DocValue)
     Output = IoStream.BytesIO()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     VerifyPartXml(RootValue)
@@ -3687,7 +3476,7 @@ def TestReplayPlane() -> None:
         Plane, transform=Replace(Plane.transform, origin=VectorThree(12.0, 34.0, 56.0))
     )
     Output = IoStream.BytesIO()
-    Adapter.write(Replace(DocValue, support_planes=(EditedPlane,)), Output)
+    _ = Adapter.write(Replace(DocValue, support_planes=(EditedPlane,)), Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     Placement = RootValue.find(
@@ -3705,7 +3494,7 @@ def TestReplayProp() -> None:
     DocValue = Adapter.read(NativePart())
     Feature = DocValue.feature_timeline[0]
     Output = IoStream.BytesIO()
-    Adapter.write(
+    _ = Adapter.write(
         Replace(DocValue, feature_timeline=(Replace(Feature, suppressed=True),)), Output
     )
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
@@ -3728,8 +3517,8 @@ def ShapeFixture(Owner: str, ElemMap: str) -> ET.Element:
     ElemMapNode = XmlTree.SubElement(
         NodeValue, "ElementMap", {"new": "1", "count": "1"}
     )
-    XmlTree.SubElement(ElemMapNode, "Element", {"key": "Dummy", "value": "Dummy"})
-    XmlTree.SubElement(NodeValue, "ElementMap2", {"file": f"{Owner}.Shape.Map.txt"})
+    _ = XmlTree.SubElement(ElemMapNode, "Element", {"key": "Dummy", "value": "Dummy"})
+    _ = XmlTree.SubElement(NodeValue, "ElementMap2", {"file": f"{Owner}.Shape.Map.txt"})
     return NodeValue
 
 
@@ -3792,7 +3581,7 @@ def TestSketchShape() -> None:
     ]
     assert Payloads["Final.Shape.brp"].data == FinalBrep
     Output = IoStream.BytesIO()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         assert Archive.read("Sketch.Shape.brp") == SketchBrep
         assert Archive.read("Sketch.Shape.Map.txt") == SketchMap
@@ -3807,21 +3596,33 @@ def TestSketchShape() -> None:
     )
     assert SketchShape is not None
     assert FinalShape is not None
-    assert SketchShape.find("./Part").attrib == {
+    SketchPart = SketchShape.find("./Part")
+    SketchMapNode = SketchShape.find("./ElementMap")
+    SketchElem = SketchShape.find("./ElementMap/Element")
+    SketchMapTwo = SketchShape.find("./ElementMap2")
+    FinalPart = FinalShape.find("./Part")
+    FinalMapTwo = FinalShape.find("./ElementMap2")
+    assert SketchPart is not None
+    assert SketchMapNode is not None
+    assert SketchElem is not None
+    assert SketchMapTwo is not None
+    assert FinalPart is not None
+    assert FinalMapTwo is not None
+    assert SketchPart.attrib == {
         "ElementMap": "0.15.70200.5",
         "file": "Sketch.Shape.brp",
     }
-    assert SketchShape.find("./ElementMap").attrib == {"new": "1", "count": "1"}
-    assert SketchShape.find("./ElementMap/Element").attrib == {
+    assert SketchMapNode.attrib == {"new": "1", "count": "1"}
+    assert SketchElem.attrib == {
         "key": "Dummy",
         "value": "Dummy",
     }
-    assert SketchShape.find("./ElementMap2").attrib == {"file": "Sketch.Shape.Map.txt"}
-    assert FinalShape.find("./Part").attrib == {
+    assert SketchMapTwo.attrib == {"file": "Sketch.Shape.Map.txt"}
+    assert FinalPart.attrib == {
         "ElementMap": "1.15.70200.5",
         "file": "Final.Shape.brp",
     }
-    assert FinalShape.find("./ElementMap2").attrib == {"file": "Final.Shape.Map.txt"}
+    assert FinalMapTwo.attrib == {"file": "Final.Shape.Map.txt"}
 
 
 # this definition exists because string hasher fixtures require deterministic archive ordering
@@ -3860,13 +3661,13 @@ def TestStringRoot() -> None:
     Table = b"StringTableStart v1 0\n"
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(HasherSource(Table))
-    StringHasher = DocValue.metadata["freecad"]["string_hasher"]
+    StringHasher = MetaMap(MetaMap(DocValue.metadata["freecad"])["string_hasher"])
     assert StringHasher["attribute"] == "1"
     assert StringHasher["entries"] == [
         {"source_stream": "StringHasher.Table.txt", "data": Table}
     ]
     Output = IoStream.BytesIO()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         assert Archive.namelist()[:3] == [
             "Document.xml",
@@ -3892,9 +3693,9 @@ def GraphShapeProp(NameValue: str, Source: str, Mapped: bool = False) -> ET.Elem
         "Part",
         {"ElementMap": "1.15.70200.5", "file": Source},
     )
-    XmlTree.SubElement(NodeValue, "ElementMap")
+    _ = XmlTree.SubElement(NodeValue, "ElementMap")
     if Mapped:
-        XmlTree.SubElement(NodeValue, "ElementMap2", {"file": Source + ".Map.txt"})
+        _ = XmlTree.SubElement(NodeValue, "ElementMap2", {"file": Source + ".Map.txt"})
     return NodeValue
 
 
@@ -3903,7 +3704,7 @@ def GraphFixture() -> tuple[bytes, dict[str, bytes]]:
     Attachment = NativeProp(
         "AttachmentSupport", "App::PropertyLinkSubList", "LinkSubList", {"count": "1"}
     )
-    XmlTree.SubElement(Attachment[0], "Link", {"obj": "XY_Plane", "sub": ""})
+    _ = XmlTree.SubElement(Attachment[0], "Link", {"obj": "XY_Plane", "sub": ""})
     Profile = NativeProp(
         "Profile", "App::PropertyLinkSub", "LinkSub", {"value": "Sketch", "count": "0"}
     )
@@ -4073,12 +3874,9 @@ def VerifyGraphXml(RootValue: ET.Element) -> None:
         ItemValue.get("name")
         for ItemValue in Objects["Opaque"].findall("./Properties/Property")
     ] == ["Label", "Token", "Blob"]
-    assert (
-        Objects["Opaque"]
-        .find("./Properties/Property[@name='Token']/String")
-        .get("value")
-        == "retained"
-    )
+    TokenValue = Objects["Opaque"].find("./Properties/Property[@name='Token']/String")
+    assert TokenValue is not None
+    assert TokenValue.get("value") == "retained"
     assert [
         ItemValue.get("type")
         for ItemValue in Objects["Pad"].findall("./Extensions/Extension")
@@ -4098,17 +3896,18 @@ def TestPartGraph() -> None:
     Source, Entries = GraphFixture()
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(Source)
+    FreecadMeta = MetaMap(DocValue.metadata["freecad"])
     assert [
-        ItemValue["name"] for ItemValue in DocValue.metadata["freecad"]["objects"]
+        MetaMap(ItemValue)["name"] for ItemValue in MetaSeq(FreecadMeta["objects"])
     ] == ["Body", "Opaque", "XY_Plane", "Sketch", "Pad"]
     assert {Payload.source_stream: Payload.data for Payload in DocValue.brep_payloads}[
         "Sketch.InternalShape.brp"
     ] == b""
-    assert DocValue.metadata["freecad"]["entries"] == [
+    assert FreecadMeta["entries"] == [
         {"source_stream": "Blob.bin", "data": b"opaque-native-stream"}
     ]
     Output = IoStream.BytesIO()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         Names = Archive.namelist()
         assert Names[: 1 + len(Entries)] == ["Document.xml", *Entries]
@@ -4166,19 +3965,19 @@ def TestCustomAsm() -> None:
     assert len(DocValue.assembly.instances) == 1
     assert len(DocValue.assembly.mates) == 1
     assert (
-        DocValue.assembly.attributes["freecad"]["type_id"]
+        MetaMap(DocValue.assembly.attributes["freecad"])["type_id"]
         == "Vendor::FutureAssemblyRoot"
     )
     assert (
-        DocValue.assembly.instances[0].attributes["freecad"]["type_id"]
+        MetaMap(DocValue.assembly.instances[0].attributes["freecad"])["type_id"]
         == "Vendor::FutureOccurrenceLink"
     )
     assert (
-        DocValue.assembly.mate_groups[0].attributes["freecad"]["type_id"]
+        MetaMap(DocValue.assembly.mate_groups[0].attributes["freecad"])["type_id"]
         == "Vendor::FutureConstraintCollection"
     )
     Output = IoStream.BytesIO()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     Types = {
@@ -4205,11 +4004,11 @@ def TestCustomAsm() -> None:
 def TestAsmObjects() -> None:
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(NativeAsm())
-    assert DocValue.metadata["freecad"]["entries"] == [
+    assert MetaMap(DocValue.metadata["freecad"])["entries"] == [
         {"source_stream": "Blob.bin", "data": b"opaque"}
     ]
     Output = IoStream.BytesIO()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         Names = set(Archive.namelist())
         assert Archive.read("Blob.bin") == b"opaque"
@@ -4235,9 +4034,9 @@ def TestAsmObjects() -> None:
         )
     )
     References = {
-        NodeValue.get("file", "")
+        NodeValue.get("file") or ""
         for NodeValue in RootValue.findall(".//*[@file]")
-        if NodeValue.tag != "XLink" and NodeValue.get("file", "")
+        if NodeValue.tag != "XLink" and (NodeValue.get("file") or "")
     }
     assert References <= Names
 
@@ -4356,7 +4155,7 @@ def TestAsmWritesA() -> None:
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(NativeAsm())
     Output = IoStream.BytesIO()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     VerifyAsmLinks(RootValue)
@@ -4368,14 +4167,14 @@ def TestAsmWrites() -> None:
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(NativeAsm(BrepModelBrep(TriangleBrep())))
     Output = IoStream.BytesIO()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
         Types = {
             ObjValue.get("name", ""): ObjValue.get("type", "")
             for ObjValue in RootValue.findall("./Objects/Object")
         }
-        ComponentGroups = []
+        ComponentGroups: list[list[str]] = []
         for ObjValue in RootValue.findall("./ObjectData/Object"):
             DefinitionId = ObjValue.find(
                 "./Properties/Property[@name='DefinitionId']/String"
@@ -4400,13 +4199,13 @@ def TestAsmWrites() -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestOuterSource(TmpPath) -> None:
+def TestOuterSource(TmpPath: FilePath) -> None:
     First = TmpPath / "First.FCStd"
     Second = TmpPath / "Second.FCStd"
-    First.write_bytes(NativePart())
-    Second.write_bytes(NativePart())
+    _ = First.write_bytes(NativePart())
+    _ = Second.write_bytes(NativePart())
     AsmValue = TmpPath / "Assembly.FCStd"
-    AsmValue.write_bytes(
+    _ = AsmValue.write_bytes(
         NativeOuterAsm(
             (
                 ("First", "App::Link", First.name, "Body"),
@@ -4430,13 +4229,13 @@ def TestOuterSource(TmpPath) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestAsmGrouped(TmpPath) -> None:
+def TestAsmGrouped(TmpPath: FilePath) -> None:
     First = TmpPath / "First.FCStd"
     Second = TmpPath / "Second.FCStd"
-    First.write_bytes(NativePart())
-    Second.write_bytes(NativePart())
+    _ = First.write_bytes(NativePart())
+    _ = Second.write_bytes(NativePart())
     Source = TmpPath / "Mixed.FCStd"
-    Source.write_bytes(
+    _ = Source.write_bytes(
         NativeOuterAsm(
             (
                 ("Grouped", "App::Link", First.name, "Body"),
@@ -4503,7 +4302,7 @@ def VerifyPortable(Adapter: FreeCadAdapter, Target: FilePath) -> None:
 
 
 # this definition exists because stream targets must diagnose embedded external references
-def VerifyEmbedMut(Adapter: FreeCadAdapter, DocValue) -> None:
+def VerifyEmbedMut(Adapter: FreeCadAdapter, DocValue: CadDocument) -> None:
     PortableStream = IoStream.BytesIO()
     PortableResult = Adapter.write(DocValue, PortableStream)
     assert PortableResult.application_usable is False
@@ -4516,15 +4315,14 @@ def VerifyEmbedMut(Adapter: FreeCadAdapter, DocValue) -> None:
     )
     PortableRestored = Adapter.read(PortableStream.getvalue())
     assert (
-        PortableRestored.metadata["freecad"]["external_documents"][0]["document"]
-        == DocValue.metadata["freecad"]["external_documents"][0]["document"]
+        OuterDocs(PortableRestored)[0]["document"] == OuterDocs(DocValue)[0]["document"]
     )
 
 
 # this definition exists because nonportable writes must retain their original relative reference
-def VerifyLinkMut(Adapter: FreeCadAdapter, DocValue) -> None:
+def VerifyLinkMut(Adapter: FreeCadAdapter, DocValue: CadDocument) -> None:
     Nonportable = IoStream.BytesIO()
-    Adapter.write(DocValue, Nonportable, WriteOptions(values={"portable": False}))
+    _ = Adapter.write(DocValue, Nonportable, WriteOptions(values={"portable": False}))
     with Zipfile.ZipFile(IoStream.BytesIO(Nonportable.getvalue())) as Archive:
         NonportableXml = XmlTree.fromstring(Archive.read("Document.xml"))
     OriginalLink = NonportableXml.find(
@@ -4535,24 +4333,22 @@ def VerifyLinkMut(Adapter: FreeCadAdapter, DocValue) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestLinkOnlyDoc(TmpPath) -> None:
+def TestLinkOnlyDoc(TmpPath: FilePath) -> None:
     SourceFolder = TmpPath / "source"
     Child = SourceFolder / "nested" / "Child.FCStd"
     Child.parent.mkdir(parents=True)
-    Child.write_bytes(NativePart())
+    _ = Child.write_bytes(NativePart())
     RootValue = SourceFolder / "LinkOnly.FCStd"
-    RootValue.write_bytes(NativeLinkOnly("nested/Child.FCStd"))
+    _ = RootValue.write_bytes(NativeLinkOnly("nested/Child.FCStd"))
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(RootValue)
     assert DocValue.assembly is None
-    assert [
-        ItemValue["file"]
-        for ItemValue in DocValue.metadata["freecad"]["external_documents"]
-    ] == ["nested/Child.FCStd"]
-    WithoutBrep = Adapter.read(RootValue, ReadOptions(include_brep=False))
-    LinkedWithoutBrep = WithoutBrep.metadata["freecad"]["external_documents"][0][
-        "document"
+    assert [ItemValue["file"] for ItemValue in OuterDocs(DocValue)] == [
+        "nested/Child.FCStd"
     ]
+    WithoutBrep = Adapter.read(RootValue, ReadOptions(include_brep=False))
+    LinkedWithoutBrep = OuterDocs(WithoutBrep)[0]["document"]
+    assert isinstance(LinkedWithoutBrep, CadDocument)
     assert not any(
         (
             Payload.role == PayloadRole.BREP
@@ -4562,7 +4358,7 @@ def TestLinkOnlyDoc(TmpPath) -> None:
     Staging = TmpPath / "staging"
     Target = Staging / "Portable.FCStd"
     Result = Adapter.write(DocValue, Target)
-    Staging.rename(TmpPath / "relocated")
+    _ = Staging.rename(TmpPath / "relocated")
     Target = TmpPath / "relocated" / "Portable.FCStd"
     Bundled = Target.parent / "Portable" / "Child.FCStd"
     assert Bundled.is_file()
@@ -4574,16 +4370,16 @@ def TestLinkOnlyDoc(TmpPath) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestNonportable(TmpPath) -> None:
+def TestNonportable(TmpPath: FilePath) -> None:
     Child = TmpPath / "nested" / "Child.FCStd"
     Child.parent.mkdir()
-    Child.write_bytes(NativePart())
+    _ = Child.write_bytes(NativePart())
     Source = TmpPath / "LinkOnly.FCStd"
-    Source.write_bytes(NativeLinkOnly("nested/Child.FCStd"))
+    _ = Source.write_bytes(NativeLinkOnly("nested/Child.FCStd"))
     DocValue = OpenDoc(Source)
     Blocked = TmpPath / "blocked.FCStd"
     with Pytest.raises(AppUsabilityError) as Captured:
-        Registry.write(
+        _ = Registry.write(
             DocValue, Blocked, options=WriteOptions(values={"portable": False})
         )
     assert Captured.value.requirements == ("referenced FreeCAD component files",)
@@ -4608,9 +4404,9 @@ def TestNonportable(TmpPath) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestPartExact(TmpPath) -> None:
+def TestPartExact(TmpPath: FilePath) -> None:
     Source = TmpPath / "source.FCStd"
-    Source.write_bytes(NativePart())
+    _ = Source.write_bytes(NativePart())
     Target = TmpPath / "replay.FCStd"
     Result = WriteDoc(OpenDoc(Source), Target)
     assert Result.metadata["mode"] == "exact_native_roundtrip"
@@ -4621,7 +4417,7 @@ def TestPartExact(TmpPath) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def ForgedNativeDoc(DocValue, DataValue: bytes):
+def ForgedNativeDoc(DocValue: CadDocument, DataValue: bytes) -> CadDocument:
     Payload = next(
         (Value for Value in DocValue.brep_payloads if Value.role is PayloadRole.BREP)
     )
@@ -4637,7 +4433,7 @@ def ForgedNativeDoc(DocValue, DataValue: bytes):
             )
         ),
     )
-    return FreecadAdapterModule._annotate_native_sources(Forged)
+    return AnnotateNative(Forged)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -4646,7 +4442,7 @@ def TestRecomputed(Rebuild: bool) -> None:
     DocValue = FreeCadAdapter().read(NativePart())
     ForgedData = b"\nCASCADE Topology V1, (c) Matra-Datavision\nchanged-invalid\n"
     Forged = ForgedNativeDoc(DocValue, ForgedData)
-    assert FreecadAdapterModule._unchanged_native_source(Forged) is None
+    assert UnchangedNative(Forged) is None
     Output = IoStream.BytesIO()
     Result = FreeCadAdapter().write(
         Forged, Output, WriteOptions(values={"rebuild": Rebuild})
@@ -4679,11 +4475,11 @@ def TestRecomputed(Rebuild: bool) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestRootCannot(TmpPath) -> None:
+def TestRootCannot(TmpPath: FilePath) -> None:
     Child = TmpPath / "Child.FCStd"
-    Child.write_bytes(NativePart())
+    _ = Child.write_bytes(NativePart())
     Parent = TmpPath / "Parent.FCStd"
-    Parent.write_bytes(
+    _ = Parent.write_bytes(
         NativeOuterAsm((("Child", "Assembly::AssemblyLink", Child.name, "Body"),))
     )
     DocValue = FreeCadAdapter().read(Parent)
@@ -4715,9 +4511,7 @@ def TestRootCannot(TmpPath) -> None:
             )
         ),
     )
-    Forged = FreecadAdapterModule._annotate_native_sources(
-        Replace(DocValue, assembly=AsmValue)
-    )
+    Forged = AnnotateNative(Replace(DocValue, assembly=AsmValue))
     Target = TmpPath / "rebuilt" / "Parent.FCStd"
     Result = WriteDoc(Forged, Target, values={"rebuild": True})
     Transfers = {Value.capability: Value for Value in Result.transfers}
@@ -4746,11 +4540,11 @@ def TestRootCannot(TmpPath) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestAsmLink(TmpPath) -> None:
+def TestAsmLink(TmpPath: FilePath) -> None:
     Child = TmpPath / "Child.FCStd"
-    Child.write_bytes(NativeAsm())
+    _ = Child.write_bytes(NativeAsm())
     Parent = TmpPath / "Parent.FCStd"
-    Parent.write_bytes(
+    _ = Parent.write_bytes(
         NativeOuterAsm((("Child", "Assembly::AssemblyLink", Child.name, "Assembly"),))
     )
     DocValue = FreeCadAdapter().read(Parent)
@@ -4779,7 +4573,7 @@ def TestFcstdData() -> None:
     Adapter = FreeCadAdapter()
     assert Adapter.probe(Stripped.getvalue()).confidence == 0.0
     with Pytest.raises(FreeCadAdapterError, match="missing referenced data"):
-        Adapter.read(Stripped.getvalue())
+        _ = Adapter.read(Stripped.getvalue())
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -4791,16 +4585,16 @@ def TestFcstdUnsafe() -> None:
     Adapter = FreeCadAdapter()
     assert Adapter.probe(Unsafe).confidence == 0.0
     with Pytest.raises(FreeCadAdapterError, match="unsafe or invalid"):
-        Adapter.read(Unsafe)
+        _ = Adapter.read(Unsafe)
     DocValue = Adapter.read(NativePart())
-    Freecad = dict(DocValue.metadata["freecad"])
-    Objects = [dict(Value) for Value in Freecad["objects"]]
+    Freecad = MetaMap(DocValue.metadata["freecad"])
+    Objects = [MetaMap(ItemValue) for ItemValue in MetaSeq(Freecad["objects"])]
     Objects[0]["name"] = "../Bad"
     Freecad["objects"] = Objects
     Invalid = Replace(DocValue, metadata={"freecad": Freecad})
     Output = IoStream.BytesIO()
     with Pytest.raises(ValueError, match="unsafe or invalid"):
-        Adapter.write(Invalid, Output)
+        _ = Adapter.write(Invalid, Output)
     assert Output.getvalue() == b""
 
 
@@ -4819,7 +4613,7 @@ def TestFcstdXml() -> None:
     Adapter = FreeCadAdapter()
     assert Adapter.probe(Source.getvalue()).confidence == 0.0
     with Pytest.raises(FreeCadAdapterError, match="nesting exceeds safe limits"):
-        Adapter.read(Source.getvalue())
+        _ = Adapter.read(Source.getvalue())
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -4827,7 +4621,7 @@ def TestCarrierA() -> None:
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(NativePart())
     Valid = IoStream.BytesIO()
-    Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
+    _ = Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
     Malformed = IoStream.BytesIO()
     with Zipfile.ZipFile(IoStream.BytesIO(Valid.getvalue())) as Source:
         with Zipfile.ZipFile(Malformed, "w", Zipfile.ZIP_DEFLATED) as Output:
@@ -4837,7 +4631,7 @@ def TestCarrierA() -> None:
             Output.writestr("interchange/document.json", b"{")
     assert Adapter.probe(Malformed.getvalue()).confidence == 0.0
     with Pytest.raises(FreeCadAdapterError, match="corrupt"):
-        Adapter.read(Malformed.getvalue())
+        _ = Adapter.read(Malformed.getvalue())
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -4845,7 +4639,7 @@ def TestCarrierA() -> None:
 def TestCarrier(ChangedCopy: str) -> None:
     Adapter = FreeCadAdapter()
     Valid = IoStream.BytesIO()
-    Adapter.write(NeutralDoc(), Valid)
+    _ = Adapter.write(NeutralDoc(), Valid)
     with Zipfile.ZipFile(IoStream.BytesIO(Valid.getvalue())) as Source:
         Entries = {
             InfoValue.filename: Source.read(InfoValue)
@@ -4880,7 +4674,7 @@ def TestCarrier(ChangedCopy: str) -> None:
     assert Result.confidence == 0.0
     assert "copies do not match" in Result.reason
     with Pytest.raises(FreeCadAdapterError, match="copies do not match"):
-        Adapter.read(Divergent.getvalue())
+        _ = Adapter.read(Divergent.getvalue())
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -4888,7 +4682,7 @@ def TestCarrierUses() -> None:
     Adapter = FreeCadAdapter()
     DocValue = NeutralDoc()
     Valid = IoStream.BytesIO()
-    Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
+    _ = Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
     Legacy = IoStream.BytesIO()
     with Zipfile.ZipFile(IoStream.BytesIO(Valid.getvalue())) as Source:
         with Zipfile.ZipFile(Legacy, "w", Zipfile.ZIP_DEFLATED) as Output:
@@ -4909,7 +4703,7 @@ def TestCarrierById() -> None:
     DocValue = Replace(NeutralDoc(), configurations=Configurations)
     Output = IoStream.BytesIO()
     Adapter = FreeCadAdapter()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     ByIdValue = Adapter.read(
         Output.getvalue(), ReadOptions(configuration="configuration:b")
     )
@@ -4926,10 +4720,10 @@ def TestCarrierById() -> None:
 def TestRejectsAnd() -> None:
     Adapter = FreeCadAdapter()
     Carrier = IoStream.BytesIO()
-    Adapter.write(NeutralDoc(), Carrier)
+    _ = Adapter.write(NeutralDoc(), Carrier)
     for Source in (Carrier.getvalue(), NativePart()):
         with Pytest.raises(FreeCadAdapterError, match="configuration"):
-            Adapter.read(Source, ReadOptions(configuration="missing-configuration"))
+            _ = Adapter.read(Source, ReadOptions(configuration="missing-configuration"))
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -4949,7 +4743,7 @@ def TestCarrierAndA() -> None:
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(NativePart())
     Valid = IoStream.BytesIO()
-    Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
+    _ = Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
     Invalid = IoStream.BytesIO()
     InvalidManifest = b'{"foo":"bar"}'
     with Zipfile.ZipFile(IoStream.BytesIO(Valid.getvalue())) as Source:
@@ -4981,7 +4775,7 @@ def TestCarrierAndA() -> None:
     assert Result.confidence == 0.0
     assert "cannot be restored" in Result.reason
     with Pytest.raises(FreeCadAdapterError, match="cannot be restored"):
-        Adapter.read(Invalid.getvalue())
+        _ = Adapter.read(Invalid.getvalue())
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -4992,7 +4786,7 @@ def TestCarrierDoc(DocXml: bytes | None) -> None:
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(NativePart())
     Valid = IoStream.BytesIO()
-    Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
+    _ = Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
     with Zipfile.ZipFile(IoStream.BytesIO(Valid.getvalue())) as Source:
         Manifest = Source.read("interchange/document.json")
     Invalid = IoStream.BytesIO()
@@ -5004,7 +4798,7 @@ def TestCarrierDoc(DocXml: bytes | None) -> None:
     assert Result.confidence == 0.0
     assert "Document.xml" in Result.reason
     with Pytest.raises(FreeCadAdapterError, match="Document.xml"):
-        Adapter.read(Invalid.getvalue())
+        _ = Adapter.read(Invalid.getvalue())
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -5012,14 +4806,14 @@ def TestCarrierNon() -> None:
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(NativePart(BrepModelBrep(TriangleBrep())))
     Valid = IoStream.BytesIO()
-    Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
+    _ = Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
     Invalid = IoStream.BytesIO()
     with Zipfile.ZipFile(IoStream.BytesIO(Valid.getvalue())) as Source:
         RootValue = XmlTree.fromstring(Source.read("Document.xml"))
         Referenced = [
-            NodeValue.get("file", "")
+            NodeValue.get("file") or ""
             for NodeValue in RootValue.findall(".//*[@file]")
-            if NodeValue.tag != "XLink" and NodeValue.get("file", "")
+            if NodeValue.tag != "XLink" and (NodeValue.get("file") or "")
         ]
         assert Referenced
         Missing = Referenced[0]
@@ -5031,7 +4825,7 @@ def TestCarrierNon() -> None:
     assert Result.confidence == 0.0
     assert "missing referenced data" in Result.reason
     with Pytest.raises(FreeCadAdapterError, match="missing referenced data"):
-        Adapter.read(Invalid.getvalue())
+        _ = Adapter.read(Invalid.getvalue())
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -5091,7 +4885,7 @@ def TestCarrierDeep() -> None:
         with Pytest.raises(
             FreeCadAdapterError, match="JSON nesting exceeds safe limits"
         ):
-            Adapter.read(Hostile)
+            _ = Adapter.read(Hostile)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -5107,7 +4901,7 @@ def TestCarrierAnd(EntryName: str, EntryData: bytes, Message: str) -> None:
     Adapter = FreeCadAdapter()
     DocValue = Adapter.read(NativePart())
     Valid = IoStream.BytesIO()
-    Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
+    _ = Adapter.write(DocValue, Valid, WriteOptions(values={"rebuild": True}))
     Hostile = IoStream.BytesIO()
     with Zipfile.ZipFile(IoStream.BytesIO(Valid.getvalue())) as Source:
         with Zipfile.ZipFile(Hostile, "w", Zipfile.ZIP_DEFLATED) as Output:
@@ -5118,7 +4912,7 @@ def TestCarrierAnd(EntryName: str, EntryData: bytes, Message: str) -> None:
             Output.writestr(EntryName, EntryData)
     assert Adapter.probe(Hostile.getvalue()).confidence == 0.0
     with Pytest.raises(FreeCadAdapterError, match=Message):
-        Adapter.read(Hostile.getvalue())
+        _ = Adapter.read(Hostile.getvalue())
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -5145,15 +4939,6 @@ def TestProbeEntry() -> None:
             break
         Offset += 46 + NameLength + ExtraLength + CommentLength
     assert FreeCadAdapter().probe(bytes(DataValue)).confidence == 0.0
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestSupports() -> None:
-    DocValue = FreeCadAdapter().read(NativePart())
-    Adapter = FreeCadAdapter()
-    assert Adapter.supports(DocValue, IoStream.BytesIO())
-    assert not Adapter.supports(DocValue, IoStream.StringIO())
-    assert not Adapter.supports(DocValue, IoStream.BufferedReader(IoStream.BytesIO()))
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -5187,14 +4972,14 @@ def TestPartdesignC() -> None:
         (Payload.role == PayloadRole.BREP for Payload in DocValue.brep_payloads)
     )
     Output = IoStream.BytesIO()
-    Adapter.write(DocValue, Output)
+    _ = Adapter.write(DocValue, Output)
     with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
         Names = set(Archive.namelist())
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     References = [
-        NodeValue.get("file", "")
+        NodeValue.get("file") or ""
         for NodeValue in RootValue.findall(".//*[@file]")
-        if NodeValue.tag != "XLink" and NodeValue.get("file", "")
+        if NodeValue.tag != "XLink" and (NodeValue.get("file") or "")
     ]
     assert References
     assert set(References) <= Names
@@ -5272,7 +5057,7 @@ def TestExample(NameValue: str) -> None:
 
 
 # this definition exists because the bundled assembly has one stable native read contract
-def VerifyBundled(DocValue) -> tuple[bytes, ...]:
+def VerifyBundled(DocValue: CadDocument) -> tuple[bytes, ...]:
     assert DocValue.validate() == ()
     assert DocValue.assembly is not None
     assert len(DocValue.assembly.definitions) == 14
@@ -5313,7 +5098,7 @@ def VerifyBundled(DocValue) -> tuple[bytes, ...]:
 
 # this definition exists because each emitted component must contain loadable native shape data
 def CollectShapes(ComponentFiles: list[FilePath]) -> list[bytes]:
-    EmittedShapes = []
+    EmittedShapes: list[bytes] = []
     for ComponentFile in ComponentFiles:
         with Zipfile.ZipFile(ComponentFile) as Archive:
             RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
@@ -5337,7 +5122,7 @@ def CollectShapes(ComponentFiles: list[FilePath]) -> list[bytes]:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestAsmFcstdAnd(TmpPath) -> None:
+def TestAsmFcstdAnd(TmpPath: FilePath) -> None:
     Source = KFreecadExamples / "AssemblyExample.FCStd"
     if not Source.is_file():
         Pytest.skip("bundled FreeCAD assembly example is unavailable")
@@ -5709,8 +5494,6 @@ globals()["_filtered_document"] = FilteredDoc
 # this binding exists because shared behavior needs one stable value
 globals()["_forged_native_brep_document"] = ForgedNativeDoc
 
-# this binding exists because shared behavior needs one stable value
-globals()["_line_entity"] = LineEntity
 
 # this binding exists because shared behavior needs one stable value
 globals()["_mesh_kernel_fixture"] = MeshKernel

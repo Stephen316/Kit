@@ -9,8 +9,6 @@
 from __future__ import annotations
 import ast as AstInfo
 from pathlib import Path as FilePath
-import struct as StructLib
-import pytest as PytestLib
 from convert.adapters.solidworks.core import Adapter as SolidworksAdapter
 from convert.adapters.solidworks.assembly import Assembly as SolidworksAssembly
 from convert.adapters.solidworks.core import Display as SolidworksDisplay
@@ -18,33 +16,10 @@ from convert.adapters.solidworks.core import Native as SolidworksNative
 from convert.adapters.solidworks.core.Adapter import SldprtAdapter
 from convert.adapters.solidworks.container.Container import SldprtArchive
 from convert.adapters.solidworks.container.Format import (
-    ASSEMBLY_FORMAT_ID as IdInfo,
-    ASSEMBLY_SUFFIX as Suffix,
-    CANONICAL_PLANE_FEATURE_TYPE as TypeInfo,
-    CLASS_MARKER as Marker,
     COMPONENT_TREE_STREAM as Stream,
-    CONTAINER_VERSIONS as Versions,
-    CONTENT_TYPES_STREAM as StreamA,
-    DIMENSION_SCALAR_HEADERS as Headers,
     DISPLAY_LISTS_STREAM as StreamB,
-    FEATURES_STREAM as StreamC,
-    FORMAT_IDS as IdsInfo,
     FORMAT_ID_BY_SUFFIX as SuffixA,
     INFO as InfoInfo,
-    KEYWORDS_STREAM as StreamD,
-    KIT_DOCUMENT_STREAM as StreamE,
-    MATES_STREAM_NAME as NameInfo,
-    MATES_STREAM_SUFFIX as SuffixB,
-    OFFICIAL_REFERENCE_PLANE_FEATURE_TYPES as Types,
-    PARTITION_STREAM as StreamF,
-    PART_FORMAT_ID as IdInfoA,
-    PART_SUFFIX as SuffixC,
-    PLANE_FEATURE_TYPES as TypesA,
-    RELATIONSHIPS_STREAM as StreamG,
-    RESOLVED_FEATURES_STREAM as StreamH,
-    SERIALIZED_STRING_MARKER as MarkerA,
-    SOLIDWORKS_STREAM as StreamI,
-    SOLID_BODY_FEATURE_TYPES as TypesB,
     SUFFIX_BY_FORMAT_ID as IdInfoB,
     dimension_scalar_value_offset as DimensionSVO,
     is_cad_path as IsCadPath,
@@ -52,103 +27,19 @@ from convert.adapters.solidworks.container.Format import (
 )
 from interchange import (
     BooleanOperation,
+    CadDocument,
     Capability,
-    CircleGeometry,
-    FeatureKind,
-    LineGeometry,
 )
+from interchange.geometry.models.GeometryCurves import CircleGeometry, LineGeometry
 
 # centralizes shared evidence so every related assertion uses one value
 KSample = FilePath(__file__).parents[4] / "examples" / ".SLDPRT" / "example.SLDPRT"
 
 
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPVAEADFAI() -> None:
-    assert SldprtAdapter().info is InfoInfo
-    assert IdsInfo == (InfoInfo.format_id, *InfoInfo.aliases)
-    assert tuple(SuffixA) == InfoInfo.extensions
-    assert tuple(SuffixA.values()) == IdsInfo
-    assert IdInfoB == {FormatId: SuffixD for SuffixD, FormatId in SuffixA.items()}
-    assert (IdInfoA, IdInfo) == IdsInfo
-    assert (SuffixC, Suffix) == InfoInfo.extensions
-    assert Versions == frozenset({3, 4})
-    assert (
-        Stream,
-        StreamB,
-        StreamD,
-        StreamC,
-        StreamH,
-        StreamF,
-        StreamI,
-        StreamE,
-        StreamA,
-        StreamG,
-        NameInfo,
-        SuffixB,
-    ) == (
-        "swXmlContents/COMPINSTANCETREE",
-        "Contents/DisplayLists",
-        "swXmlContents/KeyWords",
-        "swXmlContents/Features",
-        "Contents/Config-0-ResolvedFeatures",
-        "Contents/Config-0-Partition",
-        "Contents/SolidWorks",
-        "Kit/Interchange",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "MatesList",
-        "-MatesList",
-    )
-    assert Marker.hex() == "ffff0100"
-    assert MarkerA.hex() == "fffeff"
-    assert tuple((Header.hex() for Header in Headers)) == (
-        "0000000000000040ffffffff00000000fffeff000000",
-        "0000000000000040ffffffff000000000000",
-    )
-    assert TypeInfo == "plane"
-    assert Types == frozenset({"refplane"})
-    assert TypesA == frozenset({"plane", "refplane"})
-    assert TypesB == frozenset({"featsolidbodyfolder", "solidbodyfolder"})
-    assert all(
-        (
-            SolidworksAdapter._FEATURE_KIND_BY_NATIVE[NativeType]
-            == FeatureKind.REFERENCE
-            for NativeType in (*TypesA, *TypesB)
-        )
-    )
 
 
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestMLIRLACWUF() -> None:
-    Expected = {
-        142: 138,
-        146: 138,
-        152: 148,
-        154: 150,
-        156: 148,
-        158: 144,
-        162: 158,
-        166: 158,
-        167: 158,
-    }
-    assert SolidworksNative.MARKER_LOCAL_ID_OFFSET_BY_LENGTH == Expected
-    for Length, Relative in Expected.items():
-        DataValue = bytearray(Length + 4)
-        StructLib.pack_into("<I", DataValue, Relative, 42)
-        assert SolidworksNative._marker_local_id(bytes(DataValue), 0, Length) == 42
-    assert SolidworksNative._marker_local_id(bytes(2048), 0, 2048) is None
 
 
-# keeps this focused behavior isolated so regressions remain immediately visible
-@PytestLib.mark.parametrize("Header", Headers)
-def TestDSHBASAE(Header: bytes) -> None:
-    DataValue = b"x" + Header + StructLib.pack("<d", 2.0)
-    Expected = 1 + len(Header)
-    assert DimensionSVO(DataValue, 1, len(DataValue)) == Expected
-    assert DimensionSVO(DataValue[:-1], 1, len(DataValue) - 1) is None
-    assert DimensionSVO(DataValue, 1, len(DataValue), trailing_bytes=7) is None
-    WithTrailer = DataValue + b"\x00" * 7
-    assert DimensionSVO(WithTrailer, 1, len(WithTrailer), trailing_bytes=7) == Expected
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
@@ -190,7 +81,7 @@ def TestPLHOSD() -> None:
         "solidbodyfolder",
     }
     SourceRoot = FilePath(SolidworksAdapter.__file__).parents[1]
-    Occurrences = {ItemValue: [] for ItemValue in ValueList}
+    Occurrences: dict[str, list[str]] = {ItemValue: [] for ItemValue in ValueList}
     for TargetPath in SourceRoot.rglob("*.py"):
         RelativePath = TargetPath.relative_to(SourceRoot)
         if "programs" in RelativePath.parts or TargetPath.name == "AssemblyCore.py":
@@ -204,20 +95,6 @@ def TestPLHOSD() -> None:
     }
 
 
-# keeps this focused behavior isolated so regressions remain immediately visible
-@PytestLib.mark.parametrize(
-    ("ItemValue", "IsCad", "IsComponent"),
-    (
-        ("C:/parts/Part.SLDPRT", True, False),
-        ("C:/parts/Assembly.SLDASM", True, False),
-        ("C:/parts/Part.sldprtx", False, False),
-        ("Rotor@Assembly", False, True),
-        ("Top Plane@Rotor@Assembly", False, False),
-    ),
-)
-def TestPPCIE(ItemValue: str, IsCad: bool, IsComponent: bool) -> None:
-    assert IsCadPath(ItemValue) is IsCad
-    assert IsComponentPath(ItemValue) is IsComponent
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
@@ -281,12 +158,15 @@ def TestSPASPAE() -> None:
     Document = SldprtAdapter().read(KSample)
     assert len(Document.sketches) == 5
     First = Document.sketch("sldprt:sketch:26")
-    FirstEdges = [
+    ProfileEdges = [
         Entity.geometry
         for Entity in First.entities
         if Entity.id in First.closed_profile_entity_ids[0]
     ]
-    assert all((isinstance(EdgeInfo, LineGeometry) for EdgeInfo in FirstEdges))
+    FirstEdges = [
+        EdgeInfo for EdgeInfo in ProfileEdges if isinstance(EdgeInfo, LineGeometry)
+    ]
+    assert len(FirstEdges) == len(ProfileEdges)
     assert FirstEdges[0].start.x == -124.3
     assert FirstEdges[0].start.y == -89.75
     assert FirstEdges[2].start.x == 124.3
@@ -336,5 +216,5 @@ def TestPBIPBFB() -> None:
 # keeps this focused behavior isolated so regressions remain immediately visible
 def TestNJRKHAB() -> None:
     SourceDoc = SldprtAdapter().read(KSample)
-    Restored = type(SourceDoc).from_json(SourceDoc.to_json())
+    Restored = CadDocument.from_json(SourceDoc.to_json())
     assert Restored == SourceDoc

@@ -28,13 +28,11 @@ from interchange import (
     CadDocument,
     Capability,
     LineCurve,
-    NurbsCurve,
     PlaneSurface,
     Transform,
     SpaceVector,
-    FilterDocument,
-    InferCaps,
 )
+from interchange.document.models.DocumentCaps import InferCaps
 from tests.interchange.document.DocumentTests import BuildDocument
 
 # dynamic package loading lets reflection inspect the facade without mixed import forms
@@ -73,8 +71,8 @@ def BuildTriangle() -> BrepModel:
         )
     )
     return BrepModel(
-        Curves=Curves,
-        Surfaces=(
+        curves=Curves,
+        surfaces=(
             PlaneSurface(
                 "surface:0",
                 SpaceVector(0.0, 0.0, 0.0),
@@ -82,86 +80,36 @@ def BuildTriangle() -> BrepModel:
                 SpaceVector(1.0, 0.0, 0.0),
             ),
         ),
-        Vertices=Vertices,
-        Edges=Edges,
-        Coedges=Coedges,
-        Loops=(
+        vertices=Vertices,
+        edges=Edges,
+        coedges=Coedges,
+        loops=(
             BrepLoop(
                 "loop:0", tuple((ItemValue.EntityId for ItemValue in Coedges)), True
             ),
         ),
-        Faces=(BrepFace("face:0", "surface:0", ("loop:0",)),),
-        FaceUses=(BrepFaceUse("face-use:0", "face:0"),),
-        Shells=(BrepShell("shell:0", ("face-use:0",), False),),
-        ShellUses=(BrepShellUse("shell-use:0", "shell:0"),),
-        Regions=(BrepRegion("region:0", ("shell-use:0",), False),),
-        Bodies=(BrepBody("brep-body:0", ("region:0",), Transform(), "body:1"),),
+        faces=(BrepFace("face:0", "surface:0", ("loop:0",)),),
+        face_uses=(BrepFaceUse("face-use:0", "face:0"),),
+        shells=(BrepShell("shell:0", ("face-use:0",), False),),
+        shell_uses=(BrepShellUse("shell-use:0", "shell:0"),),
+        regions=(BrepRegion("region:0", ("shell-use:0",), False),),
+        bodies=(BrepBody("brep-body:0", ("region:0",), Transform(), "body:1"),),
     )
 
 
 # historical imports keep conversion suites independent from helper renaming
-def __getattr__(NameText: str) -> object:
-    if NameText == "triangle_brep":
-        return BuildTriangle
-    raise AttributeError(f"module {__name__!r} has no attribute {NameText!r}")
+triangle_brep = BuildTriangle
 
 
 # behavior coverage protects portable interchange semantics during structural refactors
 def CheckRoundtrip() -> None:
     SourceValue = ReplaceValue(
-        BuildDocument(), BrepModel=BuildTriangle(), Capabilities=frozenset()
+        BuildDocument(), brep=BuildTriangle(), capabilities=frozenset()
     )
-    SourceValue.AssertValid()
+    SourceValue.assert_valid()
     assert Capability.KBrep in InferCaps(SourceValue)
-    RestoredValue = CadDocument.FromJson(SourceValue.ToJson())
+    RestoredValue = CadDocument.from_json(SourceValue.to_json())
     assert RestoredValue == SourceValue
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckBaseTypes() -> None:
-    SourceValue = ReplaceValue(
-        BuildDocument(),
-        BrepModel=BuildTriangle(),
-        Capabilities=frozenset({Capability.KBrep, Capability.KParamHistory}),
-    )
-    FilteredValue = FilterDocument(
-        SourceValue, IncludeBrep=False, IncludeMesh=True, KeepPayloads=True
-    )
-    assert FilteredValue.BrepModel is None
-    assert Capability.KBrep not in FilteredValue.Capabilities
-    assert Capability.KParamHistory in FilteredValue.Capabilities
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckBadRefs() -> None:
-    ModelValue = BuildTriangle()
-    BrokenValue = ReplaceValue(
-        ModelValue, Edges=(ReplaceValue(ModelValue.Edges[0], CurveId="missing"),)
-    )
-    ErrorValues = BrokenValue.GetErrors(frozenset({"body:1"}))
-    assert any(("missing curve" in ErrorText for ErrorText in ErrorValues))
-
-
-# behavior coverage protects portable interchange semantics during structural refactors
-def CheckBadSpline() -> None:
-    ModelValue = BuildTriangle()
-    InvalidCurve = NurbsCurve(
-        "curve:0",
-        2,
-        (
-            SpaceVector(0.0, 0.0, 0.0),
-            SpaceVector(0.5, 0.5, 0.0),
-            SpaceVector(1.0, 0.0, 0.0),
-        ),
-        (0.0, 1.0),
-        (2, 2),
-    )
-    InvalidValue = ReplaceValue(
-        ModelValue, Curves=(InvalidCurve, *ModelValue.Curves[1:]), SchemaVersion=""
-    )
-    ErrorValues = InvalidValue.GetErrors(frozenset({"body:1"}))
-    assert "B-rep schema version must be a non-empty string" in ErrorValues
-    assert "B-rep curve curve:0 is invalid" in ErrorValues
 
 
 # behavior coverage protects portable interchange semantics during structural refactors

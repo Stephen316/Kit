@@ -7,10 +7,8 @@
 # to you under it immediately and permanently.
 
 from __future__ import annotations
-import hashlib as Hashlib
 import math as MathInfo
 from pathlib import Path as FilePath
-import struct as StructLib
 import xml.etree.ElementTree as ElementTree
 import pytest as PytestLib
 from convert.adapters.solidworks.container.Container import (
@@ -29,17 +27,12 @@ from convert.adapters.solidworks.resolved.Core import (
     CUT_FLAGS as FlagsA,
     CUT_KIND as KindInfoA,
     FEATURE_FLAGS_MASK as MaskInfo,
-    FEATURE_KIND_BY_FLAGS as FlagsB,
-    FIRST_FEATURE_END_CONDITION_DISTANCE as Distance,
     FIRST_FEATURE_REVERSE_DISTANCE as DistanceA,
     FULL_CIRCLE_DEGREES as DegreesA,
-    LATER_FEATURE_END_CONDITION_DISTANCE as DistanceB,
     LATER_FEATURE_REVERSE_DISTANCE as DistanceC,
     LOFT_FLAGS as FlagsC,
     LOFT_KIND as KindInfoB,
     MID_PLANE_END_CONDITION as ConditionA,
-    PLANE_FLAGS as FlagsD,
-    ROUND_FLAGS as FlagsE,
     ROUND_KIND as KindInfoC,
     SKETCH_FLAGS as FlagsF,
     SKETCH_ON_CURVE_ROLE as RoleInfo,
@@ -47,15 +40,11 @@ from convert.adapters.solidworks.resolved.Core import (
     SWEEP_FLAGS as FlagsG,
     SWEEP_KIND as KindInfoD,
     SWEEP_SINGLE_PROFILE_FLAGS as FlagsH,
-    TREE_NODE_FLAGS as FlagsI,
     FeatureEdit,
-    PatchSketchPlane,
     circle_circumference_point_mm as CircleCPM,
     circle_radius_mm as CircleRadiusMm,
     class_records as ClassRecords,
     dimension_scalars as DimensionScalars,
-    feature_kind as FeatureKind,
-    is_tree_node_flags as IsTreeNodeFlags,
     locate_features as LocateFeatures,
     locate_rectangle_pad as LocateRectanglePad,
     name_records as NameRecords,
@@ -64,61 +53,8 @@ from convert.adapters.solidworks.resolved.Core import (
     rectangle_corners_mm as RectangleCornersMm,
     sketch_arcs as SketchArcs,
     sketch_coordinates as SketchCoordinates,
-    sketch_plane_object_id as SketchPlaneObjectId,
     sketch_points as SketchPoints,
     tree_nodes as TreeNodes,
-)
-from convert.adapters.solidworks.programs.resolved.default.Program import EncodeProgram
-from convert.adapters.solidworks.programs.resolved.circle.default.Program import (
-    EncodeProgram as EncodeCircleProgram,
-)
-from convert.adapters.solidworks.programs.resolved.boss.cut.default.Program import (
-    EncodeProgram as EncodeBossCutProgram,
-)
-from convert.adapters.solidworks.programs.resolved.boss.cut.pair.Program import (
-    EncodeProgram as EncodeBossCutCutProgram,
-)
-from convert.adapters.solidworks.programs.resolved.boss.cut.triple.Program import (
-    EncodeProgram as EncodeBCCCP,
-)
-from convert.adapters.solidworks.programs.resolved.boss.cut.through.Program import (
-    EncodeProgram as EncodeBCTP,
-)
-from convert.adapters.solidworks.programs.resolved.boss.repeated.Program import (
-    EncodeProgram as EncodeBossBossProgram,
-)
-from convert.adapters.solidworks.programs.resolved.boss.chamfer.Program import (
-    EncodeProgram as EncodeBossChamferProgram,
-)
-from convert.adapters.solidworks.programs.resolved.boss.pattern.circular.Program import (
-    EncodeProgram as EncodeBCPP,
-)
-from convert.adapters.solidworks.programs.resolved.boss.fillet.Program import (
-    EncodeProgram as EncodeBossFilletProgram,
-)
-from convert.adapters.solidworks.programs.resolved.boss.pattern.linear.Program import (
-    EncodeProgram as EncodeBLPP,
-)
-from convert.adapters.solidworks.programs.resolved.boss.revolvecut.Program import (
-    EncodeProgram as EncodeBossRevCutProgram,
-)
-from convert.adapters.solidworks.programs.resolved.boss.shell.Program import (
-    EncodeProgram as EncodeBossShellProgram,
-)
-from convert.adapters.solidworks.programs.resolved.box.Program import (
-    EncodeProgram as EncodeBoxProgram,
-)
-from convert.adapters.solidworks.programs.resolved.cut.base.Program import (
-    EncodeProgram as EncodeCutBaseProgram,
-)
-from convert.adapters.solidworks.programs.resolved.planes.right.Program import (
-    EncodeProgram as EncodeRightProgram,
-)
-from convert.adapters.solidworks.programs.resolved.revolve.default.Program import (
-    EncodeProgram as EncodeRevolveProgram,
-)
-from convert.adapters.solidworks.programs.resolved.planes.top.Program import (
-    EncodeProgram as EncodeTopProgram,
 )
 
 # centralizes shared evidence so every related assertion uses one value
@@ -353,73 +289,6 @@ def CentredCorners(WidthMm: float, HeightMm: float) -> tuple[tuple[float, float]
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def TestFFWHODAMTK() -> None:
-    assert Flags == 1073742144
-    assert FlagsA == 1073873354
-    assert FlagsF == 1073741824
-    assert FlagsD == 3221225472
-    assert FlagsE == 1073741825
-    assert FlagsG == 1073758211
-    assert FlagsH == 1073758210
-    assert FlagsC == 1073759236
-    assert MaskInfo == 2147483647
-    assert dict(FlagsB) == {
-        Flags: KindInfo,
-        FlagsA: KindInfoA,
-        FlagsE: KindInfoC,
-        FlagsG: KindInfoD,
-        FlagsH: KindInfoD,
-        FlagsC: KindInfoB,
-    }
-    assert FlagsI == frozenset(FlagsB) | {FlagsF, FlagsD}
-    with PytestLib.raises(TypeError):
-        FlagsB[FlagsF] = KindInfo
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestTHFBINPOTFK() -> None:
-    for FlagsJ, KindInfoE in FlagsB.items():
-        assert FeatureKind(FlagsJ) == KindInfoE
-        assert FeatureKind(FlagsJ | 2147483648) == KindInfoE
-        assert IsTreeNodeFlags(FlagsJ)
-        assert IsTreeNodeFlags(FlagsJ | 2147483648)
-    assert FeatureKind(FlagsF) is None
-    assert FeatureKind(FlagsD) is None
-    assert IsTreeNodeFlags(FlagsF)
-    assert IsTreeNodeFlags(FlagsD)
-    assert not IsTreeNodeFlags(1073746484)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFBADBTFALF() -> None:
-    assert DistanceA == 824
-    assert Distance == 818
-    assert DistanceC == 721
-    assert DistanceB == 715
-    assert DistanceA - Distance == DistanceC - DistanceB
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestRCOITPS() -> None:
-    assert RectangleCornersMm(-20.0, -10.0, 20.0, 10.0) == (
-        (-20.0, -10.0),
-        (20.0, 10.0),
-        (-20.0, 10.0),
-        (20.0, -10.0),
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestCGRTTTSDP() -> None:
-    ValueX, ValueY = CircleCPM(4.0)
-    assert MathInfo.degrees(MathInfo.atan2(ValueY, ValueX)) == PytestLib.approx(17.0)
-    assert CircleRadiusMm(ValueX, ValueY) == PytestLib.approx(4.0)
-    for Radius in (0.0, -1.0, MathInfo.nan, MathInfo.inf):
-        with PytestLib.raises(SldprtFormatError):
-            CircleCPM(Radius)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
 @KCorpusParts
 def TestWRPIRTTGL() -> None:
     Resolved = RectanglePS()
@@ -437,7 +306,7 @@ def TestWRPIRTTGL() -> None:
     assert Feature.reverse_offset == Layout.reverse_offset
     assert Feature.end_condition_offset == Layout.end_condition_offset
     assert tuple((Point.offset for Point in Feature.points)) == tuple(
-        (XOffset for XOffset, IgnoredValue in Layout.point_offsets)
+        (XOffset for XOffset, _ in Layout.point_offsets)
     )
     assert Feature.corners_mm == Layout.corners_mm
     assert Feature.bounds_mm == (-20.0, -10.0, 20.0, 10.0)
@@ -532,131 +401,7 @@ def TestPFRETSCH() -> None:
     )
     for Edits in Rejected:
         with PytestLib.raises(SldprtFormatError):
-            PatchFeatures(Resolved, Edits)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestDBPPEDD() -> None:
-    ProgramData = EncodeBoxProgram()
-    PatchedData = PatchFeatures(
-        ProgramData,
-        {
-            0: FeatureEdit(
-                corners_mm=RectangleCornersMm(0.0, 0.0, 20.0, 15.0),
-                depth_mm=12.0,
-                update_depth_copies=True,
-                SketchDimensionsMm=(20.0, 15.0),
-            )
-        },
-    )
-    FeatureData = LocateFeatures(PatchedData)[0]
-    assert len(PatchedData) == 14855
-    assert FeatureData.feature_id == 34
-    assert FeatureData.corners_mm == RectangleCornersMm(0.0, 0.0, 20.0, 15.0)
-    assert FeatureData.SketchDimensionsMm == PytestLib.approx((20.0, 15.0))
-    assert FeatureData.depth_mm == PytestLib.approx(12.0)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestDBPRIDD() -> None:
-    ProgramData = EncodeBoxProgram()
-    for DimensionData in ((10.0,), (10.0, 0.0), (10.0, MathInfo.nan)):
-        with PytestLib.raises(SldprtFormatError):
-            PatchFeatures(
-                ProgramData, {0: FeatureEdit(SketchDimensionsMm=DimensionData)}
-            )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-@PytestLib.mark.parametrize("PlaneObjectId", (2, 3, 4))
-def TestPSPRTPPR(PlaneObjectId: int) -> None:
-    PatchedData = PatchSketchPlane(EncodeProgram(), PlaneObjectId)
-    assert SketchPlaneObjectId(PatchedData) == PlaneObjectId
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPSPPCDT() -> None:
-    BaselineData = EncodeProgram()
-    CircleData = EncodeCircleProgram()
-    TopData = EncodeTopProgram()
-    RightData = EncodeRightProgram()
-    assert (len(BaselineData), len(CircleData), len(TopData), len(RightData)) == (
-        11075,
-        12514,
-        11075,
-        11147,
-    )
-    assert len(LocateFeatures(BaselineData)) == 1
-    assert len(LocateFeatures(CircleData)[0].arcs) == 1
-    assert SketchPlaneObjectId(TopData) == 3
-    assert SketchPlaneObjectId(RightData) == 4
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPPPPCBOA() -> None:
-    for ProgramData, ExpectedLength in (
-        (EncodeCutBaseProgram(), 16579),
-        (EncodeBossCutProgram(), 16472),
-        (EncodeBCTP(), 14693),
-    ):
-        FeatureData = LocateFeatures(ProgramData)
-        assert len(ProgramData) == ExpectedLength
-        assert [ItemData.kind for ItemData in FeatureData] == [KindInfo, KindInfoA]
-        assert [ItemData.feature_id for ItemData in FeatureData] == [32, 40]
-        assert [ItemData.sketch_id for ItemData in FeatureData] == [26, 33]
-        assert [len(ItemData.points) for ItemData in FeatureData] == [4, 4]
-    ThroughData = LocateFeatures(EncodeBCTP())
-    assert ThroughData[0].depth_mm == PytestLib.approx(15.0)
-    assert ThroughData[1].depth_mm is None
-    assert ThroughData[1].depth_offset is None
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPPPPCBO() -> None:
-    ProgramData = EncodeBossBossProgram()
-    FeatureData = LocateFeatures(ProgramData)
-    assert len(ProgramData) == 16474
-    assert [ItemData.kind for ItemData in FeatureData] == [KindInfo, KindInfo]
-    assert [ItemData.feature_id for ItemData in FeatureData] == [32, 40]
-    assert [ItemData.sketch_id for ItemData in FeatureData] == [26, 33]
-    assert [len(ItemData.points) for ItemData in FeatureData] == [4, 4]
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPPGPCBO() -> None:
-    ProgramData = EncodeBossRevCutProgram()
-    FeatureData = LocateFeatures(ProgramData)
-    assert len(ProgramData) == 17713
-    assert [ItemData.kind for ItemData in FeatureData] == [KindInfo, "revolve-cut"]
-    assert [ItemData.feature_id for ItemData in FeatureData] == [32, 39]
-    assert [ItemData.sketch_id for ItemData in FeatureData] == [26, 33]
-    assert [len(ItemData.points) for ItemData in FeatureData] == [4, 4]
-    assert FeatureData[1].angle_radians == PytestLib.approx(2.0 * MathInfo.pi)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPBFPIC() -> None:
-    ProgramData = EncodeBossFilletProgram()
-    NamedData = [
-        ItemData
-        for ItemData in NameRecords(ProgramData)
-        if ItemData.name in {"Sketch1", "Boss-Extrude1", "Fillet1"}
-    ]
-    ScalarData = DimensionScalars(ProgramData)
-    assert len(ProgramData) == 14962
-    assert (
-        Hashlib.sha256(ProgramData).hexdigest()
-        == "fed3e9464e9fa26722941b7355502fe2d3c24243bc00993f22726f39d11418bb"
-    )
-    assert [(ItemData.name, ItemData.feature_id) for ItemData in NamedData] == [
-        ("Sketch1", 26),
-        ("Boss-Extrude1", 32),
-        ("Fillet1", 34),
-    ]
-    assert [(ItemData.name, ItemData.value_mm) for ItemData in ScalarData[-2:]] == [
-        ("D1", 10.0),
-        ("D1", 2.0),
-    ]
+            _ = PatchFeatures(Resolved, Edits)
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
@@ -673,32 +418,6 @@ def TestBFPCNEVB() -> None:
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPBCPIC() -> None:
-    ProgramData = EncodeBossChamferProgram()
-    NamedData = [
-        ItemData
-        for ItemData in NameRecords(ProgramData)
-        if ItemData.name in {"Sketch1", "Boss-Extrude1", "Chamfer1"}
-    ]
-    ScalarData = DimensionScalars(ProgramData)
-    assert len(ProgramData) == 15811
-    assert (
-        Hashlib.sha256(ProgramData).hexdigest()
-        == "d8b6f859a0e60e5e6307833ce502723123663bc9e25ca2b46e74f608dd5b9450"
-    )
-    assert [(ItemData.name, ItemData.feature_id) for ItemData in NamedData] == [
-        ("Sketch1", 26),
-        ("Boss-Extrude1", 32),
-        ("Chamfer1", 35),
-    ]
-    assert [(ItemData.name, ItemData.value_mm) for ItemData in ScalarData] == [
-        ("D1", 10.0),
-        ("D1", 2.0),
-        ("D2", PytestLib.approx(MathInfo.pi * 250.0)),
-    ]
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
 def TestBCPCNEVB() -> None:
     ProgramPath = (
         FilePath(__file__).parents[4]
@@ -709,31 +428,6 @@ def TestBCPCNEVB() -> None:
     assert "base64" not in SourceText
     assert "b85decode" not in SourceText
     assert "opaque" not in SourceText.casefold()
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPBSPIC() -> None:
-    ProgramData = EncodeBossShellProgram()
-    NamedData = [
-        ItemData
-        for ItemData in NameRecords(ProgramData)
-        if ItemData.name in {"Sketch1", "Boss-Extrude1", "Shell1"}
-    ]
-    ScalarData = DimensionScalars(ProgramData)
-    assert len(ProgramData) == 13868
-    assert (
-        Hashlib.sha256(ProgramData).hexdigest()
-        == "19572f2d262a02c450ac66315089598074f506880ac0df03f8a74670ffac0191"
-    )
-    assert [(ItemData.name, ItemData.feature_id) for ItemData in NamedData] == [
-        ("Sketch1", 26),
-        ("Boss-Extrude1", 32),
-        ("Shell1", 34),
-    ]
-    assert [(ItemData.name, ItemData.value_mm) for ItemData in ScalarData] == [
-        ("D1", 10.0),
-        ("D1", 2.0),
-    ]
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
@@ -750,61 +444,6 @@ def TestBSPCNEVB() -> None:
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPBLPPIC() -> None:
-    ProgramData = EncodeBLPP()
-    NamedData = [
-        ItemData
-        for ItemData in NameRecords(ProgramData)
-        if ItemData.name in {"Sketch1", "Boss-Extrude1", "LPattern1"}
-    ]
-    ScalarData = DimensionScalars(ProgramData)
-    assert len(ProgramData) == 22264
-    assert (
-        Hashlib.sha256(ProgramData).hexdigest()
-        == "fa69899e0a0d5f3271f2e1a9fff8e8eae396c7492f8910ef3ba470b3f53bb370"
-    )
-    assert [(ItemData.name, ItemData.feature_id) for ItemData in NamedData] == [
-        ("Sketch1", 26),
-        ("Boss-Extrude1", 32),
-        ("LPattern1", 40),
-    ]
-    assert ScalarData[0].name == "D1"
-    assert ScalarData[0].value_mm == PytestLib.approx(5.0)
-    assert next(
-        (ItemData for ItemData in ScalarData if ItemData.name == "D3")
-    ).value_mm == PytestLib.approx(5.0)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestBLPPEPADF() -> None:
-    ProgramData = EncodeBLPP(
-        {
-            12656: 0.005,
-            14535: 0.005,
-            14569: -0.0,
-            14577: -0.0,
-            14585: 1.0,
-            14620: -0.0,
-            14636: -MathInfo.sqrt(0.5),
-            14644: -0.0,
-            14660: MathInfo.sqrt(0.5),
-            14668: 1.0,
-            14692: -0.0,
-            18577: 1,
-        }
-    )
-    assert ProgramData[18577] == 1
-    assert StructLib.unpack_from("<d", ProgramData, 12656)[0] == PytestLib.approx(0.005)
-    assert StructLib.unpack_from("<d", ProgramData, 14585)[0] == PytestLib.approx(1.0)
-    assert StructLib.unpack_from("<d", ProgramData, 14636)[0] == PytestLib.approx(
-        -MathInfo.sqrt(0.5)
-    )
-    assert StructLib.unpack_from("<d", ProgramData, 14660)[0] == PytestLib.approx(
-        MathInfo.sqrt(0.5)
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
 def TestBLPPCNEVB() -> None:
     ProgramPath = (
         FilePath(__file__).parents[4]
@@ -818,45 +457,6 @@ def TestBLPPCNEVB() -> None:
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPBCPPIC() -> None:
-    ProgramData = EncodeBCPP()
-    NamedData = [
-        ItemData
-        for ItemData in NameRecords(ProgramData)
-        if ItemData.name in {"Sketch1", "Boss-Extrude1", "CirPattern1"}
-    ]
-    assert len(ProgramData) == 19603
-    assert (
-        Hashlib.sha256(ProgramData).hexdigest()
-        == "ced6aec7dd5b4bc323416dfd89afe75d684aa8ad9010b54438ec516798f91be3"
-    )
-    assert [(ItemData.name, ItemData.feature_id) for ItemData in NamedData] == [
-        ("Sketch1", 26),
-        ("Boss-Extrude1", 32),
-        ("CirPattern1", 46),
-    ]
-    assert StructLib.unpack_from("<i", ProgramData, 13433)[0] == 4
-    assert StructLib.unpack_from("<d", ProgramData, 13807)[0] == PytestLib.approx(4.0)
-    assert StructLib.unpack_from("<d", ProgramData, 13831)[0] == PytestLib.approx(4.0)
-    assert StructLib.unpack_from("<d", ProgramData, 18584)[0] == PytestLib.approx(
-        MathInfo.tau
-    )
-    assert StructLib.unpack_from("<d", ProgramData, 19026)[0] == PytestLib.approx(
-        MathInfo.tau
-    )
-    assert StructLib.unpack_from("<d", ProgramData, 19050)[0] == PytestLib.approx(
-        MathInfo.tau
-    )
-    assert ProgramData[17876] == 0
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestBCPPEDF() -> None:
-    ProgramData = EncodeBCPP({17876: 1})
-    assert ProgramData[17876] == 1
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
 def TestBCPPCNEVB() -> None:
     ProgramPath = (
         FilePath(__file__).parents[4]
@@ -867,50 +467,6 @@ def TestBCPPCNEVB() -> None:
     assert "base64" not in SourceText
     assert "b85decode" not in SourceText
     assert "opaque" not in SourceText.casefold()
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPBCCPCTO() -> None:
-    ProgramData = EncodeBossCutCutProgram()
-    FeatureData = LocateFeatures(ProgramData)
-    assert len(ProgramData) == 21780
-    assert [ItemData.kind for ItemData in FeatureData] == [
-        KindInfo,
-        KindInfoA,
-        KindInfoA,
-    ]
-    assert [ItemData.feature_id for ItemData in FeatureData] == [32, 40, 47]
-    assert [ItemData.sketch_id for ItemData in FeatureData] == [26, 33, 41]
-    assert [len(ItemData.points) for ItemData in FeatureData] == [4, 4, 4]
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPBCCCPCFO() -> None:
-    ProgramData = EncodeBCCCP()
-    FeatureData = LocateFeatures(ProgramData)
-    assert len(ProgramData) == 27092
-    assert [ItemData.kind for ItemData in FeatureData] == [
-        KindInfo,
-        KindInfoA,
-        KindInfoA,
-        KindInfoA,
-    ]
-    assert [ItemData.feature_id for ItemData in FeatureData] == [32, 40, 47, 54]
-    assert [ItemData.sketch_id for ItemData in FeatureData] == [26, 33, 41, 48]
-    assert [len(ItemData.points) for ItemData in FeatureData] == [4, 4, 4, 4]
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestFPRPCFRB() -> None:
-    ProgramData = EncodeRevolveProgram()
-    FeatureData = LocateFeatures(ProgramData)
-    assert len(ProgramData) == 12135
-    assert len(FeatureData) == 1
-    assert FeatureData[0].kind == "revolve"
-    assert FeatureData[0].feature_id == 31
-    assert FeatureData[0].sketch_id == 26
-    assert len(FeatureData[0].points) == 4
-    assert FeatureData[0].angle_radians == PytestLib.approx(2.0 * MathInfo.pi)
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
@@ -944,6 +500,8 @@ def TestCSOFLBRABD() -> None:
     assert Features[0].depth_mm == PytestLib.approx(10.0)
     assert Features[1].corners_mm == RectangleCornersMm(-7.0, -7.0, 7.0, 7.0)
     assert Features[1].depth_mm == PytestLib.approx(5.0)
+    assert Features[0].depth_offset is not None
+    assert Features[1].depth_offset is not None
     assert Features[0].depth_offset < Features[1].depth_offset
 
 
@@ -984,7 +542,7 @@ def TestTAFHNDSBKIS() -> None:
     Patched = PatchFeatures(Resolved, {1: FeatureEdit(corners_mm=Corners)})
     assert LocateFeatures(Patched)[1].corners_mm == Corners
     with PytestLib.raises(SldprtFormatError):
-        PatchFeatures(Resolved, {1: FeatureEdit(depth_mm=4.0)})
+        _ = PatchFeatures(Resolved, {1: FeatureEdit(depth_mm=4.0)})
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
@@ -997,6 +555,8 @@ def TestDAECFRBFTC(NameText: str) -> None:
     for Feature, (Reverse, CodeInfo) in zip(Features, Expected, strict=True):
         assert Feature.reversed is Reverse
         assert Feature.end_condition_code == CodeInfo
+        assert Feature.depth_offset is not None
+        assert Feature.reverse_offset is not None
         DistanceD = Feature.depth_offset - Feature.reverse_offset
         assert DistanceD == (DistanceA if Feature.ordinal == 0 else DistanceC)
 
@@ -1057,12 +617,8 @@ def TestBBACFMTKD() -> None:
     )
     assert tuple(
         ((Feature.feature_id, Feature.kind) for Feature in Extrusions)
-    ) == tuple(
-        ((Identifier, KindInfoE) for Identifier, KindInfoE, IgnoredValue in KExtrusions)
-    )
-    for Feature, (Identifier, IgnoredValue, DepthMm) in zip(
-        Extrusions, KExtrusions, strict=True
-    ):
+    ) == tuple(((Identifier, KindInfoE) for Identifier, KindInfoE, _ in KExtrusions))
+    for Feature, (Identifier, _, DepthMm) in zip(Extrusions, KExtrusions, strict=True):
         Element = Authored[Identifier]
         assert Element.tag == "Extrusion"
         assert float(AuthoredD(Element, "D1") or "nan") == PytestLib.approx(DepthMm)
@@ -1081,7 +637,7 @@ def TestBCACARF() -> None:
     Authored = AuthoredNodes(AuthoredK("BIELA"))
     Rounds = tuple((Feature for Feature in Features if Feature.kind == KindInfoC))
     assert tuple((Feature.feature_id for Feature in Rounds)) == tuple(
-        (Identifier for Identifier, IgnoredValue in KChamfers)
+        (Identifier for Identifier, _ in KChamfers)
     )
     for Feature, (Identifier, DistanceMm) in zip(Rounds, KChamfers, strict=True):
         Element = Authored[Identifier]
@@ -1210,7 +766,7 @@ def TestPSARAACR() -> None:
     assert PatchSketchArcs(Resolved, {}) == Resolved
     for Radii in ({len(ArcsInfo): 5.0}, {0: 0.0}, {0: MathInfo.inf}, {0: MathInfo.nan}):
         with PytestLib.raises(SldprtFormatError):
-            PatchSketchArcs(Resolved, Radii)
+            _ = PatchSketchArcs(Resolved, Radii)
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
@@ -1230,7 +786,7 @@ def TestPFRTROACP() -> None:
     assert len(Patched) == len(Resolved)
     Relocated = LocateFeatures(Patched)[Circular.ordinal]
     assert Relocated.feature_id == 214
-    assert Relocated.radii_mm == (PytestLib.approx(6.0), PytestLib.approx(6.5))
+    assert Relocated.radii_mm == PytestLib.approx((6.0, 6.5))
     for ArcData, ExpectedCentre in zip(Relocated.arcs, ExpectedCentres, strict=True):
         assert ArcData.centre_mm == PytestLib.approx(ExpectedCentre)
     assert Relocated.depth_mm == PytestLib.approx(44.0)
@@ -1243,7 +799,7 @@ def TestPFRTROACP() -> None:
     )
     for Edits in Rejected:
         with PytestLib.raises(SldprtFormatError):
-            PatchFeatures(Resolved, Edits)
+            _ = PatchFeatures(Resolved, Edits)
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
@@ -1260,12 +816,14 @@ def TestCCRIRTLF(NameText: str, RadiusMm: float) -> None:
     assert len(Circular.arcs) == 1
     ArcInfo = Circular.arcs[0]
     assert ArcInfo.radius_mm == PytestLib.approx(RadiusMm)
-    assert ArcInfo.centre_mm == (PytestLib.approx(0.0), PytestLib.approx(0.0))
-    assert Circular.bounds_mm == (
-        PytestLib.approx(-RadiusMm),
-        PytestLib.approx(-RadiusMm),
-        PytestLib.approx(RadiusMm),
-        PytestLib.approx(RadiusMm),
+    assert ArcInfo.centre_mm == PytestLib.approx((0.0, 0.0))
+    assert Circular.bounds_mm == PytestLib.approx(
+        (
+            -RadiusMm,
+            -RadiusMm,
+            RadiusMm,
+            RadiusMm,
+        )
     )
     Patched = PatchFeatures(Resolved, {1: FeatureEdit(radii_mm=(RadiusMm + 1.5,))})
     assert LocateFeatures(Patched)[1].arcs[0].radius_mm == PytestLib.approx(

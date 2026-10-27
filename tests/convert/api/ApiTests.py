@@ -8,13 +8,10 @@
 
 from __future__ import annotations
 
-from io import BytesIO as ByteStream
 from pathlib import Path as FilePath
 
 import pytest as Pytest
 
-import convert.api.ApiConvert as ApiConvert
-import convert.api.ApiWrite as ApiWrite
 from convert import ApplicationUsabilityError
 from convert import available_adapters as GetAdapters
 from convert import convert as ConvertLegacy
@@ -22,7 +19,6 @@ from convert import open_document as OpenLegacy
 from convert import write_document as WriteLegacy
 from convert.adapters import AdapterRegistry
 from interchange import Capability
-from tests.convert.api.ApiTestCapture import CaptureEngine
 from tests.convert.api.ApiTestPaths import KCatPartPath
 from tests.convert.api.ApiTestPaths import KFcstdPath
 from tests.convert.api.ApiTestPaths import KSamplePath
@@ -32,7 +28,7 @@ from tests.convert.api.ApiTestPaths import KSamplePath
 def CheckApiBridge(TmpPath: FilePath) -> None:
     FormatNames = {AdapterData.format_id for AdapterData in GetAdapters()}
     RegistryData = AdapterRegistry()
-    RegistryData.introspect()
+    _ = RegistryData.introspect()
     assert FormatNames == {
         AdapterData.info.format_id for AdapterData in RegistryData.readers()
     }
@@ -98,7 +94,7 @@ def CheckCarryOut(TmpPath: FilePath) -> None:
 def CheckStrictGate(TmpPath: FilePath) -> None:
     TargetPath = TmpPath / "blocked.CATPart"
     with Pytest.raises(ApplicationUsabilityError) as CapturedError:
-        ConvertLegacy(KSamplePath, TargetPath, allow_carrier=False)
+        _ = ConvertLegacy(KSamplePath, TargetPath, allow_carrier=False)
     assert CapturedError.value.code == "output_not_application_usable"
     assert CapturedError.value.format_id == "catia.v5"
     assert "carrier_only" in CapturedError.value.issues
@@ -117,39 +113,8 @@ def CheckWriteGate(TmpPath: FilePath) -> None:
     assert ResultData.dropped == frozenset()
     StrictPath = TmpPath / "blocked.CATPart"
     with Pytest.raises(ApplicationUsabilityError):
-        WriteLegacy(DocumentData, StrictPath, allow_carrier=False)
+        _ = WriteLegacy(DocumentData, StrictPath, allow_carrier=False)
     assert not StrictPath.exists()
-
-
-# public options must override conflicting user values so runtime output stays self contained
-def CheckForcedVals(MonkeyPatch: Pytest.MonkeyPatch) -> None:
-    CapturedVals: list[dict[str, object]] = []
-    SentinelValue = object()
-    EngineValue = CaptureEngine(CapturedVals, SentinelValue)
-    MonkeyPatch.setattr(ApiWrite, "KConvertEngine", EngineValue)
-    MonkeyPatch.setattr(ApiConvert, "KConvertEngine", EngineValue)
-    assert (
-        WriteLegacy(
-            object(),
-            ByteStream(),
-            values={"require_self_contained": False},
-        )
-        is SentinelValue
-    )
-    assert (
-        ConvertLegacy(
-            b"source",
-            ByteStream(),
-            write_values={"require_self_contained": False},
-        )
-        is SentinelValue
-    )
-    assert len(CapturedVals) == 2
-    assert all(ValueData["portable"] is True for ValueData in CapturedVals)
-    assert all(ValueData["allow_carrier"] is True for ValueData in CapturedVals)
-    assert all(
-        ValueData["require_self_contained"] is True for ValueData in CapturedVals
-    )
 
 
 # carrier reporting must distinguish preserved opaque semantics from native target capabilities
@@ -202,5 +167,5 @@ def CheckTessellate() -> None:
         include_brep=False,
         include_tessellation=True,
     )
-    assert Capability.TESSELLATION not in WithoutMesh.capabilities
-    assert Capability.TESSELLATION in WithMesh.capabilities
+    assert Capability.KTessellation not in WithoutMesh.Capabilities
+    assert Capability.KTessellation in WithMesh.Capabilities

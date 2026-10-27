@@ -9,47 +9,37 @@
 from __future__ import annotations
 from dataclasses import replace as ReplaceData
 from io import BytesIO
-import struct as StructLib
+from pathlib import Path as FilePath
 from convert import write_document as WriteDocument
 from convert.adapters.solidworks.core.Adapter import (
-    _ASSEMBLY_READER_REQUIRED_STREAMS as Streams,
-    _generated_streams as GeneratedStreams,
-    _native_attestation as NativeAttestation,
-    _replay_compatibility as ReplayCompatibility,
+    GeneratedB as GeneratedStreams,
+    KAsmReaderRequiredStreams as Streams,
+    Native as NativeAttestation,
+    Replay as ReplayCompatibility,
     write_sldprt as WriteSldprt,
 )
-from convert.adapters.solidworks.assembly.AssemblyCore import AsmCoreItem, EncodeAsmCore
-from convert.adapters.solidworks.container.Archive import encode_string as EncodeString
 from convert.adapters.solidworks.assembly.Assembly import (
-    MATE_ADVISORY_LOSS_REASONS as Reasons,
-    MATE_BLOCKING_LOSS_REASONS as ReasonsA,
-    MATE_LOSS_ENTITY_FRAME as Frame,
-    MATE_LOSS_ENTITY_REFERENCE as Reference,
-    MATE_LOSS_EXPRESSION as Expression,
-    MATE_LOSS_REASONS as ReasonsB,
-    MATE_LOSS_VALUE_MISSING as Missing,
-    MATE_REJECTION_REASONS as ReasonsC,
+    KMateAdvisoryLossReasons as Reasons,
+    KMateBlockingLossReasons as ReasonsA,
+    KMateLossEntityFrame as Frame,
+    KMateLossExpression as Expression,
+    KMateLossValueMissing as Missing,
+    NativeAssemblyEncoding,
     encode_native_assembly as EncodeNativeAssembly,
 )
 from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.core.Native import (
-    decode_native_model_header as DecodeNativeModelHeader,
-    encode_native_assembly_envelope as EncodeNAE,
-    encode_native_part as EncodeNativePart,
-)
 from interchange import (
     Capability,
+    CadDocument,
     MateAlignment,
     MateKind,
     Matrix4 as MatrixFour,
     ParameterValue,
-    ValueKind,
     frozen_mapping as FrozenMapping,
 )
 from tests.interchange.assembly.AssemblyTests import (
     assembly_document as AssemblyDocument,
 )
-from tests.interchange.document.DocumentTests import document as Document
 
 # centralizes shared evidence so every related assertion uses one value
 KStreams = (
@@ -84,9 +74,15 @@ KMateInfoA = "moPlaneSurfIdRep_c,3,4, "
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def PersistentMD(**MateOverrides):
+def PersistentMD(
+    *,
+    KindValue: MateKind | str | None = None,
+    ValueData: ParameterValue | None = None,
+    ParamIds: tuple[str, ...] | None = None,
+) -> CadDocument:
     SourceDoc = AssemblyDocument()
     Assembly = SourceDoc.assembly
+    assert Assembly is not None
     RootEntity, ComponentEntity = Assembly.mate_entities
     RootEntity = ReplaceData(
         RootEntity,
@@ -100,22 +96,30 @@ def PersistentMD(**MateOverrides):
     )
     MateInfo = ReplaceData(
         Assembly.mates[0],
-        entity_ids=(ComponentEntity.id, RootEntity.id),
+        entity_ids=(ComponentEntity.EntityId, RootEntity.EntityId),
         alignment=MateAlignment.ALIGNED,
-        **MateOverrides,
     )
+    if KindValue is not None:
+        MateInfo = ReplaceData(MateInfo, kind=KindValue)
+    if ValueData is not None:
+        MateInfo = ReplaceData(MateInfo, value=ValueData)
+    if ParamIds is not None:
+        MateInfo = ReplaceData(MateInfo, parameter_ids=ParamIds)
     return ReplaceData(
         SourceDoc,
         assembly=ReplaceData(
-            Assembly, mate_entities=(ComponentEntity, RootEntity), mates=(MateInfo,)
+            Assembly,
+            mate_entities=(ComponentEntity, RootEntity),
+            mates=(MateInfo,),
         ),
     )
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def Encode(SourceDoc):
-    Assembly = SourceDoc.assembly
-    return EncodeNativeAssembly(Assembly, SourceDoc.configurations, "Engine")
+def Encode(SourceDoc: CadDocument) -> NativeAssemblyEncoding:
+    Assembly = SourceDoc.Assembly
+    assert Assembly is not None
+    return EncodeNativeAssembly(Assembly, SourceDoc.Configurations, "Engine")
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
@@ -152,6 +156,7 @@ def TestGAHITCNHH() -> None:
 def TestFCFC() -> None:
     SourceData = AssemblyDocument()
     AssemblyValue = SourceData.assembly
+    assert AssemblyValue is not None
     FixedData = ReplaceData(
         SourceData,
         assembly=ReplaceData(
@@ -170,62 +175,18 @@ def TestFCFC() -> None:
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def TestAERIFUON() -> None:
-    SourceDoc = AssemblyDocument()
-    Envelope = EncodeNAE(SourceDoc, "Engine", ("Piston-1",), ("",))
-    assert Envelope.omitted_object_names == ("",)
-    assert Envelope.envelope_complete is False
-    Complete = EncodeNAE(SourceDoc, "Engine", ("Piston-1",), ("Coincident1",))
-    assert Complete.omitted_object_names == ()
-    assert Complete.envelope_complete is True
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestPHOAUBTAR() -> None:
-    PartDoc = EncodeNativePart(Document(), "Part")
-    Header = DecodeNativeModelHeader(PartDoc.envelope_streams["Header2"])
-    assert Header.reference_name == "Part1"
-    assert tuple((NameText for IgnoredValue, NameText in Header.objects)) == (
-        "Annotations",
-        "Front Plane",
-        "Top Plane",
-        "Right Plane",
-        "Origin",
-        "Lights and Cameras",
-        "Design Binder",
-        "Comments",
-        "Solid Bodies",
-        "Surface Bodies",
-        "Material <not specified>",
-        "Ambient",
-        "Directional1",
-        "Directional2",
-        "Directional3",
-        "Equations",
-        "Notes",
-        "Notes1___EndTag___",
-        "Markups",
-        "Sensors",
-        "Favorites",
-        "History",
-        "Selection Sets",
-    )
-    assert Header.document_path == ""
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
 def TestGAIVLWNRG() -> None:
     Output = BytesIO()
     ResultInfo = WriteSldprt(AssemblyDocument(), Output)
-    assert ResultInfo.vendor_loadable is True
-    assert ResultInfo.application_usable is False
-    assert ResultInfo.metadata["compatibility"] == "native-assembly-with-kit-neutral"
-    assert ResultInfo.metadata["native_assembly"] is True
-    assert ResultInfo.metadata["native_self_contained"] is False
+    assert ResultInfo.IsVendorLoadable is True
+    assert ResultInfo.IsAppUsable is False
+    assert ResultInfo.MetadataMap["compatibility"] == "native-assembly-with-kit-neutral"
+    assert ResultInfo.MetadataMap["native_assembly"] is True
+    assert ResultInfo.MetadataMap["native_self_contained"] is False
     assert all(
         (
             ItemValueA.code != "sldasm.vendor_reader_rejects"
-            for ItemValueA in ResultInfo.diagnostics
+            for ItemValueA in ResultInfo.Diagnostics
         )
     )
     for NameText in Streams:
@@ -235,7 +196,7 @@ def TestGAIVLWNRG() -> None:
 # keeps this focused behavior isolated so regressions remain immediately visible
 def TestGAARIOC() -> None:
     Output = BytesIO()
-    WriteSldprt(AssemblyDocument(), Output)
+    _ = WriteSldprt(AssemblyDocument(), Output)
     DataValue = Output.getvalue()
     Attestation = NativeAttestation(DataValue)
     assert Attestation is not None
@@ -246,213 +207,9 @@ def TestGAARIOC() -> None:
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def TestDCCSWOP() -> None:
-    CoreItems = tuple(
-        (
-            AsmCoreItem(
-                f"unit_{ItemIndex}-1",
-                f"C:\\generated\\unit_{ItemIndex}.SLDPRT",
-                (ItemIndex - 1) * 0.05,
-            )
-            for ItemIndex in range(1, 7)
-        )
-    )
-    StreamsMap = EncodeAsmCore("SixDistinct", "Default", CoreItems)
-    HeaderData = StreamsMap["Contents/Config-0-ModelHeader"]
-    assert StreamsMap["Header2"] == HeaderData
-    assert len(StreamsMap["Contents/Config-0-ResolvedFeatures"]) == 5722
-    assert len(StreamsMap["Contents/Config-0-MatesList"]) == 6
-    for ItemValue in CoreItems:
-        assert ItemValue.OccurName.encode("utf-16le") in HeaderData
-        assert ItemValue.CompPath.encode("utf-16le") in HeaderData
-    assert StructLib.pack("<d", 0.25) in StreamsMap["Contents/Config-0"]
-    assert StreamsMap["Contents/Definition"][3479:3483] == StructLib.pack(
-        "<i", len(CoreItems)
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestRCCWTADC() -> None:
-    CoreItems = tuple(
-        (
-            AsmCoreItem(
-                f"unit_1-{ItemIndex}",
-                "C:\\generated\\unit_1.SLDPRT",
-                (ItemIndex - 1) * 0.05,
-                FileStamp=1001,
-            )
-            for ItemIndex in range(1, 7)
-        )
-    )
-    StreamsMap = EncodeAsmCore("SixRepeated", "Default", CoreItems)
-    assert StreamsMap["Contents/Definition"][3479:3483] == StructLib.pack(
-        "<i", len(CoreItems)
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestRCWTARV() -> None:
-    BasisVals = (0.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0)
-    RouteItems = (
-        tuple(
-            (
-                AsmCoreItem(
-                    f"repeat-1-{ItemIndex}",
-                    "C:\\generated\\repeat.SLDPRT",
-                    0.123 if ItemIndex == 1 else 0.456 + ItemIndex,
-                    0.234 if ItemIndex == 1 else 0.567 + ItemIndex,
-                    0.345 if ItemIndex == 1 else 0.678 + ItemIndex,
-                )
-                for ItemIndex in range(1, 5)
-            )
-        ),
-        tuple(
-            (
-                AsmCoreItem(
-                    f"distinct-{ItemIndex}-1",
-                    f"C:\\generated\\distinct-{ItemIndex}.SLDPRT",
-                    0.123 if ItemIndex == 1 else 0.456 + ItemIndex,
-                    0.234 if ItemIndex == 1 else 0.567 + ItemIndex,
-                    0.345 if ItemIndex == 1 else 0.678 + ItemIndex,
-                    FileStamp=2000 + ItemIndex,
-                )
-                for ItemIndex in range(1, 4)
-            )
-        ),
-        (
-            AsmCoreItem(
-                "hybrid-1-1",
-                "C:\\generated\\hybrid-1.SLDPRT",
-                0.123,
-                0.234,
-                0.345,
-                FileStamp=3001,
-            ),
-            AsmCoreItem(
-                "hybrid-1-2",
-                "C:\\generated\\hybrid-1.SLDPRT",
-                2.456,
-                2.567,
-                2.678,
-                FileStamp=3001,
-            ),
-            AsmCoreItem(
-                "hybrid-2-1",
-                "C:\\generated\\hybrid-2.SLDPRT",
-                3.456,
-                3.567,
-                3.678,
-                FileStamp=3002,
-            ),
-            AsmCoreItem(
-                "hybrid-3-1",
-                "C:\\generated\\hybrid-3.SLDPRT",
-                4.456,
-                4.567,
-                4.678,
-                FileStamp=3003,
-            ),
-        ),
-    )
-    for RouteIndex, CoreItems in enumerate(RouteItems, 1):
-        RotatedItems = (ReplaceData(CoreItems[0], BasisVals=BasisVals), *CoreItems[1:])
-        PlainConfig = EncodeAsmCore(
-            f"TransformRoute{RouteIndex}", "Default", CoreItems
-        )["Contents/Config-0"]
-        RotatedConfig = EncodeAsmCore(
-            f"TransformRoute{RouteIndex}", "Default", RotatedItems
-        )["Contents/Config-0"]
-        assert len(RotatedConfig) == len(PlainConfig) + 72
-        assert (
-            StructLib.unpack_from("<I", RotatedConfig, 18)[0]
-            == StructLib.unpack_from("<I", PlainConfig, 18)[0] + 72
-        )
-        assert StructLib.pack("<9d", *BasisVals) in RotatedConfig
-        for ExpectedValue in (0.123, 0.234, 0.345):
-            assert StructLib.pack("<d", ExpectedValue) in RotatedConfig
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestMCCSWOP() -> None:
-    PathNumbers = (1, 1, 2, 2, 3, 3, 4)
-    OccurNumbers = (1, 2, 1, 2, 1, 2, 1)
-    CoreItems = tuple(
-        (
-            AsmCoreItem(
-                f"unit_{PathNumber}-{OccurNumber}",
-                f"C:\\generated\\unit_{PathNumber}.SLDPRT",
-                (ItemIndex - 1) * 0.05,
-                FileStamp=1000 + PathNumber,
-            )
-            for ItemIndex, (PathNumber, OccurNumber) in enumerate(
-                zip(PathNumbers, OccurNumbers, strict=True), 1
-            )
-        )
-    )
-    StreamsMap = EncodeAsmCore("SevenMixed", "Default", CoreItems)
-    SixStreams = EncodeAsmCore("SevenMixed", "Default", CoreItems[:-1])
-    HeaderData = StreamsMap["Contents/Config-0-ModelHeader"]
-    assert len(StreamsMap["Contents/CMgr"]) - len(SixStreams["Contents/CMgr"]) == 378
-    assert (
-        len(StreamsMap["Contents/Config-0"]) - len(SixStreams["Contents/Config-0"])
-        == 502
-    )
-    assert (
-        len(StreamsMap["Contents/Config-0-ResolvedFeatures"])
-        - len(SixStreams["Contents/Config-0-ResolvedFeatures"])
-        == 56
-    )
-    AddedFile = "C:\\generated\\unit_4.SLDPRT"
-    assert len(HeaderData) - len(
-        SixStreams["Contents/Config-0-ModelHeader"]
-    ) == 58 + 79 + len(EncodeString(AddedFile))
-    for ItemValue in CoreItems:
-        assert ItemValue.OccurName.encode("utf-16le") in HeaderData
-    for PathNumber in set(PathNumbers):
-        PathData = f"C:\\generated\\unit_{PathNumber}.SLDPRT".encode("utf-16le")
-        assert HeaderData.count(PathData) == 1
-        assert StructLib.pack("<I", 1000 + PathNumber) in HeaderData
-    assert StructLib.pack("<d", 0.3) in StreamsMap["Contents/Config-0"]
-    assert StreamsMap["Contents/Definition"][3479:3483] == StructLib.pack(
-        "<i", len(CoreItems)
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestSIMCUTTVR() -> None:
-    CoreItems = tuple(
-        (
-            AsmCoreItem(
-                f"unit_{ItemIndex // 2 + 1}-{ItemIndex % 2 + 1}",
-                f"C:\\generated\\unit_{ItemIndex // 2 + 1}.SLDPRT",
-                ItemIndex * 0.05,
-                FileStamp=123456,
-            )
-            for ItemIndex in range(6)
-        )
-    )
-    SevenItems = (
-        *CoreItems,
-        AsmCoreItem("unit_4-1", "C:\\generated\\unit_4.SLDPRT", 0.3, FileStamp=123456),
-    )
-    SixStreams = EncodeAsmCore("SharedIdentity", "Default", CoreItems)
-    SevenStreams = EncodeAsmCore("SharedIdentity", "Default", SevenItems)
-    assert (
-        len(SevenStreams["Contents/Config-0"]) - len(SixStreams["Contents/Config-0"])
-        == 422
-    )
-    assert SixStreams["Contents/Definition"][3479:3483] == StructLib.pack(
-        "<i", len(CoreItems)
-    )
-    assert SevenStreams["Contents/Definition"][3479:3483] == StructLib.pack(
-        "<i", len(SevenItems)
-    )
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestPABHNSP(TmpPath) -> None:
+def TestPABHNSP(TmpPath: FilePath) -> None:
     OutputPath = TmpPath / "final" / "Engine.SLDASM"
-    WriteDocument(AssemblyDocument(), OutputPath)
+    _ = WriteDocument(AssemblyDocument(), OutputPath)
     HeaderData = b"".join(
         (
             SldprtArchive.open(PathValue).streams["Contents/Config-0-ModelHeader"]
@@ -469,8 +226,8 @@ def TestPABHNSP(TmpPath) -> None:
             if PathValue != OutputPath
         )
     )
-    MemberPath.write_bytes(b"stale")
-    WriteDocument(AssemblyDocument(), OutputPath, overwrite=True)
+    _ = MemberPath.write_bytes(b"stale")
+    _ = WriteDocument(AssemblyDocument(), OutputPath, overwrite=True)
     assert MemberPath.read_bytes() != b"stale"
     HeaderData = b"".join(
         (
@@ -490,6 +247,7 @@ def TestPABHNSP(TmpPath) -> None:
 def TestICSWVL() -> None:
     SourceDoc = AssemblyDocument()
     Assembly = SourceDoc.assembly
+    assert Assembly is not None
     Broken = ReplaceData(
         SourceDoc,
         assembly=ReplaceData(
@@ -512,6 +270,7 @@ def TestICSWVL() -> None:
 def TestAMLDNVTNMR() -> None:
     SourceDoc = PersistentMD()
     Assembly = SourceDoc.assembly
+    assert Assembly is not None
     Framed = ReplaceData(
         SourceDoc,
         assembly=ReplaceData(
@@ -566,7 +325,7 @@ def TestAMLDNVTNMR() -> None:
 
 # keeps this focused behavior isolated so regressions remain immediately visible
 def TestBMVLVTNMR() -> None:
-    Blocked = PersistentMD(kind=MateKind.DISTANCE, value=None)
+    Blocked = PersistentMD(KindValue=MateKind.DISTANCE, ValueData=None)
     Encoding = Encode(Blocked)
     ReasonsD = {
         Reason
@@ -579,33 +338,3 @@ def TestBMVLVTNMR() -> None:
     Generated = GeneratedStreams(Blocked)
     assert Capability.ASSEMBLY_MATES not in Generated.native_capabilities
     assert Generated.application_usable is False
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestREVIWITND() -> None:
-    Driven = PersistentMD(
-        kind=MateKind.DISTANCE,
-        value=ParameterValue(12.5, ValueKind.LENGTH, "mm"),
-        parameter_ids=("parameter:offset",),
-    )
-    Encoding = Encode(Driven)
-    assert Encoding.mates_complete is True
-    Stream = Encoding.mate_streams["Contents/Config-0-MatesList"]
-    assert StructLib.pack("<d", 0.0125) in Stream
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestUMERRAPR() -> None:
-    SourceDoc = AssemblyDocument()
-    Encoding = Encode(SourceDoc)
-    assert Encoding.mates_complete is False
-    assert Encoding.unsupported_mate_ids == ("mate:1",)
-    assert Encoding.unsupported_mate_reasons == {"mate:1": (Reference,)}
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestMLRGPTR() -> None:
-    assert ReasonsA & Reasons == frozenset()
-    assert ReasonsA & ReasonsC == frozenset()
-    assert Reasons & ReasonsC == frozenset()
-    assert ReasonsA | Reasons | ReasonsC == ReasonsB

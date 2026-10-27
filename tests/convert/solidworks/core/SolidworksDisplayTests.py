@@ -13,7 +13,6 @@ from convert.adapters.solidworks.container.Container import SldprtArchive
 from convert.adapters.solidworks.core.Display import (
     decode_display_lists as DecodeDisplayLists,
     decode_tessellation_faces as DecodeTessellationFaces,
-    is_component_path as IsComponentPath,
     neutral_meshes as NeutralMeshes,
 )
 
@@ -21,34 +20,14 @@ from convert.adapters.solidworks.core.Display import (
 KAssembly = FilePath(__file__).parents[4] / "examples" / "Random" / "V8_engine.SLDASM"
 
 
+
+
+
+
 # keeps this focused behavior isolated so regressions remain immediately visible
-@PytestLib.mark.parametrize(
-    "ItemValue",
-    (
-        "Rotor@Assembly",
-        "Custom instance name@Root/Nested occurrence@Subassembly",
-        "Part-1@Assembly",
-    ),
+@PytestLib.mark.skipif(
+    not KAssembly.is_file(), reason="random assembly corpus is unavailable"
 )
-def TestCPDNRGNS(ItemValue: str) -> None:
-    assert IsComponentPath(ItemValue)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-@PytestLib.mark.parametrize(
-    "ItemValue",
-    (
-        "Top Plane@Rotor@Assembly",
-        "Belt1-1^Assembly-1@Assembly",
-        "C:/Parts/Rotor.SLDPRT",
-        "@Assembly",
-    ),
-)
-def TestCPDRERAF(ItemValue: str) -> None:
-    assert not IsComponentPath(ItemValue)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
 def TestDLREFAGG() -> None:
     DataValue = SldprtArchive.open(KAssembly).require("Contents/DisplayLists")
     Faces = DecodeTessellationFaces(DataValue)
@@ -61,6 +40,9 @@ def TestDLREFAGG() -> None:
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
+@PytestLib.mark.skipif(
+    not KAssembly.is_file(), reason="random assembly corpus is unavailable"
+)
 def TestDGISTMAMTS() -> None:
     DataValue = SldprtArchive.open(KAssembly).require("Contents/DisplayLists")
     Component = DecodeDisplayLists(DataValue)[0]

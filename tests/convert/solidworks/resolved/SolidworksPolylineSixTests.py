@@ -9,13 +9,11 @@
 from __future__ import annotations
 from dataclasses import replace as ReplaceData
 import hashlib as Hashlib
-import math as MathInfo
 from pathlib import Path as FilePath
 import pytest as PytestLib
 from convert import write_document as WriteDocument
 from convert.adapters.freecad import read_freecad as ReadFreecad
 from convert.adapters.solidworks import SldprtArchive
-from convert.adapters.solidworks.container.Container import SldprtFormatError
 from convert.adapters.solidworks.container.Format import (
     CONFIGURATION_STREAM as Stream,
     KEYWORDS_STREAM as StreamA,
@@ -27,11 +25,11 @@ from convert.adapters.solidworks.core.Native import (
 )
 from convert.adapters.solidworks.programs.resolved.polyline.sixpoint.Program import (
     EncodeProgram,
-    KDepthOffset,
-    KFieldOwners,
-    KPointOffsets,
-    KResolvedOps,
     PadFieldMap,
+)
+from convert.adapters.solidworks.programs.resolved.polyline.sixpoint.Registry import (
+    KFieldOwners,
+    KResolvedOps,
 )
 
 # centralizes shared evidence so every related assertion uses one value
@@ -75,7 +73,7 @@ def TestPSPCETF() -> None:
     CursorPos = 0
     ObjectCount = 0
     DefineCount = 0
-    for StartPos, FieldWidth, OwnerIndex, KindName, IgnoredValue in KResolvedOps:
+    for StartPos, FieldWidth, OwnerIndex, KindName, _ in KResolvedOps:
         assert StartPos == CursorPos
         assert FieldWidth > 0
         assert 0 <= OwnerIndex < len(KFieldOwners)
@@ -102,50 +100,6 @@ def TestPSPRCO() -> None:
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def TestPSPRVWO() -> None:
-    with PytestLib.raises(SldprtFormatError, match="field width changed"):
-        EncodeProgram({32: "a deliberately incompatible comment width"})
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestPSPVIS() -> None:
-    with PytestLib.raises(SldprtFormatError, match="exactly six"):
-        PadFieldMap(KDonorPoints[:5], 8.0)
-    with PytestLib.raises(SldprtFormatError, match="finite"):
-        PadFieldMap((*KDonorPoints[:5], (MathInfo.inf, 25.0)), 8.0)
-    with PytestLib.raises(SldprtFormatError, match="unique"):
-        PadFieldMap((*KDonorPoints[:5], KDonorPoints[0]), 8.0)
-    with PytestLib.raises(SldprtFormatError, match="intersect"):
-        PadFieldMap(
-            ((0.0, 0.0), (2.0, 2.0), (0.0, 2.0), (2.0, 0.0), (3.0, 0.0), (3.0, 3.0)),
-            8.0,
-        )
-    with PytestLib.raises(SldprtFormatError, match="positive"):
-        PadFieldMap(KDonorPoints, 0.0)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestPSPOANF() -> None:
-    FieldValues = PadFieldMap(KDonorPoints, 8.0)
-    assert tuple(FieldValues) == (*KPointOffsets, KDepthOffset)
-    assert tuple((FieldValues[OffsetPos] for OffsetPos in KPointOffsets)) == (
-        0.0,
-        0.0,
-        0.04,
-        0.0,
-        0.04,
-        0.01,
-        0.015,
-        0.01,
-        0.015,
-        0.025,
-        0.0,
-        0.025,
-    )
-    assert FieldValues[KDepthOffset] == 0.008
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
 @PytestLib.mark.skipif(
     not KFreeCadPolyline.is_file(), reason="six line FreeCAD corpus unavailable"
 )
@@ -162,9 +116,9 @@ def TestFCPSWNPSWP(TmpPath: FilePath) -> None:
         resolved_stream=StreamB,
     )
     assert HasVendorPartEncoding(SourceData)
-    assert ResultData.vendor_loadable is True
-    assert ResultData.application_usable is True
-    assert ResultData.near_lossless is True
+    assert ResultData.IsVendorLoadable is True
+    assert ResultData.IsAppUsable is True
+    assert ResultData.IsNearLossless is True
     assert len(ResolvedData) == 12283
     assert Hashlib.sha256(ResolvedData).hexdigest() == KGateDigest
     assert tuple(

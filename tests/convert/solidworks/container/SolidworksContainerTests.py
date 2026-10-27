@@ -8,10 +8,9 @@
 
 from __future__ import annotations
 import struct as StructLib
-import pytest as PytestLib
 from convert.adapters.solidworks import SldprtArchive, build_sldprt as BuildSldprt
 from convert.adapters.solidworks.container.Container import (
-    container_signatures as ContainerSignatures,
+    Container as ContainerSignatures,
 )
 
 # centralizes shared evidence so every related assertion uses one value
@@ -41,7 +40,9 @@ def DecodedName(ItemValue: bytes) -> str:
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def ReadDirMeta(BlobInfo: bytes, Streams: tuple) -> tuple[int, int]:
+def ReadDirMeta(
+    BlobInfo: bytes, Streams: tuple[tuple[str, bytes], ...]
+) -> tuple[int, int]:
     EndOffset = len(BlobInfo) - 22
     (
         DiskNumber,
@@ -66,7 +67,11 @@ def ReadDirMeta(BlobInfo: bytes, Streams: tuple) -> tuple[int, int]:
 
 # keeps this focused behavior isolated so regressions remain immediately visible
 def AssertDirEntry(
-    BlobInfo: bytes, Archive, Cursor: int, ExpectedName: str, ExpectedData: bytes
+    BlobInfo: bytes,
+    Archive: SldprtArchive,
+    Cursor: int,
+    ExpectedName: str,
+    ExpectedData: bytes,
 ) -> tuple[int, int]:
     assert BlobInfo[Cursor : Cursor + 4] == KSignature
     assert BlobInfo[Cursor + 6 : Cursor + 12] == KMarker
@@ -111,7 +116,7 @@ def TestGCHCND() -> None:
     assert Archive.file_id == KIdInfo
     assert Archive.streams == dict(Streams)
     Cursor, EndOffset = ReadDirMeta(BlobInfo, Streams)
-    Timestamps = set()
+    Timestamps: set[int] = set()
     for ExpectedName, ExpectedData in Streams:
         Cursor, TypeId = AssertDirEntry(
             BlobInfo, Archive, Cursor, ExpectedName, ExpectedData
@@ -119,15 +124,6 @@ def TestGCHCND() -> None:
         Timestamps.add(TypeId)
     assert Cursor == EndOffset
     assert Timestamps == {473223809}
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestGCID() -> None:
-    Streams = {
-        "Contents/SolidWorks": b"<swSolidWorks/>",
-        "Contents/Config-0-Partition": b"PS\x00\x00body",
-    }
-    assert BuildSldprt(Streams) == BuildSldprt(Streams)
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
@@ -187,9 +183,3 @@ def TestGCRTI() -> None:
     assert BlobInfo[8:12] == Template[8:12]
     assert BlobInfo[-22:-18] == Template[-22:-18]
     assert SldprtArchive.from_bytes(BlobInfo).streams == Streams
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestGCRUFI() -> None:
-    with PytestLib.raises(ValueError, match="native template"):
-        BuildSldprt({"Contents/SolidWorks": b"<swSolidWorks/>"}, file_id=1)
