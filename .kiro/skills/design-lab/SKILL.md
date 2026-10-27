@@ -10,6 +10,7 @@ This skill implements a complete design exploration workflow: interview, generat
 ## CRITICAL: Cleanup Behavior
 
 **All temporary files MUST be deleted when the process ends, whether by:**
+
 - User confirms final design → cleanup, then generate plan
 - User aborts/cancels → cleanup immediately, no plan generated
 
@@ -22,14 +23,18 @@ This skill implements a complete design exploration workflow: interview, generat
 Before starting the interview, automatically detect:
 
 ### Package Manager
+
 Check for lock files in the project root:
+
 - `pnpm-lock.yaml` → use `pnpm`
 - `yarn.lock` → use `yarn`
 - `package-lock.json` → use `npm`
 - `bun.lockb` → use `bun`
 
 ### Framework Detection
+
 Check for config files:
+
 - `next.config.js` or `next.config.mjs` or `next.config.ts` → **Next.js**
   - Check for `app/` directory → App Router
   - Check for `pages/` directory → Pages Router
@@ -39,7 +44,9 @@ Check for config files:
 - `astro.config.mjs` → **Astro**
 
 ### Styling System Detection
+
 Check `package.json` dependencies and config files:
+
 - `tailwind.config.js` or `tailwind.config.ts` → **Tailwind CSS**
 - `@mui/material` in dependencies → **Material UI**
 - `@chakra-ui/react` in dependencies → **Chakra UI**
@@ -49,7 +56,9 @@ Check `package.json` dependencies and config files:
 - `.css` or `.module.css` files → **CSS Modules**
 
 ### Design Memory Check
+
 Look for existing Design Memory file:
+
 - `docs/design-memory.md`
 - `DESIGN_MEMORY.md`
 - `.claude-design/design-memory.md`
@@ -61,16 +70,18 @@ If found, read it and use to prefill defaults and skip redundant questions.
 **DO NOT use generic/predefined styles. Extract visual language from the project:**
 
 **If Tailwind detected**, read `tailwind.config.js` or `tailwind.config.ts`:
+
 ```javascript
 // Extract and use:
-theme.colors      // Color palette
-theme.spacing     // Spacing scale
-theme.borderRadius // Radius values
-theme.fontFamily  // Typography
-theme.boxShadow   // Elevation system
+theme.colors; // Color palette
+theme.spacing; // Spacing scale
+theme.borderRadius; // Radius values
+theme.fontFamily; // Typography
+theme.boxShadow; // Elevation system
 ```
 
 **If CSS Variables exist**, read `globals.css`, `variables.css`, or `:root` definitions:
+
 ```css
 :root {
   --color-*     /* Color tokens */
@@ -81,11 +92,13 @@ theme.boxShadow   // Elevation system
 ```
 
 **If UI library detected** (MUI, Chakra, Ant), read the theme configuration:
+
 - MUI: `theme.ts` or `createTheme()` call
 - Chakra: `theme/index.ts` or `extendTheme()` call
 - Ant: `ConfigProvider` theme prop
 
 **Always scan existing components** to understand patterns:
+
 - Find 2-3 existing buttons → note their styling patterns
 - Find 2-3 existing cards → note padding, borders, shadows
 - Find existing forms → note input styles, label placement
@@ -104,6 +117,7 @@ Use the **AskUserQuestion** tool for all interview steps. Adapt questions based 
 Ask these questions (can combine into single AskUserQuestion with multiple questions):
 
 **Question 1: Scope**
+
 - Header: "Scope"
 - Question: "Are we designing a single component or a full page?"
 - Options:
@@ -111,6 +125,7 @@ Ask these questions (can combine into single AskUserQuestion with multiple quest
   - "Page" - A complete page or screen layout
 
 **Question 2: New or Redesign**
+
 - Header: "Type"
 - Question: "Is this a new design or a redesign of something existing?"
 - Options:
@@ -119,6 +134,7 @@ Ask these questions (can combine into single AskUserQuestion with multiple quest
 
 If "Redesign" selected, ask:
 **Question 3: Existing Path**
+
 - Header: "Location"
 - Question: "What is the file path or route of the existing UI?"
 - Options: (let user provide via "Other")
@@ -128,6 +144,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
 ### Step 1.2: Pain Points & Inspiration
 
 **Question 1: Pain Points**
+
 - Header: "Problems"
 - Question: "What are the top pain points with the current design (or what should this new design avoid)?"
 - Options:
@@ -138,6 +155,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
 - multiSelect: true
 
 **Question 2: Visual Inspiration**
+
 - Header: "Visual style"
 - Question: "What products or brands should I reference for visual inspiration?"
 - Options:
@@ -148,6 +166,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
 - multiSelect: true
 
 **Question 3: Functional Inspiration**
+
 - Header: "Interactions"
 - Question: "What interaction patterns should I emulate?"
 - Options:
@@ -159,6 +178,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
 ### Step 1.3: Brand & Style Direction
 
 **Question 1: Brand Adjectives**
+
 - Header: "Brand tone"
 - Question: "What 3-5 adjectives describe the desired brand feel?"
 - Options:
@@ -169,6 +189,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
 - multiSelect: true
 
 **Question 2: Density**
+
 - Header: "Density"
 - Question: "What information density do you prefer?"
 - Options:
@@ -177,6 +198,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
   - "Spacious" - Generous whitespace, focused attention
 
 **Question 3: Dark Mode**
+
 - Header: "Dark mode"
 - Question: "Is dark mode required?"
 - Options:
@@ -187,6 +209,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
 ### Step 1.4: Persona & Jobs-to-be-Done
 
 **Question 1: Primary User**
+
 - Header: "User"
 - Question: "Who is the primary end user?"
 - Options:
@@ -196,6 +219,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
   - "End consumer" - General public, varied technical ability
 
 **Question 2: Context**
+
 - Header: "Context"
 - Question: "What's the primary usage context?"
 - Options:
@@ -204,6 +228,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
   - "Both equally" - Must work well on all devices
 
 **Question 3: Key Tasks**
+
 - Header: "Key tasks"
 - Question: "What are the top 3 tasks users must complete?"
 - (Let user provide via "Other" - this is open-ended)
@@ -211,6 +236,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
 ### Step 1.5: Constraints
 
 **Question 1: Must-Keep Elements**
+
 - Header: "Keep"
 - Question: "Are there elements that must be preserved?"
 - Options:
@@ -220,6 +246,7 @@ If target is unclear, propose a name based on repo patterns and confirm.
   - "None" - Free to change everything
 
 **Question 2: Technical Constraints**
+
 - Header: "Constraints"
 - Question: "Any technical constraints?"
 - Options:
@@ -307,6 +334,7 @@ Create all files under `.claude-design/`:
 **Reliability Strategy:** To avoid import path issues across different project configurations, create the FeedbackOverlay **directly in the route directory** (e.g., `app/design-lab/FeedbackOverlay.tsx`), NOT in `.claude-design/`. This ensures a simple relative import (`./FeedbackOverlay`) always works.
 
 **Required Files in Route Directory:**
+
 ```
 app/design-lab/           # or app/__design_lab/ if underscores work
 ├── page.tsx              # Main lab page with variants
@@ -316,6 +344,7 @@ app/design-lab/           # or app/__design_lab/ if underscores work
 **Template Source:** `design-and-refine/templates/feedback/FeedbackOverlay.tsx`
 
 **Why this approach:**
+
 - `.claude-design/` paths can fail due to bundler configurations
 - Relative imports from the same directory always work
 - The route directory gets deleted during cleanup anyway
@@ -329,6 +358,7 @@ Create `app/__design_lab/page.tsx` that imports from `.claude-design/lab/`
 Create `pages/__design_lab.tsx` that imports from `.claude-design/lab/`
 
 **Vite React:**
+
 - If React Router exists: add route to `/__design_lab`
 - If no router: create a conditional render in `App.tsx` based on `?design_lab=true` query param
 
@@ -340,6 +370,7 @@ Create the most appropriate temporary route for the detected framework.
 **IMPORTANT:** Read `DESIGN_PRINCIPLES.md` for UX, interaction, and motion best practices. But **DO NOT use predefined visual styles**—infer them from the project.
 
 **Apply universal principles (from DESIGN_PRINCIPLES.md):**
+
 - **UX**: Nielsen's heuristics, cognitive load reduction, progressive disclosure
 - **Component behavior**: Button states, form anatomy, card structure
 - **Interaction**: Feedback patterns, state handling, optimistic updates
@@ -347,6 +378,7 @@ Create the most appropriate temporary route for the detected framework.
 - **Accessibility**: Focus states, ARIA patterns, touch targets (44px min)
 
 **Infer visual styles from the project:**
+
 - Colors → from Tailwind config, CSS variables, or existing components
 - Typography → from existing headings, body text in the codebase
 - Spacing → from the project's spacing scale or existing patterns
@@ -358,30 +390,35 @@ Create the most appropriate temporary route for the detected framework.
 Each variant MUST explore a different design axis. Do not create minor variations—make them meaningfully distinct. **Use the project's existing visual language for all variants.**
 
 **Variant A: Information Hierarchy Focus**
+
 - Restructure content hierarchy (what's most important?)
 - Apply Gestalt proximity—group related items closer
 - One primary action per view
 - Use existing typography scale to create clear levels
 
 **Variant B: Layout Model Exploration**
+
 - Try a different layout approach (card vs list vs table vs split-pane)
 - Apply card anatomy or table behavior patterns from DESIGN_PRINCIPLES
 - Consider responsive behavior at each breakpoint
 - Use the project's existing grid/layout system
 
 **Variant C: Density Variation**
+
 - If brief says "comfortable", try a more compact version
 - If brief says "compact", try a more spacious version
 - Use the project's existing spacing tokens—just apply them differently
 - Show the tradeoffs: more visible data vs easier scanning
 
 **Variant D: Interaction Model**
+
 - Different interaction pattern (modal vs inline vs panel vs drawer)
 - Apply feedback patterns: immediate → progress → completion
 - Implement all required states (loading, error, empty, disabled)
 - Consider optimistic updates for non-destructive actions
 
 **Variant E: Expressive Direction**
+
 - Push the brand direction the user described in the interview
 - Explore different uses of the project's existing design tokens
 - More or less use of shadows, borders, background colors
@@ -415,7 +452,6 @@ The Design Lab page must include:
    ⚠️ **THIS IS THE MOST IMPORTANT REQUIREMENT** ⚠️
 
    The FeedbackOverlay enables users to click on elements and leave comments. Without it, the Design Lab is just a static page with no way to collect structured feedback.
-
    - Create `FeedbackOverlay.tsx` in the SAME directory as `page.tsx`
    - Import with relative path: `import { FeedbackOverlay } from './FeedbackOverlay'`
    - Render at the END of the page, after all variants
@@ -424,7 +460,7 @@ The Design Lab page must include:
    **Example integration:**
 
 ```tsx
-import { FeedbackOverlay } from './FeedbackOverlay';  // Relative import - always works
+import { FeedbackOverlay } from "./FeedbackOverlay"; // Relative import - always works
 
 export default function DesignLabPage() {
   return (
@@ -450,16 +486,18 @@ export default function DesignLabPage() {
 }
 ```
 
-   **If you forget the FeedbackOverlay, the user CANNOT provide feedback.** This defeats the entire purpose of the Design Lab.
+**If you forget the FeedbackOverlay, the user CANNOT provide feedback.** This defeats the entire purpose of the Design Lab.
 
 ### Code Quality
 
 **Conventions:**
+
 - Follow the project's existing code conventions (file naming, imports, etc.)
 - Use the detected styling system (Tailwind, CSS modules, etc.)
 - Use existing components from the project where appropriate
 
 **Accessibility (from DESIGN_PRINCIPLES):**
+
 - Semantic HTML: `<button>` not `<div onclick>`, `<nav>`, `<main>`, `<section>`
 - Keyboard navigation: all interactive elements focusable and operable
 - Focus states: visible `:focus-visible` with 2px ring and offset
@@ -468,10 +506,12 @@ export default function DesignLabPage() {
 - ARIA only when HTML semantics aren't enough
 
 **States (every component needs):**
+
 - Default, Hover, Focus, Active, Disabled, Loading, Error, Empty
 - See DESIGN_PRINCIPLES "State Handling" section
 
 **Motion:**
+
 - Use appropriate timing: 150-200ms for micro-interactions, 200-300ms for transitions
 - Use ease-out for entrances, ease-in for exits
 - Respect `prefers-reduced-motion`
@@ -481,6 +521,7 @@ export default function DesignLabPage() {
 ## Phase 4: Present Design Lab to User
 
 After generating the lab files, **immediately** present the lab to the user. Do NOT attempt to:
+
 - Start the dev server yourself (it runs forever and will block)
 - Check if ports are open
 - Open a browser
@@ -489,6 +530,7 @@ After generating the lab files, **immediately** present the lab to the user. Do 
 ### What to Do
 
 1. **Output the lab location and URL:**
+
    ```
    ✅ Design Lab created!
 
@@ -515,6 +557,7 @@ Running `pnpm dev` or `npm run dev` starts a long-running process that never exi
 ## Phase 5: Collect Feedback
 
 After presenting the lab URL, the user can provide feedback in two ways:
+
 1. **Interactive Feedback** (recommended): Using the built-in overlay in the browser
 2. **Manual Feedback**: Via AskUserQuestion in the terminal
 
@@ -552,14 +595,17 @@ Or just describe your feedback manually below!
 **Comments:** 3
 
 ### Variant A
+
 1. **Button** (`[data-testid='submit']`, button with "Submit")
    "Make this more prominent"
 
 ### Variant B
+
 1. **Card** (`.product-card`, div with "Product Name")
    "Love this layout"
 
 ### Overall Direction
+
 Go with Variant B's structure. Apply Variant A's button styling.
 ```
 
@@ -578,6 +624,7 @@ If the user prefers not to use the interactive overlay (or pastes manual feedbac
 ### Stage 1: Check for a Winner
 
 **Question 1: Ready to pick?**
+
 - Header: "Decision"
 - Question: "Is there one variant you like as is?"
 - Options:
@@ -589,6 +636,7 @@ If the user prefers not to use the interactive overlay (or pastes manual feedbac
 If user said "Yes", ask:
 
 **Question 2a: Which one?**
+
 - Header: "Winner"
 - Question: "Which variant do you want to go with?"
 - Options:
@@ -599,6 +647,7 @@ If user said "Yes", ask:
   - "Variant E" - [brief description of E]
 
 **Question 3a: Any tweaks?**
+
 - Header: "Tweaks"
 - Question: "Any small changes needed, or is it good as is?"
 - Options:
@@ -614,11 +663,13 @@ Then proceed to **Phase 7: Final Preview**.
 If user said "No - I like parts of different ones", ask:
 
 **Question 2b: What do you like about each?**
+
 - Header: "Feedback"
 - Question: "What do you like about each variant? (mention specific elements from A, B, C, D, E)"
 - (Let user provide detailed feedback via "Other" text input)
 
 Example response format to guide user:
+
 ```
 - A: Love the card layout and spacing
 - B: The color scheme feels right
@@ -650,6 +701,7 @@ Based on the user's feedback about what they liked from each variant:
 4. **Ask for feedback again:**
 
 **Question: How's the new variant?**
+
 - Header: "Review"
 - Question: "How does the synthesized variant (F) look?"
 - Options:
@@ -668,6 +720,7 @@ Then proceed to **Phase 7: Final Preview**.
 Once user is satisfied:
 
 1. Create `.claude-design/preview/` directory:
+
    ```
    .claude-design/preview/
    ├── page.tsx                    # Preview page
@@ -683,6 +736,7 @@ Once user is satisfied:
 4. Ask for final confirmation:
 
 **Question: Confirm final design?**
+
 - Header: "Confirm"
 - Question: "Ready to finalize this design?"
 - Options:
@@ -698,6 +752,7 @@ If "Abort": proceed to **Abort Handling** below.
 ## Abort Handling
 
 If the user wants to cancel/abort at ANY point during the process (not just final confirmation), they may say things like:
+
 - "cancel"
 - "abort"
 - "stop"
@@ -728,6 +783,7 @@ When user confirms (selected "Yes, finalize it"):
 ### 8.1: Cleanup
 
 Delete all temporary files:
+
 - Remove `.claude-design/` directory entirely
 - Remove temporary route files:
   - `app/__design_lab/` (Next.js App Router)
@@ -737,6 +793,7 @@ Delete all temporary files:
   - Revert any `App.tsx` modifications (Vite)
 
 **Safety rules:**
+
 - ONLY delete files inside `.claude-design/`
 - ONLY delete route files that the plugin created
 - NEVER delete user-authored files
@@ -750,22 +807,26 @@ Create `DESIGN_PLAN.md` in the project root:
 # Design Implementation Plan: [TargetName]
 
 ## Summary
+
 - **Scope:** [component/page]
 - **Target:** [file path]
 - **Winner variant:** [A-E]
 - **Key improvements:** [from feedback]
 
 ## Files to Change
+
 - [ ] `src/components/Example.tsx` - Main component refactor
 - [ ] `src/styles/example.css` - Style updates
 - [ ] ... (list all affected files)
 
 ## Implementation Steps
+
 1. [Specific step with code guidance]
 2. [Next step]
 3. ...
 
 ## Component API
+
 - **Props:**
   - `prop1: type` - description
   - ...
@@ -775,6 +836,7 @@ Create `DESIGN_PLAN.md` in the project root:
   - Callbacks and handlers
 
 ## Required UI States
+
 - **Loading:** [description]
 - **Empty:** [description]
 - **Error:** [description]
@@ -782,25 +844,28 @@ Create `DESIGN_PLAN.md` in the project root:
 - **Validation:** [description]
 
 ## Accessibility Checklist
+
 - [ ] Keyboard navigation works
 - [ ] Focus states visible
-- [ ] Labels and aria-* attributes correct
+- [ ] Labels and aria-\* attributes correct
 - [ ] Color contrast meets WCAG AA
 - [ ] Screen reader tested
 
 ## Testing Checklist
-- [ ] Unit tests for logic
+
+- [ ] No unit tests added or restored; verify behavior through integration or end-to-end coverage
 - [ ] Component tests for rendering
 - [ ] Visual regression tests (if applicable)
 - [ ] E2E smoke test (if applicable)
 
 ## Design Tokens
+
 - [Any new tokens to add]
 - [Existing tokens to use]
 
 ---
 
-*Generated by Design Variations plugin*
+_Generated by Design Variations plugin_
 ```
 
 ### 8.3: Update Design Memory
@@ -808,52 +873,61 @@ Create `DESIGN_PLAN.md` in the project root:
 Create or update `DESIGN_MEMORY.md`:
 
 If new file:
+
 ```markdown
 # Design Memory
 
 ## Brand Tone
+
 - **Adjectives:** [from interview]
 - **Avoid:** [anti-patterns discovered]
 
 ## Layout & Spacing
+
 - **Density:** [preference]
 - **Grid:** [if established]
 - **Corner radius:** [if consistent]
 - **Shadows:** [if consistent]
 
 ## Typography
+
 - **Headings:** [font, weights used]
 - **Body:** [font, size]
 - **Emphasis:** [patterns]
 
 ## Color
+
 - **Primary:** [color tokens]
 - **Secondary:** [color tokens]
 - **Neutral strategy:** [approach]
 - **Semantic colors:** [error, success, warning]
 
 ## Interaction Patterns
+
 - **Forms:** [validation approach, layout]
 - **Modals/Drawers:** [when to use which]
 - **Tables/Lists:** [preferred patterns]
 - **Feedback:** [toast, inline, etc.]
 
 ## Accessibility Rules
+
 - **Focus:** [visible focus approach]
 - **Labels:** [labeling conventions]
 - **Motion:** [reduced motion support]
 
 ## Repo Conventions
+
 - **Component structure:** [file organization]
 - **Styling approach:** [Tailwind classes, CSS modules, etc.]
 - **Existing primitives:** [Button, Input, Card, etc.]
 
 ---
 
-*Updated by Design Variations plugin*
+_Updated by Design Variations plugin_
 ```
 
 If updating existing file:
+
 - Append new patterns discovered
 - Update any conflicting guidance with latest decisions
 - Keep file concise and actionable
@@ -863,23 +937,31 @@ If updating existing file:
 ## Error Handling
 
 ### Framework Not Detected
+
 If framework cannot be determined:
+
 - Ask user: "I couldn't detect your framework. What are you using?"
 - Provide common options: Next.js, Vite, Create React App, Vue, etc.
 
 ### Dev Server Fails
+
 If dev server won't start:
+
 - Check for port conflicts
 - Provide manual instructions
 - Suggest user starts server themselves
 
 ### Route Integration Fails
+
 If can't create temporary route:
+
 - Fall back to creating standalone HTML file
 - Provide instructions for manual preview
 
 ### Cleanup Interrupted
+
 If cleanup is interrupted:
+
 - Log what was deleted vs remaining
 - Provide manual cleanup instructions
 - Never leave partial state without informing user
@@ -906,7 +988,7 @@ The plugin supports these optional configurations (via environment or project co
 6. Plugin creates: `.claude-design/lab/` with 5 variants
 7. Plugin creates: `app/__design_lab/page.tsx`
 8. Plugin starts: `pnpm dev`
-9. Plugin outputs: "Open http://localhost:3000/__design_lab"
+9. Plugin outputs: "Open http://localhost:3000/\_\_design_lab"
 10. User reviews variants in browser
 11. Plugin asks: "Which variant wins?"
 12. User: "Variant C, but change X and Y"

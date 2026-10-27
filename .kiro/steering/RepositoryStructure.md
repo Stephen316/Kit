@@ -25,12 +25,20 @@ Standard repository governance names and copied third party assets may retain ex
 - Keep at most 32 direct files in every project owned directory
 - Split a directory into cohesive domain feature format phase or responsibility subfolders before adding the thirty third direct file
 - Never evade the cap with numbered folders numbered files arbitrary alphabet ranges or catch all buckets
-- Keep every file beside its closest owner and keep focused tests in the matching semantic test tree
+- Keep every file beside its closest owner and keep integration and end-to-end tests in the matching semantic test tree
 - Exclude only externally named example fixtures generated output caches dependencies and vendored trees from density enforcement
+
+## Test policy
+
+- Unit tests are banned, including isolated policy, security, and tooling tests
+- Never add, restore, generate, or request tests of individual functions, methods, classes, or internal helpers in isolation
+- Keep integration, end-to-end, smoke, compatibility, and repository-wide policy verification at real component or process boundaries
+- Do not require a test file for every module and do not relabel unit tests as integration coverage
+- Run tests only in pull request CI, never locally, and keep all applicable CI checks enabled
 
 ## Extension model
 
-- Give every independently selectable reverse engineering method parser serializer writer adapter strategy and validation rule its own focused module and focused test file
+- Give every independently selectable reverse engineering method parser serializer writer adapter strategy and validation rule its own focused module and verify it through real integration or end-to-end boundaries
 - Add a new behavior by creating its module importing its exact public symbol and adding one declarative registry or composition entry
 - Keep registries declarative and free of feature specific control flow
 - Keep a generated serializer method table whole when it is the atomic representation of one natural recovered method and deterministic generation plus decomposition equivalence verify it Do not split it into numbered size based or otherwise arbitrary chunks
@@ -71,7 +79,7 @@ Standard repository governance names and copied third party assets may retain ex
 - Inspect every CodeQL result regardless of severity precision or classification and fix the underlying code before merge
 - Never hide path injection command injection regular expression denial of service definite timing attack or other security results with exclusions query removal baseline resets or suppressions
 - Fix path flows with resolved fixed root containment command flows with strict allowlists and argument list subprocess calls and unsafe regular expressions with bounded escaped possessive or deterministic parsing
-- Add a CodeQL barrier model only for a concrete validated boundary with focused regression tests and keep every modeled function and dataflow kind explicit
+- Add a CodeQL barrier model only for a concrete validated boundary with integration or end-to-end regression coverage and keep every modeled function and dataflow kind explicit
 - Keep query exceptions limited to `py/not-named-self` `py/not-named-cls` `py/possible-timing-attack-sensitive-info` and `py/possible-timing-attack-against-hash` because the first pair conflicts with required PascalCase receivers and the second pair covers documented comparisons of nonsecret CAD structure and hash heuristics
 - Keep definite timing queries enabled and reject any broader identifier timing path command or regular expression filter
 - Store the maximal configuration suite and model sources below `.github/CodeQL/` and prepare the exact lowercase `.github/codeql/extensions/` ecosystem path before GitHub CodeQL initialization
@@ -80,7 +88,7 @@ Standard repository governance names and copied third party assets may retain ex
 - Run the native strict analyzer for languages and artifacts CodeQL does not cover and do not describe unsupported input as clean
 - Run final local verification directly on native Windows when Windows is the target and never substitute WSL results for the bare metal run
 - Keep custom repository checks for path casing digits folder density identifier rules exact imports comments and steering synchronization because CodeQL does not replace project policy
-- Run focused tests full end to end verification formatters steering checks and security analysis after structural changes
+- Run integration tests and full end to end verification in pull request CI and run formatters steering checks and security analysis after structural changes
 - Leave no notices warnings alerts failing checks stale generated skills or known quality defects when handing work off
 
 ## Completion gate

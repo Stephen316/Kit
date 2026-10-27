@@ -36,6 +36,19 @@ Each kebab-case skill is generated from its mapped PascalCase source file in
   file, and background Git operation as user-owned state. Preserve it and work
   around it unless the user explicitly says otherwise.
 
+## Test policy
+
+- Unit tests are prohibited. Do not add, restore, generate, or request tests of
+  individual functions, methods, classes, or internal helpers in isolation.
+- This ban also covers policy, security, and tooling unit tests. Do not relabel
+  isolated tests as integration tests to bypass it.
+- Validate behavior through integration, end-to-end, smoke, compatibility, and
+  repository-wide policy checks at real component or process boundaries.
+- Run tests only in pull request CI, never locally. Keep all applicable CI checks
+  enabled and require them to pass.
+- This policy takes precedence over any skill requesting unit tests or a test
+  file for each implementation module.
+
 ## Skill routing
 
 | When working on…                                                               | Activate these skills                                                                                                                             |

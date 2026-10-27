@@ -453,18 +453,6 @@ def TestCatproductC(TmpPath: FilePath) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestCatproductA(TmpPath: FilePath) -> None:
-    RootValue = TmpPath / "components"
-    RootValue.mkdir()
-    Inside = RootValue / "inside.CATPart"
-    Outside = TmpPath / "outside.CATPart"
-    Inside.touch()
-    Outside.touch()
-    assert UnderRoot(Inside.resolve(), RootValue.resolve())
-    assert not UnderRoot(Outside.resolve(), RootValue.resolve())
-
-
-# this definition exists because focused behavior needs one stable owner
 def TestCatproduct() -> None:
     PathValue = KCatproducts / "Tilton_Set.CATProduct"
     Archive = CfvTwoArchive.from_bytes(PathValue.read_bytes())

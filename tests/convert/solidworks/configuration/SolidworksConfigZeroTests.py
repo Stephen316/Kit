@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 from pathlib import Path as FilePath
-import pytest as PytestLib
 from convert.adapters.solidworks.configuration.ConfigZero import (
     CONFIG_FIELD_COUNT as Count,
     CONFIG_OPAQUE_BYTES as Bytes,
@@ -12,7 +11,6 @@ from convert.adapters.solidworks.configuration.ConfigZero import (
     REFERENCE_LENGTH as Length,
     REFERENCE_TREE_ID as IdInfoA,
     declared_opaque_split as DeclaredOpaqueSplit,
-    encode_config0_stream as EncodeConfigZeroStream,
 )
 from convert.adapters.solidworks.programs.configuration.default.Registry import (
     ConfigOps,
@@ -26,7 +24,6 @@ from convert.adapters.solidworks.programs.configuration.box.Registry import (
     ConfigOps as BoxConfigOps,
     FieldOwners as BoxFieldOwners,
 )
-from convert.adapters.solidworks.container.Container import SldprtFormatError
 
 # centralizes shared evidence so every related assertion uses one value
 KBytes = 88
@@ -148,9 +145,3 @@ def TestTFAFTEDS() -> None:
     assert SplitData["opaque"] == Bytes == 0
     assert SplitData["operations"] == len(ConfigOps)
     assert SplitData["owners"] == len(FieldOwners)
-
-
-# keeps this focused behavior isolated so regressions remain immediately visible
-def TestCRPIR() -> None:
-    with PytestLib.raises(SldprtFormatError, match="raw Config-0 prologue"):
-        _ = EncodeConfigZeroStream(part_record_body=b"not allowed")

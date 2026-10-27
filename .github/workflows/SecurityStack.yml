@@ -335,6 +335,7 @@ jobs:
         run: >-
           "${RUNNER_TEMP}/gitleaks" git
           --config .github/config/Gitleaks.toml
+          --log-opts="--full-history --diff-filter=tuxdb HEAD"
           --redact --verbose .
 
   grype:
