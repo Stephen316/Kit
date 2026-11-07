@@ -185,3 +185,15 @@ decoding. The next differential needs the same target plane and sketch with
 only the direction hint changed to isolate how Fusion selects the branch.
 Source-only branch selection and plane-limited Revolve reconstruction remain
 unresolved.
+
+The research helper `RevolvePlanes.PlaneIntervals` now derives both radial
+roots of each target plane from its normal in the source frame. It requires a
+unit plane through the axis and enumerates both directed intervals between the
+eligible meridians. In the sketch-normal-directed frame (axis −Y, radial +X,
+tangent +Z), the three fixtures yield four, four, and eight source candidates.
+Each mapped BODY agrees with exactly one candidate when all four circular
+edges are compared by span and midpoint: 0° to 35°, 0° to 135°, and 135° to
+215°, respectively. This validates the candidate construction and identifies
+the observed branch through independent stored geometry. The helper is
+currently separate from the main reader, and source records alone do not yet
+establish which candidate Fusion chooses.
