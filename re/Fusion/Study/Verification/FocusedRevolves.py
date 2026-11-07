@@ -9,6 +9,7 @@
 """Reproduce scoped saved-file checks for three Fusion feature families."""
 
 from argparse import ArgumentParser
+from dataclasses import replace
 from math import atan2, cos, isclose, pi, radians, sin
 from pathlib import Path
 from RevolvePlanes.PlaneIntervals import PlaneBranches, SelectPlaneSpan
@@ -157,11 +158,53 @@ def CheckPlaneRule():
                 assert isclose(Actual, Target, abs_tol=1e-9), Angles
 
 
+# a captured legacy record exercises the observed extension and rejects unknown bytes
+def CheckParamLayout(ZstdLibrary):
+    Source = Path("revolveto-b1d196f65c46/positive_plane.f3d")
+    Members = read_members(
+        Source, ZstdLibrary, MemberSuffixes=("/BulkStream.dat", "/MetaStream.dat")
+    )
+    (Member,) = (
+        Name
+        for Name in Members
+        if Name.endswith("/FusionDesignSegmentType1/BulkStream.dat")
+    )
+    Data = Members[Member]
+    Records, _ = design_records(
+        Data, Members[Member.replace("BulkStream", "MetaStream")]
+    )
+    Parameters, _ = decode_stream(Data, Records)
+    (Angle,) = (Param for Param in Parameters if Param["role"] == "AlongAngle")
+    (Record,) = (
+        Entry
+        for Entry in Records
+        if Entry.is_primary and Entry.object_id == Angle["parameter_object_id"]
+    )
+    RoleOffset = Angle["role_offset"]
+    Extended = replace(Record, end=Record.end + 1)
+    for ByteValue in (b"\0", b"\x01"):
+        Modified = Data[:RoleOffset] + ByteValue + Data[RoleOffset:]
+        Decoded, Rejected = decode_stream(Modified, (Extended,))
+        if ByteValue == b"\0":
+            assert not Rejected
+            assert Decoded == [
+                dict(
+                    Angle,
+                    role_offset=RoleOffset + 1,
+                    value_offset=Angle["value_offset"] + 1,
+                    expression_metadata_hex=Angle["expression_metadata_hex"] + "00",
+                )
+            ]
+        else:
+            assert not Decoded and len(Rejected) == 1
+
+
 if __name__ == "__main__":
     Parser = ArgumentParser(description=__doc__)
     Parser.add_argument("--zstd-library")
     Options = Parser.parse_args()
     CheckPlaneRule()
+    CheckParamLayout(Options.zstd_library)
     CheckRevolves(Options.zstd_library)
     assert (
         CheckFocused(

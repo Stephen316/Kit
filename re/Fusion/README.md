@@ -210,11 +210,14 @@ The observed hint invariance applies to these controlled through-axis planes.
 | +15°                     | omitted hint          | 0°–165°         |
 | −65°                     | omitted hint          | 0°–65°          |
 
-The 2706.1.17 controls corroborate the interval rule through their native plane
-normals and raw mapped body edges. Full feature decoding of those exports still
-requires support for their parameter records, including the inactive
-`AlongAngle` binding. The three tracked 2705.1.30 cases exercise the entire
-reconstruction path.
+All 13 Fusion 2706.1.17 controls now decode through the full Revolve
+reconstruction path. Their bound numeric parameters use eleven zero bytes
+between the expression and role, compared with ten metadata bytes in the
+older layout. The reader preserves the extra byte and the original source
+offsets. Across the 13 captures, all 51 decoded parameter names, roles and
+numeric values matched the Fusion API, and each source-derived Revolve
+matched its bounded body. The tracked 2705.1.30 fixtures still exercise
+the legacy layout.
 
 From `Study/`, enable this experimental path with:
 

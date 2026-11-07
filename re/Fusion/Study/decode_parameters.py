@@ -33,6 +33,23 @@ def read_string(data, position, *, allow_text_controls=False):
     return text, end
 
 
+# newer bound numeric parameters preserve the zero metadata extension
+def ReadParamRole(BodyData, StartOffset, ClassGuid, BindingId):
+    RoleOffset = StartOffset + 10
+    try:
+        RoleName, EndOffset = read_string(BodyData, RoleOffset)
+    except (ValueError, UnicodeError):
+        if (
+            ClassGuid != "7A6A3D31-BE74-4E19-9115-20642944C2E4"
+            or BindingId is None
+            or BodyData[StartOffset : RoleOffset + 1] != bytes(11)
+        ):
+            raise
+        RoleOffset += 1
+        RoleName, EndOffset = read_string(BodyData, RoleOffset)
+    return RoleName, RoleOffset, EndOffset
+
+
 # editable text values require reciprocal owner and parameter identities
 def _bound_text_binding(data, records, binding_id, parameter_id, text, stored_index):
     """Validate the captured SketchText model binding and its reciprocal copies."""
@@ -125,9 +142,11 @@ def decode_stream(data, records=None):
                 raise ValueError("Unobserved parameter value type")
             if value_kind == 0 and any(c in expression for c in "\r\n\t"):
                 raise ValueError("Unverified controls in numeric parameter expression")
-            cursor += 10
-            role_offset = cursor
-            role, cursor = read_string(body, cursor)
+            role, role_offset, RoleEnd = ReadParamRole(
+                body, cursor, record.class_guid, binding_id
+            )
+            metadata = body[cursor:role_offset]
+            cursor = RoleEnd
             reserved_text, cursor = read_string(body, cursor, allow_text_controls=True)
             units, cursor = read_string(body, cursor)
             name, cursor = read_string(body, cursor)
