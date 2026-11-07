@@ -14,6 +14,7 @@ from pathlib import Path as FilePath
 from convert.formats.Fusion.DesignZip import ReadDesignZip
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.PlaneProjection import ProjectPlanes
+from convert.formats.Fusion.Profiles.ProfileProjection import ProjectProfiles
 from convert.formats.Fusion.Sketches.SketchProjection import ProjectSketches
 from convert.formats.Fusion.SourceBytes import LoadFusionBytes
 from convert.formats.Fusion.ZipHistory import ReadBulkHistory
@@ -54,6 +55,7 @@ def ReadFusionDoc(
     History = SelectHistory(Parts, HistoryId)
     Planes, PlaneIssues = ProjectPlanes(BulkData, Spans, History)
     Frames, Sketches, Steps, SketchIssues = ProjectSketches(BulkData, Spans, History)
+    Steps, Sketches, ProfileIssues = ProjectProfiles(BulkData, Spans, Steps, Sketches)
     Owners = {
         ParamId: StepValue.id
         for StepValue in History.Steps
@@ -97,6 +99,7 @@ def ReadFusionDoc(
         diagnostics=Diagnostics
         + PlaneIssues
         + SketchIssues
+        + ProfileIssues
         + (
             Diagnostic(
                 code="fusion.history.partial",

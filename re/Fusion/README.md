@@ -82,8 +82,17 @@ with a support frame derived from each sketch's verified component
 transform. A sketch frame preserves placement independently of its native
 support selection. The SDK matched all 1,005 tracked sketch placements and
 6,589 projected primitives against the study. The 13 newer Revolve captures
-also project their 13 sketches and 117 primitives. Constraints, closed
-profiles, additional curve layouts, and native support links remain open.
+also project their 13 sketches and 117 primitives. Constraints, additional
+curve layouts, and native support links remain open.
+
+For Extrude and Revolve, the document reader follows typed profile
+descriptors to their owning feature, sketch, and reciprocal loop record.
+It preserves the native member order and direction flags separately from
+the neutral traversal order. Single outer loops formed by a whole circle
+or a closed convex line ring become linked feature inputs. The SDK matched
+501 Extrude and 25 Revolve profiles in the tracked corpus, plus all 13
+newer Revolve captures. Trimmed, concave, and multi-loop selections remain
+outside this projection.
 
 ## Import provenance
 
