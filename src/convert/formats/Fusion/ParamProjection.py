@@ -6,6 +6,8 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from dataclasses import replace as Replace
+
 from convert.formats.Fusion.DesignZip import KDesignPrefix
 from convert.formats.Fusion.NativeParam import NativeParam
 from convert.formats.Fusion.RecordSpan import RecordSpan
@@ -67,6 +69,26 @@ def ProjectParam(ParamData: NativeParam, SpanValue: RecordSpan) -> Parameter:
                 "fusion.parameter_index": ParamData.NativeIndex,
                 "fusion.expression_metadata": ParamData.Metadata.hex(),
                 "fusion.comment": ParamData.Comment,
+            }
+        ),
+    )
+
+
+# only proven native relationships enter the neutral parameter attributes
+def AttachOwner(
+    ParamValue: Parameter, OwnerSpan: RecordSpan, Binding: RecordSpan
+) -> Parameter:
+    Origin = ParamValue.provenance
+    if Origin is None:
+        raise ValueError("Fusion parameter source span is missing")
+    return Replace(
+        ParamValue,
+        provenance=Replace(Origin, spans=Origin.spans + ParamOrigin(Binding).spans),
+        attributes=FreezeMapping(
+            {
+                **ParamValue.attributes,
+                "fusion.owner_object_id": OwnerSpan.ObjectId,
+                "fusion.owner_class_guid": OwnerSpan.ClassGuid,
             }
         ),
     )

@@ -37,11 +37,15 @@ size. The archive reader checks the returned size and CRC.
 numeric parameters into Kit's neutral `Parameter` records. It retains native
 expression text, display units, binding IDs, and source spans. Values use
 their stored radians or centimetres where applicable. Feature-bound
-parameters remain references until their owners can be validated and mapped
-into the feature graph. Unsupported registered parameter records produce
-diagnostics. The SDK projection matched the study on 2,607 numeric
-parameters across the 712 tracked archives and another 51 across the
-13 Fusion 2706 captures.
+parameters retain reference roles while their neutral feature owners are
+being mapped. The SDK verifies each native binding's class, parameter
+reference, repeated owner ID, and cached value before recording the native
+owner and binding span. A rejected binding leaves the numeric value
+available and produces a diagnostic. Unsupported registered parameter
+records also produce diagnostics. The SDK projection matched the study on
+2,607 numeric parameters across the 712 tracked archives and another 51
+across the 13 Fusion 2706 captures. All 2,593 feature-bound parameters
+matched the study's native owner IDs.
 
 ## Import provenance
 
