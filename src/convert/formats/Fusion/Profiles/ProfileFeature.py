@@ -12,6 +12,7 @@ from convert.formats.Fusion.ParamProjection import ParamOrigin as RecordOrigin
 from convert.formats.Fusion.Profiles.LineRing import OrderLineRing
 from convert.formats.Fusion.Profiles.ProfileLoop import ReadProfileLoop
 from convert.formats.Fusion.Profiles.ProfileRef import KLoopGuid, ReadProfileRef
+from convert.formats.Fusion.Profiles.SemiRing import OrderSemiRing
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from interchange.core.Common import FreezeMapping
 from interchange.features.FeatureStep import FeatureStep
@@ -41,7 +42,7 @@ def AttachProfile(
         Descriptor.ObjectId,
         SketchValue,
     )
-    Closed = OrderLineRing(Members)
+    Closed = OrderSemiRing(Members) if len(Members) == 2 else OrderLineRing(Members)
     Origin = StepValue.provenance
     if Origin is None:
         raise ValueError("Missing Fusion profile feature provenance")

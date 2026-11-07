@@ -106,9 +106,9 @@ if zstd is not None:
     assert len(angular_fusion.bodies) == 1 and angular_fusion.brep is not None
     analytic_capture = root / "re" / "Fusion" / "Study" / "analytic-86a12b291d0a" / "analytic.f3d"
     analytic_fusion = open_document(analytic_capture, strict=False)
-    assert len(analytic_fusion.bodies) == 2
+    assert len(analytic_fusion.bodies) == 3
     assert sorted(type(surface).__name__ for surface in analytic_fusion.brep.surfaces) == [
-        "ConeSurface", "PlaneSurface", "TorusSurface",
+        "ConeSurface", "PlaneSurface", "SphereSurface", "TorusSurface",
     ]
 cases = (
     (root / "examples" / ".SLDPRT" / "example.SLDPRT", ".FCStd"),

@@ -8,6 +8,7 @@
 
 
 from dataclasses import replace as Replace
+from math import isclose as IsClose, tau as FullTurn
 
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Revolves.AngularAxis import ResolveAngleAxis
@@ -15,10 +16,11 @@ from convert.formats.Fusion.Revolves.AngleRevValues import ReadAngleSpan
 from convert.formats.Fusion.Revolves.MeridianSense import ChooseMeridian
 from convert.formats.Fusion.Revolves.ProfileMeridian import CalcMeridian
 from convert.formats.Fusion.Revolves.RevProfile import ReadRevProfile
+from convert.formats.Fusion.Revolves.SphereMeridian import ReadSphereAxis
 from interchange.enums.EnumFeatures import BooleanOp
 from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.GeometryCurves import CircleGeometry
+from interchange.geometry.models.GeometryCurves import ArcGeometry, CircleGeometry
 from interchange.geometry.models.Selection import Selection
 from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.SupportPlane import SupportPlane
@@ -63,10 +65,16 @@ def AttachAngleRev(
             StoredAxis,
             Profile.radius,
         )
+        Direction = SpaceVector(*EffectiveAxis)
+    elif isinstance(Profile, ArcGeometry):
+        _, Direction, _ = ReadSphereAxis(
+            ProfileFrame.transform, Profile, Origin, StoredAxis
+        )
     else:
         EffectiveAxis, _ = CalcMeridian(
             ProfileFrame.transform, Profile, Origin, StoredAxis
         )
+        Direction = SpaceVector(*EffectiveAxis)
     AlongId = Attrs.get("fusion.revolve.along_parameter_id")
     AgainstId = Attrs.get("fusion.revolve.against_parameter_id")
     SideMode = Attrs.get("fusion.revolve.sidedness")
@@ -81,10 +89,14 @@ def AttachAngleRev(
         AlongParameterId=AlongId,
         AgainstParameterId=AgainstId,
         AxisOrigin=Origin,
-        AxisDirection=SpaceVector(*EffectiveAxis),
+        AxisDirection=Direction,
         SideMode=SideMode,
     )
-    ReadAngleSpan(Definition, Params)
+    Start, EndValue = ReadAngleSpan(Definition, Params)
+    if isinstance(Profile, ArcGeometry) and not IsClose(
+        EndValue - Start, FullTurn, rel_tol=0.0, abs_tol=1e-10
+    ):
+        raise ValueError("Fusion semicircle Revolve requires one full turn")
     return (
         Replace(
             StepValue,

@@ -77,21 +77,22 @@ tracked planes and 19 planes in newer Fusion captures. Seven tracked
 plane records still produce diagnostics for unsupported layouts.
 Native support selection links and parametric plane definitions remain open.
 
-The document reader also projects sketch-local points, lines, and circles
-with a support frame derived from each sketch's verified component
-transform. A sketch frame preserves placement independently of its native
-support selection. The SDK matched all 1,005 tracked sketch placements and
-6,589 projected primitives against the study. The 13 newer Revolve captures
-also project their 13 sketches and 117 primitives. Constraints, additional
+The document reader also projects sketch-local points, lines, circles,
+and supported circular arcs with a support frame derived from each
+sketch's verified component transform. The SDK matched all 1,005 tracked
+sketch placements and 6,589 projected points, lines, and circles against
+the study. All 38 planar arcs matched native trim geometry. A projected
+arc outside local XY remains unsupported. The 13 newer Revolve captures
+project their 13 sketches and 117 primitives. Constraints, additional
 curve layouts, and native support links remain open.
 
 For Extrude and Revolve, the document reader follows typed profile
 descriptors to their owning feature, sketch, and reciprocal loop record.
 It preserves the native member order and direction flags separately from
-the neutral traversal order. Single outer loops formed by a whole circle
-or a closed convex line ring become linked feature inputs. The SDK matched
-501 Extrude and 25 Revolve profiles in the tracked corpus, plus all 13
-newer Revolve captures. Trimmed, concave, and multi-loop selections remain
+the neutral traversal order. Single outer loops formed by a whole circle,
+a semicircle with its diameter, or a closed convex line ring become linked
+feature inputs. The SDK matched 501 Extrude and 26 Revolve profiles in
+the tracked corpus, plus all 13 newer Revolve captures. Trimmed, concave, and multi-loop selections remain
 outside this projection.
 
 Revolve steps also retain the native operation, sidedness, projected-axis
@@ -128,18 +129,18 @@ geometry, including volume, area, and bounds.
 
 For unprojected solid New Body Revolves with an origin or sketch-line axis,
 Kit also projects an `AngularRevolve` definition from a qualified convex
-line profile or whole circle. The definition links the owned along and
-against parameters and preserves one-sided, two-sided, and symmetric
-limits. The effective axis follows the occupied side of the sketch.
+line profile, whole circle, or full-turn semicircle with its diameter on
+the axis. The definition links the owned along and against parameters
+and preserves one-sided, two-sided, and symmetric limits. The effective axis follows the occupied side of the sketch.
 Eligible partial polygon sweeps use the same analytic solid builder as
-plane-limited sweeps. The SDK verified 14 typed definitions and eight partial
+plane-limited sweeps. The SDK verified 15 typed definitions and eight partial
 solids across 23 tracked angular features.
 
-Full-turn polygons and ring tori use periodic topology. The tracked
-annular solid, cone, and torus matched their saved body counts and analytic
-geometry. The cone retains its degenerate apex edge, and the torus has one
-untrimmed face. In the multi-body fixture Kit projects the cone and torus
-and reports the unsupported sphere separately. Partial profiles that
+Full-turn polygons, ring tori, and spheres use periodic topology. The
+tracked annular solid, cone, torus, and sphere matched their saved body
+counts and analytic geometry. The cone retains its degenerate apex edge,
+and the torus and sphere each have one untrimmed face. Kit projects all
+three solids in the analytic multi-body fixture. Partial profiles that
 touch the axis, custom and BRep axis definitions, surface and Boolean
 Revolves, projected axes, and native Fusion output require more coverage.
 
