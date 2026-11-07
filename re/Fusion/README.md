@@ -88,3 +88,51 @@ native Sweep weight-rescaling controls. The history-dependent Stitch validator a
 passes from the imported tree using the preserved original commit objects. These
 checks use saved files and make no live Fusion calls. The import does not resolve the decoder's recorded
 unsupported features or legacy style findings.
+
+## Continuing the decoder
+
+Use one feature family at a time. Start with the study README's matching
+capture, its `ground_truth.json`, and its focused validator. Decode the saved
+archives before generating new captures. Use MetaStream to bound records and
+resolve document-local object IDs. Trace the feature's owned profile, placement,
+parameters and selectors before deriving geometry. Then join its creator-owned
+BODY to the ASM history blob by stored entity ID and verify the resulting
+bounded topology. Keep detached auxiliary roots out of the BODY comparison.
+Change one input at a time when the saved cases cannot distinguish competing
+interpretations. Run the focused checks before the full saved-file audit.
+
+### Plane-limited Revolve
+
+The three `Study/revolveto-b1d196f65c46/` captures resolve the selected
+construction planes and the component +Y axis. The selected sketch rectangle
+is in XY, with X in [1, 3] cm and Y in [1, 4] cm. All three store zero in the
+inactive `AlongAngle` binding. The saved API ground truth covers the inputs.
+
+The table records the observed sweep in each mapped history BODY. Angles use
+right-handed rotation about +Y with zero along +X. Unwrap the angles through
+the measured midpoint.
+
+| Capture              | Revolve → native BODY → ASM BODY index | ASM circular EDGE indices | Start / midpoint / end | Span |
+| -------------------- | -------------------------------------- | ------------------------- | ---------------------- | ---- |
+| `negative_plane.f3d` | 272 → 323 → 2                          | 43, 45, 59, 77            | 0° / −17.5° / −35°     | 35°  |
+| `positive_plane.f3d` | 272 → 323 → 2                          | 43, 45, 60, 78            | 0° / −67.5° / −135°    | 135° |
+| `two_planes.f3d`     | 301 → 363 → 3                          | 51, 53, 68, 86            | −135° / −175° / −215°  | 80°  |
+
+To reproduce, use `decode_basics` for `body_selections.body_anchors` and
+`body_asm_identifiers`. Parse the mapping's `history_blob_member` with
+`inspect_asm` and select the mapped BODY graph with `decode_topology`. For
+each circular EDGE in that graph, evaluate its ellipse carrier at the two
+stored EDGE parameters and their midpoint. Subtract the carrier center and
+compute `atan2(-z, x)` for each resulting radial vector. The four edges in
+each BODY agree. Detached auxiliary roots also contain full circles, so an
+archive-wide EDGE scan includes unrelated 360° spans.
+
+The 45° target plane has two radial branches. The single-plane capture uses
+the branch at −135°, and the two-plane capture sweeps across −180° with the
+source profile at 0° outside the resulting sector. A shortest-angle rule or
+an assumption that a two-sided sweep contains the sketch would fail these
+controls. Use the measured arcs as an independent check for future source
+decoding. The next differential needs the same target plane and sketch with
+only the direction hint changed to isolate how Fusion selects the branch.
+Source-only branch selection and plane-limited Revolve reconstruction remain
+unresolved.
