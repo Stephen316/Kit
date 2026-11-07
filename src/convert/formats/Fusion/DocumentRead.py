@@ -11,6 +11,7 @@ from dataclasses import replace as Replace
 from hashlib import sha256 as ShaDigest
 from pathlib import Path as FilePath
 
+from convert.formats.Fusion.Assembly.AssemblyRead import ReadAssemblyProjection
 from convert.formats.Fusion.DesignZip import ReadDesignZip
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.PlaneProjection import ProjectPlanes
@@ -50,20 +51,29 @@ def ReadFusionDoc(
     HistoryId: int | None = None,
     InflateZstd: Callable[[bytes, int], bytes] | None = None,
 ) -> CadDocument:
-    """Project one native Fusion history into a partial, validated document."""
+    """Project a native Fusion history or a qualified local assembly."""
     DataValue, SourceName = LoadFusionBytes(SourceData)
     BulkData, Spans = ReadDesignZip(DataValue, InflateZstd)
     Parts, Params, Diagnostics = ReadBulkHistory(BulkData, Spans)
-    History = SelectHistory(Parts, HistoryId)
+    Assembly, History, AssemblyIssues = (
+        ReadAssemblyProjection(BulkData, Spans, Parts)
+        if HistoryId is None
+        else (None, None, ())
+    )
+    if History is None:
+        History = SelectHistory(Parts, HistoryId)
     Planes, PlaneIssues = ProjectPlanes(BulkData, Spans, History)
     Frames, Sketches, Steps, SketchIssues = ProjectSketches(BulkData, Spans, History)
     Steps, Sketches, ProfileIssues = ProjectProfiles(BulkData, Spans, Steps, Sketches)
     Steps, Selections, RevolveIssues = ProjectRevolves(
         BulkData, Spans, Steps, Params, Planes, Frames, Sketches
     )
-    Bodies, Model, BodyIssues = ProjectRevBody(
-        BulkData, Spans, Steps, Sketches, Frames, Params
-    )
+    if Assembly is None:
+        Bodies, Model, BodyIssues = ProjectRevBody(
+            BulkData, Spans, Steps, Sketches, Frames, Params
+        )
+    else:
+        Bodies, Model, BodyIssues = (), None, ()
     Owners = {
         ParamId: StepValue.id
         for StepValue in History.Steps
@@ -83,6 +93,8 @@ def ReadFusionDoc(
         Capabilities.add(Capability.KSelections)
     if Model is not None:
         Capabilities.update((Capability.KBodyStructure, Capability.KBrep))
+    if Assembly is not None:
+        Capabilities.add(Capability.KAssemblies)
     Document = CadDocument(
         source=CadSource(format_id="fusion.f3d", path=SourceName, sha256=Digest),
         configurations=(
@@ -96,6 +108,7 @@ def ReadFusionDoc(
         selections=Selections,
         feature_timeline=Steps,
         bodies=Bodies,
+        assembly=Assembly,
         brep=Model,
         brep_payloads=(
             BrepPayload(
@@ -115,6 +128,7 @@ def ReadFusionDoc(
         + ProfileIssues
         + RevolveIssues
         + BodyIssues
+        + AssemblyIssues
         + (
             Diagnostic(
                 code="fusion.history.partial",

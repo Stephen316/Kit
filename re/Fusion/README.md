@@ -144,6 +144,18 @@ three solids in the analytic multi-body fixture. Partial profiles that
 touch the axis, custom and BRep axis definitions, surface and Boolean
 Revolves, projected axes, and native Fusion output require more coverage.
 
+Kit reads local assembly definitions and occurrences from qualified `.f3d`
+archives. Repeated instances share one component definition. Nested instances
+retain their parent definition, native sibling order, and local rigid placement,
+with translations expressed in millimeters. Kit binds the top-level timeline
+through native component and history references and retains the empty child
+history identities. The SDK validated 32 definitions, 23 native instances,
+and 24 expanded paths across 12 tracked archives. Three Fusion 2705.1.30
+captures independently verified 11 composed placements. Sixteen archives with
+joint, pin, or stale occurrence records required explicit history selection.
+Component body ownership, external references, and joint-solved assemblies
+require further decoding.
+
 ## Public SDK reader
 
 The adapter catalog includes `fusion.f3d` with alias `f3d`. The registry
@@ -158,9 +170,11 @@ from convert import open_document
 document = open_document("part.f3d", strict=False)
 ```
 
-If the archive contains multiple native histories, pass the desired ID as a
-decimal configuration string, for example `configuration="35"`. Setting
-`include_brep=False` omits the projected B-rep and preserves the original
+For a qualified local assembly, `open_document("assembly.f3d", strict=False)`
+returns the graph in `document.assembly`. Pass a decimal configuration string,
+for example `configuration="35"`, to read a single history on its own. An archive
+with multiple histories that cannot be bound to a supported assembly requires
+an explicit history ID. Setting `include_brep=False` omits the projected B-rep and preserves the original
 document payload. The adapter supplies a reader for `.f3d`. Native Fusion
 output and strict source translation require further format coverage.
 

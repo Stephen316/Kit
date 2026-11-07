@@ -64,7 +64,7 @@ def CheckDiscovery() -> None:
     )
     FusionCaps = FirstRegistry.reader("fusion.f3d").info.capabilities
     assert {Capability.KNativePayloads, Capability.KProvenance} <= FusionCaps
-    assert Capability.KAssemblies not in FusionCaps
+    assert Capability.KAssemblies in FusionCaps
     assert FusionCaps < frozenset(Capability)
 
 
@@ -79,7 +79,7 @@ def CheckDocExts() -> None:
     assert AdapterMap["freecad.fcstd"].assembly_extensions == (".FCStd",)
     FusionInfo = AdapterMap["fusion.f3d"]
     assert FusionInfo.extensions == FusionInfo.part_extensions == (".f3d",)
-    assert FusionInfo.assembly_extensions == ()
+    assert FusionInfo.assembly_extensions == (".f3d",)
     assert "f3d" in FusionInfo.aliases
     for InfoData in AdapterMap.values():
         assert set(InfoData.extensions_for(assembly=False)) <= set(InfoData.extensions)

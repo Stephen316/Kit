@@ -18,6 +18,7 @@ KReaderInfo = AdapterInfo(
     aliases=("f3d",),
     extensions=(".f3d",),
     part_extensions=(".f3d",),
+    assembly_extensions=(".f3d",),
     capabilities=frozenset(
         {
             Capability.KParameters,
@@ -25,6 +26,7 @@ KReaderInfo = AdapterInfo(
             Capability.KSelections,
             Capability.KBodyStructure,
             Capability.KBrep,
+            Capability.KAssemblies,
             Capability.KNativePayloads,
             Capability.KProvenance,
         }

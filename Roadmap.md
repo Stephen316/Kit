@@ -14,8 +14,8 @@ The initial app-wide estimate is **20 of 100 points** at baseline commit
 `9e1c6b60`. This is a coverage score based on repository evidence. It gives
 equal weight to CAD families, although their remaining engineering effort
 will vary. Keep the denominator fixed across feature and format milestones.
-The current estimate is **21 of 100 points** after Fusion gained verified
-plane-limited Revolve definitions and solid geometry in Kit.
+The current estimate is **22 of 100 points** after Kit gained a verified
+subset of local Fusion assembly reads.
 
 The scope includes all nine CAD families named in the [README](README.md)
 plus the shared SDK. The public adapter catalog at the baseline returns
@@ -37,13 +37,13 @@ alone earn no native write credit.
 | SOLIDWORKS          |           1 |            1 |                             1 |          1 |                                        1 |           5 |
 | Parashell           |           0 |            0 |                             0 |          0 |                                        0 |           0 |
 | FreeCAD             |           1 |            1 |                             1 |          1 |                                        0 |           4 |
-| Fusion              |           1 |            0 |                             1 |          0 |                                        0 |           2 |
+| Fusion              |           1 |            0 |                             1 |          1 |                                        0 |           3 |
 | CATIA               |           1 |            0 |                             1 |          1 |                                        0 |           3 |
 | NX                  |           0 |            0 |                             0 |          0 |                                        0 |           0 |
 | Rhino               |           0 |            0 |                             0 |          0 |                                        0 |           0 |
 | Creo                |           0 |            0 |                             0 |          0 |                                        0 |           0 |
 | AutoCAD             |           0 |            0 |                             0 |          0 |                                        0 |           0 |
-| **Format subtotal** |             |              |                               |            |                                          | **14 / 90** |
+| **Format subtotal** |             |              |                               |            |                                          | **15 / 90** |
 
 - SOLIDWORKS has native part reconstruction for controlled feature families
   and a typed assembly core. The recorded strict FreeCAD-to-SOLIDWORKS
@@ -62,8 +62,9 @@ alone earn no native write credit.
   It requires explicit opt-in to the partial read and projects plane-limited
   Revolve definitions and source-derived solid B-reps for a verified subset. Sixteen captures from Fusion 2705.1.30
   and 2706.1.17 matched saved body geometry and passed Kit JSON round-trips.
-  Broader body coverage, the native writer, assemblies, and strict conversion
-  remain open. [Fusion evidence](re/Fusion/README.md)
+  The SDK also reads local assembly definitions, occurrences, and placements
+  in a verified subset. Broader body and assembly coverage, the native writer,
+  and strict conversion remain open. [Fusion evidence](re/Fusion/README.md)
 
 ## Shared SDK
 
