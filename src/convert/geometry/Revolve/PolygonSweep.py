@@ -10,16 +10,10 @@ from convert.geometry.Revolve.SweepArcs import BuildArcs
 from convert.geometry.Revolve.SweepFaces import BuildFaces
 from convert.geometry.Revolve.SweepFrame import RotateRadial
 from convert.geometry.Revolve.SweepInput import CheckSweepInput, OrientMeridian
+from convert.geometry.Revolve.SweepModel import BuildSweepModel
 from convert.geometry.Revolve.SweepRims import BuildRim
 from convert.geometry.Revolve.SweepVector import CrossVector
 from interchange.brep.topology.BrepModel import BrepModel
-from interchange.brep.topology.BrepTopology import (
-    BrepBody,
-    BrepFaceUse,
-    BrepRegion,
-    BrepShell,
-    BrepShellUse,
-)
 from interchange.geometry.models.Transform import Transform
 from interchange.geometry.models.VectorSpace import SpaceVector
 
@@ -60,30 +54,14 @@ def BuildPolySweep(
     Surfaces, Faces, Loops, Coedges = BuildFaces(
         Prefix, Profile, Frame, StartRadial, EndRadial, StartEdges, EndEdges, ArcEdges
     )
-    FaceUses = tuple(
-        BrepFaceUse(f"{FaceValue.id}-use", FaceValue.id) for FaceValue in Faces
+    return BuildSweepModel(
+        BodyId,
+        Prefix,
+        StartCurves + EndCurves + ArcCurves,
+        Surfaces,
+        StartVertices + EndVertices,
+        StartEdges + EndEdges + ArcEdges,
+        Faces,
+        Loops,
+        Coedges,
     )
-    Shell = BrepShell(
-        f"{Prefix}-shell", tuple(Value.id for Value in FaceUses), closed=True
-    )
-    ShellUse = BrepShellUse(f"{Shell.id}-use", Shell.id)
-    Region = BrepRegion(f"{Prefix}-region", (ShellUse.id,))
-    BodyValue = BrepBody(f"{Prefix}-body", (Region.id,), design_body_id=BodyId)
-    Model = BrepModel(
-        curves=StartCurves + EndCurves + ArcCurves,
-        surfaces=Surfaces,
-        vertices=StartVertices + EndVertices,
-        edges=StartEdges + EndEdges + ArcEdges,
-        coedges=Coedges,
-        loops=Loops,
-        faces=Faces,
-        face_uses=FaceUses,
-        shells=(Shell,),
-        shell_uses=(ShellUse,),
-        regions=(Region,),
-        bodies=(BodyValue,),
-    )
-    Errors = Model.validate(frozenset((BodyId,)))
-    if Errors:
-        raise ValueError("Invalid reconstructed Revolve solid: " + "; ".join(Errors))
-    return Model

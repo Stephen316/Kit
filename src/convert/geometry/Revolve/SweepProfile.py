@@ -13,16 +13,34 @@ from math import isfinite as IsFinite
 
 # the swept shell requires one convex positive radius meridian without repeated vertices
 def MeridianSense(
-    Meridian: tuple[tuple[float, float], ...], *, Strict: bool = False
+    Meridian: tuple[tuple[float, float], ...],
+    *,
+    Strict: bool = False,
+    AllowAxis: bool = False,
 ) -> int:
     if len(Meridian) < 3 or len(set(Meridian)) != len(Meridian):
         raise ValueError("revolution meridian requires distinct polygon vertices")
     if any(
-        Radius <= 0.0 or not IsFinite(Radius) or not IsFinite(Height)
+        Radius < 0.0
+        or (not AllowAxis and Radius == 0.0)
+        or not IsFinite(Radius)
+        or not IsFinite(Height)
         for Radius, Height in Meridian
     ):
         raise ValueError(
-            "revolution meridian requires finite positive radii and finite heights"
+            "revolution meridian requires finite nonnegative radii and finite heights"
+            if AllowAxis
+            else "revolution meridian requires finite positive radii and finite heights"
+        )
+    AxisCorners = tuple(
+        Index for Index, (Radius, _) in enumerate(Meridian) if Radius == 0.0
+    )
+    if AxisCorners and not (
+        len(AxisCorners) == 2
+        and AxisCorners[1] - AxisCorners[0] in (1, len(Meridian) - 1)
+    ):
+        raise ValueError(
+            "full revolution axis contact requires one polygon side on the axis"
         )
     Winding = 0
     for Index, (Radius, Height) in enumerate(Meridian):
@@ -53,9 +71,9 @@ def MeridianSense(
 
 # area and radial moment give the cap area and volume independently of angle
 def ProfileMetrics(
-    Meridian: tuple[tuple[float, float], ...],
+    Meridian: tuple[tuple[float, float], ...], *, AllowAxis: bool = False
 ) -> tuple[float, float, float]:
-    MeridianSense(Meridian)
+    MeridianSense(Meridian, AllowAxis=AllowAxis)
     FirstRadius, FirstHeight = Meridian[0]
     Areas: list[float] = []
     Moments: list[float] = []
