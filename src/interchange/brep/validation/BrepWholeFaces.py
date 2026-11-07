@@ -8,17 +8,19 @@
 
 from collections import Counter
 
-from interchange.brep.surfaces.BrepSurfaces import TorusSurface
+from interchange.brep.surfaces.BrepSurfaces import SphereSurface, TorusSurface
 from interchange.brep.validation.BrepView import BrepView
 from interchange.brep.validation.RingTorusValidate import IsRingTorus
+from interchange.brep.validation.SphereValidate import IsFullSphere
 
 
 # a loopless face is whole only when it uniquely bounds a closed solid shell
-def GetWholeTori(ModelValue: BrepView) -> frozenset[str]:
+def GetWholeFaces(ModelValue: BrepView) -> frozenset[str]:
     Surfaces = {
         Surface.id
         for Surface in ModelValue.surfaces
-        if isinstance(Surface, TorusSurface) and IsRingTorus(Surface)
+        if (isinstance(Surface, TorusSurface) and IsRingTorus(Surface))
+        or (isinstance(Surface, SphereSurface) and IsFullSphere(Surface))
     }
     if not Surfaces:
         return frozenset()

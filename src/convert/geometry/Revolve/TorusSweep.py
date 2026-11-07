@@ -10,17 +10,10 @@ from math import isfinite as IsFinite
 from math import pi as Pi
 
 from convert.geometry.Revolve.TorusBounds import GetTorusBounds
+from convert.geometry.Revolve.WholeSweep import BuildWholeSolid
 from interchange.brep.surfaces.BrepSurfaces import TorusSurface
 from interchange.brep.topology.BrepMath import IsFiniteSpace
 from interchange.brep.topology.BrepModel import BrepModel
-from interchange.brep.topology.BrepTopology import (
-    BrepBody,
-    BrepFace,
-    BrepFaceUse,
-    BrepRegion,
-    BrepShell,
-    BrepShellUse,
-)
 from interchange.brep.validation.RingTorusValidate import IsRingTorus
 from interchange.geometry.models.BoundingBox import BoundingBox
 from interchange.geometry.models.VectorSpace import SpaceVector
@@ -55,22 +48,5 @@ def BuildTorusSweep(
         and IsFiniteSpace(Bounds.maximum)
     ):
         raise ValueError("Torus Revolve measures exceed finite geometry")
-    FaceValue = BrepFace(f"{Prefix}-face", Surface.id, ())
-    FaceUse = BrepFaceUse(f"{FaceValue.id}-use", FaceValue.id)
-    Shell = BrepShell(f"{Prefix}-shell", (FaceUse.id,), closed=True)
-    ShellUse = BrepShellUse(f"{Shell.id}-use", Shell.id)
-    Region = BrepRegion(f"{Prefix}-region", (ShellUse.id,))
-    BodyValue = BrepBody(f"{Prefix}-body", (Region.id,), design_body_id=BodyId)
-    Model = BrepModel(
-        surfaces=(Surface,),
-        faces=(FaceValue,),
-        face_uses=(FaceUse,),
-        shells=(Shell,),
-        shell_uses=(ShellUse,),
-        regions=(Region,),
-        bodies=(BodyValue,),
-    )
-    Errors = Model.validate(frozenset((BodyId,)))
-    if Errors:
-        raise ValueError("Invalid reconstructed Torus Revolve: " + "; ".join(Errors))
+    Model = BuildWholeSolid(BodyId, Surface)
     return Model, Volume, SurfaceArea, Bounds

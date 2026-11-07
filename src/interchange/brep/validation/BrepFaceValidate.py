@@ -8,7 +8,7 @@
 
 from interchange.brep.topology.BrepMath import IsValidTol
 from interchange.brep.validation.BrepView import BrepView
-from interchange.brep.validation.BrepWholeFaces import GetWholeTori
+from interchange.brep.validation.BrepWholeFaces import GetWholeFaces
 
 
 # face validation protects trimming and surface references before shell traversal
@@ -17,7 +17,7 @@ def GetFaceErrors(
 ) -> tuple[str, ...]:
     ErrorValues: list[str] = []
     WholeFaces = (
-        GetWholeTori(ModelValue)
+        GetWholeFaces(ModelValue)
         if any(not FaceValue.loop_ids for FaceValue in ModelValue.faces)
         else frozenset()
     )
