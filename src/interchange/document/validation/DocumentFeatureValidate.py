@@ -11,6 +11,8 @@ from typing import Mapping as TypeMap
 from interchange.document.models.DocumentModel import (  # lgtm[py/cyclic-import]
     CadDocument,
 )
+from interchange.document.validation.PlaneRevValidate import GetPlaneRevErrs
+from interchange.features.FeaturePlaneRev import PlaneRevolve
 
 
 # timeline checks protect ordering and every feature dependency from invalid references
@@ -28,6 +30,7 @@ def GetFeatureErrs(
         {FeatureValue.order for FeatureValue in DocumentValue.feature_timeline}
     ) != len(DocumentValue.feature_timeline):
         ErrorValues.append("feature order values are not unique")
+    Selections = {Value.id: Value for Value in DocumentValue.selections}
     for FeatureValue in DocumentValue.feature_timeline:
         if (
             FeatureValue.sketch_id
@@ -53,6 +56,15 @@ def GetFeatureErrs(
                 ErrorValues.append(
                     f"feature {FeatureValue.id} references missing selection"
                 )
+        if isinstance(FeatureValue.definition, PlaneRevolve):
+            ErrorValues.extend(
+                GetPlaneRevErrs(
+                    FeatureValue,
+                    FeatureValue.definition,
+                    Selections,
+                    IdentitySets["support_planes"],
+                )
+            )
     for BodyValue in DocumentValue.bodies:
         if BodyValue.final_feature_id not in IdentitySets["feature_timeline"]:
             ErrorValues.append(f"body {BodyValue.id} references missing final feature")
