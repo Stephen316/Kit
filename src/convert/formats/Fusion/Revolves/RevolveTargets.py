@@ -30,6 +30,7 @@ def AttachTargets(
     TargetIds: tuple[int, ...],
     PlaneLinks: dict[int, tuple[SupportPlane, FeatureStep]],
     SketchLinks: dict[int, tuple[Sketch, FeatureStep]],
+    FeatureLinks: dict[int, FeatureStep],
 ) -> tuple[FeatureStep, tuple[Selection, ...], tuple[Diagnostic, ...]]:
     Origin = StepValue.provenance
     if Origin is None:
@@ -52,6 +53,7 @@ def AttachTargets(
                     FeatureId,
                     StepValue.order,
                     SketchLinks,
+                    FeatureLinks,
                 )
             else:
                 PickValue = ResolveRevPlane(
@@ -72,15 +74,16 @@ def AttachTargets(
                 )
             )
             continue
-        Attributes[f"fusion.revolve.{RoleName}_object_id"] = PickValue.ObjectId
+        ChainIds = (PickValue.Descriptor, PickValue.Terminal) + PickValue.RelatedIds
+        if PickValue.ObjectId is not None:
+            Attributes[f"fusion.revolve.{RoleName}_object_id"] = PickValue.ObjectId
+            ChainIds += (PickValue.ObjectId,)
+        if PickValue.EdgeSource is not None:
+            Attributes["fusion.revolve.axis_edge_source"] = PickValue.EdgeSource
         SelectOrigin = ParamOrigin(Owners[SelectionId])
         ChainSpans = SelectOrigin.spans + tuple(
             SpanValue
-            for Identity in (
-                PickValue.Descriptor,
-                PickValue.Terminal,
-                PickValue.ObjectId,
-            )
+            for Identity in ChainIds
             for SpanValue in ParamOrigin(Owners[Identity]).spans
         )
         Evidence.extend(

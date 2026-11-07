@@ -73,6 +73,7 @@ def ProjectRevolves(
                     tuple(ByParam[ParamId] for ParamId in StepValue.parameter_ids),
                     PlaneLinks,
                     SketchLinks,
+                    ByNative,
                 )
                 Selections.extend(Picks)
                 Diagnostics.extend(Issues)

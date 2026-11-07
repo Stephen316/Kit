@@ -105,8 +105,11 @@ Kit selections with native provenance and earlier feature dependencies.
 The sketch-line contrasts preserve opposite endpoint orders. The shared
 sketch selection reader matched 102 owned selections across ten native
 feature classes in the tracked corpus. Construction axes retain native
-identity, and two tracked BRep edge axes remain unresolved. Editable Revolve
-definitions and resulting solid geometry are still open.
+identity. The two BRep-edge Revolves retain the native recipe, body anchor,
+earlier source feature, and directed line cache. Both stored endpoints match
+the captured Fusion axes. The shared recipe reader matched 1,763 tracked
+records across five recipe kinds. Exact edge identity in Kit topology,
+editable Revolve definitions, and resulting solid geometry remain open.
 
 ## Import provenance
 

@@ -49,6 +49,7 @@ def AttachRevolve(
     FeatureParams: tuple[Parameter, ...],
     PlaneLinks: dict[int, tuple[SupportPlane, FeatureStep]],
     SketchLinks: dict[int, tuple[Sketch, FeatureStep]],
+    FeatureLinks: dict[int, FeatureStep],
 ) -> tuple[FeatureStep, tuple[Selection, ...], tuple[Diagnostic, ...]]:
     Origin = StepValue.provenance
     if Origin is None:
@@ -96,4 +97,5 @@ def AttachRevolve(
         Inputs.TargetIds,
         PlaneLinks,
         SketchLinks,
+        FeatureLinks,
     )

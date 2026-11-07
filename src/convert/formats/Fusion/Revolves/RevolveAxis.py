@@ -8,13 +8,16 @@
 
 
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.Revolves.RevolveEdge import ResolveRevEdge
 from convert.formats.Fusion.Revolves.RevolvePick import RevolvePick
+from convert.formats.Fusion.SelectionProxy import ReadSelectDesc
 from convert.formats.Fusion.SelectionRef import (
     KSelectLeaf,
     ReadEntityLeaf,
-    ReadSelectLeaf,
+    ReadDescLeaf,
 )
 from convert.formats.Fusion.Sketches.SketchPick import FindSketchCurve, ReadSketchPick
+from convert.formats.Fusion.Topology.PickDescriptor import KTopoSelect
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.GeometryCurves import LineGeometry
 from interchange.geometry.models.Selection import SelectPathElem
@@ -24,7 +27,7 @@ from interchange.geometry.models.Sketch import Sketch
 KAxisObject = "19031004-3AB6-4D13-ABBF-C51EE214688D"
 
 
-# axes can select a construction object or a directed line in an earlier sketch
+# axes dispatch by descriptor class before resolving construction or topology sources
 def ResolveRevAxis(
     BulkData: bytes,
     Owners: dict[int, RecordSpan],
@@ -32,8 +35,15 @@ def ResolveRevAxis(
     FeatureId: int,
     FeatureOrder: int,
     SketchLinks: dict[int, tuple[Sketch, FeatureStep]],
+    FeatureLinks: dict[int, FeatureStep],
 ) -> RevolvePick:
-    Descriptor, Terminal = ReadSelectLeaf(BulkData, Owners, SelectId, FeatureId)
+    Descriptor = ReadSelectDesc(BulkData, Owners, SelectId, FeatureId)
+    SpanValue = Owners.get(Descriptor)
+    if SpanValue is not None and SpanValue.ClassGuid == KTopoSelect:
+        return ResolveRevEdge(
+            BulkData, Owners, Descriptor, FeatureId, FeatureOrder, FeatureLinks
+        )
+    Terminal = ReadDescLeaf(BulkData, Owners, Descriptor, FeatureId)
     Leaf = Owners.get(Terminal)
     if Leaf is not None and Leaf.ClassGuid == KSelectLeaf:
         EntityId = ReadEntityLeaf(BulkData, Owners, Terminal)

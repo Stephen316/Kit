@@ -10,6 +10,7 @@
 from uuid import UUID
 
 from convert.formats.Fusion.HistoryRef import ReadNativeRef
+from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.SelectionProxy import ReadSelectDesc, SelectCursor
 
@@ -20,26 +21,39 @@ KSelectDesc = "5A1BF548-241F-46FD-9FB5-E4B05126EB9D"
 KSelectLeaf = "90055C05-546C-4EE7-B3C9-3DD922AD0C9C"
 
 
+# bounded uuid text validates the native selection namespace framing
+def ReadSelectUuid(Cursor: MetaCursor) -> str:
+    GuidText = Cursor.ReadText(True, Maximum=36)
+    if len(GuidText) != 36:
+        raise ValueError("Unsupported Fusion selection GUID")
+    UUID(GuidText)
+    return GuidText
+
+
 # sketch and construction selections share a descriptor and reciprocal feature owner
 def ReadSelectLeaf(
     BulkData: bytes, Owners: dict[int, RecordSpan], SelectId: int, FeatureId: int
 ) -> tuple[int, int]:
     Descriptor = ReadSelectDesc(BulkData, Owners, SelectId, FeatureId)
+    return Descriptor, ReadDescLeaf(BulkData, Owners, Descriptor, FeatureId)
+
+
+# dispatchers that already classified a descriptor reuse its bounded leaf reader
+def ReadDescLeaf(
+    BulkData: bytes, Owners: dict[int, RecordSpan], Descriptor: int, FeatureId: int
+) -> int:
     Cursor = SelectCursor(BulkData, Owners, Descriptor, KSelectDesc)
     if len(Cursor.DataValue) != 263 or Cursor.TakeBytes(2) != bytes(2):
         raise ValueError("Unsupported Fusion entity selection descriptor")
     Terminal = ReadNativeRef(Cursor)
     if Cursor.ReadWord() != 1:
         raise ValueError("Unsupported Fusion entity selection namespace count")
-    for _ in range(2):
-        GuidText = Cursor.ReadText(True, Maximum=36)
-        if len(GuidText) != 36:
-            raise ValueError("Unsupported Fusion entity selection GUID")
-        UUID(GuidText)
+    ReadSelectUuid(Cursor)
+    ReadSelectUuid(Cursor)
     Cursor.Offset = 252
     if ReadNativeRef(Cursor) != FeatureId:
         raise ValueError("Fusion entity selection descriptor owner disagrees")
-    return Descriptor, Terminal
+    return Terminal
 
 
 # the construction leaf addresses the native object directly

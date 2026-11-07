@@ -114,7 +114,7 @@ def TestSketchAxis() -> None:
     )
     SourceStep = FeatureStep("source", "Axis sketch", FeatureKind.KNative, 2)
     Links = {40: (Source, SourceStep)}
-    Result = ResolveRevAxis(bytes(BulkData), Owners, 20, 10, 3, Links)
+    Result = ResolveRevAxis(bytes(BulkData), Owners, 20, 10, 3, Links, {})
     assert Result.ObjectId == 30
     assert Result.DependencyId == SourceStep.id
     assert tuple((Elem.entity_kind, Elem.entity_id) for Elem in Result.PathElems) == (
@@ -122,4 +122,4 @@ def TestSketchAxis() -> None:
         ("sketch_entity", Entity.id),
     )
     with Raises(ValueError, match="outside prior history"):
-        ResolveRevAxis(bytes(BulkData), Owners, 20, 10, 1, Links)
+        ResolveRevAxis(bytes(BulkData), Owners, 20, 10, 1, Links, {})
