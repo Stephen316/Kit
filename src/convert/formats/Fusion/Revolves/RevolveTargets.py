@@ -9,17 +9,16 @@
 
 from dataclasses import replace as Replace
 
-from convert.formats.Fusion.NativePlane import KPlaneObject
 from convert.formats.Fusion.ParamProjection import ParamOrigin
 from convert.formats.Fusion.RecordSpan import RecordSpan
-from convert.formats.Fusion.SelectionRef import ReadEntityRef
+from convert.formats.Fusion.Revolves.RevolveAxis import ResolveRevAxis
+from convert.formats.Fusion.Revolves.RevolvePlane import ResolveRevPlane
 from interchange.core.Common import FreezeMapping
 from interchange.features.FeatureStep import FeatureStep
+from interchange.geometry.models.Selection import Selection
+from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.SupportPlane import SupportPlane
 from interchange.records.RecordDiagnostic import Diagnostic
-
-# selected construction axes can be identified before their geometry is projected
-KAxisObject = "19031004-3AB6-4D13-ABBF-C51EE214688D"
 
 
 # selected construction objects retain each role and its exact source record chain
@@ -30,7 +29,8 @@ def AttachTargets(
     AxisId: int,
     TargetIds: tuple[int, ...],
     PlaneLinks: dict[int, tuple[SupportPlane, FeatureStep]],
-) -> tuple[FeatureStep, tuple[Diagnostic, ...]]:
+    SketchLinks: dict[int, tuple[Sketch, FeatureStep]],
+) -> tuple[FeatureStep, tuple[Selection, ...], tuple[Diagnostic, ...]]:
     Origin = StepValue.provenance
     if Origin is None:
         raise ValueError("Missing Fusion Revolve provenance")
@@ -39,22 +39,29 @@ def AttachTargets(
     Attributes = dict(StepValue.attributes)
     Evidence = list(Origin.spans)
     Diagnostics: list[Diagnostic] = []
+    Selections: list[Selection] = []
     for RoleName, SelectionId in zip(
         ("axis", "target_one", "target_two"), (AxisId,) + TargetIds
     ):
         try:
-            Descriptor, Terminal, EntityId = ReadEntityRef(
-                BulkData, Owners, SelectionId, FeatureId
-            )
-            Source = Owners.get(EntityId)
-            Expected = KAxisObject if RoleName == "axis" else KPlaneObject
-            if Source is None or Source.ClassGuid != Expected:
-                raise ValueError("Unsupported Fusion Revolve construction object")
-            PlaneLink = PlaneLinks.get(EntityId)
-            if RoleName != "axis" and (
-                PlaneLink is None or PlaneLink[1].order >= StepValue.order
-            ):
-                raise ValueError("Fusion Revolve target plane is outside prior history")
+            if RoleName == "axis":
+                PickValue = ResolveRevAxis(
+                    BulkData,
+                    Owners,
+                    SelectionId,
+                    FeatureId,
+                    StepValue.order,
+                    SketchLinks,
+                )
+            else:
+                PickValue = ResolveRevPlane(
+                    BulkData,
+                    Owners,
+                    SelectionId,
+                    FeatureId,
+                    StepValue.order,
+                    PlaneLinks,
+                )
         except ValueError as ErrorInfo:
             Diagnostics.append(
                 Diagnostic(
@@ -65,22 +72,44 @@ def AttachTargets(
                 )
             )
             continue
-        Attributes[f"fusion.revolve.{RoleName}_object_id"] = EntityId
-        if RoleName != "axis" and PlaneLink is not None:
-            PlaneValue, PlaneStep = PlaneLink
-            Attributes[f"fusion.revolve.{RoleName}_plane_id"] = PlaneValue.id
-            if PlaneStep.id not in Inputs:
-                Inputs.append(PlaneStep.id)
-        for Identity in (SelectionId, Descriptor, Terminal, EntityId):
-            for SpanValue in ParamOrigin(Owners[Identity]).spans:
-                if SpanValue not in Evidence:
-                    Evidence.append(SpanValue)
+        Attributes[f"fusion.revolve.{RoleName}_object_id"] = PickValue.ObjectId
+        SelectOrigin = ParamOrigin(Owners[SelectionId])
+        ChainSpans = SelectOrigin.spans + tuple(
+            SpanValue
+            for Identity in (
+                PickValue.Descriptor,
+                PickValue.Terminal,
+                PickValue.ObjectId,
+            )
+            for SpanValue in ParamOrigin(Owners[Identity]).spans
+        )
+        Evidence.extend(
+            SpanValue for SpanValue in ChainSpans if SpanValue not in Evidence
+        )
+        if PickValue.DependencyId is not None and PickValue.DependencyId not in Inputs:
+            Inputs.append(PickValue.DependencyId)
+        if PickValue.PathElems:
+            FieldName = "entity_id" if RoleName == "axis" else "plane_id"
+            Attributes[f"fusion.revolve.{RoleName}_{FieldName}"] = PickValue.PathElems[
+                -1
+            ].entity_id
+            Selections.append(
+                Selection(
+                    id=f"fusion-selection-{SelectionId}-{RoleName}",
+                    name=RoleName,
+                    path=PickValue.PathElems,
+                    provenance=Replace(SelectOrigin, spans=ChainSpans),
+                )
+            )
     return (
         Replace(
             StepValue,
             input_feature_ids=tuple(Inputs),
+            selection_ids=StepValue.selection_ids
+            + tuple(Value.id for Value in Selections),
             provenance=Replace(Origin, spans=tuple(Evidence)),
             attributes=FreezeMapping(Attributes),
         ),
+        tuple(Selections),
         tuple(Diagnostics),
     )

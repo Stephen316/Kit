@@ -20,10 +20,10 @@ KSelectDesc = "5A1BF548-241F-46FD-9FB5-E4B05126EB9D"
 KSelectLeaf = "90055C05-546C-4EE7-B3C9-3DD922AD0C9C"
 
 
-# reciprocal proxy and descriptor ownership qualifies the native object identity
-def ReadEntityRef(
+# sketch and construction selections share a descriptor and reciprocal feature owner
+def ReadSelectLeaf(
     BulkData: bytes, Owners: dict[int, RecordSpan], SelectId: int, FeatureId: int
-) -> tuple[int, int, int]:
+) -> tuple[int, int]:
     Descriptor = ReadSelectDesc(BulkData, Owners, SelectId, FeatureId)
     Cursor = SelectCursor(BulkData, Owners, Descriptor, KSelectDesc)
     if len(Cursor.DataValue) != 263 or Cursor.TakeBytes(2) != bytes(2):
@@ -39,7 +39,22 @@ def ReadEntityRef(
     Cursor.Offset = 252
     if ReadNativeRef(Cursor) != FeatureId:
         raise ValueError("Fusion entity selection descriptor owner disagrees")
+    return Descriptor, Terminal
+
+
+# the construction leaf addresses the native object directly
+def ReadEntityLeaf(
+    BulkData: bytes, Owners: dict[int, RecordSpan], Terminal: int
+) -> int:
     Cursor = SelectCursor(BulkData, Owners, Terminal, KSelectLeaf)
     if len(Cursor.DataValue) != 10 or Cursor.TakeBytes(2) != bytes(2):
         raise ValueError("Unsupported Fusion entity selection leaf")
-    return Descriptor, Terminal, Cursor.ReadLong()
+    return Cursor.ReadLong()
+
+
+# callers selecting a construction entity can resolve the complete chain at once
+def ReadEntityRef(
+    BulkData: bytes, Owners: dict[int, RecordSpan], SelectId: int, FeatureId: int
+) -> tuple[int, int, int]:
+    Descriptor, Terminal = ReadSelectLeaf(BulkData, Owners, SelectId, FeatureId)
+    return Descriptor, Terminal, ReadEntityLeaf(BulkData, Owners, Terminal)

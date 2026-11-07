@@ -100,9 +100,13 @@ stored angle inactive and preserve target order. An owned construction-axis
 selection retains its native identity, and each resolved construction-plane
 target links to its support frame and feature dependency. The SDK matched
 the controls for all 26 tracked Revolves and 13 newer captures, including
-23 plane target links. Four tracked axis selections remain unresolved.
-These fields are native feature attributes. The editable Revolve definition
-and geometry are still open.
+23 plane target links. Plane targets and sketch-line axes also appear as
+Kit selections with native provenance and earlier feature dependencies.
+The sketch-line contrasts preserve opposite endpoint orders. The shared
+sketch selection reader matched 102 owned selections across ten native
+feature classes in the tracked corpus. Construction axes retain native
+identity, and two tracked BRep edge axes remain unresolved. Editable Revolve
+definitions and resulting solid geometry are still open.
 
 ## Import provenance
 

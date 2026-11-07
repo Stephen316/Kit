@@ -9,8 +9,11 @@
 
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Revolves.RevolveAttach import AttachRevolve
+from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
 from interchange.enums.EnumFeatures import FeatureKind
 from interchange.features.FeatureStep import FeatureStep
+from interchange.geometry.models.Selection import Selection
+from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.SupportPlane import SupportPlane
 from interchange.records.RecordDiagnostic import Diagnostic
 from interchange.records.RecordParameter import Parameter
@@ -23,7 +26,8 @@ def ProjectRevolves(
     Steps: tuple[FeatureStep, ...],
     Params: tuple[Parameter, ...],
     Planes: tuple[SupportPlane, ...],
-) -> tuple[tuple[FeatureStep, ...], tuple[Diagnostic, ...]]:
+    Sketches: tuple[Sketch, ...],
+) -> tuple[tuple[FeatureStep, ...], tuple[Selection, ...], tuple[Diagnostic, ...]]:
     Owners = {
         SpanValue.ObjectId: SpanValue for SpanValue in Spans if SpanValue.IsPrimary
     }
@@ -41,18 +45,36 @@ def ProjectRevolves(
         for PlaneValue in Planes
         if PlaneValue.provenance is not None
     }
+    SketchSteps = {
+        StepValue.sketch_id: StepValue
+        for StepValue in Steps
+        if StepValue.sketch_id is not None
+        and StepValue.provenance is not None
+        and Owners[int(StepValue.provenance.native_id)].ClassGuid == KSketchFeature
+    }
+    SketchLinks = {
+        int(SketchValue.provenance.native_id): (
+            SketchValue,
+            SketchSteps[SketchValue.id],
+        )
+        for SketchValue in Sketches
+        if SketchValue.provenance is not None
+    }
     Projected: list[FeatureStep] = []
+    Selections: list[Selection] = []
     Diagnostics: list[Diagnostic] = []
     for StepValue in Steps:
         if StepValue.kind == FeatureKind.KRevolution:
             try:
-                StepValue, Issues = AttachRevolve(
+                StepValue, Picks, Issues = AttachRevolve(
                     BulkData,
                     Owners,
                     StepValue,
                     tuple(ByParam[ParamId] for ParamId in StepValue.parameter_ids),
                     PlaneLinks,
+                    SketchLinks,
                 )
+                Selections.extend(Picks)
                 Diagnostics.extend(Issues)
             except ValueError as ErrorInfo:
                 Diagnostics.append(
@@ -64,4 +86,4 @@ def ProjectRevolves(
                     )
                 )
         Projected.append(StepValue)
-    return tuple(Projected), tuple(Diagnostics)
+    return tuple(Projected), tuple(Selections), tuple(Diagnostics)

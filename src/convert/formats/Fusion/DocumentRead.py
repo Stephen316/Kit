@@ -57,7 +57,9 @@ def ReadFusionDoc(
     Planes, PlaneIssues = ProjectPlanes(BulkData, Spans, History)
     Frames, Sketches, Steps, SketchIssues = ProjectSketches(BulkData, Spans, History)
     Steps, Sketches, ProfileIssues = ProjectProfiles(BulkData, Spans, Steps, Sketches)
-    Steps, RevolveIssues = ProjectRevolves(BulkData, Spans, Steps, Params, Planes)
+    Steps, Selections, RevolveIssues = ProjectRevolves(
+        BulkData, Spans, Steps, Params, Planes, Sketches
+    )
     Owners = {
         ParamId: StepValue.id
         for StepValue in History.Steps
@@ -73,6 +75,8 @@ def ReadFusionDoc(
         Capabilities.add(Capability.KParameters)
     if Planes or Frames:
         Capabilities.add(Capability.KSupportPlanes)
+    if Selections:
+        Capabilities.add(Capability.KSelections)
     Document = CadDocument(
         source=CadSource(format_id="fusion.f3d", path=SourceName, sha256=Digest),
         configurations=(
@@ -83,7 +87,7 @@ def ReadFusionDoc(
         parameters=Parameters,
         support_planes=Planes + Frames,
         sketches=Sketches,
-        selections=(),
+        selections=Selections,
         feature_timeline=Steps,
         bodies=(),
         brep_payloads=(

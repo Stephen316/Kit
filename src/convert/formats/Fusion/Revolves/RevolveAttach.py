@@ -16,6 +16,8 @@ from convert.formats.Fusion.Revolves.RevolveTargets import AttachTargets
 from interchange.core.Common import FreezeMapping
 from interchange.enums.EnumValues import ValueKind
 from interchange.features.FeatureStep import FeatureStep
+from interchange.geometry.models.Selection import Selection
+from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.SupportPlane import SupportPlane
 from interchange.records.RecordDiagnostic import Diagnostic
 from interchange.records.RecordParameter import Parameter
@@ -46,7 +48,8 @@ def AttachRevolve(
     StepValue: FeatureStep,
     FeatureParams: tuple[Parameter, ...],
     PlaneLinks: dict[int, tuple[SupportPlane, FeatureStep]],
-) -> tuple[FeatureStep, tuple[Diagnostic, ...]]:
+    SketchLinks: dict[int, tuple[Sketch, FeatureStep]],
+) -> tuple[FeatureStep, tuple[Selection, ...], tuple[Diagnostic, ...]]:
     Origin = StepValue.provenance
     if Origin is None:
         raise ValueError("Missing Fusion Revolve provenance")
@@ -86,5 +89,11 @@ def AttachRevolve(
         ),
     )
     return AttachTargets(
-        BulkData, Owners, Updated, Inputs.AxisId, Inputs.TargetIds, PlaneLinks
+        BulkData,
+        Owners,
+        Updated,
+        Inputs.AxisId,
+        Inputs.TargetIds,
+        PlaneLinks,
+        SketchLinks,
     )
