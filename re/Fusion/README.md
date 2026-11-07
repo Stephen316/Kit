@@ -57,7 +57,16 @@ archives, including 3 groups. It projected 2,524 steps and linked
 step retains its native owner ID. Feature names and kinds are currently
 projected for the observed Extrude, Revolve, and construction-plane
 classes. Other entries retain native identity and provenance. Feature
-definitions, geometry, and public adapter integration remain open.
+definitions, geometry, and default adapter integration remain open.
+
+`convert.formats.Fusion.ReadFusionDoc` exposes this history through a
+validated `CadDocument`. It accepts a path or archive bytes and uses the
+same optional Zstandard callback as `ReadDesignZip`. When more than one
+history is present, pass the native `HistoryId` to select one. The resulting
+document carries a projection configuration, a partial-coverage diagnostic,
+and the original archive as a native document payload. It can round-trip
+through the Kit JSON reader and writer. The SDK verified document projection
+for all 766 histories in the tracked corpus.
 
 ## Import provenance
 

@@ -6,14 +6,19 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from io import BytesIO
 from struct import pack as Pack
+from zipfile import ZipFile
 
 from pytest import raises as Raises
 
+from convert.formats.Fusion import ReadFusionDoc
+from convert.formats.Fusion.DesignZip import KDesignPrefix
 from convert.formats.Fusion.HistoryGroup import KGroupGuid
 from convert.formats.Fusion.HistoryProjection import ProjectHistory
 from convert.formats.Fusion.NativeHistory import KHistoryGuid
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumFeatures import FeatureKind
 from tests.convert.formats.FusionParamTests import NativeText
 
@@ -84,3 +89,51 @@ def TestHistoryGroup() -> None:
     BulkData, Owners = HistoryFixture(101)
     with Raises(ValueError, match="history group membership"):
         ProjectHistory(BulkData, Owners[104], Owners, {})
+
+
+# serialize independent index and payload records for an archive level document check
+def HistoryArchive() -> bytes:
+    BulkData, Owners = HistoryFixture()
+    Payload = bytearray()
+    Classes = bytearray()
+    IndexData = bytearray()
+    for CodeValue, SpanValue in enumerate(Owners.values(), start=256):
+        Identity = SpanValue.ObjectId
+        Classes.extend(
+            NativeText(SpanValue.ClassGuid, False)
+            + Pack("<IIIIQ", 0, 0, 0, 1, Identity)
+        )
+        IndexData.extend(Pack("<QQ", Identity, len(Payload)))
+        Payload.extend(Pack("<I3sQ", 3, str(CodeValue).encode("ascii"), Identity))
+        Payload.extend(BulkData[SpanValue.PayloadOffset : SpanValue.EndOffset])
+    KindValue = NativeText("FusionDesignSegmentType", False)
+    MetaData = (
+        KindValue
+        + Pack("<IIIIII", 0, 0, 1234, 8, 0, 0)
+        + KindValue
+        + Pack("<IIII", 0, 1, 0, len(Owners))
+        + Classes
+        + Pack("<II", 0, len(Owners))
+        + IndexData
+        + Pack("<IQII", 0, 105, 0, 0)
+    )
+    Buffer = BytesIO()
+    with ZipFile(Buffer, "w") as Archive:
+        Archive.writestr(KDesignPrefix + "BulkStream.dat", Payload)
+        Archive.writestr(KDesignPrefix + "MetaStream.dat", MetaData)
+    return Buffer.getvalue()
+
+
+# document projection retains source evidence and survives neutral interchange
+def TestFusionDoc() -> None:
+    DataValue = HistoryArchive()
+    Document = ReadFusionDoc(DataValue, HistoryId=104)
+    assert Document.validate() == ()
+    assert Document.source.format_id == "fusion.f3d"
+    assert Document.feature_timeline[0].name == "Test sweep"
+    assert Document.metadata["fusion.history_entries"] == (103, 102, 101)
+    assert Document.brep_payloads[0].data == DataValue
+    assert Document.diagnostics[-1].code == "fusion.history.partial"
+    assert CadDocument.from_json(Document.to_json()) == Document
+    with Raises(ValueError, match="Select exactly one Fusion history"):
+        ReadFusionDoc(DataValue, HistoryId=42)
