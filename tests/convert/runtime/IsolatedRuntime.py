@@ -100,6 +100,10 @@ if zstd is not None:
     capture = root / "re" / "Fusion" / "Study" / "revolveto-b1d196f65c46" / "two_planes.f3d"
     native_fusion = open_document(capture, strict=False)
     assert len(native_fusion.bodies) == 1 and native_fusion.brep is not None
+    angular_capture = root / "re" / "Fusion" / "Study" / "revolvemodes-8eb734486235" / "negative.f3d"
+    angular_fusion = open_document(angular_capture, strict=False)
+    assert type(angular_fusion.feature_timeline[-1].definition).__name__ == "AngularRevolve"
+    assert len(angular_fusion.bodies) == 1 and angular_fusion.brep is not None
 cases = (
     (root / "examples" / ".SLDPRT" / "example.SLDPRT", ".FCStd"),
     (output / "conversion_0.FCStd", ".CATPart"),

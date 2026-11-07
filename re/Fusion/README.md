@@ -127,6 +127,19 @@ captures matched the saved Fusion body topology and analytic geometry,
 including volume, area, and bounds. Profiles that touch the axis, other
 modeling steps, and native Fusion output remain outside this body path.
 
+For unprojected solid New Body Revolves with an origin or sketch-line axis,
+Kit also projects an `AngularRevolve` definition from a qualified convex
+line profile or whole circle. The definition links the owned along and
+against parameters and preserves one-sided, two-sided, and symmetric
+limits. The effective axis follows the occupied side of the sketch.
+Eligible terminal partial polygon sweeps use the same analytic solid
+builder as plane-limited sweeps. The SDK verified 14 typed definitions
+and eight solids across 23 tracked angular features. The eight solids
+matched the saved face, edge, and arc geometry and mass properties.
+Full-turn solids, custom and BRep axis
+definitions, surface and Boolean Revolves, and projected axes require
+additional coverage.
+
 ## Public SDK reader
 
 The adapter catalog includes `fusion.f3d` with alias `f3d`. The registry
@@ -153,8 +166,7 @@ Zstandard decompression callback through `ReadOptions.values` when reading
 with the registry.
 
 ```python
-from convert import ReadOptions
-from convert.adapters import AdapterRegistry
+from convert.adapters import AdapterRegistry, ReadOptions
 
 def read_fusion_with_codec(path, inflate_zstd):
     registry = AdapterRegistry()

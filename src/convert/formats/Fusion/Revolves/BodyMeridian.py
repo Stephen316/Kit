@@ -7,9 +7,10 @@
 # to you under it immediately and permanently.
 
 
-from math import dist as Dist
+from math import dist as Dist, ulp as Ulp
 from operator import mul as Mul, sub as Sub
 
+from convert.formats.Fusion.Revolves.MeridianCoords import CleanMeridian
 from convert.formats.Fusion.Revolves.ProfileMeridian import CalcMeridian
 from convert.formats.Fusion.Sketches.SketchPrimitive import IsSamePoint
 from interchange.geometry.models.GeometryCurves import LineGeometry
@@ -66,11 +67,18 @@ def ReadMeridian(
     )
     RadiusBase, RadiusX, RadiusY = (sum(map(Mul, Radial, Value)) for Value in Basis)
     HeightBase, HeightX, HeightY = (sum(map(Mul, AxisTuple, Value)) for Value in Basis)
+    Corners = ReadCorners(ProfileLines)
     Meridian = tuple(
         (
             RadiusBase + Point.x * RadiusX + Point.y * RadiusY,
             HeightBase + Point.x * HeightX + Point.y * HeightY,
         )
-        for Point in ReadCorners(ProfileLines)
+        for Point in Corners
     )
-    return Meridian, SpaceVector(*Radial)
+    Magnitudes = (
+        *Offset,
+        *(Value for Point in Corners for Value in (Point.x, Point.y)),
+        *(Value for Coordinates in Meridian for Value in Coordinates),
+    )
+    Roundoff = 8.0 * Ulp(max(map(abs, Magnitudes)))
+    return CleanMeridian(Meridian, Roundoff), SpaceVector(*Radial)

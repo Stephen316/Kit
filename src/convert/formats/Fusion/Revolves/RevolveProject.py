@@ -8,6 +8,7 @@
 
 
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.Revolves.AngleRevAttach import AttachAngleRev
 from convert.formats.Fusion.Revolves.PlaneRevAttach import AttachPlaneRev
 from convert.formats.Fusion.Revolves.RevolveAttach import AttachRevolve
 from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
@@ -91,8 +92,9 @@ def ProjectRevolves(
             else:
                 Selections.extend(Picks)
                 Diagnostics.extend(Issues)
-                if StepValue.attributes.get("fusion.revolve.extent") == "to_entity":
-                    try:
+                Extent = StepValue.attributes.get("fusion.revolve.extent")
+                try:
+                    if Extent == "to_entity":
                         StepValue, AxisPick = AttachPlaneRev(
                             BulkData,
                             Owners,
@@ -101,15 +103,31 @@ def ProjectRevolves(
                             ByFrame,
                             BySketch.get(StepValue.sketch_id or ""),
                         )
-                        Selections.append(AxisPick)
-                    except ValueError as ErrorInfo:
-                        Diagnostics.append(
-                            Diagnostic(
-                                code="fusion.revolve.plane_extent_unsupported",
-                                message=str(ErrorInfo),
-                                entity_id=StepValue.id,
-                                provenance=StepValue.provenance,
-                            )
+                    else:
+                        StepValue, AxisPick = AttachAngleRev(
+                            BulkData,
+                            Owners,
+                            StepValue,
+                            Picks,
+                            ByFrame,
+                            BySketch,
+                            ByParam,
                         )
+                except ValueError as ErrorInfo:
+                    Diagnostics.append(
+                        Diagnostic(
+                            code=(
+                                "fusion.revolve.plane_extent_unsupported"
+                                if Extent == "to_entity"
+                                else "fusion.revolve.angular_extent_unsupported"
+                            ),
+                            message=str(ErrorInfo),
+                            entity_id=StepValue.id,
+                            provenance=StepValue.provenance,
+                        )
+                    )
+                else:
+                    if all(PickValue.id != AxisPick.id for PickValue in Picks):
+                        Selections.append(AxisPick)
         Projected.append(StepValue)
     return tuple(Projected), tuple(Selections), tuple(Diagnostics)

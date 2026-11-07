@@ -61,7 +61,9 @@ def ReadFusionDoc(
     Steps, Selections, RevolveIssues = ProjectRevolves(
         BulkData, Spans, Steps, Params, Planes, Frames, Sketches
     )
-    Bodies, Model, BodyIssues = ProjectRevBody(BulkData, Spans, Steps, Sketches, Frames)
+    Bodies, Model, BodyIssues = ProjectRevBody(
+        BulkData, Spans, Steps, Sketches, Frames, Params
+    )
     Owners = {
         ParamId: StepValue.id
         for StepValue in History.Steps
@@ -116,7 +118,7 @@ def ReadFusionDoc(
         + (
             Diagnostic(
                 code="fusion.history.partial",
-                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry, and supported plane-limited Revolve definitions and solids. "
+                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry, and supported Revolve definitions and solids. "
                 "Additional feature definitions, bodies, and assemblies require further decoding.",
             ),
         ),

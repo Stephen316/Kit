@@ -7,6 +7,7 @@
 # to you under it immediately and permanently.
 
 
+from convert.formats.Fusion.Revolves.RevProfile import ReadRevProfile
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.GeometryCurves import LineGeometry
 from interchange.geometry.models.Selection import Selection
@@ -18,17 +19,10 @@ from interchange.geometry.models.SupportPlane import SupportPlane
 def ProfileLines(
     StepValue: FeatureStep, SketchValue: Sketch
 ) -> tuple[LineGeometry, ...]:
-    EntityIds = StepValue.attributes.get("fusion.profile_entity_ids")
-    if not isinstance(EntityIds, tuple) or len(EntityIds) != 4:
+    Profile = ReadRevProfile(StepValue, SketchValue)
+    if not isinstance(Profile, tuple) or len(Profile) != 4:
         raise ValueError("Fusion plane Revolve requires one four-line profile")
-    Geometry = {
-        Entity.id: Entity.geometry
-        for Entity in SketchValue.entities
-        if isinstance(Entity.geometry, LineGeometry)
-    }
-    if any(EntityId not in Geometry for EntityId in EntityIds):
-        raise ValueError("Missing Fusion plane Revolve profile line")
-    return tuple(Geometry[EntityId] for EntityId in EntityIds)
+    return Profile
 
 
 # ordered selection roles stay independent of the order of the geometric roots

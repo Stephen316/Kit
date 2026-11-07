@@ -23,6 +23,8 @@ def DerivePlaneSpan(
     AxisDirection: SpaceVector,
     TargetFrames: tuple[Transform, ...],
 ) -> tuple[SpaceVector, float, float]:
+    if len(ProfileLines) != 4:
+        raise ValueError("Plane limited Fusion Revolve requires a four line profile")
     if len(TargetFrames) not in (1, 2):
         raise ValueError("Fusion Revolve requires one or two target planes")
     AxisTuple, Radial = CalcMeridian(

@@ -9,15 +9,18 @@
 
 from convert.formats.Fusion.NativePlane import KPlaneFeature
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.Revolves.AngleRevValues import ReadAngleSpan
 from convert.formats.Fusion.Revolves.BuildRevBody import BuildRevBody
 from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
 from interchange.brep.topology.BrepModel import BrepModel
+from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeatureBody import DesignBody
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.SupportPlane import SupportPlane
 from interchange.records.RecordDiagnostic import Diagnostic
+from interchange.records.RecordParameter import Parameter
 
 
 # limit current body claims to a qualified history without other modeling steps
@@ -27,11 +30,14 @@ def ProjectRevBody(
     Steps: tuple[FeatureStep, ...],
     Sketches: tuple[Sketch, ...],
     Frames: tuple[SupportPlane, ...],
+    Params: tuple[Parameter, ...],
 ) -> tuple[tuple[DesignBody, ...], BrepModel | None, tuple[Diagnostic, ...]]:
-    if not Steps or not isinstance(Steps[-1].definition, PlaneRevolve):
+    if not Steps:
         return (), None, ()
     StepValue = Steps[-1]
     Definition = StepValue.definition
+    if not isinstance(Definition, (AngularRevolve, PlaneRevolve)):
+        return (), None, ()
     try:
         if any(
             Source.provenance is None
@@ -66,8 +72,13 @@ def ProjectRevBody(
         if SketchValue is None or FrameValue is None:
             raise ValueError("Missing Fusion Revolve profile sketch frame")
         Owners = {Value.ObjectId: Value for Value in Spans if Value.IsPrimary}
+        Interval = (
+            (Definition.StartRadians, Definition.EndRadians)
+            if isinstance(Definition, PlaneRevolve)
+            else ReadAngleSpan(Definition, {Value.id: Value for Value in Params})
+        )
         Body, Model = BuildRevBody(
-            BulkData, Owners, StepValue, Definition, SketchValue, FrameValue
+            BulkData, Owners, StepValue, Definition, Interval, SketchValue, FrameValue
         )
         return (Body,), Model, ()
     except ValueError as ErrorInfo:
