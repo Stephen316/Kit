@@ -94,6 +94,16 @@ or a closed convex line ring become linked feature inputs. The SDK matched
 newer Revolve captures. Trimmed, concave, and multi-loop selections remain
 outside this projection.
 
+Revolve steps also retain the native operation, sidedness, projected-axis
+flag, and owned angular parameter bindings. Entity-limited steps mark the
+stored angle inactive and preserve target order. An owned construction-axis
+selection retains its native identity, and each resolved construction-plane
+target links to its support frame and feature dependency. The SDK matched
+the controls for all 26 tracked Revolves and 13 newer captures, including
+23 plane target links. Four tracked axis selections remain unresolved.
+These fields are native feature attributes. The editable Revolve definition
+and geometry are still open.
+
 ## Import provenance
 
 - Source commit: `60ebb72ee7b64a0bf22331012b7c737c0e17d43b`.

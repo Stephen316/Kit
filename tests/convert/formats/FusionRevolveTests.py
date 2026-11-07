@@ -1,0 +1,78 @@
+# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
+#
+# This SPDX license identifier and copyright notice must not be
+# removed, altered, or obscured. Doing so is a material breach of
+# the PolyForm Strict License 1.0.0 and voids all licenses granted
+# to you under it immediately and permanently.
+
+
+from struct import pack as Pack
+
+from pytest import raises as Raises
+
+from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.Revolves.RevolveRead import ReadRevInputs
+from convert.formats.Fusion.SelectionProxy import KSelectProxy
+from convert.formats.Fusion.SelectionRef import KSelectDesc, KSelectLeaf, ReadEntityRef
+from tests.convert.formats.FusionHistoryTests import NativeRef
+from tests.convert.formats.FusionParamTests import NativeText
+
+
+# the wire puts target two ahead of target one regardless of the selection order
+def TestTargetOrder() -> None:
+    Header = Pack("<IIBBBBB", 4, 1, 0, 0, 1, 0, 0)
+    BodyValue = (
+        bytes(2)
+        + Header
+        + b"\0"
+        + NativeRef(10)
+        + NativeRef(20)
+        + NativeRef(30)
+        + NativeRef(40)
+        + NativeRef(50)
+    )
+    Controls = ReadRevInputs(BodyValue)
+    assert Controls.ExtentKind == "to_entity"
+    assert Controls.SideMode == "two_sided"
+    assert Controls.AlongId == 10
+    assert Controls.AgainstId is None
+    assert Controls.AxisId == 20
+    assert Controls.TargetIds == (50, 30)
+    with Raises(ValueError, match="Truncated"):
+        ReadRevInputs(BodyValue[:-1])
+
+
+# both reciprocal owner references must identify the same feature
+def TestOwnedSelect() -> None:
+    GuidBytes = NativeText("12345678-1234-1234-1234-123456789abc")
+    BulkData = bytearray()
+    Owners: dict[int, RecordSpan] = {}
+    for Identity, ClassGuid, BodyValue in (
+        (
+            20,
+            KSelectProxy,
+            bytes(2) + Pack("<I", 1) + NativeRef(21) + bytes(66) + NativeRef(10),
+        ),
+        (
+            21,
+            KSelectDesc,
+            bytes(2)
+            + NativeRef(22)
+            + Pack("<I", 1)
+            + GuidBytes * 2
+            + bytes(83)
+            + NativeRef(10),
+        ),
+        (22, KSelectLeaf, bytes(2) + Pack("<Q", 30)),
+    ):
+        Offset = len(BulkData)
+        BulkData.extend(bytes(4) + BodyValue)
+        Owners[Identity] = RecordSpan(
+            Offset, Offset, len(BulkData), Identity, 256, ClassGuid, "", True
+        )
+    assert ReadEntityRef(bytes(BulkData), Owners, 20, 10) == (21, 22, 30)
+    OwnerOffset = Owners[21].EndOffset - 11
+    BulkData[OwnerOffset : OwnerOffset + 11] = NativeRef(99)
+    with Raises(ValueError, match="descriptor owner"):
+        ReadEntityRef(bytes(BulkData), Owners, 20, 10)

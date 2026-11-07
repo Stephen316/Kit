@@ -17,3 +17,11 @@ def ReadNativeRef(Cursor: MetaCursor) -> int:
     if Cursor.TakeBytes(2) != bytes(2):
         raise ValueError("Invalid Fusion history reference suffix")
     return Identity
+
+
+# optional references share the same bounded wire format as required references
+def ReadOptionalRef(Cursor: MetaCursor) -> int | None:
+    if Cursor.TakeBytes(1) == b"\0":
+        return None
+    Cursor.Offset -= 1
+    return ReadNativeRef(Cursor)
