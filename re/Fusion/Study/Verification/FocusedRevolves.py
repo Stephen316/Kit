@@ -10,8 +10,10 @@
 
 from argparse import ArgumentParser
 from dataclasses import replace
+from functools import partial as Partial
 from math import atan2, cos, isclose, pi, radians, sin
 from pathlib import Path
+import zipfile as ZipModule
 from RevolvePlanes.PlaneIntervals import PlaneBranches, SelectPlaneSpan
 
 from asm_records import inspect_asm
@@ -21,7 +23,7 @@ from decode_parameters import decode_stream
 from decode_plane_extrusion_reconstruction import decode_plane_extrusion_reconstruction
 from decode_shell_reconstruction import decode_shell_reconstruction
 from discover_features import discover_features
-from fusion_archive import read_members
+from fusion_archive import _decompress_zstd as InflateZstd, read_members
 from fusion_metadata import design_records
 from validate_plane_extrusion_reconstruction_integration import FILES as ExtrudeFiles
 from validate_shell_reconstruction_integration import FILES as ShellFiles
@@ -86,7 +88,7 @@ def CheckArcs(Parsed, Graph, Start, Finish):
 
 
 # saved reference sectors verify the decoder without sharing the source branch computation
-def CheckRevolves(ZstdLibrary):
+def CheckRevolves(ZstdLibrary, CheckKit=False):
     Capture = Path("revolveto-b1d196f65c46")
     for Name, Degrees, PlaneCount in (
         ("negative_plane", (0, 35), 1),
@@ -123,11 +125,50 @@ def CheckRevolves(ZstdLibrary):
         (Feature,) = (
             Feature for Feature in Stream["features"] if Feature["kind"] == "Revolve"
         )
+        if CheckKit:
+            CheckKitRev(FilePath, ZstdLibrary, Feature, Parsed, Graph, Expected)
         assert Feature.pop("revolve_reconstruction") == Reconstruction
         Stream["revolve_reconstruction"] = Original["streams"][0][
             "revolve_reconstruction"
         ]
         assert Result == Original, Name
+
+
+# the sdk definition must survive json and match independently evaluated cache arcs
+def CheckKitRev(FilePath, ZstdLibrary, NativeFeature, Parsed, Graph, Expected):
+    from convert.formats.Fusion.DocumentRead import ReadFusionDoc
+    from interchange.document.models.DocumentModel import CadDocument
+    from interchange.features.FeaturePlaneRev import PlaneRevolve
+
+    Codec = None
+    if ZstdLibrary is not None or not hasattr(ZipModule, "ZIP_ZSTANDARD"):
+        Codec = Partial(InflateZstd, library_path=ZstdLibrary)
+    Document = ReadFusionDoc(FilePath, InflateZstd=Codec)
+    assert CadDocument.from_json(Document.to_json()) == Document
+    (StepValue,) = (
+        Value for Value in Document.feature_timeline if Value.kind.value == "revolution"
+    )
+    Definition = StepValue.definition
+    assert isinstance(Definition, PlaneRevolve)
+    Actual = Definition.StartRadians, Definition.EndRadians
+    assert all(
+        isclose(Value, Target, abs_tol=1e-9) for Value, Target in zip(Actual, Expected)
+    )
+    CheckArcs(Parsed, Graph, *Actual)
+    Selections = {Value.id: Value for Value in Document.selections}
+    Controls = NativeFeature["revolve"]
+    assert (
+        int(Selections[Definition.AxisSelectionId].provenance.native_id)
+        == Controls["axis_selection_record_object_id"]
+    )
+    assert tuple(
+        int(Selections[Identity].provenance.native_id)
+        for Identity in Definition.PlaneSelectionIds
+    ) == tuple(
+        Controls[Side]["selection_record_object_id"]
+        for Side in ("side_one", "side_two")
+        if Side in Controls
+    )
 
 
 # oracle sectors exercise target order and branches beyond the tracked fixtures
@@ -202,10 +243,11 @@ def CheckParamLayout(ZstdLibrary):
 if __name__ == "__main__":
     Parser = ArgumentParser(description=__doc__)
     Parser.add_argument("--zstd-library")
+    Parser.add_argument("--kit", action="store_true")
     Options = Parser.parse_args()
     CheckPlaneRule()
     CheckParamLayout(Options.zstd_library)
-    CheckRevolves(Options.zstd_library)
+    CheckRevolves(Options.zstd_library, Options.kit)
     assert (
         CheckFocused(
             ShellFiles,
@@ -227,3 +269,5 @@ if __name__ == "__main__":
     print(
         "Verified 3 plane-limited Revolves, 15 Shell fixtures and 8 Extrude fixtures."
     )
+    if Options.kit:
+        print("Verified Kit definitions and JSON for the 3 tracked Revolves.")

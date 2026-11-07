@@ -108,8 +108,17 @@ feature classes in the tracked corpus. Construction axes retain native
 identity. The two BRep-edge Revolves retain the native recipe, body anchor,
 earlier source feature, and directed line cache. Both stored endpoints match
 the captured Fusion axes. The shared recipe reader matched 1,763 tracked
-records across five recipe kinds. Exact edge identity in Kit topology,
-editable Revolve definitions, and resulting solid geometry remain open.
+records across five recipe kinds. Exact edge identity in Kit topology
+remains open.
+
+For solid New Body Revolves with a verified four-line profile, a component
+origin axis, and one or two construction planes through that axis, Kit now
+projects a typed `PlaneRevolve` definition. It preserves the ordered plane
+selections and stores the evaluated start and end angles about the effective
+axis. The two-plane sweep can start away from the sketch plane. All 16
+tracked and newer captures passed Kit JSON round-trips and matched 64
+independently evaluated body arcs. Other Revolve definitions and solid body
+output remain open.
 
 ## Import provenance
 
@@ -329,7 +338,10 @@ interval and its bounded BODY verification.
 
 Reproduce the three Revolve checks and the focused Shell and Extrude checks
 from `Study/` with `python3 -m Verification.FocusedRevolves`. Pass
-`--zstd-library` if needed for the saved archives.
+`--zstd-library` if needed for the saved archives. From `Study/`, run
+`PYTHONPATH=../../../src python3 -m Verification.FocusedRevolves --kit` to
+also check Kit JSON and compare the projected intervals with the tracked
+body arcs.
 
 The integration audit passed the functional checks on all 712 archives with
 default settings. With plane-limited Revolves enabled, the three captures

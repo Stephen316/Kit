@@ -8,6 +8,7 @@
 
 
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.Revolves.PlaneRevAttach import AttachPlaneRev
 from convert.formats.Fusion.Revolves.RevolveAttach import AttachRevolve
 from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
 from interchange.enums.EnumFeatures import FeatureKind
@@ -26,6 +27,7 @@ def ProjectRevolves(
     Steps: tuple[FeatureStep, ...],
     Params: tuple[Parameter, ...],
     Planes: tuple[SupportPlane, ...],
+    Frames: tuple[SupportPlane, ...],
     Sketches: tuple[Sketch, ...],
 ) -> tuple[tuple[FeatureStep, ...], tuple[Selection, ...], tuple[Diagnostic, ...]]:
     Owners = {
@@ -60,6 +62,8 @@ def ProjectRevolves(
         for SketchValue in Sketches
         if SketchValue.provenance is not None
     }
+    ByFrame = {PlaneValue.id: PlaneValue for PlaneValue in Planes + Frames}
+    BySketch = {SketchValue.id: SketchValue for SketchValue in Sketches}
     Projected: list[FeatureStep] = []
     Selections: list[Selection] = []
     Diagnostics: list[Diagnostic] = []
@@ -75,8 +79,6 @@ def ProjectRevolves(
                     SketchLinks,
                     ByNative,
                 )
-                Selections.extend(Picks)
-                Diagnostics.extend(Issues)
             except ValueError as ErrorInfo:
                 Diagnostics.append(
                     Diagnostic(
@@ -86,5 +88,28 @@ def ProjectRevolves(
                         provenance=StepValue.provenance,
                     )
                 )
+            else:
+                Selections.extend(Picks)
+                Diagnostics.extend(Issues)
+                if StepValue.attributes.get("fusion.revolve.extent") == "to_entity":
+                    try:
+                        StepValue, AxisPick = AttachPlaneRev(
+                            BulkData,
+                            Owners,
+                            StepValue,
+                            Picks,
+                            ByFrame,
+                            BySketch.get(StepValue.sketch_id or ""),
+                        )
+                        Selections.append(AxisPick)
+                    except ValueError as ErrorInfo:
+                        Diagnostics.append(
+                            Diagnostic(
+                                code="fusion.revolve.plane_extent_unsupported",
+                                message=str(ErrorInfo),
+                                entity_id=StepValue.id,
+                                provenance=StepValue.provenance,
+                            )
+                        )
         Projected.append(StepValue)
     return tuple(Projected), tuple(Selections), tuple(Diagnostics)

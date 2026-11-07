@@ -6,6 +6,7 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from dataclasses import replace as Replace
 from struct import pack as Pack
 
 from pytest import raises as Raises
@@ -14,6 +15,11 @@ from convert.formats.Fusion.NativePlane import (
     KPlaneFeature,
     KPlaneObject,
     ReadNativePlane,
+)
+from convert.formats.Fusion.PlaneCollection import (
+    KDatumCollection,
+    KDatumComponent,
+    ReadPlaneComp,
 )
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from tests.convert.formats.FusionHistoryTests import NativeRef
@@ -86,3 +92,34 @@ def TestRejectPlane() -> None:
     BulkData, Feature, Owners = PlaneFixture(AxisXX=1.0)
     with Raises(ValueError, match="axes are not orthonormal"):
         ReadNativePlane(BulkData, Feature, Owners)
+
+
+# the component is usable only when both native membership copies agree
+def TestPlaneScope() -> None:
+    BulkData, Feature, Owners = PlaneFixture()
+    BulkData += NativeRef(900)
+    Owners[101] = Replace(Owners[101], EndOffset=len(BulkData))
+    Offset = len(BulkData)
+    BulkData += (
+        bytes(6)
+        + Pack("<I", 1)
+        + NativeRef(101)
+        + bytes(30)
+        + Pack("<I", 1)
+        + NativeRef(101)
+        + NativeRef(800)
+    )
+    Owners[900] = RecordSpan(
+        Offset, Offset, len(BulkData), 900, 258, KDatumCollection, "", True
+    )
+    Offset = len(BulkData)
+    BulkData += bytes(4)
+    Owners[800] = RecordSpan(
+        Offset, Offset, len(BulkData), 800, 259, KDatumComponent, "", True
+    )
+    PlaneValue = ReadNativePlane(BulkData, Feature, Owners)
+    assert ReadPlaneComp(BulkData, Owners, PlaneValue) == (800, 900)
+    Repeated = Owners[900].EndOffset - 22
+    BadBulk = BulkData[:Repeated] + NativeRef(102) + BulkData[Repeated + 11 :]
+    with Raises(ValueError, match="membership disagrees"):
+        ReadPlaneComp(BadBulk, Owners, PlaneValue)

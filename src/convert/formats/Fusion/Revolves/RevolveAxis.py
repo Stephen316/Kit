@@ -8,6 +8,7 @@
 
 
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.Revolves.OriginAxis import KAxisGuid
 from convert.formats.Fusion.Revolves.RevolveEdge import ResolveRevEdge
 from convert.formats.Fusion.Revolves.RevolvePick import RevolvePick
 from convert.formats.Fusion.SelectionProxy import ReadSelectDesc
@@ -22,9 +23,6 @@ from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.GeometryCurves import LineGeometry
 from interchange.geometry.models.Selection import SelectPathElem
 from interchange.geometry.models.Sketch import Sketch
-
-# construction axes have their own primary class even without neutral axis geometry
-KAxisObject = "19031004-3AB6-4D13-ABBF-C51EE214688D"
 
 
 # axes dispatch by descriptor class before resolving construction or topology sources
@@ -48,7 +46,7 @@ def ResolveRevAxis(
     if Leaf is not None and Leaf.ClassGuid == KSelectLeaf:
         EntityId = ReadEntityLeaf(BulkData, Owners, Terminal)
         Source = Owners.get(EntityId)
-        if Source is None or Source.ClassGuid != KAxisObject:
+        if Source is None or Source.ClassGuid != KAxisGuid:
             raise ValueError("Unsupported Fusion Revolve construction axis")
         return RevolvePick(EntityId, Descriptor, Terminal)
     SketchId, TagValue = ReadSketchPick(BulkData, Owners, Terminal)

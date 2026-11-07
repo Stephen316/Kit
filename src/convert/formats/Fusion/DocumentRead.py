@@ -58,7 +58,7 @@ def ReadFusionDoc(
     Frames, Sketches, Steps, SketchIssues = ProjectSketches(BulkData, Spans, History)
     Steps, Sketches, ProfileIssues = ProjectProfiles(BulkData, Spans, Steps, Sketches)
     Steps, Selections, RevolveIssues = ProjectRevolves(
-        BulkData, Spans, Steps, Params, Planes, Sketches
+        BulkData, Spans, Steps, Params, Planes, Frames, Sketches
     )
     Owners = {
         ParamId: StepValue.id
@@ -110,8 +110,8 @@ def ReadFusionDoc(
         + (
             Diagnostic(
                 code="fusion.history.partial",
-                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, and a subset of sketch geometry. "
-                "Editable feature definitions, geometry, and assemblies require further decoding.",
+                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry, and supported plane-limited Revolves. "
+                "Additional feature definitions, body geometry, and assemblies require further decoding.",
             ),
         ),
         capabilities=frozenset(Capabilities),

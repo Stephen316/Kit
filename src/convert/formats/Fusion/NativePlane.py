@@ -52,7 +52,9 @@ def ReadNativePlane(
     if ModeValue not in (1, 2) or Cursor.TakeBytes(1) != b"\0":
         raise ValueError("Unsupported Fusion construction plane frame")
     Transform = ReadPlaneAxes(Cursor.TakeBytes(72))
-    _ = Cursor.TakeBytes(16), Cursor.ReadText(True, Maximum=1024), ReadNativeRef(Cursor)
+    Cursor.TakeBytes(16)
+    Cursor.ReadText(True, Maximum=1024)
+    CollectionId = ReadNativeRef(Cursor)
     if (
         Cursor.ReadLong() != LabelData[1]
         or Cursor.TakeBytes(1) != b"\0"
@@ -71,6 +73,7 @@ def ReadNativePlane(
             {
                 "fusion.feature_object_id": Feature.ObjectId,
                 "fusion.cached_plane_mode": ModeValue,
+                "fusion.plane_collection_id": CollectionId,
                 "fusion.coordinate_space": "component",
             }
         ),
