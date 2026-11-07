@@ -153,8 +153,20 @@ history identities. The SDK validated 32 definitions, 23 native instances,
 and 24 expanded paths across 12 tracked archives. Three Fusion 2705.1.30
 captures independently verified 11 composed placements. Sixteen archives with
 joint, pin, or stale occurrence records required explicit history selection.
-Component body ownership, external references, and joint-solved assemblies
-require further decoding.
+Component geometry, external references, and joint-solved assemblies require
+further decoding.
+
+The reader also qualifies the saved B-rep body inventory through typed
+component links and reciprocal, repeated native collection membership. It
+preserves native body IDs, order, and stored custom names, including Unicode.
+Removal, consumption, suppression, and rollback can leave historical records
+outside the active collection. The inventory uses the saved membership lists
+to distinguish those records. Geometry and terminal feature ownership remain
+separate. A previously reconstructed solid retains its Kit body ID when the
+same native body and collection are proven. The native reader qualified
+1,093 body memberships across 766 component collections in 712 tracked
+archives. Saved Fusion API controls corroborate interleaved body names,
+component ownership, and membership after timeline edits.
 
 ## Public SDK reader
 
@@ -177,6 +189,13 @@ with multiple histories that cannot be bound to a supported assembly requires
 an explicit history ID. Setting `include_brep=False` omits the projected B-rep and preserves the original
 document payload. The adapter supplies a reader for `.f3d`. Native Fusion
 output and strict source translation require further format coverage.
+
+For a qualified body collection, `fusion.body_inventory` is available in
+`document.metadata` for a selected history, or in each assembly definition's
+`attributes`. It reports the native component ID and ordered B-rep members.
+A qualified empty collection has an empty `members` tuple. Each member retains
+its native object and collection IDs, the stored name, and the Kit
+`design_body_id` when a body has already been reconstructed.
 
 For archives with Zstandard-compressed members, the convenience API uses
 Python's ZIP Zstandard support. On an earlier Python version, supply a

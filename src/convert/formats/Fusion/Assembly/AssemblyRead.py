@@ -31,7 +31,7 @@ def ReadAssemblyProjection(
                 Diagnostic(
                     code="fusion.assembly.partial",
                     message="Fusion local definitions and occurrence placements are available. "
-                    "Component body ownership and assembly editing semantics require further decoding.",
+                    "Component geometry and assembly editing semantics require further decoding.",
                 ),
             ),
         )

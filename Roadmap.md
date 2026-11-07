@@ -62,8 +62,8 @@ alone earn no native write credit.
   It requires explicit opt-in to the partial read and projects plane-limited
   Revolve definitions and source-derived solid B-reps for a verified subset. Sixteen captures from Fusion 2705.1.30
   and 2706.1.17 matched saved body geometry and passed Kit JSON round-trips.
-  The SDK also reads local assembly definitions, occurrences, and placements
-  in a verified subset. Broader body and assembly coverage, the native writer,
+  The SDK also reads local assembly definitions, occurrences, placements, and
+  saved component body inventories. Broader geometry and assembly coverage, the native writer,
   and strict conversion remain open. [Fusion evidence](re/Fusion/README.md)
 
 ## Shared SDK
