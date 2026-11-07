@@ -17,6 +17,7 @@ from types import FunctionType as FuncType
 from typing import Protocol, cast as TypeCast, runtime_checkable, TypeVar
 
 import interchange as InterchangeApi
+from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.serialization import KTypeRegistry
 from interchange.serialization import from_data as FromData
@@ -253,6 +254,6 @@ def CheckRegistry() -> None:
             or issubclass(getattr(ImportModule(ModuleName), ExportName), EnumBase)
         )
     }
-    IntendedTypes.add(PlaneRevolve)
+    IntendedTypes.update((AngularRevolve, PlaneRevolve))
     assert set(KTypeRegistry.values()) == IntendedTypes
     assert set(KTypeRegistry) == {ClassType.__name__ for ClassType in IntendedTypes}

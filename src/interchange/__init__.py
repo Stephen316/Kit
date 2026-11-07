@@ -103,6 +103,7 @@ from interchange.enums.EnumFeatures import FeatureKind
 from interchange.enums.EnumGeometry import ConstraintKind, GeometryKind
 from interchange.enums.EnumUnits import UnitSystem
 from interchange.enums.EnumValues import ParameterRole, ValueKind
+from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeatureBody import DesignBody
 from interchange.features.FeatureContract import FeatureDef
 from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
@@ -371,6 +372,7 @@ BindTypeGlobals(
 )
 
 RegisterTypes(
+    AngularRevolve,
     PlaneRevolve,
     *(
         # nosemgrep: python.lang.security.dangerous-globals-use.dangerous-globals-use

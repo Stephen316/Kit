@@ -11,7 +11,9 @@ from typing import Mapping as TypeMap
 from interchange.document.models.DocumentModel import (  # lgtm[py/cyclic-import]
     CadDocument,
 )
+from interchange.document.validation.AngleRevValidate import GetAngleRevErrs
 from interchange.document.validation.PlaneRevValidate import GetPlaneRevErrs
+from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 
 
@@ -31,6 +33,7 @@ def GetFeatureErrs(
     ) != len(DocumentValue.feature_timeline):
         ErrorValues.append("feature order values are not unique")
     Selections = {Value.id: Value for Value in DocumentValue.selections}
+    Parameters = {Value.id: Value for Value in DocumentValue.parameters}
     for FeatureValue in DocumentValue.feature_timeline:
         if (
             FeatureValue.sketch_id
@@ -63,6 +66,12 @@ def GetFeatureErrs(
                     FeatureValue.definition,
                     Selections,
                     IdentitySets["support_planes"],
+                )
+            )
+        elif isinstance(FeatureValue.definition, AngularRevolve):
+            ErrorValues.extend(
+                GetAngleRevErrs(
+                    FeatureValue, FeatureValue.definition, Selections, Parameters
                 )
             )
     for BodyValue in DocumentValue.bodies:
