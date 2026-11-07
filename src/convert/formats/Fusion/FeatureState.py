@@ -19,8 +19,9 @@ def ReadFeatState(BodyValue: bytes) -> tuple[bool, bool] | None:
         or TailValue[5] not in (0, 1)
         or TailValue[6] != 0
         or TailValue[18] != 0
-        or TailValue[23:27] != b"\1\1\0\0"
-        or TailValue[35:39] != b"\1\1\0\0"
+        or TailValue[23] not in (1, 4)
+        or TailValue[24:27] != b"\1\0\0"
+        or TailValue[35:39] != TailValue[23:27]
         or TailValue[50] != 1
         or TailValue[51] != TailValue[5]
         or TailValue[52] not in (0, 1)

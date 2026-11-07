@@ -14,6 +14,8 @@ The initial app-wide estimate is **20 of 100 points** at baseline commit
 `9e1c6b60`. This is a coverage score based on repository evidence. It gives
 equal weight to CAD families, although their remaining engineering effort
 will vary. Keep the denominator fixed across feature and format milestones.
+The current estimate is **21 of 100 points** after Fusion gained verified
+plane-limited Revolve definitions and solid geometry in Kit.
 
 The scope includes all nine CAD families named in the [README](README.md)
 plus the shared SDK. The public adapter catalog at the baseline returns
@@ -35,13 +37,13 @@ alone earn no native write credit.
 | SOLIDWORKS          |           1 |            1 |                             1 |          1 |                                        1 |           5 |
 | Parashell           |           0 |            0 |                             0 |          0 |                                        0 |           0 |
 | FreeCAD             |           1 |            1 |                             1 |          1 |                                        0 |           4 |
-| Fusion              |           1 |            0 |                             0 |          0 |                                        0 |           1 |
+| Fusion              |           1 |            0 |                             1 |          0 |                                        0 |           2 |
 | CATIA               |           1 |            0 |                             1 |          1 |                                        0 |           3 |
 | NX                  |           0 |            0 |                             0 |          0 |                                        0 |           0 |
 | Rhino               |           0 |            0 |                             0 |          0 |                                        0 |           0 |
 | Creo                |           0 |            0 |                             0 |          0 |                                        0 |           0 |
 | AutoCAD             |           0 |            0 |                             0 |          0 |                                        0 |           0 |
-| **Format subtotal** |             |              |                               |            |                                          | **13 / 90** |
+| **Format subtotal** |             |              |                               |            |                                          | **14 / 90** |
 
 - SOLIDWORKS has native part reconstruction for controlled feature families
   and a typed assembly core. The recorded strict FreeCAD-to-SOLIDWORKS
@@ -56,10 +58,12 @@ alone earn no native write credit.
 - CATIA reads part and assembly containers and exposes a subset of geometry,
   feature, and assembly data. The overlay tests explicitly identify limits
   of modified outputs. [CATIA checks](tests/convert/catia)
-- Fusion has saved-file decoding and controlled source-derived feature
-  reconstruction. Its public adapter and writer remain open. The newer
-  parameter records are the immediate reader gap.
-  [Fusion evidence](re/Fusion/README.md)
+- Fusion reads saved history and numeric parameters through its explicit SDK
+  reader. It projects plane-limited Revolve definitions and source-derived
+  solid B-reps for a verified subset. Sixteen captures from Fusion 2705.1.30
+  and 2706.1.17 matched saved body geometry and passed Kit JSON round-trips.
+  The registered adapter, broader body coverage, native writer, assemblies,
+  and strict conversion remain open. [Fusion evidence](re/Fusion/README.md)
 
 ## Shared SDK
 

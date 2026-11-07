@@ -117,8 +117,15 @@ projects a typed `PlaneRevolve` definition. It preserves the ordered plane
 selections and stores the evaluated start and end angles about the effective
 axis. The two-plane sweep can start away from the sketch plane. All 16
 tracked and newer captures passed Kit JSON round-trips and matched 64
-independently evaluated body arcs. Other Revolve definitions and solid body
-output remain open.
+independently evaluated body arcs.
+
+For the verified single-body histories ending in an active plane-limited
+Revolve, Kit also generates a closed analytic B-rep directly from the
+profile and sweep. The native creator anchor and component collection
+identify the result body. Kit assigns its own face and edge IDs. All 16
+captures matched the saved Fusion body topology and analytic geometry,
+including volume, area, and bounds. Profiles that touch the axis, other
+modeling steps, and native Fusion output remain outside this body path.
 
 ## Import provenance
 
@@ -340,8 +347,8 @@ Reproduce the three Revolve checks and the focused Shell and Extrude checks
 from `Study/` with `python3 -m Verification.FocusedRevolves`. Pass
 `--zstd-library` if needed for the saved archives. From `Study/`, run
 `PYTHONPATH=../../../src python3 -m Verification.FocusedRevolves --kit` to
-also check Kit JSON and compare the projected intervals with the tracked
-body arcs.
+also check Kit JSON, projected intervals, body topology counts, and
+measurements against the tracked geometry.
 
 The integration audit passed the functional checks on all 712 archives with
 default settings. With plane-limited Revolves enabled, the three captures

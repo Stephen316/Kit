@@ -12,7 +12,9 @@ from math import isfinite as IsFinite
 
 
 # the swept shell requires one convex positive radius meridian without repeated vertices
-def CheckMeridian(Meridian: tuple[tuple[float, float], ...]) -> None:
+def MeridianSense(
+    Meridian: tuple[tuple[float, float], ...], *, Strict: bool = False
+) -> int:
     if len(Meridian) < 3 or len(set(Meridian)) != len(Meridian):
         raise ValueError("revolution meridian requires distinct polygon vertices")
     if any(
@@ -25,28 +27,35 @@ def CheckMeridian(Meridian: tuple[tuple[float, float], ...]) -> None:
     Winding = 0
     for Index, (Radius, Height) in enumerate(Meridian):
         EndRadius, EndHeight = Meridian[(Index + 1) % len(Meridian)]
-        for PointRadius, PointHeight in Meridian:
+        for PointIndex, (PointRadius, PointHeight) in enumerate(Meridian):
+            if PointIndex in (Index, (Index + 1) % len(Meridian)):
+                continue
             Side = (EndRadius - Radius) * (PointHeight - Height) - (
                 EndHeight - Height
             ) * (PointRadius - Radius)
             if not IsFinite(Side):
                 raise ValueError("revolution meridian exceeds finite geometry")
+            if Strict and Side == 0.0:
+                raise ValueError("Revolve meridian must be strictly convex")
             if Side:
                 Direction = 1 if Side > 0.0 else -1
                 if Winding and Direction != Winding:
                     raise ValueError(
-                        "revolution meridian must be a cyclic convex polygon"
+                        "Revolve meridian must be strictly convex"
+                        if Strict
+                        else "revolution meridian must be a cyclic convex polygon"
                     )
                 Winding = Direction
     if not Winding:
         raise ValueError("revolution meridian must have nonzero area")
+    return Winding
 
 
 # area and radial moment give the cap area and volume independently of angle
 def ProfileMetrics(
     Meridian: tuple[tuple[float, float], ...],
 ) -> tuple[float, float, float]:
-    CheckMeridian(Meridian)
+    MeridianSense(Meridian)
     FirstRadius, FirstHeight = Meridian[0]
     Areas: list[float] = []
     Moments: list[float] = []

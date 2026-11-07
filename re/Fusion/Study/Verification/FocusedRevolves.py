@@ -126,7 +126,9 @@ def CheckRevolves(ZstdLibrary, CheckKit=False):
             Feature for Feature in Stream["features"] if Feature["kind"] == "Revolve"
         )
         if CheckKit:
-            CheckKitRev(FilePath, ZstdLibrary, Feature, Parsed, Graph, Expected)
+            CheckKitRev(
+                FilePath, ZstdLibrary, Feature, Parsed, Graph, Expected, Reconstruction
+            )
         assert Feature.pop("revolve_reconstruction") == Reconstruction
         Stream["revolve_reconstruction"] = Original["streams"][0][
             "revolve_reconstruction"
@@ -135,7 +137,9 @@ def CheckRevolves(ZstdLibrary, CheckKit=False):
 
 
 # the sdk definition must survive json and match independently evaluated cache arcs
-def CheckKitRev(FilePath, ZstdLibrary, NativeFeature, Parsed, Graph, Expected):
+def CheckKitRev(
+    FilePath, ZstdLibrary, NativeFeature, Parsed, Graph, Expected, Reconstruction
+):
     from convert.formats.Fusion.DocumentRead import ReadFusionDoc
     from interchange.document.models.DocumentModel import CadDocument
     from interchange.features.FeaturePlaneRev import PlaneRevolve
@@ -145,6 +149,7 @@ def CheckKitRev(FilePath, ZstdLibrary, NativeFeature, Parsed, Graph, Expected):
         Codec = Partial(InflateZstd, library_path=ZstdLibrary)
     Document = ReadFusionDoc(FilePath, InflateZstd=Codec)
     assert CadDocument.from_json(Document.to_json()) == Document
+    CheckKitBody(Document, Graph, Reconstruction)
     (StepValue,) = (
         Value for Value in Document.feature_timeline if Value.kind.value == "revolution"
     )
@@ -169,6 +174,36 @@ def CheckKitRev(FilePath, ZstdLibrary, NativeFeature, Parsed, Graph, Expected):
         for Side in ("side_one", "side_two")
         if Side in Controls
     )
+
+
+# the neutral body must match the mapped result without reusing cached topology
+def CheckKitBody(Document, Graph, Reconstruction):
+    (Body,) = Document.bodies
+    Model = Document.brep
+    assert Model is not None and not Model.GetErrors(frozenset((Body.id,)))
+    (BrepBody,) = Model.bodies
+    assert BrepBody.design_body_id == Body.id
+    assert (
+        int(Body.provenance.native_id) == Reconstruction["source_native_body_object_id"]
+    )
+    assert Body.attributes["fusion.geometry_source"] == "source_profile_revolve"
+    for NameValue in ("vertex", "edge", "face", "shell"):
+        assert (
+            getattr(Body.topology, f"{NameValue}_count") == Graph["counts"][NameValue]
+        )
+    Source = Reconstruction["derived_geometry"]
+    assert isclose(Body.topology.volume, Source["volume_cm3"] * 1000, rel_tol=1e-9)
+    assert isclose(
+        Body.topology.surface_area, Source["surface_area_cm2"] * 100, rel_tol=1e-9
+    )
+    Bounds = Body.topology.bounding_box
+    for BoundName in ("minimum", "maximum"):
+        Position = getattr(Bounds, BoundName)
+        Expected = Source["component_axis_aligned_bounds_cm"][BoundName]
+        assert all(
+            isclose(Value, Target * 10, rel_tol=1e-9, abs_tol=1e-8)
+            for Value, Target in zip((Position.x, Position.y, Position.z), Expected)
+        )
 
 
 # oracle sectors exercise target order and branches beyond the tracked fixtures
@@ -270,4 +305,4 @@ if __name__ == "__main__":
         "Verified 3 plane-limited Revolves, 15 Shell fixtures and 8 Extrude fixtures."
     )
     if Options.kit:
-        print("Verified Kit definitions and JSON for the 3 tracked Revolves.")
+        print("Verified Kit definitions, solids and JSON for the 3 tracked Revolves.")

@@ -15,6 +15,7 @@ from convert.formats.Fusion.DesignZip import ReadDesignZip
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.PlaneProjection import ProjectPlanes
 from convert.formats.Fusion.Profiles.ProfileProjection import ProjectProfiles
+from convert.formats.Fusion.Revolves.RevolveBody import ProjectRevBody
 from convert.formats.Fusion.Revolves.RevolveProject import ProjectRevolves
 from convert.formats.Fusion.Sketches.SketchProjection import ProjectSketches
 from convert.formats.Fusion.SourceBytes import LoadFusionBytes
@@ -60,6 +61,7 @@ def ReadFusionDoc(
     Steps, Selections, RevolveIssues = ProjectRevolves(
         BulkData, Spans, Steps, Params, Planes, Frames, Sketches
     )
+    Bodies, Model, BodyIssues = ProjectRevBody(BulkData, Spans, Steps, Sketches, Frames)
     Owners = {
         ParamId: StepValue.id
         for StepValue in History.Steps
@@ -77,6 +79,8 @@ def ReadFusionDoc(
         Capabilities.add(Capability.KSupportPlanes)
     if Selections:
         Capabilities.add(Capability.KSelections)
+    if Model is not None:
+        Capabilities.update((Capability.KBodyStructure, Capability.KBrep))
     Document = CadDocument(
         source=CadSource(format_id="fusion.f3d", path=SourceName, sha256=Digest),
         configurations=(
@@ -89,7 +93,8 @@ def ReadFusionDoc(
         sketches=Sketches,
         selections=Selections,
         feature_timeline=Steps,
-        bodies=(),
+        bodies=Bodies,
+        brep=Model,
         brep_payloads=(
             BrepPayload(
                 id="fusion-source-archive",
@@ -107,11 +112,12 @@ def ReadFusionDoc(
         + SketchIssues
         + ProfileIssues
         + RevolveIssues
+        + BodyIssues
         + (
             Diagnostic(
                 code="fusion.history.partial",
-                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry, and supported plane-limited Revolves. "
-                "Additional feature definitions, body geometry, and assemblies require further decoding.",
+                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry, and supported plane-limited Revolve definitions and solids. "
+                "Additional feature definitions, bodies, and assemblies require further decoding.",
             ),
         ),
         capabilities=frozenset(Capabilities),
