@@ -16,6 +16,14 @@ The reader recovers observed native records and emits JSON. It is development
 and reverse-engineering tooling; it is not wired into Kit's production adapter
 registry and does not provide complete editable-file translation or native writing.
 
+The SDK's `convert.formats.Fusion.BulkSpans.ReadBulkSpans` indexes native
+version-8 design streams. It accepts decompressed BulkStream and MetaStream
+bytes and returns immutable record spans with class and object identities.
+It checks each bulk header against its metadata entry and verifies that
+continuations belong to ancestors of their primary class. The SDK index
+agreed with the study on all 261,141 record boundaries and identities
+across the 712 tracked archives.
+
 ## Import provenance
 
 - Source commit: `60ebb72ee7b64a0bf22331012b7c737c0e17d43b`.
