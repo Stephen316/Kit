@@ -9,14 +9,16 @@
 from math import isclose as IsClose, isfinite as IsFinite
 from struct import unpack_from as UnpackFrom
 
-from convert.formats.Fusion.HistoryRef import ReadNativeRef
 from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.ParamProjection import ParamOrigin as RecordOrigin
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Sketches.GeometryAttrs import ReadGeomAttrs
+from convert.formats.Fusion.Sketches.SketchCircular import IsCircleFrame, ReadSketchArc
+from convert.formats.Fusion.Sketches.SketchPointRef import ReadPointRef
 from interchange.core.Common import FreezeMapping
 from interchange.enums.EnumGeometry import GeometryKind
 from interchange.geometry.models.GeometryCurves import (
+    ArcGeometry,
     CircleGeometry,
     LineGeometry,
     PointGeometry,
@@ -42,18 +44,6 @@ def ReadPoint(BodyValue: bytes, StartOffset: int) -> PlaneVector:
     return PlaneVector(Values[0], Values[1])
 
 
-# curve geometry must refer to point records within the same native sketch
-def FindPoint(
-    BodyValue: bytes, Offset: int, Points: dict[int, PlaneVector]
-) -> PlaneVector:
-    Cursor = MetaCursor(BodyValue)
-    Cursor.Offset = Offset
-    PointValue = Points.get(ReadNativeRef(Cursor))
-    if PointValue is None:
-        raise ValueError("Missing same-sketch Fusion curve point")
-    return PointValue
-
-
 # comparison of stored endpoint copies catches inconsistent native geometry
 def IsSamePoint(First: PlaneVector, Second: PlaneVector) -> bool:
     return IsClose(First.x, Second.x, abs_tol=1e-8) and IsClose(
@@ -75,7 +65,8 @@ def ReadPrimitive(
         raise ValueError("Unsupported Fusion sketch primitive genesis")
     Fixed = False
     Construction = False
-    Geometry: PointGeometry | LineGeometry | CircleGeometry
+    Geometry: PointGeometry | LineGeometry | CircleGeometry | ArcGeometry
+    Extras: dict[str, object] = {}
     if KindValue == GeometryKind.KPoint:
         TagValue = Props.get("pt_tag")
         if Width != 99 or not isinstance(TagValue, int):
@@ -83,42 +74,38 @@ def ReadPrimitive(
         Geometry = PointGeometry(ReadPoint(BodyValue, Offset + 19))
     else:
         TagValue = Props.get("crv_primary_id")
-        Expected = 171 if KindValue == GeometryKind.KLine else 162
+        Expected = (171,) if KindValue == GeometryKind.KLine else (162, 182)
         if (
-            Width != Expected
+            Width not in Expected
             or not isinstance(TagValue, int)
             or Props.get("crv_secondary_id") != 0
         ):
             raise ValueError("Unsupported Fusion sketch curve layout")
-        Origin = ReadPoint(BodyValue, Offset)
-        Target = FindPoint(BodyValue, Offset + 96, Points)
-        if KindValue == GeometryKind.KLine:
-            Start = FindPoint(BodyValue, Offset + 107, Points)
-            Delta = ReadPoint(BodyValue, Offset + 24)
-            EndValue = PlaneVector(Origin.x + Delta.x, Origin.y + Delta.y)
-            if not IsSamePoint(Origin, Start) or not IsSamePoint(EndValue, Target):
-                raise ValueError("Fusion line endpoint cache disagrees")
-            Geometry = LineGeometry(Start, Target)
+        if Width == 182:
+            Geometry, Extras = ReadSketchArc(BodyValue, Offset, Points)
+            KindValue = GeometryKind.KArcGeometry
         else:
-            Radius = float(UnpackFrom("<d", BodyValue, Offset + 72)[0]) * 10
-            Normal = UnpackFrom("<3d", BodyValue, Offset + 24)
-            RefAxis = UnpackFrom("<3d", BodyValue, Offset + 48)
-            if (
-                not IsFinite(Radius)
-                or Radius <= 0.0
-                or not all(map(IsFinite, Normal))
-                or not all(map(IsFinite, RefAxis))
-                or not IsSamePoint(Origin, Target)
-                or abs(Normal[0]) > 1e-9
-                or abs(Normal[1]) > 1e-9
-                or not IsClose(abs(Normal[2]), 1.0, abs_tol=1e-9)
-                or abs(RefAxis[2]) > 1e-9
-                or not IsClose(
-                    sum(Value * Value for Value in RefAxis), 1.0, abs_tol=1e-9
-                )
-            ):
-                raise ValueError("Invalid Fusion sketch circle geometry")
-            Geometry = CircleGeometry(Target, Radius)
+            Origin = ReadPoint(BodyValue, Offset)
+            _, Target = ReadPointRef(BodyValue, Offset + 96, Points)
+            if KindValue == GeometryKind.KLine:
+                _, Start = ReadPointRef(BodyValue, Offset + 107, Points)
+                Delta = ReadPoint(BodyValue, Offset + 24)
+                EndValue = PlaneVector(Origin.x + Delta.x, Origin.y + Delta.y)
+                if not IsSamePoint(Origin, Start) or not IsSamePoint(EndValue, Target):
+                    raise ValueError("Fusion line endpoint cache disagrees")
+                Geometry = LineGeometry(Start, Target)
+            else:
+                Radius = float(UnpackFrom("<d", BodyValue, Offset + 72)[0]) * 10
+                Normal = UnpackFrom("<3d", BodyValue, Offset + 24)
+                RefAxis = UnpackFrom("<3d", BodyValue, Offset + 48)
+                if (
+                    not IsFinite(Radius)
+                    or Radius <= 0.0
+                    or not IsSamePoint(Origin, Target)
+                    or not IsCircleFrame(Normal, RefAxis)
+                ):
+                    raise ValueError("Invalid Fusion sketch circle geometry")
+                Geometry = CircleGeometry(Target, Radius)
         FixedFlag = UnpackFrom("<I", BodyValue, len(BodyValue) - 51)[0]
         ConstructionFlag = UnpackFrom("<I", BodyValue, len(BodyValue) - 46)[0]
         if FixedFlag not in (0, 1) or ConstructionFlag not in (0, 1):
@@ -132,6 +119,6 @@ def ReadPrimitive(
         construction=Construction,
         provenance=RecordOrigin(SpanValue),
         attributes=FreezeMapping(
-            {"fusion.entity_tag": TagValue, "fusion.entity_genesis": Genesis}
+            {"fusion.entity_tag": TagValue, "fusion.entity_genesis": Genesis, **Extras}
         ),
     )
