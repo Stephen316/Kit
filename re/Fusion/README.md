@@ -68,6 +68,15 @@ and the original archive as a native document payload. It can round-trip
 through the Kit JSON reader and writer. The SDK verified document projection
 for all 766 histories in the tracked corpus.
 
+The selected history now also projects supported offset and angle
+construction planes as neutral support frames. The reader verifies the
+reciprocal feature and plane references, their shared ordinal, and the
+orthonormal axes. Origins convert from centimetres to millimetres and
+remain in component coordinates. The projected frames matched 144
+tracked planes and 19 planes in newer Fusion captures. Seven tracked
+plane records still produce diagnostics for unsupported layouts.
+Sketch attachment and parametric plane definitions remain open.
+
 ## Import provenance
 
 - Source commit: `60ebb72ee7b64a0bf22331012b7c737c0e17d43b`.

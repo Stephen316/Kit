@@ -15,6 +15,7 @@ from convert.formats.Fusion.HistoryProjection import ProjectHistory
 from convert.formats.Fusion.NativeHistory import KHistoryGuid
 from convert.formats.Fusion.ParamProjection import ParamOrigin
 from convert.formats.Fusion.ZipParameters import ReadBulkParams
+from convert.formats.Fusion.RecordSpan import RecordSpan
 from interchange.records.RecordDiagnostic import Diagnostic
 from interchange.records.RecordParameter import Parameter
 
@@ -24,6 +25,13 @@ def ReadZipHistory(
     DataValue: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
 ) -> tuple[tuple[HistoryPart, ...], tuple[Parameter, ...], tuple[Diagnostic, ...]]:
     BulkData, Spans = ReadDesignZip(DataValue, InflateZstd)
+    return ReadBulkHistory(BulkData, Spans)
+
+
+# document projection shares one archive index across history and geometry readers
+def ReadBulkHistory(
+    BulkData: bytes, Spans: tuple[RecordSpan, ...]
+) -> tuple[tuple[HistoryPart, ...], tuple[Parameter, ...], tuple[Diagnostic, ...]]:
     Owners = {
         SpanValue.ObjectId: SpanValue for SpanValue in Spans if SpanValue.IsPrimary
     }

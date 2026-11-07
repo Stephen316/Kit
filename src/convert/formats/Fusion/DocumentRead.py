@@ -11,9 +11,11 @@ from dataclasses import replace as Replace
 from hashlib import sha256 as ShaDigest
 from pathlib import Path as FilePath
 
+from convert.formats.Fusion.DesignZip import ReadDesignZip
 from convert.formats.Fusion.HistoryPart import HistoryPart
+from convert.formats.Fusion.PlaneProjection import ProjectPlanes
 from convert.formats.Fusion.SourceBytes import LoadFusionBytes
-from convert.formats.Fusion.ZipHistory import ReadZipHistory
+from convert.formats.Fusion.ZipHistory import ReadBulkHistory
 from interchange.core.Common import FreezeMapping
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumDocument import Capability
@@ -46,8 +48,10 @@ def ReadFusionDoc(
 ) -> CadDocument:
     """Project one native Fusion history into a partial, validated document."""
     DataValue, SourceName = LoadFusionBytes(SourceData)
-    Parts, Params, Diagnostics = ReadZipHistory(DataValue, InflateZstd)
+    BulkData, Spans = ReadDesignZip(DataValue, InflateZstd)
+    Parts, Params, Diagnostics = ReadBulkHistory(BulkData, Spans)
     History = SelectHistory(Parts, HistoryId)
+    Planes, PlaneIssues = ProjectPlanes(BulkData, Spans, History)
     Owners = {
         ParamId: StepValue.id
         for StepValue in History.Steps
@@ -61,6 +65,8 @@ def ReadFusionDoc(
     Capabilities = {Capability.KNativePayloads, Capability.KProvenance}
     if Parameters:
         Capabilities.add(Capability.KParameters)
+    if Planes:
+        Capabilities.add(Capability.KSupportPlanes)
     Document = CadDocument(
         source=CadSource(format_id="fusion.f3d", path=SourceName, sha256=Digest),
         configurations=(
@@ -69,7 +75,7 @@ def ReadFusionDoc(
             ),
         ),
         parameters=Parameters,
-        support_planes=(),
+        support_planes=Planes,
         sketches=(),
         selections=(),
         feature_timeline=History.Steps,
@@ -87,10 +93,11 @@ def ReadFusionDoc(
             ),
         ),
         diagnostics=Diagnostics
+        + PlaneIssues
         + (
             Diagnostic(
                 code="fusion.history.partial",
-                message="Fusion history projection covers ordering and numeric parameters. "
+                message="Fusion history projection covers ordering, numeric parameters, and supported construction plane frames. "
                 "Editable feature definitions, geometry, and assemblies require further decoding.",
             ),
         ),

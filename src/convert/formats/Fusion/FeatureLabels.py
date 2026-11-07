@@ -19,21 +19,28 @@ KFeatureFields = {
 }
 
 
+# typed labels share their native ordinal with reciprocal geometry records
+def ReadLabelData(BodyValue: bytes, LabelText: str) -> tuple[str, int] | None:
+    Marker = Pack("<I", len(LabelText)) + LabelText.encode("utf-16le")
+    Start = BodyValue.find(Marker)
+    if Start < 0 or BodyValue.find(Marker, Start + len(Marker)) >= 0:
+        return None
+    Cursor = MetaCursor(BodyValue)
+    Cursor.Offset = Start + len(Marker)
+    try:
+        StoredIndex = Cursor.ReadLong()
+        if StoredIndex < 2**32:
+            return Cursor.ReadText(True, Maximum=1024), StoredIndex
+    except ValueError:
+        return None
+    return None
+
+
 # named records retain their source labels without assigning names to unknown classes
 def ReadFeatLabel(BodyValue: bytes, ClassGuid: str) -> tuple[str, FeatureKind]:
     Fields = KFeatureFields.get(ClassGuid)
     if Fields is None:
         return "", FeatureKind.KNative
     LabelText, FeatureType = Fields
-    Marker = Pack("<I", len(LabelText)) + LabelText.encode("utf-16le")
-    Start = BodyValue.find(Marker)
-    if Start < 0 or BodyValue.find(Marker, Start + len(Marker)) >= 0:
-        return "", FeatureType
-    Cursor = MetaCursor(BodyValue)
-    Cursor.Offset = Start + len(Marker)
-    try:
-        if Cursor.ReadLong() >= 2**32:
-            return "", FeatureType
-        return Cursor.ReadText(True, Maximum=1024), FeatureType
-    except ValueError:
-        return "", FeatureType
+    LabelData = ReadLabelData(BodyValue, LabelText)
+    return LabelData[0] if LabelData is not None else "", FeatureType
