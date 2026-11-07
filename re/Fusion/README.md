@@ -123,6 +123,33 @@ For a geometry check, include the identified cache member's full path in
 Use the unfiltered reader for a full archive integrity check. Filtered reads
 validate metadata across the archive and check CRCs for the selected payloads.
 
+### Saved corpus baseline
+
+The baseline at `8496fc8b` decoded all 712 saved archives and emitted 2,557
+feature rows. Counting `kind` across every stream gives 64 named kinds plus
+`UnsupportedFeature`. The largest groups are Sketch (1,005), Extrude (526),
+ConstructionPlane (151), SurfacePatch (58), and CreateComponent (54).
+
+The 147 unsupported rows span 80 archives. Grouped by `native_kind_label`, they
+are Base Feature (54), unlabeled (51), JointOrigin (16), Base Mesh Feature (14),
+and Pin, MirrorComponent, Derived Base Feature, and DerivedInstance (3 each).
+These counts measure recognition in this capture corpus. A named row can
+still contain unresolved selectors, controls, or geometry.
+
+Counting successful feature-level reconstruction attachments separately gives
+238 ordinary extrusions, 15 trimmed extrusions, 3 plane-limited extrusions,
+15 angular revolves, 14 shells, and 7 scales. There are 26 recognized Revolve
+rows overall, including the three plane-limited cases below.
+
+The focused workflow was checked against the fixed `FILES` inventories in
+`validate_shell_reconstruction_integration.py` and
+`validate_plane_extrusion_reconstruction_integration.py`. Load only the
+design BulkStream and MetaStream plus `.smb` and `.smbh` members, then build
+feature and parameter records from the selected design stream. With the same
+body-blob bindings from the full decode, the focused reconstruction matched
+the full result on all 15 Shell fixtures and all 8 plane-extrusion fixtures,
+including two and five empty controls respectively.
+
 ### Plane-limited Revolve
 
 The three `Study/revolveto-b1d196f65c46/` captures resolve the selected
