@@ -82,9 +82,24 @@ adapters = {adapter.format_id for adapter in available_adapters()}
 assert adapters == {
     "catia.v5",
     "freecad.fcstd",
+    "fusion.f3d",
     "interchange.json",
     "solidworks.sldprt",
 }
+fusion_path = output / "runtime-fusion.f3d"
+fusion = open_document(fusion_path, strict=False)
+assert fusion.source.format_id == "fusion.f3d"
+assert fusion.metadata["fusion.history_id"] == 104
+assert any(item.code == "fusion.history.partial" for item in fusion.diagnostics)
+assert fusion.brep_payloads[0].data == fusion_path.read_bytes()
+try:
+    from compression import zstd
+except ImportError:
+    zstd = None
+if zstd is not None:
+    capture = root / "re" / "Fusion" / "Study" / "revolveto-b1d196f65c46" / "two_planes.f3d"
+    native_fusion = open_document(capture, strict=False)
+    assert len(native_fusion.bodies) == 1 and native_fusion.brep is not None
 cases = (
     (root / "examples" / ".SLDPRT" / "example.SLDPRT", ".FCStd"),
     (output / "conversion_0.FCStd", ".CATPart"),

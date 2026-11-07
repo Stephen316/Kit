@@ -127,6 +127,51 @@ captures matched the saved Fusion body topology and analytic geometry,
 including volume, area, and bounds. Profiles that touch the axis, other
 modeling steps, and native Fusion output remain outside this body path.
 
+## Public SDK reader
+
+The adapter catalog includes `fusion.f3d` with alias `f3d`. The registry
+detects the active Fusion design streams in a saved archive. Call
+`open_document` with `strict=False` to opt into the partial projection.
+The public reader validated 766 histories across 712 tracked archives
+with Python 3.14.
+
+```python
+from convert import open_document
+
+document = open_document("part.f3d", strict=False)
+```
+
+If the archive contains multiple native histories, pass the desired ID as a
+decimal configuration string, for example `configuration="35"`. Setting
+`include_brep=False` omits the projected B-rep and preserves the original
+document payload. The adapter supplies a reader for `.f3d`. Native Fusion
+output and strict source translation require further format coverage.
+
+For archives with Zstandard-compressed members, the convenience API uses
+Python's ZIP Zstandard support. On an earlier Python version, supply a
+Zstandard decompression callback through `ReadOptions.values` when reading
+with the registry.
+
+```python
+from convert import ReadOptions
+from convert.adapters import AdapterRegistry
+
+def read_fusion_with_codec(path, inflate_zstd):
+    registry = AdapterRegistry()
+    registry.introspect()
+    return registry.read(
+        path,
+        format_id="fusion.f3d",
+        options=ReadOptions(
+            strict=False,
+            values={"fusion.inflate_zstd": inflate_zstd},
+        ),
+    )
+```
+
+The callback takes compressed bytes and an expected uncompressed size. Kit
+checks the result against the archive's size and CRC.
+
 ## Import provenance
 
 - Source commit: `60ebb72ee7b64a0bf22331012b7c737c0e17d43b`.

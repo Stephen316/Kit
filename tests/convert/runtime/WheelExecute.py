@@ -10,6 +10,7 @@ from pathlib import Path as FilePath
 import subprocess as ProcessLib
 import sys as SystemLib
 
+from tests.convert.formats.FusionHistoryTests import HistoryArchive
 from tests.convert.runtime.IsolatedRuntime import KIsolatedRuntime
 from tests.convert.runtime.RuntimeRules import KRootPath
 
@@ -20,6 +21,7 @@ def RunIsolated(
 ) -> ProcessLib.CompletedProcess[str]:
     OutputFolder = TmpPath / "runtime"
     OutputFolder.mkdir()
+    (OutputFolder / "runtime-fusion.f3d").write_bytes(HistoryArchive())
     return ProcessLib.run(
         (
             SystemLib.executable,

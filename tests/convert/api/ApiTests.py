@@ -30,7 +30,8 @@ def CheckApiBridge(TmpPath: FilePath) -> None:
     RegistryData = AdapterRegistry()
     _ = RegistryData.introspect()
     assert FormatNames == {
-        AdapterData.info.format_id for AdapterData in RegistryData.readers()
+        AdapterData.info.format_id
+        for AdapterData in (*RegistryData.readers(), *RegistryData.writers())
     }
     DocumentData = OpenLegacy(KSamplePath)
     OutputPath = TmpPath / "example.json"

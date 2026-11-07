@@ -58,12 +58,12 @@ alone earn no native write credit.
 - CATIA reads part and assembly containers and exposes a subset of geometry,
   feature, and assembly data. The overlay tests explicitly identify limits
   of modified outputs. [CATIA checks](tests/convert/catia)
-- Fusion reads saved history and numeric parameters through its explicit SDK
-  reader. It projects plane-limited Revolve definitions and source-derived
-  solid B-reps for a verified subset. Sixteen captures from Fusion 2705.1.30
+- Fusion is discoverable in the SDK as the read-only `fusion.f3d` adapter.
+  It requires explicit opt-in to the partial read and projects plane-limited
+  Revolve definitions and source-derived solid B-reps for a verified subset. Sixteen captures from Fusion 2705.1.30
   and 2706.1.17 matched saved body geometry and passed Kit JSON round-trips.
-  The registered adapter, broader body coverage, native writer, assemblies,
-  and strict conversion remain open. [Fusion evidence](re/Fusion/README.md)
+  Broader body coverage, the native writer, assemblies, and strict conversion
+  remain open. [Fusion evidence](re/Fusion/README.md)
 
 ## Shared SDK
 

@@ -33,13 +33,16 @@ Kit by Parashell is a source-available CAD interchange SDK for translating geome
 
 ## Supported formats
 
-| CAD        | suffixes                  |
-| ---------- | ------------------------- |
-| SOLIDWORKS | `.SLDPRT`, `.SLDASM`      |
-| FreeCAD    | `.FCStd`                  |
-| CATIA      | `.CATPart`, `.CATProduct` |
+| CAD        | Suffixes                  | Registered adapters |
+| ---------- | ------------------------- | ------------------- |
+| SOLIDWORKS | `.SLDPRT`, `.SLDASM`      | Reader and writer   |
+| FreeCAD    | `.FCStd`                  | Reader and writer   |
+| CATIA      | `.CATPart`, `.CATProduct` | Reader and writer   |
+| Fusion     | `.f3d`                    | Partial reader      |
 
-Kit reads and writes these formats natively, without requiring CAD software to be installed.
+Kit adapters run without requiring CAD software. Fusion's reader
+requires explicit opt-in to the partial history and geometry projection.
+[Fusion reader usage](re/Fusion/README.md#public-sdk-reader)
 
 ## Architecture
 
