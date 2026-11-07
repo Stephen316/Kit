@@ -180,24 +180,41 @@ The 45° target plane has two radial branches. The single-plane capture uses
 the branch at −135°, and the two-plane capture sweeps across −180° with the
 source profile at 0° outside the resulting sector. A shortest-angle rule or
 an assumption that a two-sided sweep contains the sketch would fail these
-controls. Use the measured arcs as an independent check for future source
-decoding. The next differential needs the same target plane and sketch with
-only the direction hint changed to isolate how Fusion selects the branch.
+controls.
 
-The research helper `RevolvePlanes.PlaneIntervals` now derives both radial
-roots of each target plane from its normal in the source frame. It requires a
-unit plane through the axis and enumerates both directed intervals between the
-eligible meridians. In the sketch-normal-directed frame (axis −Y, radial +X,
-tangent +Z), the three fixtures yield four, four, and eight source candidates.
-Each mapped BODY agrees with exactly one candidate when all four circular
-edges are compared by span and midpoint: 0° to 35°, 0° to 135°, and 135° to
-215°, respectively. This validates the candidate construction and identifies
-the observed branch through independent stored geometry.
+In the sketch-normal-directed frame (axis −Y, radial +X, tangent +Z), each
+target plane has two radial intersections separated by 180°. A one-plane
+Revolve runs from the sketch to the first forward intersection. A two-plane
+Revolve starts at the later of the first forward intersections and ends at
+the opposite branch of the earlier one. This makes the two-plane interval
+independent of target order. The decoder derives this interval from the
+source sketch, axis and plane records, then requires the complete analytic
+FACE/LOOP/EDGE bundle to agree with the independently mapped BODY.
 
-The decoder constructs the candidates from source geometry and compares their
-complete analytic FACE/LOOP/EDGE bundles with the mapped BODY. Exactly one
-candidate must match before it reports a reconstruction. The source-only
-branch rule remains unresolved.
+A Fusion 2706.1.17 oracle run varied target angles, target order, and the
+optional one-sided direction hint. All four body-owned circular edges in each
+of 13 captures agreed with the source prediction. The angle convention below
+is sketch-normal-directed. Autodesk exposes the direction hint in the API.
+The observed hint invariance applies to these controlled through-axis planes.
+[Autodesk Revolve input reference](https://help.autodesk.com/cloudhelp/ENU/Fusion-360-API/files/fusion_RevolveFeatureInput_setOneSideToExtent.htm)
+
+| Requested plane angle(s) | Contrast              | Observed sector |
+| ------------------------ | --------------------- | --------------- |
+| +45°                     | omitted, +Z, −Z hints | 0°–135°         |
+| −35°                     | omitted and −Z hints  | 0°–35°          |
+| +45°, −35°               | both target orders    | 135°–215°       |
+| +20°, +45°               | two positive angles   | 160°–315°       |
+| −35°, −70°               | two negative angles   | 70°–215°        |
+| +15°, −65°               | mixed angles          | 165°–245°       |
+| +80°, −20°               | mixed angles          | 100°–200°       |
+| +15°                     | omitted hint          | 0°–165°         |
+| −65°                     | omitted hint          | 0°–65°          |
+
+The 2706.1.17 controls corroborate the interval rule through their native plane
+normals and raw mapped body edges. Full feature decoding of those exports still
+requires support for their parameter records, including the inactive
+`AlongAngle` binding. The three tracked 2705.1.30 cases exercise the entire
+reconstruction path.
 
 From `Study/`, enable this experimental path with:
 
@@ -209,8 +226,8 @@ The Python entry point accepts `AllowPlaneLimits=True`. The opt-in preserves
 the existing angular-only default. Plane reconstruction requires an
 unprojected solid NewBody, a four-Line sketch profile, a native origin axis,
 and owned construction-plane targets through that axis. The output retains
-the original inactive angle and separately identifies the matched directed
-interval and the role of the stored BODY in selecting it.
+the original inactive angle and separately identifies the source-derived
+interval and its bounded BODY verification.
 
 Reproduce the three Revolve checks and the focused Shell and Extrude checks
 from `Study/` with `python3 -m Verification.FocusedRevolves`. Pass

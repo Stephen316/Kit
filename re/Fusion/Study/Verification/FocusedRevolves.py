@@ -11,6 +11,7 @@
 from argparse import ArgumentParser
 from math import atan2, cos, isclose, pi, radians, sin
 from pathlib import Path
+from RevolvePlanes.PlaneIntervals import PlaneBranches, SelectPlaneSpan
 
 from asm_records import inspect_asm
 from decode_basics import attach_parameters, decode_basics, named_features
@@ -83,13 +84,13 @@ def CheckArcs(Parsed, Graph, Start, Finish):
     assert Count == 4
 
 
-# saved reference sectors verify the decoder independently of its candidate matcher
+# saved reference sectors verify the decoder without sharing the source branch computation
 def CheckRevolves(ZstdLibrary):
     Capture = Path("revolveto-b1d196f65c46")
-    for Name, Degrees, Candidates in (
-        ("negative_plane", (0, 35), 4),
-        ("positive_plane", (0, 135), 4),
-        ("two_planes", (135, 215), 8),
+    for Name, Degrees, PlaneCount in (
+        ("negative_plane", (0, 35), 1),
+        ("positive_plane", (0, 135), 1),
+        ("two_planes", (135, 215), 2),
     ):
         FilePath = Capture / (Name + ".f3d")
         Original = decode_basics(FilePath, ZstdLibrary)
@@ -99,10 +100,10 @@ def CheckRevolves(ZstdLibrary):
         assert not Summary["unresolved"], (Name, Summary["unresolved"])
         (Reconstruction,) = Summary["decoded"]
         Evidence = Reconstruction["plane_limit_evidence"]
-        assert Evidence["candidate_count"] == Candidates, Name
+        assert len(Evidence["source_plane_radial_roots_radians"]) == PlaneCount, Name
         Expected = tuple(map(radians, Degrees))
         for Angle, Target in zip(
-            Evidence["matched_directed_interval_radians"], Expected
+            Evidence["source_directed_interval_radians"], Expected
         ):
             assert isclose(Angle, Target, abs_tol=1e-9), Name
         Proof = Reconstruction["native_cache_geometry_corroboration"]
@@ -128,10 +129,39 @@ def CheckRevolves(ZstdLibrary):
         assert Result == Original, Name
 
 
+# oracle sectors exercise target order and branches beyond the tracked fixtures
+def CheckPlaneRule():
+    for Angles, Sector in (
+        ((20, 45), (160, 315)),
+        ((-35, -70), (70, 215)),
+        ((15, -65), (165, 245)),
+        ((80, -20), (100, 200)),
+        ((15,), (0, 165)),
+        ((-65,), (0, 65)),
+    ):
+        Roots = []
+        for Angle in map(radians, Angles):
+            Roots.append(
+                PlaneBranches(
+                    (0, 0, 0),
+                    (sin(Angle), 0, cos(Angle)),
+                    (0, 0, 0),
+                    (0, -1, 0),
+                    (1, 0, 0),
+                    (0, 0, 1),
+                )
+            )
+        Expected = tuple(map(radians, Sector))
+        for Order in (Roots, list(reversed(Roots))):
+            for Actual, Target in zip(SelectPlaneSpan(Order), Expected):
+                assert isclose(Actual, Target, abs_tol=1e-9), Angles
+
+
 if __name__ == "__main__":
     Parser = ArgumentParser(description=__doc__)
     Parser.add_argument("--zstd-library")
     Options = Parser.parse_args()
+    CheckPlaneRule()
     CheckRevolves(Options.zstd_library)
     assert (
         CheckFocused(

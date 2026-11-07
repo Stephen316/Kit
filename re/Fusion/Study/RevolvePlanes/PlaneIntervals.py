@@ -10,15 +10,6 @@
 
 from math import atan2, hypot, isfinite, pi
 from operator import mul, sub
-from typing import NamedTuple
-
-
-# candidate provenance distinguishes source geometry from a later cache choice
-class PlaneInterval(NamedTuple):
-    StartAngle: float
-    EndAngle: float
-    FirstBranch: int
-    SecondBranch: int
 
 
 # through axis limits admit two radial branches that must stay explicit
@@ -47,25 +38,17 @@ def PlaneBranches(PlaneOrigin, PlaneNormal, AxisOrigin, Axis, Radial, Tangent):
     return Branch, Branch + pi
 
 
-# explicit candidates let callers validate shape without assuming a sweep direction
-def PlaneIntervals(FirstRoots, SecondRoots=None):
-    """Enumerate both directions between source or target meridians."""
-    Starts = (0.0,) if SecondRoots is None else FirstRoots
-    Ends = FirstRoots if SecondRoots is None else SecondRoots
-    Intervals = []
-    for FirstIndex, Start in enumerate(Starts):
-        for SecondIndex, End in enumerate(Ends):
-            Sweep = (End - Start) % (2.0 * pi)
-            if min(Sweep, 2.0 * pi - Sweep) <= 1e-9:
-                continue
-            Intervals.extend(
-                (
-                    PlaneInterval(Start, Start + Sweep, FirstIndex, SecondIndex),
-                    PlaneInterval(
-                        Start, Start + Sweep - 2.0 * pi, FirstIndex, SecondIndex
-                    ),
-                )
-            )
-    if not Intervals:
-        raise ValueError("Revolve target meridians yield no bounded interval")
-    return tuple(Intervals)
+# fixed plane contrasts establish the forward sector for this source family
+def SelectPlaneSpan(PlaneRoots):
+    """Select the observed positive sweep in the sketch-normal-directed frame."""
+    if len(PlaneRoots) == 1:
+        ((Forward, _),) = PlaneRoots
+        if Forward <= 1e-9:
+            raise ValueError("Revolve target plane coincides with the sketch plane")
+        return 0.0, Forward
+    if len(PlaneRoots) != 2:
+        raise ValueError("Revolve requires one or two target planes")
+    Earlier, Later = sorted(PlaneRoots)
+    if Earlier[0] <= 1e-9 or Later[0] - Earlier[0] <= 1e-9:
+        raise ValueError("Revolve target planes coincide with the sketch or each other")
+    return Later[0], Earlier[1]

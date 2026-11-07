@@ -6,13 +6,13 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
-"""Construct possible native plane-limited Revolve bodies before cache comparison."""
+"""Construct a native plane-limited Revolve body before cache comparison."""
 
 from operator import sub
 
 from decode_placement import transform_point, transform_vector
 from decode_revolve_geometry import _cross, _dot, _unit, derive_revolve_geometry
-from RevolvePlanes.PlaneIntervals import PlaneBranches, PlaneIntervals
+from RevolvePlanes.PlaneIntervals import PlaneBranches, SelectPlaneSpan
 
 
 # the source profile and plane normals determine geometry before body evidence
@@ -43,16 +43,8 @@ def ConstructPlanes(Inputs):
                 Entity["origin_cm"], Entity["normal"], Origin, Axis, Radial, Tangent
             )
         )
-    return [
-        (
-            Candidate,
-            derive_revolve_geometry(
-                Profile,
-                Matrix,
-                SourceAxis,
-                Controls,
-                PlaneInterval=(Candidate.StartAngle, Candidate.EndAngle),
-            ),
-        )
-        for Candidate in PlaneIntervals(*Roots)
-    ]
+    Interval = SelectPlaneSpan(Roots)
+    Model = derive_revolve_geometry(
+        Profile, Matrix, SourceAxis, Controls, PlaneInterval=Interval
+    )
+    return Model, Roots

@@ -337,33 +337,14 @@ def decode_revolve_reconstruction(
             if len(matches)!=1 or matches[0][1]!=group['binding'] or matches[0][0]['history_blob_member']!=group['history_blob_member']:
                 raise ValueError('Revolve reconstruction fresh same-asset BODY mapping differs')
             inputs=group['mathematical_inputs']
-            name=group['history_blob_member']
-            if name not in cache:
-                parsed=inspect_asm(members[name]);cache[name]=decode_topology(parsed)
-            topology=cache[name];nodes={n['index']:n for n in topology['nodes']}
-            graphs=[g for g in topology['body_graphs'] if g['body_index']==group['asm_body_index']]
-            if len(graphs)!=1:raise ValueError('Revolve reconstruction mapped BODY graph missing or ambiguous')
             PlaneEvidence = {}
             if inputs["controls"]["revolve"]["extent_kind"] == "ToEntity":
-                CandidateModels = ConstructPlanes(inputs)
-                Matches = []
-                for Candidate, Model in CandidateModels:
-                    try:
-                        Proof = _corroborate(graphs[0], nodes, Model)
-                    except ValueError:
-                        continue
-                    Matches.append((Candidate, Model, Proof))
-                if len(Matches) != 1:
-                    raise ValueError(
-                        "Plane-limited Revolve requires one bounded BODY match"
-                    )
-                Candidate, model, corroboration = Matches[0]
+                model, PlaneRoots = ConstructPlanes(inputs)
                 PlaneEvidence = dict(
                     plane_limit_evidence=dict(
-                        candidate_count=len(CandidateModels),
-                        matched_directed_interval_radians=list(Candidate[:2]),
-                        matched_radial_branches=list(Candidate[2:]),
-                        branch_selection="Unique complete bounded BODY match; source branch rule unresolved",
+                        source_plane_radial_roots_radians=PlaneRoots,
+                        source_directed_interval_radians=model["angular_interval_radians"],
+                        branch_selection="Source forward meridians; independently verified against the bounded BODY",
                     )
                 )
             else:
@@ -373,7 +354,13 @@ def decode_revolve_reconstruction(
                     inputs["source_axis"],
                     inputs["controls"],
                 )
-                corroboration = _corroborate(graphs[0], nodes, model)
+            name=group['history_blob_member']
+            if name not in cache:
+                parsed=inspect_asm(members[name]);cache[name]=decode_topology(parsed)
+            topology=cache[name];nodes={n['index']:n for n in topology['nodes']}
+            graphs=[g for g in topology['body_graphs'] if g['body_index']==group['asm_body_index']]
+            if len(graphs)!=1:raise ValueError('Revolve reconstruction mapped BODY graph missing or ambiguous')
+            corroboration = _corroborate(graphs[0], nodes, model)
             result['decoded'].append(dict(feature_object_id=feature['object_id'],native_source_provenance=source,
                 source_native_body_object_id=group['native_body_object_id'],binding=group['binding'],history_blob_member=name,
                 asm_body_index=group['asm_body_index'],derived_geometry=model,native_cache_geometry_corroboration=corroboration,
