@@ -33,6 +33,16 @@ Older runtimes can supply a Zstandard decoder that accepts compressed bytes
 and an expected output size. The callback must bound decompression to that
 size. The archive reader checks the returned size and CRC.
 
+`convert.formats.Fusion.ZipParameters.ReadZipParams` projects indexed
+numeric parameters into Kit's neutral `Parameter` records. It retains native
+expression text, display units, binding IDs, and source spans. Values use
+their stored radians or centimetres where applicable. Feature-bound
+parameters remain references until their owners can be validated and mapped
+into the feature graph. Unsupported registered parameter records produce
+diagnostics. The SDK projection matched the study on 2,607 numeric
+parameters across the 712 tracked archives and another 51 across the
+13 Fusion 2706 captures.
+
 ## Import provenance
 
 - Source commit: `60ebb72ee7b64a0bf22331012b7c737c0e17d43b`.

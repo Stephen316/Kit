@@ -42,11 +42,20 @@ class MetaCursor:
         return Count
 
     # string framing allows registry identities to be compared exactly
-    def ReadText(self, WideText: bool = False) -> str:
-        Length = self.ReadCount(4096)
+    def ReadText(
+        self,
+        WideText: bool = False,
+        *,
+        Maximum: int = 4096,
+        AllowControls: bool = False,
+    ) -> str:
+        Length = self.ReadCount(Maximum)
         TextValue = self.TakeBytes(Length * (2 if WideText else 1)).decode(
             "utf-16le" if WideText else "ascii"
         )
-        if TextValue and not TextValue.isprintable():
+        if not all(
+            Letter.isprintable() or (AllowControls and Letter in "\r\n\t")
+            for Letter in TextValue
+        ):
             raise ValueError("Unprintable Fusion MetaStream string")
         return TextValue
