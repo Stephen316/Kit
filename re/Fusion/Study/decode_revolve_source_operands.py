@@ -40,7 +40,18 @@ SCOPE=('Observed solid unprojected NewBody angular Revolve with whole native fou
 TOL=1e-9
 
 
-def qualify_revolve_source_operands(data,records,features,member,members,body_blob_bindings,feature):
+# fresh native records establish ownership before reconstruction reads any shape evidence
+def qualify_revolve_source_operands(
+    data,
+    records,
+    features,
+    member,
+    members,
+    body_blob_bindings,
+    feature,
+    *,
+    AllowPlaneLimits=False,
+):
     if feature.get('class_guid')!=REVOLVE:return None
     grouped={}
     for r in records:
@@ -71,13 +82,39 @@ def qualify_revolve_source_operands(data,records,features,member,members,body_bl
     if ([{k:p.get(k) for k in keys} for p in supplied[0].get('parameters',[])]!=
             [{k:p.get(k) for k in keys} for p in fresh['parameters']]):
         raise ValueError('Revolve source supplied parameters disagree with fresh reciprocal native bindings')
-    controls=decode_revolve(body,fresh);rev=controls['revolve']
-    if (controls['operation']['kind']!='NewBody' or controls['is_solid'] is not True or controls['is_project_axis'] is not False
-            or rev['extent_kind']!='Angle' or rev['mode'] not in ('OneSided','Symmetric','TwoSided')):
-        raise ValueError('Revolve reconstruction requires solid unprojected NewBody angular controls')
-    angles=[rev['angle_radians']]+([rev['against_angle_radians']] if rev['mode']!='OneSided' else [])
-    if any(not math.isfinite(a) or abs(a)<=TOL or abs(a)>2*math.pi+TOL for a in angles):
-        raise ValueError('Revolve source active signed angular operands outside finite captured family')
+    controls = decode_revolve(body, fresh)
+    rev = controls["revolve"]
+    PlaneLimited = (
+        AllowPlaneLimits
+        and rev["extent_kind"] == "ToEntity"
+        and rev["mode"] in ("OneSided", "TwoSided")
+    )
+    if (
+        controls["operation"]["kind"] != "NewBody"
+        or controls["is_solid"] is not True
+        or controls["is_project_axis"] is not False
+        or not (
+            PlaneLimited
+            or rev["extent_kind"] == "Angle"
+            and rev["mode"] in ("OneSided", "Symmetric", "TwoSided")
+        )
+    ):
+        raise ValueError(
+            "Revolve reconstruction requires solid unprojected NewBody angular controls"
+        )
+    angles = (
+        []
+        if PlaneLimited
+        else [rev["angle_radians"]]
+        + ([rev["against_angle_radians"]] if rev["mode"] != "OneSided" else [])
+    )
+    if any(
+        not math.isfinite(a) or abs(a) <= TOL or abs(a) > 2 * math.pi + TOL
+        for a in angles
+    ):
+        raise ValueError(
+            "Revolve source active signed angular operands outside finite captured family"
+        )
     selection_summary=decode_body_selections(data,records)
     anchors=[a for a in selection_summary['body_anchors'] if a['source_owner_object_id']==receiver]
     if len(anchors)!=1:raise ValueError('Revolve source requires one unique creator-owned BODY anchor')
@@ -353,6 +390,26 @@ def qualify_revolve_source_operands(data,records,features,member,members,body_bl
         axis_proof['native_records'] += [raw(descriptor_id),raw(proof['recipe_object_id']),raw(proof['context_object_id']),raw(proof['body_anchor_object_id'])]
         dependency_ids.append(proof['historical_source_owner_object_id']);body_ids.append(proof['native_body_object_id'])
     else:raise ValueError('Revolve source selected axis kind outside captured family')
+    if PlaneLimited:
+        if family != "FourLinePolygon" or "origin_container_object_id" not in entity:
+            raise ValueError(
+                "Plane-limited Revolve needs a four-Line profile and origin axis"
+            )
+        for SideName in (
+            ("side_one", "side_two") if rev["mode"] == "TwoSided" else ("side_one",)
+        ):
+            Selection = af["revolve"][SideName].get("selection")
+            if Selection is None or "feature_object_id" not in Selection["entity"]:
+                raise ValueError(
+                    "Plane-limited Revolve target construction feature is unresolved"
+                )
+            _, ProxyBody = typed(
+                Selection["selection_object_id"], "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+            )
+            if reference(ProxyBody, len(ProxyBody) - 11) != receiver:
+                raise ValueError("Plane-limited Revolve target selection owner differs")
+            dependency_ids.append(Selection["entity"]["feature_object_id"])
+            rev[SideName]["selection"] = Selection
     axis_origin=entity['origin_cm'];axis_direction=entity['direction']
     if (any(not math.isfinite(v) for v in axis_origin+axis_direction) or not math.isclose(math.hypot(*axis_direction),1.,abs_tol=TOL)):
         raise ValueError('Revolve source native selected axis coefficients nonfinite/nonunit')

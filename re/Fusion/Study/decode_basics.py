@@ -347,7 +347,10 @@ def sketch_references(data, records, features):
             by_feature[owner].setdefault("sketch_reference_candidates", []).extend(matches)
 
 
-def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
+# shared decoding keeps focused research available through the standard reader
+def decode_basics(
+    path, zstd_library=None, *, include_asm_attributes=False, AllowPlaneLimits=False
+):
     streams = []
     members = read_members(path, zstd_library)
     asm_summary = inspect_asm_members(members, include_custom_attributes=include_asm_attributes)
@@ -1631,7 +1634,14 @@ def decode_basics(path, zstd_library=None, *, include_asm_attributes=False):
         for evidence in trimmed_extrusion_reconstruction_summary['decoded']:
             feature_by_id[evidence['feature_object_id']]['trimmed_extrusion_reconstruction'] = evidence
         revolve_reconstruction_summary = decode_revolve_reconstruction(
-            data, records, features, name, members, body_binding_summary)
+            data,
+            records,
+            features,
+            name,
+            members,
+            body_binding_summary,
+            AllowPlaneLimits=AllowPlaneLimits,
+        )
         for evidence in revolve_reconstruction_summary['decoded']:
             feature_by_id[evidence['feature_object_id']]['revolve_reconstruction'] = evidence
         fpm_context_cache_summary = decode_fpm_context_cache(data, records, fpm_selection_tracking_summary)
@@ -1905,5 +1915,23 @@ if __name__ == "__main__":
     parser.add_argument("files", nargs="+", type=Path)
     parser.add_argument("--zstd-library")
     parser.add_argument("--asm-attributes", action="store_true", help="Include bounded initial ASM custom naming and metadata attributes")
+    parser.add_argument(
+        "--plane-limited-revolves",
+        action="store_true",
+        help="Construct plane-limited Revolves with a unique bounded BODY match",
+    )
     args = parser.parse_args()
-    print(json.dumps([decode_basics(p, args.zstd_library, include_asm_attributes=args.asm_attributes) for p in args.files], indent=2))
+    print(
+        json.dumps(
+            [
+                decode_basics(
+                    p,
+                    args.zstd_library,
+                    include_asm_attributes=args.asm_attributes,
+                    AllowPlaneLimits=args.plane_limited_revolves,
+                )
+                for p in args.files
+            ],
+            indent=2,
+        )
+    )

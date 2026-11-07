@@ -296,19 +296,40 @@ def _corroborate(graph,nodes,model):
         mathematical_role_to_native_ENTITY_mapping=None,scope=SCOPE)
 
 
-def decode_revolve_reconstruction(data,records,features,member,members,body_blob_bindings,body_selections=None):
+# stored body evidence must corroborate constructed geometry before reporting a reconstruction
+def decode_revolve_reconstruction(
+    data,
+    records,
+    features,
+    member,
+    members,
+    body_blob_bindings,
+    body_selections=None,
+    *,
+    AllowPlaneLimits=False,
+):
     result=dict(decoded=[],unresolved=[],scope=SCOPE)
     candidates=[f for f in features if f.get('class_guid')=='E3849A15-2FC6-42A0-AF3A-2F1D7273B406']
     if not candidates:return result
     from decode_revolve_source_operands import qualify_revolve_source_operands
     from decode_revolve_geometry import derive_revolve_geometry
+    from RevolvePlanes.ConstructPlanes import ConstructPlanes
     mapping_input=dict(decoded=[dict(mapping_record_object_id=m['mapping_record_object_id'],owner_object_id=m['owner_object_id'],
         history_blob_member=m['history_blob_member'],body_count=m['body_count'],bindings=[dict(stored_handle=b['stored_handle'],
         native_body_object_id=b['native_body_object_id']) for b in m['bindings']]) for m in body_blob_bindings.get('decoded',[])])
     joined=None;cache={}
     for feature in candidates:
         try:
-            source=qualify_revolve_source_operands(data,records,features,member,members,body_blob_bindings,feature)
+            source = qualify_revolve_source_operands(
+                data,
+                records,
+                features,
+                member,
+                members,
+                body_blob_bindings,
+                feature,
+                AllowPlaneLimits=AllowPlaneLimits,
+            )
             if source is None or len(source['source_groups'])!=1:raise ValueError('Revolve reconstruction needs one fresh native profile/BODY source')
             group=source['source_groups'][0]
             if joined is None:joined=decode_body_asm_identifiers(data,records,member,members,mapping_input)
@@ -316,19 +337,47 @@ def decode_revolve_reconstruction(data,records,features,member,members,body_blob
             if len(matches)!=1 or matches[0][1]!=group['binding'] or matches[0][0]['history_blob_member']!=group['history_blob_member']:
                 raise ValueError('Revolve reconstruction fresh same-asset BODY mapping differs')
             inputs=group['mathematical_inputs']
-            model=derive_revolve_geometry(inputs['profile'],inputs['sketch_to_component_matrix'],
-                inputs['source_axis'],inputs['controls'])
             name=group['history_blob_member']
             if name not in cache:
                 parsed=inspect_asm(members[name]);cache[name]=decode_topology(parsed)
             topology=cache[name];nodes={n['index']:n for n in topology['nodes']}
             graphs=[g for g in topology['body_graphs'] if g['body_index']==group['asm_body_index']]
             if len(graphs)!=1:raise ValueError('Revolve reconstruction mapped BODY graph missing or ambiguous')
-            corroboration=_corroborate(graphs[0],nodes,model)
+            PlaneEvidence = {}
+            if inputs["controls"]["revolve"]["extent_kind"] == "ToEntity":
+                CandidateModels = ConstructPlanes(inputs)
+                Matches = []
+                for Candidate, Model in CandidateModels:
+                    try:
+                        Proof = _corroborate(graphs[0], nodes, Model)
+                    except ValueError:
+                        continue
+                    Matches.append((Candidate, Model, Proof))
+                if len(Matches) != 1:
+                    raise ValueError(
+                        "Plane-limited Revolve requires one bounded BODY match"
+                    )
+                Candidate, model, corroboration = Matches[0]
+                PlaneEvidence = dict(
+                    plane_limit_evidence=dict(
+                        candidate_count=len(CandidateModels),
+                        matched_directed_interval_radians=list(Candidate[:2]),
+                        matched_radial_branches=list(Candidate[2:]),
+                        branch_selection="Unique complete bounded BODY match; source branch rule unresolved",
+                    )
+                )
+            else:
+                model = derive_revolve_geometry(
+                    inputs["profile"],
+                    inputs["sketch_to_component_matrix"],
+                    inputs["source_axis"],
+                    inputs["controls"],
+                )
+                corroboration = _corroborate(graphs[0], nodes, model)
             result['decoded'].append(dict(feature_object_id=feature['object_id'],native_source_provenance=source,
                 source_native_body_object_id=group['native_body_object_id'],binding=group['binding'],history_blob_member=name,
                 asm_body_index=group['asm_body_index'],derived_geometry=model,native_cache_geometry_corroboration=corroboration,
-                exact_API_handle_identity=None,current_or_final_geometry_identity=None,qualified_historical_state=None,scope=SCOPE))
+                exact_API_handle_identity=None,current_or_final_geometry_identity=None,qualified_historical_state=None,scope=SCOPE,**PlaneEvidence))
         except (ValueError,KeyError,IndexError,TypeError,struct.error,OverflowError) as error:
             result['unresolved'].append(dict(feature_object_id=feature['object_id'],reason=str(error)))
     return result

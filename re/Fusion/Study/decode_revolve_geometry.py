@@ -65,7 +65,10 @@ def revolve_angle_interval(controls):
     return [low,high],math.isclose(span,TAU,rel_tol=0.,abs_tol=1e-10)
 
 
-def derive_revolve_geometry(profile,sketch_to_component_matrix,source_axis,controls):
+# source geometry remains independent of how a bounded angular interval was established
+def derive_revolve_geometry(
+    profile, sketch_to_component_matrix, source_axis, controls, *, PlaneInterval=None
+):
     matrix=rigid_matrix(sketch_to_component_matrix)
     if not all(math.isfinite(x) for x in matrix):raise ValueError('Revolve Sketch frame is nonfinite')
     def point(p):
@@ -78,8 +81,21 @@ def derive_revolve_geometry(profile,sketch_to_component_matrix,source_axis,contr
     origin=_v(source_axis['origin_cm']);stored_axis=_v(source_axis['direction']);axis=_unit(stored_axis)
     if abs(math.hypot(*stored_axis)-1.)>EPS or abs(_dot(axis,normal))>EPS or abs(_dot(_sub(origin,plane_origin),normal))>EPS:
         raise ValueError('Revolve selected axis is not a qualified unit line in the source Sketch plane')
-    interval,full=revolve_angle_interval(controls);low,high=interval;span=high-low
     kind=profile['kind'];polygon=None;circle=None
+    if PlaneInterval is None:
+        interval, full = revolve_angle_interval(controls)
+    else:
+        interval = sorted(map(_number, PlaneInterval))
+        if (
+            controls["revolve"]["extent_kind"] != "ToEntity"
+            or kind != "Polygon"
+            or len(interval) != 2
+            or not EPS < interval[1] - interval[0] < TAU - EPS
+        ):
+            raise ValueError("Revolve plane interval requires a bounded polygon sweep")
+        full = False
+    low, high = interval
+    span = high - low
     if kind=='Polygon':
         raw=profile['points_cm']
         if not isinstance(raw,list) or len(raw) not in (3,4):raise ValueError('Revolve polygon requires three/four cyclic corners')

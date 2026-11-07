@@ -183,8 +183,6 @@ an assumption that a two-sided sweep contains the sketch would fail these
 controls. Use the measured arcs as an independent check for future source
 decoding. The next differential needs the same target plane and sketch with
 only the direction hint changed to isolate how Fusion selects the branch.
-Source-only branch selection and plane-limited Revolve reconstruction remain
-unresolved.
 
 The research helper `RevolvePlanes.PlaneIntervals` now derives both radial
 roots of each target plane from its normal in the source frame. It requires a
@@ -194,6 +192,34 @@ tangent +Z), the three fixtures yield four, four, and eight source candidates.
 Each mapped BODY agrees with exactly one candidate when all four circular
 edges are compared by span and midpoint: 0° to 35°, 0° to 135°, and 135° to
 215°, respectively. This validates the candidate construction and identifies
-the observed branch through independent stored geometry. The helper is
-currently separate from the main reader, and source records alone do not yet
-establish which candidate Fusion chooses.
+the observed branch through independent stored geometry.
+
+The decoder constructs the candidates from source geometry and compares their
+complete analytic FACE/LOOP/EDGE bundles with the mapped BODY. Exactly one
+candidate must match before it reports a reconstruction. The source-only
+branch rule remains unresolved.
+
+From `Study/`, enable this experimental path with:
+
+```sh
+python3 decode_basics.py --plane-limited-revolves revolveto-b1d196f65c46/two_planes.f3d
+```
+
+The Python entry point accepts `AllowPlaneLimits=True`. The opt-in preserves
+the existing angular-only default. Plane reconstruction requires an
+unprojected solid NewBody, a four-Line sketch profile, a native origin axis,
+and owned construction-plane targets through that axis. The output retains
+the original inactive angle and separately identifies the matched directed
+interval and the role of the stored BODY in selecting it.
+
+Reproduce the three Revolve checks and the focused Shell and Extrude checks
+from `Study/` with `python3 -m Verification.FocusedRevolves`. Pass
+`--zstd-library` if needed for the saved archives.
+
+The integration audit passed the functional checks on all 712 archives with
+default settings. With plane-limited Revolves enabled, the three captures
+above gained reconstructions. After removing those three additions and
+restoring their prior unresolved rows, all 712 serialized outputs matched the
+baseline hashes. The historical comment-style findings remain separate from
+the functional result. The original freeze validators pin the import-era
+source hashes and must be run against their historical source snapshot.
