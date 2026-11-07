@@ -7,13 +7,19 @@ import zipfile
 import zlib
 
 
+# older python releases need a fallback for zstandard archive members
 def _decompress_zstd(payload, expected_size, library_path):
     library_path = library_path or ctypes.util.find_library("zstd")
     if not library_path:
-        raise RuntimeError("Provide a libzstd path on Python versions without ZIP Zstandard")
+        raise RuntimeError(
+            "Provide a libzstd path on Python versions without ZIP Zstandard"
+        )
     library = ctypes.CDLL(str(library_path))
     library.ZSTD_decompress.argtypes = [
-        ctypes.c_void_p, ctypes.c_size_t, ctypes.c_void_p, ctypes.c_size_t
+        ctypes.c_void_p,
+        ctypes.c_size_t,
+        ctypes.c_void_p,
+        ctypes.c_size_t,
     ]
     library.ZSTD_decompress.restype = ctypes.c_size_t
     library.ZSTD_isError.argtypes = [ctypes.c_size_t]
@@ -21,17 +27,23 @@ def _decompress_zstd(payload, expected_size, library_path):
     output = ctypes.create_string_buffer(max(expected_size, 1))
     count = library.ZSTD_decompress(output, expected_size, payload, len(payload))
     if library.ZSTD_isError(count) or count != expected_size:
-        raise ValueError("Zstandard decompression failed or returned an unexpected size")
+        raise ValueError(
+            "Zstandard decompression failed or returned an unexpected size"
+        )
     return output.raw[:count]
 
 
-def read_members(path, zstd_library=None):
+# focused research can skip payloads unrelated to the feature under inspection
+def read_members(path, zstd_library=None, *, MemberSuffixes=None):
     """Return member bytes without extraction; enforce limits and verify ZIP CRCs.
 
     Older Python zipfile implementations need libzstd for ZIP method 93.
     No attempt is made to decrypt encrypted entries or interpret their contents.
+    A suffix filter retains archive-wide metadata checks and verifies the CRC
+    of each selected payload. Without a filter, all payloads are verified.
     """
     result = {}
+    SeenNames = set()
     with zipfile.ZipFile(path) as archive, open(path, "rb") as raw:
         entries = archive.infolist()
         if len(entries) > 4096 or sum(i.file_size for i in entries) > 128 * 1024 * 1024:
@@ -39,12 +51,20 @@ def read_members(path, zstd_library=None):
         for info in entries:
             if info.is_dir():
                 continue
-            if info.filename in result:
+            if info.filename in SeenNames:
                 raise ValueError("Duplicate archive member")
+            SeenNames.add(info.filename)
             if info.flag_bits & 1:
                 raise ValueError("Encrypted ZIP members are outside this study")
-            if info.file_size > 64 * 1024 * 1024 or info.compress_size > 64 * 1024 * 1024:
+            if (
+                info.file_size > 64 * 1024 * 1024
+                or info.compress_size > 64 * 1024 * 1024
+            ):
                 raise ValueError("Member exceeds study limits")
+            if MemberSuffixes is not None and not info.filename.endswith(
+                MemberSuffixes
+            ):
+                continue
             if info.compress_type == 93 and not hasattr(zipfile, "ZIP_ZSTANDARD"):
                 raw.seek(info.header_offset)
                 header = raw.read(30)
@@ -58,7 +78,7 @@ def read_members(path, zstd_library=None):
                 data = _decompress_zstd(payload, info.file_size, zstd_library)
             else:
                 data = archive.read(info)
-            if len(data) != info.file_size or zlib.crc32(data) & 0xffffffff != info.CRC:
+            if len(data) != info.file_size or zlib.crc32(data) & 0xFFFFFFFF != info.CRC:
                 raise ValueError("ZIP size or CRC mismatch")
             result[info.filename] = data
     return result

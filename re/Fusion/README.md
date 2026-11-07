@@ -101,6 +101,28 @@ bounded topology. Keep detached auxiliary roots out of the BODY comparison.
 Change one input at a time when the saved cases cannot distinguish competing
 interpretations. Run the focused checks before the full saved-file audit.
 
+For focused checks, `fusion_archive.read_members` can load only the relevant
+payloads. From `Study/`, use the same reader for any feature family with indexed
+design records:
+
+```python
+from fusion_archive import read_members
+
+members = read_members(
+    "models-97a5e41e2ba7/revolve_partial.f3d",
+    MemberSuffixes=(
+        "/FusionDesignSegmentType1/BulkStream.dat",
+        "/FusionDesignSegmentType1/MetaStream.dat",
+    ),
+)
+```
+
+Pass the matching BulkStream and MetaStream to `fusion_metadata.design_records`.
+For a geometry check, include the identified cache member's full path in
+`MemberSuffixes` or select `(".smb", ".smbh")` to inventory the BRep caches.
+Use the unfiltered reader for a full archive integrity check. Filtered reads
+validate metadata across the archive and check CRCs for the selected payloads.
+
 ### Plane-limited Revolve
 
 The three `Study/revolveto-b1d196f65c46/` captures resolve the selected
