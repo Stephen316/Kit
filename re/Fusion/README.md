@@ -24,6 +24,15 @@ continuations belong to ancestors of their primary class. The SDK index
 agreed with the study on all 261,141 record boundaries and identities
 across the 712 tracked archives.
 
+`convert.formats.Fusion.DesignZip.ReadDesignZip` loads the active design
+stream pair directly from `.f3d` bytes and returns the BulkStream with its
+verified record spans. It checks archive size and entry limits, rejects
+duplicate or encrypted members, and verifies both selected payloads.
+Runtimes with standard ZIP Zstandard support can read the archive directly.
+Older runtimes can supply a Zstandard decoder that accepts compressed bytes
+and an expected output size. The callback must bound decompression to that
+size. The archive reader checks the returned size and CRC.
+
 ## Import provenance
 
 - Source commit: `60ebb72ee7b64a0bf22331012b7c737c0e17d43b`.
