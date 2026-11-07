@@ -14,6 +14,7 @@ from pathlib import Path as FilePath
 from convert.formats.Fusion.DesignZip import ReadDesignZip
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.PlaneProjection import ProjectPlanes
+from convert.formats.Fusion.Sketches.SketchProjection import ProjectSketches
 from convert.formats.Fusion.SourceBytes import LoadFusionBytes
 from convert.formats.Fusion.ZipHistory import ReadBulkHistory
 from interchange.core.Common import FreezeMapping
@@ -52,6 +53,7 @@ def ReadFusionDoc(
     Parts, Params, Diagnostics = ReadBulkHistory(BulkData, Spans)
     History = SelectHistory(Parts, HistoryId)
     Planes, PlaneIssues = ProjectPlanes(BulkData, Spans, History)
+    Frames, Sketches, Steps, SketchIssues = ProjectSketches(BulkData, Spans, History)
     Owners = {
         ParamId: StepValue.id
         for StepValue in History.Steps
@@ -65,7 +67,7 @@ def ReadFusionDoc(
     Capabilities = {Capability.KNativePayloads, Capability.KProvenance}
     if Parameters:
         Capabilities.add(Capability.KParameters)
-    if Planes:
+    if Planes or Frames:
         Capabilities.add(Capability.KSupportPlanes)
     Document = CadDocument(
         source=CadSource(format_id="fusion.f3d", path=SourceName, sha256=Digest),
@@ -75,10 +77,10 @@ def ReadFusionDoc(
             ),
         ),
         parameters=Parameters,
-        support_planes=Planes,
-        sketches=(),
+        support_planes=Planes + Frames,
+        sketches=Sketches,
         selections=(),
-        feature_timeline=History.Steps,
+        feature_timeline=Steps,
         bodies=(),
         brep_payloads=(
             BrepPayload(
@@ -94,10 +96,11 @@ def ReadFusionDoc(
         ),
         diagnostics=Diagnostics
         + PlaneIssues
+        + SketchIssues
         + (
             Diagnostic(
                 code="fusion.history.partial",
-                message="Fusion history projection covers ordering, numeric parameters, and supported construction plane frames. "
+                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, and a subset of sketch geometry. "
                 "Editable feature definitions, geometry, and assemblies require further decoding.",
             ),
         ),

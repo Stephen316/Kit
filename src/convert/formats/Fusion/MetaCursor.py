@@ -20,7 +20,7 @@ class MetaCursor:
     # every field advances through one checked boundary
     def TakeBytes(self, Count: int) -> bytes:
         Finish = self.Offset + Count
-        if Count < 0 or Finish > len(self.DataValue):
+        if self.Offset < 0 or Count < 0 or Finish > len(self.DataValue):
             raise ValueError("Truncated Fusion MetaStream")
         Result = self.DataValue[self.Offset : Finish]
         self.Offset = Finish

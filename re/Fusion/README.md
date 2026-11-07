@@ -75,7 +75,15 @@ orthonormal axes. Origins convert from centimetres to millimetres and
 remain in component coordinates. The projected frames matched 144
 tracked planes and 19 planes in newer Fusion captures. Seven tracked
 plane records still produce diagnostics for unsupported layouts.
-Sketch attachment and parametric plane definitions remain open.
+Native support selection links and parametric plane definitions remain open.
+
+The document reader also projects sketch-local points, lines, and circles
+with a support frame derived from each sketch's verified component
+transform. A sketch frame preserves placement independently of its native
+support selection. The SDK matched all 1,005 tracked sketch placements and
+6,589 projected primitives against the study. The 13 newer Revolve captures
+also project their 13 sketches and 117 primitives. Constraints, closed
+profiles, additional curve layouts, and native support links remain open.
 
 ## Import provenance
 
