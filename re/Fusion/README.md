@@ -47,6 +47,18 @@ records also produce diagnostics. The SDK projection matched the study on
 across the 13 Fusion 2706 captures. All 2,593 feature-bound parameters
 matched the study's native owner IDs.
 
+`convert.formats.Fusion.ZipHistory.ReadZipHistory` projects native history
+references into ordered Kit feature steps, keeps histories separate by
+owner, and retains the original group membership and collapse state.
+It links numeric parameters to feature steps through verified bindings.
+The SDK matched the study on all 779 history sequences across 725
+archives, including 3 groups. It projected 2,524 steps and linked
+2,587 parameters to a unique step. A parameter with no unique projected
+step retains its native owner ID. Feature names and kinds are currently
+projected for the observed Extrude, Revolve, and construction-plane
+classes. Other entries retain native identity and provenance. Feature
+definitions, geometry, and public adapter integration remain open.
+
 ## Import provenance
 
 - Source commit: `60ebb72ee7b64a0bf22331012b7c737c0e17d43b`.

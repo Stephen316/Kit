@@ -16,6 +16,7 @@ from convert.formats.Fusion.ParamProjection import (
     ParamOrigin,
     ProjectParam,
 )
+from convert.formats.Fusion.RecordSpan import RecordSpan
 from interchange.records.RecordDiagnostic import Diagnostic
 from interchange.records.RecordParameter import Parameter
 
@@ -25,6 +26,13 @@ def ReadZipParams(
     DataValue: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
 ) -> tuple[tuple[Parameter, ...], tuple[Diagnostic, ...]]:
     BulkData, Spans = ReadDesignZip(DataValue, InflateZstd)
+    return ReadBulkParams(BulkData, Spans)
+
+
+# history projection can share the verified archive and record index
+def ReadBulkParams(
+    BulkData: bytes, Spans: tuple[RecordSpan, ...]
+) -> tuple[tuple[Parameter, ...], tuple[Diagnostic, ...]]:
     Owners = {
         SpanValue.ObjectId: SpanValue for SpanValue in Spans if SpanValue.IsPrimary
     }
