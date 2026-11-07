@@ -7,11 +7,12 @@
 # to you under it immediately and permanently.
 
 
-from convert.formats.Fusion.NativePlane import KPlaneFeature
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Revolves.AngleRevValues import ReadAngleSpan
 from convert.formats.Fusion.Revolves.BuildRevBody import BuildRevBody
-from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
+from convert.formats.Fusion.Revolves.JoinRevModels import JoinRevModels
+from convert.formats.Fusion.Revolves.RevInventory import ReadRevBodies
+from convert.formats.Fusion.Revolves.RevSolidScope import FindRevCreators
 from interchange.brep.topology.BrepModel import BrepModel
 from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeatureBody import DesignBody
@@ -23,7 +24,7 @@ from interchange.records.RecordDiagnostic import Diagnostic
 from interchange.records.RecordParameter import Parameter
 
 
-# limit current body claims to a qualified history without other modeling steps
+# reconstruct each supported independent solid after checking the entire native body inventory
 def ProjectRevBody(
     BulkData: bytes,
     Spans: tuple[RecordSpan, ...],
@@ -32,65 +33,72 @@ def ProjectRevBody(
     Frames: tuple[SupportPlane, ...],
     Params: tuple[Parameter, ...],
 ) -> tuple[tuple[DesignBody, ...], BrepModel | None, tuple[Diagnostic, ...]]:
-    if not Steps:
+    if not any(
+        isinstance(Value.definition, (AngularRevolve, PlaneRevolve)) for Value in Steps
+    ):
         return (), None, ()
-    StepValue = Steps[-1]
-    Definition = StepValue.definition
-    if not isinstance(Definition, (AngularRevolve, PlaneRevolve)):
-        return (), None, ()
+    Owners = {Value.ObjectId: Value for Value in Spans if Value.IsPrimary}
     try:
-        if any(
-            Source.provenance is None
-            or not Source.provenance.spans
-            or Source.provenance.spans[0].record_kind
-            not in (KSketchFeature, KPlaneFeature)
-            for Source in Steps[:-1]
-        ):
-            raise ValueError("Fusion Revolve history includes other modeling steps")
-        RelevantIds = {StepValue.id, *StepValue.input_feature_ids}
-        if any(
-            Source.suppressed
-            or Source.attributes.get("fusion.state_known") is not True
-            or Source.attributes.get("fusion.rolled_back") is not False
-            for Source in Steps
-            if Source.id in RelevantIds
-        ):
-            raise ValueError(
-                "Fusion Revolve or a required input is inactive or unverified"
-            )
-        SketchValue = next(
-            (Value for Value in Sketches if Value.id == StepValue.sketch_id), None
-        )
-        FrameValue = (
-            None
-            if SketchValue is None
-            else next(
-                (Value for Value in Frames if Value.id == SketchValue.support_plane_id),
-                None,
-            )
-        )
-        if SketchValue is None or FrameValue is None:
-            raise ValueError("Missing Fusion Revolve profile sketch frame")
-        Owners = {Value.ObjectId: Value for Value in Spans if Value.IsPrimary}
-        Interval = (
-            (Definition.StartRadians, Definition.EndRadians)
-            if isinstance(Definition, PlaneRevolve)
-            else ReadAngleSpan(Definition, {Value.id: Value for Value in Params})
-        )
-        Body, Model = BuildRevBody(
-            BulkData, Owners, StepValue, Definition, Interval, SketchValue, FrameValue
-        )
-        return (Body,), Model, ()
+        Creators = FindRevCreators(Steps)
+        Links, CollectionId, ComponentId = ReadRevBodies(BulkData, Owners, Creators)
     except ValueError as ErrorInfo:
         return (
             (),
             None,
             (
                 Diagnostic(
+                    code="fusion.revolve.body_unsupported", message=str(ErrorInfo)
+                ),
+            ),
+        )
+    BySketch = {Value.id: Value for Value in Sketches}
+    ByFrame = {Value.id: Value for Value in Frames}
+    ByParam = {Value.id: Value for Value in Params}
+    Bodies: list[DesignBody] = []
+    Models: list[BrepModel] = []
+    Issues: list[Diagnostic] = []
+    for StepValue in Creators:
+        try:
+            Definition = StepValue.definition
+            if not isinstance(Definition, (AngularRevolve, PlaneRevolve)):
+                raise ValueError(
+                    "Missing supported definition for the Fusion result body"
+                )
+            SketchValue = BySketch.get(StepValue.sketch_id or "")
+            FrameValue = (
+                None
+                if SketchValue is None
+                else ByFrame.get(SketchValue.support_plane_id)
+            )
+            if SketchValue is None or FrameValue is None:
+                raise ValueError("Missing Fusion Revolve profile sketch frame")
+            Interval = (
+                (Definition.StartRadians, Definition.EndRadians)
+                if isinstance(Definition, PlaneRevolve)
+                else ReadAngleSpan(Definition, ByParam)
+            )
+            Body, Model = BuildRevBody(
+                Owners,
+                StepValue,
+                Definition,
+                Interval,
+                SketchValue,
+                FrameValue,
+                Links[StepValue.id],
+                CollectionId,
+                ComponentId,
+            )
+        except ValueError as ErrorInfo:
+            Issues.append(
+                Diagnostic(
                     code="fusion.revolve.body_unsupported",
                     message=str(ErrorInfo),
                     entity_id=StepValue.id,
                     provenance=StepValue.provenance,
-                ),
-            ),
-        )
+                )
+            )
+            continue
+        Bodies.append(Body)
+        Models.append(Model)
+    Combined = JoinRevModels(tuple(Models)) if Models else None
+    return tuple(Bodies), Combined, tuple(Issues)

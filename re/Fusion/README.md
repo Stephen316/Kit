@@ -119,26 +119,29 @@ axis. The two-plane sweep can start away from the sketch plane. All 16
 tracked and newer captures passed Kit JSON round-trips and matched 64
 independently evaluated body arcs.
 
-For the verified single-body histories ending in an active plane-limited
-Revolve, Kit also generates a closed analytic B-rep directly from the
-profile and sweep. The native creator anchor and component collection
-identify the result body. Kit assigns its own face and edge IDs. All 16
-captures matched the saved Fusion body topology and analytic geometry,
-including volume, area, and bounds. Profiles that touch the axis, other
-modeling steps, and native Fusion output remain outside this body path.
+For verified histories with independent active New Body Revolves, Kit
+also generates closed analytic B-reps directly from the profile and sweep.
+The native creator anchors and reciprocal component collection identify
+the result bodies. Kit assigns its own face and edge IDs. All 16
+plane-limited captures matched the saved Fusion body topology and analytic
+geometry, including volume, area, and bounds.
 
 For unprojected solid New Body Revolves with an origin or sketch-line axis,
 Kit also projects an `AngularRevolve` definition from a qualified convex
 line profile or whole circle. The definition links the owned along and
 against parameters and preserves one-sided, two-sided, and symmetric
 limits. The effective axis follows the occupied side of the sketch.
-Eligible terminal partial polygon sweeps use the same analytic solid
-builder as plane-limited sweeps. The SDK verified 14 typed definitions
-and eight solids across 23 tracked angular features. The eight solids
-matched the saved face, edge, and arc geometry and mass properties.
-Full-turn solids, custom and BRep axis
-definitions, surface and Boolean Revolves, and projected axes require
-additional coverage.
+Eligible partial polygon sweeps use the same analytic solid builder as
+plane-limited sweeps. The SDK verified 14 typed definitions and eight partial
+solids across 23 tracked angular features.
+
+Full-turn polygons and ring tori use periodic topology. The tracked
+annular solid, cone, and torus matched their saved body counts and analytic
+geometry. The cone retains its degenerate apex edge, and the torus has one
+untrimmed face. In the multi-body fixture Kit projects the cone and torus
+and reports the unsupported sphere separately. Partial profiles that
+touch the axis, custom and BRep axis definitions, surface and Boolean
+Revolves, projected axes, and native Fusion output require more coverage.
 
 ## Public SDK reader
 

@@ -13,11 +13,11 @@ from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Topology.BodyAnchor import KAnchorGuid, ReadBodyAnchor
 
 
-# a generated result must match one explicit native creator and body anchor
-def FindResultBody(
-    BulkData: bytes, Owners: dict[int, RecordSpan], FeatureId: int
-) -> tuple[int, int]:
-    Matches = []
+# one anchor pass associates independent native body results with their exact creators
+def IndexBodyLinks(
+    BulkData: bytes, Owners: dict[int, RecordSpan], FeatureIds: frozenset[int]
+) -> dict[int, tuple[int, int]]:
+    Matches: dict[int, tuple[int, int]] = {}
     for SpanValue in Owners.values():
         if (
             SpanValue.ClassGuid != KAnchorGuid
@@ -29,9 +29,11 @@ def FindResultBody(
             SourceId = ReadNativeRef(Tail)
         except ValueError:
             continue
-        if SourceId == FeatureId:
+        if SourceId in FeatureIds:
+            if SourceId in Matches:
+                raise ValueError("Ambiguous Fusion result body anchor")
             BodyId, _ = ReadBodyAnchor(BulkData, Owners, SpanValue.ObjectId)
-            Matches.append((BodyId, SpanValue.ObjectId))
-    if len(Matches) != 1:
-        raise ValueError("Missing or ambiguous Fusion result body anchor")
-    return Matches[0]
+            Matches[SourceId] = (BodyId, SpanValue.ObjectId)
+    if Matches.keys() != FeatureIds:
+        raise ValueError("Missing Fusion result body anchor")
+    return Matches

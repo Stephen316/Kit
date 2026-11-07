@@ -8,16 +8,10 @@
 
 
 from dataclasses import replace as Replace
-from math import isclose as IsClose, tau as FullTurn
 
 from convert.formats.Fusion.ParamProjection import ParamOrigin
 from convert.formats.Fusion.RecordSpan import RecordSpan
-from convert.formats.Fusion.Revolves.BodyMeridian import ReadMeridian
-from convert.formats.Fusion.Revolves.RevProfile import ReadRevProfile
-from convert.formats.Fusion.Topology.BodyCollection import ReadSingleBody
-from convert.formats.Fusion.Topology.ResultBody import FindResultBody
-from convert.geometry.Revolve.PolygonSweep import BuildPolySweep
-from convert.geometry.Revolve.SweepMetrics import MeasureSweep
+from convert.formats.Fusion.Revolves.BuildRevGeom import BuildRevGeom
 from interchange.brep.topology.BrepModel import BrepModel
 from interchange.core.Common import FreezeMapping
 from interchange.features.FeatureAngleRev import AngularRevolve
@@ -31,46 +25,23 @@ from interchange.records.RecordTopology import TopologyCounts
 
 # source operands generate new topology while native records identify the result body
 def BuildRevBody(
-    BulkData: bytes,
     Owners: dict[int, RecordSpan],
     StepValue: FeatureStep,
     Definition: PlaneRevolve | AngularRevolve,
     Interval: tuple[float, float],
     SketchValue: Sketch,
     FrameValue: SupportPlane,
+    BodyLink: tuple[int, int],
+    CollectionId: int,
+    ComponentId: int,
 ) -> tuple[DesignBody, BrepModel]:
-    if IsClose(Interval[1] - Interval[0], FullTurn, rel_tol=0.0, abs_tol=1e-10):
-        raise ValueError(
-            "Fusion full turn Revolve solid requires a periodic topology path"
-        )
-    Origin = StepValue.provenance
-    ComponentId = FrameValue.attributes.get("fusion.component_object_id")
-    if Origin is None or not isinstance(ComponentId, int):
-        raise ValueError("Missing Fusion Revolve body owner or component")
-    NativeId, AnchorId = FindResultBody(BulkData, Owners, int(Origin.native_id))
-    CollectionId = ReadSingleBody(BulkData, Owners, NativeId, ComponentId)
-    Profile = ReadRevProfile(StepValue, SketchValue)
-    if not isinstance(Profile, tuple):
-        raise ValueError("Fusion Revolve solid currently requires a line profile")
-    Meridian, Radial = ReadMeridian(
-        FrameValue.transform,
-        Profile,
-        Definition.AxisOrigin,
-        Definition.AxisDirection,
-    )
+    if FrameValue.attributes.get("fusion.component_object_id") != ComponentId:
+        raise ValueError("Fusion Revolve sketch and result body components disagree")
+    NativeId, AnchorId = BodyLink
     BodyId = f"fusion-derived-body-{StepValue.id}"
-    SweepArgs = (
-        Meridian,
-        Definition.AxisOrigin,
-        Definition.AxisDirection,
-        Radial,
-        *Interval,
+    Model, Volume, Area, Bounds = BuildRevGeom(
+        BodyId, StepValue, Definition, Interval, SketchValue, FrameValue.transform
     )
-    Model = BuildPolySweep(BodyId, *SweepArgs)
-    Errors = Model.GetErrors(frozenset((BodyId,)))
-    if Errors:
-        raise ValueError("; ".join(Errors))
-    Volume, Area, Bounds = MeasureSweep(*SweepArgs)
     NativeOrigin = ParamOrigin(Owners[NativeId])
     Body = DesignBody(
         id=BodyId,
