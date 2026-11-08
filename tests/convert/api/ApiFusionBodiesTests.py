@@ -45,10 +45,16 @@ def CheckBodyOwner() -> None:
         Archive, strict=False, configuration=str(Child.attributes["fusion.history_id"])
     )
     assert ChildDoc.assembly is None
-    assert ChildDoc.metadata[KInventory] == Child.attributes[KInventory]
-    assert (
-        Document.bodies == () and Capability.KBodyStructure not in Document.capabilities
-    )
+    (ChildMember,) = ChildDoc.metadata[KInventory]["members"]
+    (LinkedMember,) = Child.attributes[KInventory]["members"]
+    assert ChildMember["object_id"] == LinkedMember["object_id"] == 480
+    assert ChildMember["design_body_id"] is None
+    assert LinkedMember["design_body_id"] in Child.body_ids
+    assert len(Document.bodies) == 2 and Document.brep is None
+    assert {
+        Capability.KBodyStructure,
+        Capability.KComponentDocs,
+    } <= Document.capabilities
     assert CadDocument.from_json(Document.to_json()) == Document
 
 

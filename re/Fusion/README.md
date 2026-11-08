@@ -188,7 +188,19 @@ positive one-sided circular draft, and untapered line-ring prisms. The corpus
 check matched 61 solids in 42 parts against their saved native body topology,
 volume, area, and bounds. This includes 52 circular solids and nine prisms.
 Saved suppression and rollback controls matched the active body inventory.
-Assembly solids, later modeling operations, and native writing require further
+
+Kit also reconstructs local solids in qualified assemblies. Root bodies stay
+on the root document. Other bodies are stored once in their component
+definition's embedded document and placed by every occurrence of that
+definition. A paired native dependency graph verifies creator and sketch
+ownership. For a rotated authoring frame, the creation snapshot and its parent
+scope establish the occurrence path at the time of the Extrude. This preserves
+the original local geometry when a later copy creates another path. Two saved
+assemblies verified seven unique solids, including three reusable component
+bodies placed five times in the repeated design. Local topology and measures
+matched the saved body records. Unsupported active operations leave the
+assembly graph and body inventory available for inspection. Later modeling
+operations, joint-driven assemblies, and native writing require further
 coverage.
 
 ## Public SDK reader

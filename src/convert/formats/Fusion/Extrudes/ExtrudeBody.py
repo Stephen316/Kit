@@ -8,16 +8,12 @@
 
 from dataclasses import replace as Replace
 
-from convert.formats.Fusion.Extrudes.BuildSolidStep import BuildSolidStep
-from convert.formats.Fusion.Extrudes.ExtBodyLinks import LinkSolidBodies
+from convert.formats.Fusion.Extrudes.SavedSolidSets import BuildSolidSets
 from convert.formats.Fusion.Extrudes.SolidCreators import FindExtCreators
 from convert.formats.Fusion.RecordSpan import RecordSpan
-from convert.formats.Fusion.Revolves.JoinRevModels import JoinRevModels
 from convert.formats.Fusion.Topology.NativeBody import NativeBody
-from interchange.brep.topology.BrepModel import BrepModel
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumDocument import Capability
-from interchange.features.FeatureBody import DesignBody
 from interchange.features.FeatureDistExt import DistanceExtrude
 from interchange.records.RecordDiagnostic import Diagnostic
 
@@ -35,29 +31,9 @@ def ProjectExtBody(
     ):
         return Document
     Owners = {Span.ObjectId: Span for Span in Spans if Span.IsPrimary}
-    Sketches = {SketchValue.id: SketchValue for SketchValue in Document.sketches}
-    Frames = {FrameValue.id: FrameValue for FrameValue in Document.support_planes}
-    Params = {Param.id: Param for Param in Document.parameters}
-    Bodies: list[DesignBody] = []
-    Models: list[BrepModel] = []
     try:
         Creators = FindExtCreators(Document.feature_timeline)
-        Links = LinkSolidBodies(BulkData, Owners, Creators, Members)
-        for StepValue in Creators:
-            SketchValue = Sketches.get(StepValue.sketch_id or "")
-            FrameValue = (
-                None
-                if SketchValue is None
-                else Frames.get(SketchValue.support_plane_id)
-            )
-            if SketchValue is None or FrameValue is None:
-                raise ValueError("Missing Fusion solid profile sketch frame")
-            Member, AnchorId = Links[StepValue.id]
-            BodyValue, Model = BuildSolidStep(
-                Owners, StepValue, SketchValue, FrameValue, Params, Member, AnchorId
-            )
-            Bodies.append(BodyValue)
-            Models.append(Model)
+        Solids = BuildSolidSets(Document, BulkData, Owners, Creators, Members)
     except ValueError as ErrorInfo:
         return Replace(
             Document,
@@ -68,12 +44,13 @@ def ProjectExtBody(
                 ),
             ),
         )
-    if not Models:
+    if not Solids:
         return Document
+    ((Bodies, Model),) = Solids.values()
     return Replace(
         Document,
-        bodies=tuple(Bodies),
-        brep=JoinRevModels(tuple(Models)),
+        bodies=Bodies,
+        brep=Model,
         capabilities=Document.capabilities
         | {Capability.KBodyStructure, Capability.KBrep},
     )

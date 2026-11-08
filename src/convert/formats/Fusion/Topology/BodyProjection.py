@@ -9,6 +9,7 @@
 from dataclasses import replace as Replace
 
 from convert.formats.Fusion.Assembly.AssemblyBodies import AttachBodyList
+from convert.formats.Fusion.Assembly.Solids.AssemblySolids import BuildAsmSolids
 from convert.formats.Fusion.Extrudes.ExtrudeBody import ProjectExtBody
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.RecordSpan import RecordSpan
@@ -68,10 +69,13 @@ def ProjectBodyList(
         for ComponentId, Message in sorted(Issues.items())
     )
     if Assembly is not None:
-        return Replace(
+        Updated = Replace(
             Document,
             assembly=AttachBodyList(Assembly, ComponentIds, Inventory),
             diagnostics=Diagnostics,
+        )
+        return BuildAsmSolids(
+            Updated, BulkData, Spans, History.OwnerId, ComponentIds, Inventory
         )
     if ScopeId is None or ScopeId not in Inventory:
         return Replace(Document, diagnostics=Diagnostics)

@@ -64,7 +64,7 @@ def CheckDiscovery() -> None:
     )
     FusionCaps = FirstRegistry.reader("fusion.f3d").info.capabilities
     assert {Capability.KNativePayloads, Capability.KProvenance} <= FusionCaps
-    assert Capability.KAssemblies in FusionCaps
+    assert {Capability.KAssemblies, Capability.KComponentDocs} <= FusionCaps
     assert FusionCaps < frozenset(Capability)
 
 

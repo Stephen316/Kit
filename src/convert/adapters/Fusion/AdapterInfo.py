@@ -27,6 +27,7 @@ KReaderInfo = AdapterInfo(
             Capability.KBodyStructure,
             Capability.KBrep,
             Capability.KAssemblies,
+            Capability.KComponentDocs,
             Capability.KNativePayloads,
             Capability.KProvenance,
         }
