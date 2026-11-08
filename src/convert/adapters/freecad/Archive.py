@@ -23,7 +23,7 @@ import uuid as UuidValue
 import xml.etree.ElementTree as XmlTree  # noqa: DUO107
 import zipfile as Zipfile
 import zlib as ZlibValue
-from typing import Iterator, Mapping, TypeGuard
+from typing import Iterator, Mapping, TypeGuard, cast as CastValue
 from interchange import CadDocument as CadDoc
 from interchange.serialization.WireData import ValidateWireMap
 from convert.adapters.base import ParseUntrusted
@@ -33,6 +33,8 @@ from convert.adapters.freecad.Brep import (
     proven_ascii_brep as ProvenAsciiBrep,
     triangle_mesh_brep as TriangleMeshBrep,
 )
+from convert.adapters.freecad.ArchiveEditPlan import ReadArchiveEdit
+from convert.adapters.freecad.EditableExt import EditExtrude
 from convert.adapters.freecad.Format import FORMAT_ID as FormatId
 from convert.adapters.freecad.Protocol import (
     ASSEMBLY_CONNECTOR_PROPERTY_PREFIXES as AsmConnectorPropPrefixes,
@@ -3889,7 +3891,7 @@ def ImportArchive(
         DocValue, ensure_ascii=False, sort_keys=True, separators=(",", ":")
     )
     Digest = Hashlib.sha256(Canonical.encode("utf-8")).hexdigest()
-    DocXml, ChildPayloads = BuildDocXml(
+    DocXml, ChildPayloads = BuildDocXmlMut(
         DocValue, "", Digest, TrustedNativeBreps=TrustedNativeBreps
     )
     return (ParseUntrusted(DocXml), ChildPayloads)
@@ -6074,28 +6076,43 @@ def AddMeshesMut(
     return Result
 
 
-# this definition exists because focused behavior needs one stable owner
-def AddBrepMut(
-    Graph: _Graph,
-    Manifest: Mapping[str, object],
-    PayloadEntries: dict[str, bytes],
-    ParametricTarget: str,
-) -> tuple[list[str], str]:
+# decode and generate the neutral shape once for both representations
+def ReadNeutralBrep(Manifest: Mapping[str, object]) -> tuple[CadDoc | None, bytes]:
     if Manifest.get("brep") is None:
-        return ([], "")
+        return (None, b"")
     try:
         DocValue = CadDoc.from_dict(ValidateWireMap(Manifest))
     except (KeyError, TypeError, ValueError, RecursionError) as ErrorInfo:
         raise ValueError("neutral B-rep manifest data is invalid") from ErrorInfo
     if DocValue.brep is None:
-        return ([], "")
+        return (None, b"")
     try:
-        DataValue = BrepModelBrep(DocValue.brep)
+        return (DocValue, BrepModelBrep(DocValue.brep))
     except FreeCadBrepWriteError:
+        return (None, b"")
+
+
+# shape entries belong to the freecad object that owns their property
+def AddBrepEntryMut(
+    PayloadEntries: dict[str, bytes], ObjectName: str, DataValue: bytes
+) -> str:
+    FileName = UniquePayload(PayloadEntries, f"{ObjectName}.Shape.brp")
+    PayloadEntries[FileName] = DataValue
+    return FileName
+
+
+# a standalone shape remains available when the source cannot execute
+def AddBrepMut(
+    Graph: _Graph,
+    DocValue: CadDoc | None,
+    ShapeData: bytes,
+    PayloadEntries: dict[str, bytes],
+    ParametricTarget: str,
+) -> tuple[list[str], str]:
+    if DocValue is None or DocValue.brep is None or not ShapeData:
         return ([], "")
     ObjValue = Graph.add("Part::Feature", "BRep", "NeutralBRep")
-    FileName = UniquePayload(PayloadEntries, f"{ObjValue.name}.Shape.brp")
-    PayloadEntries[FileName] = DataValue
+    FileName = AddBrepEntryMut(PayloadEntries, ObjValue.name, ShapeData)
     ObjValue.properties.extend(
         [
             StringProp("Label", "Neutral BRep"),
@@ -6294,6 +6311,7 @@ class DocFeatures:
     AssemblyItems: int
     AssemblyMates: int
     OuterTarget: str
+    EditableFeatureId: str = ""
 
 
 # this definition exists because native replay objects need stable source ordering
@@ -7101,11 +7119,68 @@ def AddExtrudeMut(
         Context, FeatureInfo, Direction, Length, SecondLength, Symmetric, Expression
     )
     Final = AddBoolMut(Context, FeatureInfo, ToolValue)
+    TrackSolidMut(Features, FeatureInfo, Final)
+    return Final
+
+
+# later timeline steps and body tips depend on the emitted solid name
+def TrackSolidMut(
+    Features: DocFeatures, FeatureInfo: FeatureData, Final: Object
+) -> None:
     Features.FeatureNames[FeatureInfo.FeatureId] = Final.name
     Features.SolidNames[FeatureInfo.FeatureId] = Final.name
     Features.FeatureObjects.append(Final.name)
     Features.CurrentName = Final.name
-    return Final
+
+
+# native extrusion execution requires the exact linked sketch in the archive
+def EditProfile(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    FeatureInfo: FeatureData,
+    PlanValue: EditExtrude,
+) -> Object | None:
+    if (
+        FeatureInfo.BaseName
+        or FeatureInfo.SketchId != PlanValue.SketchId
+        or Geometry.SketchProfCounts.get(PlanValue.SketchId) != 1
+        or not Geometry.SketchProfSound.get(PlanValue.SketchId)
+    ):
+        return None
+    return next(
+        (
+            Value
+            for Value in Context.Graph.Objects
+            if Value.name == FeatureInfo.SketchName and Value.type_id == SketchTypeId
+        ),
+        None,
+    )
+
+
+# a native extrusion must own the starting shape and editable dependencies
+def HasEditExtMut(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Features: DocFeatures,
+    FeatureInfo: FeatureData,
+    PlanValue: EditExtrude,
+    ShapeData: bytes,
+) -> bool:
+    Sketch = EditProfile(Context, Geometry, FeatureInfo, PlanValue)
+    Expression = Context.Parameters.expression(PlanValue.ParameterId)
+    if Sketch is None or Expression is None or Context.ParamSheet.name != "Parameters":
+        return False
+    Direction = (PlanValue.Direction.x, PlanValue.Direction.y, PlanValue.Direction.z)
+    ToolValue = AddExtToolMut(
+        Context, FeatureInfo, Direction, PlanValue.DistanceMm, 0.0, False, Expression
+    )
+    ShapeFile = AddBrepEntryMut(Features.PayloadEntries, ToolValue.name, ShapeData)
+    ReplaceNameMut(ToolValue.properties, "Shape", ShapeProp(ShapeFile))
+    ReplaceNameMut(Sketch.properties, "Visibility", BoolProp("Visibility", False))
+    TrackSolidMut(Features, FeatureInfo, ToolValue)
+    Features.FinalShapeFile = ShapeFile
+    Features.EditableFeatureId = FeatureInfo.FeatureId
+    return True
 
 
 # this definition exists because solidworks fillets require nonexecuting topology carriers
@@ -7332,9 +7407,19 @@ def AddFeatureMut(
 
 # this definition exists because timeline features must preserve their source ordering
 def AddFeaturesMut(
-    Context: DocContext, Geometry: DocGeometry, Features: DocFeatures
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Features: DocFeatures,
+    EditPlan: tuple[str, EditExtrude] | None,
+    ShapeData: bytes,
 ) -> None:
     for Feature in Features.FeatureItems:
+        if EditPlan is not None and Feature.get("id") == EditPlan[0]:
+            FeatureInfo = FeatureDataOf(Geometry, Features, Feature)
+            if HasEditExtMut(
+                Context, Geometry, Features, FeatureInfo, EditPlan[1], ShapeData
+            ):
+                continue
         AddFeatureMut(Context, Geometry, Features, Feature)
 
 
@@ -7767,15 +7852,22 @@ def AddPayloadsMut(Context: DocContext, Features: DocFeatures) -> None:
 
 
 # this definition exists because document representations must follow native payload object creation
-def AddRepresentMut(Context: DocContext, Features: DocFeatures) -> None:
-    Features.DocBreps, NeutralShape = AddBrepMut(
-        Context.Graph,
-        Context.Manifest,
-        Features.PayloadEntries,
-        Features.CurrentName,
-    )
-    if NeutralShape:
-        Features.FinalShapeFile = NeutralShape
+def AddRepresentMut(
+    Context: DocContext,
+    Features: DocFeatures,
+    NeutralDoc: CadDoc | None,
+    ShapeData: bytes,
+) -> None:
+    if not Features.EditableFeatureId:
+        Features.DocBreps, NeutralShape = AddBrepMut(
+            Context.Graph,
+            NeutralDoc,
+            ShapeData,
+            Features.PayloadEntries,
+            Features.CurrentName,
+        )
+        if NeutralShape:
+            Features.FinalShapeFile = NeutralShape
     Features.DocMeshes = AddMeshesMut(
         Context.Graph,
         Context.Manifest,
@@ -8036,7 +8128,7 @@ def SerializeDoc(Context: DocContext, Features: DocFeatures) -> bytes:
 
 
 # this definition exists because document conversion coordinates each ordered graph and payload phase
-def BuildDocXml(
+def BuildDocXmlMut(
     Manifest: Mapping[str, object],
     ManifestData: str,
     ManifestShaTwoFiveSix: str,
@@ -8044,6 +8136,7 @@ def BuildDocXml(
     NativeOuterLinks: Mapping[str, str] | None = None,
     DocTimestamp: str = "1980-01-01T00:00:00Z",
     TrustedNativeBreps: frozenset[KNativeBrepKey] = KNoTrustedNativeBreps,
+    EditableFeatures: set[str] | None = None,
 ) -> tuple[bytes, dict[str, bytes]]:
     Context = BuildDocContext(
         Manifest,
@@ -8056,18 +8149,27 @@ def BuildDocXml(
     )
     Geometry = BuildDocGeom(Context)
     Features = BuildDocItems(Context)
+    NeutralDoc, ShapeData = ReadNeutralBrep(Manifest)
+    EditPlan = (
+        ReadArchiveEdit(NeutralDoc)
+        if EditableFeatures is not None and not Context.NativeValues
+        else None
+    )
     AddPlanesMut(Context, Geometry)
     AddSketchesMut(Context, Geometry)
     AddEntryDataMut(Context, Features)
-    AddFeaturesMut(Context, Geometry, Features)
+    AddFeaturesMut(Context, Geometry, Features, EditPlan, ShapeData)
     AddBodiesMut(Context, Geometry, Features)
     AddSelectMut(Context, Geometry, Features)
     AddConfigsMut(Context, Features)
     AddPayloadsMut(Context, Features)
-    AddRepresentMut(Context, Features)
+    AddRepresentMut(Context, Features, NeutralDoc, ShapeData)
     SetDocGroupsMut(Context, Geometry, Features)
     SetOuterMut(Context, Features)
-    return (SerializeDoc(Context, Features), Features.PayloadEntries)
+    XmlData = SerializeDoc(Context, Features)
+    if EditableFeatures is not None and Features.EditableFeatureId:
+        EditableFeatures.add(Features.EditableFeatureId)
+    return (XmlData, Features.PayloadEntries)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -8080,17 +8182,19 @@ def ZipEntry(NameValue: str, DataValue: bytes) -> tuple[Zipfile.ZipInfo, bytes]:
 
 
 # this definition exists because focused behavior needs one stable owner
-def BuildFcstd(
+def BuildFcstdMut(
     Manifest: Mapping[str, object],
     OuterLinks: Mapping[str, Mapping[str, object]] | None = None,
     NativeOuterLinks: Mapping[str, str] | None = None,
     DocTimestamp: str | None = None,
     TrustedNativeBreps: frozenset[KNativeBrepKey] = KNoTrustedNativeBreps,
+    EditableFeatures: set[str] | None = None,
 ) -> bytes:
     Canonical = CanonicalJson(Manifest)
     Digest = Hashlib.sha256(Canonical).hexdigest()
     Embedded = BaseSixFour.b64encode(ZlibValue.compress(Canonical, 9)).decode("ascii")
-    DocXml, PayloadEntries = BuildDocXml(
+    ProducedFeatures: set[str] | None = set() if EditableFeatures is not None else None
+    DocXml, PayloadEntries = BuildDocXmlMut(
         Manifest,
         Embedded,
         Digest,
@@ -8098,6 +8202,7 @@ def BuildFcstd(
         NativeOuterLinks,
         DocTimestamp or "1980-01-01T00:00:00Z",
         TrustedNativeBreps,
+        ProducedFeatures,
     )
     Output = IoStream.BytesIO()
     with Zipfile.ZipFile(Output, "w", allowZip64=True) as Archive:
@@ -8119,6 +8224,8 @@ def BuildFcstd(
             if Entry in Written:
                 continue
             Archive.writestr(*ZipEntry(Entry, DataValue))
+    if EditableFeatures is not None and ProducedFeatures:
+        EditableFeatures.update(ProducedFeatures)
     return Output.getvalue()
 
 
@@ -8129,6 +8236,8 @@ def BuildFcstdApi(
     NativeOuterLinks: Mapping[str, str] | None = None,
     DocTimestamp: str | None = None,
     TrustedNativeBreps: frozenset[KNativeBrepKey] = KNoTrustedNativeBreps,
+    *,
+    EditableFeatures: set[str] | None = None,
     **LegacyValues: object,
 ) -> bytes:
     LegacyCopy = dict(LegacyValues)
@@ -8143,13 +8252,21 @@ def BuildFcstdApi(
     TrustedNativeBreps = PayloadBrepKeys(
         LegacyCopy.pop("trusted_native_breps", TrustedNativeBreps)
     )
+    EditSink = LegacyCopy.pop("editable_features", EditableFeatures)
+    if EditSink is not None and not isinstance(EditSink, set):
+        raise TypeError("editable features must be a set")
     if LegacyCopy:
         Unexpected = next(iter(LegacyCopy))
         raise TypeError(
             f"build_fcstd_archive() got an unexpected keyword argument {Unexpected!r}"
         )
-    return BuildFcstd(
-        Manifest, OuterLinks, NativeOuterLinks, DocTimestamp, TrustedNativeBreps
+    return BuildFcstdMut(
+        Manifest,
+        OuterLinks,
+        NativeOuterLinks,
+        DocTimestamp,
+        TrustedNativeBreps,
+        CastValue(set[str] | None, EditSink),
     )
 
 
