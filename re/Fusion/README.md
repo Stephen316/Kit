@@ -570,6 +570,15 @@ For a geometry check, include the identified cache member's full path in
 Use the unfiltered reader for a full archive integrity check. Filtered reads
 validate metadata across the archive and check CRCs for the selected payloads.
 
+For SDK imports, a profile of the saved corpus found that repeated field name
+resolution in the shared interchange models accounted for most of the read
+time. Kit now builds a bounded alias index for each declared model layout and
+resolves unfamiliar input keys without adding them to the cache. Across three
+paired fresh Python 3.14 runs against `fd02025b`, median public Fusion read time
+fell from 6.39 to 3.26 seconds for 712 tracked archives and a Fusion 2706.1.17
+holdout. The 747 projected documents and the expected history selection errors
+matched exactly.
+
 ### Saved corpus baseline
 
 The baseline at `8496fc8b` decoded all 712 saved archives and emitted 2,557
