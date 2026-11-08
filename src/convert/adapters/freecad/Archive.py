@@ -40,6 +40,10 @@ from convert.adapters.freecad.ArchiveEditPlan import (
     KProfileBinding,
     ReadArchiveEdit,
 )
+from convert.adapters.freecad.EditDatum.DatumBinding import KDatumGroup
+from convert.adapters.freecad.EditDatum.DatumPlan import ReadDatumPlan
+from interchange.features.FeatureBoundPlane import BoundConstructionPlane
+from interchange.serialization.Wire import GetWireType
 from convert.adapters.freecad.EditAxisRev.AxisRevBinding import KAxisRevBinding
 from convert.adapters.freecad.EditAxisRev.AxisRevExpr import AxisAngleExpr
 from convert.adapters.freecad.EditAxisRev.AxisRevPlan import AxisRevPlan, ReadAxisRev
@@ -6169,6 +6173,25 @@ def ReadNeutralBrep(Manifest: Mapping[str, object]) -> tuple[CadDoc | None, byte
         return (None, b"")
 
 
+# independent datum histories need typed decoding even though they have no solid representation
+def ReadArchiveDatums(
+    Manifest: Mapping[str, object],
+) -> dict[str, BoundConstructionPlane]:
+    Steps = Items(Manifest.get("feature_timeline", []))
+    if (
+        not Steps
+        or Manifest.get("brep") is not None
+        or Items(FreecadMetaData(Manifest).get("objects", []))
+    ):
+        return {}
+    DefinitionType = GetWireType(BoundConstructionPlane)
+    for Step in Steps:
+        Definition = Step.get("definition")
+        if not IsPayloadMap(Definition) or Definition.get("$type") != DefinitionType:
+            return {}
+    return ReadDatumPlan(CadDoc.from_dict(ValidateWireMap(Manifest)))
+
+
 # shape entries belong to the freecad object that owns their property
 def AddBrepEntryMut(
     PayloadEntries: dict[str, bytes], ObjectName: str, DataValue: bytes
@@ -6469,6 +6492,7 @@ def AddDocBaseMut(
     ManifestData: str,
     ManifestHash: str,
     Parameters: _Parameters,
+    TimelineName: str,
 ) -> tuple[Object, Object, Object, Object, Object, Object, Object, Object]:
     ParamSheet = Graph.add("Spreadsheet::Sheet", "Parameters", "Parameters")
     ParamSheet.properties.extend(Parameters.sheet_properties())
@@ -6490,7 +6514,7 @@ def AddDocBaseMut(
     SketchesGroup = Graph.add("App::DocumentObjectGroup", "Sketches", "Group")
     SelectionsGroup = Graph.add("App::DocumentObjectGroup", "Selections", "Group")
     ConfigsGroup = Graph.add("App::DocumentObjectGroup", "Configurations", "Group")
-    TimelineGroup = Graph.add("App::DocumentObjectGroup", "FeatureTimeline", "Group")
+    TimelineGroup = Graph.add("App::DocumentObjectGroup", TimelineName, "Group")
     BodiesGroup = Graph.add("App::DocumentObjectGroup", "Bodies", "Group")
     return (
         ParamSheet,
@@ -6513,6 +6537,7 @@ def BuildDocContext(
     NativeOuterLinks: Mapping[str, str] | None,
     Timestamp: str,
     TrustedBreps: frozenset[KNativeBrepKey],
+    TimelineName: str,
 ) -> DocContext:
     SourceData = Manifest.get("source", {})
     SourceFormat = (
@@ -6526,7 +6551,9 @@ def BuildDocContext(
     NativeTargets = {NameValue: Value.name for NameValue, Value in NativeGraph.items()}
     ParametersData = Items(Manifest.get("parameters", []))
     Parameters = ParamCatalog(ParametersData)
-    BaseObjects = AddDocBaseMut(Graph, Manifest, ManifestData, ManifestHash, Parameters)
+    BaseObjects = AddDocBaseMut(
+        Graph, Manifest, ManifestData, ManifestHash, Parameters, TimelineName
+    )
     return DocContext(
         Manifest,
         ManifestData,
@@ -6683,8 +6710,12 @@ def PlaneExprs(
 
 # this definition exists because one support plane coordinates native replay placement and indexes
 def AddPlaneMut(
-    Context: DocContext, Geometry: DocGeometry, Plane: Mapping[str, object]
-) -> None:
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Plane: Mapping[str, object],
+    *,
+    Grouped: bool = True,
+) -> Object:
     PlaneId = TextAction(Plane.get("id"))
     NativePlane = FreecadAttrs(Plane)
     NativeName = TextAction(NativePlane.get("name"))
@@ -6698,7 +6729,8 @@ def AddPlaneMut(
     if NativeName:
         Context.NativeTargets[NativeName] = ObjValue.name
     Geometry.PlaneNames[PlaneId] = ObjValue.name
-    Geometry.PlaneObjects.append(ObjValue.name)
+    if Grouped:
+        Geometry.PlaneObjects.append(ObjValue.name)
     TransformValue = Plane.get("transform")
     Transform: Mapping[str, object] = (
         TransformValue if IsPayloadMap(TransformValue) else {}
@@ -6734,6 +6766,7 @@ def AddPlaneMut(
         )
     if Expressions and not Context.NativeReplay:
         ObjValue.dependencies.append(Context.ParamSheet.name)
+    return ObjValue
 
 
 # this definition exists because support planes must preserve their source ordering
@@ -8303,9 +8336,12 @@ def SetDocGroupsMut(
     SetDocGroupMut(
         Context.ConfigsGroup, "Configurations", Features.ConfigObjects, False
     )
-    SetDocGroupMut(
-        Context.TimelineGroup, "Feature Timeline", Features.FeatureObjects, True
+    TimelineLabel = (
+        "Construction Planes"
+        if Context.TimelineGroup.name == KDatumGroup
+        else "Feature Timeline"
     )
+    SetDocGroupMut(Context.TimelineGroup, TimelineLabel, Features.FeatureObjects, True)
     SetDocGroupMut(
         Context.BodiesGroup,
         "Bodies",
@@ -8569,6 +8605,7 @@ def BuildDocXmlMut(
     TrustedNativeBreps: frozenset[KNativeBrepKey] = KNoTrustedNativeBreps,
     EditableFeatures: set[str] | None = None,
 ) -> tuple[bytes, dict[str, bytes]]:
+    Datums = ReadArchiveDatums(Manifest) if EditableFeatures is not None else {}
     Context = BuildDocContext(
         Manifest,
         ManifestData,
@@ -8577,6 +8614,7 @@ def BuildDocXmlMut(
         NativeOuterLinks,
         DocTimestamp,
         TrustedNativeBreps,
+        KDatumGroup if Datums else "FeatureTimeline",
     )
     Geometry = BuildDocGeom(Context)
     Features = BuildDocItems(Context)
@@ -8586,13 +8624,17 @@ def BuildDocXmlMut(
         if EditableFeatures is not None and not Context.NativeValues
         else None
     )
-    AddPlanesMut(Context, Geometry)
+    if not Datums:
+        AddPlanesMut(Context, Geometry)
     AddSketchesMut(Context, Geometry)
     AddEntryDataMut(Context, Features)
     from convert.adapters.freecad.EditBodyRev.BodyRevEmit import HasBodyRevMut
+    from convert.adapters.freecad.EditDatum.DatumEmit import AddDatumsMut
     from convert.adapters.freecad.EditScale.ScaleEmit import HasScaleMut
 
-    if not (
+    if Datums:
+        AddDatumsMut(Context, Geometry, Features, Datums)
+    elif not (
         EditableFeatures is not None
         and not Context.NativeValues
         and EditPlan is None
@@ -8628,6 +8670,7 @@ def BuildDocXmlMut(
                 Features.EditableRevId,
                 *Features.EditablePlaneSteps,
                 *Features.EditableScaleSteps,
+                *Datums,
             )
             if Value
         )
