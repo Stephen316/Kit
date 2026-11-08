@@ -34,6 +34,6 @@ def ProjectCylinder(
     return Station, OffsetVector(Delta, AxisValue, -Station)
 
 
-# Euclidean residual bounds vertex and generator agreement in physical units
+# euclidean residual bounds vertex and generator agreement in physical units
 def CylinderGap(First: SpaceVector, Second: SpaceVector) -> float:
     return Hypot(First.x - Second.x, First.y - Second.y, First.z - Second.z)
