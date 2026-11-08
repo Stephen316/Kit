@@ -6,6 +6,8 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from typing import Literal
+
 
 # native positive sweep follows the half plane currently occupied by the profile
 def AxisAngleExpr(
@@ -14,6 +16,7 @@ def AxisAngleExpr(
     Profile: str,
     ProfileLines: tuple[int, ...],
     Reference: str,
+    MeanStyle: Literal["world", "legacy", "saved"] = "world",
 ) -> str:
     Guide = f"{AxisSketch}.Geometry[{AxisIndex}]"
     Start = f"({AxisSketch}.Placement * {Guide}.StartPoint)"
@@ -23,7 +26,14 @@ def AxisAngleExpr(
         for Index in ProfileLines
         for Endpoint in ("StartPoint", "EndPoint")
     )
-    Point = f"({Profile}.Placement * (({Corners}) / {2 * len(ProfileLines)}))"
+    Count = 2 * len(ProfileLines)
+    Pose = f"{Profile}.Placement"
+    if MeanStyle == "legacy":
+        Point = f"({Pose} * (({Corners}) / {Count}))"
+    elif MeanStyle == "saved":
+        Point = f"(({Pose} * ({Corners})) / {Count})"
+    else:
+        Point = f"({Pose}.Base + ({Pose}.Rotation * ({Corners})) / {Count})"
     Normal = f"({Profile}.Placement.Rotation * vector(0; 0; 1))"
     Along = f"({EndValue} - {Start})"
     Radial = f"({Point} - {Start})"

@@ -36,13 +36,14 @@ KInfixPriority = {
     "%": 40,
 }
 
-# only native calls used by the plane placement and sweep writer can qualify
+# only native calls used by the placement and sweep writers can qualify
 KCallArities = {
     "abs": (1,),
     "atan2": (2,),
     "min": (2, 5),
     "placement": (2,),
     "rotation": (2,),
+    "vcross": (2,),
     "vdot": (2,),
     "vector": (3,),
 }

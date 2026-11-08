@@ -219,8 +219,12 @@ original construction line and drives the native axis link. Both saved
 endpoint orders rebuilt in FreeCAD 1.1.3 after angle, axis, and profile
 changes. The live sweep keeps the Fusion angle direction when the
 endpoints reverse or the axis moves to the opposite side of the profile.
-FreeCAD saves preserve those edits. Kit reads the embedded
-original Fusion snapshot from these edited sketch-axis files.
+Kit reads saved angle, axis, and line-profile changes back into the original
+timeline, preserving the construction line, separate endpoint identities, and
+profile point joins. Edge contact also reads back as a solid when one complete
+profile edge touches the axis. The saved sketch wires, signed angle, and solid
+must agree with the edited controls. Files with pending or invalid rebuilds
+are rejected. Kit can re-export the edited timeline as a live FreeCAD Revolve.
 
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body

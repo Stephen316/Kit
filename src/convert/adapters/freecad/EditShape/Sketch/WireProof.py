@@ -26,12 +26,15 @@ def CheckPathMut(
     Expected: list[KSketchCurve],
     FrameValue: Transform,
     UsedEdges: set[int],
+    DirectedLines: bool = False,
 ) -> None:
     WireValue = DataValue.Records[WireRef.RecordA]
     if not WireValue.Children or WireRef.Orientation != "+":
         raise DecodeFailure("invalid saved sketch wire")
     VertexPairs = []
     for EdgeRef in WireValue.Children:
+        if DirectedLines and EdgeRef.Orientation != "+":
+            raise DecodeFailure("saved sketch axis edge orientation changed")
         if EdgeRef.RecordA in UsedEdges:
             raise DecodeFailure("ambiguous saved sketch cache edge")
         UsedEdges.add(EdgeRef.RecordA)
@@ -40,7 +43,7 @@ def CheckPathMut(
             (
                 Index
                 for Index, Value in enumerate(Expected)
-                if IsSameEdge(EdgeValue, Value, FrameValue)
+                if IsSameEdge(EdgeValue, Value, FrameValue, DirectedLines)
             ),
             None,
         )

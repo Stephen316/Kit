@@ -61,11 +61,16 @@ def IsSketchCache(
     ClosedWire: bool = False,
     *,
     AllowPcurves: bool = False,
+    DirectedLines: bool = False,
 ) -> bool:
     if len(ShapeData) > KMaxSketchBytes:
         return False
     try:
         Curves, Points = ReadVisible(SketchValue, FrameValue)
+        if DirectedLines and any(
+            not isinstance(Curve, LineGeometry) for Curve in Curves
+        ):
+            return False
         if AllowPcurves and (
             not ClosedWire
             or Points
@@ -93,7 +98,9 @@ def IsSketchCache(
             if Child.Orientation != "+":
                 return False
             if KindValue == b"Wi":
-                CheckPathMut(DataValue, Child, Curves, FrameValue, UsedEdges)
+                CheckPathMut(
+                    DataValue, Child, Curves, FrameValue, UsedEdges, DirectedLines
+                )
             elif KindValue == b"Ve":
                 CheckVertMut(DataValue, Child, Points)
             else:

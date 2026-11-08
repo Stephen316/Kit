@@ -54,13 +54,19 @@ def IsSameNode(Actual: Element, Expected: Element) -> bool:
 
 
 # native saves can add only the expected typed defaults for each generated object
-def CheckObjFields(Actual: NativeObject, Expected: NativeObject) -> None:
+def CheckObjFields(
+    Actual: NativeObject,
+    Expected: NativeObject,
+    *,
+    Mutable: frozenset[str] = frozenset(),
+    Optional: frozenset[str] = frozenset(),
+) -> None:
     Extra = KSketchObjExtra.get(Actual.type_id, {})
     Common = {
         "Label2": "App::PropertyString",
         "ExpressionEngine": "App::PropertyExpressionEngine",
     }
-    if not Expected.properties.keys() <= Actual.properties.keys():
+    if not Expected.properties.keys() - Optional <= Actual.properties.keys():
         raise ValueError("FreeCAD editable sketch object is missing a native property")
     for NameValue, Property in Actual.properties.items():
         Original = Expected.properties.get(NameValue)
@@ -76,6 +82,7 @@ def CheckObjFields(Actual: NativeObject, Expected: NativeObject) -> None:
         if (
             Original is not None
             and NameValue not in KCheckedElsewhere
+            and NameValue not in Mutable
             and (
                 len(Property) != len(Original)
                 or not all(

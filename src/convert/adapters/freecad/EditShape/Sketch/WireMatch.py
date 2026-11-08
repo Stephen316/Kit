@@ -56,14 +56,22 @@ def IsSameEnds(
 
 # a line circle or bounded arc must match its complete independent shape cache geometry
 def IsSameEdge(
-    EdgeValue: SavedEdge, Original: KSketchCurve, FrameValue: Transform
+    EdgeValue: SavedEdge,
+    Original: KSketchCurve,
+    FrameValue: Transform,
+    DirectedLines: bool = False,
 ) -> bool:
     Curve = EdgeValue.Curve
     if isinstance(Original, LineGeometry):
-        return isinstance(Curve, LineCurve) and IsSameEnds(
-            EdgeValue.Points,
-            PlacePrismPoint(FrameValue, Original.start, 0.0),
-            PlacePrismPoint(FrameValue, Original.end, 0.0),
+        Start = PlacePrismPoint(FrameValue, Original.start, 0.0)
+        EndPoint = PlacePrismPoint(FrameValue, Original.end, 0.0)
+        return isinstance(Curve, LineCurve) and (
+            (
+                IsNearPoint(EdgeValue.Points[0], Start)
+                and IsNearPoint(EdgeValue.Points[1], EndPoint)
+            )
+            if DirectedLines
+            else IsSameEnds(EdgeValue.Points, Start, EndPoint)
         )
     if (
         not isinstance(Curve, CircleCurve)

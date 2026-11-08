@@ -12,7 +12,7 @@ from zipfile import ZipFile, ZipInfo
 
 from convert.adapters.freecad.EditableRev import ReadEditRevolve
 from convert.adapters.freecad.EditAxisRev.AxisRevBinding import KAxisRevBinding
-from convert.adapters.freecad.EditAxisRev.AxisRevPlan import ReadAxisRev
+from convert.adapters.freecad.EditAxisRev.ReconcileAxis import ReconcileAxis
 from convert.adapters.freecad.EditBinding import HasLegacyEdit, ReadEditBinding
 from convert.adapters.freecad.EditRead.Revolve.ReadRevFields import ReadRevFields
 from convert.adapters.freecad.EditRev.ApplyRevEdit import ApplyRevEdit
@@ -25,6 +25,7 @@ from interchange.features.FeatureAngleRev import AngularRevolve
 # only a saved solid and profile consistent with all native controls may replace the snapshot
 def ReconcileRev(
     DocValue: CadDocument,
+    Manifest: Mapping[str, object],
     RootValue: Element,
     Archive: ZipFile,
     Members: Mapping[str, ZipInfo],
@@ -33,16 +34,13 @@ def ReconcileRev(
     AxisBinding = ReadEditBinding(RootValue, KAxisRevBinding)
     Feature = DocValue.feature_timeline[-1] if DocValue.feature_timeline else None
     if AxisBinding is not None:
-        if (
-            Binding is not None
-            or Feature is None
-            or AxisBinding != Feature.id
-            or ReadAxisRev(DocValue, Feature) is None
-        ):
+        if Binding is not None:
             raise ValueError(
                 "FreeCAD editable sketch axis binding disagrees with its source"
             )
-        return DocValue
+        return ReconcileAxis(
+            DocValue, Manifest, RootValue, Archive, Members, AxisBinding
+        )
     IsAngular = Feature is not None and isinstance(Feature.definition, AngularRevolve)
     if Binding is None and not (IsAngular and HasLegacyEdit(RootValue)):
         return DocValue

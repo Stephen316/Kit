@@ -40,6 +40,10 @@ KSketchObjExtra = {
         "Placement": "App::PropertyPlacement",
         "ShapeMaterial": "Materials::PropertyMaterial",
     },
+    "Part::Revolution": {
+        "Placement": "App::PropertyPlacement",
+        "ShapeMaterial": "Materials::PropertyMaterial",
+    },
 }
 
 
@@ -60,7 +64,13 @@ def CheckExtensions(ObjectValue: NativeObject) -> None:
         raise ValueError("FreeCAD editable sketch has additional native extensions")
     Transient = ObjectValue.transient_properties
     if Transient and (
-        KindValue not in {"App::Plane", "Sketcher::SketchObject", "Part::Feature"}
+        KindValue
+        not in {
+            "App::Plane",
+            "Sketcher::SketchObject",
+            "Part::Feature",
+            "Part::Revolution",
+        }
         or len(Transient) != 1
         or Transient[0].get("name") != "_ElementMapVersion"
         or Transient[0].get("type") != "App::PropertyString"

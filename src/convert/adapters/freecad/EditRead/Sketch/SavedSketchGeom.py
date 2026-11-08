@@ -18,13 +18,15 @@ from interchange.geometry.models.Sketch import Sketch
 
 
 # native sketch edits retain original entity ids and their exact incidence roles
-def ReadSketchGeom(Native: NativeObject, Original: Sketch) -> Sketch:
+def ReadSketchGeom(
+    Native: NativeObject, Original: Sketch, TrailingCount: int = 0
+) -> Sketch:
     if Native.type_id != "Sketcher::SketchObject":
         raise ValueError("FreeCAD saved sketch object has the wrong type")
     Geometries = EditChild(
         Native, "Geometry", "Part::PropertyGeometryList", "GeometryList"
     )
-    Count = len(Original.entities)
+    Count = len(Original.entities) + TrailingCount
     if Geometries.attrib != {"count": str(Count)} or len(Geometries) != Count:
         raise ValueError("FreeCAD saved sketch geometry count changed")
     CheckExternal(Native)
@@ -41,7 +43,7 @@ def ReadSketchGeom(Native: NativeObject, Original: Sketch) -> Sketch:
             Entity.construction or (bool(ClosedIds) and Entity.id not in ClosedIds),
         )
         for Index, (NodeValue, Entity) in enumerate(
-            zip(Geometries, Original.entities, strict=True), 1
+            zip(Geometries[: len(Original.entities)], Original.entities, strict=True), 1
         )
     )
     if Original.provenance is not None and Original.provenance.adapter == "fusion.f3d":

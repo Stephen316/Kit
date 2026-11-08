@@ -6,10 +6,13 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from io import BytesIO
+from math import radians as Radians
 from os import environ as Environment
 from pathlib import Path as FilePath
 from subprocess import run as RunProcess
 from xml.etree.ElementTree import fromstring as ParseXml
+from xml.etree.ElementTree import tostring as WriteXml
 from zipfile import ZipFile
 
 import pytest as Pytest
@@ -17,6 +20,7 @@ import pytest as Pytest
 from convert import open_document as OpenDocument, write_document as WriteDocument
 from convert.Security.PathBoundary import ResolveTemp
 from convert.Security.ProgramBoundary import GetFreecadPath
+from convert.adapters.freecad.Adapter import FreeCadAdapterA
 from convert.adapters.freecad.EditAxisRev.AxisRevBinding import KAxisRevBinding
 from interchange.enums.EnumDocument import Capability
 from tests.convert.api.ApiFusionAssemblyTests import KRequiresCodec, KStudyPath
@@ -85,6 +89,7 @@ for index in (1, 2):
 doc.recompute()
 assert abs(rev.Angle - 73) < 1e-8
 measure(doc)
+doc.saveAs(os.environ['KIT_ORACLE_TOUCH'])
 App.closeDocument(doc.Name)
 """
 
@@ -155,6 +160,44 @@ def TestAxisRev(TmpPath: FilePath, SampleName: str) -> None:
     assert OpenDocument(Output) == DocValue
 
 
+# a changed solver binding or an invalid result cannot silently return the source snapshot
+@KRequiresCodec
+@Pytest.mark.parametrize(
+    ("PathValue", "Field", "Changed"),
+    (
+        (".//Property[@name='AxisLink']/LinkSub/Sub", "value", "Edge2"),
+        (
+            ".//Expression[@path='Angle']",
+            "expression",
+            "Parameters.fusion_parameter_311",
+        ),
+        ("./Objects/Object[@type='Part::Revolution']", "Invalid", "1"),
+        (".//Constrain[@Name='incidence_4_1']", "SecondPos", "2"),
+    ),
+)
+def TestAxisConflict(
+    TmpPath: FilePath, PathValue: str, Field: str, Changed: str
+) -> None:
+    DocValue = OpenDocument(KAxisFolder / "sketch_line.f3d", strict=False)
+    Output = TmpPath / "axis.FCStd"
+    _ = WriteDocument(DocValue, Output)
+    with ZipFile(Output) as Archive:
+        Members = {Name: Archive.read(Name) for Name in Archive.namelist()}
+    Root = ParseXml(Members["Document.xml"])
+    Target = Root.find(PathValue)
+    assert Target is not None
+    Target.set(Field, Changed)
+    Members["Document.xml"] = WriteXml(Root, encoding="utf-8")
+    Buffer = BytesIO()
+    with ZipFile(Buffer, "w") as Archive:
+        for Name, DataValue in Members.items():
+            Archive.writestr(Name, DataValue)
+    with Pytest.raises(
+        FreeCadAdapterA, match="editable sketch axis|constraint identity"
+    ):
+        OpenDocument(Buffer.getvalue())
+
+
 # matching actual measures after a signed angle and axis move proves the link survived
 @KRequiresCodec
 @Pytest.mark.skipif(
@@ -165,6 +208,7 @@ def TestAxisNative(TmpPath: FilePath, SampleName: str) -> None:
     DocValue = OpenDocument(KAxisFolder / f"{SampleName}.f3d", strict=False)
     Output = ResolveTemp(TmpPath / "axis.FCStd")
     Saved = ResolveTemp(TmpPath / "axis_edited.FCStd")
+    Touch = ResolveTemp(TmpPath / "axis_touch.FCStd")
     _ = WriteDocument(DocValue, Output)
     Result = RunProcess(
         [str(KOraclePath), "-c", f"exec({KAxisProbe!r})"],
@@ -172,6 +216,7 @@ def TestAxisNative(TmpPath: FilePath, SampleName: str) -> None:
             **Environment,
             "KIT_ORACLE_PATH": str(Output),
             "KIT_ORACLE_SAVED": str(Saved),
+            "KIT_ORACLE_TOUCH": str(Touch),
             "KIT_REVERSED": "yes" if SampleName.endswith("reversed") else "no",
         },
         check=True,
@@ -196,3 +241,16 @@ def TestAxisNative(TmpPath: FilePath, SampleName: str) -> None:
     assert Tangent == Pytest.approx(
         (815.41782653175, 8.20838627695, 13.25648663652, 2.96212710746)
     )
+    Readback = OpenDocument(Saved)
+    assert Readback.parameters[0].value.value == Pytest.approx(Radians(-41))
+    assert Readback.selections == DocValue.selections
+    assert Readback.feature_timeline[:-1] == DocValue.feature_timeline[:-1]
+    assert Readback.feature_timeline[-1].id == DocValue.feature_timeline[-1].id
+    assert Readback.bodies[0].topology.volume == Pytest.approx(Edited[0])
+    Rewrite = TmpPath / "axis_rewrite.FCStd"
+    _ = WriteDocument(Readback, Rewrite)
+    assert OpenDocument(Rewrite) == Readback
+    Contact = OpenDocument(Touch)
+    assert Contact.parameters == DocValue.parameters
+    assert Contact.bodies[0].topology.volume == Pytest.approx(Tangent[0])
+    assert Contact.bodies[0].topology.face_count == 5

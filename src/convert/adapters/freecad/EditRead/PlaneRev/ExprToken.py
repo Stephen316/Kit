@@ -19,8 +19,8 @@ KMaxTokenCount = 4096
 # decimal literals can include the scientific notation used on native save
 KNumberText = r"(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?"
 
-# dotted paths must retain their exact native object and property names
-KNameText = r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*"
+# indexed sketch paths retain their exact native geometry slots
+KNameText = r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*(?:\[[0-9]+\])?)*"
 
 # native path references and numbers need distinct lexical identities
 KTokenPattern = CompilePattern(
