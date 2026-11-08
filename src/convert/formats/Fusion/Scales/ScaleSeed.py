@@ -39,12 +39,12 @@ def ReadScaleSeed(
         or Definition.Direction != SpaceVector(0, 0, 1)
         or "fusion.profile_portions" in Source.attributes
     ):
-        raise ValueError("Fusion Scale needs a plain positive prism source Extrude")
+        raise ValueError("Fusion Scale needs a plain signed prism source Extrude")
     Values = GetDistValues(
         Source, Definition, {Value.id: Value for Value in Document.parameters}
     )
     if (
-        Values.LowerMm != 0
+        Values.OffsetMm != 0
         or Values.TaperRadians != 0
         or Values.SecondTaperRadians not in (None, 0)
     ):
@@ -82,4 +82,5 @@ def ReadScaleSeed(
         for Entity in Profile
         if isinstance(Entity.geometry, LineGeometry)
     )
-    return ScaleSeed(Lines, Frame.transform, Values.UpperMm, Tags)
+    Depth = Values.LowerMm if Values.LowerMm < 0.0 else Values.UpperMm
+    return ScaleSeed(Lines, Frame.transform, Depth, Tags)

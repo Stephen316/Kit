@@ -18,7 +18,9 @@ from interchange.geometry.models.VectorPlane import PlaneVector
 
 
 # unchanged source identity restricts geometry edits to the ring and its exact endpoint points
-def CheckRingModel(Original: Sketch, Edited: Sketch) -> frozenset[str]:
+def CheckRingModel(
+    Original: Sketch, Edited: Sketch, ExtraPointId: str = ""
+) -> frozenset[str]:
     Points = GetRingPoints(Original)
     if (
         Points is None
@@ -26,7 +28,7 @@ def CheckRingModel(Original: Sketch, Edited: Sketch) -> frozenset[str]:
         or Replace(Edited, entities=Original.entities) != Original
     ):
         raise ValueError("FreeCAD editable ring sketch identity changed")
-    Allowed = Points | set(Original.closed_profile_entity_ids[0])
+    Allowed = Points | set(Original.closed_profile_entity_ids[0]) | {ExtraPointId}
     for Before, After in zip(Original.entities, Edited.entities, strict=True):
         if Replace(After, geometry=Before.geometry) != Before:
             raise ValueError("FreeCAD editable ring sketch entity identity changed")
@@ -67,8 +69,8 @@ def SyncRingLine(Entity: SketchEntity, Points: dict[str, PlaneVector]) -> Sketch
 
 
 # both occurrences of every saved ring vertex share its proven neutral point value
-def SyncRingEdit(Original: Sketch, Edited: Sketch) -> Sketch:
-    PointIds = CheckRingModel(Original, Edited)
+def SyncRingEdit(Original: Sketch, Edited: Sketch, *, ExtraPointId: str = "") -> Sketch:
+    PointIds = CheckRingModel(Original, Edited, ExtraPointId)
     if Edited is Original:
         return Original
     ProfileIds = set(Original.closed_profile_entity_ids[0])

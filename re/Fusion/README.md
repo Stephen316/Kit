@@ -272,8 +272,16 @@ These six captures also export as live FreeCAD Sketcher, Extrude, and Scale
 features. The Parameters sheet drives source depths and uniform or per-axis
 factors. A linked native point follows the authored sketch point or ByPoint
 support. Each result retains a distinct body tip and an independently
-generated first-open solid cache. Kit can reopen an unchanged export.
-Reconciliation of Scale files saved from FreeCAD remains open.
+generated first-open solid cache. Kit reconciles FreeCAD 1.1.3 saves by
+checking the original links, solved sheet values, sketch caches, and both the
+source and result solids. It accepts uniform and per-axis factor edits,
+direct and ByPoint centre edits, profile-corner edits, and signed depth edits
+for these line-prism histories. It preserves the source identities and
+authored body order. The independent readback checks covered 23 native saves
+and 31 result solids, including a reversed two-body control, and rejected
+27 saves or mutations with stale geometry or conflicting controls. FreeCAD
+reopened and rebuilt all 16 edited SDK re-exports. Five further native edits
+passed a second save, reopen, rebuild, and SDK reconciliation cycle.
 
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body

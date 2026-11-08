@@ -13,6 +13,7 @@ from zipfile import ZipFile, ZipInfo
 from convert.adapters.freecad.Archive import BuildDocXmlMut
 from convert.adapters.freecad.EditBinding import ReadEditBinding
 from convert.adapters.freecad.EditScale.ScaleBinding import KScaleBinding
+from convert.adapters.freecad.EditScale.ScaleWritePlan import ReadScalePlan
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureBoundScale import BoundScale
 
@@ -31,33 +32,63 @@ def ScaleGraph(RootValue: Element) -> tuple[bytes, ...]:
     )
 
 
-# an edited scale must never silently restore stale bodies from the source snapshot
-def CheckScaleRead(
+# native saved edits and pristine seed archives require different geometry witnesses
+def ReconcileScale(
     Document: CadDocument,
     Manifest: Mapping[str, object],
     RootValue: Element,
     Archive: ZipFile,
     Members: Mapping[str, ZipInfo],
-) -> None:
+) -> CadDocument:
     Binding = ReadEditBinding(RootValue, KScaleBinding)
     Feature = Document.feature_timeline[-1] if Document.feature_timeline else None
-    HasScale = Feature is not None and isinstance(Feature.definition, BoundScale)
+    Definition = None if Feature is None else Feature.definition
+    if Binding is None and not isinstance(Definition, BoundScale):
+        return Document
     NativeScale = RootValue.find("./Objects/Object[@type='Part::Scale']") is not None
-    if Binding is None and not (HasScale and NativeScale):
-        return
-    if Feature is None or not HasScale or Binding != Feature.id or not NativeScale:
+    if (
+        Binding is None
+        and not NativeScale
+        and RootValue.find(
+            "./ObjectData/Object/Properties/Property[@name='KitFeatureId']"
+        )
+        is None
+    ):
+        return Document
+    if (
+        Feature is None
+        or not isinstance(Definition, BoundScale)
+        or Binding != Feature.id
+        or not NativeScale
+    ):
         raise ValueError("FreeCAD editable Scale binding disagrees with its source")
     Features: set[str] = set()
     Expected, Entries = BuildDocXmlMut(Manifest, "", "", EditableFeatures=Features)
-    if Feature.id not in Features or ScaleGraph(RootValue) != ScaleGraph(
-        ParseXml(Expected)
-    ):
-        raise ValueError("FreeCAD editable Scale requires saved edit reconciliation")
+    if Feature.id not in Features:
+        raise ValueError("FreeCAD editable Scale source timeline is unresolved")
+    Template = ParseXml(Expected)
+    if ScaleGraph(RootValue) != ScaleGraph(Template):
+        from convert.adapters.freecad.EditScale.ScaleSavedRead import ReadSavedScale
+
+        return ReadSavedScale(
+            Document,
+            Manifest,
+            Feature,
+            Definition,
+            ReadScalePlan(Document, Feature, Definition),
+            Template,
+            RootValue,
+            Archive,
+            Members,
+        )
     Shapes = {
-        Name: Data for Name, Data in Entries.items() if Name.endswith(".Shape.brp")
+        Name: Data for Name, Data in Entries.items() if Name.lower().endswith(".brp")
     }
-    if set(Shapes) != {Name for Name in Members if Name.endswith(".Shape.brp")} or any(
+    if set(Shapes) != {
+        Name for Name in Members if Name.lower().endswith(".brp")
+    } or any(
         Members[Name].file_size != len(Data) or Archive.read(Members[Name]) != Data
         for Name, Data in Shapes.items()
     ):
         raise ValueError("FreeCAD editable Scale saved shape disagrees with its source")
+    return Document

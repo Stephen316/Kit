@@ -82,5 +82,5 @@ def TestScaleEditGate(TmpPath: FilePath) -> None:
                     else Original.read(Item)
                 ),
             )
-    with Pytest.raises(FreeCadAdapterA, match="requires saved edit reconciliation"):
+    with Pytest.raises(FreeCadAdapterA, match=r"FreeCAD editable Scale .*UniformScale"):
         OpenDocument(Modified, strict=False)

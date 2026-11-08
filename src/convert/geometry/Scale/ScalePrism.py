@@ -52,4 +52,7 @@ def BuildScalePrism(
         )
         for Line in Profile
     )
-    return BuildPrism(BodyId, ScaledFrame, ScaledProfile, 0.0, Depth * Factors.z)
+    ScaledDepth = Depth * Factors.z
+    return BuildPrism(
+        BodyId, ScaledFrame, ScaledProfile, min(0.0, ScaledDepth), max(0.0, ScaledDepth)
+    )

@@ -72,7 +72,9 @@ def ReadScaleBody(
     World = BuildScalePrism(Body.id, Seed.Profile, Seed.Frame, Depth, Factors, Center)
     if Body.topology != GetBodyTopology(World):
         raise ValueError("FreeCAD Scale result body geometry disagrees with its source")
-    SourceModel = BuildPrism(Body.id, Seed.Frame, Seed.Profile, 0.0, Depth)[0]
+    SourceModel = BuildPrism(
+        Body.id, Seed.Frame, Seed.Profile, min(0.0, Depth), max(0.0, Depth)
+    )[0]
     ResultModel = BuildScalePrism(
         Body.id, Seed.Profile, Seed.Frame, Depth, Factors, KScaleOrigin
     )[0]

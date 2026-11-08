@@ -2346,9 +2346,9 @@ def ReadSource(Source: Source, Options: ReadOptions | None = None) -> CadDoc:
             RootValue, _ = ValidatedDocXml(Archive, Members)
             Value = ReadZipManifest(Archive, Members, RootValue)
             DocValue = ManifestDoc(Value)
-            from convert.adapters.freecad.EditScale.ScaleReadGuard import CheckScaleRead
+            from convert.adapters.freecad.EditScale.ScaleReadGuard import ReconcileScale
 
-            CheckScaleRead(DocValue, Value, RootValue, Archive, Members)
+            DocValue = ReconcileScale(DocValue, Value, RootValue, Archive, Members)
             DocValue = ReconcileEdit(DocValue, RootValue, Archive, Members)
             DocValue = ReconcileRev(DocValue, Value, RootValue, Archive, Members)
             DocValue = ReconcilePlane(DocValue, RootValue, Archive, Members)
