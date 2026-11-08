@@ -18,7 +18,7 @@ def IsLiteralParam(Param: Parameter) -> bool:
     Expression = Param.expression
     Value = Param.value
     return Expression is None or (
-        Expression.language == "fusion"
+        Expression.language in {"fusion", "freecad"}
         and not Expression.parameter_ids
         and IsLiteralQty(Expression.source, Value.kind, Value.value, Value.unit)
     )

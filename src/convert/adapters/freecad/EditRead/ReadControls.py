@@ -15,6 +15,7 @@ from convert.adapters.freecad.EditRead.EditExtrusion import (
     ReadShapeEntry,
 )
 from convert.adapters.freecad.EditRead.EditObjects import FindEditObject, RequireEditObj
+from convert.adapters.freecad.EditRead.EditParts import ReadEditParts
 from convert.adapters.freecad.EditRead.EditProfile import CheckEditProf
 from convert.adapters.freecad.EditRead.EditSheet import ReadEditText
 from convert.adapters.freecad.EditRead.XmlField import EditScalar
@@ -29,6 +30,8 @@ class EditFields:
     DistanceMm: float
     ShapeEntry: str
     SourceText: str
+    SketchEntry: str
+    EmptyEntries: tuple[str, ...]
 
 
 # reconciling a depth requires an unchanged linked profile and corroborated native controls
@@ -71,4 +74,7 @@ def ReadEditFields(
     CheckEditProf(Objects, Feature, SketchValue, PlaneValue)
     DepthMm = ReadEditDepth(Feature, PlanValue.Direction)
     SourceText = ReadEditText(Objects, Feature, DocValue, Definition, DepthMm)
-    return EditFields(DepthMm, ReadShapeEntry(Feature), SourceText)
+    SketchEntry, EmptyEntries = ReadEditParts(Objects, Feature, DocValue)
+    return EditFields(
+        DepthMm, ReadShapeEntry(Feature), SourceText, SketchEntry, EmptyEntries
+    )

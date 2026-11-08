@@ -201,9 +201,19 @@ center of mass moving from 8.5 to 12.5 mm along Z. The signed control rebuilt
 from −17 to −25 mm in the opposite direction. Standalone Fusion length and
 angle literals can remain native spreadsheet expressions when they match the
 stored dimension. Formula-driven definitions with unresolved references and
-the opaque source data remain in the Kit carrier. After a native edit and
-save, Kit currently re-imports the original carrier values instead of the
-changed depth and shape.
+the opaque source data remain in the Kit carrier.
+
+When FreeCAD saves a supported depth edit, Kit checks the original sketch and
+feature identities, the spreadsheet literal, the evaluated length, and the
+attached cylinder. It restores the edited depth and recomputes the neutral
+B-rep and body measures under the original Fusion identities. The original
+Fusion archive remains available as source evidence. Four saved native edits
+verified positive, negative, fractional, and sign-changing depths. A second
+edit and save verified re-exporting the 25 mm result and re-importing the
+30 mm result. Unrecomputed saves, changed profiles or directions, broken
+bindings, stale shapes, and additional solids report a readback conflict.
+Unchanged native saves keep the original neutral document even when FreeCAD
+rewrites the B-rep bytes.
 
 For verified part histories with independent active solid creators, Kit also
 reconstructs the saved Extrude bodies from the profile and distance controls.

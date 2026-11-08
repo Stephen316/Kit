@@ -70,6 +70,7 @@ from convert.adapters.freecad.Archive import (
     MANIFEST_ENTRY as ManifestEntry,
     NATIVE_DOCUMENT_SHA256_ATTRIBUTE as KNativeDocHashAttr,
     NativeBrepKey,
+    ReadZipManifest,
     MAX_ENTRY_SIZE as MaxEntrySize,
     MAX_EXTERNAL_FILES as MaxOuterFiles,
     MAX_TOTAL_SIZE as MaxTotalSize,
@@ -104,6 +105,7 @@ from convert.adapters.freecad.Protocol import (
     MATE_WRITE_KINDS as MateWriteKinds,
     XML_TRUE_VALUES as XmlTrueValues,
 )
+from convert.adapters.freecad.ReconcileEdit import ReconcileEdit
 
 # shared empty set keeps parameter defaults free of repeated constructor calls
 KNoNativeBreps: frozenset[NativeBrepKey] = frozenset()
@@ -2315,7 +2317,11 @@ def ReadSource(Source: Source, Options: ReadOptions | None = None) -> CadDoc:
     DataValue = SourceBytes(Source)
     Native = False
     try:
-        Value = ExtractManifestFromFcstd(DataValue)
+        Archive, Members = ValidatedArchiveMembers(DataValue)
+        with Archive:
+            RootValue, _ = ValidatedDocXml(Archive, Members)
+            Value = ReadZipManifest(Archive, Members, RootValue)
+            DocValue = ReconcileEdit(ManifestDoc(Value), RootValue, Archive, Members)
     except ValueError as ErrorInfo:
         if str(ErrorInfo) != "FCStd archive has no embedded Kit interchange document":
             raise FreeCadAdapterA(str(ErrorInfo)) from ErrorInfo
@@ -2324,8 +2330,6 @@ def ReadSource(Source: Source, Options: ReadOptions | None = None) -> CadDoc:
         except (NativeFreeCadError, TypeError, ValueError) as NativeError:
             raise FreeCadAdapterA(str(NativeError)) from NativeError
         Native = True
-    else:
-        DocValue = ManifestDoc(Value)
     if Native:
         DocValue = AnnotateNative(DocValue)
     DocValue = Replace(

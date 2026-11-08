@@ -33,7 +33,7 @@ from convert.adapters.freecad.Brep import (
     proven_ascii_brep as ProvenAsciiBrep,
     triangle_mesh_brep as TriangleMeshBrep,
 )
-from convert.adapters.freecad.ArchiveEditPlan import ReadArchiveEdit
+from convert.adapters.freecad.ArchiveEditPlan import KEditableBinding, ReadArchiveEdit
 from convert.adapters.freecad.EditableExt import EditExtrude
 from convert.adapters.freecad.Format import FORMAT_ID as FormatId
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
@@ -7996,6 +7996,10 @@ def SetOuterMut(Context: DocContext, Features: DocFeatures) -> None:
             ),
         ]
     )
+    if Features.EditableFeatureId:
+        Context.MetaObject.properties.append(
+            StringProp(KEditableBinding, Features.EditableFeatureId, Dynamic=True)
+        )
 
 
 # this definition exists because replayed external links must use newly written archive paths
@@ -8343,37 +8347,40 @@ def CanonicalJson(Value: Mapping[str, object]) -> bytes:
     ).encode("utf-8")
 
 
-# this definition exists because focused behavior needs one stable owner
+# native edit readback and manifest extraction share one validated document tree
+def ReadZipManifest(
+    Archive: Zipfile.ZipFile,
+    Members: Mapping[str, Zipfile.ZipInfo],
+    RootValue: XmlTree.Element,
+) -> dict[str, object]:
+    XmlManifest = DocXmlManifest(RootValue)
+    if KManifestEntry not in Members:
+        if XmlManifest is None:
+            raise ValueError("FCStd archive has no embedded Kit interchange document")
+        return ManifestMapping(XmlManifest)
+    try:
+        RawManifest = Archive.read(Members[KManifestEntry])
+    except (
+        OSError,
+        RuntimeError,
+        NotImplementedError,
+        Zipfile.BadZipFile,
+    ) as ErrorInfo:
+        raise ValueError("embedded Kit interchange document is corrupt") from ErrorInfo
+    Manifest = ManifestMapping(RawManifest)
+    if XmlManifest is not None:
+        Secondary = ManifestMapping(XmlManifest)
+        if CanonicalJson(Manifest) != CanonicalJson(Secondary):
+            raise ValueError("embedded Kit interchange document copies do not match")
+    return Manifest
+
+
+# callers inspecting the source snapshot still use the same archive validation
 def ExtractManifest(DataValue: bytes) -> dict[str, object]:
     Archive, Members = Validated(DataValue)
     with Archive:
         RootValue, _ = ValidatedDocXml(Archive, Members)
-        XmlManifest = DocXmlManifest(RootValue)
-        if KManifestEntry not in Members:
-            if XmlManifest is None:
-                raise ValueError(
-                    "FCStd archive has no embedded Kit interchange document"
-                )
-            return ManifestMapping(XmlManifest)
-        try:
-            RawManifest = Archive.read(Members[KManifestEntry])
-        except (
-            OSError,
-            RuntimeError,
-            NotImplementedError,
-            Zipfile.BadZipFile,
-        ) as ErrorInfo:
-            raise ValueError(
-                "embedded Kit interchange document is corrupt"
-            ) from ErrorInfo
-        Manifest = ManifestMapping(RawManifest)
-        if XmlManifest is not None:
-            Secondary = ManifestMapping(XmlManifest)
-            if CanonicalJson(Manifest) != CanonicalJson(Secondary):
-                raise ValueError(
-                    "embedded Kit interchange document copies do not match"
-                )
-        return Manifest
+        return ReadZipManifest(Archive, Members, RootValue)
 
 
 # this binding exists because shared behavior needs one stable value

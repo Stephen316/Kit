@@ -49,6 +49,7 @@ for depth in (None, os.environ['KIT_ORACLE_DEPTH']):
                and getattr(obj, 'Visibility', True) and obj.Shape.Solids]
     assert visible == [extrusion] and shape.isValid() and len(shape.Solids) == 1
     print('KIT_FUSION_EDIT', shape.Volume, shape.Area, shape.Solids[0].CenterOfMass.z)
+doc.saveAs(os.environ['KIT_ORACLE_SAVED'])
 App.closeDocument(doc.Name)
 """
 
@@ -138,6 +139,7 @@ def TestNativeEdit(
     TmpPath: FilePath, SampleName: str, EditText: str, SignValue: float
 ) -> None:
     Output = ResolveTemp(TmpPath / "editable.FCStd")
+    Saved = ResolveTemp(TmpPath / "edited.FCStd")
     Document = OpenDocument(
         KStudyPath / "extents-f0f33a9a605f" / f"{SampleName}.f3d", strict=False
     )
@@ -148,6 +150,7 @@ def TestNativeEdit(
             **Environment,
             "KIT_ORACLE_PATH": str(Output),
             "KIT_ORACLE_DEPTH": EditText,
+            "KIT_ORACLE_SAVED": str(Saved),
         },
         check=True,
         capture_output=True,
@@ -165,3 +168,6 @@ def TestNativeEdit(
     assert After == Pytest.approx(
         (2500.0 * HalfTurn, 700.0 * HalfTurn, 12.5 * SignValue)
     )
+    Readback = OpenDocument(Saved)
+    assert Readback.parameters[0].value.value == 2.5 * SignValue
+    assert Readback.bodies[0].topology.volume == Pytest.approx(After[0])
