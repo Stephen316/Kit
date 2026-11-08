@@ -38,13 +38,22 @@ def CheckMultipleDatums() -> None:
             OffsetParameterId="angle_extra",
         ),
     )
+    OffsetScalar, OffsetExtra = Offset.parameters
+    AngleScalar, AngleExtra = Angle.parameters
     SecondParams = tuple(
         Replace(Param, id=f"angle_{Param.id}", owner_id=Extra.id)
-        for Param in Angle.parameters
+        for Param in (
+            Replace(AngleScalar, expression=Expression("90 deg")),
+            AngleExtra,
+        )
     )
     Document = Replace(
         Offset,
-        parameters=(*Offset.parameters, *SecondParams),
+        parameters=(
+            Replace(OffsetScalar, expression=Expression("-2.5 cm")),
+            OffsetExtra,
+            *SecondParams,
+        ),
         support_planes=(
             *Offset.support_planes,
             Replace(Angle.support_planes[0], id="second_plane"),
@@ -70,6 +79,13 @@ def CheckMultipleDatums() -> None:
     AliasProp = Meta.find("./Property[@name='ParameterAliasesJSON']/String")
     assert AliasProp is not None
     Aliases = LoadJson(AliasProp.get("value", ""))
+    Cells = {
+        Value.get("alias"): Value.get("content")
+        for Value in Root.findall("./ObjectData/Object[@name='Parameters']//Cell")
+        if Value.get("alias")
+    }
+    assert Cells[Aliases["scalar"]] == "=-2.5 cm"
+    assert Cells[Aliases["angle_scalar"]] == "=90 deg"
     Timeline = Root.findall(
         f"./ObjectData/Object[@name='{KDatumGroup}']/Properties/"
         "Property[@name='Group']/LinkList/Link"
@@ -111,6 +127,10 @@ def CheckUnsupportedDatum() -> None:
             Extra,
         ),
     )
+    Stale = Replace(
+        Document,
+        parameters=(Replace(Scalar, expression=Expression("9 mm")), Extra),
+    )
     Unproven = Replace(
         Document, source=Replace(Document.source, format_id="fusion.f3d")
     )
@@ -119,7 +139,7 @@ def CheckUnsupportedDatum() -> None:
         Document,
         feature_timeline=(Replace(Step, attributes={"fusion.rolled_back": True}),),
     )
-    for Value in (Formula, Unproven, Rolled):
+    for Value in (Formula, Stale, Unproven, Rolled):
         assert not ReadDatumPlan(Value)
         Editable: set[str] = set()
         Data, _ = BuildDocXmlMut(Value.to_dict(), "", "", EditableFeatures=Editable)

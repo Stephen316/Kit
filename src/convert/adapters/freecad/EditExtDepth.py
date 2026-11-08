@@ -15,11 +15,14 @@ from interchange.records.RecordParameter import Parameter
 
 
 # dependent formulas cannot be replaced with writable scalar spreadsheet cells
-def IsLiteralParam(Param: Parameter) -> bool:
+def IsLiteralParam(Param: Parameter, *, AllowKit: bool = False) -> bool:
     Expression = Param.expression
     Value = Param.value
     return Expression is None or (
-        Expression.language in {"fusion", "freecad"}
+        (
+            Expression.language in {"fusion", "freecad"}
+            or (AllowKit and Expression.language == "kit")
+        )
         and not Expression.parameter_ids
         and IsLiteralQty(Expression.source, Value.kind, Value.value, Value.unit)
     )

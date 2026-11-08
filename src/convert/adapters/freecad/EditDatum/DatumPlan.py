@@ -76,7 +76,10 @@ def ReadDatumPlan(DocValue: CadDocument) -> dict[str, BoundConstructionPlane]:
             or Plane.offset_parameter_id is not None
             or Plane.support_selection_id is not None
             or "freecad" in Plane.attributes
-            or not all(IsLiteralParam(Parameters[Identity]) for Identity in BoundIds)
+            or not all(
+                IsLiteralParam(Parameters[Identity], AllowKit=True)
+                for Identity in BoundIds
+            )
         ):
             return {}
         try:

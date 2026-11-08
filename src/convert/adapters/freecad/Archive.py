@@ -1159,7 +1159,7 @@ def NativeExpr(Instance: ParamCatalog, ItemValue: Mapping[str, object]) -> str |
     Language = TextAction(Expression.get("language"), "kit").casefold()
     if Language == "freecad":
         return Source
-    if Language == "fusion":
+    if Language in {"fusion", "kit"}:
         ValueData = ItemValue.get("value")
         if (
             IsPayloadMap(ValueData)
@@ -1172,6 +1172,7 @@ def NativeExpr(Instance: ParamCatalog, ItemValue: Mapping[str, object]) -> str |
             )
         ):
             return Source
+    if Language == "fusion":
         return Instance.FusionExpressions.get(TextAction(ItemValue.get("id")))
     if Language != "kit":
         return None
