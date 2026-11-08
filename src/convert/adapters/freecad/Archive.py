@@ -6392,6 +6392,8 @@ class DocFeatures:
     EditableRevId: str = ""
     EditablePlaneSteps: tuple[str, ...] = ()
     RevBinding: str = KRevBinding
+    EditableBodySeed: str = ""
+    BodyAxisTarget: tuple[str, str, str] | None = None
 
 
 # this definition exists because native replay objects need stable source ordering
@@ -7802,6 +7804,11 @@ def BodyMembers(
         FeatureId = Pending.pop()
         if FeatureId in MemberIds or FeatureId not in FeatureById:
             continue
+        if (
+            FeatureId == Features.EditableBodySeed
+            and FinalFeatureId == Features.EditableRevId
+        ):
+            continue
         MemberIds.add(FeatureId)
         Pending.extend(
             TextAction(Value)
@@ -7886,11 +7893,16 @@ def SelectTargets(
     Context: DocContext,
     TargetById: Mapping[str, str],
     Selection: Mapping[str, object],
+    BodyAxisTarget: tuple[str, str, str] | None = None,
 ) -> tuple[list[tuple[str, str]], list[str]]:
     Targets: list[tuple[str, str]] = []
     EntityKinds: list[str] = []
     for PathItem in Items(Selection.get("path", [])):
         EntityId = TextAction(PathItem.get("entity_id"))
+        if BodyAxisTarget is not None and EntityId == BodyAxisTarget[0]:
+            Targets.append((BodyAxisTarget[1], BodyAxisTarget[2]))
+            EntityKinds.append(TextAction(PathItem.get("entity_kind")))
+            continue
         Target = TargetById.get(EntityId, Context.NativeTargets.get(EntityId, ""))
         if not Target:
             continue
@@ -7910,7 +7922,9 @@ def AddSelectionMut(
     ObjValue = Context.Graph.add(
         "App::FeaturePython", Selection.get("name", SelectionId), "Selection"
     )
-    Targets, EntityKinds = SelectTargets(Context, TargetById, Selection)
+    Targets, EntityKinds = SelectTargets(
+        Context, TargetById, Selection, Features.BodyAxisTarget
+    )
     ObjValue.properties.extend(
         [
             StringProp("Label", Selection.get("name", SelectionId)),
@@ -8559,7 +8573,15 @@ def BuildDocXmlMut(
     AddPlanesMut(Context, Geometry)
     AddSketchesMut(Context, Geometry)
     AddEntryDataMut(Context, Features)
-    AddFeaturesMut(Context, Geometry, Features, EditPlan, ShapeData)
+    from convert.adapters.freecad.EditBodyRev.BodyRevEmit import HasBodyRevMut
+
+    if not (
+        EditableFeatures is not None
+        and not Context.NativeValues
+        and EditPlan is None
+        and HasBodyRevMut(Context, Geometry, Features, NeutralDoc)
+    ):
+        AddFeaturesMut(Context, Geometry, Features, EditPlan, ShapeData)
     AddBodiesMut(Context, Geometry, Features)
     AddSelectMut(Context, Geometry, Features)
     AddConfigsMut(Context, Features)
@@ -8582,6 +8604,7 @@ def BuildDocXmlMut(
             Value
             for Value in (
                 Features.EditableFeatureId,
+                Features.EditableBodySeed,
                 Features.EditableRevId,
                 *Features.EditablePlaneSteps,
             )

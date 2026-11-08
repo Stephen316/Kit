@@ -8,6 +8,8 @@
 
 from typing import Literal
 
+from convert.adapters.freecad.EditRev.RevPhaseExpr import RevMeanExpr, RevPhaseExpr
+
 
 # native positive sweep follows the half plane currently occupied by the profile
 def AxisAngleExpr(
@@ -21,24 +23,6 @@ def AxisAngleExpr(
     Guide = f"{AxisSketch}.Geometry[{AxisIndex}]"
     Start = f"({AxisSketch}.Placement * {Guide}.StartPoint)"
     EndValue = f"({AxisSketch}.Placement * {Guide}.EndPoint)"
-    Corners = " + ".join(
-        f"{Profile}.Geometry[{Index}].{Endpoint}"
-        for Index in ProfileLines
-        for Endpoint in ("StartPoint", "EndPoint")
-    )
-    Count = 2 * len(ProfileLines)
-    Pose = f"{Profile}.Placement"
-    if MeanStyle == "legacy":
-        Point = f"({Pose} * (({Corners}) / {Count}))"
-    elif MeanStyle == "saved":
-        Point = f"(({Pose} * ({Corners})) / {Count})"
-    else:
-        Point = f"({Pose}.Base + ({Pose}.Rotation * ({Corners})) / {Count})"
-    Normal = f"({Profile}.Placement.Rotation * vector(0; 0; 1))"
     Along = f"({EndValue} - {Start})"
-    Radial = f"({Point} - {Start})"
-    Tilt = f"abs(vdot({Along}; {Normal}))"
-    Offset = f"abs(vdot({Radial}; {Normal}))"
-    Sense = f"vdot(vcross({Along}; {Radial}); {Normal})"
-    Signed = f"{Sense} > 0 ? {Reference} : ({Sense} < 0 ? -{Reference} : 0 deg)"
-    return f"{Tilt} > 1e-8 ? 0 deg : ({Offset} > 1e-8 ? 0 deg : ({Signed}))"
+    Point = RevMeanExpr(Profile, ProfileLines, MeanStyle)
+    return RevPhaseExpr(Along, Start, Point, Profile, Reference)

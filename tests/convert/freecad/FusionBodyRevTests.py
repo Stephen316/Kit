@@ -1,0 +1,154 @@
+# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
+#
+# This SPDX license identifier and copyright notice must not be
+# removed, altered, or obscured. Doing so is a material breach of
+# the PolyForm Strict License 1.0.0 and voids all licenses granted
+# to you under it immediately and permanently.
+
+from os import environ as Environment
+from pathlib import Path as FilePath
+from subprocess import run as RunProcess
+from xml.etree.ElementTree import fromstring as ParseXml
+from zipfile import ZipFile
+
+import pytest as Pytest
+
+from convert import open_document as OpenDocument, write_document as WriteDocument
+from convert.Security.PathBoundary import ResolveTemp
+from convert.Security.ProgramBoundary import GetFreecadPath
+from convert.adapters.freecad.EditBodyRev.BodyRevBinding import KBodyRevBinding
+from interchange.enums.EnumDocument import Capability
+from tests.convert.api.ApiFusionAssemblyTests import KRequiresCodec, KStudyPath
+
+# each selected rim belongs to an independently editable seed solid
+KBodyCases = (
+    ("revolveaxes-a83b542c4a07/brep_edge.f3d", "Edge11", 750.0),
+    ("revolveaxes-14700158dba9/brep_edge_offset_x.f3d", "Edge9", 1110.0),
+)
+
+# the optional executable keeps native recomputation separate from production conversion
+KOraclePath = GetFreecadPath()
+
+# native checks distinguish cached edge order and sweep phase from volume alone
+KBodyProbe = """
+import os
+import FreeCAD as App
+
+def measure(doc):
+    (seed,) = [obj for obj in doc.Objects if obj.TypeId == 'Part::Extrusion']
+    (rev,) = [obj for obj in doc.Objects if obj.TypeId == 'Part::Revolution']
+    assert rev.AxisLink == (seed, [os.environ['KIT_AXIS_EDGE']])
+    edge = seed.getSubObject(rev.AxisLink[1][0])
+    assert edge is not None and len(edge.Vertexes) == 2
+    assert abs((edge.Vertexes[1].Point - edge.Vertexes[0].Point).dot(App.Vector(0,0,1))) < 1e-8
+    for obj in (seed, rev):
+        assert obj.Visibility and 'Invalid' not in obj.State
+        assert obj.Shape.isValid() and obj.Shape.isClosed() and len(obj.Shape.Solids) == 1
+    print('KIT_BODY_REV', seed.Shape.Volume, rev.Shape.Volume, *rev.Shape.CenterOfMass)
+    return rev
+
+doc = App.openDocument(os.environ['KIT_ORACLE_PATH'])
+measure(doc)
+doc.recompute()
+rev = measure(doc)
+assert abs(rev.Angle + 73) < 1e-8
+sheet = doc.getObject('Parameters')
+sheet.set(sheet.getCellFromAlias('fusion_parameter_251'), '=-3 mm')
+sheet.set(sheet.getCellFromAlias('fusion_parameter_355'), '=-41 deg')
+doc.recompute()
+assert abs(rev.Angle + 41) < 1e-8
+measure(doc)
+doc.saveAs(os.environ['KIT_ORACLE_SAVED'])
+App.closeDocument(doc.Name)
+doc = App.openDocument(os.environ['KIT_ORACLE_SAVED'])
+doc.recompute()
+measure(doc)
+App.closeDocument(doc.Name)
+"""
+
+
+# native writer binds both feature caches and retains the original neutral edge path
+@KRequiresCodec
+@Pytest.mark.parametrize(("Capture", "EdgeName", "SeedVolume"), KBodyCases)
+def TestLiveBodyRev(
+    TmpPath: FilePath, Capture: str, EdgeName: str, SeedVolume: float
+) -> None:
+    Source = OpenDocument(KStudyPath / Capture, strict=False)
+    Output = TmpPath / "linked.FCStd"
+    Result = WriteDocument(Source, Output)
+    assert (
+        Result.application_usable
+        and Capability.PARAMETRIC_HISTORY in Result.native_capabilities
+    )
+    assert Source.bodies[0].topology is not None
+    assert Source.bodies[0].topology.volume == Pytest.approx(SeedVolume)
+    with ZipFile(Output) as Archive:
+        Root = ParseXml(Archive.read("Document.xml"))
+        (Extrusion,) = Root.findall("./Objects/Object[@type='Part::Extrusion']")
+        (Revolution,) = Root.findall("./Objects/Object[@type='Part::Revolution']")
+        SeedName, RevName = Extrusion.attrib["name"], Revolution.attrib["name"]
+        AxisLink = Root.find(
+            f"./ObjectData/Object[@name='{RevName}']/Properties/Property[@name='AxisLink']/LinkSub"
+        )
+        assert AxisLink is not None and AxisLink.attrib == {
+            "value": SeedName,
+            "count": "1",
+        }
+        assert AxisLink[0].attrib == {"value": EdgeName}
+        assert any(
+            Value.attrib == {"obj": SeedName, "sub": EdgeName}
+            for Value in Root.findall(".//Property[@name='Selection']/LinkSubList/Link")
+        )
+        Binding = Root.find(
+            f"./ObjectData/Object[@name='KitMetadata']/Properties/Property[@name='{KBodyRevBinding}']/String"
+        )
+        assert (
+            Binding is not None
+            and Binding.get("value") == Source.feature_timeline[-1].id
+        )
+        assert {Name for Name in Archive.namelist() if Name.endswith(".Shape.brp")} == {
+            f"{SeedName}.Shape.brp",
+            f"{RevName}.Shape.brp",
+        }
+    assert OpenDocument(Output) == Source
+
+
+# native save and reopen retain two solids and the correct phase after signed edits
+@KRequiresCodec
+@Pytest.mark.skipif(
+    not KOraclePath.is_file(), reason="KIT_FREECAD_ORACLE is unavailable"
+)
+@Pytest.mark.parametrize(("Capture", "EdgeName", "SeedVolume"), KBodyCases)
+def TestBodyNative(
+    TmpPath: FilePath, Capture: str, EdgeName: str, SeedVolume: float
+) -> None:
+    Source = OpenDocument(KStudyPath / Capture, strict=False)
+    Output = ResolveTemp(TmpPath / "linked.FCStd")
+    Saved = ResolveTemp(TmpPath / "linked_saved.FCStd")
+    _ = WriteDocument(Source, Output)
+    Result = RunProcess(
+        [str(KOraclePath), "-c", f"exec({KBodyProbe!r})"],
+        env={
+            **Environment,
+            "KIT_ORACLE_PATH": str(Output),
+            "KIT_ORACLE_SAVED": str(Saved),
+            "KIT_AXIS_EDGE": EdgeName,
+        },
+        check=True,
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    Loaded, Rebuilt, Edited, Reopened = (
+        tuple(map(float, Value.split()[1:]))
+        for Value in Result.stdout.splitlines()
+        if Value.startswith("KIT_BODY_REV ")
+    )
+    assert Loaded[:2] == Pytest.approx((SeedVolume, 2446.25347959525))
+    assert Loaded[-1] == Pytest.approx(6.91162991742)
+    assert Rebuilt == Pytest.approx(Loaded)
+    assert Edited[:2] == Pytest.approx((SeedVolume * 3 / 5, Loaded[1] * 41 / 73))
+    assert Edited[-1] < 0
+    assert Reopened == Pytest.approx(Edited)
+    assert OpenDocument(Saved) == Source

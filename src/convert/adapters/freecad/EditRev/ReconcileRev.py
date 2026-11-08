@@ -13,6 +13,8 @@ from zipfile import ZipFile, ZipInfo
 from convert.adapters.freecad.EditableRev import ReadEditRevolve
 from convert.adapters.freecad.EditAxisRev.AxisRevBinding import KAxisRevBinding
 from convert.adapters.freecad.EditAxisRev.ReconcileAxis import ReconcileAxis
+from convert.adapters.freecad.EditBodyRev.BodyRevBinding import KBodyRevBinding
+from convert.adapters.freecad.EditBodyRev.BodyRevPlan import ReadBodyRev
 from convert.adapters.freecad.EditBinding import HasLegacyEdit, ReadEditBinding
 from convert.adapters.freecad.EditRead.Revolve.ReadRevFields import ReadRevFields
 from convert.adapters.freecad.EditRev.ApplyRevEdit import ApplyRevEdit
@@ -32,7 +34,20 @@ def ReconcileRev(
 ) -> CadDocument:
     Binding = ReadEditBinding(RootValue, KRevBinding)
     AxisBinding = ReadEditBinding(RootValue, KAxisRevBinding)
+    BodyBinding = ReadEditBinding(RootValue, KBodyRevBinding)
     Feature = DocValue.feature_timeline[-1] if DocValue.feature_timeline else None
+    if BodyBinding is not None:
+        if (
+            Binding is not None
+            or AxisBinding is not None
+            or Feature is None
+            or BodyBinding != Feature.id
+            or ReadBodyRev(DocValue, Feature) is None
+        ):
+            raise ValueError(
+                "FreeCAD editable body axis binding disagrees with its source"
+            )
+        return DocValue
     if AxisBinding is not None:
         if Binding is not None:
             raise ValueError(

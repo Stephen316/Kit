@@ -6,6 +6,7 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from dataclasses import replace as Replace
 from io import BytesIO
 from math import pi as HalfTurn, radians as Radians
 from os import environ as Environment
@@ -158,11 +159,19 @@ def TestNativeRev(
     assert OpenDocument(Output) == DocValue
 
 
-# the resolved body edge solid remains native geometry until linked history is supported
+# a broken neutral edge identity can retain geometry without claiming live history
 @KRequiresCodec
 def TestEdgeRevCache(TmpPath: FilePath) -> None:
     DocValue = OpenDocument(
         KStudyPath / "revolveaxes-a83b542c4a07" / "brep_edge.f3d", strict=False
+    )
+    (Axis,) = DocValue.selections
+    BodyPath, EdgePath = Axis.path
+    DocValue = Replace(
+        DocValue,
+        selections=(
+            Replace(Axis, path=(BodyPath, Replace(EdgePath, entity_id="missing-edge"))),
+        ),
     )
     Output = TmpPath / "brep_edge.FCStd"
     Result = WriteDocument(DocValue, Output)

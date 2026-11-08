@@ -233,9 +233,12 @@ Kit resolves those names in the explicitly mapped ASM history member and
 uses the original sketch tags to identify the same edge in the rebuilt
 Extrude. The saved line context independently checks the ordered endpoints.
 Both tracked captures retain the original Extrude and Revolve, the typed
-edge selection, and two rebuilt solids. FreeCAD 1.1.3 opened both exports
-with matching solid topology, volume, area, bounds, and centers of mass.
-Editable FreeCAD transfer of the linked history is still open.
+edge selection, and two rebuilt solids. Qualified linked histories also
+export as live FreeCAD Extrude and Revolve features. The generated prism
+cache uses the same edge order as FreeCAD's rebuild, so the native axis link
+selects the right edge on first open. Both solids rebuild after changes to
+the signed depth, angle, and either sketch. Kit reads the embedded original
+Fusion snapshot from these edited body-axis files.
 
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body

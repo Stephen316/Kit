@@ -42,6 +42,7 @@ def MakeRevProps(
     AngleDeg: float,
     Symmetric: bool = False,
     AxisSketch: str = "",
+    AxisSub: str = "Edge1",
 ) -> list[Element]:
     AxisLink = RevolveProp(
         "AxisLink",
@@ -50,7 +51,7 @@ def MakeRevProps(
         {"value": AxisSketch, "count": "1" if AxisSketch else "0"},
     )
     if AxisSketch:
-        _ = SubElement(AxisLink[0], "Sub", {"value": "Edge1"})
+        _ = SubElement(AxisLink[0], "Sub", {"value": AxisSub})
     return [
         RevolveProp(
             "Angle",

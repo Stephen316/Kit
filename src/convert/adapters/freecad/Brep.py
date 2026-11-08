@@ -9,7 +9,7 @@
 from __future__ import annotations as Annotations
 from collections import deque as Deque
 from collections.abc import Sequence
-from dataclasses import dataclass as Dataclass
+from dataclasses import dataclass as Dataclass, replace as Replace
 import math as MathValue
 from typing import (
     Mapping,
@@ -2727,8 +2727,32 @@ def AddBodiesMut(
     return RootKey, False
 
 
+# native subelement indices depend on the traversal of existing topology children
+def OrderShapesMut(
+    Shapes: list[ShapeRecord], ChildOrders: Mapping[str, tuple[int, ...]]
+) -> None:
+    Remaining = set(ChildOrders)
+    for Index, Shape in enumerate(Shapes):
+        Order = ChildOrders.get(Shape.key)
+        if Order is None:
+            continue
+        if sorted(Order) != list(range(len(Shape.children))):
+            Unsupported(f"native topology order does not preserve {Shape.key} children")
+        Shapes[Index] = Replace(
+            Shape, children=tuple(Shape.children[Child] for Child in Order)
+        )
+        Remaining.remove(Shape.key)
+    if Remaining:
+        Unsupported("native topology order references an unknown shape")
+
+
 # this definition exists because focused behavior needs one stable owner
-def BrepModelBrep(Model: BrepModel, Tolerance: float = 1e-07) -> bytes:
+def BrepModelBrep(
+    Model: BrepModel,
+    Tolerance: float = 1e-07,
+    *,
+    ChildOrders: Mapping[str, tuple[int, ...]] | None = None,
+) -> bytes:
     ValidateBrep(Model, Tolerance)
     State = BuildBrepState(Model, Tolerance)
     Lines = list(State.HeaderLines)
@@ -2743,6 +2767,8 @@ def BrepModelBrep(Model: BrepModel, Tolerance: float = 1e-07) -> bytes:
     AddShellRecsMut(Shapes, Model, State)
     RegionRoots = AddRegionsMut(Shapes, Model, State)
     RootValue = AddBodiesMut(Shapes, Model, RegionRoots)
+    if ChildOrders:
+        OrderShapesMut(Shapes, ChildOrders)
     Lines.extend(ShapeLines(Shapes, RootValue))
     return ("\n".join(Lines) + "\n").encode("ascii")
 
