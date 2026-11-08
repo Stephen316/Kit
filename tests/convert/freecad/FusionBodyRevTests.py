@@ -10,6 +10,7 @@ from os import environ as Environment
 from pathlib import Path as FilePath
 from subprocess import run as RunProcess
 from xml.etree.ElementTree import fromstring as ParseXml
+from xml.etree.ElementTree import tostring as WriteXml
 from zipfile import ZipFile
 
 import pytest as Pytest
@@ -18,6 +19,8 @@ from convert import open_document as OpenDocument, write_document as WriteDocume
 from convert.Security.PathBoundary import ResolveTemp
 from convert.Security.ProgramBoundary import GetFreecadPath
 from convert.adapters.freecad.EditBodyRev.BodyRevBinding import KBodyRevBinding
+from convert.adapters.freecad.EditBodyRev.BodyRevPlan import ReadBodyRev
+from convert.adapters.freecad.Adapter import FreeCadAdapterA
 from interchange.enums.EnumDocument import Capability
 from tests.convert.api.ApiFusionAssemblyTests import KRequiresCodec, KStudyPath
 
@@ -114,6 +117,29 @@ def TestLiveBodyRev(
     assert OpenDocument(Output) == Source
 
 
+# a generated solid cannot validate a substituted edge on the same extrusion
+@KRequiresCodec
+def TestWrongBodyEdge(TmpPath: FilePath) -> None:
+    Source = OpenDocument(KStudyPath / KBodyCases[0][0], strict=False)
+    Output = TmpPath / "linked.FCStd"
+    Wrong = TmpPath / "wrong.FCStd"
+    WriteDocument(Source, Output)
+    with ZipFile(Output) as Archive, ZipFile(Wrong, "w") as Mutated:
+        Root = ParseXml(Archive.read("Document.xml"))
+        AxisLink = Root.find(".//Property[@name='AxisLink']/LinkSub/Sub")
+        assert AxisLink is not None and AxisLink.get("value") == "Edge11"
+        AxisLink.set("value", "Edge9")
+        for Member in Archive.namelist():
+            Data = (
+                WriteXml(Root, encoding="utf-8")
+                if Member == "Document.xml"
+                else Archive.read(Member)
+            )
+            Mutated.writestr(Member, Data)
+    with Pytest.raises(FreeCadAdapterA, match="axis"):
+        OpenDocument(Wrong)
+
+
 # native save and reopen retain two solids and the correct phase after signed edits
 @KRequiresCodec
 @Pytest.mark.skipif(
@@ -151,4 +177,16 @@ def TestBodyNative(
     assert Edited[:2] == Pytest.approx((SeedVolume * 3 / 5, Loaded[1] * 41 / 73))
     assert Edited[-1] < 0
     assert Reopened == Pytest.approx(Edited)
-    assert OpenDocument(Saved) == Source
+    Readback = OpenDocument(Saved)
+    Plan = ReadBodyRev(Readback, Readback.feature_timeline[-1])
+    assert Plan is not None
+    assert Plan.Extrude.DistanceMm == -3.0 and Plan.Revolve.AngleDeg == -41.0
+    assert tuple(Body.id for Body in Readback.bodies) == tuple(
+        Body.id for Body in Source.bodies
+    )
+    assert tuple(Body.topology.volume for Body in Readback.bodies) == Pytest.approx(
+        Edited[:2]
+    )
+    ReExport = TmpPath / "readback.FCStd"
+    assert WriteDocument(Readback, ReExport).application_usable
+    assert OpenDocument(ReExport) == Readback

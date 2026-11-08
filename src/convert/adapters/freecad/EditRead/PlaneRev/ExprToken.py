@@ -24,7 +24,7 @@ KNameText = r"[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*(?:\[[0-9]+\])?)*
 
 # native path references and numbers need distinct lexical identities
 KTokenPattern = CompilePattern(
-    rf"[ \t\r\n]*(?:(?P<Number>{KNumberText})|(?P<Names>{KNameText})|(?P<Punct><=|>=|[()+*/%<>;?\-:]))"
+    rf"[ \t\r\n]*(?:(?P<Number>{KNumberText})|(?P<Names>{KNameText})|(?P<Literal><<Reversed>>)|(?P<Punct><=|>=|==|[()+*/%<>;?\-:]))"
 )
 
 # operand tokens keep literal text until the parser consumes its unit

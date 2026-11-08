@@ -10,6 +10,10 @@
 from math import isfinite as IsFinite
 
 from convert.adapters.freecad.EditShape.CylinderRims import KPositionTolerance
+from convert.adapters.freecad.EditShape.Prism.PrismAxisLink import (
+    CheckPrismLink,
+    KPrismLink,
+)
 from convert.adapters.freecad.EditShape.Prism.PrismExpected import ExpectedShape
 from convert.adapters.freecad.EditShape.Prism.PrismFaces import CheckFaceMut
 from convert.adapters.freecad.EditShape.Prism.PrismProof import PrismProof
@@ -28,6 +32,7 @@ def IsEditPrism(
     Frame: Transform,
     Profile: tuple[PlaneVector, ...],
     DistanceMm: float,
+    Link: KPrismLink | None = None,
 ) -> bool:
     if (
         not ShapeData
@@ -40,6 +45,8 @@ def IsEditPrism(
     try:
         Expected = ExpectedShape(Frame, Profile, DistanceMm)
         RawValue = ReadPrismRaw(ShapeData, len(Profile))
+        if Link is not None:
+            CheckPrismLink(RawValue, Link)
         Proof = PrismProof(RawValue, Expected)
         RootPlace = RawValue.Place(RawValue.RootRef)
         (ShellRef,) = RawValue.Records[RawValue.RootRef.RecordA].Children

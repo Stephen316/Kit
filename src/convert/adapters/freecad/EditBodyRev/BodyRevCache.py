@@ -39,6 +39,7 @@ def BuildBodyCache(DocValue: CadDocument, Plan: BodyRevPlan) -> BodyRevCache | N
             Plan.SourceFrame,
             Plan.AxisEdgeId,
             Plan.AxisLineId,
+            Plan.Extrude.DistanceMm,
         )
         Alignment = DotVector(Order.Axis, Plan.Revolve.AxisDirection)
         if abs(abs(Alignment) - 1.0) > 1e-9:

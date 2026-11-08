@@ -29,6 +29,7 @@ KInfixPriority = {
     ">": 20,
     "<=": 20,
     ">=": 20,
+    "==": 20,
     "+": 30,
     "-": 30,
     "*": 40,
@@ -119,6 +120,8 @@ def ParseOperand(Parser: ExprParser, Depth: int) -> None:
     elif KindValue == "Names" and Parser.PeekText() == "(":
         ParseCall(Parser, TextValue, Depth)
     elif KindValue == "Names" and "." in TextValue:
+        Parser.EmitNode(TextValue)
+    elif KindValue == "Literal":
         Parser.EmitNode(TextValue)
     else:
         raise ValueError("invalid plane expression operand")

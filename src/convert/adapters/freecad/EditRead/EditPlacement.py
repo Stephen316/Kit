@@ -16,15 +16,8 @@ from interchange.geometry.models.Transform import Transform
 KEditFrameTol = 1e-9
 
 
-# agreeing placement representations rule out a hidden change in the saved profile frame
-def CheckEditFrame(
-    ObjectValue: NativeObject,
-    NameValue: str,
-    Expected: Transform,
-    Optional: bool = False,
-) -> None:
-    if Optional and NameValue not in ObjectValue.properties:
-        return
+# agreeing placement representations are required before exposing a native frame
+def ReadEditFrame(ObjectValue: NativeObject, NameValue: str) -> Transform:
     Placement = EditChild(
         ObjectValue, NameValue, "App::PropertyPlacement", "PropertyPlacement"
     )
@@ -41,8 +34,15 @@ def CheckEditFrame(
     if any(Field in Placement.attrib for Field in AxisKeys):
         Angle, *AxisValue = (EditFloat(Placement, Field) for Field in AxisKeys)
         HalfAngle = Angle * 0.5
+        AxisLength = Hypot(*AxisValue)
+        HalfSine = SineValue(HalfAngle)
+        if AxisLength == 0.0 and abs(HalfSine) > KEditFrameTol:
+            raise ValueError(
+                f"FreeCAD editable {ObjectValue.name}.{NameValue} rotation axis is invalid"
+            )
         FromAngle = tuple(
-            SineValue(HalfAngle) * Component for Component in AxisValue
+            HalfSine * (Component / AxisLength) if AxisLength else 0.0
+            for Component in AxisValue
         ) + (Cosine(HalfAngle),)
         if not any(
             all(
@@ -54,7 +54,21 @@ def CheckEditFrame(
             raise ValueError(
                 f"FreeCAD editable {ObjectValue.name}.{NameValue} placement values disagree"
             )
-    if not IsTransformNear(TransformA(Placement), Expected, KEditFrameTol):
+    return TransformA(Placement)
+
+
+# fixed support readers distinguish a valid frame from a change to the authored frame
+def CheckEditFrame(
+    ObjectValue: NativeObject,
+    NameValue: str,
+    Expected: Transform,
+    Optional: bool = False,
+) -> None:
+    if Optional and NameValue not in ObjectValue.properties:
+        return
+    if not IsTransformNear(
+        ReadEditFrame(ObjectValue, NameValue), Expected, KEditFrameTol
+    ):
         raise ValueError(
             f"FreeCAD editable {ObjectValue.name}.{NameValue} placement changed"
         )

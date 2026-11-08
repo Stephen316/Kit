@@ -44,6 +44,16 @@ KSketchObjExtra = {
         "Placement": "App::PropertyPlacement",
         "ShapeMaterial": "Materials::PropertyMaterial",
     },
+    "Part::Extrusion": {
+        "Placement": "App::PropertyPlacement",
+        "ShapeMaterial": "Materials::PropertyMaterial",
+        "DirLink": "App::PropertyLinkSub",
+        "FaceMakerClass": "App::PropertyString",
+        "FaceMakerMode": "App::PropertyEnumeration",
+        "InnerWireTaper": "App::PropertyEnumeration",
+        "TaperAngle": "App::PropertyAngle",
+        "TaperAngleRev": "App::PropertyAngle",
+    },
 }
 
 
@@ -70,6 +80,7 @@ def CheckExtensions(ObjectValue: NativeObject) -> None:
             "Sketcher::SketchObject",
             "Part::Feature",
             "Part::Revolution",
+            "Part::Extrusion",
         }
         or len(Transient) != 1
         or Transient[0].get("name") != "_ElementMapVersion"

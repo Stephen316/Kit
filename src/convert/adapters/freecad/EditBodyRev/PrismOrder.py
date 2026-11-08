@@ -9,11 +9,12 @@
 from dataclasses import dataclass as MakeDataClass
 
 from convert.geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
+from convert.geometry.Revolve.SweepVector import OffsetVector
 from interchange.brep.curves.BrepCurves import LineCurve
 from interchange.brep.topology.BrepModel import BrepModel
 from interchange.geometry.models.GeometryCurves import LineGeometry
 from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
+from interchange.geometry.models.Transform import KOriginZero, Transform
 from interchange.geometry.models.VectorSpace import SpaceVector
 
 
@@ -28,14 +29,15 @@ class PrismOrder:
 
 # native wall traversal follows the source wire when its authored slots already form a cycle
 def ReadWallOrder(
-    Model: BrepModel, SketchValue: Sketch, Frame: Transform
+    Model: BrepModel, SketchValue: Sketch, Frame: Transform, Negative: bool
 ) -> tuple[tuple[int, bool, str], ...]:
     (Profile,) = SketchValue.closed_profile_entity_ids
     Count = len(Profile)
     Vertices = {Value.id: Value.point for Value in Model.vertices}
+    Offset = Count if Negative else 0
     Pairs = tuple(
         (Vertices[Edge.start_vertex_id], Vertices[Edge.end_vertex_id])
-        for Edge in Model.edges[:Count]
+        for Edge in Model.edges[Offset : Offset + Count]
     )
     ByEnds = {frozenset(Pair): Index for Index, Pair in enumerate(Pairs)}
     if len(ByEnds) != Count:
@@ -74,9 +76,12 @@ def ReadPrismOrder(
     Frame: Transform,
     AxisEdgeId: str,
     AxisLineId: str,
+    DepthMm: float,
 ) -> PrismOrder:
-    Order = ReadWallOrder(Model, SketchValue, Frame)
+    Negative = DepthMm < 0.0
+    Order = ReadWallOrder(Model, SketchValue, Frame, Negative)
     Count = len(Order)
+    Offset = Count if Negative else 0
     (Shell,) = Model.shells
     if len(Shell.face_use_ids) != Count + 2 or len(Model.loops) != Count + 2:
         raise ValueError("FreeCAD linked extrusion is missing its wall or cap topology")
@@ -84,24 +89,34 @@ def ReadPrismOrder(
         (
             (Slot, Index)
             for Slot, (Index, _, Identity) in enumerate(Order, 1)
-            if Identity == AxisLineId and Model.edges[Index].id == AxisEdgeId
+            if Identity == AxisLineId and Model.edges[Offset + Index].id == AxisEdgeId
         ),
         None,
     )
     if Selected is None:
         raise ValueError("FreeCAD linked extrusion does not own the selected base edge")
     Slot, Index = Selected
-    Edge = Model.edges[Index]
-    Curve = Model.curves[Index]
-    Base = next(
-        Value.point for Value in Model.vertices if Value.id == Edge.end_vertex_id
-    )
+    Edge = Model.edges[Offset + Index]
+    Curve = Model.curves[Offset + Index]
+    EndId = Edge.start_vertex_id if Negative else Edge.end_vertex_id
+    Base = next(Value.point for Value in Model.vertices if Value.id == EndId)
     if not isinstance(Curve, LineCurve) or Curve.id != Edge.curve_id:
         raise ValueError("FreeCAD linked extrusion needs a straight selected edge")
+    Rim, FarRim = (2, 0) if Negative else (0, 2)
     Children = {
-        f"loop:{Model.loops[Wall + 2].id}": (3, 1, 0, 2) if IsForward else (1, 3, 0, 2)
+        f"loop:{Model.loops[Wall + 2].id}": (
+            *((3, 1) if IsForward else (1, 3)),
+            Rim,
+            FarRim,
+        )
         for Wall, IsForward, _ in Order
     }
-    Children[f"shell:{Shell.id}"] = (*(Wall + 2 for Wall, _, _ in Order), 0, 1)
+    Caps = (1, 0) if Negative else (0, 1)
+    Children[f"shell:{Shell.id}"] = (*(Wall + 2 for Wall, _, _ in Order), *Caps)
     EdgeNumber = 3 * Slot - (1 if Slot == Count else 0)
-    return PrismOrder(Children, f"Edge{EdgeNumber}", Curve.direction, Base)
+    Axis = (
+        OffsetVector(KOriginZero, Curve.direction, -1.0)
+        if Negative
+        else Curve.direction
+    )
+    return PrismOrder(Children, f"Edge{EdgeNumber}", Axis, Base)

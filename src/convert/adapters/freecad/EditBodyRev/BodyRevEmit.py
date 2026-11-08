@@ -57,7 +57,7 @@ def AddBodySeedMut(
         Context, FeatureInfo, Direction, Source.DistanceMm, 0.0, False, DepthRef
     )
     Expressions = [
-        ("Dir", BodyDepthDir(Direction, DepthRef)),
+        ("Dir", BodyDepthDir(Direction, DepthRef, Sketch.name)),
         ("LengthFwd", DepthRef),
     ]
     ReplaceNameMut(Seed.properties, "ExpressionEngine", ExpressionProp(Expressions))

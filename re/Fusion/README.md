@@ -237,8 +237,11 @@ edge selection, and two rebuilt solids. Qualified linked histories also
 export as live FreeCAD Extrude and Revolve features. The generated prism
 cache uses the same edge order as FreeCAD's rebuild, so the native axis link
 selects the right edge on first open. Both solids rebuild after changes to
-the signed depth, angle, and either sketch. Kit reads the embedded original
-Fusion snapshot from these edited body-axis files.
+the signed depth, angle, either sketch, or a supported rigid placement. Kit
+reads those changes back and verifies both saved solids against the sketches,
+linked edge, and edited controls. It rejects pending rebuilds, invalid edits,
+and mismatched caches. The recovered timeline can be exported again as a live
+FreeCAD Extrude and Revolve.
 
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body

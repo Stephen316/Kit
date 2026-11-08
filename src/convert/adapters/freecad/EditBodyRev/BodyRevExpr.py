@@ -29,6 +29,13 @@ def BodyAngleExpr(
 
 
 # a zero depth must invalidate the solid instead of accepting the native default extrusion
-def BodyDepthDir(Direction: tuple[float, float, float], DepthRef: str) -> str:
+def BodyDepthDir(
+    Direction: tuple[float, float, float], DepthRef: str, SketchName: str = ""
+) -> str:
     Components = "; ".join(f"{Value:.17g}" for Value in Direction)
-    return f"abs({DepthRef}) > 1e-7 mm ? vector({Components}) : vector(0; 0; 0)"
+    Normal = (
+        f"{SketchName}.Placement.Rotation * vector(0; 0; 1)"
+        if SketchName
+        else f"vector({Components})"
+    )
+    return f"abs({DepthRef}) > 1e-7 mm ? {Normal} : vector(0; 0; 0)"
