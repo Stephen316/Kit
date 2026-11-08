@@ -86,14 +86,15 @@ def ReadPrimitive(
             KindValue = GeometryKind.KArcGeometry
         else:
             Origin = ReadPoint(BodyValue, Offset)
-            _, Target = ReadPointRef(BodyValue, Offset + 96, Points)
+            TargetId, Target = ReadPointRef(BodyValue, Offset + 96, Points)
             if KindValue == GeometryKind.KLine:
-                _, Start = ReadPointRef(BodyValue, Offset + 107, Points)
+                StartId, Start = ReadPointRef(BodyValue, Offset + 107, Points)
                 Delta = ReadPoint(BodyValue, Offset + 24)
                 EndValue = PlaneVector(Origin.x + Delta.x, Origin.y + Delta.y)
                 if not IsSamePoint(Origin, Start) or not IsSamePoint(EndValue, Target):
                     raise ValueError("Fusion line endpoint cache disagrees")
                 Geometry = LineGeometry(Start, Target)
+                Extras = {"fusion.line_native_point_ids": (StartId, TargetId)}
             else:
                 Radius = float(UnpackFrom("<d", BodyValue, Offset + 72)[0]) * 10
                 Normal = UnpackFrom("<3d", BodyValue, Offset + 24)
@@ -106,6 +107,10 @@ def ReadPrimitive(
                 ):
                     raise ValueError("Invalid Fusion sketch circle geometry")
                 Geometry = CircleGeometry(Target, Radius)
+                Extras = {
+                    "fusion.circle_native_normal": Normal,
+                    "fusion.circle_native_reference_axis": RefAxis,
+                }
         FixedFlag = UnpackFrom("<I", BodyValue, len(BodyValue) - 51)[0]
         ConstructionFlag = UnpackFrom("<I", BodyValue, len(BodyValue) - 46)[0]
         if FixedFlag not in (0, 1) or ConstructionFlag not in (0, 1):
