@@ -15,14 +15,21 @@ from convert.formats.Fusion.Topology.PickSupport import KSupportGuid
 # the fixed selection helper separates typed links from an opaque cached scalar
 KPlanePickHelper = "5FBE538E-139B-46D4-BCAF-CC796D1E1F78"
 
+# bounded secondary proxy records share the same type across selection roles
+KProxySecondary = "2DF7DA30-A4E4-4260-AFD1-D9C7154CB44B"
+
 
 # identical trailer framing preserves exact reciprocal links in both selector roles
 def ReadPickFooter(
-    BulkData: bytes, Owners: dict[int, RecordSpan], Cursor: MetaCursor
+    BulkData: bytes,
+    Owners: dict[int, RecordSpan],
+    Cursor: MetaCursor,
+    *,
+    ModeCode: int = 5,
 ) -> tuple[int, int]:
     if (
         Cursor.ReadWord() != 0
-        or Cursor.ReadWord() != 5
+        or Cursor.ReadWord() != ModeCode
         or Cursor.TakeBytes(10) != bytes(10)
         or Cursor.TakeBytes(4) != b"\1\1\0\0"
     ):

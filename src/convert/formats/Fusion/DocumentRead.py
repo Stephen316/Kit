@@ -14,6 +14,7 @@ from pathlib import Path as FilePath
 
 from convert.formats.Fusion.Assembly.AssemblyRead import ReadAssemblyProjection
 from convert.formats.Fusion.BodyBlob import ReadBodyBlob
+from convert.formats.Fusion.BodyInputs.BodyInputProject import ProjectBodyPicks
 from convert.formats.Fusion.DesignZip import ReadDesignZip
 from convert.formats.Fusion.Extrudes.ExtrudeProject import ProjectExtrudes
 from convert.formats.Fusion.Extrudes.Plane.PlaneExtProject import ProjectPlaneExts
@@ -200,5 +201,6 @@ def ReadFusionDoc(
         ),
     )
     Document = ProjectBodyList(Document, BulkData, Spans, History)
+    Document = ProjectBodyPicks(Document, BulkData, Spans, History)
     Document.AssertValid()
     return Document

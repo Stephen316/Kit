@@ -27,7 +27,8 @@ def ReadBodyRecipe(
         KindValue != KBodyRecipe
         or len(Terms) != 1
         or len(Terms[0]) != 1
-        or Terms[0][0][1:] != (7, ())
+        or Terms[0][0][1] not in (4, 7)
+        or Terms[0][0][2]
         or Payload != b"\0\0\0\0\xff\xff\xff\xff"
     ):
         raise ValueError("Unsupported Fusion whole body recipe")

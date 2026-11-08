@@ -7,6 +7,7 @@
 # to you under it immediately and permanently.
 
 from convert.formats.Fusion.Extrudes.Plane.PlanePickSupport import (
+    KProxySecondary,
     CheckPickLinks,
     ReadPickFooter,
 )
@@ -25,9 +26,6 @@ KPlanePickContext = "CC54ECAD-6DE8-4DE1-803D-BBE0E751975B"
 
 # the context link repeats the selected plane through a typed identity leaf
 KPlanePickLink = "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C"
-
-# the selected plane proxy has one observed secondary selection framing record
-KPlanePickSecondary = "2DF7DA30-A4E4-4260-AFD1-D9C7154CB44B"
 
 
 # context and direct leaf must prove the same plane and component local frame
@@ -74,7 +72,7 @@ def CheckPlanePick(
         raise ValueError("Unsupported Fusion selected plane proxy")
     Proxy.Offset = 23
     SecondaryId = ReadNativeRef(Proxy)
-    Secondary = SelectCursor(BulkData, Owners, SecondaryId, KPlanePickSecondary)
+    Secondary = SelectCursor(BulkData, Owners, SecondaryId, KProxySecondary)
     if Secondary.DataValue != b"\0\0\1\1\0":
         raise ValueError("Unsupported Fusion selected plane proxy secondary record")
     ProxyHelper, ProxySupport = ReadPickFooter(BulkData, Owners, Proxy)

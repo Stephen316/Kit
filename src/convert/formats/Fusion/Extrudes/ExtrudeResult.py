@@ -16,8 +16,8 @@ from convert.formats.Fusion.SelectionRef import ReadSelectUuid
 from convert.formats.Fusion.Topology.BodyAnchor import KAnchorGuid
 
 
-# the creator must explicitly reference the anchor that points back to it
-def CheckExtResult(
+# an earlier body remains selectable even when its creator anchor is no longer active
+def CheckExtAnchor(
     BulkData: bytes,
     Owners: dict[int, RecordSpan],
     FeatureId: int,
@@ -38,6 +38,17 @@ def CheckExtResult(
     ):
         raise ValueError("Fusion Extrude result anchor does not match the creator")
     ReadSelectUuid(Cursor)
+
+
+# final geometry requires a reciprocal creator link and an active result anchor
+def CheckExtResult(
+    BulkData: bytes,
+    Owners: dict[int, RecordSpan],
+    FeatureId: int,
+    AnchorId: int,
+    ResultOffset: int | None = None,
+) -> None:
+    CheckExtAnchor(BulkData, Owners, FeatureId, AnchorId, ResultOffset)
     Anchor = SelectCursor(BulkData, Owners, AnchorId, KAnchorGuid)
     if Anchor.DataValue[78:80] != b"\0\1":
         raise ValueError("Fusion Extrude result anchor is inactive or unverified")

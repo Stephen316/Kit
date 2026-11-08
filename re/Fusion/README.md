@@ -243,6 +243,21 @@ linked edge, and edited controls. It rejects pending rebuilds, invalid edits,
 and mismatched caches. The recovered timeline can be exported again as a live
 FreeCAD Extrude and Revolve.
 
+Kit also projects ordered historical whole-body inputs for qualified local
+Combine, Scale, Mirror, and Shell features. It matches the proxy and its
+reciprocal support list, then checks each descriptor against the historical
+body UUID, source Extrude, and shared component scope. Combine keeps the
+authored tool order, separate target role, operation, and keep-tool setting.
+A consumed tool remains a historical selection even when it has left the
+saved body inventory. These selections use a `historical_body` query and an
+empty topology path.
+
+The public reader recovered 44 inputs from 30 tracked features, including
+swapped Combine roles, a two-body Shell whose order differs from its body
+inventory, and Mirror's repeated collection order. Face and occurrence
+contexts, other historical body creators, and geometry regeneration for these
+features remain outside this projection.
+
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body
 counts and analytic geometry. The cone retains its degenerate apex edge,
