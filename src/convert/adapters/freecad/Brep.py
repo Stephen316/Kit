@@ -53,6 +53,7 @@ from interchange import (
     Vector2 as VectorTwo,
     Vector3 as VectorThree,
 )
+from interchange.geometry.models.VectorSpace import SpaceVector
 from convert.adapters.freecad.BrepGraph import (
     FreeCadBrep,
     ModelGraph,
@@ -2359,7 +2360,7 @@ def EdgeGeom(
 
 # this definition exists because focused behavior needs one stable owner
 def ShapeLines(
-    Records: Sequence[ShapeRecord], RootValue: tuple[str, bool]
+    Records: Sequence[ShapeRecord], RootValue: tuple[str, bool], RootLocation: int
 ) -> list[str]:
     Ordinals = {Record.key: Index for Index, Record in enumerate(Records, 1)}
     Count = len(Records)
@@ -2387,7 +2388,12 @@ def ShapeLines(
             + (" " if Record.children else "")
             + "*"
         )
-    Lines.extend(["", f"{('-' if RootValue[1] else '+')}{RefAction(RootValue[0])} 0 "])
+    Lines.extend(
+        [
+            "",
+            f"{('-' if RootValue[1] else '+')}{RefAction(RootValue[0])} {RootLocation} ",
+        ]
+    )
     return Lines
 
 
@@ -2408,7 +2414,9 @@ def ValidateBrep(Model: BrepModel, Tolerance: float) -> None:
 
 
 # write state construction stays isolated because every shape phase consumes the same proven indexes
-def BuildBrepState(Model: BrepModel, Tolerance: float) -> BrepWriteState:
+def BuildBrepState(
+    Model: BrepModel, Tolerance: float, LocationLines: tuple[str, ...]
+) -> BrepWriteState:
     Graph = ModelGraph(Model)
     BaseCurves = tuple(CurveRecord(Value) for Value in Model.curves)
     SurfaceRecords = tuple(
@@ -2443,7 +2451,7 @@ def BuildBrepState(Model: BrepModel, Tolerance: float) -> BrepWriteState:
         "DBRep_DrawableShape",
         "",
         "CASCADE Topology V1, (c) Matra-Datavision",
-        "Locations 0",
+        *LocationLines,
         f"Curve2ds {len(PcurveRecords)}",
         *PcurveRecords,
         f"Curves {len(CurveRecords)}",
@@ -2746,15 +2754,35 @@ def OrderShapesMut(
         Unsupported("native topology order references an unknown shape")
 
 
+# one shared location keeps local shape geometry separate from its root placement
+def RootLocFields(Translation: SpaceVector | None) -> tuple[tuple[str, ...], int]:
+    if Translation is None:
+        return ("Locations 0",), 0
+    Shift = VectorThreeA(Translation)
+    if not all(MathValue.isfinite(Value) for Value in Shift):
+        raise ValueError("BREP root translation must contain finite coordinates")
+    if Shift == (0.0, 0.0, 0.0):
+        return ("Locations 0",), 0
+    return (
+        "Locations 1",
+        "1",
+        Values((1.0, 0.0, 0.0, Shift[0])),
+        Values((0.0, 1.0, 0.0, Shift[1])),
+        Values((0.0, 0.0, 1.0, Shift[2])),
+    ), 1
+
+
 # this definition exists because focused behavior needs one stable owner
 def BrepModelBrep(
     Model: BrepModel,
     Tolerance: float = 1e-07,
     *,
     ChildOrders: Mapping[str, tuple[int, ...]] | None = None,
+    RootTranslation: SpaceVector | None = None,
 ) -> bytes:
     ValidateBrep(Model, Tolerance)
-    State = BuildBrepState(Model, Tolerance)
+    LocationLines, RootLocation = RootLocFields(RootTranslation)
+    State = BuildBrepState(Model, Tolerance, LocationLines)
     Lines = list(State.HeaderLines)
     Shapes: list[ShapeRecord] = []
     AddVerticesMut(Shapes, Model, Tolerance)
@@ -2769,7 +2797,7 @@ def BrepModelBrep(
     RootValue = AddBodiesMut(Shapes, Model, RegionRoots)
     if ChildOrders:
         OrderShapesMut(Shapes, ChildOrders)
-    Lines.extend(ShapeLines(Shapes, RootValue))
+    Lines.extend(ShapeLines(Shapes, RootValue, RootLocation))
     return ("\n".join(Lines) + "\n").encode("ascii")
 
 
