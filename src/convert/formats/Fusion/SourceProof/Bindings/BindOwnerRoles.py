@@ -7,13 +7,16 @@
 # to you under it immediately and permanently.
 
 from convert.formats.Fusion.BodyInputs.ScaleControls import ReadScaleData
+from convert.formats.Fusion.NativePlane import KPlaneFeature
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.SourceProof.Bindings.BindExtRoles import (
     DistBindRoles,
     PlaneBindRoles,
 )
+from convert.formats.Fusion.SourceProof.Bindings.BindPlaneRoles import DatumBindRoles
 from convert.formats.Fusion.SourceProof.Bindings.BindingRoles import KBindingRoles
 from convert.formats.Fusion.SourceProof.Bindings.BindRevRoles import RevBindRoles
+from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeatureBoundScale import BoundScale
 from interchange.features.FeatureDistExt import DistanceExtrude
@@ -50,12 +53,15 @@ def ScaleBindRoles(
 def BindOwnerRoles(
     BulkData: bytes,
     Owners: dict[int, RecordSpan],
+    Document: CadDocument,
     OwnerValue: RecordSpan,
     StepValue: FeatureStep,
     ParamValue: Parameter,
 ) -> KBindingRoles:
     if BulkData[OwnerValue.PayloadOffset : OwnerValue.PayloadOffset + 4] != bytes(4):
         raise ValueError("Unsupported Fusion binding owner payload prefix")
+    if OwnerValue.ClassGuid == KPlaneFeature:
+        return DatumBindRoles(BulkData, Owners, Document, OwnerValue, StepValue)
     Definition = StepValue.definition
     OwnerId = OwnerValue.ObjectId
     if isinstance(Definition, DistanceExtrude):

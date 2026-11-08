@@ -105,6 +105,8 @@ def ReadBindingProof(
     ):
         raise ValueError("Projected Fusion numeric binding provenance disagrees")
     StepValue = FindBindOwner(Document, OwnerValue, ParamValue)
-    Roles = BindOwnerRoles(BulkData, Owners, OwnerValue, StepValue, ParamValue)
+    Roles = BindOwnerRoles(
+        BulkData, Owners, Document, OwnerValue, StepValue, ParamValue
+    )
     CheckBindRole(Roles, SlotValue, Binding.ObjectId, ParamData.RoleName, ParamValue)
     return Binding
