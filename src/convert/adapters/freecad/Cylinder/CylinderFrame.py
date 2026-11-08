@@ -6,9 +6,10 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
-from math import hypot as Hypot, isfinite as IsFinite
+from math import hypot as Hypot, isfinite as IsFinite, tan as TanValue
 
 from convert.geometry.Revolve.SweepVector import DotVector, OffsetVector
+from interchange.brep.surfaces.BrepSurfaces import ConeSurface, CylinderSurface
 from interchange.geometry.models.VectorSpace import SpaceVector
 
 # normalized carrier axes must agree before lengths establish a trim
@@ -37,3 +38,10 @@ def ProjectCylinder(
 # euclidean residual bounds vertex and generator agreement in physical units
 def CylinderGap(First: SpaceVector, Second: SpaceVector) -> float:
     return Hypot(First.x - Second.x, First.y - Second.y, First.z - Second.z)
+
+
+# the neutral cone convention decreases radius along the positive surface axis
+def RuledRadius(Surface: CylinderSurface | ConeSurface, Station: float) -> float:
+    if isinstance(Surface, ConeSurface):
+        return Surface.radius - Station * TanValue(Surface.half_angle)
+    return Surface.radius

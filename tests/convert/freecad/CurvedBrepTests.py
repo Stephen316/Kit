@@ -15,8 +15,13 @@ from convert.adapters.freecad.Brep import BrepModelBrep
 from convert.adapters.freecad.BrepGraph import FreeCadBrep
 from convert.adapters.freecad.CurvedRing import CurvedRingArea
 from convert.geometry.Extrude.Trimmed.TrimPrism import BuildTrimPrism
-from convert.geometry.Opencascade import DecodeAsciiBrep
+from convert.geometry.Opencascade import (
+    DecodeAsciiBrep,
+    is_structurally_valid_ascii_brep as IsStructurallyValidAsciiBrep,
+)
+from convert.geometry.Revolve.PolygonSweep import BuildPolySweep
 from interchange.brep.curves.BrepCurves import CircleCurve
+from interchange.brep.surfaces.BrepSurfaces import ConeSurface
 from interchange.brep.topology.BrepModel import BrepModel
 from interchange.geometry.models.GeometryCurves import ArcGeometry, LineGeometry
 from interchange.geometry.models.Transform import Transform
@@ -86,3 +91,29 @@ def TestCurvedSense() -> None:
     )
     with Pytest.raises(FreeCadBrep, match="conflicting source orientations"):
         BrepModelBrep(Conflicting)
+
+
+# conical generators must agree with both exact circular orbits before serialization
+def TestConicalSweep() -> None:
+    Model = BuildPolySweep(
+        "tapered",
+        ((10.0, 10.0), (5.0, 40.0), (40.0, 40.0), (30.0, 10.0)),
+        SpaceVector(0.0, 0.0, 0.0),
+        SpaceVector(0.0, 0.0, 1.0),
+        SpaceVector(1.0, 0.0, 0.0),
+        0.0,
+        HalfTurn / 2.0,
+    )
+    assert IsStructurallyValidAsciiBrep(BrepModelBrep(Model))
+    WrongSlope = tuple(
+        (
+            Replace(Value, half_angle=-Value.half_angle)
+            if isinstance(Value, ConeSurface)
+            else Value
+        )
+        for Value in Model.surfaces
+    )
+    with Pytest.raises(
+        FreeCadBrep, match="no exact pcurve|lacks a proven native topology"
+    ):
+        BrepModelBrep(Replace(Model, surfaces=WrongSlope))

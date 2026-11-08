@@ -58,8 +58,9 @@ from convert.adapters.freecad.BrepGraph import (
     ModelGraph,
     Unsupported,
 )
+from convert.adapters.freecad.Cylinder.CylinderFrame import RuledRadius
 from convert.adapters.freecad.CurvedSense import CheckCurvedUse
-from convert.adapters.freecad.CylinderLoop import IsCylinderLoop
+from convert.adapters.freecad.RuledLoop import IsRuledLoop
 from convert.adapters.freecad.PlanarRing import CapRingArea
 
 # this binding exists because shared behavior needs one stable value
@@ -966,7 +967,7 @@ def PcurveRecord(Value: BrepPcurve) -> tuple[str, float]:
     Unsupported(f"pcurve type {type(Value).__name__} is unsupported")
 
 
-# elementary surface encoding stays isolated because analytic frames share one compact dispatch
+# analytic frames use the native radius growth convention when encoding cones
 def EncodeBasic(Value: BrepSurface) -> str | None:
     if isinstance(Value, PlaneSurface):
         AxisValue, RefValue, YDirection = Frame(
@@ -984,7 +985,7 @@ def EncodeBasic(Value: BrepSurface) -> str | None:
         )
         if not 0.0 < abs(Value.half_angle) < MathValue.pi / 2.0:
             Unsupported(f"cone surface {Value.id} has an invalid half angle")
-        return f"3 {Values(VectorThreeA(Value.origin) + AxisValue + RefValue + YDirection + (Value.radius, Value.half_angle))} "
+        return f"3 {Values(VectorThreeA(Value.origin) + AxisValue + RefValue + YDirection + (Value.radius, -Value.half_angle))} "
     if isinstance(Value, SphereSurface):
         AxisValue, RefValue, YDirection = Frame(
             Value.axis, Value.reference_direction, f"sphere surface {Value.id}"
@@ -1248,7 +1249,7 @@ def SurfaceUv(Value: BrepSurface, Point: Point) -> tuple[float, float] | None:
     return None
 
 
-# this definition exists because focused behavior needs one stable owner
+# surface residuals compare points against the neutral analytic carriers
 def SurfaceResidual(Value: BrepSurface, Point: Point) -> float | None:
     if isinstance(Value, PlaneSurface):
         AxisValue, _, _ = Frame(
@@ -1264,13 +1265,7 @@ def SurfaceResidual(Value: BrepSurface, Point: Point) -> float | None:
             DotAction(Delta, RefValue), DotAction(Delta, YDirection)
         )
         Axial = DotAction(Delta, AxisValue)
-        if isinstance(Value, CylinderSurface):
-            return abs(Radial - Value.radius)
-        Cosine = MathValue.cos(Value.half_angle)
-        if abs(Cosine) <= 1e-15:
-            return None
-        Expected = Value.radius + Axial / Cosine * MathValue.sin(Value.half_angle)
-        return abs(Radial - abs(Expected))
+        return abs(Radial - abs(RuledRadius(Value, Axial)))
     if isinstance(Value, SphereSurface):
         return abs(
             GetLength(Subtract(Point, VectorThreeA(Value.center))) - Value.radius
@@ -2047,9 +2042,9 @@ def ProveFace(
     Surface = Graph.surfaces[FaceValue.surface_id]
     Loops = tuple((Graph.loops[LoopId] for LoopId in FaceValue.loop_ids))
     if (
-        isinstance(Surface, CylinderSurface)
+        isinstance(Surface, (CylinderSurface, ConeSurface))
         and len(Loops) == 1
-        and IsCylinderLoop(Graph, FaceValue, Surface, Loops[0], Tolerance)
+        and IsRuledLoop(Graph, FaceValue, Surface, Loops[0], Tolerance)
     ):
         return KFaceLoop(Graph, FaceValue, Tolerance)
     if not isinstance(Surface, PlaneSurface):

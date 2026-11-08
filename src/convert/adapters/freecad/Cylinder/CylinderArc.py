@@ -14,18 +14,19 @@ from convert.adapters.freecad.Cylinder.CylinderFrame import (
     KAxisTolerance,
     ProjectCylinder,
     NormCylinder,
+    RuledRadius,
 )
 from convert.adapters.freecad.Cylinder.CylinderSpan import CylinderSpan
 from convert.geometry.Revolve.SweepVector import CrossVector, DotVector, OffsetVector
 from interchange.brep.curves.BrepCurves import CircleCurve
-from interchange.brep.surfaces.BrepSurfaces import CylinderSurface
+from interchange.brep.surfaces.BrepSurfaces import ConeSurface, CylinderSurface
 from interchange.geometry.models.VectorSpace import SpaceVector
 
 
 # a circle trim supplies one horizontal side with a signed unwrapped angular extent
 def ReadCylinderArc(
     Curve: CircleCurve,
-    Surface: CylinderSurface,
+    Surface: CylinderSurface | ConeSurface,
     AxisValue: SpaceVector,
     Params: tuple[float, float],
     Vertices: tuple[SpaceVector, SpaceVector],
@@ -44,15 +45,17 @@ def ReadCylinderArc(
         return None
     AxisCross = CrossVector(ArcAxis, AxisValue)
     Skew = Hypot(AxisCross.x, AxisCross.y, AxisCross.z)
-    _, CenterRadial = ProjectCylinder(Curve.center, Surface.origin, AxisValue)
+    Station, CenterRadial = ProjectCylinder(Curve.center, Surface.origin, AxisValue)
+    ExpectedRadius = RuledRadius(Surface, Station)
     Deviation = (
         Hypot(CenterRadial.x, CenterRadial.y, CenterRadial.z)
-        + abs(Curve.radius - Surface.radius)
+        + abs(Curve.radius - ExpectedRadius)
         + Curve.radius * Skew
     )
     Sweep = Params[1] - Params[0]
     if (
-        not AngleTol < abs(Sweep) < FullTurn - AngleTol
+        not ExpectedRadius > 0.0
+        or not AngleTol < abs(Sweep) < FullTurn - AngleTol
         or Skew > KAxisTolerance
         or not Deviation <= Allowed
     ):

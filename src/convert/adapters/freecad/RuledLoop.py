@@ -19,15 +19,15 @@ from convert.adapters.freecad.Cylinder.CylinderRail import ReadCylRail
 from convert.adapters.freecad.Cylinder.CylinderSpan import CylinderSpan
 from convert.geometry.Revolve.SweepVector import DotVector
 from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.brep.surfaces.BrepSurfaces import CylinderSurface
+from interchange.brep.surfaces.BrepSurfaces import ConeSurface, CylinderSurface
 from interchange.brep.topology.BrepTopology import BrepFace, BrepLoop
 
 
-# native cylinder writing admits only a single analytically proven open span rectangle
-def IsCylinderLoop(
+# ruled periodic faces require one trim rectangle with two proven generators
+def IsRuledLoop(
     Graph: ModelGraph,
     FaceValue: BrepFace,
-    Surface: CylinderSurface,
+    Surface: CylinderSurface | ConeSurface,
     LoopValue: BrepLoop,
     Tolerance: float,
 ) -> bool:
