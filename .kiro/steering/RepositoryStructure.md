@@ -6,6 +6,12 @@ inclusion: always
 
 Keep the repository easy to extend by making paths predictable responsibilities narrow and verification mandatory
 
+The repository-root `re/` tree is exempt from all code standards and unit-test
+requirements in this rule and the other steering rules. This includes naming,
+formatting, typing, imports, comments, headers, splitting, architecture, and
+directory density. Do not require unit tests or code-quality verification for
+research files there. Code promoted outside `re/` follows the destination rules.
+
 ## Project owned path names
 
 - Name every project owned file stem with PascalCase ASCII letters only

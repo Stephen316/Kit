@@ -48,7 +48,7 @@ jobs:
           from pathlib import Path as FilePath
 
           PathData = Subprocess.check_output(
-              ["git", "ls-files", "-z", "--", "*.py"]
+              ["git", "ls-files", "-z", "--", "*.py", ":(top,exclude)re/**"]
           )
           FilePaths = sorted(
               FilePath(OsTools.fsdecode(PathBytes))
