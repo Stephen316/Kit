@@ -14,8 +14,8 @@ from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Sketch import Sketch
 
 
-# reciprocal profile evidence and native endpoints qualify an editable line ring
-def CheckRevProfile(FeatureValue: FeatureStep, SketchValue: Sketch) -> None:
+# the owned descriptor and loop identify every whole selected curve
+def CheckRevMembers(FeatureValue: FeatureStep, SketchValue: Sketch) -> None:
     Attrs = FeatureValue.attributes
     Profile = Attrs.get("fusion.profile_entity_ids")
     Members = Attrs.get("fusion.profile_native_members")
@@ -51,4 +51,9 @@ def CheckRevProfile(FeatureValue: FeatureStep, SketchValue: Sketch) -> None:
     )
     if Kinds.count(KProfileGuid) != 1 or Kinds.count(KLoopGuid) != 1:
         raise ValueError("FreeCAD editable Revolve profile provenance is incomplete")
+
+
+# shared endpoint identities qualify the default editable line ring
+def CheckRevProfile(FeatureValue: FeatureStep, SketchValue: Sketch) -> None:
+    CheckRevMembers(FeatureValue, SketchValue)
     ReadRingInput(SketchValue)
