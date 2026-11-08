@@ -111,6 +111,7 @@ from convert.adapters.freecad.Protocol import (
     XML_TRUE_VALUES as XmlTrueValues,
 )
 from convert.adapters.freecad.ReconcileEdit import ReconcileEdit
+from interchange.features.FeatureBoundPlane import BoundConstructionPlane
 
 # shared empty set keeps parameter defaults free of repeated constructor calls
 KNoNativeBreps: frozenset[NativeBrepKey] = frozenset()
@@ -683,7 +684,11 @@ def FeatureReasons(
     Feature: FeatureStep, SketchCarrierReasons: Mapping[str, CarrierReason]
 ) -> frozenset[CarrierReason]:
     KindValue = EnumText(Feature.EntityKind)
-    if Feature.IsSuppressed or KindValue == FeatureKind.REFERENCE.value:
+    if Feature.IsSuppressed:
+        return frozenset({CarrierReason.TARGET_UNSUPPORTED})
+    if isinstance(Feature.Definition, BoundConstructionPlane):
+        return frozenset({CarrierReason.WRITER_UNIMPLEMENTED})
+    if KindValue == FeatureKind.REFERENCE.value:
         return frozenset({CarrierReason.TARGET_UNSUPPORTED})
     if KindValue == FeatureKind.NATIVE.value:
         return frozenset({CarrierReason.SOURCE_OPAQUE})
@@ -2346,8 +2351,10 @@ def ReadSource(Source: Source, Options: ReadOptions | None = None) -> CadDoc:
             RootValue, _ = ValidatedDocXml(Archive, Members)
             Value = ReadZipManifest(Archive, Members, RootValue)
             DocValue = ManifestDoc(Value)
+            from convert.adapters.freecad.EditDatum.ReconcileDatum import ReconcileDatum
             from convert.adapters.freecad.EditScale.ScaleReadGuard import ReconcileScale
 
+            DocValue = ReconcileDatum(DocValue, Value, RootValue, Archive, Members)
             DocValue = ReconcileScale(DocValue, Value, RootValue, Archive, Members)
             DocValue = ReconcileEdit(DocValue, RootValue, Archive, Members)
             DocValue = ReconcileRev(DocValue, Value, RootValue, Archive, Members)

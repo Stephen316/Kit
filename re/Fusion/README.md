@@ -127,6 +127,14 @@ coverage report verifies the qualified numeric bindings without clearing
 unresolved feature and backend bytes. Existing FreeCAD plane-limited
 Revolve exports keep their live construction-plane dependencies.
 
+Standalone documents made of independent typed offset and angle planes
+with literal controls export as visible FreeCAD datums in the feature
+timeline. The Parameters sheet drives each plane's full placement. Kit
+reconciles saved scalar edits after checking the native bindings and
+recomputed frames. Dependent sketch and solid histories require their
+feature-specific routes. Strict Fusion conversion still requires
+complete source coverage.
+
 The document reader also projects sketch-local points, lines, circles,
 and supported circular arcs with a support frame derived from each
 sketch's verified component transform. The SDK matched all 1,005 tracked
