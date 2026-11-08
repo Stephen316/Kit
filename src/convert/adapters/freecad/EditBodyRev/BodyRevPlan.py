@@ -13,9 +13,11 @@ from math import degrees as Degrees, tau as FullTurn
 from convert.adapters.freecad.EditableExt import EditExtrude
 from convert.adapters.freecad.EditableRev import EditRevolve
 from convert.adapters.freecad.EditAxisRev.AxisProfile import ReadAxisProfile
+from convert.adapters.freecad.EditAxisRev.AxisRevPlan import ReadAxisSense
+from convert.adapters.freecad.EditBodyRev.BodyAxisEdit import BodyAxisVector
 from convert.adapters.freecad.EditBodyRev.BodyRevEdge import (
     ReadBodyPick,
-    ReadSeedAxis,
+    ReadBoundAxis,
     ReadSeedLine,
 )
 from convert.adapters.freecad.EditBodyRev.BodyRevModels import (
@@ -105,12 +107,19 @@ def CheckSavedPair(
         )
     (PickValue,) = DocValue.selections
     EdgeId = ReadBodyPick(PickValue, FeatureValue, Definition, SeedBody, Creator)
-    LineId, LineValue, RimStart, RimEnd = ReadSeedLine(
-        EdgeId, SeedModel, Source.SketchValue, LineRing
+    RimData = ReadSeedLine(
+        EdgeId, SeedModel, Source.SketchValue, LineRing, SourcePlan.DistanceMm
     )
-    Start, Finish, Sense = ReadSeedAxis(
-        PickValue, Definition, LineValue, SourceFrame, RimStart, RimEnd
+    LineId = RimData[0]
+    Start, Finish = ReadBoundAxis(
+        PickValue,
+        DocValue.metadata,
+        Source.SketchValue,
+        SourceFrame,
+        RimData,
+        SourcePlan.DistanceMm,
     )
+    Sense = ReadAxisSense(Definition, Start, BodyAxisVector(Start, Finish))
     return BodyRevPlan(
         SourcePlan,
         ProfilePlan,

@@ -8,11 +8,15 @@
 
 
 from collections.abc import Mapping
-from math import hypot as Hypot, isfinite as IsFinite
+from math import isfinite as IsFinite
 from uuid import UUID as ParseUuid
 
 from convert.adapters.freecad.EditAxisRev.AxisEndpoints import WorldAxisLine
-from convert.adapters.freecad.EditAxisRev.AxisRevPlan import ReadAxisSense
+from convert.adapters.freecad.EditBodyRev.BodyAxisEdit import (
+    BodyAxisVector,
+    ReadAxisEdit,
+    ReadEditedAxis,
+)
 from convert.formats.Fusion.BodyBlob import KHistoryPrefix, KMaxAsmSize
 from convert.formats.Fusion.Extrudes.ExtrudeRead import KExtrudeGuid
 from convert.formats.Fusion.SelectionProxy import KSelectProxy
@@ -155,18 +159,21 @@ def ReadSeedLine(
     Model: BrepModel,
     SketchValue: Sketch,
     LineRing: tuple[LineGeometry, ...],
+    DepthMm: float,
 ) -> tuple[str, LineGeometry, SpaceVector, SpaceVector]:
     (Members,) = SketchValue.closed_profile_entity_ids
     Entities = {Value.id: Value for Value in SketchValue.entities}
     CurveTags = ReadProfileTags(tuple(Entities[Identity] for Identity in Members))
+    Count = len(CurveTags)
+    Offset = Count if DepthMm < 0.0 else 0
     Indices = tuple(
         Index
-        for Index, Value in enumerate(Model.edges[: len(CurveTags)])
+        for Index, Value in enumerate(Model.edges[Offset : Offset + Count])
         if Value.id == EdgeId
     )
     if len(Indices) != 1:
         raise ValueError(
-            "FreeCAD editable body axis Revolve requires a source base rim edge"
+            "FreeCAD editable body axis Revolve requires the source sketch plane rim edge"
         )
     (Index,) = Indices
     ((Identity, LineValue),) = tuple(
@@ -177,9 +184,24 @@ def ReadSeedLine(
     return (
         Identity,
         LineValue,
-        Model.vertices[Index].point,
-        Model.vertices[(Index + 1) % len(CurveTags)].point,
+        Model.vertices[Offset + Index].point,
+        Model.vertices[Offset + (Index + 1) % Count].point,
     )
+
+
+# the source curve tag maps a stable sketch line to the current signed prism cap
+def FindSeedEdge(
+    LineId: str,
+    Model: BrepModel,
+    SketchValue: Sketch,
+    DepthMm: float,
+) -> str:
+    (Members,) = SketchValue.closed_profile_entity_ids
+    Entities = {Value.id: Value for Value in SketchValue.entities}
+    CurveTags = ReadProfileTags(tuple(Entities[Identity] for Identity in Members))
+    Index = CurveTags.index(Entities[LineId].attributes["fusion.entity_tag"])
+    Offset = len(CurveTags) if DepthMm < 0.0 else 0
+    return Model.edges[Offset + Index].id
 
 
 # the projected line context keeps three finite centimeter coordinates per endpoint
@@ -200,12 +222,11 @@ def ReadCachePoint(SelectionValue: Selection, KeyName: str) -> SpaceVector:
 # the native line cache proves endpoint direction independently of prism winding
 def ReadSeedAxis(
     SelectionValue: Selection,
-    Definition: AngularRevolve,
     LineValue: LineGeometry,
     FrameValue: Transform,
     RimStart: SpaceVector,
     RimEnd: SpaceVector,
-) -> tuple[SpaceVector, SpaceVector, int]:
+) -> tuple[SpaceVector, SpaceVector]:
     CachedStart, CachedEnd = (
         ReadCachePoint(SelectionValue, KeyName)
         for KeyName in ("cached_start_cm", "cached_end_cm")
@@ -219,8 +240,31 @@ def ReadSeedAxis(
         raise ValueError(
             "FreeCAD editable body axis Revolve source line cache disagrees"
         )
-    AxisStart, AxisEnd = (RimStart, RimEnd) if Direct else (RimEnd, RimStart)
-    Delta = (AxisEnd.x - AxisStart.x, AxisEnd.y - AxisStart.y, AxisEnd.z - AxisStart.z)
-    Length = Hypot(*Delta)
-    Direction = SpaceVector(*(Value / Length for Value in Delta))
-    return AxisStart, AxisEnd, ReadAxisSense(Definition, AxisStart, Direction)
+    return (RimStart, RimEnd) if Direct else (RimEnd, RimStart)
+
+
+# an edited source line remains bound by native point identities and the current neutral rim
+def ReadBoundAxis(
+    PickValue: Selection,
+    Metadata: Mapping[str, object],
+    SketchValue: Sketch,
+    Frame: Transform,
+    RimData: tuple[str, LineGeometry, SpaceVector, SpaceVector],
+    DepthMm: float,
+) -> tuple[SpaceVector, SpaceVector]:
+    LineId, LineValue, RimStart, RimEnd = RimData
+    Binding = ReadAxisEdit(Metadata, PickValue.id)
+    if Binding is None:
+        if DepthMm < 0.0:
+            raise ValueError(
+                "FreeCAD editable body axis original source depth must be positive"
+            )
+        return ReadSeedAxis(PickValue, LineValue, Frame, RimStart, RimEnd)
+    BodyAxisVector(
+        ReadCachePoint(PickValue, "cached_start_cm"),
+        ReadCachePoint(PickValue, "cached_end_cm"),
+    )
+    Start, Finish = ReadEditedAxis(SketchValue, Frame, Binding)
+    if Binding.LineId != LineId or {Start, Finish} != {RimStart, RimEnd}:
+        raise ValueError("FreeCAD editable body axis verified source rim disagrees")
+    return Start, Finish

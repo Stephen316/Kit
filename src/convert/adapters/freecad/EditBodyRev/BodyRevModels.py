@@ -80,8 +80,19 @@ def CheckBodyRecord(
         )
     ):
         raise ValueError("FreeCAD editable body axis Revolve body provenance disagrees")
+    Model = Geometry[0]
+    if len(Model.regions) != 1 or BodyValue.topology != GetBodyTopology(Geometry):
+        raise ValueError(
+            "FreeCAD editable body axis Revolve saved body geometry disagrees"
+        )
+
+
+# both qualification and saved edit application compare identical analytic body measures
+def GetBodyTopology(
+    Geometry: tuple[BrepModel, float, float, BoundingBox],
+) -> TopologyCounts:
     Model, Volume, AreaValue, Bounds = Geometry
-    Expected = TopologyCounts(
+    return TopologyCounts(
         solid_count=len(Model.regions),
         shell_count=len(Model.shells),
         face_count=len(Model.faces),
@@ -92,7 +103,3 @@ def CheckBodyRecord(
         bounding_box=Bounds,
         valid=True,
     )
-    if len(Model.regions) != 1 or BodyValue.topology != Expected:
-        raise ValueError(
-            "FreeCAD editable body axis Revolve saved body geometry disagrees"
-        )

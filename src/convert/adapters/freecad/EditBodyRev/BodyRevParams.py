@@ -73,8 +73,8 @@ def ReadSeedDepth(
                 "FreeCAD editable body axis Extrude literal binding disagrees"
             )
     Distance = GetEditDepth(FeatureValue, Definition, Params)
-    if Distance is None or Distance <= 0.0:
+    if Distance is None or abs(Distance) <= 1e-7:
         raise ValueError(
-            "FreeCAD editable body axis Extrude requires positive untapered depth"
+            "FreeCAD editable body axis Extrude requires nonzero untapered depth"
         )
     return Distance
