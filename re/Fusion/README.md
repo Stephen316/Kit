@@ -177,8 +177,18 @@ frame. The parameter records retain their formulas, and Kit evaluates the
 limits from their current values. Across 712 tracked archives, Kit projected
 461 definitions. Verification compared 33 saved Fusion API captures and two
 assembly controls, including reversed extents, signed offsets, draft, and
-the symmetric conventions. Thin, Boolean, and entity-limited Extrudes and
-unresolved occurrence directions require further decoding.
+the symmetric conventions. Thin and Boolean Extrudes and unresolved occurrence
+directions require further decoding.
+
+For a selected Offset construction plane in the same component, Kit preserves
+an editable `PlaneExtrude` definition. It retains the selected plane, the
+owned offset, and the length when the plane sets the start. The supported
+plane is parallel and co-directed with the profile. Kit verifies the native
+Offset plane against its origin-plane frame and scalar, then evaluates the
+profile-relative start or end from the selected plane. Three saved Fusion
+captures verified both roles, including offsets, and matched the reconstructed
+cylinders' native topology, volume, area, and bounds. Other entity limits and
+chained extents require further decoding.
 
 For verified part histories with independent active solid creators, Kit also
 reconstructs the saved Extrude bodies from the profile and distance controls.

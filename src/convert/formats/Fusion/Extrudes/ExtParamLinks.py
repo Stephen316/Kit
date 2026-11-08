@@ -12,11 +12,11 @@ from interchange.records.RecordParameter import Parameter
 
 
 # native numeric references must resolve to owned parameters with their expected roles
-def BindExtParams(
+def BindExtRoles(
     StepValue: FeatureStep,
     FeatureId: int,
-    Native: NativeExtrude,
     Params: dict[str, Parameter],
+    Roles: tuple[tuple[int | None, str, str], ...],
 ) -> dict[int, str]:
     ByBinding: dict[int, Parameter] = {}
     for ParamId in StepValue.parameter_ids:
@@ -32,17 +32,8 @@ def BindExtParams(
         if Binding in ByBinding:
             raise ValueError("Ambiguous Fusion Extrude parameter binding")
         ByBinding[Binding] = Param
-    SecondRole = (
-        "TaperAngle" if Native.SideMode.startswith("symmetric_") else "Side2TaperAngle"
-    )
     Links: dict[int, str] = {}
-    for Binding, RoleText, UnitName in (
-        (Native.AlongId, "AlongDistance", "cm"),
-        (Native.AgainstId, "AgainstDistance", "cm"),
-        (Native.StartId, "ProfileOffset", "cm"),
-        (Native.TaperId, "TaperAngle", "rad"),
-        (Native.SecondTaperId, SecondRole, "rad"),
-    ):
+    for Binding, RoleText, UnitName in Roles:
         if Binding is None:
             continue
         Param = ByBinding.get(Binding)
@@ -54,3 +45,27 @@ def BindExtParams(
             raise ValueError(f"Missing owned Fusion Extrude {RoleText} parameter")
         Links[Binding] = Param.id
     return Links
+
+
+# ordinary distances and draft use native roles that vary by side mode
+def BindExtParams(
+    StepValue: FeatureStep,
+    FeatureId: int,
+    Native: NativeExtrude,
+    Params: dict[str, Parameter],
+) -> dict[int, str]:
+    SecondRole = (
+        "TaperAngle" if Native.SideMode.startswith("symmetric_") else "Side2TaperAngle"
+    )
+    return BindExtRoles(
+        StepValue,
+        FeatureId,
+        Params,
+        (
+            (Native.AlongId, "AlongDistance", "cm"),
+            (Native.AgainstId, "AgainstDistance", "cm"),
+            (Native.StartId, "ProfileOffset", "cm"),
+            (Native.TaperId, "TaperAngle", "rad"),
+            (Native.SecondTaperId, SecondRole, "rad"),
+        ),
+    )

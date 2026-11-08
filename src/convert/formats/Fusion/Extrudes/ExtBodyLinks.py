@@ -11,6 +11,7 @@ from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Topology.NativeBody import NativeBody
 from convert.formats.Fusion.Topology.ResultBody import IndexBodyLinks
 from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.features.FeaturePlaneExt import PlaneExtrude
 from interchange.features.FeatureStep import FeatureStep
 
 
@@ -40,5 +41,10 @@ def LinkSolidBodies(
         NativeId, AnchorId = Links[FeatureId]
         if isinstance(StepValue.definition, DistanceExtrude):
             CheckExtResult(BulkData, Owners, FeatureId, AnchorId)
+        elif isinstance(StepValue.definition, PlaneExtrude):
+            ResultOffset = StepValue.attributes.get("fusion.extrude.result_offset")
+            if type(ResultOffset) is not int or ResultOffset < 0:
+                raise ValueError("Missing verified Fusion plane Extrude result framing")
+            CheckExtResult(BulkData, Owners, FeatureId, AnchorId, ResultOffset)
         Results[StepValue.id] = (ByBody[NativeId], AnchorId)
     return Results

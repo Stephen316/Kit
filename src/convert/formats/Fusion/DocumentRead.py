@@ -14,6 +14,7 @@ from pathlib import Path as FilePath
 from convert.formats.Fusion.Assembly.AssemblyRead import ReadAssemblyProjection
 from convert.formats.Fusion.DesignZip import ReadDesignZip
 from convert.formats.Fusion.Extrudes.ExtrudeProject import ProjectExtrudes
+from convert.formats.Fusion.Extrudes.Plane.PlaneExtProject import ProjectPlaneExts
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.PlaneProjection import ProjectPlanes
 from convert.formats.Fusion.Profiles.ProfileProjection import ProjectProfiles
@@ -27,6 +28,7 @@ from interchange.core.Common import FreezeMapping
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumDocument import Capability
 from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.features.FeaturePlaneExt import PlaneExtrude
 from interchange.payloads.PayloadRecord import BrepPayload
 from interchange.payloads.PayloadRoles import PayloadRole
 from interchange.records.RecordConfig import Configuration
@@ -83,8 +85,21 @@ def ReadFusionDoc(
     Steps, ExtrudeIssues = ProjectExtrudes(
         BulkData, Spans, Steps, Parameters, Frames, Sketches
     )
+    Steps, PlanePicks, PlaneExtIssues = ProjectPlaneExts(
+        BulkData, Spans, History.OwnerId, Steps, Parameters, Planes + Frames, Sketches
+    )
+    Selections += PlanePicks
+    ResolvedExts = {
+        StepValue.id
+        for StepValue in Steps
+        if isinstance(StepValue.definition, PlaneExtrude)
+    }
+    ExtrudeIssues = tuple(
+        Issue for Issue in ExtrudeIssues if Issue.entity_id not in ResolvedExts
+    )
     if Assembly is None and not any(
-        isinstance(StepValue.definition, DistanceExtrude) for StepValue in Steps
+        isinstance(StepValue.definition, (DistanceExtrude, PlaneExtrude))
+        for StepValue in Steps
     ):
         Bodies, Model, BodyIssues = ProjectRevBody(
             BulkData, Spans, Steps, Sketches, Frames, Parameters
@@ -136,6 +151,7 @@ def ReadFusionDoc(
         + ProfileIssues
         + RevolveIssues
         + ExtrudeIssues
+        + PlaneExtIssues
         + BodyIssues
         + AssemblyIssues
         + (

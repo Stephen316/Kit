@@ -18,11 +18,18 @@ from convert.formats.Fusion.Topology.BodyAnchor import KAnchorGuid
 
 # the creator must explicitly reference the anchor that points back to it
 def CheckExtResult(
-    BulkData: bytes, Owners: dict[int, RecordSpan], FeatureId: int, AnchorId: int
+    BulkData: bytes,
+    Owners: dict[int, RecordSpan],
+    FeatureId: int,
+    AnchorId: int,
+    ResultOffset: int | None = None,
 ) -> None:
     Cursor = SelectCursor(BulkData, Owners, FeatureId, KExtrudeGuid)
-    Fields = ReadExtControls(Cursor)
-    ReadExtProfile(BulkData, Owners, Cursor, FeatureId, Fields.SideMode)
+    if ResultOffset is None:
+        Fields = ReadExtControls(Cursor)
+        ReadExtProfile(BulkData, Owners, Cursor, FeatureId, Fields.SideMode)
+    else:
+        Cursor.Offset = ResultOffset
     if (
         Cursor.TakeBytes(4) != bytes(4)
         or Cursor.ReadWord() != 1

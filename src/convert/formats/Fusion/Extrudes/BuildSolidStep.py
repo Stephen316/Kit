@@ -12,10 +12,11 @@ from convert.formats.Fusion.Revolves.BuildRevBody import BuildRevBody
 from convert.formats.Fusion.Topology.NativeBody import NativeBody
 from convert.formats.Fusion.Topology.SolidBodyRecord import MakeSolidRecord
 from interchange.brep.topology.BrepModel import BrepModel
-from interchange.features.DistanceValues import GetDistValues
+from interchange.features.DistanceValues import DistExtValues, GetDistValues
 from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeatureBody import DesignBody
 from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.features.FeaturePlaneExt import PlaneExtrude
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Sketch import Sketch
@@ -32,6 +33,7 @@ def BuildSolidStep(
     Params: dict[str, Parameter],
     Member: NativeBody,
     AnchorId: int,
+    PlaneValues: DistExtValues | None = None,
 ) -> tuple[DesignBody, BrepModel]:
     Definition = StepValue.definition
     BodyLink = (Member.ObjectId, AnchorId)
@@ -47,12 +49,15 @@ def BuildSolidStep(
             Member.CollectionId,
             Member.ComponentId,
         )
-    if not isinstance(Definition, DistanceExtrude):
+    if isinstance(Definition, DistanceExtrude):
+        Values = GetDistValues(StepValue, Definition, Params)
+    elif isinstance(Definition, PlaneExtrude) and PlaneValues is not None:
+        Values = PlaneValues
+    else:
         raise ValueError("Missing supported Fusion solid definition")
     if FrameValue.attributes.get("fusion.component_object_id") != Member.ComponentId:
         raise ValueError("Fusion Extrude sketch and result body components disagree")
     BodyId = f"fusion-derived-body-{StepValue.id}"
-    Values = GetDistValues(StepValue, Definition, Params)
     Geometry = BuildExtGeom(
         BodyId, StepValue, Definition, Values, SketchValue, FrameValue.transform
     )

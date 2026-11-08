@@ -110,9 +110,16 @@ def CheckThinGuard() -> None:
 
 # an unimplemented target writer must keep linked definitions out of executable geometry
 @KRequiresCodec
-def CheckExtWrite(TmpPath: FilePath) -> None:
+@Pytest.mark.parametrize(
+    ("Capture", "Reason"),
+    (
+        ("distance_positive", b"linked_distance_definition_unsupported"),
+        ("to_plane", b"linked_plane_definition_unsupported"),
+    ),
+)
+def CheckExtWrite(TmpPath: FilePath, Capture: str, Reason: bytes) -> None:
     Folder = KStudyPath / "extents-f0f33a9a605f"
-    Document = OpenDocument(Folder / "distance_positive.f3d", strict=False)
+    Document = OpenDocument(Folder / f"{Capture}.f3d", strict=False)
     Target = TmpPath / "extrude.FCStd"
     with Pytest.raises(ApplicationUsabilityError):
         WriteDocument(Document, Target, allow_carrier=False)
@@ -123,4 +130,4 @@ def CheckExtWrite(TmpPath: FilePath) -> None:
     with ZipFile(Target) as Archive:
         ModelXml = Archive.read("Document.xml")
     assert b'type="Part::Extrusion"' not in ModelXml
-    assert b"linked_distance_definition_unsupported" in ModelXml
+    assert Reason in ModelXml

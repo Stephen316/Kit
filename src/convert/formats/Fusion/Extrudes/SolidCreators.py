@@ -11,6 +11,7 @@ from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
 from interchange.enums.EnumFeatures import BooleanOp
 from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.features.FeaturePlaneExt import PlaneExtrude
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.features.FeatureStep import FeatureStep
 
@@ -40,7 +41,8 @@ def FindExtCreators(Steps: tuple[FeatureStep, ...]) -> tuple[FeatureStep, ...]:
         if not IsSavedActive(StepValue):
             continue
         if StepValue.operation != BooleanOp.KCreate or not isinstance(
-            StepValue.definition, (DistanceExtrude, AngularRevolve, PlaneRevolve)
+            StepValue.definition,
+            (DistanceExtrude, PlaneExtrude, AngularRevolve, PlaneRevolve),
         ):
             raise ValueError(
                 "Fusion history contains active modeling outside independent solid Extrudes and Revolves"

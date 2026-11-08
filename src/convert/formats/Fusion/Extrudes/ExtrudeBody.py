@@ -15,6 +15,7 @@ from convert.formats.Fusion.Topology.NativeBody import NativeBody
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumDocument import Capability
 from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.features.FeaturePlaneExt import PlaneExtrude
 from interchange.records.RecordDiagnostic import Diagnostic
 
 
@@ -26,7 +27,7 @@ def ProjectExtBody(
     Members: tuple[NativeBody, ...],
 ) -> CadDocument:
     if not any(
-        isinstance(StepValue.definition, DistanceExtrude)
+        isinstance(StepValue.definition, (DistanceExtrude, PlaneExtrude))
         for StepValue in Document.feature_timeline
     ):
         return Document

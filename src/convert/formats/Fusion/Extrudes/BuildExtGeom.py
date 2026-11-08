@@ -13,6 +13,7 @@ from convert.geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
 from interchange.brep.topology.BrepModel import BrepModel
 from interchange.features.DistanceValues import DistExtValues
 from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.features.FeaturePlaneExt import PlaneExtrude
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.BoundingBox import BoundingBox
 from interchange.geometry.models.GeometryCurves import CircleGeometry, LineGeometry
@@ -24,7 +25,7 @@ from interchange.geometry.models.Transform import Transform
 def BuildExtGeom(
     BodyId: str,
     StepValue: FeatureStep,
-    Definition: DistanceExtrude,
+    Definition: DistanceExtrude | PlaneExtrude,
     Values: DistExtValues,
     SketchValue: Sketch,
     FrameValue: Transform,
@@ -40,7 +41,8 @@ def BuildExtGeom(
     if len(Parts) == 1 and isinstance(Parts[0], CircleGeometry):
         Profile = Parts[0]
         if HasTaper and (
-            Definition.SideMode != "one_sided"
+            not isinstance(Definition, DistanceExtrude)
+            or Definition.SideMode != "one_sided"
             or Definition.StartOffsetId is not None
             or Lower != 0.0
             or Taper <= 0.0

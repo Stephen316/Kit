@@ -6852,7 +6852,7 @@ def IsRawExtrude(
 ) -> bool:
     if FeatureInfo.KindValue != "extrusion":
         return False
-    if FeatureInfo.Definition.get("$type") == "DistanceExtrude":
+    if FeatureInfo.Definition.get("$type") in ("DistanceExtrude", "PlaneExtrude"):
         return True
     ProfileCount = Geometry.SketchProfCounts.get(FeatureInfo.SketchId, 0)
     ProfileSound = Geometry.SketchProfSound.get(FeatureInfo.SketchId, False)
@@ -6868,6 +6868,8 @@ def ExtrudeReason(Geometry: DocGeometry, FeatureInfo: FeatureData) -> str:
         return "suppressed"
     if FeatureInfo.Definition.get("$type") == "DistanceExtrude":
         return "linked_distance_definition_unsupported"
+    if FeatureInfo.Definition.get("$type") == "PlaneExtrude":
+        return "linked_plane_definition_unsupported"
     if not Geometry.SketchProfCounts.get(FeatureInfo.SketchId, 0):
         return "no_native_closed_profile"
     return "profile_topology_not_statically_sound"
