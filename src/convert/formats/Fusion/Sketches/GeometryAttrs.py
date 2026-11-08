@@ -13,8 +13,10 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 
 
 # typed geometry properties bound the payload offset without scanning for byte patterns
-def ReadGeomAttrs(Cursor: MetaCursor) -> dict[str, int | float]:
-    if Cursor.TakeBytes(2) != b"\0\1":
+def ReadGeomAttrs(
+    Cursor: MetaCursor, *, Prefix: bytes = b"\0\1"
+) -> dict[str, int | float]:
+    if Cursor.TakeBytes(len(Prefix)) != Prefix:
         raise ValueError("Unsupported Fusion sketch geometry prefix")
     Values: dict[str, int | float] = {}
     for _ in range(Cursor.ReadCount(32)):
