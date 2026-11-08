@@ -116,7 +116,16 @@ orthonormal axes. Origins convert from centimetres to millimetres and
 remain in component coordinates. The projected frames matched 144
 tracked planes and 19 planes in newer Fusion captures. Seven tracked
 plane records still produce diagnostics for unsupported layouts.
-Native support selection links and parametric plane definitions remain open.
+General support selection links remain open.
+
+The timeline now carries typed construction-plane definitions for verified
+origin offsets and angles about a component origin axis. Each definition
+retains the zero-control frame, links its owned distance or angle and zero
+extra-offset parameters, and independently regenerates the stored datum.
+Unknown methods retain their saved support frames when available. The
+coverage report verifies the qualified numeric bindings without clearing
+unresolved feature and backend bytes. Existing FreeCAD plane-limited
+Revolve exports keep their live construction-plane dependencies.
 
 The document reader also projects sketch-local points, lines, circles,
 and supported circular arcs with a support frame derived from each
@@ -735,8 +744,9 @@ between the expression and role, compared with ten metadata bytes in the
 older layout. The reader preserves the extra byte and the original source
 offsets. Across the 13 captures, all 51 decoded parameter names, roles and
 numeric values matched the Fusion API, and each source-derived Revolve
-matched its bounded body. The tracked 2705.1.30 fixtures still exercise
-the legacy layout.
+matched its bounded body. The coverage report now verifies all 51 numeric
+records and their reciprocal feature bindings. The tracked 2705.1.30
+fixtures still exercise the legacy layout.
 
 From `Study/`, enable this experimental path with:
 

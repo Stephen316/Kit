@@ -31,12 +31,12 @@ from interchange.geometry.models.VectorSpace import SpaceVector
 
 
 # reciprocal source links independently regenerate the cached angular datum
-def AttachAngleDef(
+def ReadAngleDef(
     BulkData: bytes, Owners: dict[int, RecordSpan], PlaneValue: SupportPlane
-) -> SupportPlane:
+) -> tuple[SupportPlane, Transform, int, int, int]:
     Origin = PlaneValue.provenance
     if Origin is None or PlaneValue.attributes.get("fusion.cached_plane_mode") != 2:
-        return PlaneValue
+        raise ValueError("Fusion construction plane is not an angular datum")
     FeatureId = int(PlaneValue.attributes["fusion.feature_object_id"])
     Backend, Extra, Angle, AxisDesc, BaseDesc = ReadAngleBack(
         BulkData, Owners, FeatureId, int(Origin.native_id)
@@ -77,7 +77,7 @@ def AttachAngleDef(
         Container,
         Collection,
     )
-    return Replace(
+    Qualified = Replace(
         PlaneValue,
         attributes=FreezeMapping(
             {
@@ -102,6 +102,19 @@ def AttachAngleDef(
             + tuple(ParamOrigin(Owners[Identity]).spans[0] for Identity in Records),
         ),
     )
+    return Qualified, ZeroFrame, Angle, Extra, Component
+
+
+# existing frame consumers retain the same source evidence without new dependencies
+def AttachAngleDef(
+    BulkData: bytes, Owners: dict[int, RecordSpan], PlaneValue: SupportPlane
+) -> SupportPlane:
+    if (
+        PlaneValue.provenance is None
+        or PlaneValue.attributes.get("fusion.cached_plane_mode") != 2
+    ):
+        return PlaneValue
+    return ReadAngleDef(BulkData, Owners, PlaneValue)[0]
 
 
 # retaining the pivot on its authored axis keeps placement and limiting geometry independent

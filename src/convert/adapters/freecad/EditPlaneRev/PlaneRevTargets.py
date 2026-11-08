@@ -25,6 +25,7 @@ from convert.geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame
 from convert.geometry.Revolve.SweepVector import CrossVector, DotVector
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumFeatures import FeatureKind
+from interchange.features.FeatureBoundPlane import BoundConstructionPlane
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Selection import Selection
@@ -113,10 +114,18 @@ def ReadTargetStep(
     StepValue = Steps[PlaneValue.attributes["fusion.feature_object_id"]]
     StepOrigin = StepValue.provenance
     FinalOrigin = FeatureValue.provenance
+    Definition = StepValue.definition
     if (
         StepValue.kind != FeatureKind.KReference
         or StepValue.operation is not None
-        or StepValue.definition is not None
+        or (
+            Definition is not None
+            and (
+                not isinstance(Definition, BoundConstructionPlane)
+                or Definition.Method != "angle"
+                or Definition.SupportPlaneId != PlaneValue.id
+            )
+        )
         or StepValue.input_feature_ids
         or StepValue.sketch_id is not None
         or not HasEditState(StepValue)

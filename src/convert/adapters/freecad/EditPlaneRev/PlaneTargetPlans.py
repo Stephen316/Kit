@@ -20,10 +20,12 @@ from convert.adapters.freecad.EditPlaneRev.PlaneRevTargets import (
     ReadTargetStep,
 )
 from convert.adapters.freecad.EditPlaneRev.PlaneTargetData import PlaneRevTarget
+from convert.formats.Fusion.AnglePlane.AnglePlaneBasis import IsSameAngPlane
 from convert.formats.Fusion.Revolves.PlaneRevInputs import ProfileLines
 from convert.formats.Fusion.Revolves.PlaneSweep import DerivePlaneSpan
 from convert.geometry.Revolve.SweepVector import DotVector
 from interchange.document.models.DocumentModel import CadDocument
+from interchange.features.FeatureBoundPlane import BoundConstructionPlane
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Sketch import Sketch
@@ -59,6 +61,15 @@ def ReadTargetPlans(
         ZeroFrame = ReadTargetBase(
             Proof, AxisPick, PlaneValue, SketchPlane, FeatureValue, Radians
         )
+        Construction = StepValue.definition
+        if isinstance(Construction, BoundConstructionPlane) and (
+            Construction.ScalarParameterId != AngleId
+            or Construction.OffsetParameterId != ExtraId
+            or not IsSameAngPlane(Construction.ReferenceFrame, ZeroFrame)
+        ):
+            raise ValueError(
+                "FreeCAD editable plane typed controls disagree with source"
+            )
         Direction, _, RootValue = DerivePlaneSpan(
             Frame,
             Profile,

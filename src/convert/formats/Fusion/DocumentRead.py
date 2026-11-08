@@ -14,6 +14,9 @@ from pathlib import Path as FilePath
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionArchive
 from convert.formats.Fusion.Assembly.AssemblyRead import ReadAssemblyProjection
 from convert.formats.Fusion.BodyInputs.BodyInputProject import ProjectBodyPicks
+from convert.formats.Fusion.ConstructionPlane.ProjectConstruction import (
+    ProjectConstructionPlanes,
+)
 from convert.formats.Fusion.Extrudes.ExtrudeProject import ProjectExtrudes
 from convert.formats.Fusion.Extrudes.Plane.PlaneExtProject import ProjectPlaneExts
 from convert.formats.Fusion.FormulaDeps.FormulaLink import LinkFormulaDeps
@@ -103,6 +106,9 @@ def ProjectFusionDoc(
             Replace(ParamValue, owner_id=Owners.get(ParamValue.id, ""))
             for ParamValue in Params
         ),
+    )
+    Steps = ProjectConstructionPlanes(
+        BulkData, Spans, History, Planes, Steps, Parameters
     )
     Sketches, SketchRuleIssues = AttachRules(BulkData, Spans, Sketches, Parameters)
     Steps, ExtrudeIssues = ProjectExtrudes(
