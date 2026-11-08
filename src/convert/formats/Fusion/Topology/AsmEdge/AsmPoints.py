@@ -33,7 +33,7 @@ def IsAsmNear(First: SpaceVector, Second: SpaceVector) -> bool:
     )
 
 
-# the observed component cache carries centimeters independently of archive header units
+# cached centimetre coordinates need conversion to millimetres independently of archive header units
 def AsmPointMm(Value: SpaceVector) -> SpaceVector:
     return SpaceVector(10.0 * Value.x, 10.0 * Value.y, 10.0 * Value.z)
 

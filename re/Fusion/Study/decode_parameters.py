@@ -1,7 +1,7 @@
-"""Experimental Fusion parameter reader, not a general feature-tree decoder.
+"""Decode observed numeric and text parameter records in a saved Fusion .f3d archive.
 
-Reads observed numeric/text parameter record layouts rather than known values or
-fixed file offsets. Geometry and feature interpretation live in other modules.
+Read stored values and expressions from the native record layout. The full
+study reader handles feature and geometry interpretation.
 """
 
 import argparse

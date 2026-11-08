@@ -10,11 +10,17 @@ to you under it immediately and permanently.
 
 # Fusion native-file research
 
-`Study/` contains the imported experimental Fusion native-file decoder, its
-capture generators, saved `.f3d` examples, validation tools and research reports.
-The reader recovers observed native records and emits JSON. It is development
-and reverse-engineering tooling; it is not wired into Kit's production adapter
-registry and does not provide complete editable-file translation or native writing.
+[The Fusion study](Study/README.md) contains an experimental reader for saved
+`.f3d` archives. It decodes observed native records to JSON. The study also
+contains capture generators, saved examples, validators and evidence reports.
+The study reader runs independently of [Kit's public SDK reader](#public-sdk-reader).
+
+Use the [saved-file commands](#run-the-reader) to inspect a capture, or
+[validate the saved examples](#validate-saved-examples) to reproduce the checks.
+See [the study's evidence guide](Study/README.md#evidence-and-navigation) for how
+to interpret a finding.
+
+## SDK format coverage
 
 The SDK's `convert.formats.Fusion.BulkSpans.ReadBulkSpans` indexes native
 version-8 design streams. It accepts decompressed BulkStream and MetaStream
@@ -227,7 +233,7 @@ Kit selections with native provenance and earlier feature dependencies.
 The sketch-line contrasts preserve opposite endpoint orders. The shared
 sketch selection reader matched 102 owned selections across ten native
 feature classes in the tracked corpus. Construction axes retain native
-identity. The two BRep-edge Revolves retain the native recipe, body anchor,
+identity. The two B-rep edge Revolves retain the native recipe, body anchor,
 earlier source feature, and directed line cache. Both stored endpoints match
 the captured Fusion axes. The shared recipe reader matched 1,763 tracked
 records across five recipe kinds. Exact edge identity in Kit topology
@@ -295,7 +301,7 @@ profile edge touches the axis. The saved sketch wires, signed angle, and solid
 must agree with the edited controls. Files with pending or invalid rebuilds
 are rejected. Kit can re-export the edited timeline as a live FreeCAD Revolve.
 
-Kit also reads a qualified straight BRep edge as the axis of an angular
+Kit also reads a qualified straight B-rep edge as the axis of an angular
 Revolve after a positive, untapered line-profile Extrude. The saved recipe
 names the two incident faces and the three faces at each endpoint.
 Kit resolves those names in the explicitly mapped ASM history member and
@@ -334,7 +340,7 @@ component origin, sketch point, or ByPoint construction centre. Every
 transformed prism must match the mapped saved ASM body's identity, incidence,
 vertices, bounded edges, and face planes before Kit publishes the final set.
 Six tracked captures passed, including expansion, contraction, nonuniform
-scaling, and a two-body Scale around a displaced point. BRep-vertex centres
+scaling, and a two-body Scale around a displaced point. B-rep vertex centres
 remain open.
 
 These six captures also export as live FreeCAD Sketcher, Extrude, and Scale
@@ -357,13 +363,13 @@ tracked annular solid, cone, torus, and sphere matched their saved body
 counts and analytic geometry. The cone retains its degenerate apex edge,
 and the torus and sphere each have one untrimmed face. Kit projects all
 three solids in the analytic multi-body fixture. Partial profiles that touch
-the axis at one point, custom axes and other BRep axis sources, surface and
+the axis at one point, custom axes and other B-rep axis sources, surface and
 Boolean Revolves, projected axes, and native Fusion output require more coverage.
 
 Kit reads local assembly definitions and occurrences from qualified `.f3d`
 archives. Repeated instances share one component definition. Nested instances
 retain their parent definition, native sibling order, and local rigid placement,
-with translations expressed in millimeters. Kit binds the top-level timeline
+with translations expressed in millimetres. Kit binds the top-level timeline
 through native component and history references and retains the empty child
 history identities. The SDK validated 32 definitions, 23 native instances,
 and 24 expanded paths across 12 tracked archives. Three Fusion 2705.1.30
@@ -576,7 +582,7 @@ checks the result against the archive's size and CRC.
 
 - Source commit: `60ebb72ee7b64a0bf22331012b7c737c0e17d43b`.
 - Source tree: `9ffe9d2d126ea4d319aa3ed47e969dbca138ea9e`.
-- All 2,556 tracked source files retain their original bytes and names.
+- The import retained the original bytes and names of all 2,556 tracked source files.
 - The import merge preserves all 186 commits of the original study history.
 - `Study/revolveaxes-36bd04ac77e1/ground_truth.json` adds one required saved
   reference file that the source repository's capture-folder ignore rule omitted.
@@ -587,10 +593,31 @@ source hashes, generated capture names, recorded machine paths and known style
 findings. Its `.gitignore` retains the original capture rules. The parent
 `.gitattributes` prevents line-ending conversion from changing archived evidence.
 No nested `.git` directory, installed dependencies or Python bytecode is imported.
-Existing source files and evidence are not reformatted or renamed by this move.
+The relocation kept the original source formatting, file names and evidence bytes.
 Three trailing-space diagnostics in two original executed SDK text snapshots are
 retained with their recorded bytes and hashes. Newly written import documentation
 is formatted separately.
+
+### Tracked inventory
+
+The UniCAD baseline at `db8ddae6` contains 2,560 files in `Study/`:
+
+| Category                                                    | Files |
+| ----------------------------------------------------------- | ----: |
+| Python decoder, inspection, capture and validation sources  |   732 |
+| Native `.f3d` captures and STL fixtures                     |   739 |
+| JSON ground truth, catalogs and generated reports           |   722 |
+| Text logs, completion markers and executed source snapshots |   295 |
+| Journal and XML records                                     |    69 |
+| Study README                                                |     1 |
+| Capture manifest and Git ignore rules                       |     2 |
+
+The SDK has 395 Fusion format modules and seven adapter modules. The study
+sources have their own legacy style history and are excluded by the project
+Black configuration. Historical source hashes refer to the source versions
+used to generate the corresponding evidence. Reproduce hash-pinned checks
+from those revisions. For current decoding results, rerun the readers or the
+health audit and write any new reports to a separate location.
 
 ## Run the reader
 
@@ -606,8 +633,8 @@ ZIP Zstandard support need a generic `libzstd` library; pass its location with
 `--zstd-library`. The original study README provides the machine-specific library
 example used for its captures.
 
-The main Python entrypoint is `decode_basics.decode_basics`. The parameter-only
-entrypoint is `decode_parameters.decode_file`. These scripts use the original
+The main Python entry point is `decode_basics.decode_basics`. The parameter-only
+entry point is `decode_parameters.decode_file`. These scripts use the original
 flat-module layout, so run them with `Study/` as the working directory or put that
 directory on the Python module search path.
 
@@ -634,7 +661,7 @@ unchanged and does not package this research tree.
 
 ## Relocation verification
 
-The imported files were checked byte for byte against the source snapshot.
+At relocation, the imported files matched the source snapshot byte for byte.
 All 729 Python modules compile. All 712 saved archives decode from `Study/` and
 their complete outputs match the previous committed audit after replacing only
 the relocated directory prefix. No geometry or metadata field is removed from
@@ -675,7 +702,7 @@ members = read_members(
 
 Pass the matching BulkStream and MetaStream to `fusion_metadata.design_records`.
 For a geometry check, include the identified cache member's full path in
-`MemberSuffixes` or select `(".smb", ".smbh")` to inventory the BRep caches.
+`MemberSuffixes` or select `(".smb", ".smbh")` to inventory the B-rep caches.
 Use the unfiltered reader for a full archive integrity check. Filtered reads
 validate metadata across the archive and check CRCs for the selected payloads.
 
