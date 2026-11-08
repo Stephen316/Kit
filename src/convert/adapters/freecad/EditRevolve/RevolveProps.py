@@ -36,7 +36,11 @@ def RevolveVector(NameValue: str, Vector: SpaceVector) -> Element:
 
 # the source sketch and signed angular control must remain independently editable
 def MakeRevProps(
-    SketchName: str, Origin: SpaceVector, Direction: SpaceVector, AngleDeg: float
+    SketchName: str,
+    Origin: SpaceVector,
+    Direction: SpaceVector,
+    AngleDeg: float,
+    Symmetric: bool = False,
 ) -> list[Element]:
     return [
         RevolveProp(
@@ -58,5 +62,10 @@ def MakeRevProps(
         ),
         RevolveProp("Solid", "App::PropertyBool", "Bool", {"value": "true"}),
         RevolveProp("Source", "App::PropertyLink", "Link", {"value": SketchName}),
-        RevolveProp("Symmetric", "App::PropertyBool", "Bool", {"value": "false"}),
+        RevolveProp(
+            "Symmetric",
+            "App::PropertyBool",
+            "Bool",
+            {"value": "true" if Symmetric else "false"},
+        ),
     ]
