@@ -8,20 +8,19 @@
 
 from collections.abc import Callable
 from dataclasses import replace as Replace
-from functools import partial as BindArgs
 from hashlib import sha256 as ShaDigest
 from pathlib import Path as FilePath
 
+from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionArchive
 from convert.formats.Fusion.Assembly.AssemblyRead import ReadAssemblyProjection
-from convert.formats.Fusion.BodyBlob import ReadBodyBlob
 from convert.formats.Fusion.BodyInputs.BodyInputProject import ProjectBodyPicks
-from convert.formats.Fusion.DesignZip import ReadDesignZip
 from convert.formats.Fusion.Extrudes.ExtrudeProject import ProjectExtrudes
 from convert.formats.Fusion.Extrudes.Plane.PlaneExtProject import ProjectPlaneExts
 from convert.formats.Fusion.FormulaDeps.FormulaLink import LinkFormulaDeps
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.PlaneProjection import ProjectPlanes
 from convert.formats.Fusion.Profiles.ProfileProjection import ProjectProfiles
+from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Revolves.RevolveBody import ProjectRevBody
 from convert.formats.Fusion.Revolves.RevolveProject import ProjectRevolves
 from convert.formats.Fusion.Scales.ScaleProject import ProjectScale
@@ -64,7 +63,22 @@ def ReadFusionDoc(
 ) -> CadDocument:
     """Project a native Fusion history or a qualified local assembly."""
     DataValue, SourceName = LoadFusionBytes(SourceData)
-    BulkData, Spans = ReadDesignZip(DataValue, InflateZstd)
+    with OpenFusionArchive(DataValue, InflateZstd) as Archive:
+        BulkData, Spans = Archive.ReadDesign()
+        return ProjectFusionDoc(
+            DataValue, SourceName, BulkData, Spans, HistoryId, Archive.ReadBody
+        )
+
+
+# the projection shares one archive context with inspection and every geometry consumer
+def ProjectFusionDoc(
+    DataValue: bytes,
+    SourceName: str,
+    BulkData: bytes,
+    Spans: tuple[RecordSpan, ...],
+    HistoryId: int | None,
+    LoadBlob: Callable[[str], bytes],
+) -> CadDocument:
     Parts, Params, Diagnostics = ReadBulkHistory(BulkData, Spans)
     Assembly, History, AssemblyIssues = (
         ReadAssemblyProjection(BulkData, Spans, Parts)
@@ -97,7 +111,6 @@ def ReadFusionDoc(
     Steps, PlanePicks, PlaneExtIssues = ProjectPlaneExts(
         BulkData, Spans, History.OwnerId, Steps, Parameters, Planes + Frames, Sketches
     )
-    LoadBlob = BindArgs(ReadBodyBlob, DataValue, InflateZstd=InflateZstd)
     Steps, Selections, RevolveIssues = ProjectRevolves(
         BulkData,
         Spans,

@@ -33,6 +33,23 @@ Older runtimes can supply a Zstandard decoder that accepts compressed bytes
 and an expected output size. The callback must bound decompression to that
 size. The archive reader checks the returned size and CRC.
 
+The document reader uses one validated ZIP index for the active design and
+every referenced body history stream. It reads referenced streams on demand.
+Explicit-format reads share this session across all feature projections.
+Automatic format detection still performs a separate, non-inflating probe.
+
+`convert.formats.Fusion.SourceProof.InspectSource.ReadFusionSourceProof`
+reports coverage for the exact archive SHA-256 and selected native history.
+It reports each unresolved ZIP member and design record, including primary
+records and continuations. Framed streams and source spans attached to
+neutral entities count as structural or observed evidence. Complete proof
+currently covers the selected version-zero history and group records and
+exact empty configuration table and rule members. The two-body Scale capture
+has 30 members, 388 primary records, and 62 continuations. Its report leaves
+28 members and 449 design records unresolved. The report is an inspection
+tool. Strict Fusion import and conversion still require complete source
+coverage.
+
 `convert.formats.Fusion.ZipParameters.ReadZipParams` projects indexed
 numeric parameters into Kit's neutral `Parameter` records. It retains native
 expression text, display units, binding IDs, and source spans. Values use
