@@ -15,19 +15,21 @@ from convert.adapters.base import ParseUntrusted
 from convert.adapters.freecad.Archive import BuildDocXmlMut
 from convert.adapters.freecad.EditBinding import ReadEditBinding
 from convert.adapters.freecad.EditDatum.DatumBinding import KDatumBinding, KDatumGroup
+from convert.adapters.freecad.EditDatum.DatumPlan import ReadDatumPlan
 from convert.adapters.freecad.EditDatum.DatumSavedArchive import CheckDatumFiles
 from convert.adapters.freecad.EditDatum.DatumSavedGraph import ReadDatumGraph
 from convert.adapters.freecad.EditDatum.DatumSavedValues import (
     ApplyDatumVals,
     ReadDatumParams,
 )
-from convert.adapters.freecad.EditPlaneRev.PlaneRevBinding import KPlaneRevBinding
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureBoundPlane import BoundConstructionPlane
 
 
 # legacy static planes and separately reconciled revolve planes are outside this binding
-def HasDatumTrace(RootValue: Element, PlaneIds: set[str]) -> bool:
+def HasDatumTrace(
+    RootValue: Element, PlaneIds: set[str], *, CheckPlacement: bool
+) -> bool:
     if not PlaneIds:
         return False
     if RootValue.find(f"./Objects/Object[@name='{KDatumGroup}']") is not None:
@@ -36,7 +38,6 @@ def HasDatumTrace(RootValue: Element, PlaneIds: set[str]) -> bool:
         Value.get("name")
         for Value in RootValue.findall("./Objects/Object[@type='App::Plane']")
     }
-    IsRevolve = ReadEditBinding(RootValue, KPlaneRevBinding) is not None
     for Value in RootValue.findall("./ObjectData/Object"):
         if Value.get("name") not in Names:
             continue
@@ -50,7 +51,7 @@ def HasDatumTrace(RootValue: Element, PlaneIds: set[str]) -> bool:
             return True
         Identity = Properties.find("./Property[@name='KitId']/String")
         if (
-            not IsRevolve
+            CheckPlacement
             and Identity is not None
             and Identity.get("value") in PlaneIds
             and Properties.find(
@@ -78,7 +79,11 @@ def ReconcileDatum(
     )
     PlaneIds = {Definition.SupportPlaneId for _, Definition in Controls}
     if Binding is None:
-        if HasDatumTrace(RootValue, PlaneIds):
+        if HasDatumTrace(
+            RootValue,
+            PlaneIds,
+            CheckPlacement=bool(PlaneIds and ReadDatumPlan(Document)),
+        ):
             raise ValueError("FreeCAD editable datum binding is missing")
         return Document
     if Binding != KDatumGroup or not Controls or len(PlaneIds) != len(Controls):
