@@ -39,6 +39,9 @@ from convert.adapters.freecad.ArchiveEditPlan import (
     KProfileBinding,
     ReadArchiveEdit,
 )
+from convert.adapters.freecad.EditAxisRev.AxisRevBinding import KAxisRevBinding
+from convert.adapters.freecad.EditAxisRev.AxisRevExpr import AxisAngleExpr
+from convert.adapters.freecad.EditAxisRev.AxisRevPlan import AxisRevPlan, ReadAxisRev
 from convert.adapters.freecad.EditPlaneRev.PlanePoseExpr import PlanePoseExpr
 from convert.adapters.freecad.EditPlaneRev.PlaneRevBinding import KPlaneRevBinding
 from convert.adapters.freecad.EditPlaneRev.PlaneRevPlan import (
@@ -2688,6 +2691,7 @@ def ConstraintsProp(
     Parameters: _Parameters,
     ProfileOnly: bool = False,
     IncludeIncidence: bool = False,
+    ExtraIncidence: tuple[tuple[tuple[int, int], tuple[int, int]], ...] = (),
 ) -> tuple[XmlTree.Element, list[tuple[str, str]], list[str], list[dict[str, object]]]:
     State = CreateRuleState(Sketch, Indices, Parameters, ProfileOnly)
     for RuleValue in Items(Sketch.get("constraints", [])):
@@ -2698,7 +2702,10 @@ def ConstraintsProp(
         and IsPayloadMap(Origin)
         and Origin.get("adapter") == "fusion.f3d"
     ):
-        for CurveSlot, PointSlot in FindPointLinks(State.EntityItems, Indices):
+        for CurveSlot, PointSlot in (
+            *FindPointLinks(State.EntityItems, Indices),
+            *ExtraIncidence,
+        ):
             RuleId = f"incidence_{CurveSlot[0]}_{CurveSlot[1]}"
             NameValue = RuleNameMut({"id": RuleId}, {}, False, State.RuleNames)
             State.Encoded.append(
@@ -6384,6 +6391,7 @@ class DocFeatures:
     EditableProfileId: str = ""
     EditableRevId: str = ""
     EditablePlaneSteps: tuple[str, ...] = ()
+    RevBinding: str = KRevBinding
 
 
 # this definition exists because native replay objects need stable source ordering
@@ -7231,14 +7239,25 @@ def EditProfile(
 
 # verified source incidence keeps sketch endpoints joined during native editing
 def SetProfRulesMut(
-    Context: DocContext, Geometry: DocGeometry, Sketch: Object, SketchId: str
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Sketch: Object,
+    SketchId: str,
+    ProfilePairs: tuple[tuple[str, str], ...] = (),
 ) -> None:
     SourceSketch = next(
         Value for Value in Geometry.SketchItems if Value.get("id") == SketchId
     )
     _, Indices, _ = GeomProp(SourceSketch)
+    ExtraIncidence = tuple(
+        ((Indices[First], 1), (Indices[Second], 1)) for First, Second in ProfilePairs
+    )
     Rules, _, _, _ = ConstraintsProp(
-        SourceSketch, Indices, Context.Parameters, IncludeIncidence=True
+        SourceSketch,
+        Indices,
+        Context.Parameters,
+        IncludeIncidence=True,
+        ExtraIncidence=ExtraIncidence,
     )
     ReplaceNameMut(Sketch.properties, "Constraints", Rules)
 
@@ -7314,34 +7333,65 @@ def HasEditRevMut(
     Geometry: DocGeometry,
     Features: DocFeatures,
     FeatureInfo: FeatureData,
-    PlanValue: EditRevolve | PlaneRevPlan,
+    PlanValue: EditRevolve | PlaneRevPlan | AxisRevPlan,
     ShapeData: bytes,
 ) -> bool:
-    Sketch = EditProfile(Context, Geometry, FeatureInfo, PlanValue.SketchId)
+    AxisPlan = PlanValue if isinstance(PlanValue, AxisRevPlan) else None
+    Sweep = PlanValue.Revolve if isinstance(PlanValue, AxisRevPlan) else PlanValue
+    Sketch = EditProfile(Context, Geometry, FeatureInfo, Sweep.SketchId)
     if Sketch is None or not ShapeData:
         return False
-    if isinstance(PlanValue, PlaneRevPlan):
-        TargetNames = BindPlaneTargetsMut(Context, Geometry, Features, PlanValue)
+    AxisSketch = ""
+    AxisOrigin = Sweep.AxisOrigin
+    ProfilePairs: tuple[tuple[str, str], ...] = ()
+    if isinstance(Sweep, PlaneRevPlan):
+        TargetNames = BindPlaneTargetsMut(Context, Geometry, Features, Sweep)
         if not TargetNames:
             return False
         Expressions = PlaneSweepExpr(
             TargetNames,
-            PlanValue.AxisOrigin,
-            PlanValue.AxisDirection,
-            PlanValue.SketchFrame.z_axis,
+            Sweep.AxisOrigin,
+            Sweep.AxisDirection,
+            Sweep.SketchFrame.z_axis,
         )
-        AngleDeg = MathValue.degrees(PlanValue.EndRadians - PlanValue.StartRadians)
+        AngleDeg = MathValue.degrees(Sweep.EndRadians - Sweep.StartRadians)
         Symmetric = len(TargetNames) == 2
         Dependencies = TargetNames
-        Features.EditablePlaneSteps = tuple(
-            Target.StepId for Target in PlanValue.Targets
-        )
+        Features.EditablePlaneSteps = tuple(Target.StepId for Target in Sweep.Targets)
+        Features.RevBinding = KPlaneRevBinding
     else:
-        Expressions = RevExpressionsMut(Context, PlanValue)
+        Expressions = RevExpressionsMut(Context, Sweep)
         if not Expressions:
             return False
-        AngleDeg, Symmetric = PlanValue.AngleDeg, PlanValue.Symmetric
+        AngleDeg, Symmetric = Sweep.AngleDeg, Sweep.Symmetric
         Dependencies = (Context.ParamSheet.name,)
+        if AxisPlan is not None:
+            ProfileLines = GetProfLines(Sketch)
+            if not ProfileLines:
+                return False
+            Reverse = AxisPlan.AxisSense < 0
+            Guide = BindRevAxis(
+                Context, Geometry, AxisPlan.AxisSketchId, AxisPlan.AxisLineId, Reverse
+            )
+            if Guide is None:
+                return False
+            AxisSketch, AxisIndex = Guide
+            Expressions = [
+                (
+                    "Angle",
+                    AxisAngleExpr(
+                        AxisSketch,
+                        AxisIndex,
+                        Sketch.name,
+                        ProfileLines,
+                        Expressions[0][1],
+                    ),
+                )
+            ]
+            AxisOrigin = AxisPlan.AxisStart if Reverse else AxisPlan.AxisEnd
+            ProfilePairs = AxisPlan.ProfilePairs
+            Dependencies += (AxisSketch,)
+            Features.RevBinding = KAxisRevBinding
     Revolution = Context.Graph.add(
         "Part::Revolution", FeatureInfo.FeatureName, "Revolution", Touched=True
     )
@@ -7351,10 +7401,11 @@ def HasEditRevMut(
             StringProp("Label", FeatureInfo.FeatureName),
             *MakeRevProps(
                 Sketch.name,
-                PlanValue.AxisOrigin,
-                PlanValue.AxisDirection,
+                AxisOrigin,
+                Sweep.AxisDirection,
                 AngleDeg,
                 Symmetric,
+                AxisSketch,
             ),
             ExpressionProp(Expressions),
             ShapeProp(ShapeFile),
@@ -7364,7 +7415,7 @@ def HasEditRevMut(
     )
     Revolution.dependencies.extend((Sketch.name, *Dependencies))
     ReplaceNameMut(Sketch.properties, "Visibility", BoolProp("Visibility", False))
-    SetProfRulesMut(Context, Geometry, Sketch, PlanValue.SketchId)
+    SetProfRulesMut(Context, Geometry, Sketch, Sweep.SketchId, ProfilePairs)
     TrackSolidMut(Features, FeatureInfo, Revolution)
     Features.FinalShapeFile = ShapeFile
     Features.EditableRevId = FeatureInfo.FeatureId
@@ -7411,6 +7462,81 @@ def BindPlaneTargetsMut(
         )
         StepValue.dependencies.append(Plane.name)
     return tuple(Plane.name for Plane, _, _ in Bindings)
+
+
+# all profile endpoints define the sweep side even when the axis touches a corner
+def GetProfLines(Sketch: Object) -> tuple[int, ...]:
+    Geom = next(
+        (Value for Value in Sketch.properties if Value.get("name") == "Geometry"), None
+    )
+    if Geom is None:
+        return ()
+    return tuple(
+        Index
+        for Index, Value in enumerate(Geom.findall("./GeometryList/Geometry"))
+        if Value.get("type") == NeutralGeomTypeIdByKind["line"]
+    )
+
+
+# the hidden native edge follows both original construction line endpoints
+def BindRevAxis(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    SketchId: str,
+    LineId: str,
+    Reverse: bool,
+) -> tuple[str, int] | None:
+    NameValue = Geometry.SketchNames.get(SketchId)
+    AxisSketch = next(
+        (Value for Value in Context.Graph.Objects if Value.name == NameValue), None
+    )
+    SketchData = next(
+        (Value for Value in Geometry.SketchItems if Value.get("id") == SketchId), None
+    )
+    if AxisSketch is None or AxisSketch.type_id != SketchTypeId or SketchData is None:
+        return None
+    Line = next(
+        (
+            Value
+            for Value in Items(SketchData.get("entities", []))
+            if Value.get("id") == LineId
+        ),
+        None,
+    )
+    LineGeom = Line.get("geometry") if Line is not None else None
+    Geom, Indices, Diagnostics = GeomProp(SketchData)
+    LineIndex = Indices.get(LineId)
+    if Line is None or not IsPayloadMap(LineGeom) or Diagnostics or LineIndex is None:
+        return None
+    First, Second = (2, 1) if Reverse else (1, 2)
+    if Reverse:
+        LineGeom = {**LineGeom, "start": LineGeom["end"], "end": LineGeom["start"]}
+    GeomList = Geom[0]
+    Guide = len(GeomList)
+    AppendGeomMut(
+        GeomList,
+        Indices,
+        Diagnostics,
+        set(),
+        Guide,
+        {**Line, "id": "kit-axis-guide", "construction": False, "geometry": LineGeom},
+    )
+    if Diagnostics or len(GeomList) != Guide + 1:
+        return None
+    GeomList.set("count", str(len(GeomList)))
+    Constraints, _, _, _ = ConstraintsProp(
+        SketchData,
+        Indices,
+        Context.Parameters,
+        IncludeIncidence=True,
+        ExtraIncidence=(
+            ((Guide, 1), (LineIndex, First)),
+            ((Guide, 2), (LineIndex, Second)),
+        ),
+    )
+    ReplaceNameMut(AxisSketch.properties, "Geometry", Geom)
+    ReplaceNameMut(AxisSketch.properties, "Constraints", Constraints)
+    return AxisSketch.name, Guide
 
 
 # this definition exists because solidworks fillets require nonexecuting topology carriers
@@ -7640,7 +7766,7 @@ def AddFeaturesMut(
     Context: DocContext,
     Geometry: DocGeometry,
     Features: DocFeatures,
-    EditPlan: tuple[str, EditExtrude | EditRevolve | PlaneRevPlan] | None,
+    EditPlan: tuple[str, EditExtrude | EditRevolve | PlaneRevPlan | AxisRevPlan] | None,
     ShapeData: bytes,
 ) -> None:
     for Feature in Features.FeatureItems:
@@ -8230,7 +8356,7 @@ def SetOuterMut(Context: DocContext, Features: DocFeatures) -> None:
     if Features.EditableRevId:
         Context.MetaObject.properties.append(
             StringProp(
-                KPlaneRevBinding if Features.EditablePlaneSteps else KRevBinding,
+                Features.RevBinding,
                 Features.EditableRevId,
                 Dynamic=True,
             )
@@ -8390,12 +8516,14 @@ def SerializeDoc(Context: DocContext, Features: DocFeatures) -> bytes:
 # only the final timeline step can own the single native revolution solid
 def ReadArchiveRev(
     DocValue: CadDoc | None,
-) -> tuple[str, EditRevolve | PlaneRevPlan] | None:
+) -> tuple[str, EditRevolve | PlaneRevPlan | AxisRevPlan] | None:
     if DocValue is None or not DocValue.feature_timeline:
         return None
     FeatureValue = DocValue.feature_timeline[-1]
-    PlanValue = ReadEditRevolve(DocValue, FeatureValue) or ReadPlaneRev(
-        DocValue, FeatureValue
+    PlanValue = (
+        ReadEditRevolve(DocValue, FeatureValue)
+        or ReadPlaneRev(DocValue, FeatureValue)
+        or ReadAxisRev(DocValue, FeatureValue)
     )
     return (FeatureValue.id, PlanValue) if PlanValue is not None else None
 

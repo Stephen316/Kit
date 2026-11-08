@@ -211,8 +211,16 @@ after parameter changes. A tracked line-profile sketch also rebuilt its solid
 after a corner edit. Kit reads saved angle and line-profile edits back into
 the original timeline. It verifies the saved sketch and solid against the
 live controls before accepting the edit, and it can re-export the rebuilt
-shape, including conical sides from a corner edit. Sketch-line-axis
-examples retain their initial solid and source history as carriers.
+shape, including conical sides from a corner edit.
+
+Qualified one-sided Revolves about a line in a separate Fusion sketch
+also export as native FreeCAD Revolves. A hidden guide edge follows the
+original construction line and drives the native axis link. Both saved
+endpoint orders rebuilt in FreeCAD 1.1.3 after angle, axis, and profile
+changes. The live sweep keeps the Fusion angle direction when the
+endpoints reverse or the axis moves to the opposite side of the profile.
+FreeCAD saves preserve those edits. Kit reads the embedded
+original Fusion snapshot from these edited sketch-axis files.
 
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body

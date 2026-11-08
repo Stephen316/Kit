@@ -158,19 +158,17 @@ def TestNativeRev(
     assert OpenDocument(Output) == DocValue
 
 
-# unproven sketch axis dependencies keep the exact solid through the carrier path
+# an unresolved brep edge never becomes a live revolute reference
 @KRequiresCodec
 def TestRevolveCarrier(TmpPath: FilePath) -> None:
     DocValue = OpenDocument(
-        KStudyPath / "revolveaxes-a83b542c4a07" / "sketch_line.f3d", strict=False
+        KStudyPath / "revolveaxes-a83b542c4a07" / "brep_edge.f3d", strict=False
     )
-    Output = TmpPath / "sketch_line.FCStd"
-    Result = WriteDocument(DocValue, Output)
-    assert Capability.BREP in Result.native_capabilities
+    Output = TmpPath / "brep_edge.FCStd"
+    _ = WriteDocument(DocValue, Output)
     with ZipFile(Output) as Archive:
         RootValue = ParseXml(Archive.read("Document.xml"))
         assert not RootValue.findall("./Objects/Object[@type='Part::Revolution']")
-        assert any(Name.endswith(".Shape.brp") for Name in Archive.namelist())
     assert OpenDocument(Output) == DocValue
 
 

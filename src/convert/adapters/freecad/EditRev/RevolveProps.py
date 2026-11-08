@@ -41,7 +41,16 @@ def MakeRevProps(
     Direction: SpaceVector,
     AngleDeg: float,
     Symmetric: bool = False,
+    AxisSketch: str = "",
 ) -> list[Element]:
+    AxisLink = RevolveProp(
+        "AxisLink",
+        "App::PropertyLinkSub",
+        "LinkSub",
+        {"value": AxisSketch, "count": "1" if AxisSketch else "0"},
+    )
+    if AxisSketch:
+        _ = SubElement(AxisLink[0], "Sub", {"value": "Edge1"})
     return [
         RevolveProp(
             "Angle",
@@ -50,9 +59,7 @@ def MakeRevProps(
             {"value": f"{AngleDeg:.16f}"},
         ),
         RevolveVector("Axis", Direction),
-        RevolveProp(
-            "AxisLink", "App::PropertyLinkSub", "LinkSub", {"value": "", "count": "0"}
-        ),
+        AxisLink,
         RevolveVector("Base", Origin),
         RevolveProp(
             "FaceMakerClass",

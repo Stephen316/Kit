@@ -11,6 +11,8 @@ from xml.etree.ElementTree import Element
 from zipfile import ZipFile, ZipInfo
 
 from convert.adapters.freecad.EditableRev import ReadEditRevolve
+from convert.adapters.freecad.EditAxisRev.AxisRevBinding import KAxisRevBinding
+from convert.adapters.freecad.EditAxisRev.AxisRevPlan import ReadAxisRev
 from convert.adapters.freecad.EditBinding import HasLegacyEdit, ReadEditBinding
 from convert.adapters.freecad.EditRead.Revolve.ReadRevFields import ReadRevFields
 from convert.adapters.freecad.EditRev.ApplyRevEdit import ApplyRevEdit
@@ -28,7 +30,19 @@ def ReconcileRev(
     Members: Mapping[str, ZipInfo],
 ) -> CadDocument:
     Binding = ReadEditBinding(RootValue, KRevBinding)
+    AxisBinding = ReadEditBinding(RootValue, KAxisRevBinding)
     Feature = DocValue.feature_timeline[-1] if DocValue.feature_timeline else None
+    if AxisBinding is not None:
+        if (
+            Binding is not None
+            or Feature is None
+            or AxisBinding != Feature.id
+            or ReadAxisRev(DocValue, Feature) is None
+        ):
+            raise ValueError(
+                "FreeCAD editable sketch axis binding disagrees with its source"
+            )
+        return DocValue
     IsAngular = Feature is not None and isinstance(Feature.definition, AngularRevolve)
     if Binding is None and not (IsAngular and HasLegacyEdit(RootValue)):
         return DocValue
