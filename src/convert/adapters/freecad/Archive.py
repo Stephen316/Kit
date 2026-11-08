@@ -33,7 +33,11 @@ from convert.adapters.freecad.Brep import (
     proven_ascii_brep as ProvenAsciiBrep,
     triangle_mesh_brep as TriangleMeshBrep,
 )
-from convert.adapters.freecad.ArchiveEditPlan import KEditableBinding, ReadArchiveEdit
+from convert.adapters.freecad.ArchiveEditPlan import (
+    KEditableBinding,
+    KProfileBinding,
+    ReadArchiveEdit,
+)
 from convert.adapters.freecad.EditableExt import EditExtrude
 from convert.adapters.freecad.EditSketchPlan import IsSketchWire, KSketchEditBinding
 from convert.adapters.freecad.Format import FORMAT_ID as FormatId
@@ -2671,12 +2675,17 @@ def ConstraintsProp(
     Indices: Mapping[str, int],
     Parameters: _Parameters,
     ProfileOnly: bool = False,
+    IncludeIncidence: bool = False,
 ) -> tuple[XmlTree.Element, list[tuple[str, str]], list[str], list[dict[str, object]]]:
     State = CreateRuleState(Sketch, Indices, Parameters, ProfileOnly)
     for RuleValue in Items(Sketch.get("constraints", [])):
         AppendRuleMut(State, RuleValue)
     Origin = Sketch.get("provenance")
-    if State.Encoded and IsPayloadMap(Origin) and Origin.get("adapter") == "fusion.f3d":
+    if (
+        (State.Encoded or IncludeIncidence)
+        and IsPayloadMap(Origin)
+        and Origin.get("adapter") == "fusion.f3d"
+    ):
         for CurveSlot, PointSlot in FindPointLinks(State.EntityItems, Indices):
             RuleId = f"incidence_{CurveSlot[0]}_{CurveSlot[1]}"
             NameValue = RuleNameMut({"id": RuleId}, {}, False, State.RuleNames)
@@ -6360,6 +6369,7 @@ class DocFeatures:
     AssemblyMates: int
     OuterTarget: str
     EditableFeatureId: str = ""
+    EditableProfileId: str = ""
 
 
 # this definition exists because native replay objects need stable source ordering
@@ -7236,6 +7246,18 @@ def HasEditExtMut(
     TrackSolidMut(Features, FeatureInfo, ToolValue)
     Features.FinalShapeFile = ShapeFile
     Features.EditableFeatureId = FeatureInfo.FeatureId
+    if PlanValue.ProfileEditable:
+        SourceSketch = next(
+            Value
+            for Value in Geometry.SketchItems
+            if Value.get("id") == PlanValue.SketchId
+        )
+        _, Indices, _ = GeomProp(SourceSketch)
+        Rules, _, _, _ = ConstraintsProp(
+            SourceSketch, Indices, Context.Parameters, IncludeIncidence=True
+        )
+        ReplaceNameMut(Sketch.properties, "Constraints", Rules)
+        Features.EditableProfileId = PlanValue.SketchId
     return True
 
 
@@ -8040,6 +8062,10 @@ def SetOuterMut(Context: DocContext, Features: DocFeatures) -> None:
     if Features.EditableFeatureId:
         Context.MetaObject.properties.append(
             StringProp(KEditableBinding, Features.EditableFeatureId, Dynamic=True)
+        )
+    if Features.EditableProfileId:
+        Context.MetaObject.properties.append(
+            StringProp(KProfileBinding, Features.EditableProfileId, Dynamic=True)
         )
     if not Context.NativeReplay and CanEditSheet(
         Context.Manifest, Context.ParametersData, Context.Parameters.FusionExpressions

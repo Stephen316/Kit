@@ -16,12 +16,13 @@ import pytest as Pytest
 
 from convert import open_document as OpenDocument, write_document as WriteDocument
 from convert.adapters.freecad.Adapter import FreeCadAdapterA
-from convert.adapters.freecad.ArchiveEditPlan import KEditableBinding
+from convert.adapters.freecad.ArchiveEditPlan import KEditableBinding, KProfileBinding
 from convert.adapters.freecad.Brep import BrepModelBrep
 from convert.adapters.freecad.EditableExt import FindEditFrame
 from convert.adapters.freecad.EditExtProfile import GetEditCircle
 from convert.geometry.Extrude.Circular.CircularExtrude import BuildCircular
 from interchange.document.models.DocumentModel import CadDocument
+from interchange.geometry.models.GeometryCurves import CircleGeometry
 
 # the native source fixture supplies the original carrier independently of the edit
 KSourcePath = (
@@ -37,12 +38,18 @@ KFormulaPath = (
 
 
 # rebuilds let readback tests exercise the archive boundary without requiring a cad executable
-def MakeEditShape(DocValue: CadDocument, DistanceMm: float) -> bytes:
+def MakeEditShape(
+    DocValue: CadDocument,
+    DistanceMm: float,
+    EditedProfile: CircleGeometry | None = None,
+) -> bytes:
     Feature = DocValue.feature_timeline[-1]
     ProfileFrame = FindEditFrame(DocValue, Feature.sketch_id)
     assert ProfileFrame is not None
     Sketch, Plane = ProfileFrame
-    Profile = GetEditCircle(Feature, Sketch)
+    Profile = (
+        EditedProfile if EditedProfile is not None else GetEditCircle(Feature, Sketch)
+    )
     assert Profile is not None
     Lower, Upper = sorted((0.0, DistanceMm))
     Model, _, _, _ = BuildCircular(
@@ -88,12 +95,21 @@ def ChangeEditFile(
         ResultCell = RootValue.find(".//Cell[@alias='fusion_parameter_276']")
         assert ResultCell is not None
         ResultCell.set("content", "=fusion_parameter_202 + 13.5 mm")
-    if ChangeMode in {"unmarked", "legacy-identity"}:
+    if ChangeMode in {"unmarked", "legacy-identity", "legacy-bound"}:
         Metadata = RootValue.find("./ObjectData/Object[@name='KitMetadata']/Properties")
         assert Metadata is not None
         Binding = Metadata.find(f"Property[@name='{KEditableBinding}']")
         assert Binding is not None
-        Metadata.remove(Binding)
+        if ChangeMode != "legacy-bound":
+            Metadata.remove(Binding)
+        ProfileBinding = Metadata.find(f"Property[@name='{KProfileBinding}']")
+        if ProfileBinding is not None:
+            Metadata.remove(ProfileBinding)
+            for Rules in RootValue.findall(".//ConstraintList"):
+                for RuleValue in tuple(Rules):
+                    if RuleValue.get("Name", "").startswith("incidence_"):
+                        Rules.remove(RuleValue)
+                Rules.set("count", str(len(Rules)))
         Metadata.set("Count", str(len(Metadata)))
     if ChangeMode in {"identity", "legacy-identity"}:
         Identity = RootValue.find(f"{FeaturePath}/Property[@name='KitId']/String")
@@ -134,7 +150,7 @@ def ChangeEditFile(
 # signed edits must update measures and preserve identities before applying public read filters
 @Pytest.mark.parametrize(
     ("DistanceMm", "ChangeMode"),
-    ((25.0, "bound"), (-25.0, "unmarked"), (0.021, "bound")),
+    ((25.0, "bound"), (-25.0, "unmarked"), (0.021, "bound"), (22.0, "legacy-bound")),
 )
 def TestDepthEdit(TmpPath: FilePath, DistanceMm: float, ChangeMode: str) -> None:
     Document = OpenDocument(KSourcePath, strict=False)

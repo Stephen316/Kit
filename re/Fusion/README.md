@@ -135,8 +135,8 @@ and reference dimensions take their value from the solved geometry. The
 verified saves include radius, diameter, angle, a reference radius, and
 joined endpoints moved by dragging. The radius control passed a second
 native edit after re-export, from 18 to 21.25 mm. Older unbound archives are
-read as source snapshots. Sketches with downstream modeling features or
-unresolved source relations remain outside the saved edit path.
+read as source snapshots. This standalone binding requires a resolved sketch
+graph without downstream modeling features.
 
 For Extrude and Revolve, the document reader follows typed profile
 descriptors to their owning feature, sketch, and reciprocal loop record.
@@ -287,10 +287,21 @@ B-rep and body measures under the original Fusion identities. The original
 Fusion archive remains available as source evidence. Four saved native edits
 verified positive, negative, fractional, and sign-changing depths. A second
 edit and save verified re-exporting the 25 mm result and re-importing the
-30 mm result. Unrecomputed saves, changed profiles or directions, broken
-bindings, stale shapes, and additional solids report a readback conflict.
+30 mm result. Unrecomputed saves, changed directions, broken bindings, stale
+shapes, and additional solids report a readback conflict.
 Unchanged native saves keep the original neutral document even when FreeCAD
 rewrites the B-rep bytes.
+
+New circular profile bindings link the selected circle to its exact Fusion
+center point in FreeCAD. The radius and center can be dragged while the
+extrusion depth remains editable. Kit compares the saved sketch wire and
+solid with the edited profile and signed depth, then rebuilds the neutral
+geometry under the original feature and body IDs. FreeCAD 1.1.3 verified a
+radius of 11.5 mm at a depth of −23 mm and center of (3.5, −6.25) mm.
+The resulting cylinder measured 9555.9395 mm³ and had its centroid at
+(3.5, −6.25, −11.5) mm. The formula control passed another edit after
+re-export, with a radius of 8.75 mm and a signed depth of −5 mm. This path
+covers the single unconstrained circular profile and its center point.
 
 For verified part histories with independent active solid creators, Kit also
 reconstructs the saved Extrude bodies from the profile and distance controls.

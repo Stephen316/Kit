@@ -9,6 +9,7 @@
 from convert.adapters.freecad.EditRead.EditObjects import RequireEditObj
 from convert.adapters.freecad.EditRead.EditPlacement import CheckEditFrame
 from convert.adapters.freecad.EditRead.EditSketch import CheckEditSketch
+from convert.adapters.freecad.EditRead.Sketch.ProfileProof import ReadEditProfile
 from convert.adapters.freecad.EditRead.XmlField import (
     CheckEditExpr,
     CheckNoEditExpr,
@@ -62,10 +63,14 @@ def CheckEditProf(
     Feature: NativeObject,
     SketchValue: Sketch,
     PlaneValue: SupportPlane,
-) -> None:
+    AllowProfile: bool = False,
+) -> Sketch:
     Sketch = RequireEditObj(Objects, SketchValue.id, "Sketcher::SketchObject")
     Plane = RequireEditObj(Objects, PlaneValue.id, "App::Plane")
     if EditScalar(Feature, "Base", "App::PropertyLink", "Link") != Sketch.name:
         raise ValueError("FreeCAD editable extrusion profile or support link changed")
     CheckEditPlane(Sketch, Plane, PlaneValue)
+    if AllowProfile:
+        return ReadEditProfile(Sketch, SketchValue)
     CheckEditSketch(Sketch, SketchValue)
+    return SketchValue

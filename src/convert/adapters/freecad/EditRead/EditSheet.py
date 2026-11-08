@@ -10,6 +10,7 @@ from xml.etree.ElementTree import Element
 
 from convert.adapters.freecad.Archive import Items, ParamCatalog
 from convert.adapters.freecad.EditRead.Formula.EditFormula import ReadEditFormula
+from convert.adapters.freecad.EditRead.Formula.SheetLayout import CheckSheetLayout
 from convert.adapters.freecad.EditRead.XmlField import (
     CheckEditExpr,
     CheckNoEditExpr,
@@ -78,6 +79,7 @@ def ReadEditText(
     DocValue: CadDocument,
     Definition: DistanceExtrude,
     DepthMm: float,
+    StrictLayout: bool = False,
 ) -> tuple[str, tuple[Parameter, ...]]:
     Catalog = ParamCatalog(Items(ToData(DocValue.parameters)))
     Alias = Catalog.Aliases.get(Definition.AlongParameterId)
@@ -100,7 +102,9 @@ def ReadEditText(
         raise ValueError("FreeCAD editable spreadsheet depth parameter is missing")
     Expression = DepthParam.expression
     IsLinked = Expression is not None and bool(Expression.parameter_ids)
-    Cells = EditCells(Sheet, IsLinked)
+    Cells = EditCells(Sheet, IsLinked or StrictLayout)
+    if StrictLayout:
+        CheckSheetLayout(Sheet, Cells, Catalog)
     if Definition.TaperParameterId is not None:
         TaperAlias = Catalog.Aliases.get(Definition.TaperParameterId)
         if TaperAlias is None:

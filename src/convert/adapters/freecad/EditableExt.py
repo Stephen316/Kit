@@ -10,7 +10,7 @@ from dataclasses import dataclass as MakeDataClass
 
 from convert.adapters.freecad.EditExtBody import IsEditExtBody
 from convert.adapters.freecad.EditExtDepth import GetEditDepth
-from convert.adapters.freecad.EditExtProfile import GetEditCircle
+from convert.adapters.freecad.EditExtProfile import GetCenterPoint, GetEditCircle
 from convert.adapters.freecad.EditExtScope import IsEditExtScope
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureDistExt import DistanceExtrude
@@ -28,6 +28,7 @@ class EditExtrude:
     DistanceMm: float
     Direction: SpaceVector
     HasFormula: bool = False
+    ProfileEditable: bool = False
 
 
 # profile placement belongs to the linked sketch regardless of native object ordering
@@ -90,4 +91,5 @@ def ReadEditExtrude(
         DepthMm,
         Definition.Direction,
         bool(Along.expression and Along.expression.parameter_ids),
+        GetCenterPoint(SketchValue) is not None,
     )

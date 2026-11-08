@@ -11,7 +11,7 @@ from xml.etree.ElementTree import Element
 from zipfile import BadZipFile, ZipFile, ZipInfo
 
 from convert.adapters.freecad.ApplyDepthEdit import ApplyDepthEdit
-from convert.adapters.freecad.ArchiveEditPlan import ReadArchiveEdit
+from convert.adapters.freecad.ArchiveEditPlan import KProfileBinding, ReadArchiveEdit
 from convert.adapters.freecad.EditableExt import EditExtrude, FindEditFrame
 from convert.adapters.freecad.EditBinding import HasLegacyEdit, ReadEditBinding
 from convert.adapters.freecad.EditExtProfile import GetEditCircle
@@ -68,13 +68,23 @@ def ReconcileEdit(
     Members: Mapping[str, ZipInfo],
 ) -> CadDocument:
     Binding = ReadEditBinding(RootValue)
+    ProfileBinding = ReadEditBinding(RootValue, KProfileBinding)
     EditPlan = ReadArchiveEdit(DocValue)
     if Binding is not None and (EditPlan is None or Binding != EditPlan[0]):
         raise ValueError("FreeCAD editable extrusion binding disagrees with its source")
+    if ProfileBinding is not None and (
+        Binding is None
+        or EditPlan is None
+        or not EditPlan[1].ProfileEditable
+        or ProfileBinding != EditPlan[1].SketchId
+    ):
+        raise ValueError("FreeCAD editable profile binding disagrees with its source")
     if EditPlan is None:
         return DocValue
     _, Plan = EditPlan
-    Fields = ReadEditFields(RootValue, DocValue, Plan)
+    Fields = ReadEditFields(
+        RootValue, DocValue, Plan, AllowProfile=ProfileBinding is not None
+    )
     if Fields is None:
         if Binding is not None or HasLegacyEdit(RootValue):
             raise ValueError("FreeCAD editable extrusion feature is missing")
@@ -85,18 +95,20 @@ def ReconcileEdit(
     if ProfileFrame is None:
         raise ValueError("FreeCAD editable extrusion source sketch is unavailable")
     SketchValue, PlaneValue = ProfileFrame
-    Profile = GetEditCircle(DocValue.feature_timeline[-1], SketchValue)
+    Profile = GetEditCircle(DocValue.feature_timeline[-1], Fields.ProfileSketch)
     FrameValue = PlaneValue.transform
     if Profile is None:
         raise ValueError("FreeCAD editable extrusion source profile is unavailable")
-    if (
-        Fields.SketchEntry
-        and Members[Fields.SketchEntry].file_size
-        and not IsSketchWire(
+    EditedSketch = (
+        Fields.ProfileSketch if Fields.ProfileSketch is not SketchValue else None
+    )
+    if Fields.SketchEntry and Members[Fields.SketchEntry].file_size:
+        if not IsSketchWire(
             ReadEditBrep(Archive, Members, Fields.SketchEntry), FrameValue, Profile
-        )
-    ):
-        raise ValueError("FreeCAD editable sketch cache disagrees with its profile")
+        ):
+            raise ValueError("FreeCAD editable sketch cache disagrees with its profile")
+    elif EditedSketch is not None:
+        raise ValueError("FreeCAD editable profile has no saved sketch shape")
     for CacheValue in Fields.IndependentCaches:
         if Members[CacheValue.EntryName].file_size and not IsOpenSketchCache(
             ReadEditBrep(Archive, Members, CacheValue.EntryName),
@@ -111,14 +123,16 @@ def ReconcileEdit(
         raise ValueError(
             "FreeCAD editable extrusion shape disagrees with its live controls"
         )
-    if IsSameEdit(DocValue, Plan, Fields):
+    SameDepth = IsSameEdit(DocValue, Plan, Fields)
+    if SameDepth and EditedSketch is None:
         return DocValue
     return ApplyDepthEdit(
         DocValue,
         Plan.ParameterId,
-        Fields.SourceText,
+        None if SameDepth else Fields.SourceText,
         Fields.DistanceMm,
         Profile,
         FrameValue,
         Fields.ParameterEdits,
+        EditedSketch=EditedSketch,
     )

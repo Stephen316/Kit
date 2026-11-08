@@ -19,10 +19,45 @@ from convert.adapters.freecad.EditRead.EditParts import OpenSketchCache, ReadSco
 from convert.adapters.freecad.EditRead.EditProfile import CheckEditProf
 from convert.adapters.freecad.EditRead.EditSheet import ReadEditText
 from convert.adapters.freecad.EditRead.XmlField import EditScalar
-from convert.adapters.freecad.Native import ParseObjects
+from convert.adapters.freecad.Native import NativeObject, ParseObjects
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.geometry.models.Sketch import Sketch
 from interchange.records.RecordParameter import Parameter
+
+# generated metadata groups delimit which native objects belong to the bound solid
+KProfileRoots = {
+    "Parameters": "Spreadsheet::Sheet",
+    "KitMetadata": "App::FeaturePython",
+    **dict.fromkeys(
+        (
+            "SupportPlanes",
+            "Sketches",
+            "Selections",
+            "Configurations",
+            "FeatureTimeline",
+            "Bodies",
+        ),
+        "App::DocumentObjectGroup",
+    ),
+}
+
+
+# additions outside the source profile and body graph cannot be merged into the source snapshot
+def CheckProfileSet(Objects: tuple[NativeObject, ...], Document: CadDocument) -> None:
+    ObjectTypes = {Value.name: Value.type_id for Value in Objects}
+    ExpectedCount = (
+        len(KProfileRoots)
+        + 3 * len(Document.sketches)
+        + len(Document.configurations)
+        + len(Document.bodies)
+        + 1
+    )
+    if len(Objects) != ExpectedCount or any(
+        ObjectTypes.get(NameValue) != KindValue
+        for NameValue, KindValue in KProfileRoots.items()
+    ):
+        raise ValueError("FreeCAD editable profile native object scope changed")
 
 
 # live control evidence travels with the exact sidecar needed for independent shape proof
@@ -35,11 +70,15 @@ class EditFields:
     EmptyEntries: tuple[str, ...]
     IndependentCaches: tuple[OpenSketchCache, ...]
     ParameterEdits: tuple[Parameter, ...]
+    ProfileSketch: Sketch
 
 
 # reconciling a depth requires an unchanged linked profile and corroborated native controls
 def ReadEditFields(
-    RootValue: Element, DocValue: CadDocument, PlanValue: EditExtrude
+    RootValue: Element,
+    DocValue: CadDocument,
+    PlanValue: EditExtrude,
+    AllowProfile: bool = False,
 ) -> EditFields | None:
     ProfileFrame = FindEditFrame(DocValue, PlanValue.SketchId)
     if (
@@ -65,6 +104,8 @@ def ReadEditFields(
             "FreeCAD editable extrusion plan disagrees with the embedded document"
         )
     Objects = ParseObjects(RootValue)
+    if AllowProfile:
+        CheckProfileSet(Objects, DocValue)
     Feature = FindEditObject(Objects, StepValue.id)
     if Feature is None or Feature.type_id == "Part::Feature":
         return None
@@ -73,10 +114,12 @@ def ReadEditFields(
     BodyObj = RequireEditObj(Objects, BodyValue.id, "App::DocumentObjectGroup")
     if EditScalar(BodyObj, "Tip", "App::PropertyLink", "Link") != Feature.name:
         raise ValueError("FreeCAD editable extrusion body tip changed")
-    CheckEditProf(Objects, Feature, SketchValue, PlaneValue)
+    ProfileSketch = CheckEditProf(
+        Objects, Feature, SketchValue, PlaneValue, AllowProfile
+    )
     DepthMm = ReadEditDepth(Feature, PlanValue.Direction)
     SourceText, ParameterEdits = ReadEditText(
-        Objects, Feature, DocValue, Definition, DepthMm
+        Objects, Feature, DocValue, Definition, DepthMm, StrictLayout=AllowProfile
     )
     SketchEntry, EmptyEntries, Independent = ReadScopedParts(
         Objects, Feature, DocValue, PlanValue.SketchId
@@ -89,4 +132,5 @@ def ReadEditFields(
         EmptyEntries,
         Independent,
         ParameterEdits,
+        ProfileSketch,
     )
