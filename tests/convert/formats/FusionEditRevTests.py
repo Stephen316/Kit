@@ -30,20 +30,18 @@ def ReadRevCase(Folder: str, Capture: str) -> CadDocument:
 # seven supported source controls must seed an exact portable body and native extent
 @KRequiresCodec
 @Pytest.mark.parametrize(
-    ("Folder", "Capture", "AngleDeg", "Scale", "Midpoint"),
+    ("Folder", "Capture", "AngleDeg", "Scale"),
     (
-        ("models-97a5e41e2ba7", "revolve_full", 360, 1, 0),
-        ("models-97a5e41e2ba7", "revolve_partial", 65, 1, 0),
-        (KModeFolder, "positive", 65, 1, 0),
-        (KModeFolder, "negative", -75, 1, 0),
-        (KModeFolder, "axis_x", 65, 1, 0),
-        (KModeFolder, "symmetric", 130, 2, 0),
-        (KModeFolder, "two_sided", 85, 1, 17.5),
+        ("models-97a5e41e2ba7", "revolve_full", 360, 1),
+        ("models-97a5e41e2ba7", "revolve_partial", 65, 1),
+        (KModeFolder, "positive", 65, 1),
+        (KModeFolder, "negative", -75, 1),
+        (KModeFolder, "axis_x", 65, 1),
+        (KModeFolder, "symmetric", 130, 2),
+        (KModeFolder, "two_sided", 85, 1),
     ),
 )
-def CheckRevPlan(
-    Folder: str, Capture: str, AngleDeg: float, Scale: float, Midpoint: float
-) -> None:
+def CheckRevPlan(Folder: str, Capture: str, AngleDeg: float, Scale: float) -> None:
     DocValue = ReadRevCase(Folder, Capture)
     Feature = DocValue.feature_timeline[-1]
     Definition = Feature.definition
@@ -58,7 +56,6 @@ def CheckRevPlan(
     assert PlanValue.AngleDeg == Pytest.approx(AngleDeg)
     assert PlanValue.AngleScale == Scale
     assert PlanValue.Symmetric == (Definition.SideMode != "one_sided")
-    assert PlanValue.PlacementAngleDeg == Pytest.approx(Midpoint)
     assert DocValue.brep is not None and BrepModelBrep(DocValue.brep)
 
 

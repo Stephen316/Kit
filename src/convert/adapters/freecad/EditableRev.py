@@ -34,7 +34,6 @@ class EditRevolve:
     AngleScale: float = 1.0
     Symmetric: bool = False
     AgainstParamId: str | None = None
-    PlacementAngleDeg: float = 0.0
 
 
 # an exact reconstructed source body and origin axis qualify the native revolution
@@ -80,5 +79,4 @@ def ReadEditRevolve(
         2.0 if IsMirrored else 1.0,
         IsCentered,
         Definition.AgainstParameterId,
-        Degrees(sum(Interval) / 2.0) if IsTwoSided else 0.0,
     )

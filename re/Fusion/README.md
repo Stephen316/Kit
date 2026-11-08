@@ -183,10 +183,23 @@ For unprojected solid New Body Revolves with an origin or sketch-line axis,
 Kit also projects an `AngularRevolve` definition from a qualified convex
 line profile, whole circle, or full-turn semicircle with its diameter on
 the axis. The definition links the owned along and against parameters
-and preserves one-sided, two-sided, and symmetric limits. The effective axis follows the occupied side of the sketch.
+and preserves one-sided, two-sided, and symmetric limits. The effective axis
+follows the occupied side of the sketch.
 Eligible partial polygon sweeps use the same analytic solid builder as
 plane-limited sweeps. The SDK verified 15 typed definitions and eight partial
 solids across 23 tracked angular features.
+
+Kit transfers a qualified standalone angular New Body Revolve about a
+component origin axis to a native FreeCAD `Part::Revolution` linked to its
+sketch. The Parameters sheet drives signed one-sided, full-turn, symmetric,
+and two-sided sweeps. The symmetric limit has one editable half-angle. The
+two-sided limits each drive the sweep and its angular placement. FreeCAD
+1.1.3 independently verified seven tracked transfers and rebuilt the solids
+after parameter changes. A tracked line-profile sketch also rebuilt its solid
+after a corner edit. Plane-limited and sketch-line-axis examples retain
+their exact initial solid and source history as carriers. Kit reads the
+embedded Fusion snapshot from a FreeCAD save. Importing edited Revolve
+angles back into Kit remains open.
 
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body

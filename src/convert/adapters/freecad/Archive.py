@@ -38,7 +38,9 @@ from convert.adapters.freecad.ArchiveEditPlan import (
     KProfileBinding,
     ReadArchiveEdit,
 )
+from convert.adapters.freecad.EditRev.RevolveProps import MakeRevProps
 from convert.adapters.freecad.EditableExt import EditExtrude
+from convert.adapters.freecad.EditableRev import EditRevolve, ReadEditRevolve
 from convert.adapters.freecad.EditSketchPlan import IsSketchWire, KSketchEditBinding
 from convert.adapters.freecad.Format import FORMAT_ID as FormatId
 from convert.adapters.freecad.FormulaSheet.FormulaClosure import BuildFusionExpr
@@ -6370,6 +6372,7 @@ class DocFeatures:
     OuterTarget: str
     EditableFeatureId: str = ""
     EditableProfileId: str = ""
+    EditableRevId: str = ""
 
 
 # this definition exists because native replay objects need stable source ordering
@@ -7191,18 +7194,18 @@ def TrackSolidMut(
     Features.CurrentName = Final.name
 
 
-# native extrusion execution requires the exact linked sketch in the archive
+# an editable solid must link to the exact native source sketch
 def EditProfile(
     Context: DocContext,
     Geometry: DocGeometry,
     FeatureInfo: FeatureData,
-    PlanValue: EditExtrude,
+    SketchId: str,
 ) -> Object | None:
     if (
         FeatureInfo.BaseName
-        or FeatureInfo.SketchId != PlanValue.SketchId
-        or Geometry.SketchProfCounts.get(PlanValue.SketchId) != 1
-        or not Geometry.SketchProfSound.get(PlanValue.SketchId)
+        or FeatureInfo.SketchId != SketchId
+        or Geometry.SketchProfCounts.get(SketchId) != 1
+        or not Geometry.SketchProfSound.get(SketchId)
     ):
         return None
     return next(
@@ -7215,6 +7218,20 @@ def EditProfile(
     )
 
 
+# verified source incidence keeps sketch endpoints joined during native editing
+def SetProfRulesMut(
+    Context: DocContext, Geometry: DocGeometry, Sketch: Object, SketchId: str
+) -> None:
+    SourceSketch = next(
+        Value for Value in Geometry.SketchItems if Value.get("id") == SketchId
+    )
+    _, Indices, _ = GeomProp(SourceSketch)
+    Rules, _, _, _ = ConstraintsProp(
+        SourceSketch, Indices, Context.Parameters, IncludeIncidence=True
+    )
+    ReplaceNameMut(Sketch.properties, "Constraints", Rules)
+
+
 # a native extrusion must own the starting shape and editable dependencies
 def HasEditExtMut(
     Context: DocContext,
@@ -7224,7 +7241,7 @@ def HasEditExtMut(
     PlanValue: EditExtrude,
     ShapeData: bytes,
 ) -> bool:
-    Sketch = EditProfile(Context, Geometry, FeatureInfo, PlanValue)
+    Sketch = EditProfile(Context, Geometry, FeatureInfo, PlanValue.SketchId)
     Expression = Context.Parameters.expression(PlanValue.ParameterId)
     if (
         Sketch is None
@@ -7247,17 +7264,88 @@ def HasEditExtMut(
     Features.FinalShapeFile = ShapeFile
     Features.EditableFeatureId = FeatureInfo.FeatureId
     if PlanValue.ProfileEditable:
-        SourceSketch = next(
-            Value
-            for Value in Geometry.SketchItems
-            if Value.get("id") == PlanValue.SketchId
-        )
-        _, Indices, _ = GeomProp(SourceSketch)
-        Rules, _, _, _ = ConstraintsProp(
-            SourceSketch, Indices, Context.Parameters, IncludeIncidence=True
-        )
-        ReplaceNameMut(Sketch.properties, "Constraints", Rules)
+        SetProfRulesMut(Context, Geometry, Sketch, PlanValue.SketchId)
         Features.EditableProfileId = PlanValue.SketchId
+    return True
+
+
+# freecad represents a two sided sweep by its total angle and centered rotation
+def RevExpressionsMut(
+    Context: DocContext, PlanValue: EditRevolve
+) -> list[tuple[str, str]]:
+    Along = Context.Parameters.expression(PlanValue.AngleParamId)
+    if Along is None or Context.ParamSheet.name != "Parameters":
+        return []
+    if PlanValue.AgainstParamId is None:
+        return [("Angle", Along)]
+    Against = Context.Parameters.expression(PlanValue.AgainstParamId)
+    if Against is None:
+        return []
+    if PlanValue.AngleScale != 1:
+        Alias = Context.Parameters.Aliases[PlanValue.AgainstParamId]
+        Cell = next(
+            (
+                Value
+                for Prop in Context.ParamSheet.properties
+                for Value in Prop.findall("./Cells/Cell")
+                if Value.get("alias") == Alias
+            ),
+            None,
+        )
+        if Cell is None:
+            return []
+        Cell.set("content", f"={Context.Parameters.Aliases[PlanValue.AngleParamId]}")
+        return [("Angle", f"{Along} * {PlanValue.AngleScale:g}")]
+    AxisValue = PlanValue.AxisDirection
+    AxisText = f"{AxisValue.x:.17g}; {AxisValue.y:.17g}; {AxisValue.z:.17g}"
+    Placement = (
+        "placement(vector(0 mm; 0 mm; 0 mm); "
+        f"rotation(vector({AxisText}); ({Along} - {Against}) / 2))"
+    )
+    return [("Angle", f"{Along} + {Against}"), ("Placement", Placement)]
+
+
+# the initial world coordinate solid stays in place until the live sweep recomputes
+def HasEditRevMut(
+    Context: DocContext,
+    Geometry: DocGeometry,
+    Features: DocFeatures,
+    FeatureInfo: FeatureData,
+    PlanValue: EditRevolve,
+    ShapeData: bytes,
+) -> bool:
+    Sketch = EditProfile(Context, Geometry, FeatureInfo, PlanValue.SketchId)
+    if Sketch is None or not ShapeData:
+        return False
+    Expressions = RevExpressionsMut(Context, PlanValue)
+    if not Expressions:
+        return False
+    Revolution = Context.Graph.add(
+        "Part::Revolution", FeatureInfo.FeatureName, "Revolution", Touched=True
+    )
+    ShapeFile = AddBrepEntryMut(Features.PayloadEntries, Revolution.name, ShapeData)
+    Revolution.properties.extend(
+        [
+            StringProp("Label", FeatureInfo.FeatureName),
+            *MakeRevProps(
+                Sketch.name,
+                PlanValue.AxisOrigin,
+                PlanValue.AxisDirection,
+                PlanValue.AngleDeg,
+                PlanValue.Symmetric,
+            ),
+            ExpressionProp(Expressions),
+            ShapeProp(ShapeFile),
+            *FeatureMeta(FeatureInfo.Source, "feature"),
+            BoolProp("Visibility", True),
+        ]
+    )
+    Revolution.dependencies.extend((Sketch.name, Context.ParamSheet.name))
+    ReplaceNameMut(Sketch.properties, "Visibility", BoolProp("Visibility", False))
+    SetProfRulesMut(Context, Geometry, Sketch, PlanValue.SketchId)
+    TrackSolidMut(Features, FeatureInfo, Revolution)
+    Features.FinalShapeFile = ShapeFile
+    Features.EditableRevId = FeatureInfo.FeatureId
     return True
 
 
@@ -7488,15 +7576,23 @@ def AddFeaturesMut(
     Context: DocContext,
     Geometry: DocGeometry,
     Features: DocFeatures,
-    EditPlan: tuple[str, EditExtrude] | None,
+    EditPlan: tuple[str, EditExtrude | EditRevolve] | None,
     ShapeData: bytes,
 ) -> None:
     for Feature in Features.FeatureItems:
         if EditPlan is not None and Feature.get("id") == EditPlan[0]:
             FeatureInfo = FeatureDataOf(Geometry, Features, Feature)
-            if HasEditExtMut(
-                Context, Geometry, Features, FeatureInfo, EditPlan[1], ShapeData
-            ):
+            PlanValue = EditPlan[1]
+            Added = (
+                HasEditRevMut(
+                    Context, Geometry, Features, FeatureInfo, PlanValue, ShapeData
+                )
+                if isinstance(PlanValue, EditRevolve)
+                else HasEditExtMut(
+                    Context, Geometry, Features, FeatureInfo, PlanValue, ShapeData
+                )
+            )
+            if Added:
                 continue
         AddFeatureMut(Context, Geometry, Features, Feature)
 
@@ -7936,7 +8032,7 @@ def AddRepresentMut(
     NeutralDoc: CadDoc | None,
     ShapeData: bytes,
 ) -> None:
-    if not Features.EditableFeatureId:
+    if not (Features.EditableFeatureId or Features.EditableRevId):
         Features.DocBreps, NeutralShape = AddBrepMut(
             Context.Graph,
             NeutralDoc,
@@ -8219,6 +8315,15 @@ def SerializeDoc(Context: DocContext, Features: DocFeatures) -> bytes:
     return XmlValue + b"\n"
 
 
+# only the final timeline step can own the single native revolution solid
+def ReadArchiveRev(DocValue: CadDoc | None) -> tuple[str, EditRevolve] | None:
+    if DocValue is None or not DocValue.feature_timeline:
+        return None
+    FeatureValue = DocValue.feature_timeline[-1]
+    PlanValue = ReadEditRevolve(DocValue, FeatureValue)
+    return (FeatureValue.id, PlanValue) if PlanValue is not None else None
+
+
 # this definition exists because document conversion coordinates each ordered graph and payload phase
 def BuildDocXmlMut(
     Manifest: Mapping[str, object],
@@ -8243,7 +8348,7 @@ def BuildDocXmlMut(
     Features = BuildDocItems(Context)
     NeutralDoc, ShapeData = ReadNeutralBrep(Manifest)
     EditPlan = (
-        ReadArchiveEdit(NeutralDoc)
+        ReadArchiveEdit(NeutralDoc) or ReadArchiveRev(NeutralDoc)
         if EditableFeatures is not None and not Context.NativeValues
         else None
     )
@@ -8268,8 +8373,12 @@ def BuildDocXmlMut(
             StringProp(KSketchEditBinding, Context.SketchesGroup.name, Dynamic=True)
         )
     XmlData = SerializeDoc(Context, Features)
-    if EditableFeatures is not None and Features.EditableFeatureId:
-        EditableFeatures.add(Features.EditableFeatureId)
+    if EditableFeatures is not None:
+        EditableFeatures.update(
+            Value
+            for Value in (Features.EditableFeatureId, Features.EditableRevId)
+            if Value
+        )
     return (XmlData, Features.PayloadEntries)
 
 
