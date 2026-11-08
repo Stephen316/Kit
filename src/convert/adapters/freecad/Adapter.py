@@ -7,6 +7,7 @@
 # to you under it immediately and permanently.
 
 from __future__ import annotations as Annotations
+from collections import Counter as CountValues
 from collections.abc import Callable, Collection, Iterable, Mapping, Sequence
 from contextlib import suppress as Suppress
 from dataclasses import replace as Replace
@@ -147,6 +148,17 @@ KFeatureWriteValues = frozenset((KindValue.value for KindValue in FeatureWriteKi
 
 # this binding exists because shared behavior needs one stable value
 KMateWriteValues = frozenset((KindValue.value for KindValue in MateWriteKinds))
+
+
+# known missing source constraints must count toward sketch transfer coverage
+KSketchRelIssues = frozenset(
+    {
+        "fusion.sketch.constraint.scope",
+        "fusion.sketch.constraint.unsupported",
+        "fusion.sketch.dimension.scope",
+        "fusion.sketch.dimension.unsupported",
+    }
+)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1229,10 +1241,18 @@ def AddSketchMut(
     SketchReasons: dict[str, CarrierReason] = {}
     SketchParts = NativeSketchParts(Manifest)
     ReasonParts = NativeSketchCarrier(Manifest)
+    MissingRules = CountValues(
+        Value.entity_id
+        for Value in ItemValue.diagnostics
+        if Value.code in KSketchRelIssues
+    )
     for SketchValue, Counts, ReasonValues in zip(
         ItemValue.sketches, SketchParts, ReasonParts, strict=True
     ):
         NativeCount, CarrierCount = Counts
+        if MissingCount := MissingRules[SketchValue.id]:
+            CarrierCount += MissingCount
+            ReasonValues = ReasonValues | {CarrierReason.SOURCE_OPAQUE.value}
         Parts[Capability.EDITABLE_SKETCHES].extend(
             [True] * NativeCount + [False] * CarrierCount
         )

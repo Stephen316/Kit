@@ -101,8 +101,32 @@ sketch's verified component transform. The SDK matched all 1,005 tracked
 sketch placements and 6,589 projected points, lines, and circles against
 the study. All 38 planar arcs matched native trim geometry. A projected
 arc outside local XY remains unsupported. The 13 newer Revolve captures
-project their 13 sketches and 117 primitives. Constraints, additional
-curve layouts, and native support links remain open.
+project their 13 sketches and 117 primitives.
+
+Kit also reads core geometric constraints and dimensional constraints from
+the sketch's native relation lists. It checks the typed operand records,
+their sketch ownership, and the repeated argument IDs. Supported dimensions
+retain the original parameter and distinguish driving dimensions from
+reference measurements. Aligned, horizontal, vertical, radius, diameter,
+and positive directed angular controls are supported. The 712-archive
+corpus contains 14 qualified dimensions and 12 recognized variants that
+still produce diagnostics.
+
+The FreeCAD writer links Fusion's explicit point identities to their line
+and arc endpoints or circular centers. These links keep the curves attached
+when the solver moves a point. Driving dimensions use the spreadsheet
+quantity in native solver units, and reference dimensions measure the
+solved geometry. Collinearity is retained in the neutral sketch and carried
+in FreeCAD. Recognized unresolved source relations contribute to the mixed
+sketch transfer report. Additional curve layouts, sketch tools, and native
+support links remain open.
+
+FreeCAD 1.1.3 checked 25 native Sketcher cases from 13 installed SDK exports
+against the saved Fusion measurements. Eleven dimensional edits survived
+native save and reopen. A driving radius changed from 12.5 to 18 mm, a
+reference radius followed a separate geometry edit, and moving a coincident
+endpoint moved both lines. SDK re-import of those edited sketches still
+reads the original Fusion snapshot.
 
 For Extrude and Revolve, the document reader follows typed profile
 descriptors to their owning feature, sketch, and reciprocal loop record.

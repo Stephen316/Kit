@@ -108,6 +108,7 @@ def ReadPrimitive(
                     raise ValueError("Invalid Fusion sketch circle geometry")
                 Geometry = CircleGeometry(Target, Radius)
                 Extras = {
+                    "fusion.circle_native_center_id": TargetId,
                     "fusion.circle_native_normal": Normal,
                     "fusion.circle_native_reference_axis": RefAxis,
                 }

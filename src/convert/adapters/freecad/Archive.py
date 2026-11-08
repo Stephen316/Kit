@@ -40,6 +40,8 @@ from convert.adapters.freecad.FormulaSheet.FormulaClosure import BuildFusionExpr
 from convert.adapters.freecad.FormulaSheet.SheetBinding import KFormulaSheetBinding
 from convert.adapters.freecad.FormulaSheet.SheetScope import CanEditSheet
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
+from convert.adapters.freecad.SketchIncidence import FindPointLinks
+from convert.adapters.freecad.SketchRuleValue import GetRuleSign, GetRuleValue
 from convert.adapters.freecad.Protocol import (
     ASSEMBLY_CONNECTOR_PROPERTY_PREFIXES as AsmConnectorPropPrefixes,
     ASSEMBLY_JOINT_GROUP_TYPE_ID as AsmJointGroupTypeId,
@@ -2441,6 +2443,7 @@ def AddRuleExprMut(
     CodeValue: int,
     NameValue: str,
     NativeRule: bool,
+    Direction: int,
 ) -> None:
     Expression = (
         State.Parameters.expression(ParamId)
@@ -2457,6 +2460,8 @@ def AddRuleExprMut(
     PathValue = (
         f".{SourcePath}" if NativeRule and SourcePath else f".Constraints.{NameValue}"
     )
+    if Direction < 0:
+        Expression = f"-({Expression})"
     State.Expressions.append((PathValue, Expression))
     State.Dependencies.append("Parameters")
 
@@ -2531,7 +2536,12 @@ def AddEncodedMut(
         RuleValue.get("value"),
         Number(SourceAttrs.get("native_value"), Number(RawAttrs.get("Value"))),
     )
-    Value = State.Parameters.value(ParamId, DefaultValue)
+    Direction = GetRuleSign(KindValue, SourceAttrs)
+    Value = Direction * GetRuleValue(
+        CodeValue,
+        State.Parameters.ByIdentifier.get(ParamId),
+        State.Parameters.value(ParamId, DefaultValue),
+    )
     NameValue = RuleNameMut(RuleValue, RawAttrs, NativeRule, State.RuleNames)
     State.Encoded.append(
         RuleRecord(RuleValue, CodeValue, Value, NameValue, Resolved, RawAttrs)
@@ -2553,7 +2563,9 @@ def AddEncodedMut(
                 Composition[0],
             )
         )
-    AddRuleExprMut(State, RuleValue, ParamId, CodeValue, NameValue, NativeRule)
+    AddRuleExprMut(
+        State, RuleValue, ParamId, CodeValue, NameValue, NativeRule, Direction
+    )
 
 
 # this definition exists because fixed entities need a fallback block constraint
@@ -2662,6 +2674,21 @@ def ConstraintsProp(
     State = CreateRuleState(Sketch, Indices, Parameters, ProfileOnly)
     for RuleValue in Items(Sketch.get("constraints", [])):
         AppendRuleMut(State, RuleValue)
+    Origin = Sketch.get("provenance")
+    if State.Encoded and IsPayloadMap(Origin) and Origin.get("adapter") == "fusion.f3d":
+        for CurveSlot, PointSlot in FindPointLinks(State.EntityItems, Indices):
+            RuleId = f"incidence_{CurveSlot[0]}_{CurveSlot[1]}"
+            NameValue = RuleNameMut({"id": RuleId}, {}, False, State.RuleNames)
+            State.Encoded.append(
+                RuleRecord(
+                    {},
+                    RuleCodeByKind["coincident"],
+                    0.0,
+                    NameValue,
+                    [CurveSlot, PointSlot],
+                    {},
+                )
+            )
     AddFixedMut(State)
     return (
         BuildRuleProp(State.Encoded),

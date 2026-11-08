@@ -21,6 +21,7 @@ from convert.formats.Fusion.PlaneProjection import ProjectPlanes
 from convert.formats.Fusion.Profiles.ProfileProjection import ProjectProfiles
 from convert.formats.Fusion.Revolves.RevolveBody import ProjectRevBody
 from convert.formats.Fusion.Revolves.RevolveProject import ProjectRevolves
+from convert.formats.Fusion.Sketches.SketchRules import AttachRules
 from convert.formats.Fusion.Sketches.SketchProjection import ProjectSketches
 from convert.formats.Fusion.SourceBytes import LoadFusionBytes
 from convert.formats.Fusion.Topology.BodyProjection import ProjectBodyList
@@ -88,6 +89,7 @@ def ReadFusionDoc(
             for ParamValue in Params
         ),
     )
+    Sketches, SketchRuleIssues = AttachRules(BulkData, Spans, Sketches, Parameters)
     Steps, ExtrudeIssues = ProjectExtrudes(
         BulkData, Spans, Steps, Parameters, Frames, Sketches
     )
@@ -154,6 +156,7 @@ def ReadFusionDoc(
         diagnostics=Diagnostics
         + PlaneIssues
         + SketchIssues
+        + SketchRuleIssues
         + ProfileIssues
         + RevolveIssues
         + ExtrudeIssues
@@ -163,7 +166,7 @@ def ReadFusionDoc(
         + (
             Diagnostic(
                 code="fusion.history.partial",
-                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry, and supported Extrude and Revolve definitions and solids. "
+                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry and constraints, and supported Extrude and Revolve definitions and solids. "
                 "Additional feature definitions, bodies, and assemblies require further decoding.",
             ),
         ),
