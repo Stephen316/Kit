@@ -190,6 +190,21 @@ captures verified both roles, including offsets, and matched the reconstructed
 cylinders' native topology, volume, area, and bounds. Other entity limits and
 chained extents require further decoding.
 
+For a qualified standalone cylindrical create with one full selected circle,
+the FreeCAD writer links a native `Part::Extrusion` to the Sketcher profile and
+drives its depth from the source dimension in the Parameters spreadsheet. The
+extrusion owns the saved solid. This path requires a one-sided literal distance,
+zero taper, and no start offset. FreeCAD 1.1.3 verified depth edits on four
+saved captures, including negative and fractional depths. The 17 mm control
+rebuilt at 25 mm, with volume increasing from 5340.7075 to 7853.9816 mm³ and
+center of mass moving from 8.5 to 12.5 mm along Z. The signed control rebuilt
+from −17 to −25 mm in the opposite direction. Standalone Fusion length and
+angle literals can remain native spreadsheet expressions when they match the
+stored dimension. Formula-driven definitions with unresolved references and
+the opaque source data remain in the Kit carrier. After a native edit and
+save, Kit currently re-imports the original carrier values instead of the
+changed depth and shape.
+
 For verified part histories with independent active solid creators, Kit also
 reconstructs the saved Extrude bodies from the profile and distance controls.
 The creator's explicit result anchor must match the body in its current

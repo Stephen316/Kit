@@ -36,6 +36,7 @@ from convert.adapters.freecad.Brep import (
 from convert.adapters.freecad.ArchiveEditPlan import ReadArchiveEdit
 from convert.adapters.freecad.EditableExt import EditExtrude
 from convert.adapters.freecad.Format import FORMAT_ID as FormatId
+from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
 from convert.adapters.freecad.Protocol import (
     ASSEMBLY_CONNECTOR_PROPERTY_PREFIXES as AsmConnectorPropPrefixes,
     ASSEMBLY_JOINT_GROUP_TYPE_ID as AsmJointGroupTypeId,
@@ -1127,6 +1128,20 @@ def NativeExpr(Instance: ParamCatalog, ItemValue: Mapping[str, object]) -> str |
     Language = TextAction(Expression.get("language"), "kit").casefold()
     if Language == "freecad":
         return Source
+    if Language == "fusion":
+        ValueData = ItemValue.get("value")
+        if (
+            IsPayloadMap(ValueData)
+            and not Sequence(Expression.get("parameter_ids", []))
+            and IsLiteralQty(
+                Source,
+                TextAction(EnumAction(ValueData.get("kind"))),
+                ValueData.get("value"),
+                ValueData.get("unit"),
+            )
+        ):
+            return Source
+        return None
     if Language != "kit":
         return None
     References = [

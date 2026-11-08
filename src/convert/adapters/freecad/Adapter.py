@@ -684,6 +684,7 @@ def FeatureParts(
     DocValue: CadDocument,
     SketchNative: Mapping[str, bool],
     SketchCarrierReasons: Mapping[str, CarrierReason],
+    EditableFeatures: Collection[str],
 ) -> tuple[int, int, frozenset[CarrierReason]]:
     Features = FeatureSet(DocValue)
     if HasNativeGraph(DocValue) and DocValue.assembly is None:
@@ -691,11 +692,13 @@ def FeatureParts(
     Carrier = 0
     Reasons: set[CarrierReason] = set()
     for Feature in Features:
-        if CanWriteFeature(DocValue, Feature, SketchNative):
+        if Feature.EntityId in EditableFeatures or CanWriteFeature(
+            DocValue, Feature, SketchNative
+        ):
             continue
         Carrier += 1
         Reasons.update(FeatureReasons(Feature, SketchCarrierReasons))
-    return (len(Features), Carrier, frozenset(Reasons))
+    return (len(Features) - Carrier, Carrier, frozenset(Reasons))
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1247,10 +1250,11 @@ def AddBasicMut(
     SketchReasons: Mapping[str, CarrierReason],
     Parts: dict[Capability, list[bool]],
     CarrierReasons: dict[Capability, set[CarrierReason]],
+    EditableFeatures: Collection[str],
 ) -> None:
     Parts[Capability.PARAMETERS].extend(True for _ in ItemValue.parameters)
     NativeCount, CarrierCount, Reasons = FeatureParts(
-        ItemValue, SketchNative, SketchReasons
+        ItemValue, SketchNative, SketchReasons, EditableFeatures
     )
     Parts[Capability.PARAMETRIC_HISTORY].extend(
         [True] * NativeCount + [False] * CarrierCount
@@ -1414,6 +1418,7 @@ def AddDocPartsMut(
     TrustedNativeBreps: frozenset[NativeBrepKey],
     Parts: dict[Capability, list[bool]],
     CarrierReasons: dict[Capability, set[CarrierReason]],
+    EditableFeatures: Collection[str],
 ) -> None:
     SourceNative = HasNativeGraph(ItemValue)
     Manifest = DocToManifest(ItemValue)
@@ -1440,6 +1445,7 @@ def AddDocPartsMut(
         SketchReasons,
         Parts,
         CarrierReasons,
+        EditableFeatures,
     )
     AddGeomMut(
         ItemValue,
@@ -1474,6 +1480,7 @@ def CapabilityA(
     Portable: bool,
     Exact: bool,
     TrustedNativeBreps: frozenset[NativeBrepKey] = KNoNativeBreps,
+    EditableFeatures: Collection[str] = (),
 ) -> tuple[CapabilityTransfer, ...]:
     Required = DocValue.capabilities | InferCapabilities(
         DocValue,
@@ -1492,7 +1499,13 @@ def CapabilityA(
     }
     for ItemValue in DocTree(DocValue):
         AddDocPartsMut(
-            ItemValue, TargetPath, Portable, TrustedNativeBreps, Parts, CarrierReasons
+            ItemValue,
+            TargetPath,
+            Portable,
+            TrustedNativeBreps,
+            Parts,
+            CarrierReasons,
+            EditableFeatures if ItemValue is DocValue else (),
         )
     Parts[Capability.ROUNDTRIP_METADATA].append(False)
     return tuple(
@@ -2523,17 +2536,21 @@ def RebuildResult(
         NativeOuters,
         TrustedBreps,
     )
+    EditableFeatures: set[str] = set()
     DataValue = BuildFcstdArchive(
         DocToManifest(DocValue),
         external_links=OuterLinks,
         native_external_links=NativeLinks,
         document_timestamp=DocStamp,
         trusted_native_breps=TrustedBreps,
+        editable_features=EditableFeatures if DocValue.assembly is None else None,
     )
     PathValue = WriteBytes(Target, DataValue, Overwrite)
     if PathValue is not None and StampEpoch is not None:
         OsModule.utime(PathValue, (StampEpoch, StampEpoch))
-    Transfers = CapabilityA(DocValue, TargetPath, Portable, False, TrustedBreps)
+    Transfers = CapabilityA(
+        DocValue, TargetPath, Portable, False, TrustedBreps, EditableFeatures
+    )
     AppUsable = not CarrierOnly and IsNativeGeom(DocValue, TrustedBreps)
     MetaValue = RebuildMeta(
         DocValue,
