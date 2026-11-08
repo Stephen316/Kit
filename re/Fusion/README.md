@@ -213,6 +213,17 @@ assembly graph and body inventory available for inspection. Later modeling
 operations, joint-driven assemblies, and native writing require further
 coverage.
 
+For qualified trimmed profiles, Kit retains each selected portion and its
+native selector on the Extrude feature. It derives line fractions and arc
+angles from the source intersections. Two portions can refer to the same
+circle. The exact untapered sweep uses the bounded curves in the sketch's
+component frame, including offset and tilted frames. Fifteen saved Fusion
+captures verified 42 selected portions and 15 reconstructed solids against
+native topology and saved API volumes and bounds. Profiles with holes or
+general curves and trimmed draft require further coverage. The FreeCAD writer
+preserves the curved-cap solid as Kit data in carrier mode. Native FreeCAD
+export of those curved planar caps requires further writer support.
+
 ## Public SDK reader
 
 The adapter catalog includes `fusion.f3d` with alias `f3d`. The registry

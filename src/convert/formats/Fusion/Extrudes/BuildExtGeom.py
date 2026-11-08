@@ -8,8 +8,10 @@
 
 from math import tan as Tangent
 
+from convert.formats.Fusion.Extrudes.TrimmedParts import ReadTrimParts
 from convert.geometry.Extrude.Circular.CircularExtrude import BuildCircular
 from convert.geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
+from convert.geometry.Extrude.Trimmed.TrimPrism import BuildTrimPrism
 from interchange.brep.topology.BrepModel import BrepModel
 from interchange.features.DistanceValues import DistExtValues
 from interchange.features.FeatureDistExt import DistanceExtrude
@@ -30,14 +32,20 @@ def BuildExtGeom(
     SketchValue: Sketch,
     FrameValue: Transform,
 ) -> tuple[BrepModel, float, float, BoundingBox]:
+    Lower, Upper = Values.LowerMm, Values.UpperMm
+    Taper = Values.TaperRadians
+    HasTaper = Taper != 0.0 or Values.SecondTaperRadians not in (None, 0.0)
+    if "fusion.profile_portions" in StepValue.attributes:
+        if HasTaper:
+            raise ValueError("Fusion trimmed profile Extrude requires zero draft")
+        return BuildTrimPrism(
+            BodyId, FrameValue, ReadTrimParts(StepValue, SketchValue), Lower, Upper
+        )
     EntityIds = StepValue.attributes.get("fusion.profile_entity_ids")
     if not isinstance(EntityIds, tuple):
         raise ValueError("Missing Fusion Extrude solid profile")
     ByEntity = {Entity.id: Entity.geometry for Entity in SketchValue.entities}
     Parts = tuple(ByEntity.get(Identity) for Identity in EntityIds)
-    Lower, Upper = Values.LowerMm, Values.UpperMm
-    Taper = Values.TaperRadians
-    HasTaper = Taper != 0.0 or Values.SecondTaperRadians not in (None, 0.0)
     if len(Parts) == 1 and isinstance(Parts[0], CircleGeometry):
         Profile = Parts[0]
         if HasTaper and (
