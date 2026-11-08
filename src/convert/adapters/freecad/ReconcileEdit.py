@@ -12,14 +12,17 @@ from zipfile import BadZipFile, ZipFile, ZipInfo
 
 from convert.adapters.freecad.ApplyDepthEdit import ApplyDepthEdit
 from convert.adapters.freecad.ArchiveEditPlan import ReadArchiveEdit
+from convert.adapters.freecad.EditableExt import EditExtrude, FindEditFrame
 from convert.adapters.freecad.EditBinding import HasLegacyEdit, ReadEditBinding
 from convert.adapters.freecad.EditExtProfile import GetEditCircle
-from convert.adapters.freecad.EditRead.ReadControls import ReadEditFields
+from convert.adapters.freecad.EditRead.ReadControls import EditFields, ReadEditFields
 from convert.adapters.freecad.EditShape.CylinderShape import (
     IsEditCylinder,
     KMaxCylinderBytes,
 )
 from convert.adapters.freecad.EditShape.SketchWire import IsSketchWire
+from convert.adapters.freecad.EditShape.OpenSketch import IsOpenSketchCache
+from convert.geometry.Formula.Arithmetic import EvalFormula, ReadFormula
 from interchange.document.models.DocumentModel import CadDocument
 
 
@@ -36,6 +39,23 @@ def ReadEditBrep(
         raise ValueError(
             "FreeCAD editable extrusion shape entry is corrupt"
         ) from ErrorInfo
+
+
+# native unit normalization must not replace a source value for an unchanged literal
+def IsSameEdit(
+    DocValue: CadDocument, PlanValue: EditExtrude, Fields: EditFields
+) -> bool:
+    if PlanValue.HasFormula:
+        return not Fields.ParameterEdits
+    if Fields.DistanceMm == PlanValue.DistanceMm:
+        return True
+    Expression = DocValue.parameter(PlanValue.ParameterId).expression
+    Before = None if Expression is None else ReadFormula(Expression.source)
+    After = ReadFormula(Fields.SourceText)
+    if Before is None or After is None:
+        return False
+    Original = EvalFormula(Before, {})
+    return Original is not None and Original == EvalFormula(After, {})
 
 
 # only corroborated native depth edits can override the reversible source snapshot
@@ -59,8 +79,12 @@ def ReconcileEdit(
         return DocValue
     if any(Members[EntryName].file_size for EntryName in Fields.EmptyEntries):
         raise ValueError("FreeCAD editable extrusion has an additional nonempty shape")
-    Profile = GetEditCircle(DocValue.feature_timeline[-1], DocValue.sketches[0])
-    FrameValue = DocValue.support_planes[0].transform
+    ProfileFrame = FindEditFrame(DocValue, Plan.SketchId)
+    if ProfileFrame is None:
+        raise ValueError("FreeCAD editable extrusion source sketch is unavailable")
+    SketchValue, PlaneValue = ProfileFrame
+    Profile = GetEditCircle(DocValue.feature_timeline[-1], SketchValue)
+    FrameValue = PlaneValue.transform
     if Profile is None:
         raise ValueError("FreeCAD editable extrusion source profile is unavailable")
     if (
@@ -71,12 +95,21 @@ def ReconcileEdit(
         )
     ):
         raise ValueError("FreeCAD editable sketch cache disagrees with its profile")
+    for CacheValue in Fields.IndependentCaches:
+        if Members[CacheValue.EntryName].file_size and not IsOpenSketchCache(
+            ReadEditBrep(Archive, Members, CacheValue.EntryName),
+            CacheValue.SketchValue,
+            CacheValue.FrameValue,
+        ):
+            raise ValueError(
+                "FreeCAD unrelated sketch cache disagrees with its geometry"
+            )
     ShapeData = ReadEditBrep(Archive, Members, Fields.ShapeEntry)
     if not IsEditCylinder(ShapeData, FrameValue, Profile, Fields.DistanceMm):
         raise ValueError(
             "FreeCAD editable extrusion shape disagrees with its live controls"
         )
-    if Fields.DistanceMm == Plan.DistanceMm:
+    if IsSameEdit(DocValue, Plan, Fields):
         return DocValue
     return ApplyDepthEdit(
         DocValue,
@@ -85,4 +118,5 @@ def ReconcileEdit(
         Fields.DistanceMm,
         Profile,
         FrameValue,
+        Fields.ParameterEdits,
     )

@@ -88,6 +88,14 @@ def EvalFormula(
         return None
 
 
+# writable drivers must be literal quantities rather than hidden constant formulas
+def IsLiteralFormula(FormulaValue: Formula) -> bool:
+    RootValue = FormulaValue.RootValue
+    if isinstance(RootValue, UnaryOp):
+        RootValue = RootValue.operand
+    return not FormulaValue.Names and isinstance(RootValue, Name)
+
+
 # aliases replace only resolved operand names and never units or substrings
 def WriteFormula(FormulaValue: Formula, Aliases: Mapping[str, str]) -> str | None:
     Names = tuple(Aliases.get(Value, "") for Value in FormulaValue.Names)

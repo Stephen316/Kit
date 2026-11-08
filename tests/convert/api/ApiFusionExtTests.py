@@ -114,8 +114,8 @@ def CheckThinGuard() -> None:
     ("Folder", "Capture", "Reason"),
     (
         (
-            "holdouts-f8c508a73323",
-            "expression_depth",
+            "extents-f0f33a9a605f",
+            "offset_positive",
             b"linked_distance_definition_unsupported",
         ),
         ("extents-f0f33a9a605f", "to_plane", b"linked_plane_definition_unsupported"),

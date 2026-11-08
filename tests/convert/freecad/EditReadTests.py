@@ -18,6 +18,7 @@ from convert import open_document as OpenDocument, write_document as WriteDocume
 from convert.adapters.freecad.Adapter import FreeCadAdapterA
 from convert.adapters.freecad.ArchiveEditPlan import KEditableBinding
 from convert.adapters.freecad.Brep import BrepModelBrep
+from convert.adapters.freecad.EditableExt import FindEditFrame
 from convert.adapters.freecad.EditExtProfile import GetEditCircle
 from convert.geometry.Extrude.Circular.CircularExtrude import BuildCircular
 from interchange.document.models.DocumentModel import CadDocument
@@ -28,15 +29,25 @@ KSourcePath = (
     / "re/Fusion/Study/extents-f0f33a9a605f/distance_positive.f3d"
 )
 
+# the formula holdout includes a second sketch that must remain independent
+KFormulaPath = (
+    FilePath(__file__).parents[3]
+    / "re/Fusion/Study/holdouts-f8c508a73323/expression_depth.f3d"
+)
+
 
 # rebuilds let readback tests exercise the archive boundary without requiring a cad executable
 def MakeEditShape(DocValue: CadDocument, DistanceMm: float) -> bytes:
-    Profile = GetEditCircle(DocValue.feature_timeline[-1], DocValue.sketches[0])
+    Feature = DocValue.feature_timeline[-1]
+    ProfileFrame = FindEditFrame(DocValue, Feature.sketch_id)
+    assert ProfileFrame is not None
+    Sketch, Plane = ProfileFrame
+    Profile = GetEditCircle(Feature, Sketch)
     assert Profile is not None
     Lower, Upper = sorted((0.0, DistanceMm))
     Model, _, _, _ = BuildCircular(
         DocValue.bodies[0].id,
-        DocValue.support_planes[0].transform,
+        Plane.transform,
         Profile,
         Lower,
         Upper,
@@ -48,7 +59,12 @@ def MakeEditShape(DocValue: CadDocument, DistanceMm: float) -> bytes:
 
 # separate sheet and shape replacements reproduce coherent and stale saves against one manifest
 def ChangeEditFile(
-    Output: FilePath, DistanceMm: float, ShapeData: bytes | None, ChangeMode: str
+    Output: FilePath,
+    DistanceMm: float,
+    ShapeData: bytes | None,
+    ChangeMode: str,
+    DriverAlias: str = "fusion_parameter_242",
+    DriverText: str | None = None,
 ) -> bytes:
     with ZipFile(Output) as Archive:
         Entries = {
@@ -58,14 +74,20 @@ def ChangeEditFile(
     Feature = RootValue.find("./Objects/Object[@type='Part::Extrusion']")
     assert Feature is not None
     FeaturePath = f"./ObjectData/Object[@name='{Feature.attrib['name']}']/Properties"
-    CellValue = RootValue.find(".//Cell[@alias='fusion_parameter_242']")
+    CellValue = RootValue.find(f".//Cell[@alias='{DriverAlias}']")
     Depth = RootValue.find(f"{FeaturePath}/Property[@name='LengthFwd']/Float")
     Shape = RootValue.find(f"{FeaturePath}/Property[@name='Shape']/Part")
     assert CellValue is not None and Depth is not None and Shape is not None
-    CellValue.set("content", f"={DistanceMm:g} mm")
+    CellValue.set(
+        "content", DriverText if DriverText is not None else f"={DistanceMm:g} mm"
+    )
     Depth.set("value", str(DistanceMm))
     if ShapeData is not None:
         Entries[Shape.attrib["file"]] = ShapeData
+    if ChangeMode == "wrong-formula":
+        ResultCell = RootValue.find(".//Cell[@alias='fusion_parameter_276']")
+        assert ResultCell is not None
+        ResultCell.set("content", "=fusion_parameter_202 + 13.5 mm")
     if ChangeMode in {"unmarked", "legacy-identity"}:
         Metadata = RootValue.find("./ObjectData/Object[@name='KitMetadata']/Properties")
         assert Metadata is not None
@@ -185,3 +207,61 @@ def TestExtraShape(TmpPath: FilePath, ChangeMode: str, Reason: str) -> None:
     Edited = ChangeEditFile(Output, 25.0, MakeEditShape(Document, 25.0), ChangeMode)
     with Pytest.raises(FreeCadAdapterA, match=Reason):
         OpenDocument(Edited)
+
+
+# dependent geometry must follow the native driver without flattening its formula
+def TestFormulaEdit(TmpPath: FilePath) -> None:
+    Document = OpenDocument(KFormulaPath, strict=False)
+    Output = TmpPath / "editable.FCStd"
+    _ = WriteDocument(Document, Output)
+    assert OpenDocument(Output) == Document
+    Edited = ChangeEditFile(
+        Output,
+        26.0,
+        MakeEditShape(Document, 26.0),
+        "bound",
+        "fusion_parameter_202",
+        "=12.5 mm",
+    )
+    Readback = OpenDocument(Edited)
+    Driver = Readback.parameter("fusion-parameter-202")
+    Result = Readback.parameter("fusion-parameter-276")
+    assert Driver.value.value == 1.25 and Driver.value.unit == "cm"
+    assert Result.value.value == 2.6 and Result.value.unit == "cm"
+    assert Result.expression == Document.parameter(Result.id).expression
+    assert Readback.sketches == Document.sketches
+    assert Readback.feature_timeline == Document.feature_timeline
+    assert Readback.brep_payloads == Document.brep_payloads
+    assert Readback.bodies[0].topology.volume == Pytest.approx(3744 * HalfTurn)
+    Reexport = TmpPath / "reexport.FCStd"
+    _ = WriteDocument(Readback, Reexport)
+    with ZipFile(Reexport) as Archive:
+        assert b'type="Part::Extrusion"' in Archive.read("Document.xml")
+    assert OpenDocument(Reexport) == Readback
+
+
+# stale lengths and different formulas with the same result must both fail readback
+@Pytest.mark.parametrize("ChangeMode", ("bound", "wrong-formula"))
+def TestBadFormula(TmpPath: FilePath, ChangeMode: str) -> None:
+    Document = OpenDocument(KFormulaPath, strict=False)
+    Output = TmpPath / "editable.FCStd"
+    _ = WriteDocument(Document, Output)
+    DistanceMm = 19.25 if ChangeMode == "bound" else 26.0
+    ShapeData = None if ChangeMode == "bound" else MakeEditShape(Document, DistanceMm)
+    Edited = ChangeEditFile(
+        Output, DistanceMm, ShapeData, ChangeMode, "fusion_parameter_202", "=12.5 mm"
+    )
+    with Pytest.raises(FreeCadAdapterA, match="formula|depth|quantity"):
+        OpenDocument(Edited)
+
+
+# equivalent spreadsheet units must not change provenance after a native no op save
+def TestNoOpDepth(TmpPath: FilePath) -> None:
+    Source = KSourcePath.parents[1] / "output-7230965e9265" / "depth07_a.f3d"
+    Document = OpenDocument(Source, strict=False)
+    Output = TmpPath / "editable.FCStd"
+    _ = WriteDocument(Document, Output)
+    NativeSave = ChangeEditFile(
+        Output, 7.0, MakeEditShape(Document, 7.0), "bound", DriverText="=0.7 cm"
+    )
+    assert OpenDocument(NativeSave) == Document

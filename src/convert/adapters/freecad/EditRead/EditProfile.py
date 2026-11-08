@@ -22,19 +22,13 @@ from interchange.geometry.models.SupportPlane import SupportPlane
 from interchange.geometry.models.Transform import Transform
 
 
-# a linked sketch may seed a depth edit only while its geometry and support remain unchanged
-def CheckEditProf(
-    Objects: tuple[NativeObject, ...],
-    Feature: NativeObject,
-    SketchValue: Sketch,
+# independent and driving sketches share an exact support and placement contract
+def CheckEditPlane(
+    Sketch: NativeObject,
+    Plane: NativeObject,
     PlaneValue: SupportPlane,
 ) -> None:
-    Sketch = RequireEditObj(Objects, SketchValue.id, "Sketcher::SketchObject")
-    Plane = RequireEditObj(Objects, PlaneValue.id, "App::Plane")
-    if (
-        EditScalar(Feature, "Base", "App::PropertyLink", "Link") != Sketch.name
-        or EditScalar(Sketch, "SupportPlane", "App::PropertyLink", "Link") != Plane.name
-    ):
+    if EditScalar(Sketch, "SupportPlane", "App::PropertyLink", "Link") != Plane.name:
         raise ValueError("FreeCAD editable extrusion profile or support link changed")
     Attachment = EditChild(
         Sketch, "AttachmentSupport", "App::PropertyLinkSubList", "LinkSubList"
@@ -60,4 +54,18 @@ def CheckEditProf(
             and EditScalar(Sketch, Field, KindValue, TagName) != Expected
         ):
             raise ValueError(f"FreeCAD editable sketch {Field} changed")
+
+
+# a linked sketch may seed a depth edit only while its geometry and support remain unchanged
+def CheckEditProf(
+    Objects: tuple[NativeObject, ...],
+    Feature: NativeObject,
+    SketchValue: Sketch,
+    PlaneValue: SupportPlane,
+) -> None:
+    Sketch = RequireEditObj(Objects, SketchValue.id, "Sketcher::SketchObject")
+    Plane = RequireEditObj(Objects, PlaneValue.id, "App::Plane")
+    if EditScalar(Feature, "Base", "App::PropertyLink", "Link") != Sketch.name:
+        raise ValueError("FreeCAD editable extrusion profile or support link changed")
+    CheckEditPlane(Sketch, Plane, PlaneValue)
     CheckEditSketch(Sketch, SketchValue)

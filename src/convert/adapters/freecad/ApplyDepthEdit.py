@@ -10,7 +10,8 @@ from dataclasses import replace as Replace
 
 from convert.geometry.Extrude.Circular.CircularExtrude import BuildCircular
 from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.DistanceParam import KLengthFactors
+from interchange.enums.EnumValues import ValueKind
+from interchange.features.DistanceParam import GetDistParam, KLengthFactors
 from interchange.geometry.models.GeometryCurves import CircleGeometry
 from interchange.geometry.models.Transform import Transform
 from interchange.records.RecordParameter import Expression, Parameter
@@ -38,19 +39,29 @@ def ApplyDepthEdit(
     DistanceMm: float,
     Profile: CircleGeometry,
     FrameValue: Transform,
+    ParameterEdits: tuple[Parameter, ...] = (),
 ) -> CadDocument:
     BodyValue = DocValue.bodies[0]
-    Lower, Upper = sorted((0.0, DistanceMm))
+    if ParameterEdits:
+        ByIdentity = {Value.id: Value for Value in DocValue.parameters}
+        ByIdentity.update((Value.id, Value) for Value in ParameterEdits)
+        ParamValues = tuple(ByIdentity.values())
+        DepthMm = GetDistParam(
+            DocValue.feature_timeline[-1], ParameterId, ByIdentity, ValueKind.KLength
+        )
+    else:
+        ParamValues = tuple(
+            (
+                SetEditDepth(Value, DistanceMm, SourceText)
+                if Value.id == ParameterId
+                else Value
+            )
+            for Value in DocValue.parameters
+        )
+        DepthMm = DistanceMm
+    Lower, Upper = sorted((0.0, DepthMm))
     BrepValue, Volume, AreaValue, Bounds = BuildCircular(
         BodyValue.id, FrameValue, Profile, Lower, Upper, Profile.radius, Profile.radius
-    )
-    ParamValues = tuple(
-        (
-            SetEditDepth(Value, DistanceMm, SourceText)
-            if Value.id == ParameterId
-            else Value
-        )
-        for Value in DocValue.parameters
     )
     Topology = Replace(
         BodyValue.topology, volume=Volume, surface_area=AreaValue, bounding_box=Bounds

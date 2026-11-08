@@ -7186,7 +7186,15 @@ def HasEditExtMut(
 ) -> bool:
     Sketch = EditProfile(Context, Geometry, FeatureInfo, PlanValue)
     Expression = Context.Parameters.expression(PlanValue.ParameterId)
-    if Sketch is None or Expression is None or Context.ParamSheet.name != "Parameters":
+    if (
+        Sketch is None
+        or Expression is None
+        or Context.ParamSheet.name != "Parameters"
+        or (
+            PlanValue.HasFormula
+            and PlanValue.ParameterId not in Context.Parameters.FusionExpressions
+        )
+    ):
         return False
     Direction = (PlanValue.Direction.x, PlanValue.Direction.y, PlanValue.Direction.z)
     ToolValue = AddExtToolMut(

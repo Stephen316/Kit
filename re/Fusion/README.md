@@ -83,10 +83,8 @@ selection because the assembly projection is incomplete.
 FreeCAD spreadsheet export rewrites proven operand names to their exact
 parameter aliases. FreeCAD 1.1.3 verified four arithmetic captures against
 the saved Fusion API results and recalculated each result after changing an
-input. The `expression_depth` capture recalculated the spreadsheet depth
-from 19.25 to 26 mm when its input changed from 9.125 to 12.5 mm. Its
-extrusion still requires the feature carrier. Live geometry binding and
-readback for dependent formulas require further work.
+input. The `expression_depth` capture uses the same spreadsheet bindings
+to drive its native circular extrusion.
 
 The selected history now also projects supported offset and angle
 construction planes as neutral support frames. The reader verifies the
@@ -213,9 +211,9 @@ chained extents require further decoding.
 For a qualified standalone cylindrical create with one full selected circle,
 the FreeCAD writer links a native `Part::Extrusion` to the Sketcher profile and
 drives its depth from the source dimension in the Parameters spreadsheet. The
-extrusion owns the saved solid. This path requires a one-sided literal distance,
-zero taper, and no start offset. FreeCAD 1.1.3 verified depth edits on four
-saved captures, including negative and fractional depths. The 17 mm control
+extrusion owns the saved solid. This path requires one-sided distance, zero
+taper, and no start offset. FreeCAD 1.1.3 verified literal depth edits on
+four saved captures, including negative and fractional depths. The 17 mm control
 rebuilt at 25 mm, with volume increasing from 5340.7075 to 7853.9816 mm³ and
 center of mass moving from 8.5 to 12.5 mm along Z. The signed control rebuilt
 from −17 to −25 mm in the opposite direction. Standalone Fusion length and
@@ -223,8 +221,21 @@ angle literals can remain native spreadsheet expressions when they match the
 stored dimension. Formula-driven definitions with unresolved references and
 the opaque source data remain in the Kit carrier.
 
+The formula-driven path requires the depth dependency chain and owned taper
+to account for every source parameter. Its drivers are editable literals.
+The `expression_depth` capture keeps its independent open-line sketch and
+three points alongside the driving circular sketch. FreeCAD verified that
+editing the input from 9.125 to 12.5 mm changed the extrusion depth from
+19.25 to 26 mm and the solid volume from 8708.4948 to 11762.1229 mm³.
+Kit re-imports the edited driver and the evaluated depth while retaining the
+original Fusion formula and dependency IDs. After re-export, a second edit
+set the driver to −3 mm and rebuilt the solid at a signed depth of −5 mm.
+Kit verifies the saved expression,
+both sketch geometries, and the recomputed cylinder before accepting the edit.
+Formula edits in standalone spreadsheet exports still require readback support.
+
 When FreeCAD saves a supported depth edit, Kit checks the original sketch and
-feature identities, the spreadsheet literal, the evaluated length, and the
+feature identities, the spreadsheet controls, the evaluated length, and the
 attached cylinder. It restores the edited depth and recomputes the neutral
 B-rep and body measures under the original Fusion identities. The original
 Fusion archive remains available as source evidence. Four saved native edits

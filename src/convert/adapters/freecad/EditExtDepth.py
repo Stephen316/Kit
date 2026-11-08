@@ -6,6 +6,7 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from convert.adapters.freecad.FormulaSheet.EditFormula import IsEditFormula
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
 from interchange.features.DistanceValues import GetDistValues
 from interchange.features.FeatureDistExt import DistanceExtrude
@@ -52,8 +53,15 @@ def GetEditDepth(
     ):
         return None
     Values = GetDistValues(FeatureValue, Definition, Params)
-    if Values.TaperRadians != 0.0 or not all(
-        IsLiteralParam(Params[Identity]) for Identity in Bindings
+    TaperId = Definition.TaperParameterId
+    DepthId = Definition.AlongParameterId
+    if (
+        Values.TaperRadians != 0.0
+        or (TaperId is not None and not IsLiteralParam(Params[TaperId]))
+        or (
+            not IsLiteralParam(Params[DepthId])
+            and not IsEditFormula(DepthId, TaperId, Params)
+        )
     ):
         return None
     return Values.LowerMm if Values.LowerMm < 0.0 else Values.UpperMm

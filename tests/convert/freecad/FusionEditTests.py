@@ -108,7 +108,7 @@ def TestNativeExt(
     assert OpenDocument(Output).feature_timeline == Document.feature_timeline
 
 
-# native spreadsheet arithmetic does not by itself prove an executable geometry binding
+# a proven formula and independent sketch can coexist with one executable solid
 def TestFormulaExt(TmpPath: FilePath) -> None:
     Document = OpenDocument(
         KStudyPath / "holdouts-f8c508a73323" / "expression_depth.f3d", strict=False
@@ -116,11 +116,15 @@ def TestFormulaExt(TmpPath: FilePath) -> None:
     Output = TmpPath / "formula.FCStd"
     Result = WriteDocument(Document, Output)
     Transfers = {Value.capability: Value.mode for Value in Result.transfers}
-    assert Transfers[Capability.PARAMETRIC_HISTORY] is TransferMode.CARRIER
+    assert Transfers[Capability.PARAMETRIC_HISTORY] is TransferMode.MIXED
     assert Transfers[Capability.EXPRESSIONS] is TransferMode.NATIVE
     with ZipFile(Output) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
-        assert RootValue.find("./Objects/Object[@type='Part::Extrusion']") is None
+        assert len(RootValue.findall("./Objects/Object[@type='Part::Extrusion']")) == 1
+        assert (
+            len(RootValue.findall("./Objects/Object[@type='Sketcher::SketchObject']"))
+            == 2
+        )
         Cell = RootValue.find(".//Cell[@alias='fusion_parameter_276']")
         assert (
             Cell is not None

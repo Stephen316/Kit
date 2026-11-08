@@ -9,19 +9,20 @@
 from dataclasses import dataclass as MakeDataClass
 from xml.etree.ElementTree import Element
 
-from convert.adapters.freecad.EditableExt import EditExtrude
+from convert.adapters.freecad.EditableExt import EditExtrude, FindEditFrame
 from convert.adapters.freecad.EditRead.EditExtrusion import (
     ReadEditDepth,
     ReadShapeEntry,
 )
 from convert.adapters.freecad.EditRead.EditObjects import FindEditObject, RequireEditObj
-from convert.adapters.freecad.EditRead.EditParts import ReadEditParts
+from convert.adapters.freecad.EditRead.EditParts import OpenSketchCache, ReadScopedParts
 from convert.adapters.freecad.EditRead.EditProfile import CheckEditProf
 from convert.adapters.freecad.EditRead.EditSheet import ReadEditText
 from convert.adapters.freecad.EditRead.XmlField import EditScalar
 from convert.adapters.freecad.Native import ParseObjects
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.records.RecordParameter import Parameter
 
 
 # live control evidence travels with the exact sidecar needed for independent shape proof
@@ -32,16 +33,18 @@ class EditFields:
     SourceText: str
     SketchEntry: str
     EmptyEntries: tuple[str, ...]
+    IndependentCaches: tuple[OpenSketchCache, ...]
+    ParameterEdits: tuple[Parameter, ...]
 
 
 # reconciling a depth requires an unchanged linked profile and corroborated native controls
 def ReadEditFields(
     RootValue: Element, DocValue: CadDocument, PlanValue: EditExtrude
 ) -> EditFields | None:
+    ProfileFrame = FindEditFrame(DocValue, PlanValue.SketchId)
     if (
         not DocValue.feature_timeline
-        or len(DocValue.sketches) != 1
-        or len(DocValue.support_planes) != 1
+        or ProfileFrame is None
         or len(DocValue.bodies) != 1
     ):
         raise ValueError(
@@ -49,8 +52,7 @@ def ReadEditFields(
         )
     StepValue = DocValue.feature_timeline[-1]
     Definition = StepValue.definition
-    SketchValue = DocValue.sketches[0]
-    PlaneValue = DocValue.support_planes[0]
+    SketchValue, PlaneValue = ProfileFrame
     BodyValue = DocValue.bodies[0]
     if (
         not isinstance(Definition, DistanceExtrude)
@@ -73,8 +75,18 @@ def ReadEditFields(
         raise ValueError("FreeCAD editable extrusion body tip changed")
     CheckEditProf(Objects, Feature, SketchValue, PlaneValue)
     DepthMm = ReadEditDepth(Feature, PlanValue.Direction)
-    SourceText = ReadEditText(Objects, Feature, DocValue, Definition, DepthMm)
-    SketchEntry, EmptyEntries = ReadEditParts(Objects, Feature, DocValue)
+    SourceText, ParameterEdits = ReadEditText(
+        Objects, Feature, DocValue, Definition, DepthMm
+    )
+    SketchEntry, EmptyEntries, Independent = ReadScopedParts(
+        Objects, Feature, DocValue, PlanValue.SketchId
+    )
     return EditFields(
-        DepthMm, ReadShapeEntry(Feature), SourceText, SketchEntry, EmptyEntries
+        DepthMm,
+        ReadShapeEntry(Feature),
+        SourceText,
+        SketchEntry,
+        EmptyEntries,
+        Independent,
+        ParameterEdits,
     )
