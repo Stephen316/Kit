@@ -37,6 +37,8 @@ from convert.adapters.freecad.ArchiveEditPlan import KEditableBinding, ReadArchi
 from convert.adapters.freecad.EditableExt import EditExtrude
 from convert.adapters.freecad.Format import FORMAT_ID as FormatId
 from convert.adapters.freecad.FormulaSheet.FormulaClosure import BuildFusionExpr
+from convert.adapters.freecad.FormulaSheet.SheetBinding import KFormulaSheetBinding
+from convert.adapters.freecad.FormulaSheet.SheetScope import CanEditSheet
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
 from convert.adapters.freecad.Protocol import (
     ASSEMBLY_CONNECTOR_PROPERTY_PREFIXES as AsmConnectorPropPrefixes,
@@ -8010,6 +8012,12 @@ def SetOuterMut(Context: DocContext, Features: DocFeatures) -> None:
     if Features.EditableFeatureId:
         Context.MetaObject.properties.append(
             StringProp(KEditableBinding, Features.EditableFeatureId, Dynamic=True)
+        )
+    if not Context.NativeReplay and CanEditSheet(
+        Context.Manifest, Context.ParametersData, Context.Parameters.FusionExpressions
+    ):
+        Context.MetaObject.properties.append(
+            StringProp(KFormulaSheetBinding, Context.ParamSheet.name, Dynamic=True)
         )
 
 

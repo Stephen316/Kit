@@ -89,6 +89,7 @@ from convert.adapters.freecad.Brep import (
     brep_model_brep as BrepModelBrep,
     proven_ascii_brep as ProvenAsciiBrep,
 )
+from convert.adapters.freecad.EditRead.Formula.ReconcileSheet import ReconcileSheet
 from convert.adapters.freecad.Format import (
     CAPABILITY_CARRIER_REASONS as CapabilityCarrierReasons,
     INFO as InfoValue,
@@ -2322,6 +2323,7 @@ def ReadSource(Source: Source, Options: ReadOptions | None = None) -> CadDoc:
             RootValue, _ = ValidatedDocXml(Archive, Members)
             Value = ReadZipManifest(Archive, Members, RootValue)
             DocValue = ReconcileEdit(ManifestDoc(Value), RootValue, Archive, Members)
+            DocValue = ReconcileSheet(DocValue, Value, RootValue)
     except ValueError as ErrorInfo:
         if str(ErrorInfo) != "FCStd archive has no embedded Kit interchange document":
             raise FreeCadAdapterA(str(ErrorInfo)) from ErrorInfo

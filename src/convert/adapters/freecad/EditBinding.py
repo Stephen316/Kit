@@ -12,17 +12,19 @@ from convert.adapters.freecad.ArchiveEditPlan import KEditableBinding
 
 
 # older carrier archives have no binding but explicit bindings must remain unambiguous
-def ReadEditBinding(RootValue: Element) -> str | None:
+def ReadEditBinding(
+    RootValue: Element, PropertyName: str = KEditableBinding
+) -> str | None:
     Properties = RootValue.findall(
-        f"./ObjectData/Object[@name='KitMetadata']/Properties/Property[@name='{KEditableBinding}']"
+        f"./ObjectData/Object[@name='KitMetadata']/Properties/Property[@name='{PropertyName}']"
     )
     if not Properties:
         return None
     if len(Properties) == 1 and Properties[0].get("type") == "App::PropertyString":
         TextNodes = Properties[0].findall("String")
-        if len(TextNodes) == 1 and (FeatureId := TextNodes[0].get("value")):
-            return FeatureId
-    raise ValueError("FreeCAD editable extrusion binding is malformed")
+        if len(TextNodes) == 1 and (Binding := TextNodes[0].get("value")):
+            return Binding
+    raise ValueError(f"FreeCAD editable binding {PropertyName} is malformed")
 
 
 # earlier editable exports recorded the shape on the final feature without a binding marker

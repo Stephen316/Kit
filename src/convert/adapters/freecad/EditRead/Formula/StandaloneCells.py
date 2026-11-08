@@ -11,6 +11,7 @@ from xml.etree.ElementTree import Element
 
 from convert.adapters.freecad.EditRead.Formula.FormulaValue import EvalSavedRow
 from convert.adapters.freecad.EditRead.Formula.SavedLiteral import ReadSavedLeaf
+from convert.adapters.freecad.EditRead.XmlField import KEditNumber
 from convert.adapters.freecad.FormulaSheet.FormulaClosure import CloseFormulas
 from convert.adapters.freecad.FormulaSheet.FormulaPlans import (
     FormulaPlan,
@@ -68,16 +69,21 @@ def ReadSavedSheet(
         Alias = Aliases[Identity]
         CellValue = Cells.get(Alias)
         Content = "" if CellValue is None else CellValue.get("content", "")
-        if not Content.startswith("="):
+        Literal = None if PlanValue.References else ReadFormula(PlanValue.Content)
+        IsLeaf = Literal is not None and IsLiteralFormula(Literal)
+        if Content.startswith("="):
+            SavedText = Content[1:]
+        elif IsLeaf and len(Content) <= 128 and KEditNumber.fullmatch(Content):
+            SavedText = Content
+        else:
             raise ValueError(
                 f"FreeCAD editable spreadsheet alias {Alias} has no live content"
             )
-        Literal = None if PlanValue.References else ReadFormula(PlanValue.Content)
-        if Literal is not None and IsLiteralFormula(Literal):
-            Updated = ReadSavedLeaf(Param, Content[1:])
+        if IsLeaf:
+            Updated = ReadSavedLeaf(Param, SavedText)
         else:
             Updated = EvalSavedRow(
-                Param, PlanValue, Content[1:], Current, Aliases, Changes, None
+                Param, PlanValue, SavedText, Current, Aliases, Changes, None
             )
         Current[Identity] = Updated
         if Updated is not Param:

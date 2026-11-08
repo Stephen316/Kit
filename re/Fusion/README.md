@@ -230,9 +230,21 @@ editing the input from 9.125 to 12.5 mm changed the extrusion depth from
 Kit re-imports the edited driver and the evaluated depth while retaining the
 original Fusion formula and dependency IDs. After re-export, a second edit
 set the driver to −3 mm and rebuilt the solid at a signed depth of −5 mm.
-Kit verifies the saved expression,
-both sketch geometries, and the recomputed cylinder before accepting the edit.
-Formula edits in standalone spreadsheet exports still require readback support.
+Kit verifies the saved expression, both sketch geometries, and the recomputed
+cylinder before accepting the edit.
+
+Standalone Fusion parameter workbooks with a fully supported formula graph
+also support saved driver edits. Kit reads the edited literals, recalculates
+the dependent values, and retains the original Fusion formulas and parameter
+identities. A changed formula, incompatible unit, or added workbook content
+fails readback. Standalone archives exported before the workbook binding was
+introduced still read as their original snapshots.
+
+FreeCAD 1.1.3 saved and reopened six controls covering four arithmetic
+formulas and two equal-value inputs with distinct identities. Kit read back
+the changes with the original dependency IDs and Fusion archive bytes. In
+the product control, changing the width to 8 mm produced 21 mm. After
+re-export, changing the scalar to 3.25 produced 27 mm.
 
 When FreeCAD saves a supported depth edit, Kit checks the original sketch and
 feature identities, the spreadsheet controls, the evaluated length, and the
