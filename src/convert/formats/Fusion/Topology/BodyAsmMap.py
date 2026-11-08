@@ -32,7 +32,7 @@ class BodyAsmRef:
     Handles: frozenset[int]
 
 
-# each body and handle can appear once in an explicitly owned mapping table
+# opaque body handles include zero and remain unique within their exact mapping
 def ReadAsmMapRow(
     BulkData: bytes, Owners: dict[int, RecordSpan], Identity: int
 ) -> tuple[int, dict[int, int], str]:
@@ -52,10 +52,8 @@ def ReadAsmMapRow(
         or len({Handle for Handle, _ in Entries}) != Count
         or len({BodyId for _, BodyId in Entries}) != Count
         or any(
-            Handle <= 0
-            or Owners.get(BodyId) is None
-            or Owners[BodyId].ClassGuid != KBodyGuid
-            for Handle, BodyId in Entries
+            Owners.get(BodyId) is None or Owners[BodyId].ClassGuid != KBodyGuid
+            for _, BodyId in Entries
         )
     ):
         raise ValueError("Fusion body history mapping is malformed or ambiguous")

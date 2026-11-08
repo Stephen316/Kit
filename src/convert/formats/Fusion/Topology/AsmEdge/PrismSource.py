@@ -14,30 +14,31 @@ from convert.formats.Fusion.Topology.AsmEdge.PrismJoin import JoinPrismVerts
 from interchange.brep.curves.BrepCurves import LineCurve
 from interchange.brep.surfaces.BrepSurfaces import PlaneSurface
 from interchange.brep.topology.BrepModel import BrepModel
-from interchange.brep.topology.BrepTopology import BrepEdge
+from interchange.brep.topology.BrepTopology import BrepEdge, BrepFace
 from interchange.geometry.models.VectorSpace import SpaceVector
 
 
 # a complete neutral face edge inventory checks cap and wall incidence after identity joins
-def CheckPrismFaces(
+def JoinPrismFaces(
     Model: BrepModel, Prism: AsmPrism, JoinedEdges: dict[int, BrepEdge]
-) -> None:
+) -> dict[int, BrepFace]:
     UseValues = {Value.id: Value.edge_id for Value in Model.coedges}
     Loops = {Value.id: Value.coedge_ids for Value in Model.loops}
     if any(len(Value.loop_ids) != 1 for Value in Model.faces):
         raise ValueError("Fusion source prism neutral face bounds are unresolved")
     Neutral = {
-        frozenset(UseValues[Identity] for Identity in Loops[Value.loop_ids[0]])
+        frozenset(UseValues[Identity] for Identity in Loops[Value.loop_ids[0]]): Value
         for Value in Model.faces
     }
     Native = {
-        frozenset(JoinedEdges[Value.EdgeId].id for Value in RingValue)
-        for RingValue in Prism.Rings.values()
+        Identity: frozenset(JoinedEdges[Value.EdgeId].id for Value in RingValue)
+        for Identity, RingValue in Prism.Rings.items()
     }
-    if len(Neutral) != len(Model.faces) or Native != Neutral:
+    if len(Neutral) != len(Model.faces) or set(Native.values()) != Neutral.keys():
         raise ValueError(
             "Fusion ASM prism faces disagree with neutral cap and side incidence"
         )
+    return {Identity: Neutral[EdgeIds] for Identity, EdgeIds in Native.items()}
 
 
 # only a verified complete prism can bridge named native edges to generated neutral ids
@@ -47,7 +48,7 @@ def JoinPrismEdges(
     Edges: dict[int, AsmPrismEdge],
     Points: dict[int, SpaceVector],
     CurveTags: tuple[int, ...],
-) -> tuple[dict[int, BrepEdge], dict[int, SpaceVector]]:
+) -> tuple[dict[int, BrepEdge], dict[int, SpaceVector], dict[int, BrepFace]]:
     Sides = len(CurveTags)
     if (
         len(Model.bodies) != 1
@@ -90,5 +91,4 @@ def JoinPrismEdges(
     }
     if len({Value.id for Value in JoinedEdges.values()}) != len(Model.edges):
         raise ValueError("Fusion ASM prism edge correspondence is ambiguous")
-    CheckPrismFaces(Model, Prism, JoinedEdges)
-    return JoinedEdges, Mapped
+    return JoinedEdges, Mapped, JoinPrismFaces(Model, Prism, JoinedEdges)

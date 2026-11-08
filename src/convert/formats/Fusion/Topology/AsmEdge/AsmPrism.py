@@ -15,6 +15,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
     ReadAsmPtr,
     RequireAsm,
 )
+from convert.formats.Fusion.Topology.AsmEdge.AsmIdentity import CheckAsmIdent
 from convert.formats.Fusion.Topology.AsmEdge.AsmNames import KNameTerms, ReadFaceName
 from convert.formats.Fusion.Topology.AsmEdge.AsmRim import AsmUse, ReadAsmRim
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
@@ -49,14 +50,17 @@ def ReadAsmBody(Table: AsmTable, BodyHandle: int, BodyHandles: frozenset[int]) -
 
 
 # one reciprocal lump and shell delimit a source body in its original component frame
-def ReadAsmShell(Table: AsmTable, BodyId: int) -> tuple[int, int]:
+def ReadAsmShell(
+    Table: AsmTable, BodyId: int, *, AllowIdentity: bool = False
+) -> tuple[int, int]:
     BodyValue = RequireAsm(Table, BodyId, "body", 6)
     LumpId = ReadAsmPtr(BodyValue, 3)
     LumpValue = RequireAsm(Table, LumpId, "lump", 6)
     ShellId = ReadAsmPtr(LumpValue, 4)
     Shell = RequireAsm(Table, ShellId, "shell", 8)
     if (
-        any(ReadAsmPtr(BodyValue, Index) != -1 for Index in (2, 4, 5))
+        any(ReadAsmPtr(BodyValue, Index) != -1 for Index in (2, 4))
+        or (not AllowIdentity and ReadAsmPtr(BodyValue, 5) != -1)
         or ReadAsmPtr(LumpValue, 3) != -1
         or ReadAsmPtr(LumpValue, 5) != BodyId
         or any(ReadAsmPtr(Shell, Index) != -1 for Index in (3, 4, 6))
@@ -65,12 +69,17 @@ def ReadAsmShell(Table: AsmTable, BodyId: int) -> tuple[int, int]:
         raise ValueError(
             "Fusion ASM source body is transformed or not one closed shell"
         )
+    TransformId = ReadAsmPtr(BodyValue, 5)
+    if TransformId != -1:
+        CheckAsmIdent(Table, TransformId)
     return ShellId, ReadAsmPtr(Shell, 5)
 
 
 # only live face owners in the selected prism can contribute generic names
-def ReadAsmPrism(Table: AsmTable, BodyId: int, Sides: int) -> AsmPrism:
-    ShellId, Current = ReadAsmShell(Table, BodyId)
+def ReadAsmPrism(
+    Table: AsmTable, BodyId: int, Sides: int, *, AllowIdentity: bool = False
+) -> AsmPrism:
+    ShellId, Current = ReadAsmShell(Table, BodyId, AllowIdentity=AllowIdentity)
     Names: dict[KNameTerms, int] = {}
     Rings: dict[int, tuple[AsmUse, ...]] = {}
     for _ in range(Sides + 2):

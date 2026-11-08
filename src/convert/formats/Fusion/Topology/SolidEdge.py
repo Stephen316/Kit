@@ -87,7 +87,7 @@ def ReadSolidEdge(
         Selected = SelectAsmEdge(Prism, Edges, Recipe)
         Points = ReadAsmPoints(Table, Edges, len(CurveTags))
         CheckAsmLine(Table, Selected, Points)
-        Joined, Mapped = JoinPrismEdges(SourceModel, Prism, Edges, Points, CurveTags)
+        Joined, Mapped, _ = JoinPrismEdges(SourceModel, Prism, Edges, Points, CurveTags)
         Start, Finish = (Mapped[Identity] for Identity in Selected.Vertices)
         if not IsAsmNear(Start, CachedStart) or not IsAsmNear(Finish, CachedEnd):
             raise ValueError(
