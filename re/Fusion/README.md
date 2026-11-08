@@ -68,6 +68,26 @@ and the original archive as a native document payload. It can round-trip
 through the Kit JSON reader and writer. The SDK verified document projection
 for all 766 histories in the tracked corpus.
 
+For a verified single-component parameter collection, the document reader
+can derive arithmetic dependencies from exact user-parameter names. It
+requires an acyclic chain, compatible units, and an evaluated result that
+matches the saved numeric record. The supported grammar covers grouping,
+unary signs, and addition, subtraction, multiplication, and division.
+Ambiguous names and unsupported expressions retain their original text.
+The Fusion records store the formula and evaluated value. The dependency
+identities come from resolving the formula against the native name registry.
+Across 712 tracked archives, eight formulas qualified and all eight wrote as
+native spreadsheet cells. Sixteen archives still require explicit history
+selection because the assembly projection is incomplete.
+
+FreeCAD spreadsheet export rewrites proven operand names to their exact
+parameter aliases. FreeCAD 1.1.3 verified four arithmetic captures against
+the saved Fusion API results and recalculated each result after changing an
+input. The `expression_depth` capture recalculated the spreadsheet depth
+from 19.25 to 26 mm when its input changed from 9.125 to 12.5 mm. Its
+extrusion still requires the feature carrier. Live geometry binding and
+readback for dependent formulas require further work.
+
 The selected history now also projects supported offset and angle
 construction planes as neutral support frames. The reader verifies the
 reciprocal feature and plane references, their shared ordinal, and the

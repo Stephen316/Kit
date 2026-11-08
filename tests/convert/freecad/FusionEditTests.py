@@ -108,7 +108,7 @@ def TestNativeExt(
     assert OpenDocument(Output).feature_timeline == Document.feature_timeline
 
 
-# unresolved source formula references cannot be replaced by a frozen editable depth
+# native spreadsheet arithmetic does not by itself prove an executable geometry binding
 def TestFormulaExt(TmpPath: FilePath) -> None:
     Document = OpenDocument(
         KStudyPath / "holdouts-f8c508a73323" / "expression_depth.f3d", strict=False
@@ -117,10 +117,15 @@ def TestFormulaExt(TmpPath: FilePath) -> None:
     Result = WriteDocument(Document, Output)
     Transfers = {Value.capability: Value.mode for Value in Result.transfers}
     assert Transfers[Capability.PARAMETRIC_HISTORY] is TransferMode.CARRIER
-    assert Transfers[Capability.EXPRESSIONS] is TransferMode.MIXED
+    assert Transfers[Capability.EXPRESSIONS] is TransferMode.NATIVE
     with ZipFile(Output) as Archive:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
         assert RootValue.find("./Objects/Object[@type='Part::Extrusion']") is None
+        Cell = RootValue.find(".//Cell[@alias='fusion_parameter_276']")
+        assert (
+            Cell is not None
+            and Cell.get("content") == "=fusion_parameter_202 * 2 + 1 mm"
+        )
     StrictOutput = TmpPath / "strict.FCStd"
     with Pytest.raises(AppUsabilityError):
         WriteDocument(Document, StrictOutput, allow_carrier=False)
