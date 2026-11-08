@@ -8,67 +8,61 @@
 
 from dataclasses import replace as Replace
 
+from convert.adapters.freecad.ApplyDepthParams import ReadDepthParams
+from convert.adapters.freecad.ApplyProfileEdit import GetProfileEdits
 from convert.geometry.Extrude.Circular.CircularExtrude import BuildCircular
 from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumValues import ValueKind
-from interchange.features.DistanceParam import GetDistParam, KLengthFactors
 from interchange.geometry.models.GeometryCurves import CircleGeometry
+from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.Transform import Transform
-from interchange.records.RecordParameter import Expression, Parameter
-
-
-# original units remain useful unless conversion would round the native depth
-def SetEditDepth(Param: Parameter, DistanceMm: float, SourceText: str) -> Parameter:
-    UnitValue = Param.value.unit
-    Factor = KLengthFactors[UnitValue]
-    Magnitude = DistanceMm / Factor
-    if Magnitude * Factor != DistanceMm:
-        Magnitude, UnitValue = DistanceMm, "mm"
-    return Replace(
-        Param,
-        value=Replace(Param.value, value=Magnitude, unit=UnitValue),
-        expression=Expression(SourceText, language="freecad"),
-    )
+from interchange.records.RecordParameter import Parameter
 
 
 # rebuilding verified geometry keeps the original identities and body measures consistent
 def ApplyDepthEdit(
     DocValue: CadDocument,
     ParameterId: str,
-    SourceText: str,
+    SourceText: str | None,
     DistanceMm: float,
     Profile: CircleGeometry,
     FrameValue: Transform,
     ParameterEdits: tuple[Parameter, ...] = (),
+    EditedSketch: Sketch | None = None,
 ) -> CadDocument:
+    if not DocValue.feature_timeline or len(DocValue.bodies) != 1:
+        raise ValueError("FreeCAD editable extrusion source body is unavailable")
     BodyValue = DocValue.bodies[0]
-    if ParameterEdits:
-        ByIdentity = {Value.id: Value for Value in DocValue.parameters}
-        ByIdentity.update((Value.id, Value) for Value in ParameterEdits)
-        ParamValues = tuple(ByIdentity.values())
-        DepthMm = GetDistParam(
-            DocValue.feature_timeline[-1], ParameterId, ByIdentity, ValueKind.KLength
-        )
-    else:
-        ParamValues = tuple(
-            (
-                SetEditDepth(Value, DistanceMm, SourceText)
-                if Value.id == ParameterId
-                else Value
-            )
-            for Value in DocValue.parameters
-        )
-        DepthMm = DistanceMm
+    ParamValues, DepthMm = ReadDepthParams(
+        DocValue.parameters,
+        DocValue.feature_timeline[-1],
+        ParameterId,
+        SourceText,
+        DistanceMm,
+        ParameterEdits,
+    )
+    SketchValues = GetProfileEdits(DocValue, Profile, FrameValue, EditedSketch)
+    if ParamValues is DocValue.parameters and SketchValues is DocValue.sketches:
+        return DocValue
     Lower, Upper = sorted((0.0, DepthMm))
     BrepValue, Volume, AreaValue, Bounds = BuildCircular(
         BodyValue.id, FrameValue, Profile, Lower, Upper, Profile.radius, Profile.radius
     )
     Topology = Replace(
-        BodyValue.topology, volume=Volume, surface_area=AreaValue, bounding_box=Bounds
+        BodyValue.topology,
+        solid_count=len(BrepValue.regions),
+        shell_count=len(BrepValue.shells),
+        face_count=len(BrepValue.faces),
+        edge_count=len(BrepValue.edges),
+        vertex_count=len(BrepValue.vertices),
+        volume=Volume,
+        surface_area=AreaValue,
+        bounding_box=Bounds,
+        valid=True,
     )
     return Replace(
         DocValue,
         parameters=ParamValues,
+        sketches=SketchValues,
         bodies=(Replace(BodyValue, topology=Topology),),
         brep=BrepValue,
     )
