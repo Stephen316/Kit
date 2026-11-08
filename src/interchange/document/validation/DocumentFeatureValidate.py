@@ -12,8 +12,10 @@ from interchange.document.models.DocumentModel import (  # lgtm[py/cyclic-import
     CadDocument,
 )
 from interchange.document.validation.AngleRevValidate import GetAngleRevErrs
+from interchange.document.validation.DistExtValidate import GetDistExtErrs
 from interchange.document.validation.PlaneRevValidate import GetPlaneRevErrs
 from interchange.features.FeatureAngleRev import AngularRevolve
+from interchange.features.FeatureDistExt import DistanceExtrude
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 
 
@@ -72,6 +74,15 @@ def GetFeatureErrs(
             ErrorValues.extend(
                 GetAngleRevErrs(
                     FeatureValue, FeatureValue.definition, Selections, Parameters
+                )
+            )
+        elif isinstance(FeatureValue.definition, DistanceExtrude):
+            ErrorValues.extend(
+                GetDistExtErrs(
+                    FeatureValue,
+                    FeatureValue.definition,
+                    IdentitySets["sketches"],
+                    Parameters,
                 )
             )
     for BodyValue in DocumentValue.bodies:
