@@ -26,6 +26,7 @@ from convert.formats.Fusion.ZipHistory import ReadBulkHistory
 from interchange.core.Common import FreezeMapping
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumDocument import Capability
+from interchange.features.FeatureDistExt import DistanceExtrude
 from interchange.payloads.PayloadRecord import BrepPayload
 from interchange.payloads.PayloadRoles import PayloadRole
 from interchange.records.RecordConfig import Configuration
@@ -70,12 +71,6 @@ def ReadFusionDoc(
     Steps, Selections, RevolveIssues = ProjectRevolves(
         BulkData, Spans, Steps, Params, Planes, Frames, Sketches
     )
-    if Assembly is None:
-        Bodies, Model, BodyIssues = ProjectRevBody(
-            BulkData, Spans, Steps, Sketches, Frames, Params
-        )
-    else:
-        Bodies, Model, BodyIssues = (), None, ()
     Owners = {
         ParamId: StepValue.id
         for StepValue in History.Steps
@@ -88,6 +83,14 @@ def ReadFusionDoc(
     Steps, ExtrudeIssues = ProjectExtrudes(
         BulkData, Spans, Steps, Parameters, Frames, Sketches
     )
+    if Assembly is None and not any(
+        isinstance(StepValue.definition, DistanceExtrude) for StepValue in Steps
+    ):
+        Bodies, Model, BodyIssues = ProjectRevBody(
+            BulkData, Spans, Steps, Sketches, Frames, Parameters
+        )
+    else:
+        Bodies, Model, BodyIssues = (), None, ()
     Digest = ShaDigest(DataValue).hexdigest()
     Capabilities = {Capability.KNativePayloads, Capability.KProvenance}
     if Parameters:
@@ -138,7 +141,7 @@ def ReadFusionDoc(
         + (
             Diagnostic(
                 code="fusion.history.partial",
-                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry, supported Extrude and Revolve definitions, and supported Revolve solids. "
+                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry, and supported Extrude and Revolve definitions and solids. "
                 "Additional feature definitions, bodies, and assemblies require further decoding.",
             ),
         ),

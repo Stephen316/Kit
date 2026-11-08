@@ -8,7 +8,6 @@
 
 
 from convert.formats.Fusion.RecordSpan import RecordSpan
-from convert.formats.Fusion.Revolves.AngleRevValues import ReadAngleSpan
 from convert.formats.Fusion.Revolves.BuildRevBody import BuildRevBody
 from convert.formats.Fusion.Revolves.JoinRevModels import JoinRevModels
 from convert.formats.Fusion.Revolves.RevInventory import ReadRevBodies
@@ -72,16 +71,11 @@ def ProjectRevBody(
             )
             if SketchValue is None or FrameValue is None:
                 raise ValueError("Missing Fusion Revolve profile sketch frame")
-            Interval = (
-                (Definition.StartRadians, Definition.EndRadians)
-                if isinstance(Definition, PlaneRevolve)
-                else ReadAngleSpan(Definition, ByParam)
-            )
             Body, Model = BuildRevBody(
                 Owners,
                 StepValue,
                 Definition,
-                Interval,
+                ByParam,
                 SketchValue,
                 FrameValue,
                 Links[StepValue.id],

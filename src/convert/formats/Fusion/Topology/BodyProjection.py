@@ -9,6 +9,7 @@
 from dataclasses import replace as Replace
 
 from convert.formats.Fusion.Assembly.AssemblyBodies import AttachBodyList
+from convert.formats.Fusion.Extrudes.ExtrudeBody import ProjectExtBody
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Topology.BodyEvidence import (
@@ -75,6 +76,9 @@ def ProjectBodyList(
     if ScopeId is None or ScopeId not in Inventory:
         return Replace(Document, diagnostics=Diagnostics)
     Members = Inventory[ScopeId]
+    Document = ProjectExtBody(
+        Replace(Document, diagnostics=Diagnostics), BulkData, Spans, Members
+    )
     Bodies, LinkedIds = LinkBodyRecords(Document.bodies, Members)
     return Replace(
         Document,
@@ -85,5 +89,4 @@ def ProjectBodyList(
                 KBodyInventoryKey: GetBodyEvidence(ScopeId, Members, LinkedIds),
             }
         ),
-        diagnostics=Diagnostics,
     )

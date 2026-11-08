@@ -61,7 +61,7 @@ alone earn no native write credit.
 - Fusion is discoverable in the SDK as the read-only `fusion.f3d` adapter.
   It requires explicit opt-in to the partial read and projects linked
   distance Extrude definitions, plane-limited Revolve definitions, and
-  source-derived Revolve solids for verified subsets. Sixteen captures from Fusion 2705.1.30
+  source-derived Extrude and Revolve solids for verified subsets. Sixteen captures from Fusion 2705.1.30
   and 2706.1.17 matched saved body geometry and passed Kit JSON round-trips.
   The SDK also reads local assembly definitions, occurrences, placements, and
   saved component body inventories. Broader geometry and assembly coverage, the native writer,

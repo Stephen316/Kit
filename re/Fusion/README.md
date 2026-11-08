@@ -178,8 +178,18 @@ limits from their current values. Across 712 tracked archives, Kit projected
 461 definitions. Verification compared 33 saved Fusion API captures and two
 assembly controls, including reversed extents, signed offsets, draft, and
 the symmetric conventions. Thin, Boolean, and entity-limited Extrudes and
-unresolved occurrence directions require further decoding. Extrude body
-reconstruction and native writing remain separate milestones.
+unresolved occurrence directions require further decoding.
+
+For verified part histories with independent active solid creators, Kit also
+reconstructs the saved Extrude bodies from the profile and distance controls.
+The creator's explicit result anchor must match the body in its current
+component collection. Supported geometry includes cylinders, the observed
+positive one-sided circular draft, and untapered line-ring prisms. The corpus
+check matched 61 solids in 42 parts against their saved native body topology,
+volume, area, and bounds. This includes 52 circular solids and nine prisms.
+Saved suppression and rollback controls matched the active body inventory.
+Assembly solids, later modeling operations, and native writing require further
+coverage.
 
 ## Public SDK reader
 
