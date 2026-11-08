@@ -8,7 +8,7 @@
 
 from struct import unpack_from as UnpackFrom
 
-from convert.formats.Fusion.MetaIndex import ReadMetaIndex
+from convert.formats.Fusion.MetaIndex import ReadMetaIndex, SegmentKind
 from convert.formats.Fusion.RecordSpan import RecordSpan
 
 
@@ -24,8 +24,10 @@ def IsAncestor(ClassGuid: str, BaseGuid: str, Parents: dict[str, str]) -> bool:
 
 
 # downstream decoders need verified payload boundaries and stable native ownership
-def ReadBulkSpans(BulkData: bytes, MetaData: bytes) -> tuple[RecordSpan, ...]:
-    Classes, Owners, Entries = ReadMetaIndex(MetaData)
+def ReadBulkSpans(
+    BulkData: bytes, MetaData: bytes, *, Segment: SegmentKind = SegmentKind.KDesign
+) -> tuple[RecordSpan, ...]:
+    Classes, Owners, Entries = ReadMetaIndex(MetaData, Segment=Segment)
     Entries.sort()
     if not Entries or Entries[0][0] != 0:
         raise ValueError("Missing initial Fusion BulkStream record")

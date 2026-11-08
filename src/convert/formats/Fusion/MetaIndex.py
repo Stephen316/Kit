@@ -6,31 +6,61 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from enum import StrEnum
+
 from convert.formats.Fusion.MetaCursor import MetaCursor
+
+
+# the same native index grammar serves three typed segment headers
+class SegmentKind(StrEnum):
+    KDesign = "FusionDesignSegmentType"
+    KBrowser = "FusionBrowserSegmentType"
+    KAct = "FusionACTSegmentType"
+
+
+# each auxiliary segment declares a fixed index and storage kind in version eight
+KSegmentLayout = {
+    SegmentKind.KDesign: (None, (1, 0)),
+    SegmentKind.KBrowser: (2, (6, 0)),
+    SegmentKind.KAct: (1, (5, 0)),
+}
+
+
+# an expected segment kind prevents an unrelated index from validating this stream pair
+def CheckMetaHeader(Cursor: MetaCursor, Segment: SegmentKind) -> None:
+    if not isinstance(Segment, SegmentKind):
+        raise ValueError("Unsupported Fusion MetaStream segment kind")
+    KindValue = Cursor.ReadText()
+    SegmentId, _ = Cursor.ReadWord(), Cursor.ReadText(True)
+    Magic, Version, _, _ = (Cursor.ReadWord() for _ in range(4))
+    Repeated, _ = Cursor.ReadText(), Cursor.ReadText()
+    Storage = Cursor.ReadWord(), Cursor.ReadWord()
+    IndexValue, StorageValue = KSegmentLayout[Segment]
+    if (
+        KindValue != Segment.value
+        or Repeated != KindValue
+        or Magic != 1234
+        or Version != 8
+        or Storage != StorageValue
+        or (IndexValue is not None and SegmentId != IndexValue)
+    ):
+        if Segment is SegmentKind.KDesign:
+            raise ValueError("Unsupported Fusion design MetaStream")
+        raise ValueError(f"Unsupported Fusion {Segment.value} MetaStream")
 
 
 # capture registry ownership so bulk headers cannot assign their own record classes
 def ReadMetaIndex(
     MetaData: bytes,
+    *,
+    Segment: SegmentKind = SegmentKind.KDesign,
 ) -> tuple[
     dict[int, tuple[str, str, str]],
     dict[int, int],
     list[tuple[int, int, bool]],
 ]:
     Cursor = MetaCursor(MetaData)
-    KindValue = Cursor.ReadText()
-    _ = Cursor.ReadWord(), Cursor.ReadText(True)
-    Magic, Version, _, _ = (Cursor.ReadWord() for _ in range(4))
-    Repeated, _ = Cursor.ReadText(), Cursor.ReadText()
-    Storage = Cursor.ReadWord(), Cursor.ReadWord()
-    if (
-        KindValue != "FusionDesignSegmentType"
-        or Repeated != KindValue
-        or Magic != 1234
-        or Version != 8
-        or Storage != (1, 0)
-    ):
-        raise ValueError("Unsupported Fusion design MetaStream")
+    CheckMetaHeader(Cursor, Segment)
 
     Classes: dict[int, tuple[str, str, str]] = {}
     Owners: dict[int, int] = {}
