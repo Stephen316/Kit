@@ -46,10 +46,10 @@ from convert.geometry.Opencascade import (
 )
 
 # ordinary repeated edits preserve dormant parameter curves and their carrier locations
-KMaxRevPlaces = 128
+KMaxRevPlaces = 512
 
 # repeated edit history is bounded independently of the number of active faces
-KMaxRevTrims = 512
+KMaxRevTrims = 1024
 
 
 # symbolic locations retain native sharing even when distinct datums have identical matrices
@@ -79,12 +79,13 @@ def ReadRevPlaces(
 ) -> tuple[tuple[KLocationChain, ...], dict[int, tuple[float, ...]]]:
     Count = ReadCount(Cursor, b"Locations", KMaxRevPlaces)
     Chains: list[KLocationChain] = []
+    Seen: set[KLocationChain] = set()
     Datums: dict[int, tuple[float, ...]] = {}
     for Index in range(1, Count + 1):
         ChainValue = ReadChainMut(Cursor, Index, Chains, Datums)
         if (
             not ChainValue
-            or ChainValue in Chains
+            or ChainValue in Seen
             or len(ChainValue) > 16
             or any(abs(Power) > 16 for _, Power in ChainValue)
             or abs(LocationScale(FoldMatrix(ChainValue[::-1], Datums)) - 1.0)
@@ -92,6 +93,7 @@ def ReadRevPlaces(
         ):
             raise DecodeFailure("unsupported Revolution placement")
         Chains.append(ChainValue)
+        Seen.add(ChainValue)
     return ((), *Chains), Datums
 
 

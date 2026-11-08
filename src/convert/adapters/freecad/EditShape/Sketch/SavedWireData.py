@@ -69,7 +69,7 @@ def ReadSavedWire(
     Cursor = Tokens(ShapeData)
     ExpectHeader(Cursor)
     Locations = ModelLocations(Cursor)
-    LocationLimit = 256 if AllowPcurves else 16
+    LocationLimit = 512 if AllowPcurves else 16
     if len(Locations) > LocationLimit or any(
         abs(LocationScale(Value) - 1.0) > KAngleTolerance for Value in Locations
     ):

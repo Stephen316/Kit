@@ -38,6 +38,8 @@ from convert.adapters.freecad.ArchiveEditPlan import (
     KProfileBinding,
     ReadArchiveEdit,
 )
+from convert.adapters.freecad.EditRev.RevBinding import KRevBinding
+from convert.adapters.freecad.EditRev.RevExpressions import RevExpressions
 from convert.adapters.freecad.EditRev.RevolveProps import MakeRevProps
 from convert.adapters.freecad.EditableExt import EditExtrude
 from convert.adapters.freecad.EditableRev import EditRevolve, ReadEditRevolve
@@ -7269,40 +7271,32 @@ def HasEditExtMut(
     return True
 
 
-# freecad represents a two sided sweep by its total angle and centered rotation
+# the mirrored native cache must follow the authored half angle cell
 def RevExpressionsMut(
     Context: DocContext, PlanValue: EditRevolve
 ) -> list[tuple[str, str]]:
-    Along = Context.Parameters.expression(PlanValue.AngleParamId)
-    if Along is None or Context.ParamSheet.name != "Parameters":
+    if Context.ParamSheet.name != "Parameters":
         return []
-    if PlanValue.AgainstParamId is None:
-        return [("Angle", Along)]
-    Against = Context.Parameters.expression(PlanValue.AgainstParamId)
-    if Against is None:
+    Aliases = Context.Parameters.Aliases
+    Expressions = list(RevExpressions(PlanValue, Aliases))
+    if not Expressions or PlanValue.AngleScale == 1.0:
+        return Expressions
+    AgainstId = PlanValue.AgainstParamId
+    if AgainstId is None:
         return []
-    if PlanValue.AngleScale != 1:
-        Alias = Context.Parameters.Aliases[PlanValue.AgainstParamId]
-        Cell = next(
-            (
-                Value
-                for Prop in Context.ParamSheet.properties
-                for Value in Prop.findall("./Cells/Cell")
-                if Value.get("alias") == Alias
-            ),
-            None,
-        )
-        if Cell is None:
-            return []
-        Cell.set("content", f"={Context.Parameters.Aliases[PlanValue.AngleParamId]}")
-        return [("Angle", f"{Along} * {PlanValue.AngleScale:g}")]
-    AxisValue = PlanValue.AxisDirection
-    AxisText = f"{AxisValue.x:.17g}; {AxisValue.y:.17g}; {AxisValue.z:.17g}"
-    Placement = (
-        "placement(vector(0 mm; 0 mm; 0 mm); "
-        f"rotation(vector({AxisText}); ({Along} - {Against}) / 2))"
+    Cell = next(
+        (
+            Value
+            for Prop in Context.ParamSheet.properties
+            for Value in Prop.findall("./Cells/Cell")
+            if Value.get("alias") == Aliases[AgainstId]
+        ),
+        None,
     )
-    return [("Angle", f"{Along} + {Against}"), ("Placement", Placement)]
+    if Cell is None:
+        return []
+    Cell.set("content", f"={Aliases[PlanValue.AngleParamId]}")
+    return Expressions
 
 
 # the initial world coordinate solid stays in place until the live sweep recomputes
@@ -8162,6 +8156,10 @@ def SetOuterMut(Context: DocContext, Features: DocFeatures) -> None:
     if Features.EditableProfileId:
         Context.MetaObject.properties.append(
             StringProp(KProfileBinding, Features.EditableProfileId, Dynamic=True)
+        )
+    if Features.EditableRevId:
+        Context.MetaObject.properties.append(
+            StringProp(KRevBinding, Features.EditableRevId, Dynamic=True)
         )
     if not Context.NativeReplay and CanEditSheet(
         Context.Manifest, Context.ParametersData, Context.Parameters.FusionExpressions

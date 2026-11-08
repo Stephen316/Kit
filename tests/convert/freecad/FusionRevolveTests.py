@@ -6,11 +6,12 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
-from math import pi as HalfTurn
+from io import BytesIO
+from math import pi as HalfTurn, radians as Radians
 from os import environ as Environment
 from pathlib import Path as FilePath
 from subprocess import run as RunProcess
-from xml.etree.ElementTree import fromstring as ParseXml
+from xml.etree.ElementTree import fromstring as ParseXml, tostring as WriteXml
 from zipfile import ZipFile
 
 import pytest as Pytest
@@ -19,6 +20,8 @@ from convert import open_document as OpenDocument, write_document as WriteDocume
 from convert.Security.PathBoundary import ResolveTemp
 from convert.Security.ProgramBoundary import GetFreecadPath
 from convert.adapters.base.TransferContract import TransferMode
+from convert.adapters.freecad.Adapter import FreeCadAdapterA
+from convert.adapters.freecad.EditRev.RevBinding import KRevBinding
 from interchange.enums.EnumDocument import Capability
 from interchange.features.FeatureAngleRev import AngularRevolve
 from tests.convert.api.ApiFusionAssemblyTests import KRequiresCodec, KStudyPath
@@ -84,6 +87,10 @@ def TestNativeRev(
     assert Transfers[Capability.PARAMETRIC_HISTORY] is TransferMode.MIXED
     with ZipFile(Output) as Archive:
         RootValue = ParseXml(Archive.read("Document.xml"))
+        Binding = RootValue.find(
+            f"./ObjectData/Object[@name='KitMetadata']/Properties/Property[@name='{KRevBinding}']/String"
+        )
+        assert Binding is not None and Binding.get("value") == StepValue.id
         Objects = {
             Value.attrib["name"]: Value.attrib["type"]
             for Value in RootValue.findall("./Objects/Object")
@@ -172,6 +179,31 @@ def TestRevolveCarrier(TmpPath: FilePath, Folder: str, SampleName: str) -> None:
     assert OpenDocument(Output) == DocValue
 
 
+# the reader must reject a cached angle that disagrees with its driving spreadsheet
+@KRequiresCodec
+def TestStaleRevolve(TmpPath: FilePath) -> None:
+    DocValue = OpenDocument(
+        KStudyPath / "revolvemodes-8eb734486235" / "positive.f3d", strict=False
+    )
+    Output = TmpPath / "positive.FCStd"
+    _ = WriteDocument(DocValue, Output)
+    with ZipFile(Output) as Archive:
+        Members = {Name: Archive.read(Name) for Name in Archive.namelist()}
+    RootValue = ParseXml(Members["Document.xml"])
+    Angle = RootValue.find(
+        "./ObjectData/Object/Properties/Property[@name='Angle']/Float"
+    )
+    assert Angle is not None
+    Angle.set("value", "25")
+    Members["Document.xml"] = WriteXml(RootValue, encoding="utf-8")
+    Buffer = BytesIO()
+    with ZipFile(Buffer, "w") as Archive:
+        for Name, DataValue in Members.items():
+            Archive.writestr(Name, DataValue)
+    with Pytest.raises(FreeCadAdapterA, match="angle"):
+        OpenDocument(Buffer.getvalue())
+
+
 # a seed in world coordinates must survive loading and recomputing an edited placement
 @KRequiresCodec
 @Pytest.mark.skipif(
@@ -206,3 +238,14 @@ def TestAsymmetricNativeEdit(TmpPath: FilePath) -> None:
     assert Rebuilt == Pytest.approx(Loaded)
     assert Edited == Pytest.approx((*Loaded[:3], -Loaded[3]))
     assert Reopened == Pytest.approx(Edited)
+    Readback = OpenDocument(Saved)
+    assert Readback.feature_timeline == DocValue.feature_timeline
+    assert Readback.sketches == DocValue.sketches
+    assert [Value.value.value for Value in Readback.parameters] == Pytest.approx(
+        (Radians(25.0), Radians(60.0))
+    )
+    assert Readback.bodies[0].topology.volume == Pytest.approx(Volume)
+    assert Readback.brep != DocValue.brep
+    Rewrite = TmpPath / "two_sided_rewrite.FCStd"
+    _ = WriteDocument(Readback, Rewrite)
+    assert OpenDocument(Rewrite) == Readback

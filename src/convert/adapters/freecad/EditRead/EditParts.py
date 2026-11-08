@@ -53,6 +53,7 @@ def ReadEmptyParts(
     Objects: tuple[NativeObject, ...],
     AllowedNames: set[str],
     CacheFields: set[tuple[str, str]],
+    Purpose: str = "editable extrusion",
 ) -> tuple[str, ...]:
     EmptyEntries: list[str] = []
     for ObjectValue in Objects:
@@ -60,15 +61,11 @@ def ReadEmptyParts(
             ObjectValue.name not in AllowedNames
             and ObjectValue.type_id not in KMetadataTypes
         ):
-            raise ValueError(
-                "FreeCAD editable extrusion has an additional native object"
-            )
+            raise ValueError(f"FreeCAD {Purpose} has an additional native object")
         for Field, Property in ObjectValue.properties.items():
             PropertyType = Property.get("type", "")
             if PropertyType.startswith("Mesh::"):
-                raise ValueError(
-                    "FreeCAD editable extrusion has additional mesh geometry"
-                )
+                raise ValueError(f"FreeCAD {Purpose} has additional mesh geometry")
             if (
                 PropertyType != "Part::PropertyPartShape"
                 or (ObjectValue.name, Field) in CacheFields

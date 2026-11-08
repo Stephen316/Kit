@@ -9,6 +9,12 @@
 
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
 from convert.formats.Fusion.FeatureLabels import KFeatureFields
+from convert.geometry.Formula.Arithmetic import (
+    EvalFormula,
+    IsLiteralFormula,
+    ReadFormula,
+)
+from convert.geometry.Formula.FormulaUnits import MatchQuantity
 from interchange.enums.EnumFeatures import FeatureKind
 from interchange.enums.EnumValues import ParameterRole, ValueKind
 from interchange.features.FeatureAngleRev import AngularRevolve
@@ -16,12 +22,28 @@ from interchange.features.FeatureStep import FeatureStep
 from interchange.records.RecordParameter import Parameter
 
 
+# qualified native literals can retain freecad syntax across repeated exports
+def IsRevLiteral(Param: Parameter) -> bool:
+    Expression = Param.expression
+    if Expression is None or Expression.parameter_ids:
+        return False
+    if Expression.language == "fusion":
+        Value = Param.value
+        return IsLiteralQty(Expression.source, Value.kind, Value.value, Value.unit)
+    if Expression.language != "freecad":
+        return False
+    Formula = ReadFormula(Expression.source)
+    if Formula is None or not IsLiteralFormula(Formula):
+        return False
+    Quantity = EvalFormula(Formula, {})
+    return Quantity is not None and MatchQuantity(Quantity, Param.value)
+
+
 # source parameters must be reciprocal finite literal angular bindings owned by the feature
 def ReadRevAngle(Param: Parameter, FeatureValue: FeatureStep, RoleName: str) -> float:
     Origin = FeatureValue.provenance
     Evidence = Param.provenance
     Value = Param.value
-    Expression = Param.expression
     Attrs = Param.attributes
     BindingId = Attrs.get("fusion.binding_id")
     if (
@@ -43,10 +65,7 @@ def ReadRevAngle(Param: Parameter, FeatureValue: FeatureStep, RoleName: str) -> 
         or Value.kind != ValueKind.KAngle
         or Value.unit != "rad"
         or type(Value.value) is not float
-        or Expression is None
-        or Expression.language != "fusion"
-        or Expression.parameter_ids
-        or not IsLiteralQty(Expression.source, Value.kind, Value.value, Value.unit)
+        or not IsRevLiteral(Param)
     ):
         raise ValueError(
             "FreeCAD editable Revolve requires literal native angle bindings"

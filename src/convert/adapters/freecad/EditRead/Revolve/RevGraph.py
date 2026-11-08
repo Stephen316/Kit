@@ -77,7 +77,7 @@ def ReadRevFiles(
     ):
         raise ValueError("FreeCAD editable Revolve shape ownership changed")
     CacheFields = {(Feature.name, "Shape"), (Profile.name, "Shape")}
-    EmptyEntries = ReadEmptyParts(Objects, Allowed, CacheFields)
+    EmptyEntries = ReadEmptyParts(Objects, Allowed, CacheFields, "editable Revolve")
     Entries = (
         (Shape, *EmptyEntries)
         if SketchShape is None

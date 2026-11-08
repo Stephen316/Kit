@@ -189,17 +189,19 @@ Eligible partial polygon sweeps use the same analytic solid builder as
 plane-limited sweeps. The SDK verified 15 typed definitions and eight partial
 solids across 23 tracked angular features.
 
-Kit transfers a qualified standalone angular New Body Revolve about a
-component origin axis to a native FreeCAD `Part::Revolution` linked to its
-sketch. The Parameters sheet drives signed one-sided, full-turn, symmetric,
+Kit transfers a qualified standalone angular New Body Revolve with a line
+profile about a component origin axis to a native FreeCAD `Part::Revolution`
+linked to its sketch. The Parameters sheet drives signed one-sided, full-turn, symmetric,
 and two-sided sweeps. The symmetric limit has one editable half-angle. The
 two-sided limits each drive the sweep and its angular placement. FreeCAD
 1.1.3 independently verified seven tracked transfers and rebuilt the solids
 after parameter changes. A tracked line-profile sketch also rebuilt its solid
-after a corner edit. Plane-limited and sketch-line-axis examples retain
-their exact initial solid and source history as carriers. Kit reads the
-embedded Fusion snapshot from a FreeCAD save. Importing edited Revolve
-angles back into Kit remains open.
+after a corner edit. Kit reads saved angle and line-profile edits back into
+the original timeline. It verifies the saved sketch and solid against the
+live controls before accepting the edit, and it can re-export the rebuilt
+shape, including conical sides from a corner edit. Plane-limited and
+sketch-line-axis examples retain their initial solid and source history as
+carriers.
 
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body
