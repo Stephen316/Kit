@@ -65,6 +65,16 @@ Scale capture has 30 members, 388 primary records, and 62 continuations. Its rep
 28 members and 438 design records unresolved. Strict Fusion import and
 conversion still require complete source coverage.
 
+The internal segment writer builds version-8 Design, ACT, and Browser
+streams from typed metadata and record payloads. It checks primary class
+ownership and continuation ancestry, then derives both index tables from
+the emitted record positions. The Browser root codec writes the ordered
+routes and named folders, including the alternate route flag observed in
+one older capture. Across 713 native archives, these codecs reproduced
+2,139 stream pairs and 713 Browser root payloads byte for byte. Full
+Fusion export still requires semantic writers for the remaining native
+records and validation in Fusion.
+
 `convert.formats.Fusion.ZipParameters.ReadZipParams` projects indexed
 numeric parameters into Kit's neutral `Parameter` records. It retains native
 expression text, display units, binding IDs, and source spans. Values use

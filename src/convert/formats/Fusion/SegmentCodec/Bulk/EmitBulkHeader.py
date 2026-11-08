@@ -6,7 +6,7 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
-from struct import pack as Pack
+from struct import pack as PackValue
 
 from convert.formats.Fusion.SegmentCodec.Bulk.BulkBounds import (
     KMaxClassCode,
@@ -22,4 +22,4 @@ def EmitBulkHeader(TypeCode: int, ObjectId: int) -> bytes:
     if type(ObjectId) is not int or not 0 <= ObjectId <= KMaxWireId:
         raise ValueError("Fusion BulkStream identity is outside the unsigned range")
     TypeText = str(TypeCode).encode("ascii")
-    return Pack("<I", len(TypeText)) + TypeText + Pack("<Q", ObjectId)
+    return PackValue("<I", len(TypeText)) + TypeText + PackValue("<Q", ObjectId)

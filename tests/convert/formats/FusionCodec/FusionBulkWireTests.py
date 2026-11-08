@@ -7,12 +7,12 @@
 # to you under it immediately and permanently.
 
 from pathlib import Path as FilePath
-from struct import pack as Pack
-from typing import cast as Cast
+from struct import pack as PackValue
+from typing import cast as CastValue
 from zipfile import ZipFile
 
 from pytest import MonkeyPatch as PatchContext
-from pytest import mark as Mark, raises as Raises, skip as SkipCase
+from pytest import mark as TestMarks, raises as Raises, skip as SkipCase
 
 from convert.formats.Fusion.BulkSpans import ReadBulkSpans
 from convert.formats.Fusion.MetaIndex import SegmentKind
@@ -36,7 +36,9 @@ def TestBulkRound() -> None:
     Records = (BulkRecord(257, 42, True, b"x"), BulkRecord(256, 42, False, b""))
     Payload, Entries = EmitBulkStream(iter(Records))
     assert Entries == ((0, 42, True), (16, 42, False))
-    assert Payload == Pack("<I3sQ", 3, b"257", 42) + b"x" + Pack("<I3sQ", 3, b"256", 42)
+    assert Payload == PackValue("<I3sQ", 3, b"257", 42) + b"x" + PackValue(
+        "<I3sQ", 3, b"256", 42
+    )
     assert ReadBulkSpans(Payload, IndexFixture(Entries[1][0])) == (
         RecordSpan(0, 15, 16, 42, 257, "Child", "", True),
         RecordSpan(16, 31, 31, 42, 256, "Base", "", False),
@@ -54,24 +56,24 @@ def TestBulkOrder() -> None:
     )
     assert Entries == ((0, 0, False), (18, 0, True), (33, 0, False))
     assert Payload == (
-        Pack("<I3sQ", 3, b"256", 0)
+        PackValue("<I3sQ", 3, b"256", 0)
         + b"one"
-        + Pack("<I3sQ", 3, b"257", 0)
-        + Pack("<I3sQ", 3, b"256", 0)
+        + PackValue("<I3sQ", 3, b"257", 0)
+        + PackValue("<I3sQ", 3, b"256", 0)
         + b"two"
     )
 
 
 # the native header needs the complete identity width and canonical class digits
 def TestBulkHeader() -> None:
-    assert EmitBulkHeader(256, 0) == Pack("<I3sQ", 3, b"256", 0)
-    assert EmitBulkHeader(KMaxClassCode, KMaxWireId) == Pack(
+    assert EmitBulkHeader(256, 0) == PackValue("<I3sQ", 3, b"256", 0)
+    assert EmitBulkHeader(KMaxClassCode, KMaxWireId) == PackValue(
         "<I6sQ", 6, b"100255", KMaxWireId
     )
 
 
 # negative signed booleans and preformatted labels must fail before native encoding
-@Mark.parametrize(
+@TestMarks.parametrize(
     ("TypeCode", "ObjectId"),
     (
         (255, 0),
@@ -89,7 +91,7 @@ def TestBadHeader(TypeCode: int, ObjectId: int) -> None:
 
 
 # invalid ownership can never generate metadata offsets for a broken stream
-@Mark.parametrize(
+@TestMarks.parametrize(
     ("Records", "ErrorText"),
     (
         ((), "requires at least one primary"),
@@ -107,9 +109,12 @@ def TestBadHeader(TypeCode: int, ObjectId: int) -> None:
             "repeats its primary class",
         ),
         ((BulkRecord(256, KMaxWireId, True, b""),), "no next object identity"),
-        ((BulkRecord(256, 0, Cast(bool, 1), b""),), "Invalid Fusion BulkStream record"),
         (
-            (BulkRecord(256, 0, True, Cast(bytes, bytearray())),),
+            (BulkRecord(256, 0, CastValue(bool, 1), b""),),
+            "Invalid Fusion BulkStream record",
+        ),
+        (
+            (BulkRecord(256, 0, True, CastValue(bytes, bytearray())),),
             "Invalid Fusion BulkStream record",
         ),
     ),
@@ -147,8 +152,8 @@ def TestIndexLimits(MonkeyPatch: PatchContext) -> None:
 
 
 # real records verify the new framing without relying on a guessed payload model
-@Mark.parametrize("FileName", ("offset.f3d", "angle.f3d"))
-@Mark.parametrize("Segment", tuple(SegmentKind))
+@TestMarks.parametrize("FileName", ("offset.f3d", "angle.f3d"))
+@TestMarks.parametrize("Segment", tuple(SegmentKind))
 def TestBulkNative(FileName: str, Segment: SegmentKind) -> None:
     SourcePath = FilePath(__file__).resolve().parents[4] / KFixtureRoot / FileName
     Prefix = f"FusionAssetName[Active]/{Segment.value}1/"
@@ -161,15 +166,16 @@ def TestBulkNative(FileName: str, Segment: SegmentKind) -> None:
     Spans = ReadBulkSpans(BulkData, MetaData, Segment=Segment)
     Output, Entries = EmitBulkStream(
         BulkRecord(
-            Span.TypeCode,
-            Span.ObjectId,
-            Span.IsPrimary,
-            BulkData[Span.PayloadOffset : Span.EndOffset],
+            SpanValue.TypeCode,
+            SpanValue.ObjectId,
+            SpanValue.IsPrimary,
+            BulkData[SpanValue.PayloadOffset : SpanValue.EndOffset],
         )
-        for Span in Spans
+        for SpanValue in Spans
     )
     assert Output == BulkData
     assert Entries == tuple(
-        (Span.StartOffset, Span.ObjectId, Span.IsPrimary) for Span in Spans
+        (SpanValue.StartOffset, SpanValue.ObjectId, SpanValue.IsPrimary)
+        for SpanValue in Spans
     )
     assert ReadBulkSpans(Output, MetaData, Segment=Segment) == Spans

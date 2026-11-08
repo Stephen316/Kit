@@ -12,6 +12,7 @@ KIsolatedRuntime = r"""
 import io
 from pathlib import Path
 import sys
+from zipfile import ZipFile
 
 blocked_imports = frozenset(
     {
@@ -75,6 +76,13 @@ sys.addaudithook(audit)
 sys.path.insert(0, sys.argv[1])
 
 from convert import available_adapters, convert, open_document, write_document
+from convert.formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.formats.Fusion.MetaIndex import SegmentKind
+from convert.formats.Fusion.SegmentCodec.Browser.EmitBrowserRoot import EmitBrowserRoot
+from convert.formats.Fusion.SegmentCodec.Browser.ReadBrowserRoot import ReadBrowserRoot
+from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
+from convert.formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
+from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 from convert.formats.Fusion.SourceProof.InspectSource import ReadFusionSourceProof
 
 root = Path(sys.argv[2])
@@ -106,6 +114,18 @@ if zstd is not None:
     assert proof.Scope.SourceDigest == native_fusion.source.sha256
     assert proof.ActiveRoutes is not None and proof.ActiveRoutes.Routes
     assert not proof.IsComplete
+    with ZipFile(capture) as archive:
+        for segment in SegmentKind:
+            prefix = f"FusionAssetName[Active]/{segment.value}1/"
+            bulk_data = archive.read(prefix + "BulkStream.dat")
+            meta_data = archive.read(prefix + "MetaStream.dat")
+            records = []
+            for span in ReadBulkSpans(bulk_data, meta_data, Segment=segment):
+                payload = bulk_data[span.PayloadOffset:span.EndOffset]
+                if segment is SegmentKind.KBrowser and span.ObjectId == 0 and span.IsPrimary:
+                    payload = EmitBrowserRoot(ReadBrowserRoot(payload))
+                records.append(BulkRecord(span.TypeCode, span.ObjectId, span.IsPrimary, payload))
+            assert EmitSegment(ReadMetaWire(meta_data, Segment=segment), records) == (bulk_data, meta_data)
     angular_capture = root / "re" / "Fusion" / "Study" / "revolvemodes-8eb734486235" / "negative.f3d"
     angular_fusion = open_document(angular_capture, strict=False)
     assert type(angular_fusion.feature_timeline[-1].definition).__name__ == "AngularRevolve"
