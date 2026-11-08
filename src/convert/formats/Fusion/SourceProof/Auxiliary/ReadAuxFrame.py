@@ -7,13 +7,11 @@
 # to you under it immediately and permanently.
 
 
-from dataclasses import dataclass as MakeDataClass
+from dataclasses import dataclass as MakeDataClass, field as DataField
 
 from convert.formats.Fusion.ArchiveRead.ArchiveMember import ArchiveMember
-from convert.formats.Fusion.ArchiveRead.IndexedArchive import (
-    IndexedArchive,
-    KDesignPrefix,
-)
+from convert.formats.Fusion.ArchiveRead.IndexedArchive import IndexedArchive
+from convert.formats.Fusion.ArchiveRead.ReadDesignPair import KDesignPrefix
 from convert.formats.Fusion.BulkSpans import ReadBulkSpans
 from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.RecordSpan import RecordSpan
@@ -25,12 +23,13 @@ KMaxAuxBytes = 8 * 1024 * 1024
 KActivePrefix = KDesignPrefix.removesuffix("FusionDesignSegmentType1/")
 
 
-# immutable structural evidence carries record identities without retaining inflated buffers
+# a proof session can qualify semantic references without inflating its stream again
 @MakeDataClass(frozen=True, slots=True)
 class AuxFrame:
     BulkMember: ArchiveMember
     MetaMember: ArchiveMember
     Spans: tuple[RecordSpan, ...]
+    BulkData: bytes = DataField(repr=False, compare=False)
 
 
 # both exact stream members must agree on framing before any claims are published
@@ -53,4 +52,4 @@ def ReadAuxFrame(Archive: IndexedArchive, Segment: SegmentKind) -> AuxFrame:
     MetaData = Archive.ReadMember(MetaMember.Name, KMaxAuxBytes)
     BulkData = Archive.ReadMember(BulkMember.Name, KMaxAuxBytes)
     Spans = ReadBulkSpans(BulkData, MetaData, Segment=Segment)
-    return AuxFrame(BulkMember, MetaMember, Spans)
+    return AuxFrame(BulkMember, MetaMember, Spans, BulkData)

@@ -12,6 +12,9 @@ from collections import Counter
 from convert.formats.Fusion.ArchiveRead.ArchiveMember import ArchiveMember
 from convert.formats.Fusion.DesignZip import KDesignPrefix
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.SourceProof.Auxiliary.ActiveRoute.RouteEvidence import (
+    RouteEvidence,
+)
 from convert.formats.Fusion.SourceProof.LedgerInput import (
     IndexMembers,
     IndexSpans,
@@ -85,6 +88,8 @@ def BuildLedger(
     Members: tuple[ArchiveMember, ...],
     Spans: tuple[RecordSpan, ...],
     Claims: tuple[ProofClaim, ...] = (),
+    *,
+    ActiveRoutes: RouteEvidence | None = None,
 ) -> SourceCoverage:
     MemberIndex = IndexMembers(Members)
     SpanIndex = IndexSpans(
@@ -110,4 +115,5 @@ def BuildLedger(
             for Value in (*MemberRows, *SpanRows)
             if Value in ClaimIndex
         ),
+        ActiveRoutes,
     )

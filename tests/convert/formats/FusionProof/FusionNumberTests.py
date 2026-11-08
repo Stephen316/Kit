@@ -59,7 +59,7 @@ def TestNumericCoverage() -> None:
     assert len(VerifiedIds(Extrude, frozenset(KBindingWidths))) == 2
     assert VerifiedIds(Scale, frozenset({KParamGuid})) == {251, 254, 283, 286, 289}
     assert len(VerifiedIds(Scale, frozenset(KBindingWidths))) == 5
-    assert Scale.MemberCounts.Structural == 6 and not Scale.IsComplete
+    assert Scale.MemberCounts.Structural == 5 and not Scale.IsComplete
 
 
 # a coherent cycle and its downstream formula cannot inherit proof from equal caches

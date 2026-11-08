@@ -21,12 +21,12 @@ def ReadActRoutes(
     Entries: tuple[tuple[int, str, int, int], ...],
 ) -> tuple[ActRoute, ...]:
     Fields: dict[int, RecordSpan] = {}
-    for Span in ActSpans:
-        if Span.ClassGuid != KActFieldsGuid:
+    for FieldSpan in ActSpans:
+        if FieldSpan.ClassGuid != KActFieldsGuid:
             continue
-        if Span.ObjectId in Fields:
+        if FieldSpan.ObjectId in Fields:
             raise ValueError("Duplicate Fusion ACT fields identity")
-        Fields[Span.ObjectId] = Span
+        Fields[FieldSpan.ObjectId] = FieldSpan
     if len(Fields) != len(Entries):
         raise ValueError("Fusion ACT table and fields inventory disagree")
     Routes: list[ActRoute] = []

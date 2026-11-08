@@ -6,10 +6,8 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
-from convert.formats.Fusion.ArchiveRead.IndexedArchive import (
-    IndexedArchive,
-    KDesignPrefix,
-)
+from convert.formats.Fusion.ArchiveRead.IndexedArchive import IndexedArchive
+from convert.formats.Fusion.ArchiveRead.ReadDesignPair import KDesignPrefix
 from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ActiveManifest import (
     ActiveManifest,
 )
@@ -33,7 +31,7 @@ KMaxManifestBytes = 32 * 1024
 
 
 # exact member and asset identity joins exclude foreign archive metadata
-def ReadActiveManifest(Archive: IndexedArchive) -> ActiveManifest:
+def ReadActiveMeta(Archive: IndexedArchive) -> ActiveManifest:
     Members = {Member.Name: Member for Member in Archive.Members}
     RootMember = Members.get(KRootManifest)
     ActiveMember = Members.get(KActiveManifest)

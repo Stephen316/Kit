@@ -12,14 +12,15 @@ from io import BytesIO
 from zipfile import BadZipFile, ZipFile, ZipInfo
 
 from convert.formats.Fusion.ArchiveRead.ArchiveMember import ArchiveMember
+from convert.formats.Fusion.ArchiveRead.ReadDesignPair import (
+    KDesignPrefix as KDesignPrefix,
+)
+from convert.formats.Fusion.ArchiveRead.ReadDesignPair import ReadDesignPair
 from convert.formats.Fusion.BulkSpans import ReadBulkSpans
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Topology.BodyAsmMap import KAsmName
 from convert.formats.Fusion.ZipItems import IndexZipItems
 from convert.formats.Fusion.ZipStream import ReadFusionItem
-
-# native streams and evidence remain scoped to the same active asset
-KDesignPrefix = "FusionAssetName[Active]/FusionDesignSegmentType1/"
 
 # body maps name exact same asset history members
 KHistoryPrefix = (
@@ -130,20 +131,7 @@ class IndexedArchive:
 
     # design decoding checks both mandatory streams before interpreting record spans
     def ReadDesign(self) -> tuple[bytes, tuple[RecordSpan, ...]]:
-        Streams: list[bytes] = []
-        try:
-            for MemberName in ("BulkStream.dat", "MetaStream.dat"):
-                Member = self.Entries.get(KDesignPrefix + MemberName)
-                if Member is None or Member.is_dir():
-                    raise ValueError(f"Missing active Fusion design {MemberName}")
-                Streams.append(self.ReadEntryMut(Member))
-        except BadZipFile as ErrorInfo:
-            raise ValueError("Invalid Fusion ZIP archive") from ErrorInfo
-        except NotImplementedError as ErrorInfo:
-            raise ValueError(
-                "Fusion ZIP Zstandard requires a compatible codec"
-            ) from ErrorInfo
-        BulkData, MetaData = Streams
+        BulkData, MetaData = ReadDesignPair(self)
         return BulkData, ReadBulkSpans(BulkData, MetaData)
 
     # body lookups keep current mapping validation and recoverable decode errors

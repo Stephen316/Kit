@@ -75,6 +75,7 @@ sys.addaudithook(audit)
 sys.path.insert(0, sys.argv[1])
 
 from convert import available_adapters, convert, open_document, write_document
+from convert.formats.Fusion.SourceProof.InspectSource import ReadFusionSourceProof
 
 root = Path(sys.argv[2])
 output = Path(sys.argv[3])
@@ -92,6 +93,7 @@ assert fusion.source.format_id == "fusion.f3d"
 assert fusion.metadata["fusion.history_id"] == 104
 assert any(item.code == "fusion.history.partial" for item in fusion.diagnostics)
 assert fusion.brep_payloads[0].data == fusion_path.read_bytes()
+assert ReadFusionSourceProof(fusion_path).ActiveRoutes is None
 try:
     from compression import zstd
 except ImportError:
@@ -100,6 +102,10 @@ if zstd is not None:
     capture = root / "re" / "Fusion" / "Study" / "revolveto-b1d196f65c46" / "two_planes.f3d"
     native_fusion = open_document(capture, strict=False)
     assert len(native_fusion.bodies) == 1 and native_fusion.brep is not None
+    proof = ReadFusionSourceProof(capture)
+    assert proof.Scope.SourceDigest == native_fusion.source.sha256
+    assert proof.ActiveRoutes is not None and proof.ActiveRoutes.Routes
+    assert not proof.IsComplete
     angular_capture = root / "re" / "Fusion" / "Study" / "revolvemodes-8eb734486235" / "negative.f3d"
     angular_fusion = open_document(angular_capture, strict=False)
     assert type(angular_fusion.feature_timeline[-1].definition).__name__ == "AngularRevolve"

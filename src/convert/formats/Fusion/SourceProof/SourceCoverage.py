@@ -11,6 +11,9 @@ from dataclasses import dataclass as MakeDataClass
 
 from convert.formats.Fusion.ArchiveRead.ArchiveMember import ArchiveMember
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.SourceProof.Auxiliary.ActiveRoute.RouteEvidence import (
+    RouteEvidence,
+)
 from convert.formats.Fusion.SourceProof.ProofClaim import ProofClaim, ProofScope
 
 
@@ -44,6 +47,7 @@ class SourceCoverage:
     ResidualMembers: tuple[ArchiveMember, ...]
     ResidualSpans: tuple[RecordSpan, ...]
     Claims: tuple[ProofClaim, ...]
+    ActiveRoutes: RouteEvidence | None = None
 
     # semantic closure requires complete verification of every indexed source entry
     @property

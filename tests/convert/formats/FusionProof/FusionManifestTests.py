@@ -8,22 +8,22 @@
 
 from io import BytesIO
 from pathlib import Path as FilePath
-from struct import pack as Pack
+from struct import pack as PackData
 from sys import version_info as PythonVersion
 from zipfile import ZipFile
 
-from pytest import mark as Mark, raises as Raises
+from pytest import mark as TestMarks, raises as Raises
 
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionArchive
-from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ReadActiveManifest import (
+from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ReadActiveMeta import (
     KActiveManifest,
     KMaxManifestBytes,
     KRootManifest,
-    ReadActiveManifest,
+    ReadActiveMeta,
 )
 
 # saved captures use the native archive codec from the newer runtime
-KRequiresCodec = Mark.skipif(
+KRequiresCodec = TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
@@ -68,7 +68,7 @@ def TestAssetRevs() -> None:
     for FileName in ("depth07_a.f3d", "depth13.f3d"):
         Capture = ManifestZip(CaptureMembers(KCaptureFolder / FileName))
         with OpenFusionArchive(Capture) as Archive:
-            Result = ReadActiveManifest(Archive)
+            Result = ReadActiveMeta(Archive)
             assert (Result.RootMember, Result.ActiveMember) == Archive.Members[:2]
             assert Archive.ReadNames == frozenset((KRootManifest, KActiveManifest))
             assert Result.RootVersions[:2] == (("Application", 1), ("CAM", 4))
@@ -85,9 +85,9 @@ def TestAssetRevs() -> None:
 
 # the independent capture shares the schema despite different header words
 @KRequiresCodec
-def TestHeaderVariant() -> None:
+def TestMetaVariant() -> None:
     with OpenFusionArchive(KExampleFile.read_bytes()) as Archive:
-        Result = ReadActiveManifest(Archive)
+        Result = ReadActiveMeta(Archive)
         assert Result.AssetId == "952d0a7d-2d52-48d3-8596-400ac4f0bc0b"
         assert Result.SnapshotId == "9cf7970e-6238-4119-befb-55fb5432c805"
         assert Archive.ReadNames == frozenset((KRootManifest, KActiveManifest))
@@ -95,16 +95,16 @@ def TestHeaderVariant() -> None:
 
 # structurally valid manifests copied between distinct assets cannot establish a join
 @KRequiresCodec
-def TestForeignAsset() -> None:
+def TestForeignMeta() -> None:
     Members = CaptureMembers(KCaptureFolder / "depth07_a.f3d")
     Members[KActiveManifest] = CaptureMembers(KExampleFile)[KActiveManifest]
     with OpenFusionArchive(ManifestZip(Members)) as Archive:
         with Raises(ValueError, match="asset IDs disagree"):
-            ReadActiveManifest(Archive)
+            ReadActiveMeta(Archive)
 
 
 # aliases and oversized members fail before the proof inflates either exact path
-def TestMemberBounds() -> None:
+def TestMetaBounds() -> None:
     Members = {KRootManifest: b"root", KActiveManifest: b"active"}
     for Changed in (
         {KRootManifest: Members[KRootManifest], "Other/" + KActiveManifest: b"x"},
@@ -114,17 +114,17 @@ def TestMemberBounds() -> None:
     ):
         with OpenFusionArchive(ManifestZip(Changed)) as Archive:
             with Raises(ValueError, match="Missing or oversized"):
-                ReadActiveManifest(Archive)
+                ReadActiveMeta(Archive)
             assert Archive.ReadNames == frozenset()
 
 
 # framing and exact schema keys protect both manifest readers from misleading payloads
 @KRequiresCodec
-@Mark.parametrize(
+@TestMarks.parametrize(
     ("NameValue", "Before", "After"),
     (
         (KRootManifest, b"3-2-0-0", b"3-2-0-1"),
-        (KRootManifest, Pack("<II", 1234, 20), Pack("<II", 1234, 21)),
+        (KRootManifest, PackData("<II", 1234, 20), PackData("<II", 1234, 21)),
         (KRootManifest, b"SimCommon", b"simCommon"),
         (
             KRootManifest,
@@ -133,21 +133,21 @@ def TestMemberBounds() -> None:
         ),
         (KActiveManifest, b"physicalChangeGuid", b"physicalChangeVoid"),
         (KActiveManifest, b"FusionACTSegmentType", b"FusionCADSegmentType"),
-        (KActiveManifest, Pack("<I", 36), Pack("<I", 0xFFFFFFFF)),
+        (KActiveManifest, PackData("<I", 36), PackData("<I", 0xFFFFFFFF)),
     ),
 )
-def TestCorruptSchema(NameValue: str, Before: bytes, After: bytes) -> None:
+def TestMetaSchema(NameValue: str, Before: bytes, After: bytes) -> None:
     Members = CaptureMembers(KCaptureFolder / "depth07_a.f3d")
     assert Before in Members[NameValue]
     Members[NameValue] = Members[NameValue].replace(Before, After, 1)
     with OpenFusionArchive(ManifestZip(Members)) as Archive:
         with Raises(ValueError):
-            ReadActiveManifest(Archive)
+            ReadActiveMeta(Archive)
 
 
 # extension bytes and truncated fields cannot masquerade as a completely parsed schema
 @KRequiresCodec
-def TestManifestExtent() -> None:
+def TestMetaExtent() -> None:
     Members = CaptureMembers(KCaptureFolder / "depth07_a.f3d")
     for NameValue in (KRootManifest, KActiveManifest):
         for Changed in (Members[NameValue][:-1], Members[NameValue] + b"\x00"):
@@ -155,4 +155,4 @@ def TestManifestExtent() -> None:
                 ManifestZip({**Members, NameValue: Changed})
             ) as Archive:
                 with Raises(ValueError):
-                    ReadActiveManifest(Archive)
+                    ReadActiveMeta(Archive)

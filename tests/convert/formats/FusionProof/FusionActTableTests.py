@@ -8,10 +8,10 @@
 
 from dataclasses import replace as ReplaceRecord
 from pathlib import Path as FilePath
-from struct import pack as Pack
+from struct import pack as PackData
 from zipfile import ZipFile
 
-from pytest import mark as Mark, raises as Raises
+from pytest import mark as TestMarks, raises as Raises
 
 from convert.formats.Fusion.BulkSpans import ReadBulkSpans
 from convert.formats.Fusion.MetaIndex import SegmentKind
@@ -46,7 +46,7 @@ KActPrefix = "FusionAssetName[Active]/FusionACTSegmentType1/"
 
 # fixture text uses character counts so wide key bounds can be tested precisely
 def WireText(TextValue: str, WideText: bool = False) -> bytes:
-    return Pack("<I", len(TextValue)) + TextValue.encode(
+    return PackData("<I", len(TextValue)) + TextValue.encode(
         "utf-16le" if WideText else "ascii"
     )
 
@@ -55,7 +55,7 @@ def WireText(TextValue: str, WideText: bool = False) -> bytes:
 def WireRoles(
     RoleNames: tuple[str, ...] = KRoleNames, FirstGuid: str = KHeadGuid
 ) -> bytes:
-    return Pack("<I", len(RoleNames)) + b"".join(
+    return PackData("<I", len(RoleNames)) + b"".join(
         WireText(NameValue) + WireText(FirstGuid if Index == 0 else KOtherGuid, True)
         for Index, NameValue in enumerate(RoleNames)
     )
@@ -63,17 +63,17 @@ def WireRoles(
 
 # configurable index references expose framing and reciprocity errors independently
 def WireTable(
-    Rows: tuple[tuple[int, str], ...],
+    RouteRows: tuple[tuple[int, str], ...],
     *,
     HeadGuid: str = KHeadGuid,
     RoleNames: tuple[str, ...] = KRoleNames,
 ) -> bytes:
     return (
         WireText("ACTTable")
-        + Pack("<HI", 0, len(Rows))
+        + PackData("<HI", 0, len(RouteRows))
         + b"".join(
-            Pack("<BQH", 1, FieldsId, 0) + WireText(KeyValue, True)
-            for FieldsId, KeyValue in Rows
+            PackData("<BQH", 1, FieldsId, 0) + WireText(KeyValue, True)
+            for FieldsId, KeyValue in RouteRows
         )
         + WireText(KSnapshot, True)
         + WireText(HeadGuid, True)
@@ -101,7 +101,7 @@ def FrameAct(
             if Identity == 0
             else "ABC8C0E3-50FB-4E8C-AFF3-116759A36073"
         )
-        Buffer.extend(Pack("<I3sQ", 3, str(CodeValue).encode("ascii"), Identity))
+        Buffer.extend(PackData("<I3sQ", 3, str(CodeValue).encode("ascii"), Identity))
         Buffer.extend(Payload)
         Records.append(
             RecordSpan(
@@ -130,8 +130,14 @@ def TestActRoutes() -> None:
     assert tuple(RoleValue.value for RoleValue, _ in TableValue.Roles) == KRoleNames
     assert dict(TableValue.Roles)[ActRole.KAppearance] == KHeadGuid
     assert tuple(
-        (Row.Key, Row.Prefix, Row.OwnerId, Row.FieldsSpan, Row.Residual)
-        for Row in TableValue.Routes
+        (
+            RouteRow.Key,
+            RouteRow.Prefix,
+            RouteRow.OwnerId,
+            RouteRow.FieldsSpan,
+            RouteRow.Residual,
+        )
+        for RouteRow in TableValue.Routes
     ) == (
         ("0_44", 0, 44, Spans[2], 2),
         ("3_900", 3, 900, Spans[1], 0),
@@ -140,12 +146,12 @@ def TestActRoutes() -> None:
 
 
 # wire mutations distinguish a valid index from a lookalike with corrupted routing
-@Mark.parametrize(
+@TestMarks.parametrize(
     ("TableData", "FieldsData"),
     (
         (WireTable(()), ()),
         (
-            WireText("ACTTable") + Pack("<HI", 0, 65537),
+            WireText("ACTTable") + PackData("<HI", 0, 65537),
             (),
         ),
         (
@@ -193,7 +199,7 @@ def TestActRoutes() -> None:
         ),
         (
             WireTable(((1, "0_44"),)).replace(
-                Pack("<BQH", 1, 1, 0), Pack("<BQH", 0, 1, 0), 1
+                PackData("<BQH", 1, 1, 0), PackData("<BQH", 0, 1, 0), 1
             ),
             (WireFields("0_44"),),
         ),
@@ -224,7 +230,7 @@ def TestActBadSpans() -> None:
 
 
 # captured cases protect exceptional route prefixes and opaque field boundaries
-@Mark.parametrize(
+@TestMarks.parametrize(
     ("RelativePath", "ExpectedKey", "ExpectedTail"),
     (
         ("boundaryfills-a0953038318b/plane_first.f3d", "3_22", 0),

@@ -25,7 +25,9 @@ KActTableGuid = "8EF12734-4D22-4F6A-8A80-1462E6B40A13"
 
 # route consumers need all references and role tokens validated against their native index
 def ReadActTable(ActData: bytes, ActSpans: tuple[RecordSpan, ...]) -> ActTable:
-    Tables = tuple(Span for Span in ActSpans if Span.ClassGuid == KActTableGuid)
+    Tables = tuple(
+        EntrySpan for EntrySpan in ActSpans if EntrySpan.ClassGuid == KActTableGuid
+    )
     if len(Tables) != 1 or Tables[0].ObjectId != 0:
         raise ValueError("Missing or ambiguous Fusion ACT table")
     (TableSpan,) = Tables

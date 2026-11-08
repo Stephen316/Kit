@@ -49,10 +49,19 @@ parameters against the standalone collection order, scoped names, and
 saved expression values. Bound values also need reciprocal binding records
 and matching feature controls. It verifies the two known numeric metadata
 layouts, including the eleven-byte form used by newer Revolve captures.
-Browser and ACT stream pairs receive structural evidence after validating
-their version-8 framing and every indexed record boundary. Their payloads
-and unverified parameter data remain unresolved. The two-body Scale capture
-has 30 members, 388 primary records, and 62 continuations. Its report leaves
+Browser and ACT stream framing provides structural evidence from their
+version-8 index and record boundaries. The optional
+`ActiveRoutes` receipt links the root manifest's active asset ID to the
+active manifest and its snapshot ID to ACTTable. A `0_` route must repeat
+the exact counted key in its typed Design primary record. A `1_` route
+must resolve to its typed ACT component or instance in the ACT stream.
+The report keeps unsupported `3_` routes and unexplained field tails
+visible and records the manifest and ACT links as observed evidence.
+ACT role UUIDs are change tokens. The route links can survive a Design
+stream swap between revisions of the same asset and do not authenticate
+the saved Design snapshot. Ordinary reads leave these streams unopened.
+ACT payloads and unverified parameter data remain unresolved. The two-body
+Scale capture has 30 members, 388 primary records, and 62 continuations. Its report leaves
 28 members and 438 design records unresolved. Strict Fusion import and
 conversion still require complete source coverage.
 

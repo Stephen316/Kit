@@ -10,9 +10,11 @@ from collections.abc import Callable
 from pathlib import Path as FilePath
 
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionArchive
+from convert.formats.Fusion.ArchiveRead.ReadDesignPair import ReadDesignPair
+from convert.formats.Fusion.BulkSpans import ReadBulkSpans
 from convert.formats.Fusion.DocumentRead import ProjectFusionDoc
 from convert.formats.Fusion.SourceBytes import LoadFusionBytes
-from convert.formats.Fusion.SourceProof.Auxiliary.ReadAuxClaims import ReadAuxClaims
+from convert.formats.Fusion.SourceProof.Auxiliary.ReadAuxProof import ReadAuxProof
 from convert.formats.Fusion.SourceProof.MemberClaims import ReadMemberClaims
 from convert.formats.Fusion.SourceProof.ProofClaim import ProofScope
 from convert.formats.Fusion.SourceProof.ProofLedger import BuildLedger
@@ -29,7 +31,8 @@ def ReadFusionSourceProof(
 ) -> SourceCoverage:
     DataValue, SourceName = LoadFusionBytes(SourceData)
     with OpenFusionArchive(DataValue, InflateZstd) as Archive:
-        BulkData, Spans = Archive.ReadDesign()
+        BulkData, MetaData = ReadDesignPair(Archive)
+        Spans = ReadBulkSpans(BulkData, MetaData)
         Document = ProjectFusionDoc(
             DataValue, SourceName, BulkData, Spans, HistoryId, Archive.ReadBody
         )
@@ -38,9 +41,9 @@ def ReadFusionSourceProof(
         if type(SelectedId) is not int or type(OwnerId) is not int:
             raise ValueError("Fusion source proof has no selected native history")
         Scope = ProofScope(Document.source.sha256, SelectedId, OwnerId)
+        Members = ReadMemberClaims(Archive, Scope)
+        AuxClaims, Routes = ReadAuxProof(Archive, Scope, (BulkData, MetaData, Spans))
         Claims = (
-            ReadMemberClaims(Archive, Scope)
-            + ReadAuxClaims(Archive, Scope)
-            + ReadRecordClaims(Document, BulkData, Spans, Scope)
+            Members + AuxClaims + ReadRecordClaims(Document, BulkData, Spans, Scope)
         )
-        return BuildLedger(Scope, Archive.Members, Spans, Claims)
+        return BuildLedger(Scope, Archive.Members, Spans, Claims, ActiveRoutes=Routes)

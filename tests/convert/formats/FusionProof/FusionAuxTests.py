@@ -18,8 +18,8 @@ from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionArchive
 from convert.formats.Fusion.BulkSpans import ReadBulkSpans
 from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.RecordSpan import RecordSpan
-from convert.formats.Fusion.SourceProof.Auxiliary.ReadAuxClaims import ReadAuxClaims
 from convert.formats.Fusion.SourceProof.Auxiliary.ReadAuxFrame import ReadAuxFrame
+from convert.formats.Fusion.SourceProof.Auxiliary.ReadAuxProof import ReadAuxProof
 from convert.formats.Fusion.SourceProof.ProofClaim import ProofCategory, ProofScope
 
 # exact active paths separate auxiliary evidence from unrelated assets and segments
@@ -101,7 +101,8 @@ def TestAuxFrames() -> None:
         assert Archive.ReadNames == frozenset(
             (Frame.BulkMember.Name, Frame.MetaMember.Name)
         )
-        Claims = ReadAuxClaims(Archive, Scope)
+        Claims, Routes = ReadAuxProof(Archive, Scope)
+        assert Routes is None
         assert tuple(Value.Target.Name for Value in Claims) == tuple(Values)
         assert all(
             Value.Scope == Scope and Value.Category is ProofCategory.KStructural
@@ -125,10 +126,11 @@ def TestAuxHeader() -> None:
     ):
         DataValue = AuxZip({**AuxValues(), KeyValue: BadMeta})
         with OpenFusionArchive(DataValue) as Archive:
-            assert tuple(
-                Value.Target.Name
-                for Value in ReadAuxClaims(Archive, AuxScope(DataValue))
-            ) == (KActPrefix + "BulkStream.dat", KActPrefix + "MetaStream.dat")
+            Claims, _ = ReadAuxProof(Archive, AuxScope(DataValue))
+            assert tuple(Value.Target.Name for Value in Claims) == (
+                KActPrefix + "BulkStream.dat",
+                KActPrefix + "MetaStream.dat",
+            )
 
 
 # moving a matching stream to another asset must leave the remaining member unread
@@ -138,7 +140,7 @@ def TestAuxForeign() -> None:
     Values[MetaName.replace("[Active]", "[Foreign]")] = Values.pop(MetaName)
     DataValue = AuxZip(Values)
     with OpenFusionArchive(DataValue) as Archive:
-        Claims = ReadAuxClaims(Archive, AuxScope(DataValue))
+        Claims, _ = ReadAuxProof(Archive, AuxScope(DataValue))
         assert len(Claims) == 2
         assert Archive.ReadNames == frozenset(
             (KActPrefix + "BulkStream.dat", KActPrefix + "MetaStream.dat")
@@ -154,7 +156,7 @@ def TestAuxCrc() -> None:
     DataValue[Header + 30 + NameSize + ExtraSize + 15] ^= 1
     ArchiveData = bytes(DataValue)
     with OpenFusionArchive(ArchiveData) as Archive:
-        Claims = ReadAuxClaims(Archive, AuxScope(ArchiveData))
+        Claims, _ = ReadAuxProof(Archive, AuxScope(ArchiveData))
         assert tuple(Value.Target.Name for Value in Claims) == (
             KBrowserPrefix + "BulkStream.dat",
             KBrowserPrefix + "MetaStream.dat",
