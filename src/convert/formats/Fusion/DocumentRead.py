@@ -15,6 +15,7 @@ from convert.formats.Fusion.Assembly.AssemblyRead import ReadAssemblyProjection
 from convert.formats.Fusion.DesignZip import ReadDesignZip
 from convert.formats.Fusion.Extrudes.ExtrudeProject import ProjectExtrudes
 from convert.formats.Fusion.Extrudes.Plane.PlaneExtProject import ProjectPlaneExts
+from convert.formats.Fusion.FormulaDeps.FormulaLink import LinkFormulaDeps
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.PlaneProjection import ProjectPlanes
 from convert.formats.Fusion.Profiles.ProfileProjection import ProjectProfiles
@@ -78,9 +79,14 @@ def ReadFusionDoc(
         for StepValue in History.Steps
         for ParamId in StepValue.parameter_ids
     }
-    Parameters = tuple(
-        Replace(ParamValue, owner_id=Owners.get(ParamValue.id, ""))
-        for ParamValue in Params
+    Parameters = LinkFormulaDeps(
+        BulkData,
+        Spans,
+        History,
+        tuple(
+            Replace(ParamValue, owner_id=Owners.get(ParamValue.id, ""))
+            for ParamValue in Params
+        ),
     )
     Steps, ExtrudeIssues = ProjectExtrudes(
         BulkData, Spans, Steps, Parameters, Frames, Sketches
