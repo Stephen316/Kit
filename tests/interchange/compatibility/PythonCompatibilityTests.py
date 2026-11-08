@@ -18,6 +18,7 @@ from typing import Protocol, cast as TypeCast, runtime_checkable, TypeVar
 
 import interchange as InterchangeApi
 from interchange.features.FeatureAngleRev import AngularRevolve
+from interchange.features.FeatureBoundPlane import BoundConstructionPlane
 from interchange.features.FeatureBoundScale import BoundScale
 from interchange.features.FeatureDistExt import DistanceExtrude
 from interchange.features.FeaturePlaneExt import PlaneExtrude
@@ -258,7 +259,14 @@ def CheckRegistry() -> None:
         )
     }
     IntendedTypes.update(
-        (AngularRevolve, BoundScale, DistanceExtrude, PlaneExtrude, PlaneRevolve)
+        (
+            AngularRevolve,
+            BoundConstructionPlane,
+            BoundScale,
+            DistanceExtrude,
+            PlaneExtrude,
+            PlaneRevolve,
+        )
     )
     assert set(KTypeRegistry.values()) == IntendedTypes
     assert set(KTypeRegistry) == {ClassType.__name__ for ClassType in IntendedTypes}
