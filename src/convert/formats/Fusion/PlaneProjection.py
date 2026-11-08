@@ -40,8 +40,8 @@ def ProjectPlanes(
             )
             continue
         try:
-            PlaneValue = AttachAngleDef(BulkData, Owners, PlaneValue)
+            Qualified = AttachAngleDef(BulkData, Owners, PlaneValue)
         except ValueError:
-            pass
-        Planes.append(PlaneValue)
+            Qualified = PlaneValue
+        Planes.append(Qualified)
     return tuple(Planes), tuple(Diagnostics)

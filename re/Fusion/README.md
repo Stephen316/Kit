@@ -172,6 +172,17 @@ axis. The two-plane sweep can start away from the sketch plane. All 16
 tracked and newer captures passed Kit JSON round-trips and matched 64
 independently evaluated body arcs.
 
+Kit recovers the authored Rotate Angle and support selections for the
+construction planes used by these Revolves. The FreeCAD writer binds those
+angles to native plane placements and computes each `Part::Revolution`
+sweep from the live plane normals. A two-plane sweep also updates the
+solid's angular placement. FreeCAD 1.1.3 opened all 16 transfers and
+rebuilt them after edits to the source angles. Use a quantity expression
+such as `=-48 deg` to enter a signed angle in the Parameters sheet. Coincident planes and
+planes that miss the axis produce an invalid feature. Saved plane edits
+persist in FreeCAD. Kit still reads the embedded Fusion snapshot when
+importing those saves.
+
 For verified histories with independent active New Body Revolves, Kit
 also generates closed analytic B-reps directly from the profile and sweep.
 The native creator anchors and reciprocal component collection identify
@@ -199,9 +210,8 @@ after parameter changes. A tracked line-profile sketch also rebuilt its solid
 after a corner edit. Kit reads saved angle and line-profile edits back into
 the original timeline. It verifies the saved sketch and solid against the
 live controls before accepting the edit, and it can re-export the rebuilt
-shape, including conical sides from a corner edit. Plane-limited and
-sketch-line-axis examples retain their initial solid and source history as
-carriers.
+shape, including conical sides from a corner edit. Sketch-line-axis
+examples retain their initial solid and source history as carriers.
 
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body

@@ -158,18 +158,13 @@ def TestNativeRev(
     assert OpenDocument(Output) == DocValue
 
 
-# unproven axis and plane dependencies keep the exact solid through the carrier path
+# unproven sketch axis dependencies keep the exact solid through the carrier path
 @KRequiresCodec
-@Pytest.mark.parametrize(
-    ("Folder", "SampleName"),
-    (
-        ("revolveaxes-a83b542c4a07", "sketch_line"),
-        ("revolveto-b1d196f65c46", "positive_plane"),
-    ),
-)
-def TestRevolveCarrier(TmpPath: FilePath, Folder: str, SampleName: str) -> None:
-    DocValue = OpenDocument(KStudyPath / Folder / f"{SampleName}.f3d", strict=False)
-    Output = TmpPath / f"{SampleName}.FCStd"
+def TestRevolveCarrier(TmpPath: FilePath) -> None:
+    DocValue = OpenDocument(
+        KStudyPath / "revolveaxes-a83b542c4a07" / "sketch_line.f3d", strict=False
+    )
+    Output = TmpPath / "sketch_line.FCStd"
     Result = WriteDocument(DocValue, Output)
     assert Capability.BREP in Result.native_capabilities
     with ZipFile(Output) as Archive:
