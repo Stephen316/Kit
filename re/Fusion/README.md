@@ -266,7 +266,14 @@ transformed prism must match the mapped saved ASM body's identity, incidence,
 vertices, bounded edges, and face planes before Kit publishes the final set.
 Six tracked captures passed, including expansion, contraction, nonuniform
 scaling, and a two-body Scale around a displaced point. BRep-vertex centres
-and native Scale export remain open.
+remain open.
+
+These six captures also export as live FreeCAD Sketcher, Extrude, and Scale
+features. The Parameters sheet drives source depths and uniform or per-axis
+factors. A linked native point follows the authored sketch point or ByPoint
+support. Each result retains a distinct body tip and an independently
+generated first-open solid cache. Kit can reopen an unchanged export.
+Reconciliation of Scale files saved from FreeCAD remains open.
 
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body

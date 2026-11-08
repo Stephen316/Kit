@@ -28,6 +28,7 @@ from interchange import CadDocument as CadDoc
 from interchange.serialization.EncodeData import ToData
 from interchange.serialization.WireData import ValidateWireMap
 from convert.adapters.base import ParseUntrusted
+from convert.adapters.freecad.EditScale.ScaleBinding import KScaleBinding
 from convert.adapters.freecad.Brep import (
     FreeCADBrepWriteError as FreeCadBrepWriteError,
     brep_model_brep as BrepModelBrep,
@@ -6394,6 +6395,8 @@ class DocFeatures:
     RevBinding: str = KRevBinding
     EditableBodySeed: str = ""
     BodyAxisTarget: tuple[str, str, str] | None = None
+    EditableScaleSteps: tuple[str, ...] = ()
+    ScaleBodyTips: dict[str, str] = Field(default_factory=dict)
 
 
 # this definition exists because native replay objects need stable source ordering
@@ -7839,8 +7842,11 @@ def AddBodyMut(
 ) -> None:
     BodyId = TextAction(BodyValue.get("id"))
     FinalFeatureId = TextAction(BodyValue.get("final_feature_id"))
-    FinalFeature = Features.FeatureNames.get(FinalFeatureId, Features.CurrentName)
-    Members = BodyMembers(Geometry, Features, FinalFeatureId)
+    ScaleTip = Features.ScaleBodyTips.get(BodyId)
+    FinalFeature = ScaleTip or Features.FeatureNames.get(
+        FinalFeatureId, Features.CurrentName
+    )
+    Members = [] if ScaleTip else BodyMembers(Geometry, Features, FinalFeatureId)
     NativeBody = FreecadAttrs(BodyValue)
     NativeName = TextAction(NativeBody.get("name"))
     ObjValue = Context.NativeGraph.get(NativeName) if Context.NativeReplay else None
@@ -7875,6 +7881,8 @@ def AddBodyMut(
                 StringProp("MaterialId", MaterialId, Dynamic=True)
             )
         ObjValue.dependencies.extend(Members)
+        if ScaleTip:
+            ObjValue.dependencies.append(ScaleTip)
     Features.BodyNames[BodyId] = ObjValue.name
     Features.BodyTargets[BodyId] = FinalFeature or ObjValue.name
     Features.BodyObjects.append(ObjValue.name)
@@ -8236,7 +8244,11 @@ def AddRepresentMut(
     NeutralDoc: CadDoc | None,
     ShapeData: bytes,
 ) -> None:
-    if not (Features.EditableFeatureId or Features.EditableRevId):
+    if not (
+        Features.EditableFeatureId
+        or Features.EditableRevId
+        or Features.EditableScaleSteps
+    ):
         Features.DocBreps, NeutralShape = AddBrepMut(
             Context.Graph,
             NeutralDoc,
@@ -8366,6 +8378,10 @@ def SetOuterMut(Context: DocContext, Features: DocFeatures) -> None:
     if Features.EditableProfileId:
         Context.MetaObject.properties.append(
             StringProp(KProfileBinding, Features.EditableProfileId, Dynamic=True)
+        )
+    if Features.EditableScaleSteps:
+        Context.MetaObject.properties.append(
+            StringProp(KScaleBinding, Features.EditableScaleSteps[-1], Dynamic=True)
         )
     if Features.EditableRevId:
         Context.MetaObject.properties.append(
@@ -8574,12 +8590,16 @@ def BuildDocXmlMut(
     AddSketchesMut(Context, Geometry)
     AddEntryDataMut(Context, Features)
     from convert.adapters.freecad.EditBodyRev.BodyRevEmit import HasBodyRevMut
+    from convert.adapters.freecad.EditScale.ScaleEmit import HasScaleMut
 
     if not (
         EditableFeatures is not None
         and not Context.NativeValues
         and EditPlan is None
-        and HasBodyRevMut(Context, Geometry, Features, NeutralDoc)
+        and (
+            HasBodyRevMut(Context, Geometry, Features, NeutralDoc)
+            or HasScaleMut(Context, Geometry, Features, NeutralDoc)
+        )
     ):
         AddFeaturesMut(Context, Geometry, Features, EditPlan, ShapeData)
     AddBodiesMut(Context, Geometry, Features)
@@ -8607,6 +8627,7 @@ def BuildDocXmlMut(
                 Features.EditableBodySeed,
                 Features.EditableRevId,
                 *Features.EditablePlaneSteps,
+                *Features.EditableScaleSteps,
             )
             if Value
         )
@@ -8653,7 +8674,10 @@ def BuildFcstdMut(
         FreecadMeta: Mapping[str, object] = (
             FreecadValue if IsPayloadMap(FreecadValue) else {}
         )
-        EntryOrder = Sequence(FreecadMeta.get("entry_order", []))
+        HasScaleShapes = f'name="{KScaleBinding}"'.encode("ascii") in DocXml
+        EntryOrder = (
+            () if HasScaleShapes else Sequence(FreecadMeta.get("entry_order", []))
+        )
         Written: set[str] = set()
         for Value in EntryOrder:
             Entry = TextAction(Value)
@@ -8661,7 +8685,10 @@ def BuildFcstdMut(
                 Archive.writestr(*ZipEntry(Entry, PayloadEntries[Entry]))
                 Written.add(Entry)
         Archive.writestr(*ZipEntry(KManifestEntry, Canonical + b"\n"))
-        for Entry, DataValue in sorted(PayloadEntries.items()):
+        Remaining = (
+            PayloadEntries.items() if HasScaleShapes else sorted(PayloadEntries.items())
+        )
+        for Entry, DataValue in Remaining:
             if Entry in Written:
                 continue
             Archive.writestr(*ZipEntry(Entry, DataValue))
