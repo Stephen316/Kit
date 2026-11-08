@@ -12,6 +12,7 @@ from pathlib import Path as FilePath
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionArchive
 from convert.formats.Fusion.DocumentRead import ProjectFusionDoc
 from convert.formats.Fusion.SourceBytes import LoadFusionBytes
+from convert.formats.Fusion.SourceProof.Auxiliary.ReadAuxClaims import ReadAuxClaims
 from convert.formats.Fusion.SourceProof.MemberClaims import ReadMemberClaims
 from convert.formats.Fusion.SourceProof.ProofClaim import ProofScope
 from convert.formats.Fusion.SourceProof.ProofLedger import BuildLedger
@@ -37,7 +38,9 @@ def ReadFusionSourceProof(
         if type(SelectedId) is not int or type(OwnerId) is not int:
             raise ValueError("Fusion source proof has no selected native history")
         Scope = ProofScope(Document.source.sha256, SelectedId, OwnerId)
-        Claims = ReadMemberClaims(Archive, Scope) + ReadRecordClaims(
-            Document, BulkData, Spans, Scope
+        Claims = (
+            ReadMemberClaims(Archive, Scope)
+            + ReadAuxClaims(Archive, Scope)
+            + ReadRecordClaims(Document, BulkData, Spans, Scope)
         )
         return BuildLedger(Scope, Archive.Members, Spans, Claims)

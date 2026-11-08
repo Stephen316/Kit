@@ -46,7 +46,7 @@ def ScaleBindRoles(
     )
 
 
-# only the feature's own native controls can independently establish a binding role
+# independent native feature controls establish the role of each binding
 def BindOwnerRoles(
     BulkData: bytes,
     Owners: dict[int, RecordSpan],

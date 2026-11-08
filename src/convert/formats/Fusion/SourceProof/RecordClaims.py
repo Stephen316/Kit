@@ -8,8 +8,10 @@
 
 from convert.formats.Fusion.DesignZip import KDesignPrefix
 from convert.formats.Fusion.HistoryGroup import KGroupGuid
+from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.NativeHistory import KHistoryGuid, ReadHistory
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.SourceProof.Parameters.NumberClaims import ReadParamClaims
 from convert.formats.Fusion.SourceProof.ProofClaim import (
     ProofCategory,
     ProofClaim,
@@ -25,7 +27,7 @@ def ReadChronologyClaims(
     BulkData: bytes,
     Spans: tuple[RecordSpan, ...],
     Scope: ProofScope,
-) -> tuple[ProofClaim, ...]:
+) -> tuple[HistoryPart, tuple[ProofClaim, ...]]:
     Owners = {Span.ObjectId: Span for Span in Spans if Span.IsPrimary}
     History = Owners[Scope.HistoryId]
     if History.ClassGuid != KHistoryGuid:
@@ -46,13 +48,19 @@ def ReadChronologyClaims(
     ):
         raise ValueError("Fusion source proof chronology disagrees with the document")
     Candidates = (History, *(Owners[Group.ObjectId] for Group in Groups))
-    return tuple(
+    Claims = tuple(
         ProofClaim(
             Scope, Span, ProofCategory.KVerifiedDesign, "exact history chronology"
         )
         for Span in Candidates
         if Span.ClassGuid in {KHistoryGuid, KGroupGuid}
         and BulkData[Span.PayloadOffset : Span.PayloadOffset + 4] == bytes(4)
+    )
+    return (
+        HistoryPart(
+            Scope.HistoryId, OwnerId, Entries, Groups, Document.feature_timeline
+        ),
+        Claims,
     )
 
 
@@ -63,8 +71,9 @@ def ReadRecordClaims(
     Spans: tuple[RecordSpan, ...],
     Scope: ProofScope,
 ) -> tuple[ProofClaim, ...]:
-    Verified = ReadChronologyClaims(Document, BulkData, Spans, Scope)
-    Complete = {Claim.Target for Claim in Verified}
+    History, Chronology = ReadChronologyClaims(Document, BulkData, Spans, Scope)
+    Claims = Chronology + ReadParamClaims(Document, BulkData, Spans, History, Scope)
+    Claimed = {Claim.Target for Claim in Claims}
     Projected = (
         Document.parameters,
         Document.support_planes,
@@ -82,10 +91,10 @@ def ReadRecordClaims(
         for Value in Origin.spans
         if Value.stream == KDesignPrefix + "BulkStream.dat"
     }
-    return Verified + tuple(
+    return Claims + tuple(
         ProofClaim(Scope, Span, ProofCategory.KObserved, "neutral source provenance")
         for Span in Spans
-        if Span not in Complete
+        if Span not in Claimed
         and (Span.StartOffset, Span.EndOffset - Span.StartOffset, Span.ClassGuid)
         in Observed
     )

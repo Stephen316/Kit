@@ -16,7 +16,10 @@ KParamRegistry = "E276745D-D84E-40D5-88BC-8C94DD4ACCDF"
 
 # registry dependency slots describe table membership rather than expression edges
 def ReadTableRefs(
-    Cursor: MetaCursor, CollectionId: int, Members: frozenset[int]
+    Cursor: MetaCursor,
+    CollectionId: int,
+    Members: frozenset[int],
+    MemberOrder: tuple[int, ...] | None = None,
 ) -> None:
     if Cursor.TakeBytes(1) != b"\1" or Cursor.ReadWord() != len(Members) + 1:
         raise ValueError("Unknown Fusion parameter registry header")
@@ -25,16 +28,24 @@ def ReadTableRefs(
         References.append(ReadNativeRef(Cursor))
         if Cursor.TakeBytes(4) != bytes(4):
             raise ValueError("Unknown Fusion parameter registry reference")
-    if References[0] != CollectionId or set(References[1:]) != Members:
+    if (
+        References[0] != CollectionId
+        or set(References[1:]) != Members
+        or (MemberOrder is not None and tuple(References[1:]) != MemberOrder)
+    ):
         raise ValueError("Fusion parameter registry references disagree")
 
 
 # every visible name must resolve exactly once to a unique registered member
 def ReadNameTable(
-    BodyValue: bytes, CollectionId: int, Members: frozenset[int]
+    BodyValue: bytes,
+    CollectionId: int,
+    Members: frozenset[int],
+    *,
+    MemberOrder: tuple[int, ...] | None = None,
 ) -> dict[int, str]:
     Cursor = MetaCursor(BodyValue)
-    ReadTableRefs(Cursor, CollectionId, Members)
+    ReadTableRefs(Cursor, CollectionId, Members, MemberOrder)
     if Cursor.TakeBytes(1) != b"\0" or Cursor.ReadWord() != len(Members):
         raise ValueError("Invalid Fusion parameter registry name count")
     Names = {}

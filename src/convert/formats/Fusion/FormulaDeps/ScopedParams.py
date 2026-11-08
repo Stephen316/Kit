@@ -11,7 +11,7 @@ from convert.formats.Fusion.Assembly.ComponentRead import KComponentGuid
 from convert.formats.Fusion.Assembly.OccurrenceRead import KOccurrenceGuid
 from convert.formats.Fusion.FormulaDeps.ParamCollection import (
     KParamCollection,
-    ReadCollection,
+    ReadCollectionOrder,
 )
 from convert.formats.Fusion.FormulaDeps.ParamRegistry import (
     KParamRegistry,
@@ -47,9 +47,15 @@ def CheckMemberRefs(
 
 
 # explicit history selection cannot grant standalone visibility inside an assembly
-def ReadPartNames(
-    BulkData: bytes, Spans: tuple[RecordSpan, ...], History: HistoryPart
-) -> dict[int, str]:
+def ReadPartScope(
+    BulkData: bytes,
+    Spans: tuple[RecordSpan, ...],
+    History: HistoryPart,
+    *,
+    VerifyOrder: bool = False,
+) -> tuple[
+    dict[int, RecordSpan], RecordSpan, RecordSpan, tuple[int, ...], dict[int, str]
+]:
     Records = tuple(SpanValue for SpanValue in Spans if SpanValue.IsPrimary)
     Primary = {SpanValue.ObjectId: SpanValue for SpanValue in Records}
     if (
@@ -71,15 +77,27 @@ def ReadPartNames(
     if ComponentId is None or len(Collections) != 1:
         raise ValueError("Fusion part parameter collection is unresolved")
     Collection = Collections[0]
-    RegistryId, Members = ReadCollection(
-        BulkData[Collection.PayloadOffset + 4 : Collection.EndOffset], ComponentId
+    RegistryId, Order = ReadCollectionOrder(
+        BulkData[Collection.PayloadOffset + 4 : Collection.EndOffset],
+        ComponentId,
+        VerifyOrder=VerifyOrder,
     )
     Registry = Primary.get(RegistryId)
     if Registry is None or Registry.ClassGuid != KParamRegistry:
         raise ValueError("Fusion parameter name registry is unresolved")
+    Members = frozenset(Order)
     CheckMemberRefs(BulkData, Primary, Members, Collection.ObjectId)
-    return ReadNameTable(
+    Names = ReadNameTable(
         BulkData[Registry.PayloadOffset + 4 : Registry.EndOffset],
         Collection.ObjectId,
         Members,
+        MemberOrder=Order if VerifyOrder else None,
     )
+    return Primary, Collection, Registry, Order, Names
+
+
+# ordinary formula projection only needs the validated standalone name map
+def ReadPartNames(
+    BulkData: bytes, Spans: tuple[RecordSpan, ...], History: HistoryPart
+) -> dict[int, str]:
+    return ReadPartScope(BulkData, Spans, History)[-1]
