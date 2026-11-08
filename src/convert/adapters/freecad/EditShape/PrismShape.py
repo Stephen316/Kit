@@ -14,10 +14,13 @@ from convert.adapters.freecad.EditShape.Prism.PrismAxisLink import (
     CheckPrismLink,
     KPrismLink,
 )
-from convert.adapters.freecad.EditShape.Prism.PrismExpected import ExpectedShape
+from convert.adapters.freecad.EditShape.Prism.PrismExpected import (
+    ExpectedPrism,
+    ExpectedShape,
+)
 from convert.adapters.freecad.EditShape.Prism.PrismFaces import CheckFaceMut
 from convert.adapters.freecad.EditShape.Prism.PrismProof import PrismProof
-from convert.adapters.freecad.EditShape.Prism.PrismRaw import ReadPrismRaw
+from convert.adapters.freecad.EditShape.Prism.PrismRaw import PrismRaw, ReadPrismRaw
 from convert.geometry.Opencascade import EdgeData, FaceData
 from interchange.geometry.models.Transform import Transform
 from interchange.geometry.models.VectorPlane import PlaneVector
@@ -47,20 +50,25 @@ def IsEditPrism(
         RawValue = ReadPrismRaw(ShapeData, len(Profile))
         if Link is not None:
             CheckPrismLink(RawValue, Link)
-        Proof = PrismProof(RawValue, Expected)
-        RootPlace = RawValue.Place(RawValue.RootRef)
-        (ShellRef,) = RawValue.Records[RawValue.RootRef.RecordA].Children
-        ShellPlace = RawValue.Place(ShellRef, RootPlace)
-        FaceRefs = RawValue.Records[ShellRef.RecordA].Children
-        Faces = {CheckFaceMut(Proof, ShellRef, Value, ShellPlace) for Value in FaceRefs}
-        return (
-            Faces == Expected.Faces.keys()
-            and len(Proof.Vertices) == len(Expected.Points)
-            and len(Proof.Edges) == len(Expected.Edges)
-            and HasUsedCarriers(Proof)
-        )
+        return IsPrismMatch(RawValue, Expected)
     except (KeyError, OverflowError, ValueError):
         return False
+
+
+# all carrier families must prove the same placed faces and shared edge identities
+def IsPrismMatch(RawValue: PrismRaw, Expected: ExpectedPrism) -> bool:
+    Proof = PrismProof(RawValue, Expected)
+    RootPlace = RawValue.Place(RawValue.RootRef)
+    (ShellRef,) = RawValue.Records[RawValue.RootRef.RecordA].Children
+    ShellPlace = RawValue.Place(ShellRef, RootPlace)
+    FaceRefs = RawValue.Records[ShellRef.RecordA].Children
+    Faces = {CheckFaceMut(Proof, ShellRef, Value, ShellPlace) for Value in FaceRefs}
+    return (
+        Faces == Expected.Faces.keys()
+        and len(Proof.Vertices) == len(Expected.Points)
+        and len(Proof.Edges) == len(Expected.Edges)
+        and HasUsedCarriers(Proof)
+    )
 
 
 # geometry entries outside the proven shell cannot be substituted or ignored

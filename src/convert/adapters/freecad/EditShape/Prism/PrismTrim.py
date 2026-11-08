@@ -45,7 +45,7 @@ def ReadPrismCurves(Cursor: Tokens, Maximum: int) -> tuple[TrimCurve, ...]:
 
 # a seed edge carries one three dimensional range and one trim for each adjacent face
 def ReadEdgeBinds(
-    Block: bytes, TrimCount: int, FaceCount: int
+    Block: bytes, TrimCount: int, FaceCount: int, PlaceCount: int
 ) -> tuple[TrimBinding, ...]:
     Cursor = Tokens(Block)
     _ = Cursor.ReadNumber()
@@ -54,7 +54,7 @@ def ReadEdgeBinds(
     Cursor.ExpectToken(b"0")
     Cursor.ExpectToken(b"1")
     _ = Cursor.ReadInteger(1)
-    Cursor.ExpectToken(b"0")
+    _ = Cursor.ReadInteger(0, PlaceCount)
     _ = Cursor.ReadNumber()
     _ = Cursor.ReadNumber()
     Bindings = []
@@ -62,10 +62,14 @@ def ReadEdgeBinds(
         Cursor.ExpectToken(b"2")
         CurveId = Cursor.ReadInteger(1, TrimCount)
         SurfaceId = Cursor.ReadInteger(1, FaceCount)
-        Cursor.ExpectToken(b"0")
+        Placement = Cursor.ReadInteger(0, PlaceCount)
         Bindings.append(
             TrimBinding(
-                (CurveId,), SurfaceId, 0, Cursor.ReadNumber(), Cursor.ReadNumber()
+                (CurveId,),
+                SurfaceId,
+                Placement,
+                Cursor.ReadNumber(),
+                Cursor.ReadNumber(),
             )
         )
     Cursor.ExpectToken(b"0")
@@ -74,14 +78,18 @@ def ReadEdgeBinds(
 
 # exact carrier tables and per edge bindings are checked before topology is accepted
 def ReadPrismBinds(
-    ShapeData: bytes, Records: dict[int, ShapeRecord], TrimCount: int, FaceCount: int
+    ShapeData: bytes,
+    Records: dict[int, ShapeRecord],
+    TrimCount: int,
+    FaceCount: int,
+    PlaceCount: int = 0,
 ) -> dict[int, tuple[TrimBinding, ...]]:
     EdgeIds = [Index for Index, Value in Records.items() if Value.KindValue == b"Ed"]
     Blocks = SplitValue(rb"(?<!\S)Ed(?=\s)", ShapeData)[1:]
     if len(EdgeIds) != len(Blocks):
         raise DecodeFailure("cannot locate prism edge trims")
     Result = {
-        Index: ReadEdgeBinds(Block, TrimCount, FaceCount)
+        Index: ReadEdgeBinds(Block, TrimCount, FaceCount, PlaceCount)
         for Index, Block in zip(EdgeIds, Blocks, strict=True)
     }
     UsedIds = [Value.CurveIds[0] for Bindings in Result.values() for Value in Bindings]

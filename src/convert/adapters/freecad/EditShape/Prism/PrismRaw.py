@@ -20,7 +20,9 @@ from convert.adapters.freecad.EditShape.TrimGeometry import TrimCurve
 from convert.geometry.Opencascade import (
     AssertReachable,
     DecodeFailure,
+    EdgeData,
     ExpectHeader,
+    FaceData,
     FoldMatrix,
     LocationProduct,
     LocationScale,
@@ -138,31 +140,68 @@ def ReadPrismPlaces(
     return [(), *Chains], Datums
 
 
+# both carrier encodings need the same finite closed incidence grammar
+def ReadPrismTree(
+    Cursor: Tokens,
+    ShapeData: bytes,
+    Sides: int,
+    CurveCount: int,
+    TrimCount: int,
+    SurfaceCount: int,
+    PlaceCount: int,
+) -> tuple[dict[int, ShapeRecord], Reference]:
+    ZeroTable(Cursor, b"Triangulations")
+    Count = ReadCount(Cursor, b"TShapes", 7 * Sides + 6)
+    Records = ShapeRecords(
+        Cursor, Count, CurveCount, TrimCount, SurfaceCount, PlaceCount
+    )
+    RootRef = ReadReference(Cursor, Count, PlaceCount)
+    if RootRef is None or Cursor.PeekToken() is not None:
+        raise DecodeFailure("unsupported prism root")
+    CheckPrismTree(Records, RootRef, Sides)
+    CheckVertData(ShapeData, Records)
+    CheckEdgeFlags(ShapeData, Records)
+    return Records, RootRef
+
+
+# shared root placement cancels out when comparing a seed edge and trim
+def CheckRootTrims(Records: dict[int, ShapeRecord], RootRef: Reference) -> None:
+    if RootRef.KLocation != 1 or any(
+        any(Child.KLocation for Child in Record.Children)
+        or (
+            isinstance(Geometry := Record.GeometryA, (EdgeData, FaceData))
+            and Geometry.KLocation
+        )
+        for Record in Records.values()
+    ):
+        raise DecodeFailure("explicit prism trims require a shared root location")
+
+
 # native saves use implicit planar trims while kit seeds store exact planar line trims
-def ReadPrismRaw(ShapeData: bytes, Sides: int) -> PrismRaw:
+def ReadPrismRaw(ShapeData: bytes, Sides: int, AllowRootTrim: bool = False) -> PrismRaw:
     Cursor = Tokens(ShapeData)
     ExpectHeader(Cursor)
     Chains, Datums = ReadPrismPlaces(Cursor)
     ModelStart = Cursor.LastEnd
     Pcurves = ReadPrismCurves(Cursor, 6 * Sides)
-    if Pcurves and Datums:
+    if Pcurves and Datums and (not AllowRootTrim or len(Chains) != 2):
         raise DecodeFailure("located explicit prism pcurves are unsupported")
     Cursor = Tokens(ShapeData[ModelStart:])
     Ignored, Curves = ReadModelCurves(Cursor, "freecad:edit-prism")
     ZeroTable(Cursor, b"Polygon3D")
     ZeroTable(Cursor, b"PolygonOnTriangulations")
     Surfaces = ReadModelSurfs(Cursor, "freecad:edit-prism")
-    ZeroTable(Cursor, b"Triangulations")
-    Count = ReadCount(Cursor, b"TShapes", 7 * Sides + 6)
-    Records = ShapeRecords(
-        Cursor, Count, len(Curves), len(Pcurves), len(Surfaces), len(Chains) - 1
+    Records, RootRef = ReadPrismTree(
+        Cursor,
+        ShapeData,
+        Sides,
+        len(Curves),
+        len(Pcurves),
+        len(Surfaces),
+        len(Chains) - 1,
     )
-    RootRef = ReadReference(Cursor, Count, len(Chains) - 1)
-    if RootRef is None or Cursor.PeekToken() is not None:
-        raise DecodeFailure("unsupported prism root")
-    CheckPrismTree(Records, RootRef, Sides)
-    CheckVertData(ShapeData, Records)
-    CheckEdgeFlags(ShapeData, Records)
+    if Pcurves and Datums:
+        CheckRootTrims(Records, RootRef)
     Bindings = (
         ReadPrismBinds(ShapeData, Records, len(Pcurves), len(Surfaces))
         if Pcurves
