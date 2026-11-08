@@ -6,10 +6,12 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from io import BytesIO
+from math import radians as Radians
 from os import environ as Environment
 from pathlib import Path as FilePath
 from subprocess import run as RunProcess
-from xml.etree.ElementTree import fromstring as ParseXml
+from xml.etree.ElementTree import fromstring as ParseXml, tostring as WriteXml
 from zipfile import ZipFile
 
 import pytest as Pytest
@@ -17,6 +19,7 @@ import pytest as Pytest
 from convert import open_document as OpenDocument, write_document as WriteDocument
 from convert.Security.PathBoundary import ResolveTemp
 from convert.Security.ProgramBoundary import GetFreecadPath
+from convert.adapters.freecad.Adapter import FreeCadAdapterA
 from convert.adapters.freecad.EditPlaneRev.PlaneRevBinding import KPlaneRevBinding
 from interchange.enums.EnumDocument import Capability
 from interchange.features.FeaturePlaneRev import PlaneRevolve
@@ -120,6 +123,34 @@ def TestLivePlaneRev(TmpPath: FilePath, SampleName: str, AngleDeg: float) -> Non
     assert OpenDocument(Output) == DocValue
 
 
+# losing the live binding must not silently restore the original plane snapshot
+@KRequiresCodec
+@Pytest.mark.parametrize("RemoveBinding", (False, True))
+def TestPlaneBinding(TmpPath: FilePath, RemoveBinding: bool) -> None:
+    DocValue = OpenDocument(KSourceFolder / "two_planes.f3d", strict=False)
+    Output = TmpPath / "two_planes.FCStd"
+    _ = WriteDocument(DocValue, Output)
+    with ZipFile(Output) as Archive:
+        Members = {Name: Archive.read(Name) for Name in Archive.namelist()}
+    Root = ParseXml(Members["Document.xml"])
+    Metadata = Root.find("./ObjectData/Object[@name='KitMetadata']/Properties")
+    assert Metadata is not None
+    Binding = Metadata.find(f"./Property[@name='{KPlaneRevBinding}']")
+    assert Binding is not None
+    if RemoveBinding:
+        Metadata.remove(Binding)
+        Metadata.set("Count", str(len(Metadata)))
+    else:
+        Binding[0].set("value", "unrelated-feature")
+    Members["Document.xml"] = WriteXml(Root, encoding="utf-8")
+    Buffer = BytesIO()
+    with ZipFile(Buffer, "w") as Archive:
+        for Name, DataValue in Members.items():
+            Archive.writestr(Name, DataValue)
+    with Pytest.raises(FreeCadAdapterA, match="plane Revolve binding"):
+        OpenDocument(Buffer.getvalue())
+
+
 # both construction plane controls move the native angular placement after a save
 @KRequiresCodec
 @Pytest.mark.skipif(
@@ -153,3 +184,21 @@ def TestNativePlaneEdit(TmpPath: FilePath) -> None:
     assert Rebuilt == Pytest.approx(Loaded)
     assert Edited == Pytest.approx((Loaded[0], -19.754908, 25.0, -2.776371))
     assert Reopened == Pytest.approx(Edited)
+    Readback = OpenDocument(Saved)
+    assert Readback.feature_timeline[:-1] == DocValue.feature_timeline[:-1]
+    Definition = Readback.feature_timeline[-1].definition
+    assert isinstance(Definition, PlaneRevolve)
+    assert (Definition.StartRadians, Definition.EndRadians) == Pytest.approx(
+        (Radians(148.0), Radians(228.0))
+    )
+    assert Readback.parameter("fusion-parameter-245").value.value == Pytest.approx(
+        Radians(32.0)
+    )
+    assert Readback.parameter("fusion-parameter-274").value.value == Pytest.approx(
+        Radians(-48.0)
+    )
+    assert Readback.bodies[0].topology.volume == Pytest.approx(Loaded[0])
+    assert Readback.brep != DocValue.brep
+    Rewrite = TmpPath / "two_planes_rewrite.FCStd"
+    _ = WriteDocument(Readback, Rewrite)
+    assert OpenDocument(Rewrite) == Readback

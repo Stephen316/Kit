@@ -92,6 +92,7 @@ from convert.adapters.freecad.Brep import (
 )
 from convert.adapters.freecad.EditRead.Formula.ReconcileSheet import ReconcileSheet
 from convert.adapters.freecad.EditRead.Sketch.ReconcileSketch import ReconcileSketch
+from convert.adapters.freecad.EditPlaneRev.ReconcilePlaneRev import ReconcilePlane
 from convert.adapters.freecad.EditRev.ReconcileRev import ReconcileRev
 from convert.adapters.freecad.Format import (
     CAPABILITY_CARRIER_REASONS as CapabilityCarrierReasons,
@@ -2346,6 +2347,7 @@ def ReadSource(Source: Source, Options: ReadOptions | None = None) -> CadDoc:
             Value = ReadZipManifest(Archive, Members, RootValue)
             DocValue = ReconcileEdit(ManifestDoc(Value), RootValue, Archive, Members)
             DocValue = ReconcileRev(DocValue, RootValue, Archive, Members)
+            DocValue = ReconcilePlane(DocValue, RootValue, Archive, Members)
             DocValue = ReconcileSheet(DocValue, Value, RootValue)
             DocValue = ReconcileSketch(DocValue, Value, RootValue, Archive, Members)
     except ValueError as ErrorInfo:

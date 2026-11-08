@@ -8,9 +8,9 @@
 
 from dataclasses import replace as Replace
 
+from convert.adapters.freecad.EditRev.RebuildRevDoc import RebuildRevDoc
 from convert.adapters.freecad.EditRev.RevAngles import ReadRevAngles
 from convert.adapters.freecad.EditRing.RingChange import CheckRingEdit
-from convert.formats.Fusion.Revolves.BuildRevGeom import BuildRevGeom
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.RevolveSpan import GetAngleSpan
@@ -55,29 +55,7 @@ def ApplyRevEdit(
         CheckRingEdit(Original, Profile)
     AlongValue, AgainstValue = ReadRevAngles(Feature, Definition, Parameters)
     Span = GetAngleSpan(AlongValue, AgainstValue, Definition.SideMode)
-    (BodyValue,) = DocValue.bodies
     (PlaneValue,) = DocValue.support_planes
-    Model, Volume, AreaValue, Bounds = BuildRevGeom(
-        BodyValue.id, Feature, Definition, Span, Profile, PlaneValue.transform
-    )
-    Topology = Replace(
-        BodyValue.topology,
-        solid_count=len(Model.regions),
-        shell_count=len(Model.shells),
-        face_count=len(Model.faces),
-        edge_count=len(Model.edges),
-        vertex_count=len(Model.vertices),
-        volume=Volume,
-        surface_area=AreaValue,
-        bounding_box=Bounds,
-        valid=True,
-    )
-    if len(Model.regions) != 1 or Model.validate(frozenset({BodyValue.id})):
-        raise ValueError("FreeCAD editable Revolve rebuilt an invalid solid")
-    return Replace(
-        DocValue,
-        parameters=Parameters,
-        sketches=(Profile,),
-        bodies=(Replace(BodyValue, topology=Topology),),
-        brep=Model,
+    return RebuildRevDoc(
+        Replace(DocValue, parameters=Parameters), Profile, PlaneValue.transform, Span
     )

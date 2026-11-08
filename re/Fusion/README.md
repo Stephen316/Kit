@@ -178,10 +178,11 @@ angles to native plane placements and computes each `Part::Revolution`
 sweep from the live plane normals. A two-plane sweep also updates the
 solid's angular placement. FreeCAD 1.1.3 opened all 16 transfers and
 rebuilt them after edits to the source angles. Use a quantity expression
-such as `=-48 deg` to enter a signed angle in the Parameters sheet. Coincident planes and
-planes that miss the axis produce an invalid feature. Saved plane edits
-persist in FreeCAD. Kit still reads the embedded Fusion snapshot when
-importing those saves.
+such as `=-48 deg` to enter a signed angle in the Parameters sheet.
+Coincident planes and planes that miss the axis produce an invalid feature.
+Kit reads back saved angle and line-profile edits, rebuilds the selected
+planes and sweep, and verifies the saved sketch and solid before accepting
+the changes. A stale pose or shape produces an explicit read error.
 
 For verified histories with independent active New Body Revolves, Kit
 also generates closed analytic B-reps directly from the profile and sweep.

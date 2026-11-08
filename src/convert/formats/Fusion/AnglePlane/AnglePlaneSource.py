@@ -27,6 +27,7 @@ from convert.geometry.Revolve.SweepVector import CrossVector, DotVector, OffsetV
 from interchange.core.Common import FreezeMapping
 from interchange.geometry.models.SupportPlane import SupportPlane
 from interchange.geometry.models.Transform import Transform
+from interchange.geometry.models.VectorSpace import SpaceVector
 
 
 # reciprocal source links independently regenerate the cached angular datum
