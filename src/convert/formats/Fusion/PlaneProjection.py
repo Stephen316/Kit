@@ -6,6 +6,7 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from convert.formats.Fusion.AnglePlane.AnglePlaneSource import AttachAngleDef
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.NativePlane import KPlaneFeature, ReadNativePlane
 from convert.formats.Fusion.ParamProjection import ParamOrigin as RecordOrigin
@@ -28,7 +29,7 @@ def ProjectPlanes(
         if Feature.ClassGuid != KPlaneFeature:
             continue
         try:
-            Planes.append(ReadNativePlane(BulkData, Feature, Owners))
+            PlaneValue = ReadNativePlane(BulkData, Feature, Owners)
         except ValueError as ErrorInfo:
             Diagnostics.append(
                 Diagnostic(
@@ -37,4 +38,10 @@ def ProjectPlanes(
                     provenance=RecordOrigin(Feature),
                 )
             )
+            continue
+        try:
+            PlaneValue = AttachAngleDef(BulkData, Owners, PlaneValue)
+        except ValueError:
+            pass
+        Planes.append(PlaneValue)
     return tuple(Planes), tuple(Diagnostics)

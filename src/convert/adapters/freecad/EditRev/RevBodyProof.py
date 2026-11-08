@@ -15,6 +15,7 @@ from convert.formats.Fusion.Topology.BodyCollection import KBodyCollection
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeatureBody import DesignBody
+from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.SupportPlane import SupportPlane
@@ -49,7 +50,7 @@ def CheckRevBody(
     BodyValue: DesignBody,
     DocValue: CadDocument,
     FeatureValue: FeatureStep,
-    Definition: AngularRevolve,
+    Definition: AngularRevolve | PlaneRevolve,
     Interval: tuple[float, float],
     SketchValue: Sketch,
     PlaneValue: SupportPlane,
