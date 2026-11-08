@@ -7,6 +7,7 @@
 # to you under it immediately and permanently.
 
 
+from collections.abc import Callable
 from dataclasses import replace as Replace
 from math import isclose as IsClose, tau as FullTurn
 
@@ -37,6 +38,7 @@ def AttachAngleRev(
     Frames: dict[str, SupportPlane],
     Sketches: dict[str, Sketch],
     Params: dict[str, Parameter],
+    LoadEdge: Callable[[], tuple[Selection, SpaceVector, SpaceVector]] | None = None,
 ) -> tuple[FeatureStep, Selection]:
     Attrs = StepValue.attributes
     if (
@@ -53,8 +55,12 @@ def AttachAngleRev(
     )
     if SketchValue is None or ProfileFrame is None:
         raise ValueError("Missing Fusion angular Revolve profile sketch frame")
-    AxisPick, Origin, StoredAxis = ResolveAngleAxis(
-        BulkData, Owners, StepValue, Picks, Sketches, Frames, ProfileFrame
+    AxisPick, Origin, StoredAxis = (
+        ResolveAngleAxis(
+            BulkData, Owners, StepValue, Picks, Sketches, Frames, ProfileFrame
+        )
+        if LoadEdge is None
+        else LoadEdge()
     )
     Profile = ReadRevProfile(StepValue, SketchValue)
     if isinstance(Profile, CircleGeometry):

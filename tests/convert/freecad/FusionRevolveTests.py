@@ -158,14 +158,17 @@ def TestNativeRev(
     assert OpenDocument(Output) == DocValue
 
 
-# an unresolved brep edge never becomes a live revolute reference
+# the resolved body edge solid remains native geometry until linked history is supported
 @KRequiresCodec
-def TestRevolveCarrier(TmpPath: FilePath) -> None:
+def TestEdgeRevCache(TmpPath: FilePath) -> None:
     DocValue = OpenDocument(
         KStudyPath / "revolveaxes-a83b542c4a07" / "brep_edge.f3d", strict=False
     )
     Output = TmpPath / "brep_edge.FCStd"
-    _ = WriteDocument(DocValue, Output)
+    Result = WriteDocument(DocValue, Output)
+    assert len(DocValue.bodies) == 2
+    assert Result.application_usable and Capability.BREP in Result.native_capabilities
+    assert Capability.PARAMETRIC_HISTORY not in Result.native_capabilities
     with ZipFile(Output) as Archive:
         RootValue = ParseXml(Archive.read("Document.xml"))
         assert not RootValue.findall("./Objects/Object[@type='Part::Revolution']")

@@ -70,13 +70,14 @@ def ReadCurrentRole(
     Cursor: MetaCursor,
     CollectionId: int,
     ComponentId: int,
-) -> None:
+) -> int:
     if Cursor.TakeBytes(1) != b"\1":
         raise ValueError("Unsupported Fusion body collection role prefix")
     AuxiliaryId = ReadOptionalRef(Cursor)
     if AuxiliaryId is not None:
         ReadBodyAux(BulkData, Owners, AuxiliaryId, CollectionId)
-    ReadBodyBackend(BulkData, Owners, ReadNativeRef(Cursor), CollectionId)
+    BackendId = ReadNativeRef(Cursor)
+    ReadBodyBackend(BulkData, Owners, BackendId, CollectionId)
     if Cursor.TakeBytes(1) != b"\1":
         raise ValueError("Unsupported Fusion body collection context prefix")
     Context = SelectCursor(BulkData, Owners, ReadNativeRef(Cursor), KHistoryScope)
@@ -87,3 +88,4 @@ def ReadCurrentRole(
         or Cursor.TakeBytes(1) != bytes(1)
     ):
         raise ValueError("Fusion body collection context disagrees")
+    return BackendId

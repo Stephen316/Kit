@@ -7,8 +7,12 @@
 # to you under it immediately and permanently.
 
 
+from collections.abc import Callable
+from functools import partial as BindArgs
+
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Revolves.AngleRevAttach import AttachAngleRev
+from convert.formats.Fusion.Revolves.EdgeAxis.EdgeAxisPick import ReadEdgeAxis
 from convert.formats.Fusion.Revolves.PlaneRevAttach import AttachPlaneRev
 from convert.formats.Fusion.Revolves.RevolveAttach import AttachRevolve
 from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
@@ -30,6 +34,7 @@ def ProjectRevolves(
     Planes: tuple[SupportPlane, ...],
     Frames: tuple[SupportPlane, ...],
     Sketches: tuple[Sketch, ...],
+    LoadBody: Callable[[str], bytes],
 ) -> tuple[tuple[FeatureStep, ...], tuple[Selection, ...], tuple[Diagnostic, ...]]:
     Owners = {
         SpanValue.ObjectId: SpanValue for SpanValue in Spans if SpanValue.IsPrimary
@@ -104,6 +109,21 @@ def ProjectRevolves(
                             BySketch.get(StepValue.sketch_id or ""),
                         )
                     else:
+                        LoadEdge = (
+                            BindArgs(
+                                ReadEdgeAxis,
+                                BulkData,
+                                Owners,
+                                StepValue,
+                                ByNative,
+                                ByFrame,
+                                BySketch,
+                                ByParam,
+                                LoadBody,
+                            )
+                            if "fusion.revolve.axis_edge_source" in StepValue.attributes
+                            else None
+                        )
                         StepValue, AxisPick = AttachAngleRev(
                             BulkData,
                             Owners,
@@ -112,6 +132,7 @@ def ProjectRevolves(
                             ByFrame,
                             BySketch,
                             ByParam,
+                            LoadEdge,
                         )
                 except ValueError as ErrorInfo:
                     Diagnostics.append(

@@ -20,10 +20,10 @@ from convert.formats.Fusion.Topology.BodyCollectionRole import ReadCurrentRole
 KMeshGuid = "EA90DA22-556C-4C61-89BB-20C2681B7A9D"
 
 
-# only the ordered typed body subset qualifies as saved component body membership
-def ReadCurrentList(
+# the saved body list keeps its exact history backend even when mesh members are present
+def ReadCurrentBody(
     BulkData: bytes, Owners: dict[int, RecordSpan], CollectionId: int, ComponentId: int
-) -> tuple[int, ...]:
+) -> tuple[tuple[int, ...], int]:
     Cursor = SelectCursor(BulkData, Owners, CollectionId, KBodyCollection)
     Prefix = Cursor.TakeBytes(2)
     if Prefix == b"\0\1" and Cursor.ReadWord() != 0:
@@ -44,7 +44,7 @@ def ReadCurrentList(
             raise ValueError("Fusion body collection has an unsupported member")
         if SpanValue.ClassGuid == KBodyGuid:
             BodyIds.append(Identity)
-    ReadCurrentRole(BulkData, Owners, Cursor, CollectionId, ComponentId)
+    BackendId = ReadCurrentRole(BulkData, Owners, Cursor, CollectionId, ComponentId)
     BodyCount = Cursor.ReadCount(100000)
     if (
         BodyCount != len(BodyIds)
@@ -57,4 +57,12 @@ def ReadCurrentList(
         for Identity in BodyIds
     ):
         raise ValueError("Fusion body collection ownership disagrees")
-    return tuple(BodyIds)
+    return tuple(BodyIds), BackendId
+
+
+# inventory callers use ordered bodies without loading geometry from the history backend
+def ReadCurrentList(
+    BulkData: bytes, Owners: dict[int, RecordSpan], CollectionId: int, ComponentId: int
+) -> tuple[int, ...]:
+    BodyIds, _ = ReadCurrentBody(BulkData, Owners, CollectionId, ComponentId)
+    return BodyIds

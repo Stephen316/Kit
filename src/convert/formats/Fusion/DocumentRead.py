@@ -8,10 +8,12 @@
 
 from collections.abc import Callable
 from dataclasses import replace as Replace
+from functools import partial as BindArgs
 from hashlib import sha256 as ShaDigest
 from pathlib import Path as FilePath
 
 from convert.formats.Fusion.Assembly.AssemblyRead import ReadAssemblyProjection
+from convert.formats.Fusion.BodyBlob import ReadBodyBlob
 from convert.formats.Fusion.DesignZip import ReadDesignZip
 from convert.formats.Fusion.Extrudes.ExtrudeProject import ProjectExtrudes
 from convert.formats.Fusion.Extrudes.Plane.PlaneExtProject import ProjectPlaneExts
@@ -72,9 +74,6 @@ def ReadFusionDoc(
     Planes, PlaneIssues = ProjectPlanes(BulkData, Spans, History)
     Frames, Sketches, Steps, SketchIssues = ProjectSketches(BulkData, Spans, History)
     Steps, Sketches, ProfileIssues = ProjectProfiles(BulkData, Spans, Steps, Sketches)
-    Steps, Selections, RevolveIssues = ProjectRevolves(
-        BulkData, Spans, Steps, Params, Planes, Frames, Sketches
-    )
     Owners = {
         ParamId: StepValue.id
         for StepValue in History.Steps
@@ -95,6 +94,16 @@ def ReadFusionDoc(
     )
     Steps, PlanePicks, PlaneExtIssues = ProjectPlaneExts(
         BulkData, Spans, History.OwnerId, Steps, Parameters, Planes + Frames, Sketches
+    )
+    Steps, Selections, RevolveIssues = ProjectRevolves(
+        BulkData,
+        Spans,
+        Steps,
+        Parameters,
+        Planes,
+        Frames,
+        Sketches,
+        BindArgs(ReadBodyBlob, DataValue, InflateZstd=InflateZstd),
     )
     Selections += PlanePicks
     ResolvedExts = {

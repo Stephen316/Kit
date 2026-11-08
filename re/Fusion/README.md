@@ -226,13 +226,24 @@ profile edge touches the axis. The saved sketch wires, signed angle, and solid
 must agree with the edited controls. Files with pending or invalid rebuilds
 are rejected. Kit can re-export the edited timeline as a live FreeCAD Revolve.
 
+Kit also reads a qualified straight BRep edge as the axis of an angular
+Revolve after a positive, untapered line-profile Extrude. The saved recipe
+names the two incident faces and the three faces at each endpoint.
+Kit resolves those names in the explicitly mapped ASM history member and
+uses the original sketch tags to identify the same edge in the rebuilt
+Extrude. The saved line context independently checks the ordered endpoints.
+Both tracked captures retain the original Extrude and Revolve, the typed
+edge selection, and two rebuilt solids. FreeCAD 1.1.3 opened both exports
+with matching solid topology, volume, area, bounds, and centers of mass.
+Editable FreeCAD transfer of the linked history is still open.
+
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body
 counts and analytic geometry. The cone retains its degenerate apex edge,
 and the torus and sphere each have one untrimmed face. Kit projects all
-three solids in the analytic multi-body fixture. Partial profiles that
-touch the axis, custom and BRep axis definitions, surface and Boolean
-Revolves, projected axes, and native Fusion output require more coverage.
+three solids in the analytic multi-body fixture. Partial profiles that touch
+the axis at one point, custom axes and other BRep axis sources, surface and
+Boolean Revolves, projected axes, and native Fusion output require more coverage.
 
 Kit reads local assembly definitions and occurrences from qualified `.f3d`
 archives. Repeated instances share one component definition. Nested instances
