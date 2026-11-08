@@ -26,19 +26,25 @@ def SelectCursor(
     return MetaCursor(BulkData[SpanValue.PayloadOffset + 4 : SpanValue.EndOffset])
 
 
-# one owned proxy yields an exact descriptor without scanning the archive
-def ReadSelectDesc(
-    BulkData: bytes, Owners: dict[int, RecordSpan], SelectId: int, FeatureId: int
-) -> int:
+# selection proxies retain the same framing for individual and counted operands
+def ReadSelectIds(
+    BulkData: bytes,
+    Owners: dict[int, RecordSpan],
+    SelectId: int,
+    FeatureId: int,
+    Maximum: int,
+) -> tuple[tuple[int, ...], dict[str, int | float]]:
     Cursor = SelectCursor(BulkData, Owners, SelectId, KSelectProxy)
     Prefix = Cursor.DataValue[:2]
+    Attributes: dict[str, int | float] = {}
     if Prefix == b"\0\1":
-        ReadGeomAttrs(Cursor)
+        Attributes = ReadGeomAttrs(Cursor)
     elif Cursor.TakeBytes(2) != bytes(2):
         raise ValueError("Unsupported Fusion selection proxy prefix")
-    if Cursor.ReadWord() != 1:
+    Count = Cursor.ReadWord()
+    if not 1 <= Count <= Maximum:
         raise ValueError("Unsupported Fusion selection proxy count")
-    Descriptor = ReadNativeRef(Cursor)
+    Descriptors = tuple(ReadNativeRef(Cursor) for _ in range(Count))
     if Cursor.TakeBytes(2) != bytes(2):
         raise ValueError("Unsupported Fusion secondary selection prefix")
     if Cursor.ReadCount(1):
@@ -46,4 +52,32 @@ def ReadSelectDesc(
     Cursor.TakeBytes(60)
     if ReadNativeRef(Cursor) != FeatureId or Cursor.Offset != len(Cursor.DataValue):
         raise ValueError("Fusion selection proxy owner or width disagrees")
+    return Descriptors, Attributes
+
+
+# the established single selection api keeps its exact cardinality and owner checks
+def ReadSelectDesc(
+    BulkData: bytes, Owners: dict[int, RecordSpan], SelectId: int, FeatureId: int
+) -> int:
+    (Descriptor,), _ = ReadSelectIds(BulkData, Owners, SelectId, FeatureId, 1)
     return Descriptor
+
+
+# feature owned attributes can corroborate role controls without altering descriptor order
+def ReadSelectList(
+    BulkData: bytes, Owners: dict[int, RecordSpan], SelectId: int, FeatureId: int
+) -> tuple[tuple[int, ...], dict[str, int | float]]:
+    Descriptors, Attributes = ReadSelectIds(BulkData, Owners, SelectId, FeatureId, 1024)
+    if len(set(Descriptors)) != len(Descriptors) or any(
+        Identity not in Owners for Identity in Descriptors
+    ):
+        raise ValueError("Fusion selection proxy descriptors are missing or repeated")
+    return Descriptors, Attributes
+
+
+# callers without proxy attribute semantics can request just the ordered native descriptors
+def ReadSelectDescs(
+    BulkData: bytes, Owners: dict[int, RecordSpan], SelectId: int, FeatureId: int
+) -> tuple[int, ...]:
+    Descriptors, _ = ReadSelectList(BulkData, Owners, SelectId, FeatureId)
+    return Descriptors
