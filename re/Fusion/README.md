@@ -168,6 +168,19 @@ same native body and collection are proven. The native reader qualified
 archives. Saved Fusion API controls corroborate interleaved body names,
 component ownership, and membership after timeline edits.
 
+For ordinary solid New Body distance Extrudes, Kit preserves an editable
+`DistanceExtrude` definition. It binds the verified closed sketch profile to
+the native feature's owned distance, start offset, and draft parameters. The
+definition preserves signed one-sided lengths, opposing two-sided lengths, both
+symmetric conventions, and the verified direction in the sketch's component
+frame. The parameter records retain their formulas, and Kit evaluates the
+limits from their current values. Across 712 tracked archives, Kit projected
+461 definitions. Verification compared 33 saved Fusion API captures and two
+assembly controls, including reversed extents, signed offsets, draft, and
+the symmetric conventions. Thin, Boolean, and entity-limited Extrudes and
+unresolved occurrence directions require further decoding. Extrude body
+reconstruction and native writing remain separate milestones.
+
 ## Public SDK reader
 
 The adapter catalog includes `fusion.f3d` with alias `f3d`. The registry

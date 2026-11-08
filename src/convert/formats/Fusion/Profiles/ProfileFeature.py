@@ -60,6 +60,7 @@ def AttachProfile(
             attributes=FreezeMapping(
                 {
                     **StepValue.attributes,
+                    "fusion.profile_descriptor_id": Descriptor.ObjectId,
                     "fusion.profile_entity_ids": Closed,
                     "fusion.profile_native_members": tuple(
                         Entity.id for Entity in Members

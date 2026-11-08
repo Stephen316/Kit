@@ -13,6 +13,7 @@ from pathlib import Path as FilePath
 
 from convert.formats.Fusion.Assembly.AssemblyRead import ReadAssemblyProjection
 from convert.formats.Fusion.DesignZip import ReadDesignZip
+from convert.formats.Fusion.Extrudes.ExtrudeProject import ProjectExtrudes
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.PlaneProjection import ProjectPlanes
 from convert.formats.Fusion.Profiles.ProfileProjection import ProjectProfiles
@@ -84,6 +85,9 @@ def ReadFusionDoc(
         Replace(ParamValue, owner_id=Owners.get(ParamValue.id, ""))
         for ParamValue in Params
     )
+    Steps, ExtrudeIssues = ProjectExtrudes(
+        BulkData, Spans, Steps, Parameters, Frames, Sketches
+    )
     Digest = ShaDigest(DataValue).hexdigest()
     Capabilities = {Capability.KNativePayloads, Capability.KProvenance}
     if Parameters:
@@ -128,12 +132,13 @@ def ReadFusionDoc(
         + SketchIssues
         + ProfileIssues
         + RevolveIssues
+        + ExtrudeIssues
         + BodyIssues
         + AssemblyIssues
         + (
             Diagnostic(
                 code="fusion.history.partial",
-                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry, and supported Revolve definitions and solids. "
+                message="Fusion history projection covers ordering, numeric parameters, supported plane frames, a subset of sketch geometry, supported Extrude and Revolve definitions, and supported Revolve solids. "
                 "Additional feature definitions, bodies, and assemblies require further decoding.",
             ),
         ),

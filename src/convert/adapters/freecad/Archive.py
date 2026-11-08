@@ -6846,12 +6846,14 @@ def HasReplayMut(
     return True
 
 
-# this definition exists because unproven solidworks profiles require nonexecuting feature carriers
+# nonexecuting carriers preserve unsupported extrusion definitions and unproven profiles
 def IsRawExtrude(
     Context: DocContext, Geometry: DocGeometry, FeatureInfo: FeatureData
 ) -> bool:
     if FeatureInfo.KindValue != "extrusion":
         return False
+    if FeatureInfo.Definition.get("$type") == "DistanceExtrude":
+        return True
     ProfileCount = Geometry.SketchProfCounts.get(FeatureInfo.SketchId, 0)
     ProfileSound = Geometry.SketchProfSound.get(FeatureInfo.SketchId, False)
     return (
@@ -6864,6 +6866,8 @@ def IsRawExtrude(
 def ExtrudeReason(Geometry: DocGeometry, FeatureInfo: FeatureData) -> str:
     if bool(FeatureInfo.Source.get("suppressed")):
         return "suppressed"
+    if FeatureInfo.Definition.get("$type") == "DistanceExtrude":
+        return "linked_distance_definition_unsupported"
     if not Geometry.SketchProfCounts.get(FeatureInfo.SketchId, 0):
         return "no_native_closed_profile"
     return "profile_topology_not_statically_sound"

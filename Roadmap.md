@@ -59,8 +59,9 @@ alone earn no native write credit.
   feature, and assembly data. The overlay tests explicitly identify limits
   of modified outputs. [CATIA checks](tests/convert/catia)
 - Fusion is discoverable in the SDK as the read-only `fusion.f3d` adapter.
-  It requires explicit opt-in to the partial read and projects plane-limited
-  Revolve definitions and source-derived solid B-reps for a verified subset. Sixteen captures from Fusion 2705.1.30
+  It requires explicit opt-in to the partial read and projects linked
+  distance Extrude definitions, plane-limited Revolve definitions, and
+  source-derived Revolve solids for verified subsets. Sixteen captures from Fusion 2705.1.30
   and 2706.1.17 matched saved body geometry and passed Kit JSON round-trips.
   The SDK also reads local assembly definitions, occurrences, placements, and
   saved component body inventories. Broader geometry and assembly coverage, the native writer,
