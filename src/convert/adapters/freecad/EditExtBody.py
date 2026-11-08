@@ -6,10 +6,9 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
-from convert.geometry.Extrude.Circular.CircularExtrude import BuildCircular
+from convert.adapters.freecad.EditExtSolid import BuildEditSolid, KEditProfile
 from interchange.brep.topology.BrepModel import BrepModel
 from interchange.features.FeatureBody import DesignBody
-from interchange.geometry.models.GeometryCurves import CircleGeometry
 from interchange.geometry.models.Transform import Transform
 
 
@@ -17,15 +16,14 @@ from interchange.geometry.models.Transform import Transform
 def IsEditExtBody(
     BodyValue: DesignBody,
     BrepValue: BrepModel | None,
-    Profile: CircleGeometry,
+    Profile: KEditProfile,
     Frame: Transform,
     DepthMm: float,
 ) -> bool:
     if BrepValue is None or BodyValue.topology.valid is not True:
         return False
-    Lower, Upper = sorted((0.0, DepthMm))
-    Model, Volume, AreaValue, Bounds = BuildCircular(
-        BodyValue.id, Frame, Profile, Lower, Upper, Profile.radius, Profile.radius
+    Model, Volume, AreaValue, Bounds = BuildEditSolid(
+        BodyValue.id, Frame, Profile, DepthMm
     )
     Topology = BodyValue.topology
     return BrepValue == Model and (
