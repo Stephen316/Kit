@@ -21,6 +21,7 @@ from convert.geometry.Opencascade import (
     ReadCount,
     ReadModelCurves,
     ReadReference,
+    ReadSurfaces,
     Reference,
     ShapeRecord,
     ShapeRecords,
@@ -38,31 +39,46 @@ class SavedWireData:
     RootRef: Reference
 
 
-# exact bounded cache grammar excludes faces and unused hidden geometry records
-def ReadSavedWire(ShapeData: bytes, CurveCount: int, PointCount: int) -> SavedWireData:
+# the line profile of a recomputed revolve can retain coedge surface data
+def ReadWireTables(
+    Cursor: Tokens, CurveCount: int, AllowPcurves: bool
+) -> tuple[int, int, tuple[BrepCurve, ...]]:
+    Pcurves, Curves = ReadModelCurves(Cursor, "freecad:saved-sketch")
+    CurveKinds = (LineCurve,) if AllowPcurves else (LineCurve, CircleCurve)
+    if (
+        (Pcurves and not AllowPcurves)
+        or len(Curves) > CurveCount
+        or any(not isinstance(Curve, CurveKinds) for Curve in Curves)
+    ):
+        raise DecodeFailure("unsupported saved sketch cache curves")
+    ZeroTable(Cursor, b"Polygon3D")
+    ZeroTable(Cursor, b"PolygonOnTriangulations")
+    Surfaces = 0
+    if AllowPcurves:
+        Surfaces = ReadSurfaces(Cursor)
+    else:
+        ZeroTable(Cursor, b"Surfaces")
+    ZeroTable(Cursor, b"Triangulations")
+    return Pcurves, Surfaces, Curves
+
+
+# exact bounded cache grammar excludes faces and requires independent spatial wire geometry
+def ReadSavedWire(
+    ShapeData: bytes, CurveCount: int, PointCount: int, *, AllowPcurves: bool = False
+) -> SavedWireData:
     Cursor = Tokens(ShapeData)
     ExpectHeader(Cursor)
     Locations = ModelLocations(Cursor)
-    if len(Locations) > 16 or any(
+    LocationLimit = 256 if AllowPcurves else 16
+    if len(Locations) > LocationLimit or any(
         abs(LocationScale(Value) - 1.0) > KAngleTolerance for Value in Locations
     ):
         raise DecodeFailure("unsupported saved sketch cache placement")
-    Pcurves, Curves = ReadModelCurves(Cursor, "freecad:saved-sketch")
-    if (
-        Pcurves
-        or len(Curves) > CurveCount
-        or any(not isinstance(Curve, (LineCurve, CircleCurve)) for Curve in Curves)
-    ):
-        raise DecodeFailure("unsupported saved sketch cache curves")
-    for Table in (
-        b"Polygon3D",
-        b"PolygonOnTriangulations",
-        b"Surfaces",
-        b"Triangulations",
-    ):
-        ZeroTable(Cursor, Table)
+    Pcurves, Surfaces, Curves = ReadWireTables(Cursor, CurveCount, AllowPcurves)
     Count = ReadCount(Cursor, b"TShapes", 1 + 4 * CurveCount + PointCount)
-    Records = ShapeRecords(Cursor, Count, len(Curves), 0, 0, len(Locations))
+    Records = ShapeRecords(
+        Cursor, Count, len(Curves), Pcurves, Surfaces, len(Locations)
+    )
     RootRef = ReadReference(Cursor, Count, len(Locations))
     if (
         RootRef is None

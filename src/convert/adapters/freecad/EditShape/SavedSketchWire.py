@@ -59,14 +59,24 @@ def IsSketchCache(
     SketchValue: Sketch,
     FrameValue: Transform,
     ClosedWire: bool = False,
+    *,
+    AllowPcurves: bool = False,
 ) -> bool:
     if len(ShapeData) > KMaxSketchBytes:
         return False
     try:
         Curves, Points = ReadVisible(SketchValue, FrameValue)
+        if AllowPcurves and (
+            not ClosedWire
+            or Points
+            or any(not isinstance(Curve, LineGeometry) for Curve in Curves)
+        ):
+            return False
         if not ShapeData:
             return not ClosedWire and not Curves and not Points
-        DataValue = ReadSavedWire(ShapeData, len(Curves), len(Points))
+        DataValue = ReadSavedWire(
+            ShapeData, len(Curves), len(Points), AllowPcurves=AllowPcurves
+        )
         RootValue = DataValue.Records[DataValue.RootRef.RecordA]
         if ClosedWire and (
             RootValue.KindValue != b"Wi" or RootValue.FlagBits[4] != "1"
