@@ -35,6 +35,7 @@ from convert.adapters.freecad.Brep import (
 )
 from convert.adapters.freecad.ArchiveEditPlan import KEditableBinding, ReadArchiveEdit
 from convert.adapters.freecad.EditableExt import EditExtrude
+from convert.adapters.freecad.EditSketchPlan import IsSketchWire, KSketchEditBinding
 from convert.adapters.freecad.Format import FORMAT_ID as FormatId
 from convert.adapters.freecad.FormulaSheet.FormulaClosure import BuildFusionExpr
 from convert.adapters.freecad.FormulaSheet.SheetBinding import KFormulaSheetBinding
@@ -8231,6 +8232,15 @@ def BuildDocXmlMut(
     AddRepresentMut(Context, Features, NeutralDoc, ShapeData)
     SetDocGroupsMut(Context, Geometry, Features)
     SetOuterMut(Context, Features)
+    if (
+        Context.SourceFormat == "fusion.f3d"
+        and not Context.NativeReplay
+        and Geometry.SketchItems
+        and IsSketchWire(Manifest)
+    ):
+        Context.MetaObject.properties.append(
+            StringProp(KSketchEditBinding, Context.SketchesGroup.name, Dynamic=True)
+        )
     XmlData = SerializeDoc(Context, Features)
     if EditableFeatures is not None and Features.EditableFeatureId:
         EditableFeatures.add(Features.EditableFeatureId)

@@ -125,8 +125,18 @@ FreeCAD 1.1.3 checked 25 native Sketcher cases from 13 installed SDK exports
 against the saved Fusion measurements. Eleven dimensional edits survived
 native save and reopen. A driving radius changed from 12.5 to 18 mm, a
 reference radius followed a separate geometry edit, and moving a coincident
-endpoint moved both lines. SDK re-import of those edited sketches still
-reads the original Fusion snapshot.
+endpoint moved both lines.
+
+Newly exported standalone sketches with supported point, line, and circle
+geometry can also be read back after a FreeCAD save. Kit checks the original
+constraint and expression bindings, the worksheet values, the solved sketch
+geometry, and its saved shape. Driving dimensions retain their literal edits,
+and reference dimensions take their value from the solved geometry. The
+verified saves include radius, diameter, angle, a reference radius, and
+joined endpoints moved by dragging. The radius control passed a second
+native edit after re-export, from 18 to 21.25 mm. Older unbound archives are
+read as source snapshots. Sketches with downstream modeling features or
+unresolved source relations remain outside the saved edit path.
 
 For Extrude and Revolve, the document reader follows typed profile
 descriptors to their owning feature, sketch, and reciprocal loop record.

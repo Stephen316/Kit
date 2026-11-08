@@ -28,17 +28,19 @@ from interchange.document.models.DocumentModel import CadDocument
 
 # archive resource limits also apply to the native shape used as readback evidence
 def ReadEditBrep(
-    Archive: ZipFile, Members: Mapping[str, ZipInfo], ShapeEntry: str
+    Archive: ZipFile,
+    Members: Mapping[str, ZipInfo],
+    ShapeEntry: str,
+    Limit: int = KMaxCylinderBytes,
+    Purpose: str = "editable extrusion",
 ) -> bytes:
     EntryInfo = Members.get(ShapeEntry)
-    if EntryInfo is None or not 0 < EntryInfo.file_size <= KMaxCylinderBytes:
-        raise ValueError("FreeCAD editable extrusion has no readable shape entry")
+    if EntryInfo is None or not 0 < EntryInfo.file_size <= Limit:
+        raise ValueError(f"FreeCAD {Purpose} has no readable shape entry")
     try:
         return Archive.read(EntryInfo)
     except (BadZipFile, OSError, RuntimeError, NotImplementedError) as ErrorInfo:
-        raise ValueError(
-            "FreeCAD editable extrusion shape entry is corrupt"
-        ) from ErrorInfo
+        raise ValueError(f"FreeCAD {Purpose} shape entry is corrupt") from ErrorInfo
 
 
 # native unit normalization must not replace a source value for an unchanged literal
