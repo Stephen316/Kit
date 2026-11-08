@@ -123,6 +123,7 @@ from interchange.features.FeatureKinds import (
     ScaleFeature,
     ShellFeature,
 )
+from interchange.features.FeaturePlaneExt import PlaneExtrude
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.features.FeatureStep import FeatureCfgState, FeatureStep
 from interchange.geometry.models.GeometryConics import (
@@ -375,6 +376,7 @@ BindTypeGlobals(
 RegisterTypes(
     AngularRevolve,
     DistanceExtrude,
+    PlaneExtrude,
     PlaneRevolve,
     *(
         # nosemgrep: python.lang.security.dangerous-globals-use.dangerous-globals-use

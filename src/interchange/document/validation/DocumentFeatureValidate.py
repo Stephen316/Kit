@@ -11,12 +11,7 @@ from typing import Mapping as TypeMap
 from interchange.document.models.DocumentModel import (  # lgtm[py/cyclic-import]
     CadDocument,
 )
-from interchange.document.validation.AngleRevValidate import GetAngleRevErrs
-from interchange.document.validation.DistExtValidate import GetDistExtErrs
-from interchange.document.validation.PlaneRevValidate import GetPlaneRevErrs
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeaturePlaneRev import PlaneRevolve
+from interchange.document.validation.DocumentDefValidate import GetDefErrors
 
 
 # timeline checks protect ordering and every feature dependency from invalid references
@@ -36,6 +31,8 @@ def GetFeatureErrs(
         ErrorValues.append("feature order values are not unique")
     Selections = {Value.id: Value for Value in DocumentValue.selections}
     Parameters = {Value.id: Value for Value in DocumentValue.parameters}
+    Frames = {Value.id: Value for Value in DocumentValue.support_planes}
+    Sketches = {Value.id: Value for Value in DocumentValue.sketches}
     for FeatureValue in DocumentValue.feature_timeline:
         if (
             FeatureValue.sketch_id
@@ -61,30 +58,11 @@ def GetFeatureErrs(
                 ErrorValues.append(
                     f"feature {FeatureValue.id} references missing selection"
                 )
-        if isinstance(FeatureValue.definition, PlaneRevolve):
-            ErrorValues.extend(
-                GetPlaneRevErrs(
-                    FeatureValue,
-                    FeatureValue.definition,
-                    Selections,
-                    IdentitySets["support_planes"],
-                )
+        ErrorValues.extend(
+            GetDefErrors(
+                FeatureValue, IdentitySets, Selections, Parameters, Frames, Sketches
             )
-        elif isinstance(FeatureValue.definition, AngularRevolve):
-            ErrorValues.extend(
-                GetAngleRevErrs(
-                    FeatureValue, FeatureValue.definition, Selections, Parameters
-                )
-            )
-        elif isinstance(FeatureValue.definition, DistanceExtrude):
-            ErrorValues.extend(
-                GetDistExtErrs(
-                    FeatureValue,
-                    FeatureValue.definition,
-                    IdentitySets["sketches"],
-                    Parameters,
-                )
-            )
+        )
     for BodyValue in DocumentValue.bodies:
         if BodyValue.final_feature_id not in IdentitySets["feature_timeline"]:
             ErrorValues.append(f"body {BodyValue.id} references missing final feature")

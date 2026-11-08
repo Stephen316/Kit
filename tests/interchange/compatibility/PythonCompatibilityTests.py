@@ -19,6 +19,7 @@ from typing import Protocol, cast as TypeCast, runtime_checkable, TypeVar
 import interchange as InterchangeApi
 from interchange.features.FeatureAngleRev import AngularRevolve
 from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.features.FeaturePlaneExt import PlaneExtrude
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.serialization import KTypeRegistry
 from interchange.serialization import from_data as FromData
@@ -255,6 +256,6 @@ def CheckRegistry() -> None:
             or issubclass(getattr(ImportModule(ModuleName), ExportName), EnumBase)
         )
     }
-    IntendedTypes.update((AngularRevolve, DistanceExtrude, PlaneRevolve))
+    IntendedTypes.update((AngularRevolve, DistanceExtrude, PlaneExtrude, PlaneRevolve))
     assert set(KTypeRegistry.values()) == IntendedTypes
     assert set(KTypeRegistry) == {ClassType.__name__ for ClassType in IntendedTypes}
