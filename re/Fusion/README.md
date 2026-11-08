@@ -221,8 +221,14 @@ component frame, including offset and tilted frames. Fifteen saved Fusion
 captures verified 42 selected portions and 15 reconstructed solids against
 native topology and saved API volumes and bounds. Profiles with holes or
 general curves and trimmed draft require further coverage. The FreeCAD writer
-preserves the curved-cap solid as Kit data in carrier mode. Native FreeCAD
-export of those curved planar caps requires further writer support.
+can serialize these solids as native B-rep geometry. It verifies simple planar
+rings of lines and bounded circular arcs, matching cylindrical side faces,
+and coherent source shell orientations. FreeCAD 1.1.3 opened and recomputed
+the 15 standalone `.FCStd` files. Each contained one valid solid with matching
+topology, volume, surface area, bounds, and center of mass. The center of mass
+reference uses the saved Fusion profile centroid and extrusion placement.
+Fusion's editable Extrude definition and proprietary source data still require
+carrier mode in a direct `.f3d` to `.FCStd` transfer.
 
 ## Public SDK reader
 

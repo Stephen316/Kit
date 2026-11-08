@@ -58,6 +58,9 @@ from convert.adapters.freecad.BrepGraph import (
     ModelGraph,
     Unsupported,
 )
+from convert.adapters.freecad.CurvedSense import CheckCurvedUse
+from convert.adapters.freecad.CylinderLoop import IsCylinderLoop
+from convert.adapters.freecad.PlanarRing import CapRingArea
 
 # this binding exists because shared behavior needs one stable value
 KPoint = tuple[float, float, float]
@@ -2034,23 +2037,36 @@ def PlanarCircle(
     return (Center, Curve.radius)
 
 
-# this definition exists because focused behavior needs one stable owner
-def FaceIsProven(
+# face topology must be proven before orientation and serialization can use its boundary
+def ProveFace(
     Graph: ModelGraph,
     FaceValue: BrepFace,
     Tolerance: float,
     SeamBands: Mapping[str, SeamBand],
-) -> None:
+) -> dict[str, bool] | None:
     if FaceValue.id in SeamBands:
-        return
+        return None
     Surface = Graph.surfaces[FaceValue.surface_id]
+    Loops = tuple((Graph.loops[LoopId] for LoopId in FaceValue.loop_ids))
+    if (
+        isinstance(Surface, CylinderSurface)
+        and len(Loops) == 1
+        and IsCylinderLoop(Graph, FaceValue, Surface, Loops[0], Tolerance)
+    ):
+        return KFaceLoop(Graph, FaceValue, Tolerance)
     if not isinstance(Surface, PlaneSurface):
         Unsupported(
             f"face {FaceValue.id} on {type(Surface).__name__} lacks a proven native topology"
         )
-    Loops = tuple((Graph.loops[LoopId] for LoopId in FaceValue.loop_ids))
-    if len(Loops) == 1 and IsPlanarLoop(Graph, FaceValue, Loops[0], Tolerance):
-        return
+    if len(Loops) == 1:
+        if IsPlanarLoop(Graph, FaceValue, Loops[0], Tolerance):
+            return None
+        if len(Loops[0].coedge_ids) >= 2:
+            AreaValue = CapRingArea(
+                Graph, FaceValue, Surface, Loops[0], Tolerance, Frame
+            )
+            if AreaValue is not None:
+                return {Loops[0].id: AreaValue < 0.0}
     Circles = tuple(
         (PlanarCircle(Graph, FaceValue, LoopValue, Tolerance) for LoopValue in Loops)
     )
@@ -2064,6 +2080,7 @@ def FaceIsProven(
             or abs(Concrete[0][1] - Concrete[1][1]) <= Allowed
         ):
             Unsupported(f"planar face {FaceValue.id} has unproven circle containment")
+    return None
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -2406,9 +2423,13 @@ def BuildBrepState(Model: BrepModel, Tolerance: float) -> BrepWriteState:
     )
     PcurveRecords, EdgePcurves, SeamBands = EdgePcurveA(Model, Graph, Tolerance)
     LoopReversals: dict[str, bool] = {}
+    CurvedFaces: set[str] = set()
     for FaceValue in Model.faces:
-        FaceIsProven(Graph, FaceValue, Tolerance, SeamBands)
-        if FaceValue.id not in SeamBands:
+        CurvedLoops = ProveFace(Graph, FaceValue, Tolerance, SeamBands)
+        if CurvedLoops is not None:
+            CurvedFaces.add(FaceValue.id)
+            LoopReversals.update(CurvedLoops)
+        elif FaceValue.id not in SeamBands:
             LoopReversals.update(KFaceLoop(Graph, FaceValue, Tolerance))
     FaceEdges = {
         FaceValue.id: FaceEdge(Graph, FaceValue, LoopReversals, SeamBands)
@@ -2416,6 +2437,7 @@ def BuildBrepState(Model: BrepModel, Tolerance: float) -> BrepWriteState:
     }
     FaceUseReversals = ShellFace(Model, Graph, FaceEdges)
     ShellUseReversals = ShellUse(Model, Graph)
+    CheckCurvedUse(Model, Graph, CurvedFaces, FaceUseReversals, ShellUseReversals)
     CurveRecords = BaseCurves + tuple(
         (BandValue.curve_record, 1.0) for BandValue in SeamBands.values()
     )
