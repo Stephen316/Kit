@@ -21,10 +21,13 @@ def BuildArcs(
     EndVertices: tuple[BrepVertex, ...],
     StartRadians: float,
     EndRadians: float,
-) -> tuple[tuple[CircleCurve, ...], tuple[BrepEdge, ...]]:
+) -> tuple[tuple[CircleCurve, ...], tuple[BrepEdge | None, ...]]:
     Curves: list[CircleCurve] = []
-    Edges: list[BrepEdge] = []
+    Edges: list[BrepEdge | None] = []
     for Index, (Radius, Height) in enumerate(Meridian):
+        if Radius == 0.0:
+            Edges.append(None)
+            continue
         if StartVertices[Index].point == EndVertices[Index].point:
             raise ValueError("Revolve arc endpoints collapse in the spatial frame")
         CurveId = f"{Prefix}-curve-{Index}"

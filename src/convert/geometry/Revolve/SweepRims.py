@@ -21,20 +21,32 @@ def BuildRim(
     Meridian: tuple[tuple[float, float], ...],
     Frame: Transform,
     Radial: SpaceVector,
+    SharedAxis: tuple[tuple[BrepVertex, ...], tuple[BrepEdge, ...]] | None = None,
 ) -> tuple[tuple[BrepVertex, ...], tuple[LineCurve, ...], tuple[BrepEdge, ...]]:
     Vertices = tuple(
-        BrepVertex(
-            f"{Prefix}-vertex-{Index}",
-            OffsetVector(
-                OffsetVector(Frame.origin, Frame.z_axis, Height), Radial, Radius
-            ),
+        (
+            SharedAxis[0][Index]
+            if SharedAxis is not None and Radius == 0.0
+            else BrepVertex(
+                f"{Prefix}-vertex-{Index}",
+                OffsetVector(
+                    OffsetVector(Frame.origin, Frame.z_axis, Height), Radial, Radius
+                ),
+            )
         )
         for Index, (Radius, Height) in enumerate(Meridian)
     )
     Curves: list[LineCurve] = []
     Edges: list[BrepEdge] = []
     for Index, First in enumerate(Vertices):
-        Second = Vertices[(Index + 1) % len(Vertices)]
+        Following = (Index + 1) % len(Vertices)
+        if (
+            SharedAxis is not None
+            and Meridian[Index][0] == Meridian[Following][0] == 0.0
+        ):
+            Edges.append(SharedAxis[1][Index])
+            continue
+        Second = Vertices[Following]
         DeltaX = Second.point.x - First.point.x
         DeltaY = Second.point.y - First.point.y
         DeltaZ = Second.point.z - First.point.z

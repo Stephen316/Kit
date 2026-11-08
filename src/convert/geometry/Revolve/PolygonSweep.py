@@ -29,7 +29,7 @@ def BuildPolySweep(
     EndRadians: float,
 ) -> BrepModel:
     CheckSweepInput(BodyId, AxisOrigin, AxisDirection, Radial, StartRadians, EndRadians)
-    Profile = OrientMeridian(Meridian)
+    Profile = OrientMeridian(Meridian, AllowAxis=True)
     Frame = Transform(
         AxisOrigin, Radial, CrossVector(AxisDirection, Radial), AxisDirection
     )
@@ -40,7 +40,7 @@ def BuildPolySweep(
         f"{Prefix}-start", Profile, Frame, StartRadial
     )
     EndVertices, EndCurves, EndEdges = BuildRim(
-        f"{Prefix}-end", Profile, Frame, EndRadial
+        f"{Prefix}-end", Profile, Frame, EndRadial, (StartVertices, StartEdges)
     )
     ArcCurves, ArcEdges = BuildArcs(
         f"{Prefix}-orbit",
@@ -54,13 +54,25 @@ def BuildPolySweep(
     Surfaces, Faces, Loops, Coedges = BuildFaces(
         Prefix, Profile, Frame, StartRadial, EndRadial, StartEdges, EndEdges, ArcEdges
     )
+    RetainedVertices = tuple(
+        Value
+        for Initial, Value in zip(StartVertices, EndVertices, strict=True)
+        if Value is not Initial
+    )
+    RetainedEdges = tuple(
+        Value
+        for Initial, Value in zip(StartEdges, EndEdges, strict=True)
+        if Value is not Initial
+    )
     return BuildSweepModel(
         BodyId,
         Prefix,
         StartCurves + EndCurves + ArcCurves,
         Surfaces,
-        StartVertices + EndVertices,
-        StartEdges + EndEdges + ArcEdges,
+        StartVertices + RetainedVertices,
+        StartEdges
+        + RetainedEdges
+        + tuple(Value for Value in ArcEdges if Value is not None),
         Faces,
         Loops,
         Coedges,

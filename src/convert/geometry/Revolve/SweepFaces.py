@@ -28,7 +28,7 @@ def BuildFaces(
     EndRadial: SpaceVector,
     StartEdges: tuple[BrepEdge, ...],
     EndEdges: tuple[BrepEdge, ...],
-    ArcEdges: tuple[BrepEdge, ...],
+    ArcEdges: tuple[BrepEdge | None, ...],
 ) -> tuple[
     tuple[BrepSurface, ...],
     tuple[BrepFace, ...],
@@ -59,18 +59,26 @@ def BuildFaces(
     ]
     for Index, First in enumerate(Meridian):
         Following = (Index + 1) % len(Meridian)
+        Second = Meridian[Following]
+        if First[0] == Second[0] == 0.0:
+            continue
         Surface, SameSense = BuildSide(
-            f"{Prefix}-side-surface-{Index}", First, Meridian[Following], Frame
+            f"{Prefix}-side-surface-{Index}", First, Second, Frame
+        )
+        SideUses = (
+            (StartEdges[Index], True),
+            (ArcEdges[Index], False),
+            (EndEdges[Index], False),
+            (ArcEdges[Following], True),
         )
         Specs.append(
             (
                 Surface,
                 SameSense,
-                (
-                    (StartEdges[Index], True),
-                    (ArcEdges[Index], False),
-                    (EndEdges[Index], False),
-                    (ArcEdges[Following], True),
+                tuple(
+                    (EdgeValue, Reversed)
+                    for EdgeValue, Reversed in SideUses
+                    if EdgeValue is not None
                 ),
             )
         )

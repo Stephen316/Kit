@@ -40,7 +40,7 @@ def MeridianSense(
         and AxisCorners[1] - AxisCorners[0] in (1, len(Meridian) - 1)
     ):
         raise ValueError(
-            "full revolution axis contact requires one polygon side on the axis"
+            "revolution meridian requires positive radii or one polygon side on the axis"
         )
     Winding = 0
     for Index, (Radius, Height) in enumerate(Meridian):
@@ -48,15 +48,15 @@ def MeridianSense(
         for PointIndex, (PointRadius, PointHeight) in enumerate(Meridian):
             if PointIndex in (Index, (Index + 1) % len(Meridian)):
                 continue
-            Side = (EndRadius - Radius) * (PointHeight - Height) - (
+            SideValue = (EndRadius - Radius) * (PointHeight - Height) - (
                 EndHeight - Height
             ) * (PointRadius - Radius)
-            if not IsFinite(Side):
+            if not IsFinite(SideValue):
                 raise ValueError("revolution meridian exceeds finite geometry")
-            if Strict and Side == 0.0:
+            if Strict and SideValue == 0.0:
                 raise ValueError("Revolve meridian must be strictly convex")
-            if Side:
-                Direction = 1 if Side > 0.0 else -1
+            if SideValue:
+                Direction = 1 if SideValue > 0.0 else -1
                 if Winding and Direction != Winding:
                     raise ValueError(
                         "Revolve meridian must be strictly convex"

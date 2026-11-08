@@ -26,8 +26,8 @@ def MeasureSweep(
     EndRadians: float,
 ) -> tuple[float, float, BoundingBox]:
     """Measure a partial sweep of ordered radius and axial height pairs in millimetres."""
-    Span = EndRadians - StartRadians
-    if not 0.0 < Span < FullTurn:
+    Interval = EndRadians - StartRadians
+    if not 0.0 < Interval < FullTurn:
         raise ValueError("revolution sweep requires a finite increasing partial turn")
     return MeasureInterval(
         Meridian, AxisOrigin, AxisDirection, Radial, StartRadians, EndRadians
@@ -54,16 +54,16 @@ def MeasureInterval(
     EndRadians: float,
 ) -> tuple[float, float, BoundingBox]:
     CheckSweepFrame(AxisOrigin, AxisDirection, Radial)
-    Span = EndRadians - StartRadians
-    if not 0.0 < Span <= FullTurn:
+    Interval = EndRadians - StartRadians
+    if not 0.0 < Interval <= FullTurn:
         raise ValueError("revolution measure requires a finite increasing interval")
-    IsFull = Span == FullTurn
+    IsFull = Interval == FullTurn
     try:
-        Area, Moment, SideMoment = ProfileMetrics(Meridian, AllowAxis=IsFull)
+        CapArea, Moment, SideMoment = ProfileMetrics(Meridian, AllowAxis=True)
     except OverflowError as ErrorInfo:
         raise ValueError("revolution measures exceed finite geometry") from ErrorInfo
-    Volume = Span * Moment
-    Surface = Span * SideMoment + (0.0 if IsFull else 2.0 * Area)
+    Volume = Interval * Moment
+    Surface = Interval * SideMoment + (0.0 if IsFull else 2.0 * CapArea)
     Bounds = GetSweepBounds(
         Meridian, AxisOrigin, AxisDirection, Radial, StartRadians, EndRadians
     )

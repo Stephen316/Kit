@@ -7,6 +7,18 @@
 # to you under it immediately and permanently.
 
 
+from math import isfinite as IsFinite, ulp as FloatUlp
+
+
+# cancellation between radial projections may leave signed noise on the axis
+def RadialLevel(BaseValue: float, AlongX: float, AlongY: float) -> float:
+    Radius = BaseValue + AlongX + AlongY
+    Scale = max(abs(BaseValue), abs(AlongX), abs(AlongY))
+    if IsFinite(Scale) and abs(Radius) <= 8.0 * FloatUlp(Scale):
+        return 0.0
+    return Radius
+
+
 # joining adjacent roundoff levels keeps vertices and analytic carriers on the same coordinates
 def JoinLevels(Values: tuple[float, ...], Tolerance: float) -> tuple[float, ...]:
     Labels = list(range(len(Values)))
