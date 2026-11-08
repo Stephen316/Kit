@@ -53,8 +53,7 @@ def TestZipLayout() -> None:
         Entries = Archive.infolist()
         assert Archive.namelist() == [Member.Name for Member in Members]
         Bounds = [Entry.header_offset for Entry in Entries[1:]] + [Archive.start_dir]
-        assert Entries[0].header_offset == 0
-        assert not Archive.comment
+        assert (Entries[0].header_offset, Archive.comment) == (0, b"")
         for Entry, Member, Boundary in zip(Entries, Members, Bounds, strict=True):
             LocalFields = UnpackFrom("<I5H3I2H", DataValue, Entry.header_offset)
             NameStart = Entry.header_offset + 30

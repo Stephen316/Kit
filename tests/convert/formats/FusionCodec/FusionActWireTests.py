@@ -105,7 +105,8 @@ def TestActWirePair() -> None:
         KTestRoutes
     )
     assert tuple(
-        BulkData[Span.PayloadOffset : Span.EndOffset] for Span in Spans[1:]
+        BulkData[SpanValue.PayloadOffset : SpanValue.EndOffset]
+        for SpanValue in Spans[1:]
     ) == (WireFields("3_9"), WireFields("0_17"))
     assert [(RouteRow.Prefix, RouteRow.Residual) for RouteRow in TableValue.Routes] == [
         (0, 0),

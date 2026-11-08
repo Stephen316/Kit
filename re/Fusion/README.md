@@ -75,6 +75,16 @@ one older capture. Across 713 native archives, these codecs reproduced
 Fusion export still requires semantic writers for the remaining native
 records and validation in Fusion.
 
+The internal asset builder emits both manifests, all three core stream
+pairs, and empty root properties in a ZIP32 archive. It uses method 93
+with standard raw Zstandard blocks, including on Python versions without
+a Zstandard encoder. ACT field ownership and Browser route and folder
+references must agree with Design before the archive is emitted. Empty
+configuration sidecars require explicit selection and the exact member
+names declared by the typed Design triggers. This archive profile covers
+the core graph. Graphics caches, other auxiliary members, and a complete
+CAD document writer require separate work and verification in Fusion.
+
 `convert.formats.Fusion.ZipParameters.ReadZipParams` projects indexed
 numeric parameters into Kit's neutral `Parameter` records. It retains native
 expression text, display units, binding IDs, and source spans. Values use

@@ -76,14 +76,21 @@ sys.addaudithook(audit)
 sys.path.insert(0, sys.argv[1])
 
 from convert import available_adapters, convert, open_document, write_document
+from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionArchive
+from convert.formats.Fusion.AssetCodec.AssetPlan import AssetPlan
+from convert.formats.Fusion.AssetCodec.EmitAsset import EmitAsset
+from convert.formats.Fusion.AssetCodec.SegmentPlan import SegmentPlan
 from convert.formats.Fusion.BulkSpans import ReadBulkSpans
 from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.SegmentCodec.Browser.EmitBrowserRoot import EmitBrowserRoot
 from convert.formats.Fusion.SegmentCodec.Browser.ReadBrowserRoot import ReadBrowserRoot
 from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 from convert.formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
+from convert.formats.Fusion.SegmentCodec.Manifest.ReadAssetWire import ReadAssetWire
+from convert.formats.Fusion.SegmentCodec.Manifest.ReadRootWire import ReadRootWire
 from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 from convert.formats.Fusion.SourceProof.InspectSource import ReadFusionSourceProof
+from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ReadActiveMeta import ReadActiveMeta
 
 root = Path(sys.argv[2])
 output = Path(sys.argv[3])
@@ -115,6 +122,9 @@ if zstd is not None:
     assert proof.ActiveRoutes is not None and proof.ActiveRoutes.Routes
     assert not proof.IsComplete
     with ZipFile(capture) as archive:
+        root_meta = ReadRootWire(archive.read("Manifest.dat"))
+        asset_meta = ReadAssetWire(archive.read("FusionAssetName[Active]/Manifest.dat"))
+        segment_plans = {}
         for segment in SegmentKind:
             prefix = f"FusionAssetName[Active]/{segment.value}1/"
             bulk_data = archive.read(prefix + "BulkStream.dat")
@@ -125,7 +135,17 @@ if zstd is not None:
                 if segment is SegmentKind.KBrowser and span.ObjectId == 0 and span.IsPrimary:
                     payload = EmitBrowserRoot(ReadBrowserRoot(payload))
                 records.append(BulkRecord(span.TypeCode, span.ObjectId, span.IsPrimary, payload))
-            assert EmitSegment(ReadMetaWire(meta_data, Segment=segment), records) == (bulk_data, meta_data)
+            metadata = ReadMetaWire(meta_data, Segment=segment)
+            assert EmitSegment(metadata, records) == (bulk_data, meta_data)
+            segment_plans[segment] = SegmentPlan(metadata, tuple(records))
+    generated = EmitAsset(AssetPlan(
+        root_meta, asset_meta, segment_plans[SegmentKind.KDesign],
+        segment_plans[SegmentKind.KAct], segment_plans[SegmentKind.KBrowser], True,
+    ))
+    with OpenFusionArchive(generated) as archive:
+        generated_manifest = ReadActiveMeta(archive)
+        assert generated_manifest.AssetId == asset_meta.AssetId
+        assert generated_manifest.SnapshotId == asset_meta.SnapshotId
     angular_capture = root / "re" / "Fusion" / "Study" / "revolvemodes-8eb734486235" / "negative.f3d"
     angular_fusion = open_document(angular_capture, strict=False)
     assert type(angular_fusion.feature_timeline[-1].definition).__name__ == "AngularRevolve"

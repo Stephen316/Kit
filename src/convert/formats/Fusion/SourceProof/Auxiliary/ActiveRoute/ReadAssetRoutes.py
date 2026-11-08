@@ -10,17 +10,11 @@ from convert.formats.Fusion.ArchiveRead.IndexedArchive import IndexedArchive
 from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.RecordSpan import RecordSpan
-from convert.formats.Fusion.SourceProof.Auxiliary.ActiveRoute.ActiveRoute import (
-    ActiveRoute,
+from convert.formats.Fusion.SourceProof.Auxiliary.ActiveRoute.LinkActRoutes import (
+    LinkActRoutes,
 )
 from convert.formats.Fusion.SourceProof.Auxiliary.ActiveRoute.RouteEvidence import (
     RouteEvidence,
-)
-from convert.formats.Fusion.SourceProof.Auxiliary.ActiveRoute.ActRouteOwner import (
-    ReadActOwner,
-)
-from convert.formats.Fusion.SourceProof.Auxiliary.ActiveRoute.DesignRouteOwner import (
-    ReadDesignOwner,
 )
 from convert.formats.Fusion.SourceProof.Auxiliary.ActiveRoute.RouteMembers import (
     ReadRouteFiles,
@@ -62,27 +56,9 @@ def ReadAssetRoutes(
         for EntrySpan in ActFrame.Spans
         if EntrySpan.IsPrimary
     }
-    Routes = []
-    for RouteRow in Table.Routes:
-        Roles = tuple(RoleValue for RoleValue, _ in RouteRow.Roles)
-        Owner = None
-        if RouteRow.Prefix == 0:
-            Owner = ReadDesignOwner(
-                DesignBulk, DesignOwners, RouteRow.OwnerId, RouteRow.Key, Roles
-            )
-        elif RouteRow.Prefix == 1:
-            Owner = ReadActOwner(
-                ActFrame.BulkData, ActOwners, RouteRow.OwnerId, RouteRow.Key, Roles
-            )
-        Routes.append(
-            ActiveRoute(
-                RouteRow.Key,
-                RouteRow.Prefix,
-                RouteRow.FieldsSpan,
-                Owner,
-                RouteRow.Residual,
-            )
-        )
+    Routes = LinkActRoutes(
+        DesignBulk, DesignOwners, ActFrame.BulkData, ActOwners, Table
+    )
     return RouteEvidence(
         Manifest,
         DesignMember,
@@ -90,5 +66,5 @@ def ReadAssetRoutes(
         ActFrame.BulkMember,
         ActFrame.MetaMember,
         Table,
-        tuple(Routes),
+        Routes,
     )

@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
+#
+# This SPDX license identifier and copyright notice must not be
+# removed, altered, or obscured. Doing so is a material breach of
+# the PolyForm Strict License 1.0.0 and voids all licenses granted
+# to you under it immediately and permanently.
+
+from convert.formats.Fusion.SourceProof.Auxiliary.ReadAuxFrame import KActivePrefix
+
+# the active asset stores both configuration json members under the same directory
+KConfigPrefix = KActivePrefix + "DesignConfigurationTable.BlobParts/"
+
+# configuration serializers name their own sidecar in a counted logical filename
+KConfigClasses = {
+    "49B2AA69-7655-4C36-A14E-9582CCF1283C": ("DesignConfigurationTable", ".dsgcfg"),
+    "3185B924-6C84-4804-BE77-9105B09209DA": ("DesignConfigurationRule", ".dsgcfgrule"),
+}

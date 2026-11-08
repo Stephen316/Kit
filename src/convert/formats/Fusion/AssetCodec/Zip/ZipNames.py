@@ -36,11 +36,11 @@ def EncodeZipName(NameValue: str) -> bytes:
         raise ValueError("Unsafe or oversized Fusion ZIP member name")
     Parts = NameValue.removesuffix("/").split("/")
     if len(Parts) > KMaxPathDepth or any(
-        not Part
-        or Part.endswith((" ", "."))
-        or len(Part.encode("utf-8")) > KMaxPathPart
-        or Part.partition(".")[0].rstrip().casefold() in KDeviceNames
-        for Part in Parts
+        not Section
+        or Section.endswith((" ", "."))
+        or len(Section.encode("utf-8")) > KMaxPathPart
+        or Section.partition(".")[0].rstrip().casefold() in KDeviceNames
+        for Section in Parts
     ):
         raise ValueError("Unsafe Fusion ZIP member path")
     NameBytes = NameValue.encode("utf-8")
