@@ -17,6 +17,7 @@ Add the header to every new file in the repository, **except** files under:
 
 - `.kiro/` (this directory and everything below it)
 - `examples/` (this directory and everything below it)
+- `re/` (this directory and everything below it)
 
 Binary files that cannot contain a text comment (images, compiled artifacts, CAD binaries, etc.) are exempt for the obvious reason that there is nowhere to put it.
 
@@ -51,4 +52,4 @@ Never remove, edit, or truncate this header from an existing file. If a change r
 
 ## Verification
 
-Before considering any file-creation task complete, confirm every new file outside `.kiro/` and `examples/` carries this exact header as its first content.
+Before considering any file-creation task complete, confirm every new file outside `.kiro/`, `examples/`, and `re/` carries this exact header as its first content.

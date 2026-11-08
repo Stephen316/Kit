@@ -36,6 +36,19 @@ Each kebab-case skill is generated from its mapped PascalCase source file in
   file, and background Git operation as user-owned state. Preserve it and work
   around it unless the user explicitly says otherwise.
 
+## Reverse engineering workspace exemption
+
+The repository-root `re/` tree is an unrestricted research workspace. Do not
+apply unit-test requirements or code standards there, including naming,
+formatting, typing, imports, rationale comments, SPDX headers, declaration
+splitting, architecture, or directory-density rules. Do not add unit tests or
+run code-quality checks for `re/` as part of repository compliance.
+
+This exemption takes precedence over all code and testing guidance in this
+file, `.kiro/steering/`, and `.agents/skills/`. It applies only to `re/` and its
+descendants; code promoted into other directories follows their normal rules.
+Git isolation and preservation of user-owned work still apply.
+
 ## Test policy
 
 - Unit tests are prohibited. Do not add, restore, generate, or request tests of

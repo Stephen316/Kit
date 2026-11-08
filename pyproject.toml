@@ -60,6 +60,7 @@ include = [
 [tool.pytest.ini_options]
 addopts = "-ra"
 testpaths = ["tests"]
+norecursedirs = ["re"]
 python_files = ["*Test.py", "*Tests.py"]
 python_functions = ["test_*", "Test*", "Check*"]
 collect_imported_tests = false
@@ -95,6 +96,7 @@ target-version = "py311"
 line-length = 120
 src = ["src", "tests", "tools"]
 exclude = [".venv", "examples", "Parashell", "modules", "re", ".github/scripts"]
+force-exclude = true
 
 [tool.ruff.lint]
 select = ["E9", "F"]
@@ -121,7 +123,7 @@ enable_error_code = [
 ]
 explicit_package_bases = true
 files = ["src", "tests", "tools"]
-exclude = '^(\.venv|examples|Parashell|modules)/'
+exclude = '^(\.venv|examples|Parashell|modules|re)/'
 mypy_path = ["src", "typings", ".", "re/tooling/ghidra/Generation"]
 warn_unused_configs = true
 show_error_codes = true
@@ -129,7 +131,8 @@ pretty = true
 
 [tool.pyright]
 include = ["src", "tests", "tools"]
-exclude = [".venv", "examples", "Parashell", "modules", "tests/oracle"]
+exclude = [".venv", "examples", "Parashell", "modules", "re", "tests/oracle"]
+ignore = ["re"]
 typeCheckingMode = "strict"
 pythonVersion = "3.11"
 reportAssertTypeFailure = "error"

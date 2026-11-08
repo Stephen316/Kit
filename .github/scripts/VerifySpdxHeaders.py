@@ -29,8 +29,8 @@ KSkillLicenseField = "license: MIT"
 # complete commit identifiers keep diff and worktree selection free from revision expression ambiguity
 KFullShaPattern = Regex.compile(r"\A[0-9a-f]{40}\Z")
 
-# exempt prefixes stay narrow because only steering sources and vendor examples omit normal headers
-KExemptPrefixes = (".kiro/", "examples/")
+# exempt prefixes stay narrow because steering sources and vendor examples omit normal headers
+KExemptPrefixes = (".kiro/", "examples/", "re/")
 
 # canonical notice remains exempt because it is the uncommented source used to render headers
 KExemptPaths = frozenset({"HEADER_NOTICE"})

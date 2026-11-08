@@ -35,3 +35,4 @@ After formatting, confirm the files are clean by running the formatter in check 
 ## Ignored directories
 
 - /Parashell/
+- /re/

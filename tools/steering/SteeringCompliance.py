@@ -1252,6 +1252,8 @@ def ReadSource(SourcePath: FilePath) -> str:
 
 # one source pipeline preserves header diagnostics even when python syntax is invalid
 def CheckSource(SourcePath: FilePath, SourceText: str) -> list[Finding]:
+    if HasSkippedPart(SourcePath, SourcePath.parent):
+        return []
     FindingList = CheckHeader(SourcePath, SourceText)
     try:
         SyntaxTree = AstLib.parse(SourceText, filename=str(SourcePath))
@@ -1273,13 +1275,17 @@ def CheckSource(SourcePath: FilePath, SourceText: str) -> list[Finding]:
 
 # filesystem loading stays separate because baseline sources come directly from git objects
 def CheckFile(SourcePath: FilePath) -> list[Finding]:
+    if HasSkippedPart(SourcePath, SourcePath.parent):
+        return []
     return CheckSource(SourcePath, ReadSource(SourcePath))
 
 
 # directory filtering avoids dependencies because generated files do not belong to repository compliance
 def HasSkippedPart(SourcePath: FilePath, RootPath: FilePath) -> bool:
     RelativePath = SourcePath.relative_to(RootPath)
-    return any(PartText in KSkipFolders for PartText in RelativePath.parts)
+    return SourcePath.resolve().is_relative_to(
+        FilePath(__file__).resolve().parents[2] / "re"
+    ) or any(PartText in KSkipFolders for PartText in RelativePath.parts)
 
 
 # path expansion supports mixed files and trees with deduplication and explicit input errors
@@ -1297,7 +1303,9 @@ def ResolvePaths(PathValues: list[FilePath | str]) -> list[FilePath]:
         else:
             CandidatePaths = sorted(InputPath.rglob("*.py"))
         for SourcePath in CandidatePaths:
-            if InputPath.is_dir() and HasSkippedPart(SourcePath, InputPath):
+            if HasSkippedPart(
+                SourcePath, InputPath if InputPath.is_dir() else InputPath.parent
+            ):
                 continue
             if SourcePath not in SeenFiles:
                 SeenFiles.add(SourcePath)
