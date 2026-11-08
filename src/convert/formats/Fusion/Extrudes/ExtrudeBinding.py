@@ -8,6 +8,7 @@
 
 from convert.formats.Fusion.Extrudes.ExtrudeInputs import ExtrudeInputs
 from convert.formats.Fusion.HistoryRef import ReadNativeRef
+from convert.formats.Fusion.NativeParam import NativeParam
 from convert.formats.Fusion.NumericParam import KParamGuid, ReadNativeNum
 from convert.formats.Fusion.ParamBinding import ResolveOwner
 from convert.formats.Fusion.RecordSpan import RecordSpan
@@ -27,7 +28,7 @@ def CheckExtBinding(
     FeatureId: int,
     BindingId: int,
     RoleName: str,
-) -> None:
+) -> NativeParam:
     Cursor = SelectCursor(BulkData, Owners, BindingId, KExtrudeBinding)
     Cursor.Offset = 29
     ParamId = ReadNativeRef(Cursor)
@@ -38,6 +39,7 @@ def CheckExtBinding(
     Resolved = ResolveOwner(BulkData, Owners, ParamData, Owners[ParamId])
     if Resolved is None or Resolved[0].ObjectId != FeatureId:
         raise ValueError("Fusion Extrude numeric binding owner disagrees")
+    return ParamData
 
 
 # independent cache and binding backlinks prove these values belong to the feature
