@@ -1,0 +1,58 @@
+# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
+# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
+#
+# This SPDX license identifier and copyright notice must not be
+# removed, altered, or obscured. Doing so is a material breach of
+# the PolyForm Strict License 1.0.0 and voids all licenses granted
+# to you under it immediately and permanently.
+
+from math import hypot as Hypot
+
+from convert.adapters.freecad.Cylinder.CylinderFrame import (
+    CylinderGap,
+    KAxisTolerance,
+    ProjectCylinder,
+    NormCylinder,
+)
+from convert.adapters.freecad.Cylinder.CylinderSpan import CylinderSpan
+from convert.geometry.Revolve.SweepVector import CrossVector, OffsetVector
+from interchange.brep.curves.BrepCurves import LineCurve
+from interchange.brep.surfaces.BrepSurfaces import CylinderSurface
+from interchange.geometry.models.VectorSpace import SpaceVector
+
+
+# a generator remains on the carrier at one angular coordinate for its entire span
+def ReadCylRail(
+    Curve: LineCurve,
+    Surface: CylinderSurface,
+    AxisValue: SpaceVector,
+    Params: tuple[float, float],
+    Vertices: tuple[SpaceVector, SpaceVector],
+    Allowed: float,
+) -> CylinderSpan | None:
+    Direction = NormCylinder(Curve.direction)
+    if Direction is None:
+        return None
+    AxisCross = CrossVector(Direction, AxisValue)
+    if Hypot(AxisCross.x, AxisCross.y, AxisCross.z) > KAxisTolerance:
+        return None
+    Points = tuple(
+        OffsetVector(Curve.origin, Curve.direction, Param) for Param in Params
+    )
+    if any(
+        not CylinderGap(PointValue, Vertex) <= Allowed
+        for PointValue, Vertex in zip(Points, Vertices)
+    ):
+        return None
+    Start, FirstRadial = ProjectCylinder(Points[0], Surface.origin, AxisValue)
+    Finish, LastRadial = ProjectCylinder(Points[1], Surface.origin, AxisValue)
+    if (
+        not abs(Start - Finish) > Allowed
+        or not CylinderGap(FirstRadial, LastRadial) <= Allowed
+        or any(
+            not abs(Hypot(Radial.x, Radial.y, Radial.z) - Surface.radius) <= Allowed
+            for Radial in (FirstRadial, LastRadial)
+        )
+    ):
+        return None
+    return CylinderSpan(Start, Finish, FirstRadial, LastRadial, 0.0)
