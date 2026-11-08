@@ -54,15 +54,24 @@ def ReadVisible(
 
 
 # independent wire cache geometry must corroborate every visible point and curve
-def IsSketchCache(ShapeData: bytes, SketchValue: Sketch, FrameValue: Transform) -> bool:
+def IsSketchCache(
+    ShapeData: bytes,
+    SketchValue: Sketch,
+    FrameValue: Transform,
+    ClosedWire: bool = False,
+) -> bool:
     if len(ShapeData) > KMaxSketchBytes:
         return False
     try:
         Curves, Points = ReadVisible(SketchValue, FrameValue)
         if not ShapeData:
-            return not Curves and not Points
+            return not ClosedWire and not Curves and not Points
         DataValue = ReadSavedWire(ShapeData, len(Curves), len(Points))
         RootValue = DataValue.Records[DataValue.RootRef.RecordA]
+        if ClosedWire and (
+            RootValue.KindValue != b"Wi" or RootValue.FlagBits[4] != "1"
+        ):
+            return False
         Children = (
             RootValue.Children if RootValue.KindValue == b"Co" else (DataValue.RootRef,)
         )

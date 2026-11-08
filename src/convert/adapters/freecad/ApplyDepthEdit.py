@@ -10,9 +10,8 @@ from dataclasses import replace as Replace
 
 from convert.adapters.freecad.ApplyDepthParams import ReadDepthParams
 from convert.adapters.freecad.ApplyProfileEdit import GetProfileEdits
-from convert.geometry.Extrude.Circular.CircularExtrude import BuildCircular
+from convert.adapters.freecad.EditExtSolid import BuildEditSolid, KEditProfile
 from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.GeometryCurves import CircleGeometry
 from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.Transform import Transform
 from interchange.records.RecordParameter import Parameter
@@ -24,7 +23,7 @@ def ApplyDepthEdit(
     ParameterId: str,
     SourceText: str | None,
     DistanceMm: float,
-    Profile: CircleGeometry,
+    Profile: KEditProfile,
     FrameValue: Transform,
     ParameterEdits: tuple[Parameter, ...] = (),
     EditedSketch: Sketch | None = None,
@@ -43,9 +42,8 @@ def ApplyDepthEdit(
     SketchValues = GetProfileEdits(DocValue, Profile, FrameValue, EditedSketch)
     if ParamValues is DocValue.parameters and SketchValues is DocValue.sketches:
         return DocValue
-    Lower, Upper = sorted((0.0, DepthMm))
-    BrepValue, Volume, AreaValue, Bounds = BuildCircular(
-        BodyValue.id, FrameValue, Profile, Lower, Upper, Profile.radius, Profile.radius
+    BrepValue, Volume, AreaValue, Bounds = BuildEditSolid(
+        BodyValue.id, FrameValue, Profile, DepthMm
     )
     Topology = Replace(
         BodyValue.topology,

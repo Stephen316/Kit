@@ -104,7 +104,7 @@ def ReadEditFields(
             "FreeCAD editable extrusion plan disagrees with the embedded document"
         )
     Objects = ParseObjects(RootValue)
-    if AllowProfile:
+    if AllowProfile or PlanValue.LineRing:
         CheckProfileSet(Objects, DocValue)
     Feature = FindEditObject(Objects, StepValue.id)
     if Feature is None or Feature.type_id == "Part::Feature":
@@ -115,11 +115,16 @@ def ReadEditFields(
     if EditScalar(BodyObj, "Tip", "App::PropertyLink", "Link") != Feature.name:
         raise ValueError("FreeCAD editable extrusion body tip changed")
     ProfileSketch = CheckEditProf(
-        Objects, Feature, SketchValue, PlaneValue, AllowProfile
+        Objects, Feature, SketchValue, PlaneValue, AllowProfile, PlanValue.LineRing
     )
     DepthMm = ReadEditDepth(Feature, PlanValue.Direction)
     SourceText, ParameterEdits = ReadEditText(
-        Objects, Feature, DocValue, Definition, DepthMm, StrictLayout=AllowProfile
+        Objects,
+        Feature,
+        DocValue,
+        Definition,
+        DepthMm,
+        StrictLayout=AllowProfile or PlanValue.LineRing,
     )
     SketchEntry, EmptyEntries, Independent = ReadScopedParts(
         Objects, Feature, DocValue, PlanValue.SketchId

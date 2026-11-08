@@ -15,6 +15,7 @@ from convert.adapters.freecad.ArchiveEditPlan import KProfileBinding, ReadArchiv
 from convert.adapters.freecad.EditableExt import EditExtrude, FindEditFrame
 from convert.adapters.freecad.EditBinding import HasLegacyEdit, ReadEditBinding
 from convert.adapters.freecad.EditExtProfile import GetEditCircle
+from convert.adapters.freecad.EditExtRing import GetEditRing
 from convert.adapters.freecad.EditRead.ReadControls import EditFields, ReadEditFields
 from convert.adapters.freecad.EditShape.CylinderShape import (
     IsEditCylinder,
@@ -22,8 +23,15 @@ from convert.adapters.freecad.EditShape.CylinderShape import (
 )
 from convert.adapters.freecad.EditShape.SketchWire import IsSketchWire
 from convert.adapters.freecad.EditShape.OpenSketch import IsOpenSketchCache
+from convert.adapters.freecad.EditShape.PrismShape import IsEditPrism, KMaxPrismBytes
+from convert.adapters.freecad.EditShape.SavedSketchWire import (
+    IsSketchCache,
+    KMaxSketchBytes,
+)
+from convert.geometry.Extrude.Polygon.PrismRing import ReadPrismRing
 from convert.geometry.Formula.Arithmetic import EvalFormula, ReadFormula
 from interchange.document.models.DocumentModel import CadDocument
+from interchange.geometry.models.GeometryCurves import CircleGeometry
 
 
 # archive resource limits also apply to the native shape used as readback evidence
@@ -82,6 +90,8 @@ def ReconcileEdit(
     if EditPlan is None:
         return DocValue
     _, Plan = EditPlan
+    if Plan.LineRing and Binding is None:
+        return DocValue
     Fields = ReadEditFields(
         RootValue, DocValue, Plan, AllowProfile=ProfileBinding is not None
     )
@@ -95,7 +105,8 @@ def ReconcileEdit(
     if ProfileFrame is None:
         raise ValueError("FreeCAD editable extrusion source sketch is unavailable")
     SketchValue, PlaneValue = ProfileFrame
-    Profile = GetEditCircle(DocValue.feature_timeline[-1], Fields.ProfileSketch)
+    ReadProfile = GetEditRing if Plan.LineRing else GetEditCircle
+    Profile = ReadProfile(DocValue.feature_timeline[-1], Fields.ProfileSketch)
     FrameValue = PlaneValue.transform
     if Profile is None:
         raise ValueError("FreeCAD editable extrusion source profile is unavailable")
@@ -103,9 +114,20 @@ def ReconcileEdit(
         Fields.ProfileSketch if Fields.ProfileSketch is not SketchValue else None
     )
     if Fields.SketchEntry and Members[Fields.SketchEntry].file_size:
-        if not IsSketchWire(
-            ReadEditBrep(Archive, Members, Fields.SketchEntry), FrameValue, Profile
-        ):
+        SketchData = ReadEditBrep(
+            Archive,
+            Members,
+            Fields.SketchEntry,
+            KMaxSketchBytes if Plan.LineRing else KMaxCylinderBytes,
+        )
+        IsSound = (
+            IsSketchWire(SketchData, FrameValue, Profile)
+            if isinstance(Profile, CircleGeometry)
+            else IsSketchCache(
+                SketchData, Fields.ProfileSketch, FrameValue, ClosedWire=True
+            )
+        )
+        if not IsSound:
             raise ValueError("FreeCAD editable sketch cache disagrees with its profile")
     elif EditedSketch is not None:
         raise ValueError("FreeCAD editable profile has no saved sketch shape")
@@ -118,8 +140,20 @@ def ReconcileEdit(
             raise ValueError(
                 "FreeCAD unrelated sketch cache disagrees with its geometry"
             )
-    ShapeData = ReadEditBrep(Archive, Members, Fields.ShapeEntry)
-    if not IsEditCylinder(ShapeData, FrameValue, Profile, Fields.DistanceMm):
+    ShapeData = ReadEditBrep(
+        Archive,
+        Members,
+        Fields.ShapeEntry,
+        KMaxPrismBytes if Plan.LineRing else KMaxCylinderBytes,
+    )
+    IsSound = (
+        IsEditCylinder(ShapeData, FrameValue, Profile, Fields.DistanceMm)
+        if isinstance(Profile, CircleGeometry)
+        else IsEditPrism(
+            ShapeData, FrameValue, ReadPrismRing(Profile), Fields.DistanceMm
+        )
+    )
+    if not IsSound:
         raise ValueError(
             "FreeCAD editable extrusion shape disagrees with its live controls"
         )

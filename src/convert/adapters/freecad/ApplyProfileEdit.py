@@ -10,6 +10,9 @@ from dataclasses import replace as Replace
 
 from convert.adapters.freecad.EditableExt import FindEditFrame
 from convert.adapters.freecad.EditExtProfile import GetCenterPoint, GetEditCircle
+from convert.adapters.freecad.EditExtRing import GetEditRing
+from convert.adapters.freecad.EditExtSolid import KEditProfile
+from convert.adapters.freecad.EditRing.RingChange import CheckRingEdit
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.geometry.models.GeometryCurves import CircleGeometry
 from interchange.geometry.models.Sketch import Sketch
@@ -52,7 +55,7 @@ def CheckProfEdit(
 # a rebuilt body and its sketch must use the same proven edited circle and frame
 def GetProfileEdits(
     DocValue: CadDocument,
-    Profile: CircleGeometry,
+    Profile: KEditProfile,
     FrameValue: Transform,
     EditedSketch: Sketch | None,
 ) -> tuple[Sketch, ...]:
@@ -61,15 +64,19 @@ def GetProfileEdits(
     if Found is None or Found[1].transform != FrameValue:
         raise ValueError("FreeCAD editable extrusion source profile frame changed")
     Original = Found[0]
-    Before = GetEditCircle(Feature, Original)
+    ReadProfile = GetEditCircle if isinstance(Profile, CircleGeometry) else GetEditRing
+    Before = ReadProfile(Feature, Original)
     Current = Original if EditedSketch is None else EditedSketch
-    if Before is None or GetEditCircle(Feature, Current) != Profile:
+    if Before is None or ReadProfile(Feature, Current) != Profile:
         raise ValueError(
             "FreeCAD editable extrusion rebuilt profile disagrees with its sketch"
         )
     if Current == Original:
         return DocValue.sketches
-    CheckProfEdit(Original, Current, Before, Profile)
+    if isinstance(Before, CircleGeometry) and isinstance(Profile, CircleGeometry):
+        CheckProfEdit(Original, Current, Before, Profile)
+    else:
+        CheckRingEdit(Original, Current)
     return tuple(
         Current if Value.id == Original.id else Value for Value in DocValue.sketches
     )

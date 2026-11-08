@@ -1932,7 +1932,7 @@ def GetPlanarPoints(
     return (tuple(Points), Allowed) if len(Points) >= 3 else None
 
 
-# planar cross products stay centralized because convexity and intersection tests share exact arithmetic
+# planar cross products stay centralized because corner and intersection tests share arithmetic
 def GetCrossValue(
     LeftPoint: tuple[float, float],
     RightPoint: tuple[float, float],
@@ -1943,17 +1943,15 @@ def GetCrossValue(
     ) * (TestPoint[0] - LeftPoint[0])
 
 
-# convexity checking remains a predicate because only consistently signed nonzero turns are proven
-def IsConvexLoop(Points: tuple[tuple[float, float], ...], Epsilon: float) -> bool:
-    Turns: list[bool] = []
+# nondegenerate corners establish a boundary even when some turns reverse on a concave face
+def HasPlanarTurns(Points: tuple[tuple[float, float], ...], Epsilon: float) -> bool:
     for Index, MiddlePoint in enumerate(Points):
         LeftPoint = Points[Index - 1]
         RightPoint = Points[(Index + 1) % len(Points)]
         TurnValue = GetCrossValue(LeftPoint, MiddlePoint, RightPoint)
-        if abs(TurnValue) <= Epsilon:
+        if not MathValue.isfinite(TurnValue) or abs(TurnValue) <= Epsilon:
             return False
-        Turns.append(TurnValue > 0.0)
-    return not any(Value != Turns[0] for Value in Turns[1:])
+    return True
 
 
 # intersection detection remains a predicate because self crossing loops cannot prove planar topology
@@ -1984,7 +1982,7 @@ def HasCrossings(Points: tuple[tuple[float, float], ...], Epsilon: float) -> boo
     return False
 
 
-# planar loop proof composes point convexity and crossing evidence because each can reject independently
+# planar loop proof requires nondegenerate corners and rejects ambiguous crossings independently
 def IsPlanarLoop(
     Graph: ModelGraph, FaceValue: BrepFace, LoopValue: BrepLoop, Tolerance: float
 ) -> bool:
@@ -1998,7 +1996,7 @@ def IsPlanarLoop(
         for AxisValue in (0, 1)
     )
     Epsilon = Allowed * max(1.0, SpanValue)
-    return IsConvexLoop(Points, Epsilon) and not HasCrossings(Points, Epsilon)
+    return HasPlanarTurns(Points, Epsilon) and not HasCrossings(Points, Epsilon)
 
 
 # this definition exists because focused behavior needs one stable owner

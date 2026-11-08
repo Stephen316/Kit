@@ -11,6 +11,7 @@ from dataclasses import dataclass as MakeDataClass
 from convert.adapters.freecad.EditExtBody import IsEditExtBody
 from convert.adapters.freecad.EditExtDepth import GetEditDepth
 from convert.adapters.freecad.EditExtProfile import GetCenterPoint, GetEditCircle
+from convert.adapters.freecad.EditExtRing import GetEditRing
 from convert.adapters.freecad.EditExtScope import IsEditExtScope
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureDistExt import DistanceExtrude
@@ -29,6 +30,7 @@ class EditExtrude:
     Direction: SpaceVector
     HasFormula: bool = False
     ProfileEditable: bool = False
+    LineRing: bool = False
 
 
 # profile placement belongs to the linked sketch regardless of native object ordering
@@ -68,7 +70,9 @@ def ReadEditExtrude(
     ):
         return None
     try:
-        Profile = GetEditCircle(FeatureValue, SketchValue)
+        Circle = GetEditCircle(FeatureValue, SketchValue)
+        Ring = GetEditRing(FeatureValue, SketchValue) if Circle is None else None
+        Profile = Circle if Circle is not None else Ring
         DepthMm = GetEditDepth(FeatureValue, Definition, DocValue.parameters)
         if (
             Profile is None
@@ -91,5 +95,6 @@ def ReadEditExtrude(
         DepthMm,
         Definition.Direction,
         bool(Along.expression and Along.expression.parameter_ids),
-        GetCenterPoint(SketchValue) is not None,
+        Ring is not None or GetCenterPoint(SketchValue) is not None,
+        Ring is not None,
     )

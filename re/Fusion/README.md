@@ -303,6 +303,18 @@ The resulting cylinder measured 9555.9395 mm³ and had its centroid at
 re-export, with a radius of 8.75 mm and a signed depth of −5 mm. This path
 covers the single unconstrained circular profile and its center point.
 
+The same editable extrusion path also handles a single simple line ring
+with exact native endpoint identities. The FreeCAD sketch links both ends
+of each line to their Fusion point records, so a corner moves both adjacent
+edges. Kit checks the saved wire, signed depth, and complete planar prism
+topology before accepting the edit. Four tracked rectangle archives qualify.
+In FreeCAD 1.1.3, moving one corner of the 40 × 30 mm control to (14, 8) mm
+and setting a depth of −13.5 mm produced a valid concave prism of 4995 mm³.
+After re-export, another edit moved that corner to (31, 24) mm and set a
+depth of 12.75 mm. Kit preserved the original Fusion identities and source
+archive through both saves. A separate synthetic control verified a
+formula-driven signed depth on a translated XZ frame.
+
 For verified part histories with independent active solid creators, Kit also
 reconstructs the saved Extrude bodies from the profile and distance controls.
 The creator's explicit result anchor must match the body in its current
