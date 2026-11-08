@@ -8,7 +8,8 @@
 
 from convert.formats.Fusion.BodyInputs.CombineInputs import KCombineGuid, ReadCombInputs
 from convert.formats.Fusion.BodyInputs.MirrorInputs import KMirrorGuid, ReadMirrInputs
-from convert.formats.Fusion.BodyInputs.ScaleInputs import KScaleGuid, ReadScaleInputs
+from convert.formats.Fusion.BodyInputs.ScaleControls import KScaleGuid
+from convert.formats.Fusion.BodyInputs.ScaleInputs import ReadScaleInputs
 from convert.formats.Fusion.BodyInputs.ShellInputs import KShellGuid, ReadShellInputs
 from interchange.enums.EnumFeatures import FeatureKind
 

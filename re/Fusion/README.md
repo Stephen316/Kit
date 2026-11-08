@@ -255,8 +255,18 @@ empty topology path.
 The public reader recovered 44 inputs from 30 tracked features, including
 swapped Combine roles, a two-body Shell whose order differs from its body
 inventory, and Mirror's repeated collection order. Face and occurrence
-contexts, other historical body creators, and geometry regeneration for these
-features remain outside this projection.
+contexts and other historical body creators remain outside this selection
+projection.
+
+Qualified terminal Scale features also reconstruct their final prism solids
+from the source sketches, Extrude distances, and ordered Scale controls.
+The SDK retains uniform or per-axis parameter links and a separately verified
+component origin, sketch point, or ByPoint construction centre. Every
+transformed prism must match the mapped saved ASM body's identity, incidence,
+vertices, bounded edges, and face planes before Kit publishes the final set.
+Six tracked captures passed, including expansion, contraction, nonuniform
+scaling, and a two-body Scale around a displaced point. BRep-vertex centres
+and native Scale export remain open.
 
 Full-turn polygons, ring tori, and spheres use periodic topology. The
 tracked annular solid, cone, torus, and sphere matched their saved body

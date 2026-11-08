@@ -24,6 +24,7 @@ from convert.formats.Fusion.PlaneProjection import ProjectPlanes
 from convert.formats.Fusion.Profiles.ProfileProjection import ProjectProfiles
 from convert.formats.Fusion.Revolves.RevolveBody import ProjectRevBody
 from convert.formats.Fusion.Revolves.RevolveProject import ProjectRevolves
+from convert.formats.Fusion.Scales.ScaleProject import ProjectScale
 from convert.formats.Fusion.Sketches.SketchRules import AttachRules
 from convert.formats.Fusion.Sketches.SketchProjection import ProjectSketches
 from convert.formats.Fusion.SourceBytes import LoadFusionBytes
@@ -96,6 +97,7 @@ def ReadFusionDoc(
     Steps, PlanePicks, PlaneExtIssues = ProjectPlaneExts(
         BulkData, Spans, History.OwnerId, Steps, Parameters, Planes + Frames, Sketches
     )
+    LoadBlob = BindArgs(ReadBodyBlob, DataValue, InflateZstd=InflateZstd)
     Steps, Selections, RevolveIssues = ProjectRevolves(
         BulkData,
         Spans,
@@ -104,7 +106,7 @@ def ReadFusionDoc(
         Planes,
         Frames,
         Sketches,
-        BindArgs(ReadBodyBlob, DataValue, InflateZstd=InflateZstd),
+        LoadBlob,
     )
     Selections += PlanePicks
     ResolvedExts = {
@@ -202,5 +204,6 @@ def ReadFusionDoc(
     )
     Document = ProjectBodyList(Document, BulkData, Spans, History)
     Document = ProjectBodyPicks(Document, BulkData, Spans, History)
+    Document = ProjectScale(Document, BulkData, Spans, History, LoadBlob)
     Document.AssertValid()
     return Document

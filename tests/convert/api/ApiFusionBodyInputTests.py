@@ -85,7 +85,11 @@ def TestBodyInputs(
     assert StepValue.attributes.get("fusion.combine.keep_tool_bodies") is KeepTools
     assert Capability.KSelections in Document.capabilities
     Selections = {Value.id: Value for Value in Document.selections}
-    Picks = tuple(Selections[Identity] for Identity in StepValue.selection_ids)
+    Picks = tuple(
+        Selections[Identity]
+        for Identity in StepValue.selection_ids
+        if Selections[Identity].query.get("kind") == "historical_body"
+    )
     assert (
         tuple(
             (
