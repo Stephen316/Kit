@@ -105,7 +105,7 @@ def ModelRows(SourceText: str) -> frozenset[tuple[str, str, str]]:
 
 # workflow configuration must scan every suite and maintained repository language
 def TestFlowScope() -> None:
-    SourceText = LoadText(".github/workflows/CodeqlSecurity.yml")
+    SourceText = LoadText(".github/workflows/MergeQueue.yml")
     ConfigText = LoadText(".github/CodeQL/CodeqlConfig.yml")
     SuiteText = LoadText(".github/CodeQL/PythonMaximal.qls")
     assert "config-file: ./.github/CodeQL/CodeqlConfig.yml" in SourceText

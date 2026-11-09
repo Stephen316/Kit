@@ -5,90 +5,64 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Agent guidance
 
-## Portable steering
+Use [standard-pr-practice](.agents/skills/standard-pr-practice/SKILL.md) for
+repository changes and PR follow-up. It is the only repository skill and the
+canonical source for Codex and Claude Code. Edit it directly. Do not restore
+the removed Kiro skill registrations, steering directories, or skill generator.
+All prior rules and resources are preserved in full inside standard-pr-practice;
+read its complete standards index and every applicable rule before coding.
 
-The portable version of this repository's Kiro steering lives in
-`.agents/skills/` as [Agent Skills](https://agentskills.io/specification).
-Each kebab-case skill is generated from its mapped PascalCase source file in
-`.kiro/steering/`.
+- Use an isolated worktree and a separate normal PR for each task. Preserve
+  user-owned changes and never write directly to `main`.
+- Push with `--no-verify`. Never run tests locally, including collection,
+  reproductions, hooks, or build commands that execute tests.
+- Unit tests are prohibited, including policy, security, and tooling unit
+  tests. Validate through integration, end-to-end, smoke, compatibility, and
+  repository policy checks at real component or process boundaries.
+- Run heavy acceptance and security checks on the merge-group candidate through
+  [the native merge queue](MergeQueue.md). Keep every applicable CI gate enabled.
+  Distinguish green PR checks from successful queue acceptance.
+- Use `Pull Request / CI Agg` for overall CI health, excluding Cubic. Reuse healthy
+  PR reports in the queue only with verified identical inputs; otherwise rerun.
+  Header and change-range verification and heavy acceptance always execute on
+  the candidate.
+  Use Cubic's existing status indicator without a duplicate approval workflow.
+- Cubic is the only automated PR reviewer. Request exactly
+  `@cubic-dev-ai review this PR` once per accepted head unless that head already
+  has a request or review. Verify the responding account/app and reviewed SHA,
+  address all findings, and require its actual `APPROVED` review on the current
+  head. Comments and a green reviewer check do not substitute for approval.
+  No human or code-owner approval is required. Report unavailable review
+  evidence separately.
+- Only an explicit merge request from a verified repository administrator
+  authorizes an agent to enroll a PR in the queue, enable auto-merge, or merge.
+  Verify the requester's identity and current repository `admin` permission.
+  Implementation requests and PR creation alone do not authorize merging.
+- Use Python for backend work, React for frontend work, and `uv` for Python
+  dependencies outside `Parashell/` and `modules/`.
+- Do not add code comments or comment-oriented docstrings. Preserve required
+  license notices. Use `license: MIT` in skill frontmatter, the exact
+  `HEADER_NOTICE` for other comment-capable new files, and pinned Actions and
+  runner versions.
+- Keep chat lowercase, extremely concise, without emojis or terminal full
+  stops. These response rules do not constrain artifacts.
 
-- Do not edit generated `SKILL.md` files directly. Update the corresponding
-  `.kiro/steering/<PascalCaseName>.md` source, then run
-  `python tools/skills/MigrateKiroSteering.py --write`.
-- Before completing a change to steering, run
-  `python tools/skills/MigrateKiroSteering.py --check`.
-- Read and follow every skill whose description matches the task before
-  changing the associated files. See `.agents/README.md` for the complete
-  source-to-skill mapping.
-
-## Always-on project constraints
-
-- Never commit, push, pull into, or otherwise write to `main`. Work only on a
-  non-protected working branch.
-- Deliver complete, verified work. Do not leave stubs, placeholders, or known
-  failures behind.
-- Format each changed source file with its project formatter and run focused
-  verification before reporting completion.
-- Use `uv` rather than `pip` for Python dependency management, except in the
-  explicitly exempt `Parashell/` and `modules/` workspaces.
-- New non-skill text files must start with the exact notice in `HEADER_NOTICE`.
-- Treat every unknown commit, branch, staged change, unstaged change, untracked
-  file, and background Git operation as user-owned state. Preserve it and work
-  around it unless the user explicitly says otherwise.
-
-## Reverse engineering workspace exemption
-
-The repository-root `re/` tree is an unrestricted research workspace. Do not
-apply unit-test requirements or code standards there, including naming,
+The repository-root `re/` tree remains an unrestricted research workspace,
+exempt from code standards and unit-test requirements, including naming,
 formatting, typing, imports, rationale comments, SPDX headers, declaration
-splitting, architecture, or directory-density rules. Do not add unit tests or
-run code-quality checks for `re/` as part of repository compliance.
+splitting, architecture, and directory density. This applies only to `re/` and
+its descendants; code promoted into other directories follows their normal
+rules. Git isolation and preservation of user-owned work still apply.
 
-This exemption takes precedence over all code and testing guidance in this
-file, `.kiro/steering/`, and `.agents/skills/`. It applies only to `re/` and its
-descendants; code promoted into other directories follows their normal rules.
-Git isolation and preservation of user-owned work still apply.
+The research exemption does not waive product acceptance. Code or artifacts
+shipped in production, and outputs claimed to be production-ready, must satisfy
+no-CAD-runtime, no-donor-block, lossless-conversion, parametric feature/history,
+vendor-loadability, and target-application acceptance requirements. Research
+experiments may remain unrestricted in `re/`; their location does not qualify
+them for shipping or establish acceptance evidence.
 
-## Test policy
-
-- Unit tests are prohibited. Do not add, restore, generate, or request tests of
-  individual functions, methods, classes, or internal helpers in isolation.
-- This ban also covers policy, security, and tooling unit tests. Do not relabel
-  isolated tests as integration tests to bypass it.
-- Validate behavior through integration, end-to-end, smoke, compatibility, and
-  repository-wide policy checks at real component or process boundaries.
-- Run tests only in pull request CI, never locally. Keep all applicable CI checks
-  enabled and require them to pass.
-- This policy takes precedence over any skill requesting unit tests or a test
-  file for each implementation module.
-
-## Skill routing
-
-| When working on…                                                               | Activate these skills                                                                                                                             |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Any user-facing response or status update                                      | `chats`                                                                                                                                           |
-| Any code or related text change                                                | `code-formatting`, `no-stubs`, `spdx-header`                                                                                                      |
-| Any source-code structure, declaration, module, or import change               | `split-large-definitions`                                                                                                                         |
-| Any file creation, rename, move, import, extension, or security-quality change | `repository-structure`                                                                                                                            |
-| Shared workspace state or unknown concurrent Git and file changes              | `user-owned-workspace`                                                                                                                            |
-| A reported error, stack trace, failed test, or broken behavior                 | `fix-errors-dont-ask`                                                                                                                             |
-| Git history or a write-capable Git operation                                   | `git-never-touch-main`                                                                                                                            |
-| Creating, invoking, or handing off repository-changing agent work              | `isolated-agent-worktrees`                                                                                                                        |
-| Python dependencies, `pyproject.toml`, `uv.lock`, or Python CI                 | `python-package-manager`                                                                                                                          |
-| GitHub Actions or runner configuration                                         | `pin-dependencies`                                                                                                                                |
-| `pixi.toml`                                                                    | `pixi-lockfiles`                                                                                                                                  |
-| MCP tool definitions or their Mintlify documentation                           | `compact-tool-descriptions`, `mcp-tool-doc-pages`                                                                                                 |
-| CAD parsing, conversion, writing, or translation verification                  | `no-cad-runtime`, `no-donor-blocks`, `lossless-translation`                                                                                       |
-| React, Next.js, UI components, pages, styles, or layouts                       | `frontend-stack`, `component-architecture`, `design-system-discipline`, `layout-system`, `no-unrequested-styling`, `react-doctor`, `shadcn-pages` |
-| Public landing or marketing page metadata                                      | `page-title-separator`                                                                                                                            |
-| HostControl services or contracts                                              | `hostcontrol-contract`                                                                                                                            |
-| WorkOS token validation in `backend/**/*.py`                                   | `workos-token-verification`                                                                                                                       |
-| Work that must be tracked in Linear                                            | `linear-issue-tracking`                                                                                                                           |
-
-## Agent Skills SPDX exception
-
-`SKILL.md` files must begin with their required YAML frontmatter to remain
-Agent Skills-compatible. For `.agents/skills/**/SKILL.md`, use the required
-`license: MIT` frontmatter field instead of
-placing the normal comment notice before the frontmatter. All other new files
-continue to use the exact `HEADER_NOTICE` block.
+An administrator's explicit merge request remains valid through repairs and
+authorizes a supported admin override when independently enforced protections
+otherwise block a fully green, conflict-free PR. It never authorizes bypassing
+pending or failed queue acceptance, changing protection settings, or bypassing
+enforced tool approvals. Follow the skill's administrator-requested merge rules.
