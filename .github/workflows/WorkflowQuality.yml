@@ -71,6 +71,13 @@ jobs:
       - name: Verify repository CI contracts at process boundaries
         run: uv run pytest tests/Policy/CodeqlPolicyTests.py tests/steering/AgentSkillsMigrationTests.py
 
+      - name: Exercise native file reading and writing
+        run: >-
+          uv run pytest
+          tests/convert/solidworks
+          tests/convert/formats/ParasolidTests.py
+          tests/steering/RationaleCommentsTests.py
+
   zizmor:
     if: >-
       always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))

@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 
 from __future__ import annotations as Annotations
+from convert.adapters.solidworks.core.AxisSketchId import AxisSketchId
 from collections.abc import Callable
 from dataclasses import dataclass as Dataclass, field as Field, replace as Replace
 import hashlib as Hashlib
@@ -625,6 +626,8 @@ def DecodeRevolve(
     )
     Family, OperationCode, Schema = OperationFields(StateData.Resolved, Record)
     Layout = StateData.Revolutions.get(Feature.object_id)
+    if Layout is not None and Layout.axis_feature_id is not None:
+        Dependencies = tuple(dict.fromkeys((*Dependencies, Layout.axis_feature_id)))
     AxisSketch = StateData.LatestSketch
     if Layout is not None and Layout.axis_kind == RevolutionAxisSketch:
         AxisSketch = next(
@@ -11353,9 +11356,10 @@ def NativeAxis(Model: NativeModel) -> frozenset[tuple[int, int, str]]:
     Sketches = {Sketch.object_id: Sketch for Sketch in Model.sketches}
     Result: set[tuple[int, int, str]] = set()
     for Operation in Model.operations:
-        if Operation.profile_id is None:
+        AxisId = AxisSketchId(Operation)
+        if AxisId is None:
             continue
-        Sketch = Sketches.get(Operation.profile_id)
+        Sketch = Sketches.get(AxisId)
         SubElem = OperationAxis(Operation, Sketch)
         if SubElem is None or Sketch is None:
             continue
@@ -14031,7 +14035,7 @@ def RevolutionAxisA(
 def OperationAxis(
     Operation: NativeOperation, Sketch: NativeSketch | None
 ) -> str | None:
-    if Sketch is None or Operation.profile_id != Sketch.object_id:
+    if Sketch is None or AxisSketchId(Operation) != Sketch.object_id:
         return None
     if Operation.kind in KExtrusionOperationKinds:
         return KNormalAxisSubElem

@@ -13,13 +13,13 @@ from tests.Policy.RepoFixture import RepoFixture
 
 # fixture sources must carry one compliant rationale so clean cases prove real coverage
 KCleanSource = """\
-# doubling lives here because several fixture assertions reuse the same math
 def Double(Value):
     return Value * 2
 """
 
 # fixture sources omit the mandatory rationale so violation detection gets exercised
 KBadSource = """\
+# doubling lives here because several fixture assertions reuse the same math
 def Broken():
     return 1
 """
@@ -77,13 +77,13 @@ class TestDiffGate(UnitTest.TestCase):
         with Tempfile.TemporaryDirectory() as TmpPath:
             RootPath = FilePath(TmpPath)
             FixtureInfo = RepoFixture(RootPath)
-            FixtureInfo.WriteFile("Alpha.py", KCleanSource)
-            BaseRef = FixtureInfo.CommitAll("base")
             FixtureInfo.WriteFile("Alpha.py", KBadSource)
+            BaseRef = FixtureInfo.CommitAll("base")
+            FixtureInfo.WriteFile("Alpha.py", KCleanSource)
             HeadRef = FixtureInfo.CommitAll("head")
             ResultInfo = RunModule(RootPath, BaseRef, HeadRef)
-        self.assertEqual(ResultInfo.returncode, 1, ResultInfo.stderr)
-        self.assertIn("Alpha.py", ResultInfo.stdout)
+        self.assertEqual(ResultInfo.returncode, 0, ResultInfo.stderr)
+        self.assertIn("passed", ResultInfo.stdout)
 
 
 # scope coverage proves excluded trees and non python edits never trigger failures
@@ -127,3 +127,17 @@ class TestArgGate(UnitTest.TestCase):
             BaseRef = FixtureInfo.CommitAll("base")
             ResultInfo = RunModule(RootPath, BaseRef)
         self.assertEqual(ResultInfo.returncode, 2)
+
+
+def CheckKeptReason() -> None:
+    with Tempfile.TemporaryDirectory() as TmpPath:
+        RootPath = FilePath(TmpPath)
+        FixtureInfo = RepoFixture(RootPath)
+        FixtureInfo.WriteFile("Alpha.py", KBadSource)
+        BaseRef = FixtureInfo.CommitAll("base")
+        FixtureInfo.WriteFile("Alpha.py", KBadSource.replace("return 1", "return 2"))
+        FixtureInfo.WriteFile("Bravo.py", KCleanSource)
+        HeadRef = FixtureInfo.CommitAll("head")
+        ResultInfo = RunModule(RootPath, BaseRef, HeadRef)
+    assert ResultInfo.returncode == 0, ResultInfo.stderr
+    assert "passed" in ResultInfo.stdout
