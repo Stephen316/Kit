@@ -13,18 +13,38 @@ from decode_parameters import read_string
 from decode_selection import native_proxy_references
 from decode_sketch import numbers, reference
 
+# ordinary and special fillets share this class so the feature mode still determines which reader owns the record
 FILLET = 'A07D5F17-68CB-464D-9935-BF68E98A865F'
+
+# checking the registered definition class prevents interpreting an unrelated dependency as the fillet control set
 SET = '4A557CE2-375C-4F69-AA76-2403109F1493'
+
+# full round aggregates carry a distinct context layout and must stay separate from rule aggregates
 FULL_AGGREGATE = 'A9D2884D-E7D1-4E8F-8961-B7D90BAC64F1'
+
+# rule aggregates qualify historical body context without assigning source roles from cache counts
 RULE_AGGREGATE = 'DFE2F969-631C-4978-9345-B58392AD6B9A'
+
+# the full round leaf establishes the ordered side and centre roles independently of point caches
 FULL_LEAF = '128CC0A6-678F-4785-88C1-58D60802EFCE'
+
+# typed face records distinguish stored point observations from the recipes that identify source operands
 FULL_FACE = '4C687846-AC85-4C6F-BA18-0CF629FEA74C'
+
+# the rule leaf separates explicit feature inputs from the two ordered face groups
 RULE_LEAF = '5E1EC0D0-0361-40E8-8883-063DDFEC3226'
+
+# the selector repeats the topology control and distinguishes feature selection from face selection
 SELECTOR = '84845197-E802-48EA-AB39-FC7B0E6F4102'
+
+# reciprocal support references corroborate descriptor and binding ownership through a separate native record
 SUPPORT = '6CCF41D5-40BE-48ED-A834-18F3EAED6C57'
+
+# consumers need the observed layout limits alongside recovered controls to distinguish provenance from regenerated geometry
 SCOPE = 'Captured single-set FullRound and Rule AllEdges/BetweenFaces constant/asymmetric controls and typed sources; exact persistent face/edge identity, fillet geometry and regeneration unresolved'
 
 
+# special modes have their own source and control layouts that the ordinary edge set reader cannot interpret
 def decode_special_fillets(data, records, features, body_selections=None):
     """Return decoded/unresolved/scope; merge successes by feature_object_id."""
     grouped = {}
@@ -37,12 +57,14 @@ def decode_special_fillets(data, records, features, body_selections=None):
     for feature in features:
         feature_groups.setdefault(feature['object_id'], []).append(feature)
 
+    # an ambiguous or mismatched primary could otherwise attach another record to the selected fillet
     def typed(identity, guid):
         record = primary.get(identity)
         if record is None or record.class_guid != guid:
             raise ValueError('Special fillet typed reference missing, ambiguous or wrong class')
         return record, data[record.body:record.end]
 
+    # source role provenance requires the expected recipe class and payload before any face association is reported
     def bounded_recipe(identity):
         record, _ = typed(identity, RECIPE_GUID)
         recipe = decode_recipe(data, record, primary)
@@ -51,6 +73,7 @@ def decode_special_fillets(data, records, features, body_selections=None):
         return {'kind': 'BRepFaceRecipe', 'recipe': recipe,
                 'identity_status': 'Explicit typed bounded-face recipe; persistent face/ASM identity and geometry unresolved'}
 
+    # matching context framing and reciprocal anchors ties the selection to its historical body without inferring persistent topology
     def aggregate(identity, owner, guid, context_counts):
         _, payload = typed(identity, guid)
         context_count = struct.unpack_from("<I", payload, 177)[0]
@@ -132,6 +155,7 @@ def decode_special_fillets(data, records, features, body_selections=None):
                 raise ValueError('Special fillet feature metadata namespace framing changed')
             bindings = []
 
+            # reciprocal owner index and value copies prevent a valid radius or offset from being attached to the wrong set
             def parameter(identity, role, slot):
                 matches = [p for p in feature['parameters'] if p['binding_object_id'] == identity]
                 if len(matches) != 1 or matches[0]['role'] != role:
@@ -270,6 +294,7 @@ def decode_special_fillets(data, records, features, body_selections=None):
     return {'decoded': decoded, 'unresolved': unresolved, 'scope': SCOPE}
 
 
+# saved getter contrasts and malformed controls establish role mapping independently of the main reader output
 def validate_fixtures(root, zstd_library=None):
     """Focused nine-capture API/role-swap/negative validator; no Fusion access."""
     import hashlib
@@ -314,6 +339,7 @@ def validate_fixtures(root, zstd_library=None):
             assert len(result['decoded']) == 1 and not result['unresolved'] and result == stream['special_fillets']
             row = result['decoded'][0]; api = {}; native = {'main_complete_summary_equality': True}
 
+            # separate getter and structure checks keep numeric agreement distinct from native identity evidence
             def eq(label, a, b, is_api=True):
                 good = same(a, b) if isinstance(a, list) and a and isinstance(a[0], (int, float)) else a == b
                 assert good, (sample['file'], label, a, b)
@@ -369,6 +395,7 @@ def validate_fixtures(root, zstd_library=None):
             fixtures[sample['file']] = data, records, stream, row
             api_count += len(api); native_count += len(native)
 
+    # role swaps need byte comparisons because similar point caches can belong to distinct selections
     def recipe_bytes(fixture, item):
         data, records, _, _ = fixture
         record = next(r for r in records if r.is_primary and r.object_id == item['recipe']['object_id'])
@@ -393,6 +420,7 @@ def validate_fixtures(root, zstd_library=None):
         report['role_swap_checks'].append({'name': 'Rule '+rule_role+' serialized recipe equals controlled FullRound '+full_role, 'byte_identical_recipe': True,
             'limitation': 'Controlled byte correspondence only; no general persistent face index/geometry semantics assigned'})
 
+    # mutating one saved field tests rejection without relying on synthetic records for the surrounding layout
     def bad(label, filename, mutate):
         data, records, stream, row = fixtures[filename]; by = {r.object_id: r for r in records if r.is_primary}
         changed = bytearray(data); mutate(changed, by, row)
@@ -400,11 +428,22 @@ def validate_fixtures(root, zstd_library=None):
         assert not out['decoded'] and out['unresolved'], label
         report['malformed_checks'].append({'name': label, 'rejected': True, 'reason': out['unresolved'][0]['reason']})
 
+    # an unexpected side count must fail before fixed offsets are used for the other face groups
     bad('FullRound side group count2 unobserved', 'full_explicit.f3d', lambda d, by, r: struct.pack_into('<I', d, by[r['historical_body']['terminal_object_id']].body+3, 2))
+
+    # a valid proxy cannot be reused as the fillet input when its owner names another feature
     bad('selection proxy reciprocal owner changed', 'full_explicit.f3d', lambda d, by, r: struct.pack_into('<Q', d, by[r['selection_record_object_id']].body+95, r['historical_body']['historical_body_source_owner_object_id']))
+
+    # both stored topology copies must agree before the reader assigns the public topology mode
     bad('Rule selector repeated topology disagrees', 'rule_all_both.f3d', lambda d, by, r: struct.pack_into('<I', d, by[392].body+2, 1))
+
+    # a bound offset must be rejected when its repeated owner points to the seed instead of the fillet
     bad('Rule parameter owner does not reciprocate feature', 'rule_asymmetric.f3d', lambda d, by, r: struct.pack_into('<Q', d, by[r['offset_one']['binding_object_id']].body+6, r['historical_body']['historical_body_source_owner_object_id']))
+
+    # the historical seed is a valid feature but cannot replace the selected extrusion named by support
     bad('AllEdges source leaf selects seed instead of supported Boss', 'rule_all_both.f3d', lambda d, by, r: struct.pack_into('<Q', d, by[r['sources'][0]['terminal_object_id']].body+2, r['historical_body']['historical_body_source_owner_object_id']))
+
+    # the raw historical anchor must corroborate the projected owner rather than inheriting the current fillet identity
     bad('historical anchor raw owner disagrees with decoded anchor', 'full_explicit.f3d', lambda d, by, r: struct.pack_into('<Q', d, by[r['historical_body']['body_anchor_object_id']].body+92, r['feature_object_id']))
     report['summary'] = {'successful_archives': len(fixtures), 'API_comparisons': api_count,
         'native_structure_and_main_checks': native_count, 'role_swap_and_recipe_checks': len(report['role_swap_checks']),
@@ -416,14 +455,20 @@ if __name__ == '__main__':
     import argparse
     import json
     from pathlib import Path
+
+    # the command exposes the saved fixture check independently of the capture workflow
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--validate', action='store_true')
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parent)
     parser.add_argument('--zstd-library', type=Path)
     parser.add_argument('--report', type=Path)
+
+    # explicit arguments keep fixture and report paths under caller control
     args = parser.parse_args()
     if not args.validate:
         parser.error('--validate is required')
+
+    # the same focused checks produce the command summary and optional evidence report
     report = validate_fixtures(args.root, args.zstd_library)
     if args.report:
         args.report.write_text(json.dumps(report, indent=2)+'\n')

@@ -5,10 +5,14 @@ import struct
 from decode_edge_tools import decode_edge_tool
 from decode_sketch import reference
 
+# a native class check prevents unrelated features with offset roles from entering the fillet reader
 FILLET='A07D5F17-68CB-464D-9935-BF68E98A865F'
+
+# the observed flip control leaves the physical offset directions and selected edge orientation unresolved
 SCOPE='Native asymmetric-fillet offset reversal and existing common settings; selected ASM edge orientation and offset directions in world geometry remain unresolved'
 
 
+# the narrow callback recovers the observed reversal bit while sharing the edge ownership and trailer checks
 def decode_asymmetric_radius_payload(chunk,value):
     """Shared-reader opt-in callback; common owner/index/trailer checks stay shared."""
     if (len(chunk)!=88 or chunk[:5]!=b'\0\0\1\0\0' or chunk[5] not in (0,1)
@@ -25,6 +29,7 @@ def decode_asymmetric_radius_payload(chunk,value):
             'flip_scope':'Observed native boolean reverses API offset directions; no world/ASM side mapping inferred'},reference(chunk,10),73
 
 
+# the projected identity and supplied bytes must agree before common edge set parsing can attach the offsets
 def decode_asymmetric_fillet(data,records,body,feature):
     if feature.get('kind')!='Fillet' or feature.get('class_guid')!=FILLET:
         raise ValueError('Asymmetric fillet requires typed native Fillet')
@@ -34,6 +39,7 @@ def decode_asymmetric_fillet(data,records,body,feature):
     return decode_edge_tool(data,records,body,feature,asymmetric_radius_decoder=decode_asymmetric_radius_payload)
 
 
+# offset roles alone cannot distinguish ordinary asymmetric edge sets from the separate rule fillet definitions
 def decode_asymmetric_fillet_flips(data,records,features):
     decoded,unresolved=[],[]
     for feature in features:

@@ -97,6 +97,40 @@ fell from 6.39 to 3.26 seconds for 712 tracked archives and a Fusion 2706.1.17
 holdout. The 747 projected documents and the expected history selection errors
 matched exactly.
 
+## B-rep omission benchmark
+
+On the `c705daf9` SDK baseline, three paired reads of the 712 tracked
+archives took a median of **2.834 s** with B-rep and **2.847 s** with
+`include_brep=False`. The benchmark used Python 3.14.7 on macOS ARM64,
+explicit `source_format="fusion.f3d"`, `strict=False`, and alternated the
+order of the two modes. Timings include file reads and exclude SDK imports
+and result comparisons.
+
+All 696 successful geometry-omitted reads matched the full document after
+applying the same B-rep filter. That comparison includes body identities,
+diagnostics, and the original archive payload. The other 16 archives produced
+identical history-selection errors. The full reads had 82 root B-reps and five
+component B-reps.
+
+A separate `cProfile` pass confirmed that both modes ran the same projection
+stages:
+
+| Stage              | Calls with B-rep | Calls without B-rep | Cumulative seconds without B-rep |
+| ------------------ | ---------------: | ------------------: | -------------------------------: |
+| `ReadDesign`       |              712 |                 712 |                            3.536 |
+| `ProjectFusionDoc` |              712 |                 712 |                            6.108 |
+| `ProjectBodyList`  |              696 |                 696 |                            0.797 |
+| `ProjectRevBody`   |              324 |                 324 |                            0.033 |
+| `ReadBody`         |                8 |                   8 |                           <0.001 |
+| `FilterDocument`   |              701 |                 701 |                            0.344 |
+
+The profiler adds overhead. Its cumulative times include child calls and
+should not be summed. `ProjectBodyList` includes work that determines
+retained body identities and diagnostics. `ReadBody` can supply feature
+corroboration independently of the final B-rep. The candidate for omission is
+final B-rep materialisation after those checks. Measure it separately before
+changing the reader. For overall read time, reading and indexing the design streams is the larger measured target.
+
 ## Navigate SDK source with Graphify
 
 From the repository root, use the local Graphify CLI to build a graph of the

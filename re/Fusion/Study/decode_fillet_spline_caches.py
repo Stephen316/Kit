@@ -9,6 +9,7 @@ import math
 from decode_bspline import knot_vector, read_token, scalar_lists
 
 
+# matching token kinds alone could admit a different procedural layout with the same field widths
 def _expect(tokens, index, kind, value=None):
     actual = read_token(tokens, index, kind)
     if value is not None and actual != value:
@@ -16,6 +17,7 @@ def _expect(tokens, index, kind, value=None):
     return actual
 
 
+# finite cache coordinates are required before downstream geometry can evaluate the stored approximations
 def _finite(tokens):
     for token in tokens:
         value = token.get('value')
@@ -26,6 +28,7 @@ def _finite(tokens):
                 raise ValueError('Invalid procedural spline cache vector')
 
 
+# the entity subtype and wrapper gate keep unrelated spline records out of the observed procedural layouts
 def _prefix(record, name, subtype, wrapper):
     tokens = record['tokens']
     if record['name'] != name:
@@ -38,6 +41,7 @@ def _prefix(record, name, subtype, wrapper):
     return tokens
 
 
+# curve dimension and knot counts keep coordinates inside the grid instead of consuming neighbouring support tokens
 def _curve_grid(tokens, start, dimensions):
     _expect(tokens, start, 'entity_name', 'nubs')
     degree = _expect(tokens, start+1, 'integer', 3)
@@ -52,6 +56,7 @@ def _curve_grid(tokens, start, dimensions):
             'parameter_domain': [knots[degree], knots[-degree-1]]}, cursor
 
 
+# separate stored spatial and surface parameter grids provide evidence without assuming a common parameterization
 def decode_intersection_curve_cache(record):
     """Observed cubic XYZ + UV NUBS caches with spline-ref / plane supports."""
     tokens = _prefix(record, 'intcurve-curve', 'int_int_cur', False)
@@ -99,6 +104,7 @@ def decode_intersection_curve_cache(record):
     return cache
 
 
+# the observed support and spine framing bounds the surface grid without implying exact procedural regeneration
 def decode_g2_blend_surface_cache(record):
     """Observed planar-support g2_blend_spl_sur wrapper with an explicit grid."""
     tokens = _prefix(record, 'spline-surface', 'g2_blend_spl_sur', True)

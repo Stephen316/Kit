@@ -9,10 +9,14 @@ import struct
 from decode_edge_tools import decode_edge_tool
 from decode_sketch import reference
 
+# the native fillet class qualifies midpoint roles before they are treated as an edge set definition
 FILLET = 'A07D5F17-68CB-464D-9935-BF68E98A865F'
+
+# callers need to distinguish the observed interpolation controls from an inferred curve orientation or fillet shape
 SCOPE = 'Counted intermediate-radius fillet settings and existing owned selection proxy; no fillet regeneration, ASM edge orientation or exact selected topology inferred'
 
 
+# counted positions and radii must stay paired in stored order even when the api reorders setter inputs
 def decode_variable_radius_payload(chunk, value):
     """Optional shared-reader callback; returns patch, selection ID, weight offset.
 
@@ -52,6 +56,7 @@ def decode_variable_radius_payload(chunk, value):
     return patch, reference(chunk,10), cursor+13
 
 
+# the shared reader still owns edge selection and set validation for the added intermediate radius layout
 def decode_variable_fillet(data, records, body, feature):
     """Reuse shared fillet controls/ownership with only new variable-list branch."""
     if feature.get('kind') != 'Fillet' or feature.get('class_guid') != FILLET:
@@ -62,6 +67,7 @@ def decode_variable_fillet(data, records, body, feature):
     return decode_edge_tool(data, records, body, feature, variable_radius_decoder=decode_variable_radius_payload)
 
 
+# a separate intermediate summary preserves the established output for endpoint only fillets
 def decode_variable_fillets(data, records, features):
     """Additional intermediate-only summary; old fillets get no new sidecars."""
     decoded, unresolved = [], []

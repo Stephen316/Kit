@@ -82,6 +82,51 @@ the changes with the original dependency IDs and Fusion archive bytes. In
 the product control, changing the width to 8 mm produced 21 mm. After
 re-export, changing the scalar to 3.25 produced 27 mm.
 
+## Numeric parameter field map
+
+This map covers the payload of native class
+`7A6A3D31-BE74-4E19-9115-20642944C2E4` when its value type is numeric.
+Offsets start at the numeric body, four bytes after the SDK's
+`RecordSpan.PayloadOffset`. Integers and binary64 values are little-endian. A counted string has a 4-byte unsigned UTF-16 code
+unit count followed by twice that many bytes of UTF-16LE text.
+
+| Field                  | Byte offset              | Width in bytes | Type           | Interpretation                                                                                         |
+| ---------------------- | ------------------------ | -------------: | -------------- | ------------------------------------------------------------------------------------------------------ |
+| Header                 | 0                        |             12 | bytes          | Seven zero bytes, `06`, then four zero bytes.                                                          |
+| Comment                | 12                       |       variable | counted string | May be empty. The reader accepts CR, LF and TAB here.                                                  |
+| Native parameter index | End of comment           |              4 | u32            | Stored index compared with the binding index for bound parameters.                                     |
+| Binding reference      | End of index             |        1 or 11 | tagged field   | `00` for an unbound user parameter. A bound parameter stores `01`, a u64 object ID and two zero bytes. |
+| Expression             | End of binding reference |       variable | counted string | Saved expression text.                                                                                 |
+| Numeric metadata       | `M`, end of expression   |       10 or 11 | bytes          | See the layout comparison below.                                                                       |
+| Role                   | `M + 10` or `M + 11`     |       variable | counted string | For example, a feature binding role or `User Parameter`.                                               |
+| Reserved text          | End of role              |              4 | counted string | Empty for numeric records.                                                                             |
+| Display unit           | End of reserved text     |       variable | counted string | Display label such as `mm` or `deg`.                                                                   |
+| Parameter name         | End of display unit      |       variable | counted string | Stored parameter identifier.                                                                           |
+| Cached value           | End of name              |              8 | binary64       | Finite value. Lengths use centimetres, angles use radians, and scalars are unitless.                   |
+| Trailer                | End of cached value      |             12 | bytes          | `00 01 10` followed by nine zero bytes in the SDK's supported layouts.                                 |
+
+| Metadata field  | Byte offset | Width in bytes | Type  | 10-byte layout                                                                     | 11-byte layout                                      |
+| --------------- | ----------- | -------------: | ----- | ---------------------------------------------------------------------------------- | --------------------------------------------------- |
+| Value type      | `M + 0`     |              4 | u32   | `0` for numeric.                                                                   | `0` for numeric.                                    |
+| Opaque metadata | `M + 4`     |              3 | bytes | Preserved as stored.                                                               | Zero in observed captures.                          |
+| Favourite flag  | `M + 7`     |              1 | byte  | Controlled captures establish `0` and `1`. Other model values remain unclassified. | Zero in observed captures.                          |
+| Opaque metadata | `M + 8`     |              2 | bytes | Preserved as stored.                                                               | Zero in observed captures.                          |
+| Extension       | `M + 10`    |              1 | byte  | Role count starts here.                                                            | One extra zero byte. Role count starts at `M + 11`. |
+
+The tracked [expression-depth capture](../Study/holdouts-f8c508a73323/expression_depth.f3d)
+exercises the 10-byte layout with both unbound and feature-bound numeric
+parameters. [Parameter text contrasts](../Study/parameter-text-decoding.json)
+isolate the favourite flag. The [13 Fusion 2706.1.17 Revolve controls](Revolve.md#plane-limited-revolve)
+exercise the 11-byte layout. Their 51 bound parameters matched the captured
+API names, roles and numeric values.
+
+The SDK tries the role at `M + 10` first. It retries at `M + 11` only
+when role decoding fails, a binding reference is present and all 11 metadata
+bytes are zero. The reader still validates the remaining fields and trailer. The meaning of
+the extra zero byte remains unresolved. See the
+[SDK numeric decoder](../../../src/convert/formats/Fusion/NumericParam.py)
+and [numeric proof tests](../../../tests/convert/formats/FusionProof/FusionNumberTests.py).
+
 ## Saved study coverage
 
 Saved evidence includes [`parameter-table-decoding.json`](../Study/parameter-table-decoding.json).
