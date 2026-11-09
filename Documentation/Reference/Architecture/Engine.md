@@ -1,0 +1,104 @@
+<!--
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
+-->
+
+<details>
+<summary>Relevant source files</summary>
+
+The following files were used as context for generating this wiki page:
+
+- [src/convert/api/ApiConvert.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/api/ApiConvert.py)
+- [README.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/README.md)
+- [src/convert/adapters/freecad/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/freecad/Adapter.py)
+- [src/convert/adapters/catia/Adapter.py](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/src/convert/adapters/catia/Adapter.py)
+- [re/Methodology.md](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/re/Methodology.md)
+- [tools/steering/SteeringBaseline.txt](https://github.com/TryUniCAD/Kit/blob/aeff047c355622e812ab5d79b665d8f64c4075bb/tools/steering/SteeringBaseline.txt)
+</details>
+
+# Conversion Engine
+
+The Conversion Engine provides the core pipeline for translating CAD data between different proprietary formats. It operates by abstracting source files into a neutral `CadDocument` format before writing them to a target format. This architecture ensures that adapters for different CAD systems remain independent and decoupled.
+
+## Conversion Pipeline Architecture
+
+The engine follows a linear route for every conversion task. It first identifies the correct reader adapter for the source file, extracts the data into a neutral `CadDocument`, and then dispatches the document to a writer adapter for the destination format.
+
+```mermaid
+flowchart TD
+    A[Source File] --> B[Reader Adapter]
+    B --> C[Neutral CadDocument]
+    C --> D[Writer Adapter]
+    D --> E[Destination File]
+
+    subgraph Conversion_Engine
+    B
+    C
+    D
+    end
+```
+
+The diagram shows the standard flow of data from a source format to a destination format through the neutral document boundary.
+
+## Core Components
+
+### API Layer
+
+The public `convert` API delegates to the internal `ConvertFile` function. It configures `ReadOptions` and `WriteOptions` based on user input and triggers the conversion process via the internal engine.
+
+| Parameter      | Type          | Description                                                    |
+| :------------- | :------------ | :------------------------------------------------------------- |
+| `SourceData`   | `Source`      | Path, bytes, or stream of the input file.                      |
+| `TargetData`   | `Destination` | Path or stream for the output file.                            |
+| `SourceFormat` | `str`         | Optional explicit format ID for the source.                    |
+| `DestFormat`   | `str`         | Optional explicit format ID for the target.                    |
+| `AllowCarrier` | `bool`        | Whether to allow "carrier" results if native conversion fails. |
+
+### Registry and Adapters
+
+The engine uses a registry to manage available adapters. Each adapter (e.g., FreeCAD, CATIA, SOLIDWORKS) implements a common interface for probing, reading, and writing files.
+
+- **Probing**: The engine asks adapters to inspect a source to determine if they can handle the format.
+- **Reading**: The reader adapter converts the binary source into a `CadDocument` object.
+- **Writing**: The writer adapter takes a `CadDocument` and produces the target binary format.
+
+## Conversion Logic and Options
+
+### Strict Mode and Carriers
+
+By default, the engine attempts reversible swaps. If a full native conversion is not possible, it may produce a "carrier" result—a file that embeds the original data or a neutral representation. Reader `StrictMode` is independent of carrier policy. If `allow_carrier=False` is set, the engine refuses carrier results and throws an `ApplicationUsabilityError` if the output is not fully usable by the target vendor application.
+
+### Replay vs. Reconstruction
+
+Adapters like the `FreeCadAdapter` and `CatiaAdapter` implement logic to decide between "exact native roundtrip" (replay) and "reconstruction."
+
+- **Exact Replay**: If the `CadDocument` has not changed semantically, the engine writes the original native bytes back to the target.
+- **Reconstruction**: If changes are detected, the engine rebuilds the archive from the neutral `CadDocument` data.
+
+```mermaid
+sequenceDiagram
+    participant E as Conversion Engine
+    participant A as Adapter
+    participant D as CadDocument
+
+    E->>A: write(Doc, Target, Options)
+    A->>A: Check if semantic change exists
+    alt No Semantic Change
+        A-->>E: Write original native bytes (Replay)
+    else Semantic Change Detected
+        A->>D: Extract neutral data
+        A->>A: Build new archive (Reconstruction)
+        A-->>E: Write generated bytes
+    end
+```
+
+The sequence shows the decision path an adapter takes during the write phase to preserve native fidelity.
+
+## Reverse Engineering Methodology
+
+The engine's ability to read and write proprietary formats is based on a structured reverse-engineering playbook. This includes:
+
+1.  **Container Framing**: Cracking the file envelope (e.g., ZIP, CFBF).
+2.  **Measurement Oracle**: Using vendor APIs to verify correctness quantitatively (e.g., comparing mass properties).
+3.  **Differential Analysis**: Comparing files that differ by a single property to locate fields.
+4.  **Decompilation**: Analyzing vendor serialization code to determine field types and version gates.

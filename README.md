@@ -11,6 +11,13 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 Kit by Parashell is an open-source CAD interchange SDK for translating geometry, feature trees, assemblies and more between proprietary formats.
 
+## Documentation
+
+Read the [documentation index](Documentation/Index.md), [getting-started guide](Documentation/GettingStarted.md),
+and [GitHub wiki](https://github.com/TryUniCAD/Kit/wiki). Contributors must add
+[documentation entries](Documentation/Changes/Index.md) for new additions and record
+new discoveries in the [gotchas log](Documentation/Gotchas/README.md).
+
 ## _Currently_ supported CAD software
 
 - SOLIDWORKS
@@ -49,7 +56,7 @@ source file -> reader adapter -> (ORACLE) -> writer adapter -> destination file
 `convert(source, destination)` reads the source, builds a `CadDocument`, and writes the destination format inferred from its suffix:
 
 ```python
-from kit import convert
+from convert import convert
 
 result = convert("bracket.SLDPRT", "bracket.FCStd")
 ```
