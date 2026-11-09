@@ -1,0 +1,925 @@
+{
+  "source_commit": "bc47bd1a43916f664a11e3be9698b36ec723d8d2",
+  "archive": "assets/OriginalStandards.zip",
+  "archive_sha256": "b612a0debd2b243adc251bd472469f15fc5dc59b84334c29635727733d8feda3",
+  "entries": [
+    {
+      "source": ".agents/README.md",
+      "mode": "100644",
+      "git_blob": "5722869fec9e9548a555c101200b5b1536f55164",
+      "sha256": "f69edf7b180a41767e98c85c2de597dd85b1756f59410b154569a2ad4310242e",
+      "size": 4681,
+      "document": "references/Standards/Provenance/AgentIndex.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/chats/SKILL.md",
+      "mode": "100644",
+      "git_blob": "6db02433bf835015cbb8b92ca91df97dbebe886d",
+      "sha256": "81e1b9e525390ff969308c8940742ef23b5aa54b5ce805c7931fbf669293c615",
+      "size": 956,
+      "document": "references/Standards/Portable/Chats.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/code-formatting/SKILL.md",
+      "mode": "100644",
+      "git_blob": "d776f2a8f98e291a07ffde783099745c1d84847e",
+      "sha256": "330d68af4abac91e945a6f67b6e53cb224c68d8e13e41171bef0101f8c20c743",
+      "size": 1952,
+      "document": "references/Standards/Portable/CodeFormatting.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/compact-tool-descriptions/SKILL.md",
+      "mode": "100644",
+      "git_blob": "8a1f365e1f7c6cf2388c0084727d09e754e77a4e",
+      "sha256": "eab97897604ede9fbde0d7094c81849e59d4dc7bac9ca2c8aa36a913d0bb5571",
+      "size": 748,
+      "document": "references/Standards/Portable/CompactToolDescriptions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/component-architecture/SKILL.md",
+      "mode": "100644",
+      "git_blob": "4cde8a17888ea98bdd2620c19bb0a9789ffc3b5e",
+      "sha256": "ac8ddd3e4c37ea173d0caa98bdb68cd2ae013a1fa484ecc3d1bde2b5cdbfb6cb",
+      "size": 4111,
+      "document": "references/Standards/Portable/ComponentArchitecture.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/design-system-discipline/SKILL.md",
+      "mode": "100644",
+      "git_blob": "0567fd06eddf0e5bdf43aa5ff4dd8e124c1aadf6",
+      "sha256": "82b06425c02d832eeef5e7f0e865821a1168c7a57ab658c9502f05dc077c44d2",
+      "size": 7955,
+      "document": "references/Standards/Portable/DesignSystemDiscipline.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/fix-errors-dont-ask/SKILL.md",
+      "mode": "100644",
+      "git_blob": "61423aab2751735b0593e9bba54aa65d25b4d20b",
+      "sha256": "52432449b849c02946bf5964578b294ffecf3e86790ca08f6dc09fc1bbf79b67",
+      "size": 2463,
+      "document": "references/Standards/Portable/FixErrorsDontAsk.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/frontend-stack/SKILL.md",
+      "mode": "100644",
+      "git_blob": "63c1eed8a57ea2ea7b5a0c239b6503f099580271",
+      "sha256": "d96e3fe853fce217c8307de408f50883ce540bccb8149c0083032cef2fdf4278",
+      "size": 4580,
+      "document": "references/Standards/Portable/FrontendStack.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/git-never-touch-main/SKILL.md",
+      "mode": "100644",
+      "git_blob": "cf3186c6b770ecec6587786b26c23612fbcaf76a",
+      "sha256": "7757f2ac312c8e429296d9740c2b0ca76d208267043811f878310a201e32a751",
+      "size": 4024,
+      "document": "references/Standards/Portable/GitNeverTouchMain.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/hostcontrol-contract/SKILL.md",
+      "mode": "100644",
+      "git_blob": "9f504cccf4235df8f6697ef5888a1dd75600426f",
+      "sha256": "7c6f3c896e5c209359b33f06145b46fe3ddf00e7cda0ca98cfc0aa937b22f1af",
+      "size": 4746,
+      "document": "references/Standards/Portable/HostcontrolContract.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/identifier-markers/SKILL.md",
+      "mode": "100644",
+      "git_blob": "7d5041587643a5e2da8fd0a16b8e1f4809cf3ff1",
+      "sha256": "4ba42f99262a4a59767748fbde12a028adec43db04e9bb6460731e44086c85b3",
+      "size": 5890,
+      "document": "references/Standards/Portable/IdentifierMarkers.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/isolated-agent-worktrees/SKILL.md",
+      "mode": "100644",
+      "git_blob": "4ec97a19b0fcf7a5812f72d5572dff8bb924ad3b",
+      "sha256": "04906a7953b78e6d1816ce22b9ef3e1cd73243c5552147a87da75657a88a5150",
+      "size": 2595,
+      "document": "references/Standards/Portable/IsolatedAgentWorktrees.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/layout-system/SKILL.md",
+      "mode": "100644",
+      "git_blob": "9db4dc788eb2fb38d12748b7791f4738f2a9cce3",
+      "sha256": "aa6a7519dc1c8552afbf4b9e7029b1362d2141152e5b2935225b1891ba658b23",
+      "size": 3801,
+      "document": "references/Standards/Portable/LayoutSystem.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/linear-issue-tracking/SKILL.md",
+      "mode": "100644",
+      "git_blob": "686a8bd10d2c3194b0134890293010948323bd4e",
+      "sha256": "ad9796d021c4b0d52b7c9297166b2b923f4b20c46ef5d25ec7a98094c29d1f63",
+      "size": 6404,
+      "document": "references/Standards/Portable/LinearIssueTracking.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/lossless-translation/SKILL.md",
+      "mode": "100644",
+      "git_blob": "b6011b381eaee6bf8529c2e72759112091ad3e44",
+      "sha256": "7a15bb926a9c01985162554e30a95cdc1f098491958a6a0bacb3a1bdc814ed34",
+      "size": 5104,
+      "document": "references/Standards/Portable/LosslessTranslation.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/mcp-tool-doc-pages/SKILL.md",
+      "mode": "100644",
+      "git_blob": "ff932b7c45219456ef388799995ecea439fa724c",
+      "sha256": "a22ae4de736671a1066ab65caf1b64281c9fe60a28143f61b05bb2ea9fd188d4",
+      "size": 1232,
+      "document": "references/Standards/Portable/McpToolDocPages.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/naming-convention/SKILL.md",
+      "mode": "100644",
+      "git_blob": "c678384953f8b98e73dc307afa3fb266b498e624",
+      "sha256": "623a80dfbd4dab7e229a3fa7e1373fd6c05e97da9bc961e54f84183e61c05002",
+      "size": 5771,
+      "document": "references/Standards/Portable/NamingConvention.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/no-cad-runtime/SKILL.md",
+      "mode": "100644",
+      "git_blob": "6900f878b6b4d6b44ce93a59da1d71e55e036e7d",
+      "sha256": "8b723cf994bb027e774aff5c0e240ef4be018aa2d161885ea6709e99121816d9",
+      "size": 3676,
+      "document": "references/Standards/Portable/NoCadRuntime.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/no-donor-blocks/SKILL.md",
+      "mode": "100644",
+      "git_blob": "5454c1d813b8cdbcb0dc347c7bf954ba37127e92",
+      "sha256": "e790b09795011623bec4c3a26fcd63095299b66ec7fc16f3dd9679eb3d1f8875",
+      "size": 5770,
+      "document": "references/Standards/Portable/NoDonorBlocks.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/no-stubs/SKILL.md",
+      "mode": "100644",
+      "git_blob": "d0b2d214d95ddda0aec815fcab4b1c03aa6eea48",
+      "sha256": "8031be2d2ccdeb8992401b99db184b4236b5263e45e65afb8e9cad647b0a0879",
+      "size": 3275,
+      "document": "references/Standards/Portable/NoStubs.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/no-unrequested-styling/SKILL.md",
+      "mode": "100644",
+      "git_blob": "83c3067ddf24c8c4b0527053ed8a43727d1708f1",
+      "sha256": "b1950ea93520c71d64b7c8083a26b0a9c9336ce2d5058f6c83ff5de1adfa85f2",
+      "size": 2956,
+      "document": "references/Standards/Portable/NoUnrequestedStyling.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/page-title-separator/SKILL.md",
+      "mode": "100644",
+      "git_blob": "6e590f91484511f9b518813b030fb123c9bb0eb6",
+      "sha256": "7bf1083452ebebdf7b2fb464f6a16bfd0d8f0e952e58b79e2761c12a02d41f5b",
+      "size": 1938,
+      "document": "references/Standards/Portable/PageTitleSeparator.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/pin-dependencies/SKILL.md",
+      "mode": "100644",
+      "git_blob": "386463e457a54d0db30ebc8a4417e2dc23b9d0d4",
+      "sha256": "b72ec41c163d57be10764039d7fe0e1d8bd9b5e1f922c0cb484ab77713fe51c0",
+      "size": 3290,
+      "document": "references/Standards/Portable/PinDependencies.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/pixi-lockfiles/SKILL.md",
+      "mode": "100644",
+      "git_blob": "4f7af3274245f5c1230721fde44b84bd9e8e900a",
+      "sha256": "d10ec8b7e9a3acfc5c939f90732ca70564af26b2de7db51752b6b57e4bc3e1dc",
+      "size": 4998,
+      "document": "references/Standards/Portable/PixiLockfiles.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/python-package-manager/SKILL.md",
+      "mode": "100644",
+      "git_blob": "e9c55e0578e0bf679ecb19f69654ca172d555757",
+      "sha256": "baeed05e9588d3284c836cd8d30edd441e03723050e082f393663b02c31fa0aa",
+      "size": 1090,
+      "document": "references/Standards/Portable/PythonPackageManager.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/rationale-comments/SKILL.md",
+      "mode": "100644",
+      "git_blob": "dd99719f92284babb05ba9c4a2166740c559c6c4",
+      "sha256": "a60c7f9cd4c4d5900841f9365fa1b4f4116cc716cc1d6c2086499450d0dfe318",
+      "size": 6733,
+      "document": "references/Standards/Portable/RationaleComments.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/react-doctor/SKILL.md",
+      "mode": "100644",
+      "git_blob": "aa1917b4ae474f9d51ddcee1826f986ae7aca0ef",
+      "sha256": "e38c127c8e5ef525fa80151eaaa8716856e1e20e9a93c1a2d0498aab2a56fda1",
+      "size": 2715,
+      "document": "references/Standards/Portable/ReactDoctor.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/repository-structure/SKILL.md",
+      "mode": "100644",
+      "git_blob": "4f9b012040ed5e96bd301fae5e12a7ac387a258d",
+      "sha256": "0b56b366407597e44eeb5e7b8a6b690f18af3189be1c1561549659615d85b2f5",
+      "size": 9435,
+      "document": "references/Standards/Portable/RepositoryStructure.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/shadcn-pages/SKILL.md",
+      "mode": "100644",
+      "git_blob": "0ef55bcc5b76dcbeab66069779322600745647a8",
+      "sha256": "827feaff1b6ac7480b46304bfb7dd5ca5a5461c1ebc6c3e7bb75a7198ce9e35d",
+      "size": 8061,
+      "document": "references/Standards/Portable/ShadcnPages.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/spdx-header/SKILL.md",
+      "mode": "100644",
+      "git_blob": "16375e4aa04a195c0660c7af9307477003b76d8b",
+      "sha256": "eee8fc60e2f61af2944394eee7421c05ab06ba2ee5a493afe8e4343c3a9ead8a",
+      "size": 2416,
+      "document": "references/Standards/Portable/SpdxHeader.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/split-large-definitions/SKILL.md",
+      "mode": "100644",
+      "git_blob": "75c5603a08d7444f3723bd3d7ae4986996b0e160",
+      "sha256": "fe79e3536a6fec8c3d315ff71952481f038e731498684c6371d1950f57794093",
+      "size": 4563,
+      "document": "references/Standards/Portable/SplitLargeDefinitions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/user-owned-workspace/SKILL.md",
+      "mode": "100644",
+      "git_blob": "06e3dcbbc019080ba2f9a1f51a7dc881c8df2620",
+      "sha256": "66a56a6f013b8484ccdfa72e4f9b0a1f87252a34a0e6b7411d002d9f7c39ad4a",
+      "size": 1327,
+      "document": "references/Standards/Portable/UserOwnedWorkspace.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".agents/skills/workos-token-verification/SKILL.md",
+      "mode": "100644",
+      "git_blob": "5b96585532dab1a3c521260fa36ad18d4cc1ce30",
+      "sha256": "e3ae0dea77b3a66d50e70ba9bb1e6d8e073a2d14ce9777ba5f6b84c42a9c0e5b",
+      "size": 3361,
+      "document": "references/Standards/Portable/WorkosTokenVerification.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/baseline-ui/SKILL.md",
+      "mode": "100644",
+      "git_blob": "889e1f0318c587d9f9c0fa105337f9b3f083f61a",
+      "sha256": "9bb2f868098a9d28ce7d10383039a28169d838cea6299f9df3706ecda7932949",
+      "size": 3531,
+      "document": "references/Standards/Design/BaselineUi/Instructions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/design-lab/DESIGN_PRINCIPLES.md",
+      "mode": "100644",
+      "git_blob": "c6a1ba2d479282396fa9d15dad3829ce0d71ec6d",
+      "sha256": "a4086a6d2ab83754d62c0e6649c8115c4bd597da759831f33e5e7b32fcb96981",
+      "size": 54525,
+      "document": "references/Standards/Design/DesignLab/DesignPrinciples.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/design-lab/SKILL.md",
+      "mode": "100644",
+      "git_blob": "362065fa23be5b9b596ae0247717c0737bb34a27",
+      "sha256": "4aac4839ffd907bdd7d950039315796d6f877dcb7722095069692d2e16403998",
+      "size": 30327,
+      "document": "references/Standards/Design/DesignLab/Instructions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/fixing-accessibility/SKILL.md",
+      "mode": "100644",
+      "git_blob": "e2dcd7004645277488a142be152878b7310437e1",
+      "sha256": "549261e8a53b53a1a20c0ddbf736821e5fc0876ad82eee76e0efab8e9ee9dadf",
+      "size": 4718,
+      "document": "references/Standards/Design/FixingAccessibility/Instructions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/fixing-motion-performance/SKILL.md",
+      "mode": "100644",
+      "git_blob": "7d22f2ecdd3305f73cf202cb9b5a0e4c1d3700e5",
+      "sha256": "0a2d654902bc04263ce68c8c02967ef03f17b482e855360a5463211d99d7baa9",
+      "size": 5565,
+      "document": "references/Standards/Design/FixingMotionPerformance/Instructions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/frontend-design/SKILL.md",
+      "mode": "100644",
+      "git_blob": "decdff43d05908b4c1fc2cfd2d80fc5743440934",
+      "sha256": "1608ea77fbb6fc30d13a97d12cfa8ebf31358d40f0dd97beed24829d6b3f45dd",
+      "size": 8260,
+      "document": "references/Standards/Design/FrontendDesign/Instructions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/interface-design/SKILL.md",
+      "mode": "100644",
+      "git_blob": "8a517c2c0a4c6abc0c44aa6c3caa9cfc8398b38d",
+      "sha256": "3bf34291021ae72628ce5cd5f006f09143cb163b27f5004429586833b8197a31",
+      "size": 22848,
+      "document": "references/Standards/Design/InterfaceDesign/Instructions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/interface-design/agents/openai.yaml",
+      "mode": "100644",
+      "git_blob": "69138eaaf2083d18e130d6742be141491bc60275",
+      "sha256": "752d0810d593b5cc88b34ea8e0c101b50d0ec1c4c8091be369544f73f3a2ea2e",
+      "size": 302,
+      "document": "references/Standards/Design/InterfaceDesign/Agents/Openai.yaml",
+      "encoding": "notice-wrapper"
+    },
+    {
+      "source": ".kiro/skills/interface-design/references/critique.md",
+      "mode": "100644",
+      "git_blob": "7db545e48795990f23bdc2118984ae961d03f161",
+      "sha256": "48903ec19affbb4bf544f51beedd31aef03469730c8802711c0f6637465c8142",
+      "size": 3980,
+      "document": "references/Standards/Design/InterfaceDesign/References/Critique.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/interface-design/references/example.md",
+      "mode": "100644",
+      "git_blob": "665490653dd8d60a9606a1b1fa1d2e170ae4b456",
+      "sha256": "6914c93b92bea70792db7dd062a8677eccd67e83cb55da493611f8ea5bdff5bf",
+      "size": 3659,
+      "document": "references/Standards/Design/InterfaceDesign/References/Example.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/interface-design/references/imagegen.md",
+      "mode": "100644",
+      "git_blob": "22c930d7c4ec328eb2d896adf0a4e85dd186aec8",
+      "sha256": "99b668a163e400d015b9be3837e6f071d1c23ce2aad25c2dc9f20418da203001",
+      "size": 8398,
+      "document": "references/Standards/Design/InterfaceDesign/References/Imagegen.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/interface-design/references/principles.md",
+      "mode": "100644",
+      "git_blob": "6c4a50273e9023f9d4836c3261701f09a3f33d17",
+      "sha256": "1ee5305f8a2c94831303a4b77128e2319c67e14cc194245606b0143e261ac410",
+      "size": 10390,
+      "document": "references/Standards/Design/InterfaceDesign/References/Principles.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/interface-design/references/validation.md",
+      "mode": "100644",
+      "git_blob": "7aa4a696b7ad712816c6a01342646b2c6b0c61ea",
+      "sha256": "2fa4730b8d82f3cc227c1e807fd2b31ed464445ffcd09c145dd2cc7d3e90f150",
+      "size": 1052,
+      "document": "references/Standards/Design/InterfaceDesign/References/Validation.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/make-interfaces-feel-better/SKILL.md",
+      "mode": "100644",
+      "git_blob": "cd19691da5816c7accf48d2ef0108f2976568da0",
+      "sha256": "3007ff3c944f6283004e5fd2fd7e786cc31f09ef1b28c9ad8d32af1081ec00ee",
+      "size": 7803,
+      "document": "references/Standards/Design/MakeInterfacesFeelBetter/Instructions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/make-interfaces-feel-better/animations.md",
+      "mode": "100644",
+      "git_blob": "e0515e02dcfe7e3f99f1e1a4dd14dfe6e8e05108",
+      "sha256": "eaaacab19a846f72692a48d6a84d96fcea79dbdee40d6447c73385b41b8d6135",
+      "size": 11092,
+      "document": "references/Standards/Design/MakeInterfacesFeelBetter/Animations.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/make-interfaces-feel-better/performance.md",
+      "mode": "100644",
+      "git_blob": "155954988e9b7a518ad09d37e94f3b34e8ea8ffd",
+      "sha256": "f4537590cca884143b8e628123810286b4bfef29b9283f900265190bd3d8bd5e",
+      "size": 2884,
+      "document": "references/Standards/Design/MakeInterfacesFeelBetter/Performance.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/make-interfaces-feel-better/surfaces.md",
+      "mode": "100644",
+      "git_blob": "180de509a486cec833163d3d9b6614119ca18d67",
+      "sha256": "0564c57a29adf1be67f99c6ed227921265ce075c77f15e35c8a797761c65b74b",
+      "size": 7284,
+      "document": "references/Standards/Design/MakeInterfacesFeelBetter/Surfaces.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/make-interfaces-feel-better/typography.md",
+      "mode": "100644",
+      "git_blob": "6ca7ac7e6eda22dd93e09d9cea3ccc9b7277a870",
+      "sha256": "960cfa67b05109aeb08b219fa6e6cc3207a13c7bec60106ce4f44ce91dbaa4fd",
+      "size": 3799,
+      "document": "references/Standards/Design/MakeInterfacesFeelBetter/Typography.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/react-doctor/SKILL.md",
+      "mode": "100644",
+      "git_blob": "6cf20a8d9bfd7e71eded9505b81566ba705a47e9",
+      "sha256": "45772114728637bbcd6f0c6be4efadf0fd6bfcceb6ef9c81acc56f12018f962f",
+      "size": 2932,
+      "document": "references/Standards/Design/ReactDoctor/Instructions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/react-doctor/references/explain.md",
+      "mode": "100644",
+      "git_blob": "8e4defe4a33f27059152276ee65eb5f46346ff84",
+      "sha256": "2382ea820f203d7e16e8102a7fa55c5ce315fdd4591a0638e95d863166834ef2",
+      "size": 4136,
+      "document": "references/Standards/Design/ReactDoctor/References/Explain.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/SKILL.md",
+      "mode": "100644",
+      "git_blob": "dcdb75458830b4af6a6e8813fee2ed46f66cad7f",
+      "sha256": "75e9d038e282bb900e46fa63f10ff4fe8ed3945ef092a8dddf22de9c2546760c",
+      "size": 18579,
+      "document": "references/Standards/Design/Shadcn/Instructions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/agents/openai.yml",
+      "mode": "100644",
+      "git_blob": "ab636da86b5ee5b8721b0575af67faa88e4bf838",
+      "sha256": "35db91b1eef58b2abe01da9b88577de5a44e233b740cd93d692ddeeadd2afe4d",
+      "size": 238,
+      "document": "references/Standards/Design/Shadcn/Agents/Openai.yml",
+      "encoding": "notice-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/assets/shadcn-small.png",
+      "mode": "100644",
+      "git_blob": "547154b97f2298335159c23eec1dac0d147a1246",
+      "sha256": "0ecc62d682727f68fc4937eed19960c706714fa084d44f63028d611ae02bf3d7",
+      "size": 1049,
+      "document": "references/Standards/Design/Shadcn/Assets/ShadcnSmall.png",
+      "encoding": "raw"
+    },
+    {
+      "source": ".kiro/skills/shadcn/assets/shadcn.png",
+      "mode": "100644",
+      "git_blob": "b7b6814acc25073e5f48099b1fd3f70c47bfb1c3",
+      "sha256": "7d60ad6fec4d89a0d44ba5a3c9283d2fea0047af5467f9227040e20d927d39b7",
+      "size": 3852,
+      "document": "references/Standards/Design/Shadcn/Assets/Shadcn.png",
+      "encoding": "raw"
+    },
+    {
+      "source": ".kiro/skills/shadcn/cli.md",
+      "mode": "100644",
+      "git_blob": "8a1d1958710902e2d38a3dd03d00aa09ab165dfe",
+      "sha256": "a381e35bf36fe7bb851952c13707e01e82434fd7a4a4e53f6df26c6370838904",
+      "size": 17304,
+      "document": "references/Standards/Design/Shadcn/Cli.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/customization.md",
+      "mode": "100644",
+      "git_blob": "16954f56b158da368923e539b332746aa702bdac",
+      "sha256": "84c1d47168c4b8adb5840e4af30a4e373ae3377c1110478c8974f398dd63f5ba",
+      "size": 6074,
+      "document": "references/Standards/Design/Shadcn/Customization.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/evals/evals.json",
+      "mode": "100644",
+      "git_blob": "0df77e4b9b1e6847e9bfd3a17cf321f4912dad02",
+      "sha256": "97ebb931d690578ee64e445d84f406be2a8799812d38d3cb1bb216e68291eb2b",
+      "size": 3118,
+      "document": "references/Standards/Design/Shadcn/Evals/Evals.json",
+      "encoding": "raw"
+    },
+    {
+      "source": ".kiro/skills/shadcn/mcp.md",
+      "mode": "100644",
+      "git_blob": "6539ddaa2d0bc9e9d1fdf07658e1b0955136b721",
+      "sha256": "8d696b4e45b7d0e337367248513bd9acebe8f3bcfd7b748c775e5a337c8f38c8",
+      "size": 3510,
+      "document": "references/Standards/Design/Shadcn/Mcp.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/registry.md",
+      "mode": "100644",
+      "git_blob": "5369468bbe43126379161a403a53717ee86e2d9b",
+      "sha256": "4f239be36bd2b58e17047db1ca80ab7da00e15a8b73242e5e4d50d113c4caa05",
+      "size": 8817,
+      "document": "references/Standards/Design/Shadcn/Registry.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/rules/base-vs-radix.md",
+      "mode": "100644",
+      "git_blob": "c1ed7d111a0195cab801d2b3d38dee3aee0b8e10",
+      "sha256": "2b2deb47d004285220c1fc6b38bb2edc2d0ccbcdafd031b0b189d5d8ed0d1ba8",
+      "size": 6954,
+      "document": "references/Standards/Design/Shadcn/Rules/BaseVsRadix.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/rules/composition.md",
+      "mode": "100644",
+      "git_blob": "0e105837cb812155cfbbb65d1be189e083d8ba29",
+      "sha256": "de068e5aa5351dd8e4af7bfb7a6333302445c15527eaeee521d8591e95e7d709",
+      "size": 4268,
+      "document": "references/Standards/Design/Shadcn/Rules/Composition.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/rules/forms.md",
+      "mode": "100644",
+      "git_blob": "f451e2f7bc17d9c5738691931964744a568ea5d6",
+      "sha256": "29593e14381e34626f8e0e9c15c59f3394b92a0623af6a6ec94585400123853c",
+      "size": 4857,
+      "document": "references/Standards/Design/Shadcn/Rules/Forms.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/rules/icons.md",
+      "mode": "100644",
+      "git_blob": "bba8102f01ef9fd9bd7ce2adc73e562869d5d09e",
+      "sha256": "d4a58266648872d9ee07d0c2368843a1cb88b8253b7f528dd7bda9d68b6c2535",
+      "size": 1958,
+      "document": "references/Standards/Design/Shadcn/Rules/Icons.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/shadcn/rules/styling.md",
+      "mode": "100644",
+      "git_blob": "38d473212b22d76f50285bfaf33dffcb75f74a77",
+      "sha256": "4a71da3fc53d8efbedac26946e5b13b53d1edf71583d62088ccc2b8cc7b5fef7",
+      "size": 3795,
+      "document": "references/Standards/Design/Shadcn/Rules/Styling.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/ui-ux-pro-max/SKILL.md",
+      "mode": "100644",
+      "git_blob": "a64d6c233a6293c05ab70f67156cc7e30284232a",
+      "sha256": "9bd26c52dfd10dfd613dd3cc85df217dc25a172e380bde41fdfa6fedda288b2a",
+      "size": 44776,
+      "document": "references/Standards/Design/UiUxProMax/Instructions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/skills/ui-ux-pro-max/data",
+      "mode": "100644",
+      "git_blob": "e5b94699ce7cff5c94de1e14006fce76af06259b",
+      "sha256": "8c30a85b7b44b164b0932a9ceb1b9920a6bf461caa0d712c5f1d8e49ca07c36f",
+      "size": 31,
+      "document": "references/Standards/Design/UiUxProMax/Data.txt",
+      "encoding": "notice-wrapper"
+    },
+    {
+      "source": ".kiro/skills/ui-ux-pro-max/scripts",
+      "mode": "100644",
+      "git_blob": "ccb93f777cb49f7f4ff40182905ce793295d66d1",
+      "sha256": "1f80a44a7c81b3d286013ba1e133581ff5966544496a9caa758291dba3e5a4f2",
+      "size": 34,
+      "document": "references/Standards/Design/UiUxProMax/Scripts.txt",
+      "encoding": "notice-wrapper"
+    },
+    {
+      "source": ".kiro/steering/Chats.md",
+      "mode": "100644",
+      "git_blob": "eea6066511bf14b2c30b2b6e1362bb35778c9723",
+      "sha256": "3462779681cbee3d15c8cba7fed4557c4635458ea994b578517f82cbb5238f7e",
+      "size": 736,
+      "document": "references/Standards/Kiro/Chats.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/CodeFormatting.md",
+      "mode": "100644",
+      "git_blob": "ac8699e96b40bb28285c7e74b89f1fe0f15927aa",
+      "sha256": "9e96c25b6b97a53b14cec0dfd96d13755f5f00b8c52e92ad752e71bfc9acdf9b",
+      "size": 1704,
+      "document": "references/Standards/Kiro/CodeFormatting.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/CompactToolDescriptions.md",
+      "mode": "100644",
+      "git_blob": "be6bfcca515905837cd24feabcc769d476ad4ef0",
+      "sha256": "31bfdc21efab2fb2dc529637db724971dd03623bf4ea36da84b237015e5624fe",
+      "size": 453,
+      "document": "references/Standards/Kiro/CompactToolDescriptions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/ComponentArchitecture.md",
+      "mode": "100644",
+      "git_blob": "3bd9da6dd14206ffda193cd90b1fbcc1b377ba89",
+      "sha256": "74416df512ff22eb2ac5547e72016e3be7d002a50b4539cd9df4376d41ff5f2a",
+      "size": 3817,
+      "document": "references/Standards/Kiro/ComponentArchitecture.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/DesignSystemDiscipline.md",
+      "mode": "100644",
+      "git_blob": "85574caee2bcbd83da3834a45e261760dacfa720",
+      "sha256": "402c1aa5ac7d3f9e48a7e1ca88a4254d775692f673ee296581fc4d408ebb97e3",
+      "size": 7655,
+      "document": "references/Standards/Kiro/DesignSystemDiscipline.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/FixErrorsDontAsk.md",
+      "mode": "100644",
+      "git_blob": "7071832d3fa5cea5febe317f9d4129d50bad8731",
+      "sha256": "a9ed61e5565bf7f08fb5d41f0d225bde5977eb7edc418154bb038eb250661793",
+      "size": 2181,
+      "document": "references/Standards/Kiro/FixErrorsDontAsk.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/FrontendStack.md",
+      "mode": "100644",
+      "git_blob": "f14a2e6a783136ab44a6c1385c5c86f532830acf",
+      "sha256": "d926e361b980652e5a1c06a1443e047af89e236ab5341d8b802cb37bf12af94f",
+      "size": 4339,
+      "document": "references/Standards/Kiro/FrontendStack.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/GitNeverTouchMain.md",
+      "mode": "100644",
+      "git_blob": "2d530bcf3849fcb8bf4a0542a0e35d785243b57d",
+      "sha256": "5c14705dcfb40e29be4584b11a01ed3ba4eb2a01f2704e287a98cd3aecd4c370",
+      "size": 3755,
+      "document": "references/Standards/Kiro/GitNeverTouchMain.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/HostcontrolContract.md",
+      "mode": "100644",
+      "git_blob": "6bb9f4b3eae42bf92ba39b62dcf80e608b8c4bf3",
+      "sha256": "f75f84c9d9f6f3d64579238754935b3b9b81342b1c0e39eeee11ed4911dd970b",
+      "size": 4459,
+      "document": "references/Standards/Kiro/HostcontrolContract.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/IdentifierMarkers.md",
+      "mode": "100644",
+      "git_blob": "66d22834488c09c6da1b86898ba313139d89d790",
+      "sha256": "4b071b982137ed3f9a15db482e0cae3850627f844e016c807a2d125eeeb01cc2",
+      "size": 5602,
+      "document": "references/Standards/Kiro/IdentifierMarkers.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/IsolatedAgentWorktrees.md",
+      "mode": "100644",
+      "git_blob": "70d2ed8883c6d796b00551ff3dc00bb59b7033a9",
+      "sha256": "5a76f09f317267cbd221f1f3445d142709d87c5537f902a318112c9da3f0537c",
+      "size": 2284,
+      "document": "references/Standards/Kiro/IsolatedAgentWorktrees.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/LayoutSystem.md",
+      "mode": "100644",
+      "git_blob": "1738e3174243d226b9514efc4762bf7bd72f7813",
+      "sha256": "b8a0c81e9d3b1e156cbf39bd76a240d86208a18aa0931879d6700aad9c3ccd7d",
+      "size": 3528,
+      "document": "references/Standards/Kiro/LayoutSystem.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/LinearIssueTracking.md",
+      "mode": "100644",
+      "git_blob": "469b560eaca7f976be7477d8e488e7d10553a787",
+      "sha256": "4da37ae72bf929b05027f7a1a2534655cb1e116eaf0dfe5f3ecdb794d893b185",
+      "size": 6130,
+      "document": "references/Standards/Kiro/LinearIssueTracking.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/LosslessTranslation.md",
+      "mode": "100644",
+      "git_blob": "c1aecf09d1c07de044e1d4cf7c3eb13be8d54b16",
+      "sha256": "af8e51fef57ca8789266a6d8fc799c4a7c2604472c2af763840a72faaf6f12ee",
+      "size": 4741,
+      "document": "references/Standards/Kiro/LosslessTranslation.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/McpToolDocPages.md",
+      "mode": "100644",
+      "git_blob": "b1eb4f3f218031d716f02f60f5675d0ec0d203a4",
+      "sha256": "fdf789c181cb0d345b50e6ad2844352ec7f7d40caaf7ab6cd321af4fa8d5050c",
+      "size": 986,
+      "document": "references/Standards/Kiro/McpToolDocPages.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/NamingConvention.md",
+      "mode": "100644",
+      "git_blob": "03904763bc9be2c6a9196a4e3df04962eb63ffb3",
+      "sha256": "0920f31b3cb84a9b033cd02ddc00d2080da2a2a32e92e137cb4eb92c06839db8",
+      "size": 5477,
+      "document": "references/Standards/Kiro/NamingConvention.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/NoCadRuntime.md",
+      "mode": "100644",
+      "git_blob": "02379c15d2866d7ba8dc07323b3fa49addb6ee0e",
+      "sha256": "f13ca734d1a2dcb3b927466d15e940a82d70536d9735ef75440286665fb80f9e",
+      "size": 3369,
+      "document": "references/Standards/Kiro/NoCadRuntime.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/NoDonorBlocks.md",
+      "mode": "100644",
+      "git_blob": "1317ff918f9429ad3c8d7a3cc15f4a71899084b2",
+      "sha256": "4ad67ab4b3dd3e8425addaf55478dd1b102adae66f4efcedb2a27ce516d2e186",
+      "size": 5423,
+      "document": "references/Standards/Kiro/NoDonorBlocks.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/NoStubs.md",
+      "mode": "100644",
+      "git_blob": "f9209e853728d1dfc3dd2e61ede9cc73607dbe56",
+      "sha256": "038af0c5f50b87a4bc6bdd15aa7010b8e7e1b134aeaaee95c06504f4c108c47d",
+      "size": 3053,
+      "document": "references/Standards/Kiro/NoStubs.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/NoUnrequestedStyling.md",
+      "mode": "100644",
+      "git_blob": "7ddc959c24ac4001a571b293b618c756c76135e2",
+      "sha256": "baf5851a68dd617d87b11aa0a3fcfc5e11deb84cac4ffd4b9dd94bd93d957b1c",
+      "size": 2697,
+      "document": "references/Standards/Kiro/NoUnrequestedStyling.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/PageTitleSeparator.md",
+      "mode": "100644",
+      "git_blob": "a9bdf9ba7f2a83a9b9d165898b8f6157c437088d",
+      "sha256": "12e7210b1f5f00bba1f9c3cd71af4e0f1c9cb1c3bf76727f31824dfd4cb39cb6",
+      "size": 1646,
+      "document": "references/Standards/Kiro/PageTitleSeparator.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/PinDependencies.md",
+      "mode": "100644",
+      "git_blob": "5fe1eaf8b51269652ea1e15d68d69ddfb3e23f9e",
+      "sha256": "f8fc1a598f4d33bc42fbbf4fa8284d564bd3e973d128372110d6e6594499de86",
+      "size": 3046,
+      "document": "references/Standards/Kiro/PinDependencies.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/PixiLockfiles.md",
+      "mode": "100644",
+      "git_blob": "ad99f359635c184df3f529329984c0c20e267d4a",
+      "sha256": "059e2a9092b13d49f7361d7c9cfe5f69857cdfbb8d78d828a28a75829cde5966",
+      "size": 4758,
+      "document": "references/Standards/Kiro/PixiLockfiles.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/PythonPackageManager.md",
+      "mode": "100644",
+      "git_blob": "3b81984bd5347aad272eb97d017f252f6c2f4144",
+      "sha256": "32d9ec0d0bc5d51340805ceffc714949a6aaf3730c3fa9edecd157a12ae99c04",
+      "size": 831,
+      "document": "references/Standards/Kiro/PythonPackageManager.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/RationaleComments.md",
+      "mode": "100644",
+      "git_blob": "29cc341f5078a73314fbd48c5daef5e29d329cdb",
+      "sha256": "17040cd42e8dd5a7993e37cee8ee027f4aea1954b27348a5d6ae4cccc0a5a835",
+      "size": 6431,
+      "document": "references/Standards/Kiro/RationaleComments.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/ReactDoctor.md",
+      "mode": "100644",
+      "git_blob": "00db79e34a4d52107216e528c4b727ae0a0595f7",
+      "sha256": "e2eb10121e9d26d345088541d50e6cddda199e0edc6ec3d2b3d35118f10e6da0",
+      "size": 2462,
+      "document": "references/Standards/Kiro/ReactDoctor.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/RepositoryStructure.md",
+      "mode": "100644",
+      "git_blob": "7445cff09fce0f294eae9100e5a10da0d40df558",
+      "sha256": "e48a01f0f4e4fb1290ede526e6da77fecff190809398225770ff817f936e7a84",
+      "size": 9080,
+      "document": "references/Standards/Kiro/RepositoryStructure.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/ShadcnPages.md",
+      "mode": "100644",
+      "git_blob": "2cf13922bffaea86ab551543915081564a061598",
+      "sha256": "174c2f7e80fcb557c1d651fdb0d3eb730e110b146128a6318328e32bec170f44",
+      "size": 7808,
+      "document": "references/Standards/Kiro/ShadcnPages.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/SpdxHeader.md",
+      "mode": "100644",
+      "git_blob": "45f32aa5b0eee016beef427d7caf3821b197890c",
+      "sha256": "d6ecd15a7cfc354a3886841c9603f85cf7e5f03d7cc89f2103b3cbe079087e25",
+      "size": 2169,
+      "document": "references/Standards/Kiro/SpdxHeader.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/SplitLargeDefinitions.md",
+      "mode": "100644",
+      "git_blob": "4f6ee257ac823b4d7cc1641e27088a3acdeb438b",
+      "sha256": "199d8b9d8bc0c7eb65be538304d90d83e6e9d34193d547f5e09544495d238571",
+      "size": 4222,
+      "document": "references/Standards/Kiro/SplitLargeDefinitions.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/UserOwnedWorkspace.md",
+      "mode": "100644",
+      "git_blob": "3e1b82f3c2941facc2a18831d0cec1a8a89cd877",
+      "sha256": "32d4b647c083c248c99e48dc22b37f5894e096ef816380c2715086499234ba3b",
+      "size": 982,
+      "document": "references/Standards/Kiro/UserOwnedWorkspace.md",
+      "encoding": "markdown-wrapper"
+    },
+    {
+      "source": ".kiro/steering/WorkosTokenVerification.md",
+      "mode": "100644",
+      "git_blob": "165d3168ad8a0bac3dd9a473f96ea59edcd85ad7",
+      "sha256": "343ec84c76b37031599a10aa676ebd898caacef05cb40e2f4966c3e4405db3e0",
+      "size": 3053,
+      "document": "references/Standards/Kiro/WorkosTokenVerification.md",
+      "encoding": "markdown-wrapper"
+    }
+  ]
+}

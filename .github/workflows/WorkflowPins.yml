@@ -18,7 +18,38 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  pr-ci-reuse:
+    name: PR CI reuse (Workflow pins)
+    if: github.event_name == 'merge_group'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read # Reads immutable PR CI evidence from its originating run.
+      statuses: read # Reads legacy commit-status contexts.
+      checks: read # Verifies current PR check health before reuse.
+      pull-requests: read # Reads queued PR heads and compares candidate membership.
+    outputs:
+      reuse: ${{ steps.reports.outputs.reuse }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.merge_group.base_sha }}
+
+      - name: Verify reusable PR CI reports
+        id: reports
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const Reports = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/CiReports.cjs`);
+            await Reports.SetReuse({ github, context, core });
+
   verify-workflow-pins:
+    if: >-
+      always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
+    needs: pr-ci-reuse
     name: Verify immutable workflow dependencies
     runs-on: ubuntu-24.04
     timeout-minutes: 10
