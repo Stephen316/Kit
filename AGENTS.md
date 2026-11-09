@@ -41,6 +41,13 @@ Each kebab-case skill is generated from its mapped PascalCase source file in
   file, and background Git operation as user-owned state. Preserve it and work
   around it unless the user explicitly says otherwise.
 
+## Fusion decoding
+
+Start at the [Fusion feature index](re/Fusion/README.md). Open the matching
+feature note and focused test for evidence. Use the
+[Graphify source query](re/Fusion/Notes/Workflow.md#navigate-sdk-source-with-graphify)
+when tracing a decoder across modules.
+
 ## Skill routing
 
 | When working on…                                                               | Activate these skills                                                                                                                             |
