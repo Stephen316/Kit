@@ -13,6 +13,7 @@ from tools.Policy.GitFailure import GitFailure
 from tools.Policy.LoadChanged import LoadChanged
 from tools.Policy.ParseGitPaths import ParseGitPaths
 from tools.Policy.RunGitCommand import RunGitCommand
+from tools.steering.AddedComments import AddedComments
 from tools.steering.SteeringCompliance import (
     BuildParents,
     CheckReasons,
@@ -73,12 +74,14 @@ def CollectDiff(
 ) -> list[Finding]:
     FindingList: list[Finding] = []
     for RepoPath in RepoPaths:
-        HeadFindings = FindReasons(RepoPath, LoadRevText(RootPath, HeadRef, RepoPath))
+        HeadText = LoadRevText(RootPath, HeadRef, RepoPath)
+        HeadFindings = FindReasons(RepoPath, HeadText)
         BaseFindings: list[Finding] = []
         BaseText = LoadBaseText(RootPath, BaseRef, RepoPath)
         if BaseText is not None:
             BaseFindings = FindReasons(RepoPath, BaseText)
         FindingList.extend(GetNewFindings(HeadFindings, BaseFindings))
+        FindingList.extend(AddedComments(RepoPath, BaseText or "", HeadText))
     return FindingList
 
 

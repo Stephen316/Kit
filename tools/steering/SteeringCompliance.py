@@ -812,6 +812,8 @@ def CheckReasons(
     for LineNum, ColNum, KindText in FindReasonSites(SyntaxTree, ParentMap):
         if KindText == "alias binding":
             continue
+        if LineNum < 2 or not SourceLines[LineNum - 2].lstrip().startswith("#"):
+            continue
         FindingInfo = CheckReason(SourcePath, SourceLines, LineNum, ColNum, KindText)
         if FindingInfo is not None:
             FindingList.append(FindingInfo)

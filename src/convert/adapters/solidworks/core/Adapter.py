@@ -155,6 +155,11 @@ from convert.adapters.solidworks.container.Format import (
     SUFFIX_BY_FORMAT_ID as SuffixByFormatId,
 )
 from convert.adapters.solidworks.core.FeatureKindByNative import KFeatureKindByNative
+from convert.adapters.solidworks.core.AxisSketchId import AxisSketchId
+from convert.adapters.solidworks.core.BuildRevolve import BuildRevolve as BuildRevolve
+from convert.adapters.solidworks.core.SketchIdentity import (
+    MarkerId as MarkerId,
+)
 from convert.adapters.solidworks.core.Display import NativeDisplay
 from convert.adapters.solidworks.core.Native import (
     NativeDimension,
@@ -719,9 +724,7 @@ def BuildSavedPlan(
         VendorLoadable = True
     elif Attestation is not None:
         Transfers = Attested(Attestation, RequiredCaps)
-        AppUsable = IsBoolValue(
-            Attestation["application_usable"], "application_usable"
-        )
+        AppUsable = IsBoolValue(Attestation["application_usable"], "application_usable")
         VendorLoadable = IsBoolValue(Attestation["vendor_loadable"], "vendor_loadable")
         NativeBrep = str(Attestation.get("native_brep", "template"))
         NativeContent = "source-preserved"
@@ -7203,9 +7206,10 @@ def DirectionAxis(Model: NativeModel) -> tuple[Selection, ...]:
     SketchById = {Sketch.object_id: Sketch for Sketch in Model.sketches}
     Result: list[Selection] = []
     for Operation in Model.operations:
-        if Operation.profile_id is None:
+        AxisId = AxisSketchId(Operation)
+        if AxisId is None:
             continue
-        Sketch = SketchById.get(Operation.profile_id)
+        Sketch = SketchById.get(AxisId)
         SubElem = OperationAxisSubElem(Operation, Sketch)
         if Sketch is None or SubElem is None:
             continue
@@ -7546,40 +7550,6 @@ def NativeFallback(
 
 
 # this definition exists because focused behavior needs one stable owner
-def BuildRevolve(
-    Operation: NativeOperation | None, Sketches: Mapping[int, NativeSketch]
-) -> RevolutionFeature | None:
-    if (
-        Operation is not None
-        and Operation.kind in {"revolve_join", "revolve_cut"}
-        and (Operation.angle_degrees is not None)
-        and (Operation.profile_id is not None)
-        and (Operation.profile_id in Sketches)
-        and (Operation.axis_marker_offset is not None)
-    ):
-        return RevolutionFeature(
-            angle=ParamValue(Operation.angle_degrees, ValueKind.ANGLE, "deg"),
-            axis_entity_id=MarkerId(Operation.profile_id, Operation.axis_marker_offset),
-            reversed=Operation.kind == "revolve_cut",
-        )
-    if (
-        Operation is not None
-        and Operation.kind in {"revolve_join", "revolve_cut"}
-        and (Operation.angle_degrees is not None)
-        and (Operation.axis_source_kind is not None)
-        and (Operation.axis_source_id is not None)
-    ):
-        return RevolutionFeature(
-            angle=ParamValue(Operation.angle_degrees, ValueKind.ANGLE, "deg"),
-            axis_entity_id=AxisSourceId(
-                Operation.axis_source_kind, Operation.axis_source_id
-            ),
-            reversed=Operation.kind == "revolve_cut",
-        )
-    return None
-
-
-# this definition exists because focused behavior needs one stable owner
 def BuildExtrude(Operation: NativeOperation | None) -> ExtrusionFeature | None:
     if (
         Operation is None
@@ -7762,9 +7732,7 @@ def BrepPayloadA(Index: int, Native: ParasolidPayload) -> BrepPayload:
                 ProvenanceSpan(
                     Native.stream,
                     Native.wrapper_offset,
-                    Native.compressed_offset
-                    + Native.compressed_size
-                    - Native.wrapper_offset,
+                    Native.stored_size,
                     "parasolid-wrapper",
                 ),
             ),
@@ -7777,6 +7745,7 @@ def BrepPayloadA(Index: int, Native: ParasolidPayload) -> BrepPayload:
                 "compressed_offset": Native.compressed_offset,
                 "compressed_size": Native.compressed_size,
                 "uncompressed_size": Native.uncompressed_size,
+                "stored_size": Native.stored_size,
             }
         ),
         role=PayloadRole.BREP,
@@ -7986,16 +7955,6 @@ def ProfileEdgeId(NativeId: int, ProfileIndex: int, EdgeIndex: int) -> str:
 
 
 # this definition exists because focused behavior needs one stable owner
-def AxisSourceId(KindValue: str, NativeId: int) -> str:
-    return f"sldprt:{KindValue}:{NativeId}"
-
-
-# this definition exists because focused behavior needs one stable owner
-def MarkerId(NativeId: int, Offset: int) -> str:
-    return f"sldprt:sketch:{NativeId}:native:{Offset}"
-
-
-# this binding exists because shared behavior needs one stable value
 ArcEllipseGeometry = ArcEllipseGeom
 
 # this binding exists because shared behavior needs one stable value
