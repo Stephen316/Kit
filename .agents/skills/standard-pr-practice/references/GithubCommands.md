@@ -68,7 +68,7 @@ gh run watch 456 --repo owner/repo --compact --exit-status --interval 30
 
 Rerun only for one evidenced transient failure under the CI reference. Run watchers through yielding sessions and still perform a final full inventory. `gh pr checks` exit 8 means pending; `gh run view --exit-status` can return zero before completion, so inspect `status` and `conclusion`. Failed-job IDs and annotation check-run IDs are different. Empty, cancelled, skipped, neutral, queued, and successful are not interchangeable.
 
-## Inventory @cubic-dev-ai results and threads
+## Inventory configured reviewer results and threads
 
 ```sh
 gh api --method GET repos/owner/repo/pulls/123/reviews -f per_page=100 --paginate --slurp
@@ -78,19 +78,20 @@ gh api graphql -f query='query($owner:String!,$repo:String!,$number:Int!,$cursor
 gh api graphql -f query='query($threadId:ID!,$cursor:String){node(id:$threadId){... on PullRequestReviewThread{comments(first:100,after:$cursor){pageInfo{hasNextPage endCursor} nodes{id fullDatabaseId author{login} body url createdAt updatedAt originalCommit{oid} commit{oid}}}}}}' -F threadId=PRRT_exampleNodeId -F cursor=observed-end-cursor
 ```
 
-Paginate `reviewThreads` with its returned cursor until `hasNextPage` is false, and separately paginate each thread's comments when needed. Select the output from `@cubic-dev-ai` using the verified responding GitHub account or app and identify its threads from their originating comment's author. REST review comments do not establish resolution state; GraphQL threads do. Query failures and truncated pages are blockers to completeness, not proof that no findings from `@cubic-dev-ai` exist.
+Paginate `reviewThreads` with its returned cursor until `hasNextPage` is false, and separately paginate each thread's comments when needed. Select the output from the configured reviewer using the verified responding GitHub account or app and identify its threads from their originating comment's author. REST review comments do not establish resolution state; GraphQL threads do. Query failures and truncated pages are blockers to completeness, not proof that no findings from the configured reviewer exist.
 
-GitHub review submissions carry `commit_id`, comments can link their original/current commit, and checks carry `head_sha`. Correlate them with the current revision before trusting a verdict. A PR-body or issue-comment summary needs verified revision provenance; its timestamp alone does not establish the reviewed head. Read every reported concern even when no numeric score or formal review exists. Outdated threads from `@cubic-dev-ai` still need to be addressed and resolved.
+GitHub review submissions carry `commit_id`, comments can link their original/current commit, and checks carry `head_sha`. Correlate them with the current revision before trusting a verdict. A PR-body or issue-comment summary needs verified revision provenance; its timestamp alone does not establish the reviewed head. Read every reported concern even when no numeric score or formal review exists. Outdated threads from the configured reviewer still need to be addressed and resolved.
 
 ## Trigger, answer, and resolve
 
 ```sh
-gh pr comment 123 --repo owner/repo --body '@cubic-dev-ai review this PR'
+jq -je '.Comment | select(type == "string" and length > 0)' .agents/skills/standard-pr-practice/ReviewBot.json > /tmp/kit-review-comment.txt
+gh pr comment 123 --repo owner/repo --body-file /tmp/kit-review-comment.txt
 gh api --method POST repos/owner/repo/pulls/123/comments/456789/replies -f body='Addressed in the accepted commit; the referenced path now enforces the documented contract'
 gh api graphql -f query='mutation($threadId:ID!){resolveReviewThread(input:{threadId:$threadId}){thread{id isResolved}}}' -F threadId=PRRT_exampleNodeId
 ```
 
-Use the exact top-level comment above to request review after opening the PR and after each new head. Check for an existing request or result first. Use [ReviewFindings.md](ReviewFindings.md) for revision attribution and completion rules. Finding replies must contain observed evidence rather than blindly copying the example. For a top-level report without review threads, post one concise finding-by-finding response linking the report, accepted fix SHA, and verification evidence; do not pretend an issue comment has a thread-resolution API. Resolve only threads from `@cubic-dev-ai` with genuinely addressed findings; do not dismiss a blocking review or use resolution to hide a defect.
+Run the example commands separately from the repository root. The first loads `Comment` from [ReviewBot.json](../ReviewBot.json); proceed only if it succeeds, and use a task-owned temporary file. Submit that loaded string as the entire top-level comment to request review after opening the PR and after each new head. Check for an existing request or result first. Use [ReviewFindings.md](ReviewFindings.md) for revision attribution and completion rules. Finding replies must contain observed evidence rather than blindly copying the example. For a top-level report without review threads, post one concise finding-by-finding response linking the report, accepted fix SHA, and verification evidence; do not pretend an issue comment has a thread-resolution API. Resolve only threads from the configured reviewer with genuinely addressed findings; do not dismiss a blocking review or use resolution to hide a defect.
 
 ## Conflict mechanics and read-only merge state
 

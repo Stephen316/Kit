@@ -37,8 +37,9 @@ requirements retain their original force and scope. In particular:
   old request for an isolated test as permission to add one.
 - No tests run locally. Keep permitted static formatting/checking local and
   execute tests remotely, with heavy acceptance in the native merge queue.
-- Cubic is the only automated reviewer. The main skill defines the exact trigger,
-  all-CI follow-up, and review evidence requirements.
+- [ReviewBot.json](../../ReviewBot.json) defines the only automated reviewer
+  request comment. The main skill defines all-CI follow-up and review evidence
+  requirements.
 - Only verified repository administrators can explicitly authorize agent merges,
   queue enrollment, auto-merge, or supported overrides under the main skill's
   gates. Ordinary coding requests do not grant merge authority.

@@ -28,8 +28,9 @@ updates; generated docs must be reviewed and must not overwrite manual entries.
 
 ## Repository workflow
 
-Use [standard-pr-practice](.agents/skills/standard-pr-practice/SKILL.md) for
-repository changes and PR follow-up. It is the only repository skill and the
+Agents MUST activate [standard-pr-practice](.agents/skills/standard-pr-practice/SKILL.md)
+every time they work on this repository, before any task, including investigation,
+documentation, skill edits, implementation, and PR follow-up. It is the only repository skill and the
 canonical source for Codex and Claude Code. Edit it directly. Do not restore
 the removed Kiro skill registrations, steering directories, or skill generator.
 All prior rules and resources are preserved in full inside standard-pr-practice;
@@ -45,18 +46,19 @@ read its complete standards index and every applicable rule before coding.
 - Run heavy acceptance and security checks on the merge-group candidate through
   [the native merge queue](MergeQueue.md). Keep every applicable CI gate enabled.
   Distinguish green PR checks from successful queue acceptance.
-- Use `Pull Request / CI Agg` for overall CI health, excluding Cubic. Reuse healthy
-  PR reports in the queue only with verified identical inputs; otherwise rerun.
-  Header and change-range verification and heavy acceptance always execute on
-  the candidate.
-  Use Cubic's existing status indicator without a duplicate approval workflow.
-- Cubic is the only automated PR reviewer. Request exactly
-  `@cubic-dev-ai review this PR` once per accepted head unless that head already
-  has a request or review. Verify the responding account/app and reviewed SHA,
-  address all findings, and require its actual `APPROVED` review on the current
-  head. Comments and a green reviewer check do not substitute for approval.
-  No human or code-owner approval is required. Report unavailable review
-  evidence separately.
+- Use `Pull Request / CI Agg` for overall CI health, with its existing provider
+  exclusions documented in [MergeQueue.md](MergeQueue.md). Reuse healthy PR reports
+  in the queue only with verified identical inputs; otherwise rerun. Header and
+  change-range verification and heavy acceptance always execute on the candidate.
+- Read `Comment` from
+  [ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json), the only
+  source of truth for the automated reviewer and its exact request comment.
+  Request it once per accepted head unless that head already has a request or
+  review. Verify the responding account/app and reviewed SHA, address all findings,
+  and require its actual `APPROVED` review on the current head. Comments and a green
+  reviewer check do not substitute for approval. No human or code-owner approval
+  is required by this workflow. Report unavailable review evidence and independently
+  enforced repository requirements separately.
 - Only an explicit merge request from a verified repository administrator
   authorizes an agent to enroll a PR in the queue, enable auto-merge, or merge.
   Verify the requester's identity and current repository `admin` permission.
