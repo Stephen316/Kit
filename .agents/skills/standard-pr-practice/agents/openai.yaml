@@ -4,4 +4,4 @@
 interface:
   display_name: "Standard PR Practice"
   short_description: "Open PRs, clear gates, require admin merge authorization"
-  default_prompt: "Use $standard-pr-practice to implement my goal in an isolated worktree without local tests, commit, then push with --no-verify, promptly open its own PR, request exactly @cubic-dev-ai review this PR once per head, fix CI, findings, and conflicts, leave the PR open unless a verified repository administrator explicitly requests merging, then use the merge queue once every current-revision gate passes"
+  default_prompt: "Use $standard-pr-practice for this task, read the review comment from ReviewBot.json, and carry authorized changes through an isolated worktree, their own PR, remote CI, and review follow-up"

@@ -3,9 +3,9 @@ SPDX-License-Identifier: MIT
 SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt
 -->
 
-# Follow up on reviews from @cubic-dev-ai
+# Follow up on automated reviews
 
-Address every finding from the verified account or app that responds to `@cubic-dev-ai review this PR`, including advisory findings, top-level comments, and findings in neutral checks. Only a review from that integration clears the bot review gate. Use [GithubCommands.md](GithubCommands.md) for paginated inventory, replies, and thread resolution.
+Address every finding from the verified account or app that responds to the `Comment` loaded from [ReviewBot.json](../ReviewBot.json), including advisory findings, top-level comments, and findings in neutral checks. Only a review from that integration clears the bot review gate. Use [GithubCommands.md](GithubCommands.md) for paginated inventory, replies, and thread resolution.
 
 ## Inventory the report and its revision
 
@@ -27,9 +27,9 @@ Reply inside an existing review thread, then resolve it only after the finding i
 
 ## Request review for the current head
 
-After opening the PR and after each accepted push that changes its head, post one top-level PR comment whose entire body is `@cubic-dev-ai review this PR`, unless that revision already has a request to or a review from `@cubic-dev-ai`. Record the accepted head SHA and the request URL separately. A posted comment or reaction does not establish that a review ran. Verify the responding GitHub account or app and the revision it reviewed. Do not send a duplicate request for the same head or fall back to another reviewer.
+After opening the PR and after each accepted push that changes its head, post one top-level PR comment whose entire body is the current `Comment` string loaded from [ReviewBot.json](../ReviewBot.json), unless that revision already has a request to or a review from the configured reviewer. Record the accepted head SHA and the request URL separately. A posted comment or reaction does not establish that a review ran. Verify the responding GitHub account or app and the revision it reviewed. Do not send a duplicate request for the same head or fall back to another reviewer.
 
-Tag the initial PR once. On later heads, a verified native Cubic run already
+Tag the initial PR once. On later heads, a verified native run from the configured reviewer already
 queued or in progress on that exact SHA counts as an existing automatic review
 request. Follow it without posting a duplicate full re-review trigger. It remains
 pending evidence until the current-head verdict and findings are available.
@@ -38,9 +38,18 @@ Poll in responsive intervals around 30–60 seconds and inspect new findings pro
 
 ## Verify completion
 
-Require Cubic's actual approval attributable to the current head, all reported findings fixed or answered with evidence, no unresolved Cubic review threads including outdated ones, and no outstanding blocking verdict. Track human-authored concerns and independently enforced conversation-resolution requirements separately; do not resolve someone else's threads through this bot-review workflow. Read the substance of Cubic's own report and status indicator: a successful or neutral check with actionable findings is not a clean review. Keep approval and review evidence separate from `Pull Request / CI Agg`, which excludes Cubic. Do not add a duplicate Cubic approval workflow or invent a numeric score requirement.
+Require the configured reviewer's actual approval attributable to the current head, all reported findings fixed or answered with evidence, no unresolved review threads from the configured reviewer including outdated ones, and no outstanding blocking verdict. Track human-authored concerns and independently enforced conversation-resolution requirements separately; do not resolve someone else's threads through this bot-review workflow. Read the substance of the configured reviewer's own report and status indicator: a successful or neutral check with actionable findings is not a clean review. Keep approval and review evidence separate from `Pull Request / CI Agg`, whose existing provider exclusions are documented in [MergeQueue.md](../../../../MergeQueue.md). Do not add a duplicate reviewer approval workflow or invent a numeric score requirement.
 
-Verify `cubic-dev-ai[bot]`, immutable GitHub user ID `191113872`, and account type `Bot`; its verified app is `cubic-dev-ai`, app ID `1082092`. Correlate the native review's `commit_id` and status `head_sha` with the current PR head. A stale or dismissed approval is insufficient. No human or code-owner approval is required. Report unavailable approval evidence separately from passing CI, without duplicating Cubic's native status.
+Verify the responding GitHub account or app against the integration named by
+`Comment` in [ReviewBot.json](../ReviewBot.json). Record its observed login, immutable
+user or app ID, and account type from GitHub metadata; do not assume the mention
+and responding bot login are identical or accept a quoted bot name as provenance.
+Correlate the native review's `commit_id` and status `head_sha` with the current PR
+head. A stale or dismissed approval is insufficient. No human or code-owner
+approval is required by this workflow. Report unavailable approval evidence
+separately from passing CI and independently enforced repository requirements.
+Changing the comment does not install a reviewer, change ownership, alter CI
+provider exclusions, or reconfigure branch protections.
 
 Keep “findings addressed”, “current-head review completed”, “CI passed”, “mergeable”, “required approvals satisfied”, and “queued/merged/deployed” as separate facts. Unknown revision attribution or a missing current-head review remains unavailable evidence, not a clean pass. If the head changes, refresh the report and CI inventory. If the PR merges or closes externally, report that change and any unresolved review evidence before further publication.
 

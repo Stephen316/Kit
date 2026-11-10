@@ -12,15 +12,19 @@ outside Git history: merging this configuration PR does not activate them.
 ## Validation phases
 
 PRs run Python lint, formatting, types, steering, import, SPDX, path, skill, and
-workflow policies, including actionlint and Zizmor. Existing metadata labeling continues. Cubic is the only
-automated reviewer; request `@cubic-dev-ai review this PR` once per head and
-address every finding from its verified account or app on that revision. Cubic
-must submit an actual `APPROVED` review on that exact head. No human or
-code-owner approval is required. `@cubic-dev-ai` is the wildcard owner in
-`CODEOWNERS`; `@odinglyn0` is not listed.
+workflow policies, including actionlint and Zizmor. Existing metadata labeling
+continues. Read the exact review request from `Comment` in
+[ReviewBot.json](.agents/skills/standard-pr-practice/ReviewBot.json), the only source
+of truth for the reviewer to mention. Request it once per head and address every
+finding from its verified account or app on that revision. The configured reviewer
+must submit an actual `APPROVED` review on that exact head. No human or code-owner
+approval is required by the agent workflow; independently enforced GitHub
+requirements must still be inspected and reported separately.
 
-Use Cubic's existing native review and status indicator. There is no duplicate
-Cubic approval workflow. Review evidence and approval remain separate from CI.
+Use the configured reviewer's native review and status indicator. Do not add a
+duplicate approval workflow. Review evidence and approval remain separate from CI.
+Changing the review comment does not change existing integrations, the wildcard
+owner in [CODEOWNERS](.github/CODEOWNERS), CI provider exclusions, or live rulesets.
 
 [`Pull Request / CI Agg`](.github/workflows/PullRequest.yml) reports overall CI
 health for the exact PR revision, excluding Cubic by verified app identity. It
@@ -37,8 +41,7 @@ workflows; the aggregate does not replace their assertions or thresholds.
 open Cubic issues. Cubic reads this file only from the default branch; feature
 branch configuration does not take effect until merged. Before then, a repository
 administrator manages the equivalent approval setting in Cubic. Do not change
-live rulesets as part of this workflow. The code-owner replacement takes effect
-when this PR merges. GitHub requires the named user to have repository write
+live rulesets as part of this workflow. GitHub requires the named user to have repository write
 access before it recognizes ownership; the installed review app's access does
 not grant that separate user write permission.
 
@@ -160,7 +163,7 @@ permission with the collaborator-permission endpoint; the tool account's
 permission alone does not identify the person requesting the merge. A coding
 request, PR creation, skill invocation, or green CI grants no merge authority.
 Absent an explicit administrator merge request, finish the PR's available CI
-and Cubic review and leave it open with acceptance clearly deferred.
+and configured reviewer follow-up and leave it open with acceptance clearly deferred.
 
 GitHub-managed `CodeQL - Code Quality` is a separate service configuration and
 currently still runs on PRs. This PR moves repository-owned heavy jobs; moving

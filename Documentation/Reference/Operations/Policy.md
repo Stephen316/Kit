@@ -5,7 +5,7 @@ SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen
 
 # Policy and governance
 
-The authoritative workflow is [standard-pr-practice](../../../.agents/skills/standard-pr-practice/SKILL.md), reached through [AGENTS.md](../../../AGENTS.md) and [CLAUDE.md](../../../CLAUDE.md). Its [complete standards index](../../../.agents/skills/standard-pr-practice/references/Standards/Index.md) contains the preserved rules and conflict precedence. The removed Kiro generator is not part of the current workflow.
+The authoritative workflow is [standard-pr-practice](../../../.agents/skills/standard-pr-practice/SKILL.md), reached through [AGENTS.md](../../../AGENTS.md) and [CLAUDE.md](../../../CLAUDE.md). Its [complete standards index](../../../.agents/skills/standard-pr-practice/references/Standards/Index.md) contains the preserved rules and conflict precedence. Agents must activate the skill before every repository task, including work on the skill itself. [ReviewBot.json](../../../.agents/skills/standard-pr-practice/ReviewBot.json) is the only source of truth for the review request comment and reviewer mention. The removed Kiro generator is not part of the current workflow.
 
 ## Repository gates
 
